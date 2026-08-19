@@ -249,6 +249,88 @@ projections.
   points on a reduction and is not under our control.
 ]
 
+=== A criterion at finite level <sec-sadic-level>
+
+For an actual computation one wants the criterion phrased in terms of congruences, and then one
+wants the congruence level bounded. Let $E^d_n (QQ_p)$ be the $n$-th kernel of reduction, the
+points reducing to the identity modulo $p^n$; these form a neighbourhood basis of $O$.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Criterion at level $n$.* $X(QQ)$ is dense in $X(QQ_S)$ if and only if for every $n >= 1$, every
+  tuple $arrow(delta)$ and every $(P'_1, P'_2) in E_(arrow(delta))(QQ_S)^2$ there are a rational
+  $d |-> arrow(delta)$, a sign tuple $epsilon in {plus.minus 1}^S$, and $P_1, P_2 in E^d (QQ)$
+  with
+  $ P_i - epsilon P'_i in product_(p in S) E^d_n (QQ_p) quad (i = 1, 2). $
+]
+
+The sign tuple is not decoration. A point of $X(QQ_p)$ is an orbit ${(P_1,P_2), (-P_1,-P_2)}$, and
+the sign is chosen *independently at each place*, so a point of $X(QQ_S)$ determines a lift to
+$E_(arrow(delta))(QQ_S)^2$ only up to $epsilon$. Demanding $P_i approx P'_i$ on the nose would be
+strictly stronger than density, because the closures $H_d^S$ are stable under the *global* $-1$
+but not under placewise sign changes.
+
+*Can $n$ be bounded?* For a *single* twist, yes, and $n = 2$ is exactly right:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma.* $E^d (QQ)$ is dense in $E^d (QQ_S)$ if and only if it surjects onto the *finite* group
+  $ B_d = product_(p in S) E^d (QQ_p) slash E^d_2 (QQ_p), quad
+    \#B_d = product_(p in S) p dot M_p (d) $
+  (with $E_3$ in place of $E_2$ at $p = 2$).
+]
+
+_Proof._ $E_2 = p E_1 subset.eq p G_p subset.eq Phi(G_p)$ for odd $p$, and Frattini subgroups
+multiply over finite products, so $product_p E_2^((p)) subset.eq Phi(G_S)$. A subgroup surjecting
+onto $G_S slash Phi(G_S)$ is dense; conversely a dense subgroup surjects onto every finite
+quotient. $qed$
+
+For the criterion as stated, which quantifies over $d$ *inside* the quantifier over targets, level
+2 does not visibly suffice: knowing that $a$ and $b$ both lie in the image of $E^d (QQ)$ in $B_d$
+does not put a deeper target inside $overline(E^d (QQ))$. It does suffice under one extra
+hypothesis, and that hypothesis is checkable locally:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem.* Suppose $E_(arrow(delta))(QQ_S)$ is topologically 2-generated for every
+  $arrow(delta)$ --- equivalently, for every prime $ell$ and every $arrow(delta)$,
+  $ [ell in S] + sum_(p in S) dim_(bb(F)_ell) E_(delta_p) (QQ_p)[ell] <= 2 . $
+  Then the following are equivalent: (i) $X(QQ)$ is dense in $X(QQ_S)$; (ii) the criterion at
+  every level $n$; (iii) the criterion at level $n = 2$; (iv) for every $arrow(delta)$ some
+  $d |-> arrow(delta)$ has $E^d (QQ)$ surjecting onto $B_d$.
+]
+
+_Proof._ (iv) $=>$ (i) is the sufficiency of (P), and (i) $=>$ (ii) $=>$ (iii) are immediate. For
+(iii) $=>$ (iv), apply the level-2 criterion to a pair $(P'_1, P'_2)$ of topological generators of
+$E_(arrow(delta))(QQ_S)$. The resulting $P_1, P_2 in E^d (QQ)$ satisfy
+$P_i equiv epsilon P'_i$ modulo $product_p E_2^((p)) subset.eq Phi$; since $epsilon$ acts as an
+automorphism, $epsilon P'_1, epsilon P'_2$ still generate topologically, so $P_1, P_2$ do too, and
+$overline(E^d (QQ)) = E_(arrow(delta))(QQ_S)$. $qed$
+
+Two remarks. First, 2-generation is *strictly weaker* than $(star)$, so this supersedes the
+previous theorem: for $f = x^3+x+1$ and $S = {5,7}$ one has $ell$-ranks $2, 1, <= 2$ at
+$ell = 5, 7, 3$, so $E(QQ_S)$ is 2-generated even though $(star)$ fails. Second, and importantly,
+*the sufficient direction needs no hypothesis at all*: exhibiting one $d$ per tuple with
+$E^d (QQ)$ surjecting onto $B_d$ proves density outright. Only the converse --- reading a failed
+search as a genuine failure --- needs 2-generation.
+
+*The computation.* `denseprod` in `sadic.gp` implements the lemma by the same triangular reduction
+as `densegroup`, with the membership test taken at all places simultaneously; it was checked
+against the provable coprimality test on 312 twists with no disagreement, and decides the 51 cases
+that test left open. Searching by tuple:
+
+#table(
+  columns: 4, align: (center, center, center, left), stroke: 0.4pt + luma(150),
+  table.header([$S$], [tuples], [witnessed], [outcome]),
+  [${5, 7}$],    [16], [16], [*$X(QQ)$ is dense in $X(QQ_S)$*, $|d| <= 4000$, 0.4 s],
+  [${3, 5, 7}$], [64], [46], [inconclusive so far, $|d| <= 6000$],
+)
+
+The three-place case is not a failure, only an unfinished search: witnesses become scarcer as
+$|S|$ grows, since a twist must now be simultaneously good at every place.
+
+*What is left open.* Whether level 2 suffices *without* 2-generation. The obstruction is clear
+enough --- the criterion allows a different $d$ for each target, so a $d$ that captures a target
+modulo $E_2$ need not capture its refinements --- but I have neither a proof nor a
+counterexample.
+
 = Result
 
 #block(fill: rgb("#eef4ff"), inset: 9pt, radius: 3pt, width: 100%)[
