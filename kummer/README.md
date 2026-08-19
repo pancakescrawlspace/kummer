@@ -26,7 +26,7 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `families.gp` | enumerates all quadratic-twist families with `E[3]` decomposable and tests the denominator-of-`j` criterion (document §5.2.3): `families`, `testfamily`, `sweepfamilies`. |
 | `verify-dual.sage` | independent Sage check of the one computational input to the §5.2.4 theorem (uses Sage's own `.dual()`); run under Docker, see below. |
 | `sadic.gp` | `S`-adic density (document §2.2): `Mstar`, `coprimeS`, `densefactorwise`, `denseS`, `reportS`; and the level-2 product test `inE2p`, `Border`, `denseprod`, `reportSprod`; and the rank dichotomy `torsdimUB`, `gtop`, `triage`. |
-| `ledger.gp` | the ledger and star test at level 1 (document §2.3.1): `arenainit`, `reachmap`, `signact`, `ledgeradd`, `maskvec`, `startest`, `runledger`. |
+| `ledger.gp` | the ledger and star test at level 1 (document §2.3.1): `arenainit`, `reachmap`, `signact`, `ledgeradd`, `maskvec`, `startest`, `runledger`, `rungraded`. Reduction-agnostic arena (§2.3.4): `shortmodel`, `shortdata`, `cosetreps1`, `cosetclose`, `cosetidx`. Sweeps over all tuples (§2.3.6): `sweepgraded`, and the per-tuple search `tuplepart`, `rungradedk`, `sweeptuples`; `tuplename` for readable labels, `showcert` for the certificate. |
 | `control.gp` | the control experiment for the `p = 3` open case (document §5.2.2): `armA`, `find3`, `armB`. |
 | `cm-torsion.gp` | the CM mechanism at `p = 3` for `f = x^3-2` (document §5.2.1): `torsionQ3`, `row`, `correlate`, `structure`. |
 | `cover-p2.gp` | the same check at `p = 2`, with exact rational arithmetic and the corrected target set (see below). |
@@ -331,7 +331,41 @@ Admitting only granularity-1 twists, the ledger still closes: 102 of 119
 twists admitted, seven maximal reaches, deficiency 0. Every reach then
 contains `ker_1`, so the termination theorem applies with `N = 1` and
 **density in that component of `X(Q_S)` is proved** -- with no full twist
-anywhere. The other 63 tuples for this `S` are untouched.
+anywhere.
+
+## The sweep over all 64 tuples
+
+```
+read("ledger.gp");
+sweepgraded(1, 1, [11,13,17], 5000);     /* uniform in |d|   */
+sweeptuples(1, 1, [11,13,17], 2000, 250); /* per tuple        */
+```
+
+`sweepgraded` dispatches each twist to the ledger of its own square-class
+tuple. Sweeping squarefree `|d| <= 5000` realises 54 of the 64 tuples and
+**proves five dense**, each with a certificate naming its twists:
+
+| tuple | `d0` | `N` | twists | ledger | outcome |
+|---|---|---|---|---|---|
+| `(1,1,1)`  | 1   | 4536 | 222 | 7 | covered -- seven hyperplanes |
+| `(1,1,u)`  | 3   | 4536 | 206 | 1 | covered -- full twist `d = 335` |
+| `(u,1,1)`  | -1  | 3240 | 177 | 7 | covered -- seven hyperplanes |
+| `(u,1,u)`  | 74  | 3240 | 185 | 7 | covered -- seven hyperplanes |
+| `(11,u,u)` | 11  | 3960 | 19  | 1 | covered -- full twist `d = 4279` |
+
+`(11,u,u)` is the one to watch: `11 | d0`, so `E^d0` is additive at 11 and the
+old `F_p` arena did not exist there at all.
+
+The 49 failures are supply, not obstruction. A tuple fixes the parity of
+`v_p(d)` at each place, so the odd-valuation places force a divisor
+`P = prod{p : v_p(d) odd}` of `d`; the all-odd tuple needs `2431 | d`, and a
+uniform sweep of `|d| <= 5000` gives it two candidates. `sweeptuples`
+enumerates `d = +-P*m` with `m` squarefree and coprime to `S` instead, so
+every tuple gets a comparable supply, and stops a tuple once its ledger
+closes. Four tuples were well supplied (116-149 twists) and still failed;
+probing them shows they hold **five of the seven** index-2 hyperplanes, so
+they are short of supply too, not obstructed -- `(1,1,1)` itself needed 222
+twists to collect all seven.
 
 Not yet implemented for deeper granularity. The obstacle is the index
 computation, not the bookkeeping: the `O(N)` triangular method is already impractical at level 2

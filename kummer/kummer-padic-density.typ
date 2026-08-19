@@ -678,7 +678,7 @@ $S = {11,13,17}$:
   [$(u,1,1)$],   [$-1$], [$3240$], [177], [7], [*covered* --- seven hyperplanes],
   [$(u,1,u)$],   [$74$], [$3240$], [185], [7], [*covered* --- seven hyperplanes],
   [$(11,u,u)$],  [$11$], [$3960$], [19],  [1], [*covered* --- one full twist, $d = 4279$],
-  [49 others],   [---],  [---],    [1--28], [1--14], [not covered],
+  [49 others],   [---],  [---],    [1--149], [0--13], [not covered],
 )
 
 Two mechanisms appear, and both are certified. Tuples $(1,1,u)$ and $(11,u,u)$ close because a
@@ -689,16 +689,51 @@ $d in {-3441, -1213, -641, -367, -199, 131, 2859}$, each of index 2 in an arena 
 That $(11,u,u)$ is among the successes matters for its own sake: $11 divides d_0$, so this is a
 tuple where $E_(d_0)$ is additive at $11$ and the old $bb(F)_p$ arena did not exist at all.
 
-*The 49 failures are a search artefact, not an obstruction.* Ten tuples were not even realised,
-and of those realised, most saw only a handful of twists --- against the 177 to 222 the four
-covered non-full tuples needed. The reason is structural: a tuple fixes the parity of $v_p (d)$ at
-each place, so the places of odd valuation force a divisor
-$P = product {p : v_p (d) "odd"}$ of $d$. For $S = {11,13,17}$ the tuple $(u dot 11, u dot 13,
-u dot 17)$ needs $2431 divides d$, so a uniform sweep of $|d| <= 5000$ offers it *two* candidates.
-Uniform search in $|d|$ is therefore the wrong enumeration: it must be replaced by
-$d = plus.minus P m$ with $m$ squarefree and coprime to $S$, so that every tuple gets a comparable
-supply. The cost is that the ramified tuples then work with much larger $d$ --- $|d|$ of order
-$10^6$ for the all-odd tuple --- where the rank computation, not the ledger, is the bottleneck.
+*The 49 failures are a matter of supply, not of obstruction.* That is worth establishing rather
+than assuming, and it splits into two parts.
+
+*Starvation.* Ten tuples were not realised at all, and 45 of the 49 saw fewer than 50 twists ---
+against the 177 to 222 that the three covered non-full tuples needed. The cause is structural: a
+tuple fixes the parity of $v_p (d)$ at each place, so the places of odd valuation force a divisor
+$P = product {p : v_p (d) "odd"}$ of $d$. For $S = {11,13,17}$ the tuple
+$(u dot 11, u dot 13, u dot 17)$ needs $2431 divides d$, so a uniform sweep of $|d| <= 5000$ offers
+it *two* candidates. Uniform search in $|d|$ is simply the wrong enumeration here; it must be
+replaced by $d = plus.minus P m$ with $m$ squarefree and coprime to $S$, so that every tuple gets a
+comparable supply. The price is that the ramified tuples then work with much larger $d$ --- $|d|$
+of order $10^6$ for the all-odd tuple --- where the rank computation, not the ledger, becomes the
+bottleneck.
+
+*The four well-supplied failures.* Tuples $(1,u,1)$, $(1,u,u)$, $(u,u,1)$ and $(u,u,u)$ saw 116 to
+149 twists, comparable to the successes, and still did not close. These are the ones that could
+have been a real obstruction, so they were probed directly. First, nothing distinguishes their
+arenas: at every one of the seven tuples examined the local groups $tilde(E)(bb(F)_p)$ are
+*cyclic*, so the arena is a product of three cyclic groups with $2$-rank exactly $3$. An index-2
+reach then contains the entire odd part together with a hyperplane of $(ZZ slash 2)^3$, so seven
+index-2 reaches suffice to cover --- in every tuple alike, whatever the odd part looks like
+($(ZZ slash 5)^2 times ZZ slash 9$ at $(u,u,u)$, $ZZ slash 3 times ZZ slash 5 times ZZ slash 7$ at
+$(1,u,1)$, and so on).
+
+Second, listing the reaches shows exactly what is missing. Both probed tuples have found *five* of
+the seven hyperplanes and no more:
+
+#table(
+  columns: 3, align: (left, left, left), stroke: 0.4pt + luma(150),
+  table.header([tuple], [reaches found], [witnesses]),
+  [$(u,u,u)$, $d_0 = 6$],  [five of index 2, two of index 10],
+    [$241, -889, -938, 1047, 4886$],
+  [$(1,u,1)$, $d_0 = -19$], [five of index 2],
+    [$-149, -349, -1086, 2546, 3391$],
+)
+
+So the mechanism is the same one that closes the successful tuples, stopped two hyperplanes short.
+Since $(1,1,1)$ needed 222 twists to collect all seven, five out of seven after 148 is unremarkable
+--- these tuples want more twists, not a different theory. Nothing in this sweep is evidence of an
+obstruction anywhere.
+
+*A cross-check for free.* Re-running the $(1,1,1)$ tuple under the per-tuple enumeration
+$d = plus.minus P m$ --- a different search order over a different set of candidates --- returns
+the *same seven* maximal reaches $d in {-1590, -519, -127, 53, 586, 1730, 1923}$. The certificate
+is a property of the curve, not of the search.
 
 
 = Result
