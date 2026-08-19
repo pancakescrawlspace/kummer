@@ -61,13 +61,13 @@ where $delta$ is the class of $d$ in $QQ_p^times slash (QQ_p^times)^2$.
   is dense in $E_delta (QQ_p) times E_delta (QQ_p)$.
 
   #v(2mm)
-  *Sufficient form (what is used below).* If for each $delta$ there exists a single rational
+  *Single-twist form.* If for each $delta$ there exists a single rational
   $d in delta dot (QQ_p^times)^2$ with $E_d (QQ)$ *dense in* $E_d (QQ_p)$, then $X(QQ)$ is dense
-  in $X(QQ_p)$.
+  in $X(QQ_p)$. For $p > 2$ this is *also necessary*, so the two forms agree.
 ]
 
 For odd $p$ there are 4 classes, for $p = 2$ there are 8. So the whole problem reduces to
-exhibiting 4 (resp. 8) elliptic curves per prime.
+exhibiting 4 (resp. 8) elliptic curves per prime --- and for $p > 2$ nothing is lost in doing so.
 
 _Proof of the sufficient form._ Let $(x_1, t_1, y_1) in X(QQ_p)$ with $y_1 != 0$, and let
 $delta$ be the class of $f(x_1)$ (equivalently of $f(t_1)$). Choose $d$ as in the statement and
@@ -78,6 +78,35 @@ to $(x_1, t_1, y_1)$. Points with $y_1 = 0$ and the nodes are limits of such poi
 
 Since $y |-> -y$ is an automorphism of $X$ defined over $QQ$, both sheets over a given $(x, t)$
 are reached, so density of the image in the $(x, t)$-plane already suffices.
+
+_Proof of necessity for $p > 2$._ Put $G = E_delta (QQ_p) tilde.equiv ZZ_p times T$ with $T$
+finite. Since $p > 2$ we have $mu_p subset.not QQ_p$, so by the Weil pairing $E[p](QQ_p)$ is
+cyclic; hence the $p$-part of $T$ is cyclic and *$G$ has at most two topological generators*.
+Choose topological generators $P, Q$ of $G$. As $G$ is infinite they are not both 2-torsion, so
+$(P,Q) != (-P,-Q)$ and $E_delta times E_delta -> X$ is a local homeomorphism near $(P,Q)$.
+
+If $X(QQ)$ is dense there are rational points arbitrarily close to the image of $(P,Q)$. Being in
+the square class $delta$ is an open condition, so such a point lies in the $delta$-part and lifts
+to a pair $(P', Q') in E_d (QQ)^2$ for some rational $d$ in the class $delta$, with $(P',Q')$
+close to $(P,Q)$. The Frattini subgroup $Phi(G)$ is open and $G slash Phi(G)$ finite discrete, so
+once $(P',Q')$ is close enough, $P' equiv P$ and $Q' equiv Q$ modulo $Phi(G)$ and hence $P', Q'$
+topologically generate. Therefore
+$overline(E_d (QQ)) supset.eq overline(⟨P', Q'⟩) = G$. $qed$
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Why $p > 2$.* At $p = 2$ one has $mu_2 subset QQ_2$, full 2-torsion can be rational, and
+  $G tilde.equiv ZZ_2 times (ZZ slash 2)^2$ needs *three* topological generators --- while the
+  Kummer surface only ever supplies *pairs* of points, so the argument breaks. This is not vacuous:
+  it happens exactly when $f$ splits completely over $QQ_2$, as for $f = x^3 - x$. For both curves
+  studied here it does not: $x^3 + x + 1$ and $x^3 - 2$ are irreducible over $QQ_2$, so there is no
+  rational 2-torsion, $T$ has odd order, and $G$ again needs at most two generators. The criterion
+  is thus an equivalence at *every* prime for these two surfaces.
+]
+
+Two consequences. Every positive result below is sharp --- exhibiting the four (or eight) twists
+does not merely suffice for density, it is what density means. And a *failure* to find one twist
+in some class is then evidence for genuine non-density, not merely a failure of the method; this
+is what §5.2.2 exploits at $p = 3$.
 
 == Local structure: testing "$Gamma$ dense in $E_d (QQ_p)$"
 
@@ -381,7 +410,9 @@ never *occur*. First, that the failure is real.
 )
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *Proposition (the question at $p = 3$ is a dichotomy).* For $f = x^3 - 2$,
+  *Proposition (the question at $p = 3$ is a dichotomy).* This is the instance at $p = 3$ of the
+  equivalence proved in §2; the direct argument below also identifies the open set that is missed.
+  For $f = x^3 - 2$,
   $ X(QQ) "is dense in" X(QQ_3) quad <==> quad exists d "in the class" [u dot 3] "with" \
     E_d (QQ) --> E_d (QQ_3) slash 3 E_d (QQ_3) tilde.equiv (ZZ slash 3)^2 quad "surjective." $
 
