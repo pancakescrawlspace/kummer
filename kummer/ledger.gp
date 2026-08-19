@@ -165,6 +165,16 @@ ledgeradd(L, ar, bm, d) = {
   out;
 }
 
+/* Readable name of a square-class tuple: sqclassS folds base 4 over S in
+   order, digits 0,1,2,3 = 1, u, p, u*p.  "tuple 37" says nothing; the tuple
+   (u*11, 1, u) says which component of X(Q_S) is meant.                    */
+tuplename(k, S) = {
+  my(v = vector(#S), i, t = k, out = "(");
+  forstep(i = #S, 1, -1, v[i] = t % 4; t = t \ 4);
+  for(i = 1, #S, out = Str(out, sqclassname(v[i], S[i]), if(i < #S, ", ", ")")));
+  out;
+}
+
 /* the twists behind a closed ledger, deduplicated */
 certtwists(L) = { my(i, T = List()); for(i = 1, #L, listput(T, L[i][2])); Set(Vec(T)); }
 
@@ -331,6 +341,8 @@ sweepgraded(A, B, S, DMAX) = {
      nreal = 0, nproved = 0, res);
   for(n = 1, DMAX,
     if(!issquarefree(n), next);
+    if(n % 250 == 0, print("      ... n = ", n, "  tuples realised ", nreal,
+                           "  admitted so far ", sum(i = 1, nt, nadm[i])));
     for(sg = 0, 1,
       d = if(sg == 0, n, -n);
       k = sqclassS(d, S) + 1;
@@ -356,7 +368,7 @@ sweepgraded(A, B, S, DMAX) = {
   for(i = 1, nt,
     if(d0[i] == 0, next);
     st = startest(L[i], arenasize(ar[i]));
-    print("    tuple ", i-1, " d0=", d0[i], " N=", arenasize(ar[i]),
+    print("    tuple ", i-1, " ", tuplename(i-1, S), " d0=", d0[i], " N=", arenasize(ar[i]),
           "  seen ", nseen[i], " admitted ", nadm[i], " ledger ", #L[i],
           if(st[1], "   COVERED", Str("   not covered, deficiency ", st[3])));
     if(st[1], showcert(L[i], ar[i])));
@@ -434,4 +446,59 @@ cosetclose(Ep, R, p, M) = {
       if(new, listput(R, Q))));
     if(#R == n, break()));
   [Ep, Vec(R)];
+}
+
+/* =====================================================================
+   Searching per tuple.
+
+   Sweeping |d| uniformly starves the ramified tuples.  A tuple fixes the
+   parity of v_p(d) at each place, so the places with odd valuation force a
+   divisor P_k = prod{p : v_p odd} of d; for S = {11,13,17} the all-odd tuple
+   needs 2431 | d, and |d| <= 2600 offers a single candidate -- against the
+   138 twists the d0 = 1 tuple needed to close.  Enumerate d = eps*P_k*m with
+   m squarefree and coprime to S instead, so every tuple gets a comparable
+   supply, and stop a tuple as soon as its ledger closes.
+   ===================================================================== */
+
+tuplepart(k, S) = {
+  my(v = vector(#S), i, t = k, P = 1);
+  forstep(i = #S, 1, -1, v[i] = t % 4; t = t \ 4);
+  for(i = 1, #S, if(v[i] >= 2, P *= S[i]));
+  P;
+}
+
+rungradedk(A, B, S, k, MMAX, CAP) = {
+  my(P = tuplepart(k, S), Q = prod(i = 1, #S, S[i]), d0 = 0, ar = 0, L = List(),
+     m, sg, d, td, bm, st, seen = 0, adm = 0, N = 0, tried = 0);
+  for(m = 1, MMAX,
+    if(!issquarefree(m) || gcd(m, Q) > 1, next);
+    for(sg = 0, 1,
+      d = if(sg == 0, m*P, -m*P);
+      if(sqclassS(d, S) != k, next);
+      if(tried >= CAP, break(2));
+      tried++;
+      /* the arena depends only on the tuple, so fix it from the first
+         candidate -- a rank-0 twist with no points still names the arena */
+      if(d0 == 0, d0 = d; ar = arenainit(A, B, d, S); N = arenasize(ar));
+      td = shortdata(A, B, d);
+      if(#td[2] == 0, next);
+      seen++;
+      if(!gran1(td[1], td[2], S), next);
+      bm = reachmap(ar, d, d0, S, td[3]);
+      if(bmsize(bm) <= 1, next);
+      L = ledgeradd(L, ar, bm, d); adm++;
+      if(startest(L, N)[1], break(2))));
+  if(d0 == 0, print("    tuple ", k, " ", tuplename(k, S), "   no candidate in range"); return(0));
+  st = startest(L, N);
+  print("    tuple ", k, " ", tuplename(k, S), " d0=", d0, " N=", N, "  tried ", tried, " with points ", seen, " admitted ", adm, " ledger ", #L, if(st[1], "   COVERED", Str("   not covered, deficiency ", st[3])));
+  if(st[1], showcert(L, ar));
+  st[1];
+}
+
+sweeptuples(A, B, S, MMAX, CAP) = {
+  my(nt = 4^#S, k, np = 0, r);
+  print("  f = x^3+(", A, ")x+(", B, ")   S = ", S, "   m <= ", MMAX, ", cap ", CAP, " twists per tuple");
+  for(k = 0, nt-1, r = rungradedk(A, B, S, k, MMAX, CAP); if(r, np++));
+  print("  PROVED dense: ", np, " of ", nt, " tuples");
+  np;
 }

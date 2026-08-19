@@ -640,6 +640,15 @@ The construction is validated against the old one where both apply: on the good-
 $d_0 = 1$ it reproduces @sec-layers exactly --- 119 twists inspected, 102 admitted, seven maximal
 reaches of index 2, deficiency $0$.
 
+*A caveat the $d_0 = 1$ tuple hides.* At an additive place $p divides M_p = c_p dot p$, so the
+hypothesis "$p tilde.not M_p$" of the layer-collapse remark in @sec-layers fails there, and
+$cal(G)_(p,p)$ is strictly larger than $E_1 (QQ_p)$ --- an extension of $ZZ slash p$ by $ZZ_p$.
+This costs nothing, because the termination theorem is stated in *levels*, not layers: granularity
+$1$ means the reach contains $ker_1 = product_p E_1 (QQ_p)$, and that is exactly condition (ii) of
+@sec-local at every place, since a subgroup of $E_1 tilde.eq ZZ_p$ not contained in $E_2 = p E_1$
+is all of $E_1$. No hypothesis on $M_p$ enters. The layer hypothesis governs how a reach is
+*represented*, not whether the granularity test is valid.
+
 === Provenance, and the certificate <sec-cert>
 
 A ledger entry is not just a reach but a triple $(overline(R), d, epsilon)$, recording which twist
@@ -653,6 +662,44 @@ $ d in {-1590, -519, -127, 53, 586, 1730, 1923}, $
 each of rank 2, each with $epsilon = (+,+,+)$, each of index 2 in the arena of order $4536$. That
 list, together with generators of $E^d (QQ)$ for those seven $d$, is checkable independently of the
 search that produced it.
+
+=== The sweep over all 64 tuples <sec-sweep64>
+
+With the arena valid everywhere, the ledger can be run on every square class tuple at once. Each
+twist is dispatched to the ledger of its own tuple; a tuple whose ledger closes is proved dense by
+the termination theorem at $N = 1$. Sweeping squarefree $|d| <= 5000$ for $f = x^3+x+1$,
+$S = {11,13,17}$:
+
+#table(
+  columns: 6, align: (left, right, right, right, right, left), stroke: 0.4pt + luma(150),
+  table.header([tuple], [$d_0$], [$N$], [twists], [ledger], [outcome]),
+  [$(1,1,1)$],   [$1$],  [$4536$], [222], [7], [*covered* --- seven hyperplanes],
+  [$(1,1,u)$],   [$3$],  [$4536$], [206], [1], [*covered* --- one full twist, $d = 335$],
+  [$(u,1,1)$],   [$-1$], [$3240$], [177], [7], [*covered* --- seven hyperplanes],
+  [$(u,1,u)$],   [$74$], [$3240$], [185], [7], [*covered* --- seven hyperplanes],
+  [$(11,u,u)$],  [$11$], [$3960$], [19],  [1], [*covered* --- one full twist, $d = 4279$],
+  [49 others],   [---],  [---],    [1--28], [1--14], [not covered],
+)
+
+Two mechanisms appear, and both are certified. Tuples $(1,1,u)$ and $(11,u,u)$ close because a
+*single full twist* exists --- a ledger of one member of index 1. Tuples $(1,1,1)$, $(u,1,1)$ and
+$(u,1,u)$ close the hard way, by seven index-2 reaches; for $(u,1,1)$ the witnesses are
+$d in {-511, 94, 134, 1154, 1821, 2994, 3714}$ and for $(u,1,u)$ they are
+$d in {-3441, -1213, -641, -367, -199, 131, 2859}$, each of index 2 in an arena of order $3240$.
+That $(11,u,u)$ is among the successes matters for its own sake: $11 divides d_0$, so this is a
+tuple where $E_(d_0)$ is additive at $11$ and the old $bb(F)_p$ arena did not exist at all.
+
+*The 49 failures are a search artefact, not an obstruction.* Ten tuples were not even realised,
+and of those realised, most saw only a handful of twists --- against the 177 to 222 the four
+covered non-full tuples needed. The reason is structural: a tuple fixes the parity of $v_p (d)$ at
+each place, so the places of odd valuation force a divisor
+$P = product {p : v_p (d) "odd"}$ of $d$. For $S = {11,13,17}$ the tuple $(u dot 11, u dot 13,
+u dot 17)$ needs $2431 divides d$, so a uniform sweep of $|d| <= 5000$ offers it *two* candidates.
+Uniform search in $|d|$ is therefore the wrong enumeration: it must be replaced by
+$d = plus.minus P m$ with $m$ squarefree and coprime to $S$, so that every tuple gets a comparable
+supply. The cost is that the ramified tuples then work with much larger $d$ --- $|d|$ of order
+$10^6$ for the all-odd tuple --- where the rank computation, not the ledger, is the bottleneck.
+
 
 = Result
 
