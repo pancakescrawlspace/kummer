@@ -1,0 +1,625 @@
+#set page(paper: "a4", margin: (x: 2.2cm, y: 2.4cm), numbering: "1")
+#set text(font: "New Computer Modern", size: 10.5pt)
+#set par(justify: true)
+#set heading(numbering: "1.")
+#show raw.where(block: true): it => block(
+  fill: luma(247), inset: 8pt, radius: 3pt, width: 100%, breakable: true,
+  text(size: 8pt, it),
+)
+#show link: set text(fill: blue.darken(20%))
+
+#align(center)[
+  #text(size: 16pt, weight: "bold")[
+    $p$-adic density of rational points on the Kummer surface
+    $y^2 = f(x) f(t)$
+  ]
+  #v(2mm)
+  #text(size: 10pt)[Computational notes --- witnesses for every prime $p <= 200$]
+  #v(1mm)
+  #text(size: 9pt, style: "italic")[computations in PARI/GP 2.18]
+]
+
+#v(4mm)
+
+= Setup and the basic reformulation
+
+Let $f in QQ[x]$ be a cubic with no repeated root, let
+$ E : v^2 = f(u) $
+and let $X$ be the affine surface $y^2 = f(x) f(t)$. The map
+$ ((u_1, v_1), (u_2, v_2)) |-> (x, t, y) = (u_1, u_2, v_1 v_2) $
+identifies $X$ with the Kummer surface $(E times E) slash {plus.minus 1}$; resolving the
+nine affine nodes $(e_i, e_j, 0)$ (with $f(e_i) = f(e_j) = 0$) gives a K3 surface.
+Each exceptional curve is a conic with a rational point, hence a $PP^1$, so density on the
+resolution is equivalent to density on $X$.
+
+Because $-1$ acts *diagonally*, a $k$-point of $X$ lifts to a $k$-point of
+$E_d times E_d$ for a *single* class $d$, where $E_d : d v^2 = f(u)$ is the quadratic twist.
+Thus for any field $k$ of characteristic $!= 2$,
+$ X(k) = union.sq.big_(d in k^times slash (k^times)^2) (E_d times E_d)(k) slash plus.minus. $
+
+Concretely, two points $P = (u_1, v_1)$ and $Q = (u_2, v_2)$ on the *same* twist $E_d$ produce
+the rational point
+$ (x, t, y) = (u_1, u_2, d v_1 v_2) in X. $
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Remark (the family of usable twists is complete).* A twist $E_d$ has an affine rational
+  point $(u_0, v_0)$ exactly when $d$ is the squarefree part of $f(u_0)$. So
+  $ {d : E_d (QQ) != {O}} = {"sqfreepart"(f(t_0)) : t_0 in QQ}, $
+  which is precisely the family obtained from the canonical point $(t_0, 1) in E_(f(t_0))$.
+  Nothing is lost by restricting to it.
+]
+
+= The density criterion
+
+Write $H_d = overline(E_d (QQ)) subset.eq E_delta (QQ_p)$ for the closure of the rational points,
+where $delta$ is the class of $d$ in $QQ_p^times slash (QQ_p^times)^2$.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Criterion.* $X(QQ)$ is dense in $X(QQ_p)$ if and only if for every
+  $delta in QQ_p^times slash (QQ_p^times)^2$ the set
+  $ union.big_(d |-> delta) H_d times H_d $
+  is dense in $E_delta (QQ_p) times E_delta (QQ_p)$.
+
+  #v(2mm)
+  *Sufficient form (what is used below).* If for each $delta$ there exists a single rational
+  $d in delta dot (QQ_p^times)^2$ with $E_d (QQ)$ *dense in* $E_d (QQ_p)$, then $X(QQ)$ is dense
+  in $X(QQ_p)$.
+]
+
+For odd $p$ there are 4 classes, for $p = 2$ there are 8. So the whole problem reduces to
+exhibiting 4 (resp. 8) elliptic curves per prime.
+
+_Proof of the sufficient form._ Let $(x_1, t_1, y_1) in X(QQ_p)$ with $y_1 != 0$, and let
+$delta$ be the class of $f(x_1)$ (equivalently of $f(t_1)$). Choose $d$ as in the statement and
+$c in QQ_p^times$ with $f(t_1) = d c^2$. The target lifts to the pair
+$A = (x_1, y_1 c slash f(t_1))$, $B = (t_1, c)$ in $E_d (QQ_p)^2$. Approximate $A, B$ by rational
+points $A', B' in E_d (QQ)$; then $(u(A'), u(B'), d v(A') v(B'))$ is a rational point of $X$ close
+to $(x_1, t_1, y_1)$. Points with $y_1 = 0$ and the nodes are limits of such points. $qed$
+
+Since $y |-> -y$ is an automorphism of $X$ defined over $QQ$, both sheets over a given $(x, t)$
+are reached, so density of the image in the $(x, t)$-plane already suffices.
+
+== Local structure: testing "$Gamma$ dense in $E_d (QQ_p)$"
+
+Work on a *minimal* Weierstrass model. Let $E_n (QQ_p)$ be the standard filtration
+($E_1$ = kernel of reduction). Two standard facts:
+
+- $E_1 (QQ_p) tilde.equiv hat(E)(p ZZ_p) tilde.equiv ZZ_p$ for $p >= 3$; at $p = 2$ one must go
+  one step down and use $E_2 (QQ_2) tilde.equiv hat(E)(4 ZZ_2) tilde.equiv ZZ_2$.
+- $M := \#(E(QQ_p) slash E_1 (QQ_p)) = c_p dot \#tilde(E)^"ns" (bb(F)_p)$, where $c_p$ is the
+  Tamagawa number and $\#tilde(E)^"ns" (bb(F)_p) = p + 1 - a_p$ (good reduction) or $p - a_p$
+  (bad reduction, with $a_p in {0, plus.minus 1}$ recording additive / split / non-split).
+
+Hence, for a subgroup $Gamma subset.eq E_d (QQ)$:
+
+$ overline(Gamma) = E_d (QQ_p) quad <==> quad
+  cases(
+    Gamma arrow.r.twohead E(QQ_p) slash E_1 (QQ_p) quad "(index" = M")",
+    Gamma inter E_1 subset.eq.not E_2 .
+  ) $
+
+The second condition is checked pointwise: for $Q in E_1$ one has $v_p (x(Q)) = -2 n$ where
+$n = v_p (z(Q))$ for the formal parameter $z = -x slash y$, so $Q$ topologically generates $E_1$
+iff $v_p (x(Q)) = -2$ exactly. Both conditions are finite exact computations.
+
+*Consequence used later.* If $tilde(E)_delta (bb(F)_p)$ is *non-cyclic* then $E_delta (QQ_p)$ is
+not procyclic and no single point can generate: a twist of rank $>= 2$ (or with torsion) is
+forced. This really happens --- see $p = 47, 67$ in @tab-primes.
+
+= Result
+
+#block(fill: rgb("#eef4ff"), inset: 9pt, radius: 3pt, width: 100%)[
+  For
+  $ f(x) = x^3 + x + 1 quad (op("disc") f = -31), $
+  the rational points of $X : y^2 = f(x) f(t)$ are dense in $X(QQ_p)$ for *every prime
+  $p <= 200$*.
+]
+
+Here $E : v^2 = u^3 + u + 1$ is the curve *496a*: rank 1, trivial torsion, generator $(0,1)$.
+It is non-CM, which matters --- see @sec-remarks.
+
+== The headline case $p = 5$
+
+The four witnesses, one per class of $QQ_5^times slash (QQ_5^times)^2$ ($u$ = a non-residue):
+
+#table(
+  columns: (auto, auto, auto, auto, auto, auto),
+  align: (center, center, left, left, left, center),
+  stroke: 0.4pt + luma(150),
+  table.header([*class*], [$d$], [$E_d : Y^2 = X^3 + d^2 X + d^3$], [generator],
+               [reduction at 5], [$M$]),
+  [$1$],    [$1$],   [$y^2 = x^3 + x + 1$],           [$(0, 1)$], [good, $a_5 = -3$], [9],
+  [$u$],    [$3$],   [$y^2 = x^3 + 9x + 27$],         [$(3, 9)$], [good, $a_5 = 3$],  [3],
+  [$5$],    [$5$],   [$y^2 = x^3 + 25x + 125$],       [$(4, 17)$], [$I_0^*$, $c = 1$], [5],
+  [$5u$],   [$-35$], [$y^2 = x^3 + 1225x - 42875$],
+    [$(59004 slash 1369, 15194717 slash 50653)$], [$I_0^*$, $c = 1$], [5],
+)
+
+Each twist has rank 1 and trivial torsion, and in each case the single generator topologically
+generates $E_d (QQ_5)$. In the $(u, v)$ coordinates on $d v^2 = f(u)$ these correspond to
+$t_0 = 0, 1, 4 slash 5, -59004 slash 47915$.
+
+*Sample point.* On $d = 1$, $P = (0,1)$ and $2P = (1 slash 4, -9 slash 8)$, giving
+$(x, t, y) = (0, 1 slash 4, -9 slash 8) in X(QQ)$; indeed
+$f(0) f(1 slash 4) = 81 slash 64 = y^2$.
+
+== $p = 2$
+
+All eight classes of $QQ_2^times slash (QQ_2^times)^2$ are covered by small twists:
+
+#table(
+  columns: 9, align: center, stroke: 0.4pt + luma(150),
+  table.header([*class*], [$1$], [$3$], [$5$], [$7$], [$2$], [$6$], [$10$], [$14$]),
+  [$d$], [$1$], [$3$], [$5$], [$-1$], [$-30$], [$6$], [$-6$], [$30$],
+)
+
+== All primes $p < 200$ <tab-primes>
+
+Smallest witnesses found with $|d| <= 3000$ (the two entries marked $dagger$ needed a targeted
+search).
+
+#let ptab(..rows) = table(
+  columns: 5,
+  align: right,
+  stroke: 0.4pt + luma(170),
+  inset: (x: 6pt, y: 3pt),
+  table.header([$p$], [$[1]$], [$[u]$], [$[p]$], [$[u p]$]),
+  ..rows
+)
+
+#set text(size: 8.5pt)
+#grid(columns: (auto, auto), column-gutter: 1.2cm, align: top,
+  ptab(
+    [3],  [7],   [-1],   [3],    [6],
+    [5],  [1],   [3],    [5],    [-35],
+    [7],  [1],   [-1],   [7],    [-7],
+    [11], [3],   [6],    [11],   [-11],
+    [13], [-1],  [5],    [-13],  [26],
+    [17], [-1],  [7],    [34],   [51],
+    [19], [1],   [-1],   [95],   [-95],
+    [23], [1],   [-1],   [46],   [115],
+    [29], [-1],  [11],   [-29],  [58],
+    [31], [1],   [-1],   [31],   [-62],
+    [37], [-11], [6],    [-37],  [74],
+    [41], [-1],  [3],    [41],   [123],
+    [43], [1],   [-1],   [-86],  [86],
+    [47], [-11], [-149], [94],   [705],
+    [53], [11],  [22],   [53],   [106],
+    [59], [1],   [6],    [295],  [-59],
+    [61], [1],   [7],    [-61],  [122],
+    [67], [-221],[51],   [2211], [134],
+    [71], [1],   [-1],   [71],   [-71],
+    [73], [3],   [-21],  [146],  [-365],
+    [79], [1],   [-1],   [158],  [-158],
+    [83], [-22], [-11],  [83],   [166],
+    [89], [1],   [-7],   [178],  [-267],
+  ),
+  ptab(
+    [97],  [1],   [7],   [97],    [485],
+    [101], [-1],  [3],   [101],   [-2626],
+    [103], [1],   [-1],  [103],   [2266],
+    [107], [-7],  [-1],  [-1605], [-107],
+    [109], [1],   [6],   [109],   [654],
+    [113], [1],   [3],   [113],   [339],
+    [127], [-6],  [3],   [254],   [-127],
+    [131], [53],  [-11], [131],   [8646#super[†]],
+    [137], [7],   [3],   [274],   [-411],
+    [139], [51],  [3],   [139],   [-139],
+    [149], [53],  [94],  [-149],  [13559#super[†]],
+    [151], [1],   [-1],  [755],   [453],
+    [157], [1],   [5],   [157],   [2355],
+    [163], [1],   [-1],  [978],   [815],
+    [167], [-13], [-6],  [334],   [-334],
+    [173], [51],  [53],  [-173],  [519],
+    [179], [1],   [-19], [179],   [-537],
+    [181], [1],   [7],   [-181],  [-1086],
+    [191], [1],   [-1],  [191],   [-191],
+    [193], [1],   [5],   [-193],  [965],
+    [197], [-6],  [3],   [197],   [394],
+    [199], [-6],  [3],   [199],   [-199],
+  ),
+)
+#set text(size: 10.5pt)
+
+= Verification <sec-verify>
+
+*Unconditional.* The certificate only ever uses *explicit rational points* plus a finite exact
+computation. `ellrank` / `ellsaturation` are used to *find* points, but nothing depends on their
+rank bounds being sharp: if the exhibited subgroup is dense, so is the full Mordell--Weil group.
+
+*Internal consistency.* The $p$-adic implementation of the density test was validated against a
+purely exact-rational reference implementation (1826 cases, 0 mismatches), and the
+multi-generator version was validated against the single-generator one.
+
+#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
+  *A bug that was found and fixed.* An earlier version of `densegroup` short-circuited with
+  `if(rem == 1, break())` as soon as the running index reached $M$. That skipped the remaining
+  generators, so they never contributed to the kernel lattice $L$ --- and condition (ii) is
+  tested only on a basis of $L$. A twist whose generators were, say, $P_1 in.not E_1$ and
+  $P_2 in E_1 without E_2$ (which *is* dense) was therefore reported as *not* dense.
+
+  The bug is *one-sided*: it can only turn a true "dense" into a reported "not dense", never the
+  reverse. Every positive result and every witness in this document is therefore unaffected;
+  only negative results had to be re-examined. Doing so overturned the claim about
+  $f = x^3 - 2$ --- see @sec-cm.
+]
+
+*Independent check on $X$ itself.* For each of two regions I enumerated exactly those residue
+classes mod $p^k$ that are genuine reductions of points of $X(ZZ_p)$ with $y$ a unit, and
+checked that every one is hit by an honest rational point built from the four twists:
+
+#table(
+  columns: 4, align: (center, center, center, center), stroke: 0.4pt + luma(150),
+  table.header([$p$], [level], [$x, t in ZZ_p$], [$v_p (x) = v_p (t) = -1$]),
+  [2], [$2^4$], [256 / 256 ✓],       [64 / 64 ✓],
+  [3], [$3^4$], [2916 / 2916 ✓],     [2916 / 2916 ✓],
+  [5], [$5^3$], [21250 / 21250 ✓],   [10000 / 10000 ✓],
+  [7], [$7^2$], [2842 / 2842 ✓],     [1764 / 1764 ✓],
+)
+
+The two regions are needed because for $x, t in ZZ_p$ the value $f(x) f(t)$ only realises the
+*unit* square classes; the classes of odd valuation live where $v_p (x) < 0$. The second region
+is handled by the substitution $x = x' slash p$, $t = t' slash p$, $y = y' slash p^3$, which
+turns the equation into $y'^2 = g(x') g(t')$ with $g(w) = w^3 + A p^2 w + B p^3$ and $x', t'$
+units.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *A trap at $p = 2$.* For odd $p$, if $y$ is a unit and $y^2 equiv s space (mod p^k)$ then
+  $plus.minus sqrt(s) equiv y space (mod p^k)$, so "all congruence solutions" is the correct
+  target set. At $p = 2$ the congruence $y^2 equiv s space (mod 2^k)$ has *four* solutions but
+  only two are genuine reductions, so the naive target set is a factor 2 too large and the check
+  spuriously reports failure. The table above uses the corrected enumeration (lift $x, t$ mod
+  $2^(k+4)$, require $s equiv 1 space (mod 8)$, and record $plus.minus sqrt(s)$).
+]
+
+= Remarks and open ends <sec-remarks>
+
+*Rank 1 is not always enough.* As noted in §2.1, non-cyclic $tilde(E)_delta (bb(F)_p)$ forces a
+rank-$>= 2$ twist. At $p = 47$ we have $tilde(E)(bb(F)_47) tilde.equiv ZZ slash 30 times ZZ slash 2$
+and the class $[1]$ needs $d = -11$ (rank 2); at $p = 67$,
+$tilde(E)(bb(F)_67) tilde.equiv ZZ slash 28 times ZZ slash 2$ and $[1]$ needs $d = -221$.
+
+== The CM case $f = x^3 - 2$ <sec-cm>
+
+#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
+  *Corrigendum.* An earlier draft claimed that this $j = 0$ curve (CM by $ZZ[zeta_3]$) succeeds
+  exactly for $p equiv 2 space (mod 3)$ and fails systematically for $p equiv 1 space (mod 3)$.
+  *That was wrong* --- an artifact of testing only single generators from the $t_0$-family,
+  compounded by the bug described in §4. It is corrected here.
+]
+
+With the full multi-generator search, $f = x^3 - 2$ in fact succeeds for *every* odd prime
+$5 <= p <= 97$. The primes $p equiv 1 space (mod 3)$ are simply the ones that *require* a
+rank-$2$ twist in the class $[1]$, precisely because CM by $ZZ[zeta_3]$ makes
+$tilde(E)(bb(F)_p)$ frequently non-cyclic there (e.g. $tilde(E)(bb(F)_7)$-twist
+$tilde.equiv (ZZ slash 3)^2$, $tilde(E)(bb(F)_19) tilde.equiv ZZ slash 9 times ZZ slash 3$,
+$tilde(E)(bb(F)_73) tilde.equiv (ZZ slash 9)^2$). Witnesses: $p = 7, 19, 43, 67, 73$ take
+$d = -41, -29, -29, -41, -41$. The anomalous prime $p = 61$ (where
+$\#tilde(E)(bb(F)_61) = 61 = p$) likewise needs a rank-2 twist, $d = 2931$.
+
+*One genuinely open case: $p = 3$, class $[u dot 3]$.* Here the four classes behave very
+differently, and the difference is entirely the Tamagawa number:
+
+#table(
+  columns: 5, align: (center, center, center, center, left), stroke: 0.4pt + luma(150),
+  table.header([class], [Kodaira], [$c_3$], [$M$], [outcome]),
+  [$[1]$],       [$I I$],   [1], [3], [OK, $d = -1115$ (rank 2)],
+  [$[u]$],       [$I I$],   [1], [3], [OK, $d = -1$ (rank 1)],
+  [$[3]$],       [$I I^*$], [1], [3], [OK, $d = 3$ (rank 1)],
+  [$[u dot 3]$], [$I I^*$], [3], [9], [*no witness with $|d| <= 12000$*],
+)
+
+In the bad class every twist has $c_3 = 3$, so
+$ E_d (QQ_3) slash E_1 tilde.equiv (E_0 slash E_1) times Phi_3 tilde.equiv (ZZ slash 3)^2, $
+the extra factor being the component group. No point ever has order $9$ in this quotient
+(0 out of 285 generators examined), so two independent generators are needed --- yet across
+41 twists of rank $>= 2$ the achieved index is *always* 3, never 9: the images are invariably
+dependent. Under a random model that would have probability of order $2^(-41)$.
+
+Two further observations sharpen this. First, the constraint is *not* "rational points stay in
+$E_0$": of 285 generators examined, 198 do hit the component group. So the image in
+$(ZZ slash 3)^2$ always lies in some *line*, i.e. there is a functional
+$lambda : E_d (QQ_3) slash E_1 -> ZZ slash 3$ vanishing on $E_d (QQ)$ *uniformly in $d$*.
+
+Second --- and this is the sanity check that matters --- the surface plausibly *has* a
+$3$-torsion Brauer class:
+
+#table(
+  columns: 4, align: (left, left, center, left), stroke: 0.4pt + luma(150),
+  table.header([$f$], [$psi_3$ factors as], [rational 3-isogeny], [$E[3]$ as Galois module]),
+  [$x^3 - 2$], [$3x(x-2)(x^2+2x+4)$], [yes, two], [decomposable, $C_1 xor C_2$],
+  [$x^3+x+1$], [irreducible], [no], [irreducible],
+)
+
+For $x^3 - 2$ the isogeny class is ${1, 3, 9, 3}$, so
+$"End"_G (E[3]) supset.eq bb(F)_3 times bb(F)_3 supset.neq bb(F)_3$. That is precisely the input
+to the Skorobogatov--Zarhin description of the odd-order part of $"Br"(overline(X))^G$ for
+$X = "Kum"(E times E)$: extra $G$-equivariant endomorphisms of $E[ell]$ are what produce
+$ell$-torsion transcendental classes. For $x^3+x+1$ this source is absent --- consistent with
+that curve having no difficulty at $p = 3$.
+
+This is the right shape for a *Brauer--Manin obstruction to $3$-adic density*: a $3$-torsion
+class, cutting an index-3 condition, at $p = 3$, on the Kummer surface of a CM-by-$ZZ[zeta_3]$
+curve, with the local evaluation factoring through $Phi_3$. Note that BM *can* obstruct density
+at a single prime even when $X(QQ) != nothing$ --- one needs
+$overline(X(QQ))^((p)) subset.eq "pr"_p (X(bb(A))^"Br")$ to be proper, which happens exactly when
+some $cal(A) in "Br"(X)$ has $"inv"_v cal(A)$ constant on $X(QQ_v)$ for all $v != p$ and
+non-constant at $p$. Verifying this (or refuting it) is left open; the alternative mundane
+explanation is that the dependence is forced by something internal to the sextic-twist family.
+
+*Towards all $p$.* I see no obstruction. The only way a prime could fail is if some square class
+$delta$ contained *only* rank-0 twists, which there is no reason to expect. A proof for all $p$
+would need a uniform supply of positive-rank twists in prescribed $p$-adic classes with
+controlled reduction of the generator. The $t_0$-family is the natural tool, since $t_0$ controls
+the class of $d = f(t_0)$ by an open condition; note that the generation condition depends on
+$t_0$ only modulo $p^2$ or so, which makes it a genuinely finite check per residue class --- and
+therefore potentially provable for a well-chosen $f$.
+
+*A near-necessary condition.* If for some $delta$ every twist in that class had rank 0, all $H_d$
+would be uniformly bounded finite groups and density would be extremely implausible (though a
+countable union can in principle be dense in $QQ_p^2$, so this is not a formal proof of
+necessity).
+
+#pagebreak()
+
+= Appendix: the PARI/GP scripts
+
+Run with `gp -q -s 2000000000 script.gp < /dev/null`.
+
+#block(fill: luma(240), inset: 7pt, radius: 3pt, width: 100%)[
+  #text(size: 9pt)[
+    Two GP gotchas cost me time and are worth recording: (i) `*/` occurring inside a comment
+    (e.g. writing `Qp^*/(Qp^*)^2`) silently terminates the comment; (ii) `my(...)` must be the
+    *first* statement of a block, and a `f(x) = ...` definition without braces cannot span
+    lines. Also, `default(parisize, N)` in the middle of a script aborts the rest of the file ---
+    use the `-s` flag instead.
+  ]
+]
+
+== `kummer2.gp` --- the criterion
+
+`densegroup(Em, pts, p)` decides whether the subgroup generated by `pts` is dense in
+$E_m (QQ_p)$. It does a triangular reduction against the filtration: it finds the successive
+orders $m_1, m_2, dots$ of the generators in $E(QQ_p) slash E_1$, so that
+$product m_i$ is the index; that must equal $M$. Along the way it records a basis of the kernel
+lattice $L = {a in ZZ^r : sum a_i P_i in E_1}$, and finally checks that the homomorphism
+$L -> E_1 slash E_2 tilde.equiv bb(F)_p$ is non-zero, i.e. that some basis vector gives a point
+with $v_p (x) = -2$.
+
+```
+/* ============================================================
+   p-adic density of Q-points on X : y^2 = f(x)f(t),  f = x^3+Ax+B
+   X = Kum(E x E),  E : v^2 = f(u),  E_d : Y^2 = X^3 + A d^2 X + B d^3
+   ============================================================ */
+
+PREC = 100;
+
+sqclass(d, p) = { my(v = valuation(d,p), u = d/p^v); 2*(v%2) + if(kronecker(u,p)==1,0,1); }
+sqclassname(k, p) = if(k==0, "1", k==1, "u", k==2, Str(p), Str("u*",p));
+
+/* M = # E(Qp)/E_1(Qp) for a MINIMAL model Em, p odd */
+Mval(Em, p) = {
+  my(ap = ellap(Em,p), lr = elllocalred(Em,p));
+  if(lr[2] == 1, lr[4]*(p+1-ap), lr[4]*(p-ap));
+}
+
+padiccurve(Em, p) = {
+  ellinit([Em.a1+O(p^PREC), Em.a2+O(p^PREC), Em.a3+O(p^PREC),
+           Em.a4+O(p^PREC), Em.a6+O(p^PREC)]);
+}
+
+inE1(Q, p) = (Q == [0]) || (valuation(Q[1],p) < 0);
+
+/* Is the subgroup generated by pts dense in Em(Qp)?  (Em minimal, p odd) */
+densegroup(Em, pts, p) = {
+  my(M, r, Ep, P, S, coefs, basis, idx, rem, dv, mi, bvec, k, kP, Q, S2, C2, jP, cc, b, T);
+  M = Mval(Em, p);
+  r = #pts;
+  if(M == 0 || r == 0, return(0));
+  Ep = padiccurve(Em, p);
+  P = vector(r, i, [pts[i][1]+O(p^PREC), pts[i][2]+O(p^PREC)]);
+  S = [[0]];                       /* coset representatives mod E_1, start with O */
+  coefs = [vector(r, j, 0)];       /* their coefficient vectors */
+  basis = List();                  /* basis of the kernel lattice L */
+  idx = 1;                         /* running index = prod m_i */
+  for(i = 1, r,
+    rem = M \ idx;                 /* NB: do NOT break when rem==1 -- a generator that
+                                      already lies in Gamma_{<i} + E_1 still contributes
+                                      a kernel-lattice vector, needed for condition (ii) */
+    dv = divisors(rem);            /* m_i must divide the remaining index */
+    mi = 0; bvec = 0;
+    for(t = 1, #dv,
+      k = dv[t];
+      kP = ellmul(Ep, P[i], k);
+      for(s = 1, #S,
+        Q = if(S[s] == [0], kP, elladd(Ep, kP, S[s]));
+        if(inE1(Q, p),
+          mi = k;
+          bvec = coefs[s]; bvec[i] += k;
+          break(2)
+        )
+      )
+    );
+    if(mi == 0, next);
+    listput(basis, bvec);
+    S2 = List(); C2 = List();      /* extend the coset reps by multiples of P_i */
+    for(j = 0, mi-1,
+      jP = if(j == 0, [0], ellmul(Ep, P[i], j));
+      for(s = 1, #S,
+        Q = if(j == 0, S[s], if(S[s] == [0], jP, elladd(Ep, jP, S[s])));
+        cc = coefs[s]; cc[i] += j;
+        listput(S2, Q); listput(C2, cc)
+      )
+    );
+    S = Vec(S2); coefs = Vec(C2); idx *= mi
+  );
+  if(idx != M, return(0));         /* (i) no surjection onto E(Qp)/E_1 */
+  for(i = 1, #basis,               /* (ii) some kernel basis vector lands in E_1 \ E_2 */
+    b = basis[i]; Q = [0];
+    for(j = 1, r,
+      if(b[j] != 0,
+        T = ellmul(Ep, P[j], b[j]);
+        Q = if(Q == [0], T, elladd(Ep, Q, T))
+      )
+    );
+    if(Q != [0] && valuation(Q[1],p) == -2, return(1))
+  );
+  0;
+}
+
+/* generators of a finite-index subgroup of E_d(Q) */
+twistdata(A, B, d) = {
+  my(Ec, v, Em, R, pts, tors);
+  Ec = ellinit([A*d^2, B*d^3]);
+  v = 0;
+  Em = ellminimalmodel(Ec, &v);
+  R = ellrank(Em);
+  pts = R[4];
+  if(#pts > 0, pts = ellsaturation(Em, pts, 50));
+  tors = elltors(Em);
+  pts = concat(pts, tors[3]);
+  [Em, pts, R[1], R[2]];
+}
+```
+
+== `driver.gp` --- the search over twists
+
+Precomputes Mordell--Weil data for all squarefree $|d| <= D$, then for each odd prime looks for
+one witness per square class.
+
+```
+read("kummer2.gp");
+
+/* precompute MW data for all squarefree d with |d| <= D */
+build(A, B, D) = {
+  my(L = List(), d, td);
+  for(n = 1, D,
+    if(!issquarefree(n), next);
+    for(sg = 0, 1,
+      d = if(sg == 0, n, -n);
+      td = twistdata(A, B, d);
+      listput(L, [d, td[1], td[2], td[3], td[4]])
+    )
+  );
+  Vec(L);
+}
+
+report(A, B, data, PMAX) = {
+  my(prs = primes([3,PMAX]), good = List(), p, w, k, nf, i, j);
+  print("f(x) = x^3 + (", A, ")x + (", B, ")");
+  for(j = 1, #prs,
+    p = prs[j];
+    w = vector(4, i, 0);
+    for(i = 1, #data,
+      k = sqclass(data[i][1], p);
+      if(w[k+1] != 0, next);
+      if(densegroup(data[i][2], data[i][3], p), w[k+1] = data[i][1])
+    );
+    nf = 0; for(k = 1, 4, if(w[k] != 0, nf++));
+    if(nf == 4,
+      listput(good, p);
+      print("  p=", p, "  OK   d: [1]=", w[1], "  [u]=", w[2],
+            "  [", p, "]=", w[3], "  [u", p, "]=", w[4])
+    ,
+      print("  p=", p, "  ", nf, "/4   ", w)
+    )
+  );
+  print("GOOD PRIMES: ", Vec(good));
+  print("count = ", #good, " out of ", #prs);
+  Vec(good);
+}
+```
+
+Usage:
+
+```
+read("driver.gp");
+D = build(1, 1, 3000);      /* f = x^3 + x + 1, all squarefree |d| <= 3000 */
+report(1, 1, D, 200);
+```
+
+== `p2.gp` --- the modifications for $p = 2$
+
+Identical logic, except that the safe procyclic level is $E_2$ rather than $E_1$: hence
+$M_2 = 2 c_2 dot \#tilde(E)^"ns"(bb(F)_2)$, membership is $v_2 (x) <= -4$, the final test is
+$v_2 (x) = -4$, and there are 8 square classes. `densegroup2` is `densegroup` verbatim with
+`Mval` $arrow.r$ `M2val` and `inE1` $arrow.r$ `inE2`.
+
+```
+read("kummer2.gp");
+
+/* ---- p = 2 :  E_2(Q_2) = hat E(4 Z_2) is the safe procyclic level ----
+   M2 = # E(Q2)/E_2(Q2) = 2 * c_2 * #Ens(F_2).
+   Q in E_2  <=>  Q = O  or  v_2(x(Q)) <= -4 ;   generates E_2 <=> v_2(x) = -4. */
+
+sqclass2(d) = {
+  my(v = valuation(d,2), u = (d/2^v) % 8);
+  if(u < 0, u += 8);
+  4*(v%2) + (u-1)/2;
+}
+sqclass2name(k) = { my(nm = ["1","3","5","7","2","6","10","14"]); nm[k+1]; }
+
+M2val(Em) = {
+  my(ap = ellap(Em,2), lr = elllocalred(Em,2));
+  2 * if(lr[2] == 1, lr[4]*(3-ap), lr[4]*(2-ap));
+}
+
+inE2(Q) = (Q == [0]) || (valuation(Q[1],2) <= -4);
+
+/* densegroup2(Em, pts) == densegroup with Mval -> M2val, inE1 -> inE2,
+   and the final test valuation(Q[1],2) == -4 */
+```
+
+== `cover2.gp` --- the independent check on $X$
+
+For each of the two regions, build the set of genuine reductions mod $p^k$ (as a
+`vectorsmall` bitmap keyed by $x p^(2k) + t p^k + y$), then hammer it with pairs of rational
+points drawn from the four twists and count how many distinct targets are reached.
+
+```
+/* main loop of coverage(A, B, p, k, ds, NB), p odd */
+q = p^k; q2 = q*q; q3 = q2*q;
+for(region = 1, 2,
+  AA = if(region == 1, A, A*p^2);          /* region 2: x = x'/p, y = y'/p^3 */
+  BB = if(region == 1, B, B*p^3);
+  tgt = vectorsmall(q3); tot = 0;
+  for(x = 0, q-1,
+    if(region == 2 && x % p == 0, next);
+    for(t = 0, q-1,
+      if(region == 2 && t % p == 0, next);
+      s = ((x^3 + AA*x + BB) * (t^3 + AA*t + BB)) % q;
+      if(s % p == 0, next);
+      if(kronecker(s, p) != 1, next);      /* s must be a square in Z_p */
+      rr = truncate(sqrt(s + O(p^k))) % q;
+      tgt[x*q2 + t*q + rr + 1] = 1; tot++;
+      tgt[x*q2 + t*q + (q-rr)%q + 1] = 1; tot++
+    )
+  );
+  hit = vectorsmall(q3); cnt = 0;
+  for(i = 1, #ds,
+    d = ds[i];
+    S = twistpoints(A, B, d, p, NB);       /* rational (u,v) on d v^2 = f(u) */
+    allpts = List();
+    for(a = 1, #S,
+      if(region == 1 && valuation(S[a][1], p) >= 0, listput(allpts, S[a]));
+      if(region == 2 && valuation(S[a][1], p) == -1, listput(allpts, S[a]))
+    );
+    allpts = Vec(allpts);
+    for(a = 1, #allpts,
+      u1 = allpts[a][1]; v1 = allpts[a][2];
+      for(b = 1, #allpts,
+        u2 = allpts[b][1]; v2 = allpts[b][2];
+        yy = d*v1*v2;                      /* the Kummer point (u1, u2, d v1 v2) */
+        if(region == 1, xx = u1; tt = u2, xx = p*u1; tt = p*u2; yy = p^3*yy);
+        if(valuation(yy, p) != 0, next);
+        x = truncate(xx + O(p^k)) % q;
+        t = truncate(tt + O(p^k)) % q;
+        y = truncate(yy + O(p^k)) % q;
+        key = x*q2 + t*q + y + 1;
+        if(tgt[key] && !hit[key], hit[key] = 1; cnt++)
+      )
+    )
+  );
+  print("  region ", region, " mod ", p, "^", k, ": targets = ", tot, ", hit = ", cnt)
+);
+```
