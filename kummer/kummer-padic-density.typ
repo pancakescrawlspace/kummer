@@ -465,6 +465,70 @@ several points (9 members down to 3) as a large new reach absorbs smaller ones -
 antichain is doing real work --- and that the deficiency sits at $28.125% = 9 slash 32$ for
 seventy twists before the last missing hyperplanes appear.
 
+=== Grading the ledger, and why the flat one cannot prove anything <sec-ledger-graded>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *The key point.* A flat ledger stores, for each twist, the image $overline(R)_n (d)$ at one fixed
+  level. Its preimage $hat(R)_n (d)$ is an *over*-approximation of the reach, with
+  $R(d) subset.eq hat(R)_n (d)$ and equality only when $R(d)$ happens to contain
+  $ker_n := product_p E_n (QQ_p)$. Coverage computed from over-approximations is therefore only
+  ever a *necessary* condition. That is why the refinement never terminates: passing to level
+  $n+1$ can always destroy what level $n$ certified. *No amount of computing at a fixed level, or
+  at every level in turn, can produce a proof.*
+]
+
+The repair is to make the level part of the datum, one level *per entry*.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Graded ledger.* An entry is a triple $(d, n_d, overline(R))$ with
+  $ R(d) supset.eq ker_(n_d), quad quad overline(R) = "image of " R(d) " in " cal(G)(n_d) . $
+  The first condition is the *certificate of exactness*: once the reach contains $ker_(n_d)$ it
+  *equals* the preimage of $overline(R)$, so the finite datum determines $R(d)$ outright. Call
+  $n_d$ the *granularity* of the entry.
+]
+
+Granularity is detectable: the index $[cal(G)(n) : overline(R)_n]$ is non-decreasing in $n$ and
+equals $[cal(G) : R(d)]$ from the first $n$ with $R(d) supset.eq ker_n$ onwards. So compute indices
+at successive levels and stop when the index repeats; that repetition *is* the certificate. A reach
+of infinite index never stabilises and has no finite granularity; such entries are inadmissible.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Termination theorem.* Let $cal(L)$ be a *finite* graded ledger and $N = max_d n_d$. If
+  $ union.big_((d, n_d, overline(R)) in cal(L)) overline(R)^((N)) times overline(R)^((N))
+    = cal(G)(N)^2 , $
+  then $union_d R(d) times R(d) = cal(G)^2$ exactly, and $X(QQ)$ is dense in $X(QQ_S)$.
+]
+
+_Proof._ Each entry has $R(d) supset.eq ker_(n_d) supset.eq ker_N$, so $R(d)$ is the full preimage
+of $overline(R)^((N))$, and $R(d) times R(d)$ the full preimage of
+$overline(R)^((N)) times overline(R)^((N))$. A union of full preimages is the full preimage of the
+union, so covering at level $N$ pulls back on the nose. $qed$
+
+So a *successful* search now stops, with a finite certificate: the twists, their granularities, and
+their level-$N$ images. Failure still says nothing, exactly as before.
+
+*Pruning across grades.* Inclusion is tested by inflating both entries to the finer level. Note the
+direction: a *coarser* entry is a *larger* subgroup, since $hat(R)_m supset.eq hat(R)_n$ for
+$m <= n$. So coarse entries absorb fine ones and never the reverse, and the antichain genuinely
+improves as coarse twists are found. The pruning seen in @sec-ledger-worked, nine members falling
+to three, is the flat shadow of this.
+
+*Representation.* Bitmaps over the arena die at once: at level 2 the arena for $S = {11,13,17}$
+already has $11 dot 13 dot 17 dot 4536 approx 1.1 dot 10^7$ elements, at level 3 about
+$2.7 dot 10^10$. But closures in a profinite abelian group decompose over primes,
+$R = product_ell R_ell$ with $R_ell$ the $ZZ_ell$-span of the $ell$-components, and $ker_n$ is
+pro-$p$ at each place, so contributes only at $ell = p$. An entry should therefore be a *tuple of
+subgroups of the small $ell$-primary pieces*, with granularity recorded per place and membership
+masks intersected prime by prime. The star test is unchanged; only the data type for a reach is.
+
+#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
+  *Status.* The graded ledger is specified here, not implemented. The obstacle is not the
+  bookkeeping but the index computation: the triangular method used throughout costs $O(N)$ in the
+  size of the level-$n$ arena, already impractical at level 2 for three places and hopeless at
+  level 3 --- a direct attempt timed out. Determining granularities needs the $ell$-primary
+  rewrite first.
+]
+
 #block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
   *What this does and does not show.* Coverage here is at *level 1 only*. By monotonicity that is
   a necessary condition, so it is a real check, and the failure of any level would be decisive ---
