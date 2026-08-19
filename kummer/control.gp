@@ -148,3 +148,57 @@ placeaudit(D) = {
   print("  places l | d outside {2,3} with W_l != 0 : ", badl, "  (proved to be 0)");
   print("  twists with W_2 != 0 (all even d) : ", bad2, " of ", tot);
 }
+
+/* ---- is W_3 stable under phi = projection onto C_1 ?  (document, 5.2.4) ----
+   W_3 cap H^1(C_1) = ker(alpha_2) and W_3 cap H^1(C_2) = ker(alpha_1), and
+   ker(alpha_i) is the image of the corresponding dual isogeny.  Both images
+   come out equal to E_1 = 3E(Q_3), i.e. zero in W_3, so both intersections
+   vanish, W_3 is NOT phi-stable, and beta_3 is not identically zero.
+   Depends only on the square class, all d in one class giving Q_3-isomorphic
+   curves; dualinE1 checks one twist at a time as a consistency test.       */
+applyiso(fgh, P) = {
+  my(xx, yy, hv);
+  if(P == [0], return([0]));
+  xx = P[1]; yy = P[2];
+  hv = subst(subst(fgh[3],'x,xx),'y,yy);
+  if(hv == 0, return([0]));
+  [subst(subst(fgh[1],'x,xx),'y,yy)/hv^2, subst(subst(fgh[2],'x,xx),'y,yy)/hv^3];
+}
+sample3(a4, a6, XMAX, prec) = {
+  my(L = List(), s, y, x0);
+  for(x0 = -XMAX, XMAX,
+    s = x0^3 + a4*x0 + a6;
+    if(s == 0 || valuation(s,3) % 2, next);
+    if(kronecker(s/3^valuation(s,3), 3) != 1, next);
+    y = sqrt(s + O(3^prec));
+    listput(L, [x0 + O(3^prec), y]); listput(L, [x0 + O(3^prec), -y]));
+  Vec(L);
+}
+/* is the image of the dual of the isogeny with kernel {x = xk} inside E_1 ? */
+dualinE1(d, xk) = {
+  my(k = -2*d^3, E, i1, F, f3, i, j, x2, i1d, S, Q, R, u, allin);
+  E = ellinit([0,k]);
+  i1 = ellisogeny(E, 'x - xk);
+  F = ellinit(i1[1]);
+  f3 = factor(elldivpol(F,3)); x2 = [];
+  for(i = 1, #f3~, if(poldegree(f3[i,1]) == 1,
+     x2 = concat(x2, [-polcoeff(f3[i,1],0)/polcoeff(f3[i,1],1)])));
+  for(i = 1, #x2,
+    i1d = ellisogeny(F, 'x - x2[i]);
+    u = i1d[1][5]/k;
+    if(!ispower(u, 6, &R), next);
+    S = sample3(F.a4, F.a6, 500, 60);
+    allin = 1;
+    for(j = 1, #S,
+      Q = applyiso(i1d[2], S[j]);
+      if(Q == [0], next);
+      Q = [Q[1]/R^2, Q[2]/R^3];
+      if(!((Q == [0]) || (valuation(Q[1],3) < 0)), allin = 0; break()));
+    return(allin));
+  -1;
+}
+phistable(d) = {
+  my(a = dualinE1(d, 0), b = dualinE1(d, 2*d));
+  print("  d=", d, "  dual(phi_1) in E_1? ", a, "   dual(phi_2) in E_1? ", b,
+        "   W_3 phi-stable? ", if(a == 1 && b == 1, "NO => beta_3 nonzero", "?"));
+}

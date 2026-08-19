@@ -99,6 +99,7 @@ find3(21,26);              /* which classes have M=9 at p=3                 */
 armB(21,26,2,3000);        /* non-CM, E[3] decomposable : 0 of 36 dense     */
 armB(-24,26,2,3000);       /* non-CM, E[3] decomposable : 15 of 43 dense    */
 placeaudit(1500);          /* which places can carry a non-zero beta_v      */
+phistable(-3);             /* W_3 not phi-stable, i.e. beta_3 is nonzero    */
 ```
 
 Which families are obstructed (§5.2.3) — 19 of 19 match the criterion

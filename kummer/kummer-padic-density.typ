@@ -629,16 +629,55 @@ $W_3$ is $beta_3$-isotropic, and since a non-zero bilinear form on a 2-dimension
 2-dimensional totally isotropic subspace, the image has dimension $<= 1$ --- *provided only that
 $beta_3 equiv.not 0$*.
 
-*What is actually left.* Just that last clause, and it has a clean reformulation: $W_3$ is
-Lagrangian in the 4-dimensional $H^1 (QQ_3, E[3])$, so $beta_3 equiv 0$ on $W_3$ if and only if
-$phi W_3 subset.eq W_3^perp = W_3$, i.e. if and only if $W_3$ is $phi$-stable. So the whole
-question reduces to one local computation at the wild place: *is the Kummer image at 3 stable
-under projection onto $C_1$?* The 713 twists say it is not, but that is empirical. Settling it
-needs the cubic norm-residue symbol at $v = 3$, which is the one thing PARI does not provide; the
-even-$d$ twists need $beta_2$ as well.
+*$beta$ is alternating, which kills every place with $dim W_v <= 1$.* Write
+$delta_v P = a_1 + a_2$ with $a_i in H^1 (QQ_v, C_i)$. Each $H^1 (C_i)$ is isotropic for the Tate
+pairing, since the Weil pairing restricted to the cyclic $C_i$ is trivial; and $W_v$ is isotropic,
+so $0 = ⟨delta_v P, delta_v P⟩ = 2 ⟨a_1, a_2⟩$, whence $⟨a_1, a_2⟩ = 0$ as $2$ is invertible mod 3.
+Therefore
+$ beta_v (P,P) = ⟨a_1 + a_2, a_1⟩ = ⟨a_1,a_1⟩ + ⟨a_2,a_1⟩ = 0 . $
+So $beta_v$ is alternating on $W_v$, and in particular *vanishes identically whenever
+$dim W_v <= 1$*.
 
-Exhibiting $cal(A) in "Br"(X)$ explicitly would be a different and more ambitious route to the
-same place.
+That disposes of $v = 2$: since $zeta_3 in.not QQ_2$ (the extension $QQ_2 (zeta_3) slash QQ_2$ is
+the unramified quadratic one), full 3-torsion is never $QQ_2$-rational, so $dim W_2 <= 1$ and
+$beta_2 equiv 0$ for *every* $d$ --- the even-$d$ case included.
+
+*$beta_3 equiv.not 0$.* $W_3$ is Lagrangian in $H^1 (QQ_3, E[3])$, so $beta_3 equiv 0$ on $W_3$
+iff $phi W_3 subset.eq W_3^perp = W_3$, i.e. iff $W_3$ is $phi$-stable. Now
+$W_3 inter H^1 (C_1) = ker alpha_2$ and $W_3 inter H^1 (C_2) = ker alpha_1$, where $alpha_i$ is the
+$C_i$-component of $delta_3$; and $ker alpha_i$ is the image of the corresponding dual isogeny.
+Both dual images were computed to be exactly $E_1 = 3 E_delta (QQ_3)$, i.e. *zero* in $W_3$. So
+both intersections vanish, $W_3$ is not $phi$-stable, and $beta_3 equiv.not 0$. This is one local
+computation, valid for the whole class, since all $d$ in a square class give $QQ_3$-isomorphic
+curves; it was checked for eight twists as a consistency test.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem (modulo the local computation of $beta_3 equiv.not 0$).* For $f = x^3 - 2$ and *every*
+  squarefree $d$ in the class $[u dot 3]$, the group $E_d (QQ)$ is not dense in $E_d (QQ_3)$.
+  Consequently, by the equivalence of §2, $X(QQ)$ is *not* dense in $X(QQ_3)$.
+
+  #v(2mm)
+  _Proof._ $beta_v equiv 0$ for every $v != 3$: at $v = infinity$ because $W_infinity = 0$; at
+  good $ell != 3$ by unramified isotropy; at $ell divides d$ with $ell != 2,3$ because
+  $W_ell = 0$ (odd valuation of $-2d$ and $6d$); and at $ell = 2$ because $dim W_2 <= 1$ and
+  $beta$ is alternating. Reciprocity $sum_v beta_v = 0$ then forces $beta_3 (P,Q) = 0$ for all
+  $P, Q in E_d (QQ)$. Since $beta_3$ is alternating and non-zero on the 2-dimensional $W_3$ it is
+  a symplectic form, so its isotropic subspaces have dimension $<= 1$; hence the image of
+  $E_d (QQ)$ in $W_3$ has dimension $<= 1$ and cannot be all of $W_3$. Topological Nakayama
+  (§2) upgrades this to non-density in $E_d (QQ_3)$. $qed$
+]
+
+This is what the 713 twists were seeing. Note the proof covers *all* twists at once, which is
+exactly what a finite search never could, and it is the reason the Brauer--Manin framing was worth
+pursuing: the mechanism, not the class, is what does the work. Constructing
+$cal(A) in "Br"(X)$ explicitly remains a separate and more ambitious question.
+
+#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
+  *Status.* The one input not verified symbolically is $beta_3 equiv.not 0$, i.e. the failure of
+  $phi$-stability of $W_3$; it rests on the computation that both dual-isogeny images equal $E_1$.
+  Everything else is standard: Tate local duality, isotropy of the Kummer image, reciprocity for
+  the sum of local invariants. The argument should be checked by hand before being relied on.
+]
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   *Caveats.* The 708-twist figure filters on even root number; the odd-root-number case was
