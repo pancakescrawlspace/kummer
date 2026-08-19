@@ -735,6 +735,53 @@ $d = plus.minus P m$ --- a different search order over a different set of candid
 the *same seven* maximal reaches $d in {-1590, -519, -127, 53, 586, 1730, 1923}$. The certificate
 is a property of the curve, not of the search.
 
+*The per-tuple sweep.* Run with $m <= 2000$ and a cap of 250 candidates per tuple, the per-tuple
+enumeration proves *13 of the 64* tuples dense, against 5 for the uniform sweep:
+
+#table(
+  columns: 4, align: (left, right, right, left), stroke: 0.4pt + luma(150),
+  table.header([tuple], [$d_0$], [$N$], [mechanism]),
+  [$(1,1,1)$],            [$1$],     [$4536$],  [seven hyperplanes],
+  [$(1,13,u dot 17)$],    [$663$],   [$12376$], [seven hyperplanes],
+  [$(1,1,u)$],            [$3$],     [$4536$],  [full twist],
+  [$(1,u,17)$],           [$34$],    [$4760$],  [full twist],
+  [$(1,13,1)$],           [$-13$],   [$6552$],  [full twist],
+  [$(1,13,17)$],          [$221$],   [$12376$], [full twist],
+  [$(u,u dot 13,u dot 17)$], [$-1105$], [$8840$],  [full twist],
+  [$(11,u,u)$],           [$11$],    [$3960$],  [full twist],
+  [$(11,u dot 13,u)$],    [$-143$],  [$10296$], [full twist],
+  [$(u dot 11,1,1)$],     [$-55$],   [$7128$],  [full twist],
+  [$(u dot 11,1,u dot 17)$], [$-374$], [$13464$], [full twist],
+  [$(u dot 11,u,1)$],     [$-33$],   [$3960$],  [full twist],
+  [$(u dot 11,13,1)$],    [$715$],   [$10296$], [full twist],
+)
+
+Eleven of the thirteen close on a *single full twist* --- a ledger with one member of index 1 ---
+and only $(1,1,1)$ and $(1,13,u dot 17)$ need the hyperplane mechanism. The reason the ramified
+tuples so often have a full twist is presumably that their arenas, while larger, are reached by
+twists of larger rank; that is a guess, not a result.
+
+*The two enumerations are complementary, not nested.* The uniform sweep still proves $(u,1,1)$ and
+$(u,1,u)$, which the per-tuple run misses: capped at 250 candidates it drew only 102 and 98 twists
+with points, where the uniform sweep, unbounded within $|d| <= 5000$, found 177 and 185. Together
+the two settle *15 of the 64 tuples*. None of the 49 remaining is obstructed as far as this can
+tell --- their ledgers hold between 3 and 8 maximal reaches, concentrated at 4 and 5, which is the
+same "short of the seven hyperplanes" position diagnosed above. Even the worst tuple,
+$(u dot 11, u dot 13, u dot 17)$, which needs $2431 divides d$ and saw two candidates under the
+uniform sweep, now draws 22 twists with points and reaches a ledger of 5.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Where the time goes.* Of 14134 candidates tried, only 2928 --- $21%$ --- have a rational point
+  at all; 88% of those are then admitted. So roughly four fifths of the computation is spent on a
+  rank computation whose answer is "rank $0$, no torsion, nothing to contribute". The graded
+  ledger is not the bottleneck and neither is the star test: *finding points is*. The fix is the
+  $t_0$-bucketing of @sec-strategy --- enumerate $t_0$ and group by the squarefree part of
+  $f(t_0)$, so that every candidate carries a rational point by construction. Landing in a
+  prescribed tuple then becomes a congruence condition on $t_0$, namely $P divides f(t_0)$,
+  rather than a rank computation. That would raise the yield from $21%$ to essentially $100%$ and
+  is the obvious next step for pushing past 15 tuples.
+]
+
 
 = Result
 

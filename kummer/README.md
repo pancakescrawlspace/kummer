@@ -367,6 +367,24 @@ probing them shows they hold **five of the seven** index-2 hyperplanes, so
 they are short of supply too, not obstructed -- `(1,1,1)` itself needed 222
 twists to collect all seven.
 
+Run with `m <= 2000` and a cap of 250 candidates per tuple, `sweeptuples`
+proves **13 of the 64** tuples dense -- eleven on a single full twist, and
+`(1,1,1)` and `(1,13,u*17)` on seven hyperplanes. The two enumerations are
+complementary rather than nested: the uniform sweep still proves `(u,1,1)`
+and `(u,1,u)`, which the capped per-tuple run misses (102 and 98 twists with
+points, against 177 and 185). Together they settle **15 of the 64 tuples**,
+and none of the other 49 looks obstructed -- their ledgers hold 3 to 8
+maximal reaches, concentrated at 4 and 5.
+
+Where the time goes: of 14134 candidates tried, only 2928 (**21%**) have a
+rational point at all, and 88% of those are admitted. Four fifths of the run
+is an `ellrank` returning "rank 0, no torsion". Neither the ledger nor the
+star test is the bottleneck -- finding points is. The fix is the `t0`
+bucketing described above: enumerate `t0` and group by the squarefree part of
+`f(t0)`, so every candidate carries a point by construction, with the tuple
+imposed as a congruence `P | f(t0)` rather than discovered by a rank
+computation.
+
 Not yet implemented for deeper granularity. The obstacle is the index
 computation, not the bookkeeping: the `O(N)` triangular method is already impractical at level 2
 for three places (`1.1e7`) and hopeless at level 3 (`2.7e10`). Granularities
