@@ -149,3 +149,29 @@ poolstats(M) = {
   print("  unobstructed families pooled: ", D, " spanning out of ", R, " = ", D*1.0/R);
   print("  null (two uniform random vectors span F_3^2): 48/81 = ", 48.0/81);
 }
+
+/* ---- the general criterion of section 5.3 --------------------------------
+   (D) a prime q != p is DANGEROUS when v_q(j) < 0, q = 1 mod ell, and
+       ell | v_q(j); those are the multiplicative places where dim W_q = 2.
+   Note q = 2 is never dangerous, since 2 = 1 mod ell for no odd ell -- which
+   is why the empirical "denominator of j is a power of 2" of section 5.2.3
+   was a special case.                                                       */
+dangerous(j, ell) = {
+  my(den = denominator(j), fa, i, q, L = List());
+  if(den == 1, return([]));
+  fa = factor(den);
+  for(i = 1, #fa~,
+    q = fa[i,1];
+    if(q % ell == 1 && fa[i,2] % ell == 0, listput(L, q)));
+  Vec(L);
+}
+/* the quadratic characters cutting the two ell=3 kernels, as squarefree d_i;
+   they satisfy d_1 d_2 = -3 mod squares, which is what forces p = ell.      */
+kernelfields(A, B) = {
+  my(E = ellinit([A,B]), f = factor(elldivpol(E,3)), i, xr, L = List());
+  for(i = 1, #f~,
+    if(poldegree(f[i,1]) != 1, next);
+    xr = -polcoeff(f[i,1],0)/polcoeff(f[i,1],1);
+    listput(L, sqfreepart(xr^3 + A*xr + B)[1]));
+  Vec(L);
+}
