@@ -352,33 +352,87 @@ definition of the class $[u dot 3]$.
 Verified with no exceptions on all 458 squarefree twists with $|d| <= 1500$ lying in the
 two ramified classes (`cm-torsion.gp`). So the Tamagawa jump $c_3 : 1 -> 3$, the doubling
 of $M$, and the non-cyclicity all have a single source: an extra $QQ_3$-rational 3-torsion point,
-present in that class and in no other. *No Brauer group is needed for any of this.*
+present in that class and in no other. *No Brauer group is needed for any of this.* (The same local picture arises for other curves too --- at $p = 3$, $M = 9$ forces additive reduction with $c_3 = 3$ --- which is what makes the control experiment below possible.)
 
-=== What remains open
+=== The residual failure, and a control experiment
 
-Only the second half: not why two independent generators are *needed*, but why they never
-*occur*. Note that the offending line varies with $d$ --- for $d = 159$ both generators lie in
-$⟨T_d⟩$, for $d = 213$ neither does yet they are still dependent, and for
-$d = 87, 123$ one generator lies in $E_1$ --- so there is no single universal functional in these
-coordinates. The constraint is also not "rational points stay in $E_0$": of 285 generators
-examined, 198 do hit the component group.
+Only the second half is left: not why two independent generators are *needed*, but why they
+never *occur*. First, that the failure is real.
 
-The natural place to look is a *3-isogeny descent*: $phi_2$, with kernel
-$⟨T_d⟩$, is defined over $QQ$, and the local condition at 3 in that descent is
-where such a constraint would live. A *Brauer--Manin obstruction to 3-adic density* remains
-possible for this residual half. It would be a $3$-torsion class cutting an index-3 condition at
-$p = 3$ on the Kummer surface of a CM-by-$ZZ[zeta_3]$ curve; the structural input is present,
-since $E[3]$ decomposable gives
-$"End"_G (E[3]) supset.eq bb(F)_3 times bb(F)_3 supset.neq bb(F)_3$, which is what feeds the
+#table(
+  columns: 3, align: (left, center, center), stroke: 0.4pt + luma(150),
+  table.header([search over class $[u dot 3]$], [twists of rank $>= 2$], [dense]),
+  [even root number, $|d| <= 100000$], [708], [*0*],
+  [odd root number (rank $>= 3$), $|d| <= 30000$], [5], [*0*],
+)
+
+*Not an artifact.* The exhibited generators were audited for 3-saturation (`ellisdivisible` on
+all eight non-zero combinations, 40 twists of rank $>= 2$): no non-saturated combination exists.
+So the image really is that of $E_d (QQ) slash 3 E_d (QQ)$, not of a proper subgroup.
+
+*Reformulation.* $E_1$ and $3 E_d (QQ_3)$ are both torsion-free of index 9 in $E_d (QQ_3)$, hence
+equal. The failure therefore reads: the localisation map
+$ E_d (QQ) slash 3 E_d (QQ) --> E_d (QQ_3) slash 3 E_d (QQ_3) tilde.equiv (ZZ slash 3)^2 $
+always has image of dimension $<= 1$.
+
+*Three explanations ruled out.* (i) It is not "rational points stay in $E_0$": of 285 generators,
+198 hit the component group. (ii) There is no universal functional --- in the canonical basis
+$(E_0 slash E_1, ⟨T_d⟩)$ the occupied line ranges over *all four* lines, with multiplicities
+$10, 13, 6, 9$. (iii) It is not either 3-isogeny descent: both duals $hat(phi)_1, hat(phi)_2$
+were built explicitly (checking $hat(phi)_i compose phi_i = [3]$) and both have local image
+*exactly* $E_1$, i.e. trivial in the quotient, so neither cuts out an index-3 subgroup containing
+the rational points.
+
+*The control.* At $p = 3$, $M = 9$ forces additive reduction with $c_3 = 3$; other curves have
+classes with exactly that local structure, so the phenomenon can be tested against controls.
+
+#table(
+  columns: 5, align: (left, center, center, center, center), stroke: 0.4pt + luma(150),
+  table.header([curve], [CM?], [$E[3]$], [rank $>= 2$ twists], [dense]),
+  [$x^3 - 2$ ($p = 3$)],            [yes], [*decomposable*],  [708], [*0*],
+  [$x^3 + 2$],                      [yes], [*decomposable*],  [41],  [*0*],
+  [$x^3 plus.minus 3, 5, 6, 7, 11$],[yes], [not decomp.],     [26--35], [6--30],
+  [$x^3 plus.minus 3x + 1$, $x^3 plus.minus 6x + 1$], [no], [not decomp.], [26--53], [12--38],
+  [$x^3 - 24x plus.minus 26$],      [no],  [*decomposable*],  [43],  [15],
+  [$x^3 + 21x plus.minus 26$],      [no],  [*decomposable*],  [36],  [*0*],
+  [$x^3 - 2$ at $p = 7$, class $[u]$], [yes], [---],          [25],  [20],
+)
+
+Two things follow, and both correct the framing of §5.2.1. *CM is not necessary*: the family
+$x^3 + 21x plus.minus 26$ ($j = 9261 slash 8$, no CM) is obstructed exactly like $x^3 - 2$. And
+*decomposable $E[3]$ is necessary in every case observed but not sufficient*, since
+$x^3 - 24x plus.minus 26$ is decomposable and behaves normally. Decomposability is precisely the
+condition $"End"_G (E[3]) supset.eq bb(F)_3 times bb(F)_3 supset.neq bb(F)_3$ feeding the
 Skorobogatov--Zarhin description of the odd-order part of $"Br"(overline(X))^G$ for
-$X = "Kum"(E times E)$. For $x^3+x+1$, $psi_3$ is irreducible and that source is absent ---
-consistent with its having no difficulty at $p = 3$.
+$X = "Kum"(E times E)$ --- the expected *input* for a 3-torsion class, which need not then exist.
+The last row shows there is nothing hard about surjecting onto $(ZZ slash 3)^2$ in general.
 
-BM *can* obstruct density at a single prime even when $X(QQ) != nothing$: one needs
+*The obstruction is not local.* Comparing the obstructed $x^3 + 21x + 26$ with the
+non-obstructed $x^3 - 24x + 26$ on every local invariant at 3: same reduction type, $c_3 = 3$,
+$M = 9$, quotient $(ZZ slash 3)^2$; two rational roots of $psi_3$ of which exactly one becomes
+$QQ_3$-rational (61 of 61 twists each); trivial rational torsion; isogeny class $\{1, 3, 3\}$;
+kernel fields with $chi_1 chi_2 = chi_(-3)$, one ramified at 3. They are *locally
+indistinguishable at 3*, yet one family fails systematically and the other does not. No local
+condition at 3 can therefore be the explanation: the constraint must involve global input.
+
+That is the signature of a *Brauer--Manin / reciprocity* obstruction, and it eliminates the whole
+class of local explanations pursued above. Note that BM *can* obstruct density at a single prime
+even when $X(QQ) != nothing$: one needs
 $overline(X(QQ))^((p)) subset.eq "pr"_p (X(bb(A))^"Br")$ to be proper, which happens exactly when
 some $cal(A) in "Br"(X)$ has $"inv"_v cal(A)$ constant on $X(QQ_v)$ for every $v != p$ and
-non-constant at $p$. Note that descent-with-reciprocity and the transcendental Brauer class are
-largely two views of the same mathematics, so these are not really competing explanations.
+non-constant at $p$. Descent-with-reciprocity and the transcendental Brauer class are largely two
+views of the same mathematics, so these were never really competing explanations.
+
+One global difference is worth probing: the obstructed conductors are $1728, 432, 54$, all
+supported at $\{2, 3\}$, while the non-obstructed $x^3 - 24x plus.minus 26$ has conductor
+$12096 = 2^6 dot 3^3 dot 7$. At this sample size that may be coincidence. Computing Sha and the
+3-Selmer structure for the two families is the obvious next step.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Caveats.* The 708-twist figure filters on even root number; the odd-root-number case was
+  checked separately only to $|d| <= 30000$. All control counts are at $|d| <= 3000$, so the
+  zeros there are far weaker evidence than the one for $x^3 - 2$.
+]
 
 *Towards all $p$.* I see no obstruction. The only way a prime could fail is if some square class
 $delta$ contained *only* rank-0 twists, which there is no reason to expect. A proof for all $p$

@@ -23,6 +23,7 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `driver.gp` | the search. `sweep` + `procyclic` + `hybrid` are the fast path (see **Search strategy** below); `build`/`report` are the slow pure-descent reference path, `hunt(A,B,p,target,DMAX)` a targeted single-class search. |
 | `p2.gp` | the `p = 2` variant: `densegroup2`, `M2val`, `sqclass2` (8 classes), `report2`. |
 | `cover2.gp` | independent verification for odd `p`: `coverage(A,B,p,k,ds,NB)` checks that every genuine reduction mod `p^k` of a point of `X(Z_p)` with `y` a unit is hit by an honest rational point. |
+| `control.gp` | the control experiment for the `p = 3` open case (document §5.2.2): `armA`, `find3`, `armB`. |
 | `cm-torsion.gp` | the CM mechanism at `p = 3` for `f = x^3-2` (document §5.2.1): `torsionQ3`, `row`, `correlate`, `structure`. |
 | `cover-p2.gp` | the same check at `p = 2`, with exact rational arithmetic and the corrected target set (see below). |
 | `kummer.gp` | the earlier single-generator version (`densecyclic`, `scan`) over the `t_0`-family. Kept only as the reference implementation for `validate.gp`. |
@@ -78,6 +79,16 @@ read("cm-torsion.gp");
 correlate(1500);      /* 458 twists, 0 mismatches with the prediction */
 structure(-3);        /* (Z/3)^2, read off from Q_3-points  */
 structure(3);         /* cyclic Z/3                          */
+```
+
+The control experiment (§5.2.2) — is the failure local, or about the curve?
+
+```
+read("control.gp");
+armA(0,-2,7,1,400);        /* p=7, same CM curve, (Z/3)^2 : 20 of 25 dense  */
+find3(21,26);              /* which classes have M=9 at p=3                 */
+armB(21,26,2,3000);        /* non-CM, E[3] decomposable : 0 of 36 dense     */
+armB(-24,26,2,3000);       /* non-CM, E[3] decomposable : 15 of 43 dense    */
 ```
 
 Sanity checks:
