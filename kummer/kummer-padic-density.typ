@@ -423,10 +423,52 @@ some $cal(A) in "Br"(X)$ has $"inv"_v cal(A)$ constant on $X(QQ_v)$ for every $v
 non-constant at $p$. Descent-with-reciprocity and the transcendental Brauer class are largely two
 views of the same mathematics, so these were never really competing explanations.
 
-One global difference is worth probing: the obstructed conductors are $1728, 432, 54$, all
-supported at $\{2, 3\}$, while the non-obstructed $x^3 - 24x plus.minus 26$ has conductor
-$12096 = 2^6 dot 3^3 dot 7$. At this sample size that may be coincidence. Computing Sha and the
-3-Selmer structure for the two families is the obvious next step.
+=== How rare is the obstruction?
+
+That global lead pans out, but the honest conclusion is a finiteness statement rather than a
+criterion. Every decomposable family has a twist with a rational 3-torsion *point*, so the
+$X_1(3)$ family $y^2 + a_1 x y + a_3 y = x^3$ sees them all up to twist. There
+$psi_3 = x (3x^3 + a_1^2 x^2 + 3 a_1 a_3 x + 3 a_3^2)$, and solving the cubic factor for $a_3$
+forces $-3(12x + 1)$ to be a square. So the decomposable families are parametrised by a genus-0
+curve: with $a_1 = 1$,
+$ x = -(w^2 + 3) slash 36, quad quad a_3 = x(-3 plus.minus w) slash 6, quad quad w in QQ. $
+There are therefore *infinitely many* decomposable families.
+
+Scanning $|a_1|, |a_3| <= 130$ gives 39 of them, 19 with an $M = 9$ class at $p = 3$ and hence
+testable. Writing $j$ in lowest terms, the primes dividing the denominator are exactly the primes
+of *potentially multiplicative* reduction --- a twist-invariant notion --- and the outcome splits
+on them without exception:
+
+#table(
+  columns: 3, align: (left, center, center), stroke: 0.4pt + luma(150),
+  table.header([denominator of $j$], [families], [outcome]),
+  [$1$ or a power of $2$ --- $j = 0$ and $j = 9261 slash 8$], [2], [*obstructed* (0 dense)],
+  [divisible by some $p >= 5$ --- $5, 7, 13, 19, 31, 37, 61, 127$ occur], [17],
+    [free (5--30 dense each)],
+)
+
+*But the obstructed side is not a small sample --- it is the entire population.* Searching the
+genus-0 parametrisation directly over 2 433 532 values of $w$ (all $m slash n$ with
+$|m|, n <= 1000$) turns up *exactly two* $j$-invariants whose denominator is a power of 2:
+$j = 0$ and $j = 9261 slash 8$. That is what one expects: $j in ZZ[1 slash 2]$ on a genus-0 curve
+minus its cusps is a Siegel-type finiteness condition. So on current evidence the obstruction
+occurs for exactly two families out of infinitely many, and both have been found.
+
+#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
+  *What this does and does not establish.* The negative direction is well supported: 17 of 17
+  families having a potentially multiplicative prime $>= 5$ are unobstructed. The positive
+  direction is *underdetermined by the data* --- with only two obstructed families in existence,
+  any property those two happen to share would fit equally well, and $j = 0$ and
+  $j = 9261 slash 8$ share many. "Denominator a power of 2" is singled out here not by the
+  statistics but because it is the invariant with the right Brauer--Manin meaning.
+]
+
+That meaning: BM localises at a single prime $p$ only when $"inv"_v cal(A)$ is constant on
+$X(QQ_v)$ for every $v != p$. Each prime of potentially multiplicative reduction is an extra place
+at which the local evaluation can vary, and one such place suffices to let an adelic point be
+corrected there, dissolving the obstruction at 3. The two obstructed families are precisely those
+with the smallest possible set of bad primes --- potentially good reduction away from
+$\{2, 3\}$. Reproduced by `families.gp`.
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   *Caveats.* The 708-twist figure filters on even root number; the odd-root-number case was
