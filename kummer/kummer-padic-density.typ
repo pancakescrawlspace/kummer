@@ -290,13 +290,27 @@ $tilde(E)(bb(F)_67) tilde.equiv ZZ slash 28 times ZZ slash 2$ and $[1]$ needs $d
 ]
 
 With the full multi-generator search, $f = x^3 - 2$ in fact succeeds for *every* odd prime
-$5 <= p <= 97$. The primes $p equiv 1 space (mod 3)$ are simply the ones that *require* a
+$5 <= p <= 97$, and at $p = 2$ as well. The primes $p equiv 1 space (mod 3)$ are simply the ones that *require* a
 rank-$2$ twist in the class $[1]$, precisely because CM by $ZZ[zeta_3]$ makes
 $tilde(E)(bb(F)_p)$ frequently non-cyclic there (e.g. $tilde(E)(bb(F)_7)$-twist
 $tilde.equiv (ZZ slash 3)^2$, $tilde(E)(bb(F)_19) tilde.equiv ZZ slash 9 times ZZ slash 3$,
 $tilde(E)(bb(F)_73) tilde.equiv (ZZ slash 9)^2$). Witnesses: $p = 7, 19, 43, 67, 73$ take
 $d = -41, -29, -29, -41, -41$. The anomalous prime $p = 61$ (where
 $\#tilde(E)(bb(F)_61) = 61 = p$) likewise needs a rank-2 twist, $d = 2931$.
+
+*The prime 2 is fine.* All eight classes of $QQ_2^times slash (QQ_2^times)^2$ are covered by
+small twists, each of rank 1:
+
+#table(
+  columns: 9, align: center, stroke: 0.4pt + luma(150),
+  table.header([class], [$1$], [$3$], [$5$], [$7$], [$2$], [$6$], [$10$], [$14$]),
+  [$d$], [$1$], [$3$], [$-3$], [$-1$], [$-30$], [$-10$], [$10$], [$30$],
+)
+
+and the independent check on the surface is complete in both regions, $64 slash 64$ each at
+$2^4$ and $256 slash 256$ each at $2^5$ (using the corrected $p = 2$ target set of §4). So for
+$f = x^3 - 2$ the only prime $<= 97$ not fully settled is $p = 3$, and there only one class of
+four.
 
 *One genuinely open case: $p = 3$, class $[u dot 3]$.* Here the four classes behave very
 differently, and the difference is entirely the Tamagawa number:

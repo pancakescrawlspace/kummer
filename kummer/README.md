@@ -72,6 +72,14 @@ hybrid(0, -2, SW2, 100, 60, 15000);   /* every odd 5 <= p <= 97; p=3 is 3/4 */
 hunt(0, -2, 3, 3, 12000);             /* class [u*3] at p=3: no witness found */
 ```
 
+and `p = 2` for the same surface, which is fine (8/8 classes, all rank 1):
+
+```
+read("p2.gp");     report2(0, -2, 600);
+read("cover-p2.gp");
+cov2(0, -2, 5, [1,3,-3,-1,-30,-10,10,30], 140);   /* 256/256 both regions */
+```
+
 Why that class and no other (§5.2.1) — the extra `Q_3`-rational 3-torsion point
 `T_d = (2d, sqrt(6d^3))` exists exactly when `d` is in the class `[u*3]`:
 
