@@ -1,0 +1,196 @@
+read("sadic.gp");
+
+/* =====================================================================
+   The ledger and the star test at level 1   (document, section 2.3)
+
+   At level 1, and at primes of good reduction, the arena is just
+
+       G = prod_{p in S} Etilde_{d0}(F_p),
+
+   so the whole computation is finite-field arithmetic plus integer
+   bookkeeping.  Data types, all elementary:
+
+     arena element   an integer in [0, N), N = prod_p M_p, obtained by
+                     mixed-radix packing of one point-index per place
+     reach           a 0/1 Vecsmall of length N (the subgroup as a bitmap)
+     ledger          a list of such bitmaps, closed under the sign group
+                     and pruned to an antichain
+     membership mask for an arena element a, the set of ledger indices whose
+                     reach contains a, packed as an integer bitmask
+     coverage        the distinct masks pairwise AND to something non-zero
+
+   All twists d in one square-class tuple give Qp-isomorphic curves, so the
+   arena is fixed per tuple; a twist is transported to the chosen
+   representative d0 by (x,y) -> (x/u^2, y/u^3) with u^2 = d/d0 in F_p.
+   ===================================================================== */
+
+/* ---------- the arena ------------------------------------------------ */
+
+/* points of Etilde_{d0}(F_p), indexed from 1; index 1 is the identity */
+placepoints(A, B, d0, p) = {
+  my(E = ellinit([A*d0^2, B*d0^3], p), L = List([[0]]), x, s, y);
+  for(x = 0, p-1,
+    s = Mod(x^3 + A*d0^2*x + B*d0^3, p);
+    if(!issquare(s, &y), next);
+    listput(L, [Mod(x,p), y]);
+    if(y != -y, listput(L, [Mod(x,p), -y])));
+  [E, Vec(L)];
+}
+
+/* arena: per place the curve, its point list, addition and negation tables */
+arenainit(A, B, d0, S) = {
+  my(dat = List(), i, j, k, E, P, m, add, neg, Q);
+  for(i = 1, #S,
+    my(pp = placepoints(A, B, d0, S[i]));
+    E = pp[1]; P = pp[2]; m = #P;
+    add = matrix(m, m);
+    for(j = 1, m, for(k = 1, m,
+      Q = elladd(E, P[j], P[k]);
+      add[j,k] = idxin(P, Q)));
+    neg = vector(m, j, idxin(P, ellneg(E, P[j])));
+    listput(dat, [E, P, m, add, neg, S[i]]));
+  Vec(dat);
+}
+idxin(P, Q) = { my(j); for(j = 1, #P, if(P[j] == Q, return(j))); 0; }
+
+arenasize(ar) = { my(t = 1, i); for(i = 1, #ar, t *= ar[i][3]); t; }
+
+/* mixed-radix packing of a per-place index vector into 0..N-1 */
+pack(ar, v) = { my(k = 0, i); for(i = 1, #ar, k = k*ar[i][3] + (v[i]-1)); k; }
+unpack(ar, k) = {
+  my(v = vector(#ar), i);
+  forstep(i = #ar, 1, -1, v[i] = (k % ar[i][3]) + 1; k = k \ ar[i][3]);
+  v;
+}
+arenaadd(ar, k1, k2) = {
+  my(a = unpack(ar,k1), b = unpack(ar,k2), i);
+  pack(ar, vector(#ar, i, ar[i][4][a[i], b[i]]));
+}
+arenaneg(ar, k) = {
+  my(a = unpack(ar,k), i);
+  pack(ar, vector(#ar, i, ar[i][5][a[i]]));
+}
+
+/* ---------- reaches --------------------------------------------------- */
+
+/* reduce a rational point of E^d, transported to E^{d0}, at place i */
+redpoint(ar, d, d0, i, Pt) = {
+  my(p = ar[i][6], P = ar[i][2], u, x, y);
+  if(Pt == [0], return(1));
+  if(valuation(denominator(Pt[1]), p) > 0 ||
+     valuation(denominator(Pt[2]), p) > 0, return(1));   /* reduces to O */
+  u = sqrt(Mod(d,p)/Mod(d0,p));
+  x = Mod(Pt[1],p)/u^2; y = Mod(Pt[2],p)/u^3;
+  idxin(P, [x,y]);
+}
+
+/* the reach of the twist d, as a 0/1 bitmap of length N */
+reachmap(ar, d, d0, S, pts) = {
+  my(N = arenasize(ar), bm = vectorsmall(N), gens = List(), i, j, k, new, g, cur);
+  for(j = 1, #pts,
+    listput(gens, pack(ar, vector(#S, i, redpoint(ar, d, d0, i, pts[j])))));
+  gens = Vec(gens);
+  bm[1] = 1;                                   /* identity has index 0 */
+  new = 1;
+  while(new,
+    new = 0;
+    for(k = 0, N-1,
+      if(bm[k+1] == 0, next);
+      for(j = 1, #gens,
+        cur = arenaadd(ar, k, gens[j]);
+        if(bm[cur+1] == 0, bm[cur+1] = 1; new = 1))));
+  bm;
+}
+
+/* the sign group acts by negating the chosen places */
+signact(ar, bm, eps) = {
+  my(N = #bm, out = vectorsmall(N), k, v, i);
+  for(k = 0, N-1,
+    if(bm[k+1] == 0, next);
+    v = unpack(ar, k);
+    for(i = 1, #ar, if(eps[i] < 0, v[i] = ar[i][5][v[i]]));
+    out[pack(ar, v)+1] = 1);
+  out;
+}
+bmcontains(b1, b2) = { my(i); for(i = 1, #b1, if(b2[i] && !b1[i], return(0))); 1; }
+bmsize(b) = { my(t = 0, i); for(i = 1, #b, t += b[i]); t; }
+
+/* ---------- the ledger ------------------------------------------------ */
+
+/* add a reach and all its sign translates, keeping only maximal members */
+ledgeradd(L, ar, bm) = {
+  my(S = #ar, e, eps, cand = List(), i, j, keep, out = List(), b);
+  for(e = 0, 2^S - 1,
+    eps = vector(S, i, if(bitand(e, 2^(i-1)), -1, 1));
+    listput(cand, signact(ar, bm, eps)));
+  for(j = 1, #cand,
+    b = cand[j];
+    keep = 1;
+    for(i = 1, #L, if(bmcontains(L[i], b), keep = 0; break()));
+    if(keep, listput(L, b)));
+  /* prune members now dominated */
+  for(i = 1, #L,
+    keep = 1;
+    for(j = 1, #L, if(i != j && bmcontains(L[j], L[i]) && !bmcontains(L[i], L[j]),
+                      keep = 0; break()));
+    if(keep, listput(out, L[i])));
+  out;
+}
+
+/* ---------- the star test --------------------------------------------- */
+
+/* masks[k+1] = set of ledger indices whose reach contains arena element k */
+maskvec(L, N) = {
+  my(mk = vector(N, i, 0), i, k);
+  for(i = 1, #L, for(k = 1, N, if(L[i][k], mk[k] += 2^(i-1))));
+  mk;
+}
+
+/* coverage holds iff the distinct masks pairwise intersect;
+   returns [covered?, #distinct masks, uncovered ordered pairs]            */
+startest(L, N) = {
+  my(mk = maskvec(L, N), D = Map(), ks, i, j, c, tot = 0, bad = 0);
+  for(k = 1, N,
+    c = if(mapisdefined(D, mk[k]), mapget(D, mk[k]), 0);
+    mapput(D, mk[k], c+1));
+  ks = Mat(D)[,1];
+  for(i = 1, #ks, for(j = 1, #ks,
+    tot += mapget(D, ks[i]) * mapget(D, ks[j]);
+    if(bitand(ks[i], ks[j]) == 0,
+       bad += mapget(D, ks[i]) * mapget(D, ks[j]))));
+  [bad == 0, #ks, bad];
+}
+
+/* ---------- driver ----------------------------------------------------
+   Accumulate reaches from every twist in the square-class tuple of d0 and
+   watch the star test.  Reports, after each addition: ledger size, the
+   largest reach so far, the number of distinct membership masks, and the
+   deficiency (ordered pairs of arena elements not covered by any reach).  */
+runledger(A, B, d0, S, DMAX, verbose) = {
+  my(ar = arenainit(A, B, d0, S), N, L = List(), d, n, sg, td, bm, st, k0, cnt = 0);
+  N = arenasize(ar);
+  k0 = sqclassS(d0, S);
+  print("  arena: ", vector(#S, i, ar[i][3]), "   N = ", N,
+        "   tuple = ", k0);
+  for(n = 1, DMAX,
+    if(!issquarefree(n), next);
+    for(sg = 0, 1,
+      d = if(sg == 0, n, -n);
+      if(sqclassS(d, S) != k0, next);
+      td = twistdata(A, B, d);
+      if(#td[2] == 0, next);
+      bm = reachmap(ar, d, d0, S, td[2]);
+      if(bmsize(bm) <= 1, next);
+      L = ledgeradd(L, ar, bm);
+      cnt++;
+      if(verbose || cnt % 5 == 0,
+        st = startest(L, N);
+        print("    twists used ", cnt, " (last d=", d, ", rank ", td[3],
+              ", reach ", bmsize(bm), ")   ledger ", #L,
+              "   masks ", st[2], "   deficiency ", st[3], "/", N^2))));
+  st = startest(L, N);
+  print("  FINAL: ledger ", #L, "   covered? ", if(st[1], "YES", "no"),
+        "   deficiency ", st[3], " of ", N^2, " ordered pairs",
+        "   (", 100.0*st[3]/N^2, "%)");
+  L;
+}

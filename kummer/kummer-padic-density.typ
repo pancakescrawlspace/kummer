@@ -419,6 +419,62 @@ reaches, so coverage at level $n+1$ implies coverage at level $n$. Deficiency is
 monotone in $n$: work at the lowest level, refine only after it closes. A full twist is full at
 every level, so once one is found the class is finished for good.
 
+=== A worked ledger: $S = {11, 13, 17}$ <sec-ledger-worked>
+
+At level 1 and at primes of good reduction the arena is simply
+$cal(G)(1) = product_(p in S) tilde(E)_(d_0) (bb(F)_p)$, so the whole computation is
+finite-field arithmetic and integer bookkeeping. Representation, all elementary:
+
+#table(
+  columns: 2, align: (left, left), stroke: 0.4pt + luma(150),
+  table.header([object], [data type]),
+  [arena element], [an integer in $[0, N)$, $N = product_p M_p$, by mixed-radix packing of one
+                    point-index per place],
+  [reach], [a $0 slash 1$ vector of length $N$ --- the subgroup as a bitmap],
+  [ledger], [a list of such bitmaps, closed under the sign group and pruned to an antichain],
+  [membership mask], [for each arena element, the set of ledger indices containing it, packed as
+                      one integer bitmask],
+  [coverage], [the distinct masks pairwise AND to something non-zero],
+)
+
+Twists in one tuple give $QQ_p$-isomorphic curves, so the arena is fixed; a twist is transported
+to the chosen representative by $(x,y) |-> (x slash u^2, y slash u^3)$ with $u^2 = d slash d_0$ in
+$bb(F)_p$. Running this for $f = x^3+x+1$, $d_0 = 1$, $S = {11,13,17}$:
+
+#table(
+  columns: 5, align: (right, right, right, right, right), stroke: 0.4pt + luma(150),
+  table.header([twists used], [last reach], [ledger], [masks], [deficiency]),
+  [5],   [2268], [4], [10], [74.8%],
+  [30],  [9],    [9], [28], [55.9%],
+  [40],  [126],  [4], [8],  [28.1%],
+  [110], [---],  [4], [8],  [28.1%],
+  [115], [2268], [7], [8],  [*0%*],
+)
+
+The arena has order $14 dot 18 dot 18 = 4536$ and $g = 3$: every $M_p$ is even, so its 2-part is
+$(ZZ slash 2)^3$. *No twist encountered is full* --- the reaches are cyclic of order dividing
+$"lcm"(14,18,18) = 126$ when the twist has rank 1, and of index 2 when it has rank 2 --- and yet
+the ledger closes. It stabilises at exactly *seven* maximal reaches, each of index 2, which is
+exactly the number of index-2 subgroups of $(ZZ slash 2)^3$.
+
+That is the whole mechanism in miniature: a pair of arena elements generates a subgroup of
+2-rank at most 2, hence lies in some hyperplane of the 2-part; so once all seven hyperplanes are
+realised as reaches, every pair is covered. Partial patches do together what no single twist can,
+which is exactly the regime the ledger was introduced for. Note also that the ledger *shrinks* at
+several points (9 members down to 3) as a large new reach absorbs smaller ones --- pruning to the
+antichain is doing real work --- and that the deficiency sits at $28.125% = 9 slash 32$ for
+seventy twists before the last missing hyperplanes appear.
+
+#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
+  *What this does and does not show.* Coverage here is at *level 1 only*. By monotonicity that is
+  a necessary condition, so it is a real check, and the failure of any level would be decisive ---
+  but it is not sufficient for density. Level 2 multiplies the arena by
+  $11 dot 13 dot 17 = 2431$, to about $1.1 dot 10^7$ elements, well past bitmap range; there one
+  must switch to the $ell$-primary representation, storing each reach as a tuple of subgroups of
+  the small groups $cal(G)(2)_ell$ and intersecting membership masks prime by prime. The
+  bookkeeping is identical; only the data type for a reach changes.
+]
+
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   *Two cautions.* (i) In practice one knows only a finite-index subgroup of $E^d (QQ)$, so the
   computed reach may be *smaller* than $R(d)$. The error is one-sided: coverage verdicts stay

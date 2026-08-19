@@ -26,6 +26,7 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `families.gp` | enumerates all quadratic-twist families with `E[3]` decomposable and tests the denominator-of-`j` criterion (document §5.2.3): `families`, `testfamily`, `sweepfamilies`. |
 | `verify-dual.sage` | independent Sage check of the one computational input to the §5.2.4 theorem (uses Sage's own `.dual()`); run under Docker, see below. |
 | `sadic.gp` | `S`-adic density (document §2.2): `Mstar`, `coprimeS`, `densefactorwise`, `denseS`, `reportS`; and the level-2 product test `inE2p`, `Border`, `denseprod`, `reportSprod`; and the rank dichotomy `torsdimUB`, `gtop`, `triage`. |
+| `ledger.gp` | the ledger and star test at level 1 (document §2.3.1): `arenainit`, `reachmap`, `signact`, `ledgeradd`, `maskvec`, `startest`, `runledger`. |
 | `control.gp` | the control experiment for the `p = 3` open case (document §5.2.2): `armA`, `find3`, `armB`. |
 | `cm-torsion.gp` | the CM mechanism at `p = 3` for `f = x^3-2` (document §5.2.1): `torsionQ3`, `row`, `correlate`, `structure`. |
 | `cover-p2.gp` | the same check at `p = 2`, with exact rational arithmetic and the corrected target set (see below). |
