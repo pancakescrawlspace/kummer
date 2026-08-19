@@ -513,6 +513,49 @@ $m <= n$. So coarse entries absorb fine ones and never the reverse, and the anti
 improves as coarse twists are found. The pruning seen in @sec-ledger-worked, nine members falling
 to three, is the flat shadow of this.
 
+=== Places and layers: the $ell$-primary rewrite <sec-layers>
+
+Two families of primes are now in play and must not be conflated. The *places* $p in S$ are where
+we localise; the *layer primes* $ell$ are those dividing $\#cal(G)$. Picture the arena as a grid,
+places indexing columns and layer primes rows, with cell $(p, ell)$ the $ell$-primary part of
+$E^(delta_p) (QQ_p)$:
+
+$ cal(G) = plus.big_ell cal(G)_ell, quad quad
+  cal(G)_ell = plus.big_(p in S) cal(G)_(p, ell) . $
+
+The grid is almost entirely finite. For $ell != p$ the cell is $T_p [ell^infinity]$, *finite*; only
+the *diagonal* cells $ell = p$ are infinite, $cal(G)_(p,p) tilde.equiv ZZ_p times T_p [p^infinity]$.
+And $ker_n = product_p E_n (QQ_p)$ is pro-$p$ at each place, so it lies *entirely on the diagonal*.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Granularity is diagonal.* Refinement in $n$ touches only the diagonal cells. Hence the
+  granularity of an entry is a *vector* $(n_p)_(p in S)$, one per place, and off-diagonal data is
+  exact from the outset --- there is nothing to refine there. In particular $n_p = 1$ exactly when
+  the reach's $p$-layer is the whole of $cal(G)_(p,p)$.
+]
+
+When no place of $S$ divides $M_q$ for another place $q$, and $p tilde.not M_p$, the $p$-layer
+collapses to $cal(G)_(p,p) = E_1 (QQ_p)$, and "$n_p = 1$" becomes exactly *condition (ii)* of
+@sec-local: the subgroup meets $E_1 without E_2$ at $p$. That is already implemented. For
+$S = {11,13,17}$ the hypothesis holds --- $M = (14, 18, 18)$ and none of $11, 13, 17$ divides any
+of these --- so granularity 1 is testable directly.
+
+*And it closes.* Re-running the ledger of @sec-ledger-worked while admitting *only* granularity-1
+twists: of 119 twists inspected, 102 are admitted, and the ledger again stabilises at seven
+maximal reaches of index 2 with deficiency $0$. Every admitted reach contains $ker_1$, so the
+termination theorem applies with $N = 1$:
+
+#block(fill: rgb("#eef4ff"), inset: 9pt, radius: 3pt, width: 100%)[
+  For $f = x^3+x+1$, $S = {11,13,17}$ and the square-class tuple of $d_0 = 1$, the rational points
+  of $X$ are *dense* in that component of $X(QQ_S)$ --- proved, from a finite certificate, with no
+  full twist anywhere in sight.
+]
+
+Only $d = 1$ itself failed the granularity test among those checked; the rank-2 twists supplying
+the seven hyperplanes all pass. The remaining 63 tuples for this $S$ are untouched, so density in
+all of $X(QQ_S)$ is not claimed --- but the method now terminates when it succeeds, which is what
+the flat ledger could never do.
+
 *Representation.* Bitmaps over the arena die at once: at level 2 the arena for $S = {11,13,17}$
 already has $11 dot 13 dot 17 dot 4536 approx 1.1 dot 10^7$ elements, at level 3 about
 $2.7 dot 10^10$. But closures in a profinite abelian group decompose over primes,

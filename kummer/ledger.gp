@@ -194,3 +194,86 @@ runledger(A, B, d0, S, DMAX, verbose) = {
         "   (", 100.0*st[3]/N^2, "%)");
   L;
 }
+
+/* =====================================================================
+   Granularity   (document, section 2.3.2)
+
+   Places p in S index columns, layer primes l dividing #G index rows.
+   Cell (p,l) is the l-primary part of E^delta(Q_p): off-diagonal cells
+   (l != p) are FINITE, only the diagonal ones (l = p) are infinite, and
+   ker_n is pro-p at each place so lives entirely on the diagonal.  Hence
+   granularity is a per-place vector, and n_p = 1 exactly when the reach's
+   p-layer is all of E_1(Q_p).
+
+   When no p in S divides M_q for q != p (checked, and true for
+   S = {11,13,17}) the p-layer of the arena is E_1(Q_p) alone, so that test
+   is the old condition (ii): the subgroup meets E_1 \ E_2 at p.
+   ===================================================================== */
+
+/* The p-layer of the arena is E_1(Q_p) alone whenever p divides no M_q,
+   q in S.  Then the reach contains ker_1 at p iff some element of the
+   subgroup lies in E_1 \ E_2 -- the old condition (ii).                  */
+hitsE1(Em, pts, p) = {
+  my(M, r, Ep, P, S0, coefs, basis, idx, rem, dv, mi, bvec, k, kP, Q, S2, C2,
+     jP, cc, b, T, i, j, s, t);
+  M = Mval(Em, p); r = #pts;
+  if(M == 0 || r == 0, return(0));
+  Ep = padiccurve(Em, p);
+  P = vector(r, i, [pts[i][1]+O(p^PREC), pts[i][2]+O(p^PREC)]);
+  S0 = [[0]]; coefs = [vector(r, j, 0)]; basis = List(); idx = 1;
+  for(i = 1, r,
+    rem = M \ idx; dv = divisors(rem); mi = 0; bvec = 0;
+    for(t = 1, #dv, k = dv[t]; kP = ellmul(Ep, P[i], k);
+      for(s = 1, #S0,
+        Q = if(S0[s] == [0], kP, elladd(Ep, kP, S0[s]));
+        if(inE1(Q, p), mi = k; bvec = coefs[s]; bvec[i] += k; break(2))));
+    if(mi == 0, next);
+    listput(basis, bvec);
+    S2 = List(); C2 = List();
+    for(j = 0, mi-1, jP = if(j==0, [0], ellmul(Ep, P[i], j));
+      for(s = 1, #S0,
+        Q = if(j==0, S0[s], if(S0[s]==[0], jP, elladd(Ep, jP, S0[s])));
+        cc = coefs[s]; cc[i] += j; listput(S2, Q); listput(C2, cc)));
+    S0 = Vec(S2); coefs = Vec(C2); idx *= mi);
+  for(i = 1, #basis,
+    b = basis[i]; Q = [0];
+    for(j = 1, r, if(b[j] != 0, T = ellmul(Ep, P[j], b[j]);
+      Q = if(Q == [0], T, elladd(Ep, Q, T))));
+    if(Q != [0] && valuation(Q[1], p) == -2, return(1)));
+  0;
+}
+/* granularity 1 at every place? */
+gran1(Em, pts, S) = { my(i); for(i = 1, #S, if(!hitsE1(Em, pts, S[i]), return(0))); 1; }
+
+
+/* Ledger admitting only granularity-1 twists.  If this closes at level 1 the
+   termination theorem applies with N = 1 and density is PROVED.            */
+rungraded(A, B, d0, S, DMAX, verbose) = {
+  my(ar = arenainit(A, B, d0, S), N, L = List(), d, n, sg, td, bm, st, k0,
+     cnt = 0, seen = 0);
+  N = arenasize(ar); k0 = sqclassS(d0, S);
+  print("  arena ", vector(#S, i, ar[i][3]), "  N = ", N, "   tuple ", k0,
+        "   (granularity-1 twists only)");
+  for(n = 1, DMAX,
+    if(!issquarefree(n), next);
+    for(sg = 0, 1,
+      d = if(sg == 0, n, -n);
+      if(sqclassS(d, S) != k0, next);
+      td = twistdata(A, B, d);
+      if(#td[2] == 0, next);
+      seen++;
+      if(!gran1(td[1], td[2], S), next);          /* reject: not exact at level 1 */
+      bm = reachmap(ar, d, d0, S, td[2]);
+      if(bmsize(bm) <= 1, next);
+      L = ledgeradd(L, ar, bm); cnt++;
+      if(verbose,
+        st = startest(L, N);
+        print("    admitted ", cnt, " (d=", d, ", rank ", td[3], ", reach ",
+              bmsize(bm), ")  ledger ", #L, "  deficiency ", st[3]))));
+  st = startest(L, N);
+  print("  twists inspected ", seen, ", admitted ", cnt,
+        "   ledger ", #L, "   covered? ", if(st[1], "YES", "no"),
+        "   deficiency ", st[3]);
+  if(st[1], print("  => level-1 coverage by granularity-1 reaches: DENSITY PROVED for this tuple"));
+  L;
+}

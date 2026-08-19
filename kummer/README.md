@@ -305,8 +305,36 @@ covering pulls back on the nose and density follows: a real proof from finite
 data. Pruning still works across grades, and in the useful direction --
 coarser entries are *larger* subgroups, so they absorb finer ones.
 
-Not yet implemented. The obstacle is the index computation, not the
-bookkeeping: the `O(N)` triangular method is already impractical at level 2
+### Places versus layers
+
+Two families of primes, kept apart deliberately. The **places** `p in S` are
+where we localise; the **layer primes** `l` are those dividing `#G`. Picture
+the arena as a grid, places as columns and layer primes as rows, cell `(p,l)`
+being the `l`-primary part of `E^delta(Q_p)`.
+
+Off-diagonal cells (`l != p`) are finite; only the diagonal ones are infinite;
+and `ker_n` is pro-`p` at each place, so it lies entirely on the diagonal.
+**Granularity is therefore diagonal**: a vector `(n_p)`, one per place, with
+`n_p = 1` exactly when the reach's `p`-layer is all of `G_{p,p}`.
+
+When no place of `S` divides `M_q` for another place `q` (true for
+`S = {11,13,17}`, where `M = (14,18,18)`), the `p`-layer is just `E_1(Q_p)`,
+and `n_p = 1` is the old condition (ii). So it is directly testable:
+
+```
+read("ledger.gp");
+gran1(twistdata(1,1,53)[1], twistdata(1,1,53)[2], [11,13,17]);   /* 1 */
+L = rungraded(1, 1, 1, [11,13,17], 2000, 0);
+```
+
+Admitting only granularity-1 twists, the ledger still closes: 102 of 119
+twists admitted, seven maximal reaches, deficiency 0. Every reach then
+contains `ker_1`, so the termination theorem applies with `N = 1` and
+**density in that component of `X(Q_S)` is proved** -- with no full twist
+anywhere. The other 63 tuples for this `S` are untouched.
+
+Not yet implemented for deeper granularity. The obstacle is the index
+computation, not the bookkeeping: the `O(N)` triangular method is already impractical at level 2
 for three places (`1.1e7`) and hopeless at level 3 (`2.7e10`). Granularities
 need an `l`-primary rewrite, which is also the right representation since
 closures in a profinite abelian group decompose over primes.
