@@ -98,6 +98,7 @@ armA(0,-2,7,1,400);        /* p=7, same CM curve, (Z/3)^2 : 20 of 25 dense  */
 find3(21,26);              /* which classes have M=9 at p=3                 */
 armB(21,26,2,3000);        /* non-CM, E[3] decomposable : 0 of 36 dense     */
 armB(-24,26,2,3000);       /* non-CM, E[3] decomposable : 15 of 43 dense    */
+placeaudit(1500);          /* which places can carry a non-zero beta_v      */
 ```
 
 Which families are obstructed (§5.2.3) — 19 of 19 match the criterion

@@ -116,3 +116,35 @@ armB(A, B, target, DMAX) = {
     ));
   print("      rank>=2 twists with M=9: ", nrk2, ",  dense: ", nwin);
 }
+
+/* ---- which places can support a non-zero beta_v ?  (document, 5.2.4) ----
+   For l != 3, W_l = E_d(Q_l)[3], and for E_d : y^2 = x^3 - 2d^3 the 3-torsion
+   sits at x = 0 (y^2 = -2d^3) and x = 2d (y^2 = 6d^3).  So W_l != 0 iff -2d
+   or 6d is a square in Q_l.  For l | d with l not 2,3 and d squarefree both
+   have valuation 1, hence are non-squares: W_l = 0.  Only l = 2 survives, and
+   only for even d.                                                          */
+sqinQ2(a) = { my(v, u); if(a == 0, return(0)); v = valuation(a,2); u = a/2^v;
+              (v % 2 == 0) && (u % 8 == 1); }
+sqinQl(a, l) = { my(v); if(a == 0, return(0)); v = valuation(a,l);
+                 (v % 2 == 0) && (kronecker(a/l^v, l) == 1); }
+placeaudit(D) = {
+  my(n, sg, d, fa, i, l, bad2 = 0, badl = 0, tot = 0);
+  for(n = 1, D,
+    if(!issquarefree(n), next);
+    for(sg = 0, 1,
+      d = if(sg == 0, n, -n);
+      if(sqclass(d,3) != 3, next);
+      tot++;
+      fa = factor(abs(6*d))[,1]~;
+      for(i = 1, #fa,
+        l = fa[i];
+        if(l == 3, next);
+        if(l == 2,
+          if(sqinQ2(-2*d) || sqinQ2(6*d), bad2++)
+        ,
+          if(sqinQl(-2*d,l) || sqinQl(6*d,l), badl++;
+             print("  *** unexpected: W_l != 0 at l=", l, " for d=", d))))));
+  print("  class [u*3], |d| <= ", D, " : ", tot, " twists");
+  print("  places l | d outside {2,3} with W_l != 0 : ", badl, "  (proved to be 0)");
+  print("  twists with W_2 != 0 (all even d) : ", bad2, " of ", tot);
+}

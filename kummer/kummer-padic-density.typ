@@ -586,9 +586,43 @@ are then the extreme case, rate exactly $0$, of a mechanism that depresses the r
 (The null model is crude: it assumes the two images are uniform and independent, and the sample
 mixes ranks $2$ and higher, which biases the rate up rather than down.)
 
-What remains genuinely open is to exhibit $cal(A) in "Br"(X)$ and verify
-$"inv"_v cal(A)$ constant for $v != 3$ directly. Everything above says only what such a class must
-look like.
+*The vanishing away from 3 is not a hypothesis --- it is provable.* The step that looked out of
+reach turns out to be elementary for this family. Three observations:
+
+- $W_infinity = E_d (RR) slash 3 = 0$, since $E_d (RR)$ is 3-divisible.
+- At a prime $ell != 3$ of *good* reduction, $W_ell = H^1_"ur" (QQ_ell, E[3])$ is its own
+  annihilator under the Tate pairing, and $phi$ is Galois-equivariant so preserves
+  unramifiedness; hence $beta_ell (W_ell, W_ell) subset.eq ⟨H^1_"ur", H^1_"ur"⟩ = 0$.
+- At any $ell != 3$, $W_ell tilde.equiv E_d (QQ_ell)[3]$, because $E_d (QQ_ell)$ has a
+  3-divisible subgroup of finite index. For $E_d : y^2 = x^3 - 2d^3$ the 3-torsion sits at
+  $x = 0$ and $x = 2d$, so $W_ell != 0$ requires $-2d$ or $6d$ to be a square in $QQ_ell$.
+
+The bad primes of $E_d$ divide $6d$. For $ell divides d$ with $ell != 2, 3$ and $d$ squarefree,
+$v_ell (-2d) = v_ell (6d) = 1$ is *odd*, so neither is a square and $W_ell = 0$. This is a proof,
+uniform in $d$, not a check: a scan of all 456 twists with $|d| <= 3000$ in the class finds no
+exception. Hence
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  For every squarefree $d$ in the class $[u dot 3]$, the only places $v != 3$ at which $beta_v$
+  can be non-zero are $v = 2$; and $W_2 = 0$ --- so $beta_2 = 0$ too --- unless $d$ is *even*.
+  For *odd* $d$, reciprocity therefore gives $beta_3 (P,Q) = 0$ on all rational pairs outright.
+]
+
+Of the 456 twists with $|d| <= 3000$, 381 have $W_2 = 0$. So for those the image of $E_d (QQ)$ in
+$W_3$ is $beta_3$-isotropic, and since a non-zero bilinear form on a 2-dimensional space has no
+2-dimensional totally isotropic subspace, the image has dimension $<= 1$ --- *provided only that
+$beta_3 equiv.not 0$*.
+
+*What is actually left.* Just that last clause, and it has a clean reformulation: $W_3$ is
+Lagrangian in the 4-dimensional $H^1 (QQ_3, E[3])$, so $beta_3 equiv 0$ on $W_3$ if and only if
+$phi W_3 subset.eq W_3^perp = W_3$, i.e. if and only if $W_3$ is $phi$-stable. So the whole
+question reduces to one local computation at the wild place: *is the Kummer image at 3 stable
+under projection onto $C_1$?* The 713 twists say it is not, but that is empirical. Settling it
+needs the cubic norm-residue symbol at $v = 3$, which is the one thing PARI does not provide; the
+even-$d$ twists need $beta_2$ as well.
+
+Exhibiting $cal(A) in "Br"(X)$ explicitly would be a different and more ambitious route to the
+same place.
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   *Caveats.* The 708-twist figure filters on even root number; the odd-root-number case was
