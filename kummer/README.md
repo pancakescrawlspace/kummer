@@ -268,6 +268,49 @@ Beware: `g >= 3` does **not** say no full twist exists, only that none is
 forced. Both `g = 3` tuples for `S = {5,7}` do have full twists, of
 Mordell-Weil rank at least 3.
 
+## The ledger
+
+At level 1 and good reduction the arena is just `prod_p Etilde(F_p)`, so a
+reach is a bitmap and the star test is bitwise. For `f = x^3+x+1`,
+`S = {11,13,17}` the arena has order `14*18*18 = 4536` with `g = 3`:
+
+```
+read("ledger.gp");
+L = runledger(1, 1, 1, [11,13,17], 2000, 0);
+```
+
+No twist found is full, yet the ledger closes: it stabilises at exactly seven
+maximal reaches, each of index 2, which is the number of index-2 subgroups of
+`(Z/2)^3`. Every pair generates a subgroup of 2-rank at most 2, so lies in
+some hyperplane -- partial patches doing together what no single twist can.
+Deficiency falls 74.8% -> 28.1% -> 0 at 115 twists (`|d|` about 1900).
+
+### Why that is not a proof, and how to grade the ledger
+
+The point is worth stating plainly. A flat ledger stores each reach as its
+image at one fixed level `n`, and the preimage of that image is an
+**over**-approximation of the reach. Coverage computed from
+over-approximations is only ever a *necessary* condition, and level `n+1` can
+always destroy what level `n` certified. So no amount of computing at a fixed
+level, or at every level in turn, yields a proof.
+
+The fix is to grade the ledger: make the level part of each entry. An entry is
+`(d, n_d, Rbar)` subject to `R(d)` containing `ker_{n_d}`, which is a
+*certificate of exactness* -- the reach then equals the preimage of `Rbar`, so
+the finite datum is exact rather than approximate. Granularity is detected by
+computing the index at successive levels and stopping when it repeats.
+
+Then (§2.3.2) if a **finite** graded ledger covers at `N = max n_d`, the
+covering pulls back on the nose and density follows: a real proof from finite
+data. Pruning still works across grades, and in the useful direction --
+coarser entries are *larger* subgroups, so they absorb finer ones.
+
+Not yet implemented. The obstacle is the index computation, not the
+bookkeeping: the `O(N)` triangular method is already impractical at level 2
+for three places (`1.1e7`) and hopeless at level 3 (`2.7e10`). Granularities
+need an `l`-primary rewrite, which is also the right representation since
+closures in a profinite abelian group decompose over primes.
+
 ## The Sage cross-check
 
 The theorem of §5.2.4 rests on one computation: that both dual-isogeny images
