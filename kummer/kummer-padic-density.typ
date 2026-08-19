@@ -309,10 +309,10 @@ small twists, each of rank 1:
 
 and the independent check on the surface is complete in both regions, $64 slash 64$ each at
 $2^4$ and $256 slash 256$ each at $2^5$ (using the corrected $p = 2$ target set of §4). So for
-$f = x^3 - 2$ the only prime $<= 97$ not fully settled is $p = 3$, and there only one class of
-four.
+$f = x^3 - 2$ every prime $<= 97$ other than $p = 3$ is settled *positively*; $p = 3$ is the one
+place where the evidence points the other way, and §5.2.2 makes that precise.
 
-*One genuinely open case: $p = 3$, class $[u dot 3]$.* Here the four classes behave very
+*The one exception: $p = 3$, class $[u dot 3]$.* Here the four classes behave very
 differently, and the difference is entirely the Tamagawa number:
 
 #table(
@@ -321,7 +321,7 @@ differently, and the difference is entirely the Tamagawa number:
   [$[1]$],       [$I I$],   [1], [3], [OK, $d = -1115$ (rank 2)],
   [$[u]$],       [$I I$],   [1], [3], [OK, $d = -1$ (rank 1)],
   [$[3]$],       [$I I^*$], [1], [3], [OK, $d = 3$ (rank 1)],
-  [$[u dot 3]$], [$I I^*$], [3], [9], [*no witness with $|d| <= 12000$*],
+  [$[u dot 3]$], [$I I^*$], [3], [9], [*no witness with $|d| <= 100000$*],
 )
 
 In the bad class every twist has $c_3 = 3$ and
@@ -379,6 +379,34 @@ never *occur*. First, that the failure is real.
   [even root number, $|d| <= 100000$], [708], [*0*],
   [odd root number (rank $>= 3$), $|d| <= 30000$], [5], [*0*],
 )
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Proposition (the question at $p = 3$ is a dichotomy).* For $f = x^3 - 2$,
+  $ X(QQ) "is dense in" X(QQ_3) quad <==> quad exists d "in the class" [u dot 3] "with" \
+    E_d (QQ) --> E_d (QQ_3) slash 3 E_d (QQ_3) tilde.equiv (ZZ slash 3)^2 quad "surjective." $
+
+  #v(2mm)
+  ($arrow.l.double$) $E_delta (QQ_3) tilde.equiv ZZ_3 times ZZ slash 3$ is pro-3, so
+  $E_d (QQ)$ surjecting onto the Frattini quotient $E slash 3E$ forces
+  $overline(E_d (QQ)) = E_delta (QQ_3)$ by topological Nakayama; the sufficient criterion of §2
+  then applies, the other three classes already having witnesses.
+
+  #v(1mm)
+  ($arrow.r.double$) Otherwise every $d$ gives an image of dimension $<= 1$, so *every* rational
+  point of $X$ in the $[u dot 3]$ part yields a pair whose images in $W_3$ are linearly
+  *dependent*. Pairs with independent images form a non-empty open subset of $X(QQ_3)$, because
+  $W_3$ is a finite discrete quotient of $E_delta (QQ_3)$. Density therefore fails.
+]
+
+Only twists of rank $>= 2$ can surject: the sole squarefree $d$ in this class with rational
+3-torsion is $d = 6$, of rank 0 (checked for all $|d| <= 200000$), so
+$dim E_d (QQ) slash 3 = "rank"$ throughout the class and rank $<= 1$ cannot span.
+
+So the search above is not merely a failure to find witnesses --- it is evidence for a *negative*
+statement, and the negative statement is exactly the failure of 3-adic density. What stops this
+being a theorem is only that the right-hand side quantifies over infinitely many twists, of which
+713 have been checked. A Brauer--Manin obstruction, if constructed, would settle all of them at
+once; that is the real reason to want one.
 
 *Not an artifact.* The exhibited generators were audited for 3-saturation (`ellisdivisible` on
 all eight non-zero combinations, 40 twists of rank $>= 2$): no non-saturated combination exists.
