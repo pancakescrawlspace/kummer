@@ -21,7 +21,7 @@
 
 #v(4mm)
 
-= Setup and the basic reformulation
+= Setup and the basic reformulation <sec-setup>
 
 Let $f in QQ[x]$ be a cubic with no repeated root, let
 $ E : v^2 = f(u) $
@@ -49,7 +49,7 @@ $ (x, t, y) = (u_1, u_2, d v_1 v_2) in X. $
   Nothing is lost by restricting to it.
 ]
 
-= The density criterion
+= The density criterion <sec-criterion>
 
 Write $H_d = overline(E_d (QQ)) subset.eq E_delta (QQ_p)$ for the closure of the rational points,
 where $delta$ is the class of $d$ in $QQ_p^times slash (QQ_p^times)^2$.
@@ -106,9 +106,9 @@ $overline(E_d (QQ)) supset.eq overline(⟨P', Q'⟩) = G$. $qed$
 Two consequences. Every positive result below is sharp --- exhibiting the four (or eight) twists
 does not merely suffice for density, it is what density means. And a *failure* to find one twist
 in some class is then evidence for genuine non-density, not merely a failure of the method; this
-is what §5.2.2 exploits at $p = 3$.
+is what @sec-cm-resid exploits at $p = 3$.
 
-== Local structure: testing "$Gamma$ dense in $E_d (QQ_p)$"
+== Local structure: testing "$Gamma$ dense in $E_d (QQ_p)$" <sec-local>
 
 Work on a *minimal* Weierstrass model. Let $E_n (QQ_p)$ be the standard filtration
 ($E_1$ = kernel of reduction). Two standard facts:
@@ -304,7 +304,7 @@ units.
 
 = Remarks and open ends <sec-remarks>
 
-*Rank 1 is not always enough.* As noted in §2.1, non-cyclic $tilde(E)_delta (bb(F)_p)$ forces a
+*Rank 1 is not always enough.* As noted in @sec-local, non-cyclic $tilde(E)_delta (bb(F)_p)$ forces a
 rank-$>= 2$ twist. At $p = 47$ we have $tilde(E)(bb(F)_47) tilde.equiv ZZ slash 30 times ZZ slash 2$
 and the class $[1]$ needs $d = -11$ (rank 2); at $p = 67$,
 $tilde(E)(bb(F)_67) tilde.equiv ZZ slash 28 times ZZ slash 2$ and $[1]$ needs $d = -221$.
@@ -315,7 +315,7 @@ $tilde(E)(bb(F)_67) tilde.equiv ZZ slash 28 times ZZ slash 2$ and $[1]$ needs $d
   *Corrigendum.* An earlier draft claimed that this $j = 0$ curve (CM by $ZZ[zeta_3]$) succeeds
   exactly for $p equiv 2 space (mod 3)$ and fails systematically for $p equiv 1 space (mod 3)$.
   *That was wrong* --- an artifact of testing only single generators from the $t_0$-family,
-  compounded by the bug described in §4. It is corrected here.
+  compounded by the bug described in @sec-verify. It is corrected here.
 ]
 
 With the full multi-generator search, $f = x^3 - 2$ in fact succeeds for *every* odd prime
@@ -337,9 +337,9 @@ small twists, each of rank 1:
 )
 
 and the independent check on the surface is complete in both regions, $64 slash 64$ each at
-$2^4$ and $256 slash 256$ each at $2^5$ (using the corrected $p = 2$ target set of §4). So for
+$2^4$ and $256 slash 256$ each at $2^5$ (using the corrected $p = 2$ target set of @sec-verify). So for
 $f = x^3 - 2$ every prime $<= 97$ other than $p = 3$ is settled *positively*; $p = 3$ is the one
-place where the evidence points the other way, and §5.2.2 makes that precise.
+place where the evidence points the other way, and @sec-cm-resid makes that precise.
 
 *The one exception: $p = 3$, class $[u dot 3]$.* Here the four classes behave very
 differently, and the difference is entirely the Tamagawa number:
@@ -355,14 +355,14 @@ differently, and the difference is entirely the Tamagawa number:
 
 In the bad class every twist has $c_3 = 3$ and
 $ E_d (QQ_3) slash E_1 tilde.equiv (ZZ slash 3)^2 $
-($E_1$ = kernel of reduction, as in §2.1), so *two* independent generators are needed. This was
+($E_1$ = kernel of reduction, as in @sec-local), so *two* independent generators are needed. This was
 checked directly on $QQ_3$-points --- all eight non-trivial cosets have order 3 --- rather than
 inferred from rational generators, which are exactly the biased sample. Yet across 41 twists of
 rank $>= 2$ the achieved index is *always* 3, never 9: the images are invariably dependent. Two
 vectors span $bb(F)_3^2$ with probability $48 slash 81$, so 41 independent failures would have
 probability of order $0.41^41$.
 
-=== Why exactly the class $[u dot 3]$: a CM mechanism
+=== Why exactly the class $[u dot 3]$: a CM mechanism <sec-cm-mech>
 
 The non-cyclicity has an exact and entirely elementary explanation. For $y^2 = x^3 + k$,
 $ psi_3 (x) = 3x^4 + 12 k x = 3 x (x^3 + 4k). $
@@ -416,7 +416,7 @@ two ramified classes (`cm-torsion.gp`). So the Tamagawa jump $c_3 : 1 -> 3$, the
 of $M$, and the non-cyclicity all have a single source: an extra $QQ_3$-rational 3-torsion point,
 present in that class and in no other. *No Brauer group is needed for any of this.* (The same local picture arises for other curves too --- at $p = 3$, $M = 9$ forces additive reduction with $c_3 = 3$ --- which is what makes the control experiment below possible.)
 
-=== The residual failure, and a control experiment
+=== The residual failure, and a control experiment <sec-cm-resid>
 
 Only the second half is left: not why two independent generators are *needed*, but why they
 never *occur*. First, that the failure is real.
@@ -430,7 +430,7 @@ never *occur*. First, that the failure is real.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *Proposition (the question at $p = 3$ is a dichotomy).* This is the instance at $p = 3$ of the
-  equivalence proved in §2; the direct argument below also identifies the open set that is missed.
+  equivalence proved in @sec-criterion; the direct argument below also identifies the open set that is missed.
   For $f = x^3 - 2$,
   $ X(QQ) "is dense in" X(QQ_3) quad <==> quad exists d "in the class" [u dot 3] "with" \
     E_d (QQ) --> E_d (QQ_3) slash 3 E_d (QQ_3) tilde.equiv (ZZ slash 3)^2 quad "surjective." $
@@ -438,7 +438,7 @@ never *occur*. First, that the failure is real.
   #v(2mm)
   ($arrow.l.double$) $E_delta (QQ_3) tilde.equiv ZZ_3 times ZZ slash 3$ is pro-3, so
   $E_d (QQ)$ surjecting onto the Frattini quotient $E slash 3E$ forces
-  $overline(E_d (QQ)) = E_delta (QQ_3)$ by topological Nakayama; the sufficient criterion of §2
+  $overline(E_d (QQ)) = E_delta (QQ_3)$ by topological Nakayama; the sufficient criterion of @sec-criterion
   then applies, the other three classes already having witnesses.
 
   #v(1mm)
@@ -490,7 +490,7 @@ classes with exactly that local structure, so the phenomenon can be tested again
   [$x^3 - 2$ at $p = 7$, class $[u]$], [yes], [---],          [25],  [20],
 )
 
-Two things follow, and both correct the framing of §5.2.1. *CM is not necessary*: the family
+Two things follow, and both correct the framing of @sec-cm-mech. *CM is not necessary*: the family
 $x^3 + 21x plus.minus 26$ ($j = 9261 slash 8$, no CM) is obstructed exactly like $x^3 - 2$. And
 *decomposable $E[3]$ is necessary in every case observed but not sufficient*, since
 $x^3 - 24x plus.minus 26$ is decomposable and behaves normally. Decomposability is precisely the
@@ -515,7 +515,7 @@ some $cal(A) in "Br"(X)$ has $"inv"_v cal(A)$ constant on $X(QQ_v)$ for every $v
 non-constant at $p$. Descent-with-reciprocity and the transcendental Brauer class are largely two
 views of the same mathematics, so these were never really competing explanations.
 
-=== How rare is the obstruction?
+=== How rare is the obstruction? <sec-cm-rare>
 
 That global lead pans out, but the honest conclusion is a finiteness statement rather than a
 criterion. Every decomposable family has a twist with a rational 3-torsion *point*, so the
@@ -562,34 +562,86 @@ corrected there, dissolving the obstruction at 3. The two obstructed families ar
 with the smallest possible set of bad primes --- potentially good reduction away from
 $\{2, 3\}$. Reproduced by `families.gp`.
 
-=== What the obstruction must be
+=== Background: the objects the argument uses <sec-cm-bg>
+
+Everything below is standard, but it is the part of the story furthest from the elementary
+computations, so here it is spelled out. Throughout $ell$ is an odd prime ($ell = 3$ in practice),
+$G_v = "Gal"(overline(QQ_v) slash QQ_v)$, and $W_v = E(QQ_v) slash ell E(QQ_v)$.
+
+*The Kummer map.* Applying Galois cohomology to
+$0 -> E[ell] -> E limits(-->)^ell E -> 0$ over $QQ_v$ gives a connecting map
+$ delta_v : E(QQ_v) slash ell E(QQ_v) arrow.hook H^1 (G_v, E[ell]), $
+explicitly $delta_v (P) = (sigma |-> sigma Q - Q)$ for any $Q$ with $ell Q = P$; changing $Q$
+changes the cocycle by a coboundary. It is injective, and we write $W_v$ for both the group and
+its image, the *local Kummer image*. The same construction over $QQ$ gives a global
+$delta : E(QQ) slash ell -> H^1 (G_QQ, E[ell])$ whose localisation at $v$ is $delta_v$.
+
+*The local pairing.* Cup product gives
+$H^1 (G_v, E[ell]) times H^1 (G_v, E[ell]) -> H^2 (G_v, E[ell] ⊗ E[ell])$; pushing
+forward along the Weil pairing $e_ell : E[ell] ⊗ E[ell] -> mu_ell$ lands in
+$H^2 (G_v, mu_ell) = "Br"(QQ_v)[ell]$. Local class field theory identifies
+$"Br"(QQ_v) tilde.equiv QQ slash ZZ$ for finite $v$ (and $(1 slash 2) ZZ slash ZZ$ for $v = infinity$)
+by the *invariant* map $"inv"_v$. The composite
+$ ⟨ dot, dot ⟩_v : H^1 (G_v, E[ell]) times H^1 (G_v, E[ell]) --> (1 slash ell) ZZ slash ZZ $
+is the *local Tate pairing*. It is *symmetric*: cup product on $H^1 times H^1$ is
+anti-symmetric and $e_ell$ is anti-symmetric, and the two signs cancel. For $ell = 3$ the reader
+who prefers concreteness may think of it as a cubic analogue of the Hilbert symbol.
+
+*Terminology.* For a bilinear form $beta$ on a finite-dimensional space $V$, a subspace
+$U subset.eq V$ is *isotropic* if $beta$ vanishes on it identically, i.e.
+$U subset.eq U^perp = {v : beta(v, U) = 0}$. If $beta$ is non-degenerate then
+$dim U + dim U^perp = dim V$, so isotropic forces $dim U <= dim V slash 2$; a subspace attaining
+that bound, $U = U^perp$, is *Lagrangian* (= maximal isotropic).
+
+*Tate local duality* says the pairing is non-degenerate and, crucially, that
+$ W_v "is Lagrangian:" quad W_v = W_v^perp . $
+That $W_v$ is isotropic is the concrete half one actually uses; the reason is that two points of
+$E(QQ_v)$ can be divided by $ell$ inside a common field, so their cocycles cup to a class that
+splits. The dimension is fixed by the local Euler characteristic
+$\#H^1 = \#H^0 dot \#H^2 dot |\#E[ell]|_v^(-1)$ together with $\#H^2 = \#H^0$ (also duality). At
+$v = ell = 3$ with $E[3](QQ_3) tilde.equiv ZZ slash 3$ this gives
+$\#H^1 = 3 dot 3 dot 9 = 81$, so $dim H^1 = 4$ and $dim W_3 = 2$ --- matching the direct count
+$dim W_3 = 1 + dim E(QQ_3)[3]$.
+
+*Global reciprocity.* The fundamental exact sequence of global class field theory,
+$ 0 -> "Br"(QQ) -> plus.big_v "Br"(QQ_v) limits(-->)^(sum "inv"_v) QQ slash ZZ -> 0 , $
+says that a Brauer class defined over $QQ$ has local invariants summing to zero. Feeding a
+*global* cohomology class into the cup product above therefore gives, for $P, Q in E(QQ)$,
+$ sum_v ⟨ delta_v P, psi delta_v Q ⟩_v = 0 $
+for any Galois-equivariant $psi$ on $E[ell]$ --- equivariance being what makes the cup product a
+class over $QQ$ in the first place. This is the engine of the whole argument. It is the same kind
+of statement as quadratic reciprocity in the form "the product of all Hilbert symbols is 1": a
+constraint linking every place at once, so that if all places but one are forced to contribute
+nothing, the remaining place inherits a condition.
+
+*Two vanishing facts.* (i) $H^1 (G_v, C_i)$ is isotropic, because the pairing factors through
+$e_ell$ restricted to $C_i times C_i$, which is trivial: $e_ell$ is alternating and $C_i$ is
+cyclic. (ii) At $v tilde.not ell$ of good reduction, $W_v$ equals the *unramified* subgroup
+$H^1_"ur" (G_v, E[ell]) = H^1 ("Gal"(QQ_v^"ur" slash QQ_v), E[ell]^(I_v))$, which is its own
+annihilator; and a Galois-equivariant $psi$ preserves it, so the pairing of $W_v$ against
+$psi W_v$ vanishes.
+
+*Two counting facts.* (iii) For $v tilde.not ell$, $E(QQ_v)$ is (topologically) a product of a
+pro-$v$ group with a finite group; the pro-$v$ part is uniquely $ell$-divisible, so multiplication
+by $ell$ has kernel and cokernel of equal size and
+$W_v tilde.equiv E(QQ_v)[ell]$. (iv) At a prime $q$ of split multiplicative reduction the Tate
+parametrisation gives $E(QQ_q) tilde.equiv QQ_q^times slash q_E^ZZ$ with
+$v_q (q_E) = -v_q (j)$, whence $E(QQ_q)[ell]$ has order $ell^2$ exactly when
+$mu_ell subset QQ_q$ (i.e. $q equiv 1$ mod $ell$) *and* $q_E$ is an $ell$-th power up to units,
+i.e. $ell divides v_q (j)$. That is the source of condition (D) in @sec-general.
+
+=== What the obstruction must be <sec-cm-form>
 
 The class itself is out of reach here --- evaluating $"inv"_v$ needs cubic Hilbert symbols over
 $QQ_v (zeta_3)$, which PARI does not provide --- but working out what form it has to take
 accounts for every observation above, including the one that resisted longest.
-
-#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
-  *Terminology.* For a bilinear form $beta$ on a finite-dimensional space $V$, a subspace
-  $U subset.eq V$ is *isotropic* (strictly, totally isotropic) if $beta$ vanishes on it
-  identically: $beta(u, u') = 0$ for all $u, u' in U$. Equivalently
-  $U subset.eq U^perp = {v : beta(v, U) = 0}$. If $beta$ is non-degenerate then
-  $dim U + dim U^perp = dim V$, so an isotropic $U$ has $dim U <= dim V slash 2$; one attaining
-  that bound, $U = U^perp$, is *Lagrangian* (equivalently *maximal isotropic*).
-
-  #v(1mm)
-  Two instances used below. $H^1 (QQ_v, E[3])$ carries the local Tate pairing --- cup product
-  followed by the Weil pairing $E[3] times E[3] -> mu_3$ and $"inv"_v$ --- which is
-  non-degenerate; it has dimension 4 here, and the local Kummer image $W_v$ is Lagrangian, of
-  dimension 2. Separately $W_3 tilde.equiv (ZZ slash 3)^2$ carries the *twisted* form $beta_3$
-  defined just below, for which "isotropic" means dimension $<= 1$.
-]
 
 Decomposability of $E[3]$ supplies a *non-scalar* $phi in "End"_G (E[3])$, namely projection onto
 $C_1$. Twist the local Tate pairing by it:
 $ beta_v (P, Q) = ⟨ delta_v P, phi delta_v Q ⟩_v . $
 This is the step that was missing earlier. The *untwisted* pairing vanishes identically on the
 Kummer image $W_v$, because $W_v$ is Lagrangian --- which is why plain reciprocity gave only
-$0 = 0$ in §5.2.2. The twisted pairing carries no such constraint. Since $phi$ is
+$0 = 0$ in @sec-cm-resid. The twisted pairing carries no such constraint. Since $phi$ is
 Galois-equivariant, reciprocity still gives $sum_v beta_v (P,Q) = 0$ for global $P, Q$. If
 $beta_v equiv 0$ for every $v != 3$, then $beta_3$ vanishes on all rational pairs, so the image of
 $E_d (QQ)$ in $W_3$ is *$beta_3$-isotropic* --- and an isotropic subspace of a non-degenerate
@@ -601,13 +653,13 @@ That is precisely the measured phenomenon, and it explains all four observations
   columns: 2, align: (left, left), stroke: 0.4pt + luma(150),
   table.header([observation], [explanation]),
   [image has dimension $<= 1$], [isotropic in a 2-dimensional symplectic space],
-  [the line *varies* with $d$ (§5.2.2)],
+  [the line *varies* with $d$ (@sec-cm-resid)],
     [every line is isotropic, so no line is preferred --- the obstruction is a *pairing*, not a
      linear functional, which is why the search for a universal functional failed],
   [decomposable $E[3]$ necessary],
     [otherwise $"End"_G (E[3]) = bb(F)_3$, $phi$ is scalar and $beta$ collapses to the untwisted
      pairing, which vanishes on $W_v$],
-  [few bad primes necessary (§5.2.3)],
+  [few bad primes necessary (@sec-cm-rare)],
     [each extra place with $beta_v equiv.not 0$ lets the sum be balanced away from 3],
 )
 
@@ -673,7 +725,7 @@ curves; it was checked for eight twists as a consistency test.
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *Theorem (modulo the local computation of $beta_3 equiv.not 0$).* For $f = x^3 - 2$ and *every*
   squarefree $d$ in the class $[u dot 3]$, the group $E_d (QQ)$ is not dense in $E_d (QQ_3)$.
-  Consequently, by the equivalence of §2, $X(QQ)$ is *not* dense in $X(QQ_3)$.
+  Consequently, by the equivalence of @sec-criterion, $X(QQ)$ is *not* dense in $X(QQ_3)$.
 
   #v(2mm)
   _Proof._ $beta_v equiv 0$ for every $v != 3$: at $v = infinity$ because $W_infinity = 0$; at
@@ -683,7 +735,7 @@ curves; it was checked for eight twists as a consistency test.
   $P, Q in E_d (QQ)$. Since $beta_3$ is alternating and non-zero on the 2-dimensional $W_3$ it is
   a symplectic form, so its isotropic subspaces have dimension $<= 1$; hence the image of
   $E_d (QQ)$ in $W_3$ has dimension $<= 1$ and cannot be all of $W_3$. Topological Nakayama
-  (§2) upgrades this to non-density in $E_d (QQ_3)$. $qed$
+  (@sec-criterion) upgrades this to non-density in $E_d (QQ_3)$. $qed$
 ]
 
 This is what the 713 twists were seeing. Note the proof covers *all* twists at once, which is
@@ -722,7 +774,7 @@ $cal(A) in "Br"(X)$ explicitly remains a separate and more ambitious question.
 
 == A general criterion <sec-general>
 
-The argument of §5.2.4 never used $f = x^3 - 2$, nor $ell = 3$, nor $p = ell$. Distilled, it gives
+The argument of @sec-cm-form never used $f = x^3 - 2$, nor $ell = 3$, nor $p = ell$. Distilled, it gives
 conditions on a triple (curve, prime, square class) alone.
 
 Fix an odd prime $ell$, an elliptic curve $E slash QQ$, a prime $p$, and a class
@@ -758,7 +810,7 @@ Conditions (A)--(C) and (E) depend only on $(E, ell, p, c)$, and (D) only on $(E
 criterion is uniform in $d$ --- which is what lets it beat any finite search.
 
 _Why each place is harmless._ The pairing $beta_v (P,Q) = ⟨delta_v P, phi delta_v Q⟩_v$ is
-alternating on $W_v$ (§5.2.4), so it vanishes as soon as $dim W_v <= 1$. At $v = infinity$,
+alternating on $W_v$ (@sec-cm-form), so it vanishes as soon as $dim W_v <= 1$. At $v = infinity$,
 $W_infinity = 0$ since $ell$ is odd. At $v tilde.not ell$ of good reduction, $W_v = H^1_"ur"$ is
 its own annihilator and $phi$ preserves unramifiedness. At $v tilde.not ell$ of *additive*
 reduction --- which includes every $q divides d$, so the varying twist does no harm ---
@@ -770,8 +822,8 @@ $beta_p equiv 0$ on rational pairs, and by (C) $beta_p$ is a non-zero alternatin
 2-dimensional $W_p$, whose isotropic subspaces have dimension $<= 1$. $qed$
 
 *Remarks.* Note that $q = 2$ is *never* dangerous, since $2 equiv 1 space (mod ell)$ for no odd
-$ell$. This explains the empirical rule of §5.2.3 --- "denominator of $j$ a power of 2" --- as a
-special case of (D). On the genus-0 family of §5.2.3 the two happen to be extensionally equal: a
+$ell$. This explains the empirical rule of @sec-cm-rare --- "denominator of $j$ a power of 2" --- as a
+special case of (D). On the genus-0 family of @sec-cm-rare the two happen to be extensionally equal: a
 search over 390 000 parameter values found no decomposable family satisfying (D) whose
 $j$-denominator is divisible by a prime other than 2, so no test distinguishes them there. For
 $ell = 3$ the safe primes are those $equiv 2 space (mod 3)$; a family with $j$-denominator
@@ -790,7 +842,7 @@ $dim W_3 <= 2$ throughout.
 So the mechanism is intrinsically a phenomenon *at the prime $ell$ itself*: it can only obstruct
 density at $p = ell$. That is the sharpest answer available here to "what property of $E$ causes
 the failure" --- decomposable $E[ell]$, no dangerous prime, and the local condition (C) at $ell$.
-For $ell = 3$ the known instances are $j = 0$ and $j = 9261 slash 8$, and §5.2.3 suggests they may
+For $ell = 3$ the known instances are $j = 0$ and $j = 9261 slash 8$, and @sec-cm-rare suggests they may
 be the only ones. Larger $ell$ is untouched: (A) alone becomes very restrictive, since $E[ell]$
 decomposable means the mod-$ell$ image lies in the split Cartan's diagonal, but the search is
 well-posed.
@@ -813,7 +865,7 @@ necessity).
 There are two ways to get rational points on the twists, with very different
 costs.
 
-The *$t_0$ sweep* uses the remark of §1: $E_d$ has an affine rational point iff $d$ is the
+The *$t_0$ sweep* uses the remark of @sec-setup: $E_d$ has an affine rational point iff $d$ is the
 squarefree part of $f(t_0)$ for some $t_0$, and then $(t_0, 1)$ *is* such a point. Sweeping
 $t_0 = a slash b$ and bucketing by squarefree part therefore hands out one generator per twist
 for free, and the family is complete. The alternative, *per-twist descent*, runs `ellrank` on
