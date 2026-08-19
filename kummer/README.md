@@ -23,6 +23,7 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `driver.gp` | the search. `sweep` + `procyclic` + `hybrid` are the fast path (see **Search strategy** below); `build`/`report` are the slow pure-descent reference path, `hunt(A,B,p,target,DMAX)` a targeted single-class search. |
 | `p2.gp` | the `p = 2` variant: `densegroup2`, `M2val`, `sqclass2` (8 classes), `report2`. |
 | `cover2.gp` | independent verification for odd `p`: `coverage(A,B,p,k,ds,NB)` checks that every genuine reduction mod `p^k` of a point of `X(Z_p)` with `y` a unit is hit by an honest rational point. |
+| `cm-torsion.gp` | the CM mechanism at `p = 3` for `f = x^3-2` (document §5.2.1): `torsionQ3`, `row`, `correlate`, `structure`. |
 | `cover-p2.gp` | the same check at `p = 2`, with exact rational arithmetic and the corrected target set (see below). |
 | `kummer.gp` | the earlier single-generator version (`densecyclic`, `scan`) over the `t_0`-family. Kept only as the reference implementation for `validate.gp`. |
 | `validate.gp` | validates the `p`-adic density test against an exact-rational reference implementation, and `densegroup` against `densecyclic`. |
@@ -67,6 +68,16 @@ read("driver.gp");
 SW2 = sweep(0, -2, 1500, 50);
 hybrid(0, -2, SW2, 100, 60, 15000);   /* every odd 5 <= p <= 97; p=3 is 3/4 */
 hunt(0, -2, 3, 3, 12000);             /* class [u*3] at p=3: no witness found */
+```
+
+Why that class and no other (§5.2.1) — the extra `Q_3`-rational 3-torsion point
+`T_d = (2d, sqrt(6d^3))` exists exactly when `d` is in the class `[u*3]`:
+
+```
+read("cm-torsion.gp");
+correlate(1500);      /* 458 twists, 0 mismatches with the prediction */
+structure(-3);        /* (Z/3)^2, read off from Q_3-points  */
+structure(3);         /* cyclic Z/3                          */
 ```
 
 Sanity checks:
