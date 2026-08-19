@@ -226,3 +226,21 @@ docker run --rm --platform linux/amd64 -v "$PWD":/work -w /work \
 It reproduces the same codomains, confirms `dual(phi) o phi = [3]`, and finds
 3376 `Q_3`-points of the codomains with none leaving `E_1`. It also corrected
 the Kodaira labels in the document: PARI's code `-4` is `IV*`, not `II*`.
+
+### What Sage does not give us
+
+Worth recording, since it is the obvious thing to reach for. Exhibiting the
+Brauer class itself needs a cubic norm-residue symbol at the wild place
+`v = 3`, and neither system here has one:
+
+| tool | status |
+|---|---|
+| PARI `nfhilbert` | quadratic only, no exponent argument |
+| Sage `hilbert_symbol` / `K.hilbert_symbol` | quadratic only, checked |
+| Sage `E.three_selmer_rank()` | exists, but shells out to Magma |
+| Brauer groups of surfaces | not in either system |
+
+Away from 3 the symbol is tame and elementary, but those are exactly the
+places the argument already handles structurally. So the gap is an
+implementation task at one wild place, not a missing tool -- and the theorem
+of §5.1.5 does not depend on closing it.

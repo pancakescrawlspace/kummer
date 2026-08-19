@@ -632,9 +632,23 @@ i.e. $ell divides v_q (j)$. That is the source of condition (D) in @sec-general.
 
 === What the obstruction must be <sec-cm-form>
 
-The class itself is out of reach here --- evaluating $"inv"_v$ needs cubic Hilbert symbols over
-$QQ_v (zeta_3)$, which PARI does not provide --- but working out what form it has to take
-accounts for every observation above, including the one that resisted longest.
+Nothing below constructs a Brauer class, and nothing below needs one. When this section was first
+drafted the plan was to exhibit $cal(A) in "Br"(X)$ and evaluate $"inv"_v cal(A)$ directly; what
+actually happened is that the *mechanism* --- a twisted pairing plus reciprocity --- turned out to
+prove the statement on its own, so the class became an optional extra rather than a prerequisite.
+It also accounts for every observation above, including the one that resisted longest.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Why the class is still not exhibited.* Not for want of trying the obvious tools. Both computer
+  algebra systems used here were checked: PARI's `nfhilbert` and Sage's `hilbert_symbol` are
+  *quadratic only* --- neither takes an exponent argument --- Sage's `three_selmer_rank` shells
+  out to Magma, and neither system has Brauer groups of surfaces. What is missing is a cubic
+  norm-residue symbol at $v = 3$. Away from 3 the symbol is *tame* and elementary, but those are
+  exactly the places the argument already disposes of structurally; the one place that would need
+  a symbol, $v = ell = 3$, is wildly ramified, where one needs an explicit reciprocity law
+  (Artin--Hasse, Coleman) rather than a formula. That is an implementation task, not a conceptual
+  gap --- but it is a real one, and it is not what the theorem below rests on.
+]
 
 Decomposability of $E[3]$ supplies a *non-scalar* $phi in "End"_G (E[3])$, namely projection onto
 $C_1$. Twist the local Tate pairing by it:
