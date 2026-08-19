@@ -318,13 +318,22 @@ that test left open. Searching by tuple:
 
 #table(
   columns: 4, align: (center, center, center, left), stroke: 0.4pt + luma(150),
-  table.header([$S$], [tuples], [witnessed], [outcome]),
+  table.header([$S$ (for $f = x^3+x+1$)], [tuples], [witnessed], [outcome]),
   [${5, 7}$],    [16], [16], [*$X(QQ)$ is dense in $X(QQ_S)$*, $|d| <= 4000$, 0.4 s],
   [${3, 5, 7}$], [64], [46], [inconclusive so far, $|d| <= 6000$],
 )
 
 The three-place case is not a failure, only an unfinished search: witnesses become scarcer as
 $|S|$ grows, since a twist must now be simultaneously good at every place.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Which surface.* All of §2.2 is computed for the *non-CM* curve $f = x^3 + x + 1$, which is
+  dense at every prime $p <= 200$ (@tab-primes) and so has a chance at every $S$. The CM surface
+  $f = x^3 - 2$ is a poor test case here: projection $X(QQ_S) -> X(QQ_p)$ is continuous and open,
+  so density in the product forces density in each factor, and @sec-cm-resid says that fails at
+  $p = 3$. Hence for $x^3 - 2$ every $S$ containing 3 fails immediately, and only $S$ avoiding 3
+  is worth computing --- where, by @sec-cm, each factor is individually fine.
+]
 
 *What is left open.* Whether level 2 suffices *without* 2-generation. The obstruction is clear
 enough --- the criterion allows a different $d$ for each target, so a $d$ that captures a target
