@@ -349,8 +349,8 @@ differently, and the difference is entirely the Tamagawa number:
   table.header([class], [Kodaira], [$c_3$], [$M$], [outcome]),
   [$[1]$],       [$I I$],   [1], [3], [OK, $d = -1115$ (rank 2)],
   [$[u]$],       [$I I$],   [1], [3], [OK, $d = -1$ (rank 1)],
-  [$[3]$],       [$I I^*$], [1], [3], [OK, $d = 3$ (rank 1)],
-  [$[u dot 3]$], [$I I^*$], [3], [9], [*no witness with $|d| <= 100000$*],
+  [$[3]$],       [$I V^*$], [1], [3], [OK, $d = 3$ (rank 1)],
+  [$[u dot 3]$], [$I V^*$], [3], [9], [*no witness with $|d| <= 100000$*],
 )
 
 In the bad class every twist has $c_3 = 3$ and
@@ -677,6 +677,22 @@ $cal(A) in "Br"(X)$ explicitly remains a separate and more ambitious question.
   $phi$-stability of $W_3$; it rests on the computation that both dual-isogeny images equal $E_1$.
   Everything else is standard: Tate local duality, isotropy of the Kummer image, reciprocity for
   the sum of local invariants. The argument should be checked by hand before being relied on.
+
+  #v(2mm)
+  *Independently verified in Sage 10.9.* The PARI computation built the dual isogenies by hand
+  (locating the kernel by trial) and evaluated them with its own substitution code, so it was
+  re-run using Sage's `EllipticCurveIsogeny.dual()` and `rational_maps()`. Sage reproduces the
+  same codomains, confirms $hat(phi)_i compose phi_i = [3]$, and finds *no* $QQ_3$-point of either
+  codomain whose image leaves $E_1$: 3376 points tested across $d = -3, 6, -21, 87$, zero
+  outside. A structural shortcut is not available --- the induced map
+  $E' (QQ_3) slash E'_1 -> E (QQ_3) slash E_1$ has source of order 3, so it is not forced to
+  vanish for order reasons.
+
+  #v(1mm)
+  Sage also corrected the Kodaira labels in the table above, which read $I I^*$ in an earlier
+  draft: PARI's code $-4$ is $I V^*$, not $I I^*$ (its starred types mirror the unstarred ones),
+  and $I I^*$ is in any case incompatible with $c_3 = 3$. The mislabelling was cosmetic --- every
+  computation used the numeric $c_p$ and $M$, never the symbol.
 ]
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[

@@ -24,6 +24,7 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `p2.gp` | the `p = 2` variant: `densegroup2`, `M2val`, `sqclass2` (8 classes), `report2`. |
 | `cover2.gp` | independent verification for odd `p`: `coverage(A,B,p,k,ds,NB)` checks that every genuine reduction mod `p^k` of a point of `X(Z_p)` with `y` a unit is hit by an honest rational point. |
 | `families.gp` | enumerates all quadratic-twist families with `E[3]` decomposable and tests the denominator-of-`j` criterion (document §5.2.3): `families`, `testfamily`, `sweepfamilies`. |
+| `verify-dual.sage` | independent Sage check of the one computational input to the §5.2.4 theorem (uses Sage's own `.dual()`); run under Docker, see below. |
 | `control.gp` | the control experiment for the `p = 3` open case (document §5.2.2): `armA`, `find3`, `armB`. |
 | `cm-torsion.gp` | the CM mechanism at `p = 3` for `f = x^3-2` (document §5.2.1): `torsionQ3`, `row`, `correlate`, `structure`. |
 | `cover-p2.gp` | the same check at `p = 2`, with exact rational arithmetic and the corrected target set (see below). |
@@ -203,3 +204,25 @@ see §5.2 of the document.
 including `p = 131, 149`, which the pure-descent path only reached via separate
 targeted `hunt()` calls. Of the 180 pairs, 134 are resolved straight from the
 sweep with no descent at all.
+
+## The Sage cross-check
+
+The theorem of §5.2.4 rests on one computation: that both dual-isogeny images
+lie in `E_1`, equivalently that `W_3` is not stable under projection onto
+`C_1`, equivalently that `beta_3` is not identically zero. The PARI version
+(`control.gp`, `dualinE1`/`phistable`) builds the duals by hand and evaluates
+them with its own substitution code, so it is worth re-running with
+independent machinery.
+
+`verify-dual.sage` does that with Sage's `EllipticCurveIsogeny.dual()` and
+`rational_maps()`. The image is amd64 only, so it emulates on Apple silicon:
+
+```sh
+docker pull --platform linux/amd64 sagemath/sagemath:latest      # ~4.8 GB
+docker run --rm --platform linux/amd64 -v "$PWD":/work -w /work \
+       sagemath/sagemath:latest sage verify-dual.sage
+```
+
+It reproduces the same codomains, confirms `dual(phi) o phi = [3]`, and finds
+3376 `Q_3`-points of the codomains with none leaving `E_1`. It also corrected
+the Kodaira labels in the document: PARI's code `-4` is `IV*`, not `II*`.
