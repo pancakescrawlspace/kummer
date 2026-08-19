@@ -155,8 +155,9 @@ All eight classes of $QQ_2^times slash (QQ_2^times)^2$ are covered by small twis
 
 == All primes $p < 200$ <tab-primes>
 
-Smallest witnesses found with $|d| <= 3000$ (the two entries marked $dagger$ needed a targeted
-search).
+Witnesses from the pure-descent run with $|d| <= 3000$; the two marked $dagger$ lie beyond that
+bound. The hybrid of @sec-strategy finds a full set for all 45 primes in one pass (sometimes
+different, equally valid, witnesses).
 
 #let ptab(..rows) = table(
   columns: 5,
@@ -360,6 +361,55 @@ would be uniformly bounded finite groups and density would be extremely implausi
 countable union can in principle be dense in $QQ_p^2$, so this is not a formal proof of
 necessity).
 
+= Search strategy <sec-strategy>
+
+There are two ways to get rational points on the twists, with very different
+costs.
+
+The *$t_0$ sweep* uses the remark of §1: $E_d$ has an affine rational point iff $d$ is the
+squarefree part of $f(t_0)$ for some $t_0$, and then $(t_0, 1)$ *is* such a point. Sweeping
+$t_0 = a slash b$ and bucketing by squarefree part therefore hands out one generator per twist
+for free, and the family is complete. The alternative, *per-twist descent*, runs `ellrank` on
+each $E_d$ in turn: it finds generators of any rank, but pays for a 2-descent every time.
+Measured on $f = x^3 + x + 1$:
+
+#table(
+  columns: 3, align: (left, left, left), stroke: 0.4pt + luma(150),
+  table.header([strategy], [throughput], [rank-2 twists produced]),
+  [$t_0$ sweep], [91963 twists / 663 ms = *0.007 ms*], [54 of 91963 (0.06%)],
+  [per-twist `ellrank`], [366 twists / 833 ms = *2.28 ms*], [all, on demand],
+)
+
+So the sweep is some $300 times$ cheaper per twist --- but it almost never yields *two
+independent points on one twist*. That needs a collision of squarefree parts, and
+$|a|, b <= H$ gives $tilde H^2$ values of $f(t_0)$ spread over a range $tilde H^4$, so
+collisions stay negligible (a 7500-point sweep gave 18, a 92000-point sweep gave 54). Rank 1 is
+insufficient exactly when $E_delta (QQ_p) slash E_1$ fails to be cyclic.
+
+*The triage.* That condition depends only on $(p, delta)$ and not on the choice of twist within
+the class, because all $d$ in one class give $QQ_p$-isomorphic curves. One local computation per
+$(p, delta)$ --- four per prime, no point search --- therefore decides the path: procyclic means
+the sweep can settle it, otherwise rank $>= 2$ is mandatory and descent is run on twists in that
+class only (already a factor 4). The test is exact at good reduction (`ellgroup`) and
+conservative at additive primes, so the cheap set is never overstated.
+
+#table(
+  columns: 4, align: (left, center, center, left), stroke: 0.4pt + luma(150),
+  table.header([$f$], [$(p,delta)$ pairs], [procyclic], [rank $>= 2$ mandatory]),
+  [$x^3+x+1$, $p < 200$], [180], [158 (88%)], [22, at $p = 31, 47, 67, 131, 139, 149, 173$],
+  [$x^3-2$, $p < 100$],   [96],  [78 (81%)],  [18, at $p = 3, 7, 13, 19, 31, 37, 43, 61, 67, 73, 79, 97$],
+)
+
+The second list is exactly ${3}$ together with the primes $p equiv 1 space (mod 3)$; no prime
+$equiv 2 space (mod 3)$ occurs. This is the whole explanation of the retracted claim in
+@sec-cm: CM by $ZZ[zeta_3]$ is what makes those classes non-procyclic, so a rank-1-only search
+appears to fail there. It is a blind spot of the method, not a fact about the surface.
+
+*Result.* The hybrid settles all 45 odd primes below 200 in a single pass in about 5 seconds,
+including $p = 131$ and $149$, which the pure-descent path reached only through separate
+targeted searches. Of the 180 pairs, 134 are resolved straight from the sweep with no descent
+at all.
+
 #pagebreak()
 
 = Appendix: the PARI/GP scripts
@@ -484,48 +534,103 @@ twistdata(A, B, d) = {
 
 == `driver.gp` --- the search over twists
 
-Precomputes Mordell--Weil data for all squarefree $|d| <= D$, then for each odd prime looks for
-one witness per square class.
+Implements the hybrid of @sec-strategy: `sweep` buckets $t_0$ by the squarefree part of
+$f(t_0)$, `procyclic` triages each $(p, delta)$ with a purely local computation, and `hybrid`
+takes the cheap or the expensive path accordingly. The pure-descent functions `build` /
+`report`, and the targeted single-class search `hunt`, are retained as a reference path.
 
 ```
-read("kummer2.gp");
+/* ---------- stage 1: the cheap t_0 sweep ---------------------------- */
 
-/* precompute MW data for all squarefree d with |d| <= D */
-build(A, B, D) = {
-  my(L = List(), d, td);
-  for(n = 1, D,
-    if(!issquarefree(n), next);
-    for(sg = 0, 1,
-      d = if(sg == 0, n, -n);
-      td = twistdata(A, B, d);
-      listput(L, [d, td[1], td[2], td[3], td[4]])
+/* bucket t_0 = a/b (|a| <= HN, b <= HD) by the squarefree part of f(t_0).
+   Returns [Map: d -> vector of t_0, keys sorted by |d|]. */
+sweep(A, B, HN, HD) = {
+  my(M = Map(), a, b, t0, q, d, keys);
+  for(b = 1, HD,
+    for(a = -HN, HN,
+      if(gcd(a,b) != 1, next);
+      t0 = a/b; q = t0^3 + A*t0 + B;
+      if(q == 0, next);
+      d = sqfreepart(q)[1];
+      if(mapisdefined(M,d), mapput(M, d, concat(mapget(M,d), [t0])),
+                            mapput(M, d, [t0]))
     )
   );
-  Vec(L);
+  keys = Mat(M)[,1];
+  keys = vecsort(keys, x -> abs(x));
+  [M, keys];
 }
 
-report(A, B, data, PMAX) = {
-  my(prs = primes([3,PMAX]), good = List(), p, w, k, nf, i, j);
-  print("f(x) = x^3 + (", A, ")x + (", B, ")");
+/* minimal model of E_d together with the points coming from the swept t_0 */
+sweptdata(A, B, d, t0s) = {
+  my(Ec, v = 0, Em, pts = List(), t0, c);
+  Ec = ellinit([A*d^2, B*d^3]);
+  Em = ellminimalmodel(Ec, &v);
+  for(i = 1, #t0s,
+    t0 = t0s[i];
+    c = sqfreepart(t0^3 + A*t0 + B)[2];
+    listput(pts, ellchangepoint([d*t0, d^2*c], v))
+  );
+  [Em, Vec(pts)];
+}
+
+/* ---------- stage 2: local triage, no point search ------------------ */
+
+/* Is E_delta(Qp)/E_1 cyclic?  Depends only on (p,target).
+   Conservative at additive primes: may return 0 for a cyclic group,
+   never 1 for a non-cyclic one, so the "cheap" set is never overstated. */
+procyclic(A, B, p, target) = {
+  my(d = classrep(A,B,p,target,4000), Ec, v = 0, Em, lr, ns, c);
+  if(d == 0, return(0));
+  Ec = ellinit([A*d^2, B*d^3]);
+  Em = ellminimalmodel(Ec, &v);
+  lr = elllocalred(Em, p);
+  if(lr[2] == 1, return(#ellgroup(Em,p) == 1));   /* good: G_1 = Etilde(Fp) */
+  ns = p - ellap(Em, p); c = lr[4];               /* bad: |G_1| = c_p * ns  */
+  gcd(c, ns) == 1 && c <= 3;
+}
+
+/* ---------- stage 3: the hybrid search ------------------------------ */
+
+hybrid(A, B, SW, PMAX, TRIES, DMAX) = {
+  my(M = SW[1], keys = SW[2], prs = primes([3,PMAX]), good = List(),
+     p, k, w, path, nf, i, j, n, sg, d, td, tried, ncheap = 0, ndesc = 0, hit);
   for(j = 1, #prs,
     p = prs[j];
-    w = vector(4, i, 0);
-    for(i = 1, #data,
-      k = sqclass(data[i][1], p);
-      if(w[k+1] != 0, next);
-      if(densegroup(data[i][2], data[i][3], p), w[k+1] = data[i][1])
+    w = vector(4, i, 0); path = vector(4, i, "");
+    for(k = 0, 3,
+      hit = 0;
+      if(procyclic(A, B, p, k),
+        /* --- cheap path: witnesses straight from the sweep --- */
+        ncheap++; tried = 0;
+        for(i = 1, #keys,
+          d = keys[i];
+          if(sqclass(d,p) != k, next);
+          tried++; if(tried > TRIES, break());
+          td = sweptdata(A, B, d, mapget(M,d));
+          if(densegroup(td[1], td[2], p),
+             w[k+1] = d; path[k+1] = "sweep"; hit = 1; break())
+        )
+      );
+      if(!hit,
+        /* --- descent path: only twists in this class --- */
+        ndesc++;
+        for(n = 1, DMAX,
+          if(!issquarefree(n), next);
+          for(sg = 0, 1,
+            d = if(sg == 0, n, -n);
+            if(sqclass(d,p) != k, next);
+            td = twistdata(A, B, d);
+            if(#td[2] == 0, next);
+            if(densegroup(td[1], td[2], p),
+               w[k+1] = d; path[k+1] = "descent"; hit = 1; break(2))
+          )
+        )
+      )
     );
     nf = 0; for(k = 1, 4, if(w[k] != 0, nf++));
-    if(nf == 4,
-      listput(good, p);
-      print("  p=", p, "  OK   d: [1]=", w[1], "  [u]=", w[2],
-            "  [", p, "]=", w[3], "  [u", p, "]=", w[4])
-    ,
-      print("  p=", p, "  ", nf, "/4   ", w)
-    )
+    /* ... reporting elided ... */
   );
-  print("GOOD PRIMES: ", Vec(good));
-  print("count = ", #good, " out of ", #prs);
   Vec(good);
 }
 ```
@@ -534,8 +639,8 @@ Usage:
 
 ```
 read("driver.gp");
-D = build(1, 1, 3000);      /* f = x^3 + x + 1, all squarefree |d| <= 3000 */
-report(1, 1, D, 200);
+SW = sweep(1, 1, 1500, 50);         /* 92k twists, each with a free point */
+hybrid(1, 1, SW, 200, 60, 20000);   /* 45 / 45 odd primes, ~5 s */
 ```
 
 == `p2.gp` --- the modifications for $p = 2$
