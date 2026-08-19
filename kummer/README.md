@@ -25,6 +25,7 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `cover2.gp` | independent verification for odd `p`: `coverage(A,B,p,k,ds,NB)` checks that every genuine reduction mod `p^k` of a point of `X(Z_p)` with `y` a unit is hit by an honest rational point. |
 | `families.gp` | enumerates all quadratic-twist families with `E[3]` decomposable and tests the denominator-of-`j` criterion (document §5.2.3): `families`, `testfamily`, `sweepfamilies`. |
 | `verify-dual.sage` | independent Sage check of the one computational input to the §5.2.4 theorem (uses Sage's own `.dual()`); run under Docker, see below. |
+| `sadic.gp` | `S`-adic density (document §2.2): `Mstar`, `coprimeS`, `densefactorwise`, `denseS`, `reportS`. |
 | `control.gp` | the control experiment for the `p = 3` open case (document §5.2.2): `armA`, `find3`, `armB`. |
 | `cm-torsion.gp` | the CM mechanism at `p = 3` for `f = x^3-2` (document §5.2.1): `torsionQ3`, `row`, `correlate`, `structure`. |
 | `cover-p2.gp` | the same check at `p = 2`, with exact rational arithmetic and the corrected target set (see below). |
@@ -204,6 +205,27 @@ see §5.2 of the document.
 including `p = 131, 149`, which the pure-descent path only reached via separate
 targeted `hunt()` calls. Of the 180 pairs, 134 are resolved straight from the
 sweep with no descent at all.
+
+## S-adic density
+
+`X(Q_S)` is the product of the `X(Q_p)` for `p` in `S`. Density of `E_d(Q)` in
+each factor separately does **not** imply density in the product; the two
+agree when the factors have coprime supernatural order, i.e. when the integers
+`p*M_p(d)` are pairwise coprime.
+
+```
+read("sadic.gp");
+E = ellinit([1,1]);
+densegroup(E, [[0,1]], 5);        /* 1: dense at 5            */
+densegroup(E, [[0,1]], 7);        /* 1: dense at 7            */
+coprimeS(E, [5,7]);               /* 0: M_5 = 9, M_7 = 5      */
+denseS(E, [[0,1]], [5,7]);        /* -1: factorwise only      */
+reportS(1, 1, [5,7], 4000);       /* 12 of 16 tuples witnessed */
+```
+
+The counterexample is `f = x^3+x+1`, `d = 1`, `S = {5,7}`: both quotients
+`E(Q_5)/5` and `E(Q_7)/5` are `F_5`, so the product has `F_5 x F_5` as a
+quotient, onto which the cyclic group `E(Q)` cannot surject.
 
 ## The Sage cross-check
 
