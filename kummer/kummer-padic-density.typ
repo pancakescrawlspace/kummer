@@ -549,6 +549,22 @@ The class itself is out of reach here --- evaluating $"inv"_v$ needs cubic Hilbe
 $QQ_v (zeta_3)$, which PARI does not provide --- but working out what form it has to take
 accounts for every observation above, including the one that resisted longest.
 
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Terminology.* For a bilinear form $beta$ on a finite-dimensional space $V$, a subspace
+  $U subset.eq V$ is *isotropic* (strictly, totally isotropic) if $beta$ vanishes on it
+  identically: $beta(u, u') = 0$ for all $u, u' in U$. Equivalently
+  $U subset.eq U^perp = {v : beta(v, U) = 0}$. If $beta$ is non-degenerate then
+  $dim U + dim U^perp = dim V$, so an isotropic $U$ has $dim U <= dim V slash 2$; one attaining
+  that bound, $U = U^perp$, is *Lagrangian* (equivalently *maximal isotropic*).
+
+  #v(1mm)
+  Two instances used below. $H^1 (QQ_v, E[3])$ carries the local Tate pairing --- cup product
+  followed by the Weil pairing $E[3] times E[3] -> mu_3$ and $"inv"_v$ --- which is
+  non-degenerate; it has dimension 4 here, and the local Kummer image $W_v$ is Lagrangian, of
+  dimension 2. Separately $W_3 tilde.equiv (ZZ slash 3)^2$ carries the *twisted* form $beta_3$
+  defined just below, for which "isotropic" means dimension $<= 1$.
+]
+
 Decomposability of $E[3]$ supplies a *non-scalar* $phi in "End"_G (E[3])$, namely projection onto
 $C_1$. Twist the local Tate pairing by it:
 $ beta_v (P, Q) = ⟨ delta_v P, phi delta_v Q ⟩_v . $
