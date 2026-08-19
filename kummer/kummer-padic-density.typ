@@ -470,6 +470,53 @@ corrected there, dissolving the obstruction at 3. The two obstructed families ar
 with the smallest possible set of bad primes --- potentially good reduction away from
 $\{2, 3\}$. Reproduced by `families.gp`.
 
+=== What the obstruction must be
+
+The class itself is out of reach here --- evaluating $"inv"_v$ needs cubic Hilbert symbols over
+$QQ_v (zeta_3)$, which PARI does not provide --- but working out what form it has to take
+accounts for every observation above, including the one that resisted longest.
+
+Decomposability of $E[3]$ supplies a *non-scalar* $phi in "End"_G (E[3])$, namely projection onto
+$C_1$. Twist the local Tate pairing by it:
+$ beta_v (P, Q) = ⟨ delta_v P, phi delta_v Q ⟩_v . $
+This is the step that was missing earlier. The *untwisted* pairing vanishes identically on the
+Kummer image $W_v$, because $W_v$ is Lagrangian --- which is why plain reciprocity gave only
+$0 = 0$ in §5.2.2. The twisted pairing carries no such constraint. Since $phi$ is
+Galois-equivariant, reciprocity still gives $sum_v beta_v (P,Q) = 0$ for global $P, Q$. If
+$beta_v equiv 0$ for every $v != 3$, then $beta_3$ vanishes on all rational pairs, so the image of
+$E_d (QQ)$ in $W_3$ is *$beta_3$-isotropic* --- and an isotropic subspace of a non-degenerate
+2-dimensional symplectic $bb(F)_3$-space has dimension $<= 1$.
+
+That is precisely the measured phenomenon, and it explains all four observations together:
+
+#table(
+  columns: 2, align: (left, left), stroke: 0.4pt + luma(150),
+  table.header([observation], [explanation]),
+  [image has dimension $<= 1$], [isotropic in a 2-dimensional symplectic space],
+  [the line *varies* with $d$ (§5.2.2)],
+    [every line is isotropic, so no line is preferred --- the obstruction is a *pairing*, not a
+     linear functional, which is why the search for a universal functional failed],
+  [decomposable $E[3]$ necessary],
+    [otherwise $"End"_G (E[3]) = bb(F)_3$, $phi$ is scalar and $beta$ collapses to the untwisted
+     pairing, which vanishes on $W_v$],
+  [few bad primes necessary (§5.2.3)],
+    [each extra place with $beta_v equiv.not 0$ lets the sum be balanced away from 3],
+)
+
+*A quantitative consequence, and it holds.* If this is right, the constraint should not switch off
+abruptly outside the two obstructed families: in an unobstructed family, spanning still fails
+whenever the compensating places happen to contribute zero for that particular twist. So the
+spanning rate should sit *below* the unconstrained rate. Pooling all unobstructed families,
+195 of 421 rank-$>= 2$ twists span, a rate of $0.463$, against $48 slash 81 = 0.593$ for two
+uniform random vectors in $bb(F)_3^2$ --- some five standard errors low. The obstructed families
+are then the extreme case, rate exactly $0$, of a mechanism that depresses the rate everywhere.
+(The null model is crude: it assumes the two images are uniform and independent, and the sample
+mixes ranks $2$ and higher, which biases the rate up rather than down.)
+
+What remains genuinely open is to exhibit $cal(A) in "Br"(X)$ and verify
+$"inv"_v cal(A)$ constant for $v != 3$ directly. Everything above says only what such a class must
+look like.
+
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   *Caveats.* The 708-twist figure filters on even root number; the odd-root-number case was
   checked separately only to $|d| <= 30000$. All control counts are at $|d| <= 3000$, so the

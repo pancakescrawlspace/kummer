@@ -125,3 +125,27 @@ scan2pow(W) = {
   print("  distinct j with 2-power denominator: ", #L);
   for(i = 1, #L, print("     j = ", L[i][1], "   (w = ", L[i][2], ", sign ", L[i][3], ")"));
 }
+
+/* pooled spanning rate among the UNOBSTRUCTED families, against the null
+   48/81 for two uniform random vectors in F_3^2  (document, section 5.2.4) */
+poolstats(M) = {
+  my(L = families(M), i, r, A, B, cls, k, d, n, sg, td, E, den, R = 0, D = 0);
+  for(i = 1, #L,
+    r = reduce(L[i][1], L[i][2]); A = r[1]; B = r[2];
+    cls = find3(A,B);
+    if(#cls == 0, next);
+    E = ellinit([A,B]); den = denominator(E.j);
+    if(den == 1 || den == 2^valuation(den,2), next);    /* skip obstructed side */
+    k = cls[1][1];
+    for(n = 1, 1200,
+      if(!issquarefree(n), next);
+      for(sg = 0, 1,
+        d = if(sg == 0, n, -n);
+        if(sqclass(d,3) != k, next);
+        td = twistdata(A, B, d);
+        if(Mval(td[1],3) != 9 || td[3] < 2, next);
+        R++;
+        if(densegroup(td[1], td[2], 3), D++))));
+  print("  unobstructed families pooled: ", D, " spanning out of ", R, " = ", D*1.0/R);
+  print("  null (two uniform random vectors span F_3^2): 48/81 = ", 48.0/81);
+}

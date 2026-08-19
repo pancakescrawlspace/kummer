@@ -110,6 +110,14 @@ read("families.gp");
 scan2pow(1000);            /* 2433532 parameter values -> j = 0 and 9261/8 */
 ```
 
+The quantitative consequence of the pairing mechanism (§5.2.4): unobstructed
+families should still span *below* the unconstrained rate.
+
+```
+read("families.gp");
+poolstats(130);            /* 195/421 = 0.463 against 48/81 = 0.593 (~2 min) */
+```
+
 Sanity checks:
 
 ```
