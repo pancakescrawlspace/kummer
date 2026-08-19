@@ -25,7 +25,7 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `cover2.gp` | independent verification for odd `p`: `coverage(A,B,p,k,ds,NB)` checks that every genuine reduction mod `p^k` of a point of `X(Z_p)` with `y` a unit is hit by an honest rational point. |
 | `families.gp` | enumerates all quadratic-twist families with `E[3]` decomposable and tests the denominator-of-`j` criterion (document §5.2.3): `families`, `testfamily`, `sweepfamilies`. |
 | `verify-dual.sage` | independent Sage check of the one computational input to the §5.2.4 theorem (uses Sage's own `.dual()`); run under Docker, see below. |
-| `sadic.gp` | `S`-adic density (document §2.2): `Mstar`, `coprimeS`, `densefactorwise`, `denseS`, `reportS`; and the level-2 product test `inE2p`, `Border`, `denseprod`, `reportSprod`. |
+| `sadic.gp` | `S`-adic density (document §2.2): `Mstar`, `coprimeS`, `densefactorwise`, `denseS`, `reportS`; and the level-2 product test `inE2p`, `Border`, `denseprod`, `reportSprod`; and the rank dichotomy `torsdimUB`, `gtop`, `triage`. |
 | `control.gp` | the control experiment for the `p = 3` open case (document §5.2.2): `armA`, `find3`, `armB`. |
 | `cm-torsion.gp` | the CM mechanism at `p = 3` for `f = x^3-2` (document §5.2.1): `torsionQ3`, `row`, `correlate`, `structure`. |
 | `cover-p2.gp` | the same check at `p = 2`, with exact rational arithmetic and the corrected target set (see below). |
@@ -247,6 +247,25 @@ Finding one witness per tuple proves density outright, with no hypothesis.
 Only the converse -- reading a failed search as genuine failure -- needs
 `E_delta(Q_S)` to be topologically 2-generated, which is a local check and is
 strictly weaker than the coprimality condition above.
+
+### Triage before searching
+
+`gtop` bounds the minimal number of topological generators `g` of the arena
+`prod_p E^delta(Q_p)`, from local data only. When `g <= 2` partial twists are
+useless and `denseprod` settles the class outright; only when `g >= 3` can a
+union of partial reaches do something a single twist cannot.
+
+```
+read("sadic.gp");
+gtop(1, 1, 1, [5,7]);          /* 2 */
+gtop(1, 1, 1, [11,13,17]);     /* 3 */
+triage(1, 1, [5,7],     2000); /* 14 tuples with g <= 2, 2 with g = 3 */
+triage(1, 1, [11,13,17], 600); /* all 48 realised tuples have g = 3   */
+```
+
+Beware: `g >= 3` does **not** say no full twist exists, only that none is
+forced. Both `g = 3` tuples for `S = {5,7}` do have full twists, of
+Mordell-Weil rank at least 3.
 
 ## The Sage cross-check
 

@@ -153,3 +153,78 @@ reportSprod(A, B, S, DMAX) = {
   for(i = 1, nt, if(w[i] == 0, print("      tuple ", i-1, " : none found")));
   nf == nt;
 }
+
+/* ---------------------------------------------------------------------
+   The rank dichotomy   (document, section 2.3)
+
+   g(delta) = minimal number of topological generators of the arena
+              prod_{p in S} E^delta(Q_p)
+            = max_l  ( [l in S] + sum_p dim E^delta(Q_p)[l] ).
+
+   g <= 2 : partial twists are useless; a full twist exists or the class
+            fails, and denseprod decides it.
+   g >= 3 : no full twist exists; covering needs a genuine ledger.        */
+
+/* dim_{F_l} E_d(Q_p)[l], computed on the short model (torsion is a
+   Q-isomorphism invariant, so minimality is irrelevant here) */
+torsdim(A, B, d, p, l) = {
+  my(a4 = A*d^2, a6 = B*d^3, Ec = ellinit([a4, a6]), ps, fa, i, r, x0, s, v, cnt);
+  ps = elldivpol(Ec, l);
+  fa = factorpadic(ps, p, 30);
+  cnt = 1;                                   /* the identity */
+  for(i = 1, #fa~,
+    if(poldegree(fa[i,1]) != 1, next);
+    x0 = -polcoeff(fa[i,1], 0)/polcoeff(fa[i,1], 1);
+    if(l == 2, cnt += 1; next);              /* y = 0, always rational */
+    s = x0^3 + a4*x0 + a6;
+    if(s == 0, cnt += 1; next);
+    v = valuation(s, p);
+    if(v % 2 == 0 && issquare(Mod(truncate(s/p^v), p)), cnt += 2)
+  );
+  valuation(cnt, l);
+}
+
+/* Cheap UPPER bound for dim E_d(Q_p)[l], needing no division polynomial:
+   the torsion embeds in a group of order M_p, so dim <= v_l(M_p); and
+   dim = 2 forces mu_l inside Q_p, i.e. p = 1 mod l.  Exact whenever
+   v_l(M_p) <= 1, which is the common case.                                */
+torsdimUB(Em, p, l) = {
+  my(v = valuation(Mval(Em, p), l));
+  if(v == 0, 0, if(p % l == 1, min(2, v), 1));
+}
+
+/* Upper bound for the minimal number of topological generators of the arena.
+   g <= 2 is what the dichotomy needs, and this certifies it.               */
+gtop(A, B, d, S) = {
+  my(td = twistdata(A, B, d), Em = td[1], ells = List(), i, j, l, r, g = 0, fa);
+  for(i = 1, #S, listput(ells, S[i]);
+    fa = factor(Mval(Em, S[i]))[,1]~;
+    for(j = 1, #fa, listput(ells, fa[j])));
+  ells = Set(Vec(ells));
+  for(i = 1, #ells,
+    l = ells[i];
+    r = if(setsearch(Set(S), l), 1, 0);
+    for(j = 1, #S, r += torsdimUB(Em, S[j], l));
+    if(r > g, g = r));
+  g;
+}
+
+/* classify every tuple of square classes by g, before any point search */
+triage(A, B, S, DMAX) = {
+  my(nt = 4^#S, seen = vector(nt, i, 0), d, n, sg, k, g, hist = Map(), c, ks, i);
+  for(n = 1, DMAX,
+    if(!issquarefree(n), next);
+    for(sg = 0, 1,
+      d = if(sg == 0, n, -n);
+      k = sqclassS(d, S) + 1;
+      if(seen[k] != 0, next);
+      seen[k] = 1;
+      g = gtop(A, B, d, S);
+      c = if(mapisdefined(hist, g), mapget(hist, g), 0);
+      mapput(hist, g, c + 1)));
+  print("  f = x^3+(", A, ")x+(", B, ")   S = ", S);
+  ks = Mat(hist)[,1];
+  for(i = 1, #ks,
+    print("      g = ", ks[i], " : ", mapget(hist, ks[i]), " tuples",
+          if(ks[i] <= 2, "   (denseprod decides)", "   (ledger needed)")));
+}

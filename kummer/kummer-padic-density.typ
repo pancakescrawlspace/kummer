@@ -340,6 +340,94 @@ enough --- the criterion allows a different $d$ for each target, so a $d$ that c
 modulo $E_2$ need not capture its refinements --- but I have neither a proof nor a
 counterexample.
 
+== Bookkeeping: covering $X(QQ_S)$ by twists <sec-ledger>
+
+Once no single twist can do the job, verifying density becomes an accounting problem: each twist
+contributes a piece of $X(QQ_S)$, and one must decide when the pieces exhaust it. What follows
+fixes vocabulary for that. The one picture to hold on to is:
+
+#align(center)[
+  _for each tuple of square classes there is one fixed arena; every twist paints a subgroup into
+  it; you win when the painted subgroups cover the arena pairwise._
+]
+
+*The arena.* For $arrow(delta) in Delta_S := product_(p in S) QQ_p^times slash (QQ_p^times)^2$
+write
+$ cal(G)_(arrow(delta)) := product_(p in S) E^(delta_p) (QQ_p), $
+the *local group* at $arrow(delta)$. It depends only on $arrow(delta)$, not on any twist: all
+rational $d$ with $[d]_S = arrow(delta)$ give canonically isomorphic $cal(G)$. This is the fixed
+stage. Write $cal(G)_(arrow(delta))(n)$ for its level-$n$ truncation
+$cal(G)_(arrow(delta)) slash product_p E_n (QQ_p)$, a *finite* abelian group of order
+$product_p p^(n-1) M_p$.
+
+*The reach.* For a rational $d$ with $[d]_S = arrow(delta)$,
+$ R(d) := overline(E^d (QQ)) subset.eq cal(G)_(arrow(delta)) $
+is the *reach* of $d$: how far the global points of that twist reach into the arena. It is a
+closed subgroup. Call $d$ *full* if $R(d) = cal(G)_(arrow(delta))$ and *partial* otherwise;
+@sec-sadic-level detects fullness at level 2.
+
+*The patch.* A point of $X(QQ_S)$ over $arrow(delta)$ is a pair in $cal(G)^2$ modulo the *sign
+group* $Sigma := {plus.minus 1}^S$, acting diagonally, $epsilon dot (a,b) = (epsilon a, epsilon b)$.
+The twist $d$ contributes the *patch*
+$ P(d) := "image of " R(d) times R(d) " in " X(QQ_S) . $
+Since $epsilon$ acts on subgroups by $R |-> epsilon R$ and the global $-1$ fixes every reach, the
+sign group acts through $Sigma slash {plus.minus 1}$, of order $2^(|S| - 1)$.
+
+*The ledger.* Fix $arrow(delta)$ and a level $n$. As twists are examined, record their reaches:
+$ cal(L) := {epsilon R_n (d) : d "examined", epsilon in Sigma}, $
+closed under the sign group and pruned to its maximal members --- an antichain of subgroups of
+the finite group $cal(G)(n)$. Closing under $Sigma$ is exactly what lets one forget the sign
+ambiguity afterwards, since $epsilon a, epsilon b in R$ iff $a, b in epsilon^(-1) R$.
+
+*Covered.* A pair $(a,b) in cal(G)(n)^2$ is *covered* by $cal(L)$ if some single $R in cal(L)$
+contains both --- equivalently if $⟨a, b⟩ subset.eq R$ for some $R$. Then
+$ X(QQ) " is dense in " X(QQ_S) quad <==> quad
+  forall arrow(delta), forall n : "the full ledger covers every pair in " cal(G)_(arrow(delta))(n)^2 . $
+
+Three things make this workable.
+
+*The star test.* Checking all pairs is quadratic; checking stars is not. For $a in cal(G)(n)$ put
+$ "St"(a) := union.big_(R in cal(L), space a in R) R . $
+Then $cal(L)$ covers every pair if and only if $"St"(a) = cal(G)(n)$ for every $a$. The
+*deficiency* $sum_a |cal(G)(n) without "St"(a)|$ is a progress meter that decreases as twists are
+added, and is zero exactly on completion.
+
+*The rank dichotomy.* Let $g(arrow(delta))$ be the minimal number of topological generators of
+$cal(G)_(arrow(delta))$, computed locally as $max_ell ([ell in S] + sum_p dim E^(delta_p) (QQ_p)[ell])$.
+
+#table(
+  columns: 2, align: (left, left), stroke: 0.4pt + luma(150),
+  table.header([$g(arrow(delta))$], [what the ledger can do]),
+  [$<= 2$], [Covering forces some $R = cal(G)$: take $(a,b)$ a generating pair; it must lie in a
+             single $R$, which is then dense. *Partial twists are useless* --- either a full twist
+             exists or the class fails.],
+  [$>= 3$], [A full twist still *suffices*, but now requires a twist of Mordell--Weil rank $>= 3$
+             (or rank 2 with torsion) --- and it is no longer *necessary*, since partial patches
+             may combine. This is the only regime in which the ledger does real work.],
+)
+
+So the bookkeeping is trivial exactly when $g <= 2$, and that is decidable locally before any point
+search. Note carefully that $g >= 3$ does *not* mean no full twist exists: it only means one is no
+longer forced. For $f = x^3+x+1$ and $S = {5,7}$, computing $g$ over the 16 tuples gives $g <= 2$
+for fourteen of them and $g = 3$ for two --- and yet @sec-sadic-level found a full twist for all
+sixteen, so those two are settled by rank-$>= 3$ twists rather than by any ledger. For
+$S = {11,13,17}$ all 48 realised tuples have $g = 3$, since the cubic has a root in each of
+$QQ_11, QQ_13, QQ_17$; that is where a ledger would first be needed if full twists ran out.
+
+*Monotonicity.* Truncation $cal(G)(n+1) -> cal(G)(n)$ is surjective and carries reaches onto
+reaches, so coverage at level $n+1$ implies coverage at level $n$. Deficiency is therefore
+monotone in $n$: work at the lowest level, refine only after it closes. A full twist is full at
+every level, so once one is found the class is finished for good.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Two cautions.* (i) In practice one knows only a finite-index subgroup of $E^d (QQ)$, so the
+  computed reach may be *smaller* than $R(d)$. The error is one-sided: coverage verdicts stay
+  sound, non-coverage verdicts do not. (ii) The arena is large --- $|cal(G)(2)| = product_p p M_p$
+  is already in the millions for three places --- so the ledger must store reaches by *generators*,
+  with containment tested by linear algebra in the $ell$-primary pieces, never by listing
+  elements. The star test is then run prime by prime.
+]
+
 = Result
 
 #block(fill: rgb("#eef4ff"), inset: 9pt, radius: 3pt, width: 100%)[
