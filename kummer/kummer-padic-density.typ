@@ -421,9 +421,14 @@ every level, so once one is found the class is finished for good.
 
 === A worked ledger: $S = {11, 13, 17}$ <sec-ledger-worked>
 
-At level 1 and at primes of good reduction the arena is simply
-$cal(G)(1) = product_(p in S) tilde(E)_(d_0) (bb(F)_p)$, so the whole computation is
-finite-field arithmetic and integer bookkeeping. Representation, all elementary:
+At level 1 the arena is $cal(G)(1) = product_(p in S) E_(d_0)(QQ_p) slash E_1 (QQ_p)$, a finite
+group of order $N = product_p M_p$. At a place of *good* reduction this is just
+$tilde(E)_(d_0)(bb(F)_p)$ and the whole computation is finite-field arithmetic; but a place
+$p in S$ with $p divides d_0$ is *additive* for $E_(d_0)$, and there $tilde(E)(bb(F)_p)$ is the
+wrong group --- $M_p = c_p dot p$ counts components as well. Since 56 of the 64 tuples for
+$S = {11,13,17}$ have $p divides d_0$ at some place, the arena must be built without assuming good
+reduction. It is, by exhibiting explicit $QQ_p$-points and deduping them by $E_1$-membership
+(@sec-arena-bad). Either way the bookkeeping on top is the same, and all elementary:
 
 #table(
   columns: 2, align: (left, left), stroke: 0.4pt + luma(150),
@@ -438,8 +443,11 @@ finite-field arithmetic and integer bookkeeping. Representation, all elementary:
 )
 
 Twists in one tuple give $QQ_p$-isomorphic curves, so the arena is fixed; a twist is transported
-to the chosen representative by $(x,y) |-> (x slash u^2, y slash u^3)$ with $u^2 = d slash d_0$ in
-$bb(F)_p$. Running this for $f = x^3+x+1$, $d_0 = 1$, $S = {11,13,17}$:
+to the chosen representative by $(x,y) |-> (lambda^2 x, lambda^3 y)$ with
+$lambda^2 = d_0 slash d$, which lies in $QQ_p$ *exactly because* $d$ and $d_0$ share the tuple.
+Either square root serves --- the two differ by the sign action, which the ledger quotients by
+anyway --- but the same one must be used for every point of a given twist, or the image is not a
+subgroup. Running this for $f = x^3+x+1$, $d_0 = 1$, $S = {11,13,17}$:
 
 #table(
   columns: 5, align: (right, right, right, right, right), stroke: 0.4pt + luma(150),
@@ -590,6 +598,61 @@ masks intersected prime by prime. The star test is unchanged; only the data type
   with containment tested by linear algebra in the $ell$-primary pieces, never by listing
   elements. The star test is then run prime by prime.
 ]
+
+=== Building the arena at bad reduction <sec-arena-bad>
+
+Sweeping all 64 tuples for $S = {11,13,17}$ forces the issue the $d_0 = 1$ run could ignore. A
+tuple is a choice of local square class $delta_p in QQ_p^times slash (QQ_p^times)^2$ at each
+place, and $delta_p$ has odd valuation for 56 of the 64 --- meaning $p divides d_0$, so
+$E_(d_0) : y^2 = x^3 + A d_0^2 x + B d_0^3$ is *additive* at $p$. Then
+$tilde(E)_(d_0)(bb(F)_p)$ is not $cal(G)_p (1)$: the identity component contributes only
+$tilde(E)^"ns" (bb(F)_p) tilde.eq bb(G)_a (bb(F)_p)$ of order $p$, and the component group
+contributes the Tamagawa factor, giving $M_p = c_p dot p$.
+
+So the arena is built from honest $QQ_p$-points instead:
+
++ Work on the *short* model $y^2 = x^3 + A d^2 x + B d^3$. For $d$ squarefree and $p >= 5$ it is
+  already minimal at $p$, since $v_p (c_4) = v_p (-48 A d^2) <= 2 < 4$; hence the test
+  $Q in E_1 <=> v_p (x(Q)) < 0$ is valid on it and no change of model is needed.
++ Every point outside $E_1$ has integral $x$, so sweep $x$ over $ZZ_p$ and solve the Weierstrass
+  quadratic for $y$, keeping a new point whenever its difference from all reps so far lies in
+  $E_1$. Stop at $M_p$ representatives.
++ Close the resulting set under the group law.
+
+Both of the last two steps earn their place, and neither was obvious in advance.
+
+*Depth.* A short range of integral $x$ does not suffice. At good reduction a coset is a residue
+disc mod $p$ and $x in {0, ..., p-1}$ finds everything; at additive reduction the deep components
+are cut out by congruences modulo $p^2$ or $p^3$, and sampling $|x| <= 200$ found only 21 of the
+34 cosets for $d = 17$, $p = 17$. Sweeping residues mod $p^k$ with $k$ increasing, and stopping as
+soon as $M_p$ cosets are in hand, costs nothing at good reduction ($k = 1$ suffices) and walks up
+only as far as a bad place demands. Random sampling from $ZZ_p$ works too but makes the
+representatives irreproducible, which is unacceptable in a certificate.
+
+*The last coset.* Even sweeping to $k = 3$ the search stalls, always at exactly $M_p - 1$: the
+missing coset sits near a root of the Weierstrass cubic, where $v_p (f(x_0))$ is large and its
+parity, or the quadratic residue symbol of its unit part, can fail at every depth swept. Rather
+than sweep deeper --- $17^5$ residues is already $1.4 dot 10^6$ --- note that the cosets found
+still *generate*: closing under the group law recovers the remainder immediately. With both steps
+all 64 arenas build to full size $M_p$ at every place.
+
+The construction is validated against the old one where both apply: on the good-reduction tuple of
+$d_0 = 1$ it reproduces @sec-layers exactly --- 119 twists inspected, 102 admitted, seven maximal
+reaches of index 2, deficiency $0$.
+
+=== Provenance, and the certificate <sec-cert>
+
+A ledger entry is not just a reach but a triple $(overline(R), d, epsilon)$, recording which twist
+$d$ and which sign $epsilon in Sigma = {plus.minus 1}^S$ produced it. The reason is that a closed
+ledger is supposed to be a *finite certificate*, and a bitmap over the arena is not one: it asserts
+coverage without saying what is covering. With provenance, a tuple that closes yields a short
+explicit list --- for $d_0 = 1$, the seven hyperplanes come from the seven twists
+
+$ d in {-1590, -519, -127, 53, 586, 1730, 1923}, $
+
+each of rank 2, each with $epsilon = (+,+,+)$, each of index 2 in the arena of order $4536$. That
+list, together with generators of $E^d (QQ)$ for those seven $d$, is checkable independently of the
+search that produced it.
 
 = Result
 
