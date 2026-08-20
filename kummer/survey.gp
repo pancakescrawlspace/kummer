@@ -806,3 +806,179 @@ img2table(F, MMAX) = {
         mapput(T, key, if(mapisdefined(T,key), mapget(T,key), 0) + 1))));
   Mat(T);
 }
+
+/* =====================================================================
+   The ledger at a single odd place.
+
+   At one odd place the star test closing is EQUIVALENT to a full twist
+   existing: G = E_delta(Q_p) is topologically 2-generated for p odd, and
+   the star test needs every pair (a,b) in G^2 to lie in a common reach,
+   so a pair of topological generators forces some H_d to be all of G.
+   Partial twists therefore cannot prove density here -- that is the
+   g <= 2 regime.  What the ledger still does is MEASURE the reaches, and
+   the distribution of the maximal ones separates a pairing obstruction
+   (every proper subgroup occurs, none preferred) from a linear
+   functional (one preferred subgroup contains them all).
+
+   Arena: A = E_delta(Q_p)/E_1, finite of order M.  The obstruction lives
+   in the layer l with dim A/lA = 2 (l != p in every case here), so the
+   reach of a twist is its image in A/lA = (Z/l)^2.  All d in one square
+   class give Q_p-isomorphic curves, x |-> x*dref/d, so the reaches are
+   labelled once on a reference twist and compared across the class.
+   ===================================================================== */
+
+/* p-adic points of a minimal model, from a scan of x-coordinates */
+ppoints(Em, p, prec, XMAX) = {
+  my(L = List(), a1 = Em.a1, a2 = Em.a2, a3 = Em.a3, a4 = Em.a4, a6 = Em.a6,
+     D, y, u);
+  for(k = -6, XMAX,
+    u = if(k <= 0, 1/p^(-k), k);
+    D = (a1*u + a3)^2 + 4*(u^3 + a2*u^2 + a4*u + a6) + O(p^prec);
+    if(D == 0, listput(L, [u + O(p^prec), (-(a1*u+a3)/2) + O(p^prec)]); next);
+    if(!issquare(D, &y), next);
+    listput(L, [u + O(p^prec), (-(a1*u + a3) + y)/2]));
+  Vec(L);
+}
+
+sameclass1(Ep, P, Q, p) = inE1(elladd(Ep, P, ellneg(Ep, Q)), p);
+
+/* coset representatives of E_1 in E_delta(Q_p), #L = M */
+arena1(F, dref, p, prec, XMAX) = {
+  my(tc = twistcurve(F, dref), Em = tc[1], Ep, M, L = List([[0]]), pts, T, isnew);
+  Ep = padiccurve(Em, p);
+  M = Mval(Em, p);
+  pts = ppoints(Em, p, prec, XMAX);
+  for(s = 1, #pts,
+    if(#L >= M, break);
+    for(rep = 1, M,
+      my(add = List());
+      for(i = 1, #L,
+        T = if(L[i] == [0], pts[s], elladd(Ep, L[i], pts[s]));
+        isnew = 1;
+        for(j = 1, #L, if(sameclass1(Ep, T, L[j], p), isnew = 0; break));
+        for(j = 1, #add, if(sameclass1(Ep, T, add[j], p), isnew = 0; break));
+        if(isnew, listput(add, T)));
+      if(#add == 0, break);
+      for(i = 1, #add, listput(L, add[i]));
+      if(#L >= M, break)));
+  [Ep, Vec(L), Em, tc[2], M];
+}
+
+aidx(Ep, L, P, p) = { for(i = 1, #L, if(sameclass1(Ep, P, L[i], p), return(i))); 0; }
+
+/* A/lA as a labelling of the coset list: returns [cls, ncls] */
+modlA(Ep, L, l, p) = {
+  my(n = #L, mul = vector(n), pw = List(), cls = vector(n), reps = List(), found);
+  for(i = 1, n, mul[i] = aidx(Ep, L, ellmul(Ep, L[i], l), p));
+  pw = Set(Vec(mul));                         /* indices of l*A */
+  for(i = 1, n,
+    found = 0;
+    for(r = 1, #reps,
+      for(t = 1, #pw,
+        my(T = elladd(Ep, L[i], ellneg(Ep, L[pw[t]])));
+        if(sameclass1(Ep, T, L[reps[r]], p), found = r; break(2))));
+    if(found, cls[i] = found, listput(reps, i); cls[i] = #reps));
+  [cls, #reps];
+}
+
+/* coordinates on A/lA: find g1,g2 whose classes are a basis, then tabulate */
+lbasis(Ep, L, cls, l, p) = {
+  my(z = cls[1], g1 = 0, g2 = 0, T, seen, co = Map(), key);
+  for(i = 1, #L, if(cls[i] != z, g1 = L[i]; break));
+  if(g1 == 0, return(0));
+  seen = List();
+  for(a = 0, l-1, listput(seen, cls[aidx(Ep, L, ellmul(Ep, g1, a), p)]));
+  seen = Set(Vec(seen));
+  for(i = 1, #L, if(!setsearch(seen, cls[i]), g2 = L[i]; break));
+  if(g2 == 0, return(0));
+  for(a = 0, l-1, for(b = 0, l-1,
+    T = elladd(Ep, ellmul(Ep, g1, a), ellmul(Ep, g2, b));
+    key = Str(cls[aidx(Ep, L, T, p)]);
+    if(!mapisdefined(co, key), mapput(co, key, [a,b]))));
+  co;
+}
+
+vspan(vecs, l) = {
+  my(S = List([[0,0]]), T, isnew);
+  for(i = 1, #vecs,
+    my(cur = Vec(S));
+    for(a = 1, l-1,
+      for(j = 1, #cur,
+        T = [(cur[j][1] + a*vecs[i][1]) % l, (cur[j][2] + a*vecs[i][2]) % l];
+        isnew = 1;
+        for(s = 1, #S, if(S[s] == T, isnew = 0; break));
+        if(isnew, listput(S, T)))));
+  Set(Vec(S));
+}
+
+/* the ledger at one odd place: reaches of every twist in one square class,
+   the maximal ones, the star-test deficiency, and the line distribution. */
+ledgerp(lbl, F, p, k, l, MMAX, prec) = {
+  my(dref = classrep3(p, k, 4000), ar, Ep, L, M, m2, cls, co, P0 = if(k >= 2, p, 1),
+     Emr, vr, d, td, Em, v, pts, vecs, R, reaches = List(), maxr = List(),
+     dims = vector(3, i, 0), lines = Map(), ntw = 0, t = getwalltime(), key, c, cc);
+  ar = arena1(F, dref, p, prec, 300);
+  Ep = ar[1]; L = ar[2]; Emr = ar[3]; vr = ar[4]; M = ar[5];
+  if(#L != M, print("  ", lbl, ": arena incomplete"); return());
+  m2 = modlA(Ep, L, l, p); cls = m2[1];
+  if(m2[2] != l^2, print("  ", lbl, ": A/lA is not (Z/l)^2"); return());
+  co = lbasis(Ep, L, cls, l, p);
+  if(co == 0, print("  ", lbl, ": no basis"); return());
+  for(mm = 1, MMAX,
+    if(!issquarefree(mm) || gcd(mm, p) != 1, next);
+    for(sg = 0, 1,
+      d = (-1)^sg * P0 * mm;
+      if(sqclass(d, p) != k, next);
+      td = twistdata3(F, d);
+      if(#td[2] == 0, next);
+      ntw++;
+      v = 0; Em = ellminimalmodel(Ecurve(F, d), &v);
+      pts = vector(#td[2], i, ellchangepointinv(td[2][i], v));
+      c = (dref/d) + O(p^prec);
+      if(!issquare(c, &cc), next);
+      vecs = List();
+      for(i = 1, #pts,
+        my(Q = [pts[i][1]*c, pts[i][2]*c*cc], j);
+        Q = ellchangepoint(Q, vr);
+        j = aidx(Ep, L, Q, p);
+        if(j == 0, next);
+        key = Str(cls[j]);
+        if(mapisdefined(co, key), listput(vecs, mapget(co, key))));
+      R = vspan(Vec(vecs), l);
+      dims[if(#R == 1, 1, if(#R == l, 2, 3))]++;
+      if(#R == l,
+        my(nz = [0,0]);
+        for(i = 1, #R, if(R[i] != [0,0], nz = R[i]));
+        /* normalise the line by its first non-zero coordinate */
+        my(s = if(nz[1] != 0, lift(Mod(nz[1],l)^-1), lift(Mod(nz[2],l)^-1)));
+        nz = [(s*nz[1]) % l, (s*nz[2]) % l];
+        key = Str(nz);
+        mapput(lines, key, if(mapisdefined(lines,key), mapget(lines,key), 0) + 1));
+      my(isnew = 1);
+      for(i = 1, #reaches, if(reaches[i] == R, isnew = 0; break));
+      if(isnew, listput(reaches, R))));
+  /* maximal reaches */
+  for(i = 1, #reaches,
+    my(keep = 1);
+    for(j = 1, #reaches,
+      if(i != j && #reaches[i] < #reaches[j],
+        my(sub = 1);
+        for(s = 1, #reaches[i], if(!setsearch(reaches[j], reaches[i][s]), sub = 0; break));
+        if(sub, keep = 0; break)));
+    if(keep, listput(maxr, reaches[i])));
+  /* star test: pairs (a,b) both inside a common reach */
+  my(tot = l^4, bad = 0);
+  for(a1 = 0, l-1, for(a2 = 0, l-1, for(b1 = 0, l-1, for(b2 = 0, l-1,
+    my(ok = 0);
+    for(i = 1, #reaches,
+      if(setsearch(reaches[i], [a1,a2]) && setsearch(reaches[i], [b1,b2]), ok = 1; break));
+    if(!ok, bad++)))));
+  print("LEDGER ", lbl, " p=", p, " [", sqclassname(k,p), "] l=", l,
+        "  M=", M, "  twists=", ntw,
+        "  reach dim 0/1/2: ", dims,
+        "  maximal reaches: ", #maxr,
+        "  star deficiency: ", bad, "/", tot,
+        "  time=", getwalltime()-t);
+  if(#Mat(lines) > 0, print("       lines among dim-1 reaches: ", Mat(lines),
+                            "   (", l+1, " lines exist)"));
+}

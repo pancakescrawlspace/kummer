@@ -31,7 +31,7 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `cm-torsion.gp` | the CM mechanism at `p = 3` for `f = x^3-2` (document §5.2.1): `torsionQ3`, `row`, `correlate`, `structure`. |
 | `cover-p2.gp` | the same check at `p = 2`, with exact rational arithmetic and the corrected target set (see below). |
 | `results/` | raw output of the tuple sweeps, kept verbatim because it carries the certificates -- the witnessing twist per tuple for `S = {5,7}` and `S = {3,5,7}`, and the twists and signs behind every maximal reach for `S = {11,13,17}`. All of it is now tabulated in the document (§2.2.1, §2.3.6); these files are the machine-generated source. Also `survey-*.txt`, the raw output behind `kummer-survey.typ`, and `surfaces-cremona.txt`, the curve list. |
-| `survey.gp` | **the survey** (`kummer-survey.typ`), both batches. The same test for a *general monic cubic* `f = x^3+ax^2+bx+c`, passed as `F=[a,b,c]`: `twistdata3`, `sweep3`, `sweptdata3`, `procyclic3`, `witnessodd`, `witness2`, `runsurface`. Deeper passes `deephunt`, `hunt2`; diagnostics `gloc`, `gloc2`, `classaudit`, `rankaudit`, `rankaudit2`. Family scans `sexticscan`, `quarticscan`. The §5.1.5 machinery at `l = 2`: `torsionmodule`, `halvable`, `dimW`, `cosetsE2`, `mod2A`, `imagelines`, and the Hilbert-symbol pairing `cmap`, `betav`, `alttest`, `normtest`, `cimagep`, `nzbeta`, `lemmaA`, `cyctest`. |
+| `survey.gp` | **the survey** (`kummer-survey.typ`), both batches. The same test for a *general monic cubic* `f = x^3+ax^2+bx+c`, passed as `F=[a,b,c]`: `twistdata3`, `sweep3`, `sweptdata3`, `procyclic3`, `witnessodd`, `witness2`, `runsurface`. Deeper passes `deephunt`, `hunt2`; diagnostics `gloc`, `gloc2`, `classaudit`, `rankaudit`, `rankaudit2`. Family scans `sexticscan`, `quarticscan`. The §5.1.5 machinery at `l = 2`: `torsionmodule`, `halvable`, `dimW`, `cosetsE2`, `mod2A`, `imagelines`, and the Hilbert-symbol pairing `cmap`, `betav`, `alttest`, `normtest`, `cimagep`, `nzbeta`, `lemmaA`, `cyctest`. The single-place ledger: `ppoints`, `arena1`, `modlA`, `lbasis`, `ledgerp`. |
 | `cm-surfaces.sage` | the CM surface list: the eleven rigid CM surfaces plus the sextic (`j=0`) and quartic (`j=1728`) families, reduced to small monic cubics. Output in `results/surfaces-cm.txt`. |
 | `surfaces.sage` | the surface list: every curve of conductor <= 40 from Sage's Cremona database, grouped into quadratic-twist classes and reduced to a small monic cubic. Output kept in `results/surfaces-cremona.txt`. |
 | `survey-tables.py` | turns `results/survey-*.txt` into `survey-tables.typ` (generated; not edited by hand). |
@@ -500,6 +500,52 @@ deephunt([-11,-1,-83], 11, 1, 1, 20000);       /* 11a1, p=11, class [u] */
 gloc([10,105,-116], 1, 7);                     /* 2 -- rank 1 is useless */
 rankaudit("14a1", [10,105,-116], 7, 0, 3000);  /* 144 rank->=2 twists, none dense */
 ```
+
+### The ledger at one odd place (document §3.3.1)
+
+The ledger cannot help *prove* density at a single odd place, and it is worth
+saying why: `G = E_delta(Q_p)` is topologically 2-generated for `p` odd, so
+feeding the star test a pair of topological generators forces some `H_d` to
+contain both, hence to be all of `G`. **The star test closes iff a full twist
+exists.** That is the `g <= 2` regime; the ledger earns its keep at
+`S = {11,13,17}` precisely because `g = 3` there, so no pair can generate.
+
+What it does give is a *measurement*: are the reaches spread over all the lines
+of `A/lA = (Z/l)^2` (a pairing) or confined to one (a linear functional)? Here
+`A = E_delta(Q_p)/E_1` and `l` is the layer with `dim A/lA = 2`.
+
+```
+ledgerp("15a1", [-10,-127,136], 5, 0, 2, 2000, 30);
+```
+
+`27a1` is excluded (non-density is proved there). For the other seven:
+
+| surface | p | class | l | twists | reach = (Z/l)^2 | lines seen | star deficiency |
+|---|---|---|---|---|---|---|---|
+| 11a1 | 11 | [u] | 5 | 584 | **0** | 6 of 6 | 480/625 |
+| 14a1 | 7 | [1] | 3 | 1062 | **0** | 4 of 4 | 48/81 |
+| 14a2 | 7 | [1] | 3 | 1062 | **0** | 4 of 4 | 48/81 |
+| 15a1 | 5 | [1] | 2 | 1012 | **0** | 3 of 3 | 6/16 |
+| 15a4 | 5 | [1] | 2 | 1012 | **0** | 3 of 3 | 6/16 |
+| 17a1 | 17 | [1] | 2 | 1150 | **0** | 3 of 3 | 6/16 |
+| 19a1 | 19 | [u] | 3 | 546 | **0** | 4 of 4 | 48/81 |
+
+If the reaches are exactly the `l+1` lines and nothing more, the uncoverable
+pairs are the spanning ones, `(l^2-1)(l^2-l)` out of `l^4` -- that is 6/16,
+48/81, 480/625. **Every deficiency is exactly that**, so each ledger has
+collected every line and is missing only the full reach, i.e. the full twist.
+
+Every line occurs and roughly equally often (11a1: 92/97/97/103/77/95 over the
+six lines of `(Z/5)^2`), so no linear functional vanishes on the rational
+points. That is the *pairing* signature -- the same one §5.5.6 finds for
+`x^3+x`, where §5.5.4 then proves the pairing is `(x(P),x(Q))_v`. So the seven
+non-CM cases look like instances of the same mechanism; constructing it for
+them is not done.
+
+`14a2` is the informative one: `M = 36`, and at `l = 2` its ledger **closes**
+(252 of 1062 twists reach all of `(Z/2)^2`, deficiency 0/16) while at `l = 3` it
+behaves like the rest. The class is unwitnessed because of the 3-layer alone --
+sharper than "no full twist found", and it says where a proof would have to work.
 
 **`p = 2`.** When `f` splits completely over `Q_2` (ten of the thirty),
 `E_delta(Q_2) = Z_2 x (Z/2)^2` for *every* delta, needs three generators, and

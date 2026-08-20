@@ -217,6 +217,94 @@ two topological generators, which holds at every odd $p$. So a genuinely
 exhaustive search failing here would mean $X(QQ)$ is not dense in $X(QQ_p)$.
 The searches are finite, so these are candidate obstructions, not theorems.
 
+=== What the ledger says about them <sec-ledger-odd>
+
+The companion notes' ledger (§2.3) proves density from a *union* of partial
+twists: it records each twist's reach in a finite arena and applies the star
+test --- for every pair of arena elements, is there a single twist whose reach
+contains both? That is the right question, because the Kummer surface supplies
+*pairs* of points on one twist. It is worth being clear about what it can do
+here.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *At one odd place the ledger cannot prove anything the single-twist search
+  misses.* $G = E_delta (QQ_p)$ is topologically 2-generated for $p$ odd. Feed
+  the star test a pair $(a,b)$ of topological generators: it demands a single
+  $d$ with $a, b in H_d$, and then
+  $H_d supset.eq overline(⟨a,b⟩) = G$ --- a full twist. So the star test closes
+  *if and only if* a full twist exists.
+
+  #v(1.5mm)
+  This is the $g <= 2$ regime the companion notes flag. The ledger pays for
+  itself at $S = {11,13,17}$ precisely because there $g = 3$: no pair can
+  generate, a full twist is not forced, and partial patches do together what no
+  single twist can.
+]
+
+What the ledger does give is a *measurement*. Density needs the reach to be
+everything in each layer $ell$ with $dim A slash ell A = 2$, where
+$A = E_delta (QQ_p) slash E_1$; the reach of a twist is its image in
+$A slash ell A tilde.equiv (ZZ slash ell)^2$. Whether the reaches that do occur
+are spread over *all* the lines, or confined to one, is exactly the test that
+separates a pairing obstruction from a linear functional --- the question
+@sec-measured settles for $x^3 + x$. Since all $d$ in a class give
+$QQ_p$-isomorphic curves, the lines can be labelled once and compared.
+
+`27a1` is left out: non-density is proved there (§5.1.5). For the other seven:
+
+#table(
+  columns: 8, align: (left, center, center, center, right, center, center, center),
+  stroke: 0.4pt + luma(170), inset: (x: 5pt, y: 3pt),
+  table.header([surface], [$p$], [class], [$ell$], [twists], [reach $= (ZZ slash ell)^2$],
+               [lines seen], [star deficiency]),
+  [`11a1`], [11], [$[u]$], [5], [584],  [*0*], [6 of 6], [480/625],
+  [`14a1`], [7],  [$[1]$], [3], [1062], [*0*], [4 of 4], [48/81],
+  [`14a2`], [7],  [$[1]$], [3], [1062], [*0*], [4 of 4], [48/81],
+  [`15a1`], [5],  [$[1]$], [2], [1012], [*0*], [3 of 3], [6/16],
+  [`15a4`], [5],  [$[1]$], [2], [1012], [*0*], [3 of 3], [6/16],
+  [`17a1`], [17], [$[1]$], [2], [1150], [*0*], [3 of 3], [6/16],
+  [`19a1`], [19], [$[u]$], [3], [546],  [*0*], [4 of 4], [48/81],
+)
+
+#v(2mm)
+
+Three things come out of it.
+
+*The ledgers have closed as far as they possibly can.* If the reaches are
+exactly the $ell + 1$ lines and nothing more, the pairs the star test cannot
+cover are those $(a,b)$ with $a$ and $b$ non-zero and spanning, of which there
+are $(ell^2 - 1)(ell^2 - ell)$ out of $ell^4$ --- that is $6 slash 16$,
+$48 slash 81$, $480 slash 625$ for $ell = 2, 3, 5$. Every deficiency in the
+table is *exactly* that number. So in each case the ledger has collected every
+line, and the only thing it is missing is the full reach that would make it
+close --- which is the full twist the search could not find.
+
+*Every line occurs, and roughly equally often.* At `11a1` the six lines of
+$(ZZ slash 5)^2$ are hit $92, 97, 97, 103, 77, 95$ times out of 561; at `19a1`
+the four lines of $(ZZ slash 3)^2$ are hit $132, 112, 121, 122$ out of 487. No
+line is preferred, so no linear functional vanishes on all the rational points.
+This is the signature of a *pairing*, and it is the same signature
+@sec-measured finds for $x^3 + x$ --- where @sec-thm2 then proves the pairing
+is $(x(P), x(Q))_v$. So the seven non-CM cases look like instances of the same
+mechanism, and a twisted-pairing argument of the kind in @sec-dict is what to
+look for. Constructing it for them is not done here.
+
+*`14a2` splits its layers, and shows the obstruction is one-layer.* It has
+$M = 36$, so density needs the reach to be everything in both
+$A slash 2A$ and $A slash 3A$. At $ell = 2$ the ledger *closes*: 252 of its 1062
+twists reach all of $(ZZ slash 2)^2$ and the deficiency is $0 slash 16$. At
+$ell = 3$ it behaves like the rest of the table. The class is unwitnessed
+because of the 3-layer alone, which is a sharper statement than "no full twist
+found" and tells any future proof exactly where to work.
+
+#v(1mm)
+
+Two controls behave as they should: `15a1` in the *witnessed* class $[u]$ has
+all 1016 of its twists reaching the whole of $(ZZ slash 2)^2$, deficiency
+$0 slash 16$; and `14a1` in class $[u]$ has no 2-dimensional layer at all ---
+$E_delta (QQ_p)$ is procyclic there, so the question does not arise.
+
+
 == $p = 2$ <sec-two>
 
 #set text(size: 8pt)
