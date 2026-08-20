@@ -1397,7 +1397,24 @@ prove the statement on its own, so the class became an optional extra rather tha
 It also accounts for every observation above, including the one that resisted longest.
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
-  *Why the class is still not exhibited.* Not for want of trying the obvious tools. Both computer
+  *Why the class is still not exhibited.* Two separate reasons, and only one of them is about
+  tools.
+
+  #v(1.5mm)
+  *The shape is now known.* $E[3] = C_1 xor C_2$ with $C_1 tilde.equiv ZZ slash 3$ and
+  $C_2 tilde.equiv mu_3$, so $beta_3 (P,Q) = ⟨alpha_2 (P), alpha_1 (Q)⟩_3$ is the cup product of a
+  class in $QQ_3^times slash 3$ with a class in $"Hom"(G_3, ZZ slash 3)$. That is the class of a
+  *cyclic algebra* $(L_chi slash k, sigma, g)$ of degree 3 --- not a symbol $(g_1, g_2)_3$, which
+  would need $zeta_3$, and $zeta_3 in.not QQ$. The cubic extension $L_chi$ is the function field
+  extension $QQ(B_2) slash QQ(E)$ cut out by $hat(psi)_2$, and the function is the tangent at
+  $T_d$, namely $g = y - sqrt(6d)(x - d)$, since
+  $x^3 - 2d^3 - 6d(x-d)^2 = (x - 2d)^3$. The level-2 analogue of all this is carried out in full in
+  the survey document, §7, where the class comes out as an explicit quaternion algebra over
+  $QQ(X)$; what is still missing at level 3 is the normalisation that clears the twist $d$ out of
+  $g$.
+
+  #v(1.5mm)
+  *And the tools are missing too.* Both computer
   algebra systems used here were checked: PARI's `nfhilbert` and Sage's `hilbert_symbol` are
   *quadratic only* --- neither takes an exponent argument --- Sage's `three_selmer_rank` shells
   out to Magma, and neither system has Brauer groups of surfaces. What is missing is a cubic

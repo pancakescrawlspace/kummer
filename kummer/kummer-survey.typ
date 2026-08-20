@@ -1833,6 +1833,208 @@ $QQ(i)$. Nothing here decides that.
 ]
 
 
+= The Brauer class <sec-brauer>
+
+Everything above produces $beta$ as a globally defined pairing obeying a reciprocity law, and that
+is exactly the structure an Azumaya algebra supplies. So one should expect a class
+$cal(A) in "Br"(X)$ with
+$ "inv"_v cal(A) (T) = beta_v (P, Q) quad quad "for" T in X(QQ_v) "the image of" (P,Q), $
+and the theorems above rewritten as a Brauer--Manin obstruction. This section works that out. At
+level 2 the class can be written down, shown unramified on $E_d times E_d$, and checked; at level 3
+its *shape* is forced but an explicit formula is still missing, and the reason for the difference is
+worth stating.
+
+One point of vocabulary first, because it is easy to mis-say. $X(QQ) != nothing$ here --- there is
+no obstruction to the *existence* of rational points. What $cal(A)$ obstructs is *weak
+approximation*: $"inv"_p cal(A)$ is a locally constant function on $X(QQ_p)$ which is *not*
+constant, and reciprocity pins it to $0$ on $X(QQ)$, so the closure of $X(QQ)$ misses the open set
+where it is non-zero. Non-density, not emptiness.
+
+== What the class should be, in general <sec-brauer-gen>
+
+The expectation is not a leap, because $beta$ already *is* an evaluation map. For the abelian
+surface $A = E times E$ the Künneth summand
+$H^1 (overline(E), E[ell]) times.o H^1 (overline(E), E[ell]) --> H^2 (overline(A), mu_ell)$,
+contracted by the Weil pairing, produces classes in $"Br"(overline(A))$; the Galois-invariant ones
+are indexed by $"Hom"_G (E[ell], E[ell]) = "End"_G (E[ell])$, modulo the ones coming from honest
+isogenies. Writing $cal(A)_phi$ for the class attached to $phi$, evaluation at $(P,Q)$ is the cup
+product of $delta_v P$ with $phi_* delta_v Q$ --- which is $beta_v (P,Q)$ by definition. So the
+content of the conjecture is not the pairing but the *class*: an unramified representative over
+$QQ(X)$, and its descent through $E times E --> X$.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  This is the setting of the Brauer group of Kummer surfaces, where there is a literature
+  (Skorobogatov--Zarhin and successors) that very likely contains the general statement in the
+  previous paragraph. Nothing below relies on it: the level-2 results are derived and checked here.
+  Reading that literature before going further would be the efficient next step.
+]
+
+== Level 2: the algebra, explicitly <sec-brauer-2>
+
+Two things stand between $beta$ and a class on $X$. The descent map $c_i (P) = U(P) - d e_i$
+mentions the *twist* $d$, and $U$ is a coordinate on $E_d$, not on $X$. Both go away at once, and
+by the same one-line identity.
+
+On $E_d : Y^2 = product_i (U - d e_i)$ the product of the three factors is a square, so each factor
+is congruent to the product of the other two:
+$ U - d e_1 equiv (U - d e_2)(U - d e_3) space (mod (QQ^times)^2) . $
+Now substitute $U = d x$, where $x$ is the coordinate on $X$: the left side is $d(x - e_1)$, the
+right side is $d^2 (x-e_1')(x-e_1'')$, and the $d$'s cancel modulo squares.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  $ c_i (P) equiv product_(j != i) (x - e_j) space (mod "squares"), quad quad
+    x = "the " x "-coordinate of " T in X . $
+  The twist has disappeared and the right-hand side is a function on $X$.
+]
+
+So the pairing $beta_v (P,Q) = (c_i (P), c_j (Q))_v$ of @sec-15a1 and @sec-alt is the local
+invariant of the quaternion algebra
+$ cal(A)_(i j) = ( product_(k != i) (x - e_k), space product_(l != j) (t - e_l) )
+  quad "over" QQ(X), $
+which mentions no twist at all. In the three worked cases:
+
+#align(center, table(
+  columns: 3, align: (left, left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([case], [$beta_v (P,Q)$], [$cal(A)$ over $QQ(X)$]),
+  [$x^3 + x$ (@sec-thm2)], [$(x(P), x(Q))_v$], [$(x^2 + 1, space t^2 + 1)$],
+  [`15a4` (@sec-15a4)], [$(x(P), x(Q))_v$],
+    [$(x^2 + 14x + 625, space t^2 + 14t + 625)$],
+  [`15a1` (@sec-15a1)], [$(c_1 (P), c_3 (Q))_v$],
+    [$((x-1)(x+8), space (t-17)(t-1))$],
+))
+
+#v(2mm)
+
+For $f = u dot q(u)$ with a single rational root at $u = 0$ this reads
+$cal(A) = (q(x), q(t))$ with $q = f slash u$ --- and one of @sec-15a4's observations improves in
+the translation. There the alternating property came from
+$q(u) = u^2 + 14u + 625 = (u+7)^2 + 24^2$ being a sum of two squares, argued over points; here it
+says that *the first entry of $cal(A)$ is a norm form from $QQ(i)$*, which is a statement about the
+algebra and holds before any point is chosen.
+
+=== It is unramified <sec-brauer-unram>
+
+On $E_d$ the function $U - d e_i$ has divisor $2(T_i) - 2(O)$: *divisible by 2*, because $T_i$ is
+2-torsion. Hence on $E_d times E_d$ both entries of $cal(A)_(i j)$ pull back to functions whose
+valuation along *every* prime divisor is even, and the residue
+$ partial_D (g_1, g_2) = overline((-1)^(v_D (g_1) v_D (g_2)) space g_1^(v_D (g_2)) g_2^(-v_D (g_1)))
+  in kappa(D)^times slash (kappa(D)^times)^2 $
+is trivial for every $D$. So $cal(A)_(i j) in "Br"(E_d times E_d)$ --- and for every $d$ at once,
+since the divisor argument never mentions $d$. That the divisor of the descent function is
+$ell$-divisible is exactly what makes it a descent function *and* what makes the algebra
+unramified; the two facts are the same fact.
+
+Descending to $X$: both entries are functions of $x$ and $t$ alone, so they are already defined on
+$X$ and invariant under $(P,Q) |-> (-P,-Q)$, and $E times E --> (E times E) slash plus.minus$ is
+étale in codimension one, so the divisors stay 2-divisible. The one place left to check is the
+sixteen exceptional curves of the Kummer resolution: a function vanishing to order 2 at a fixed
+point acquires *odd* valuation along the exceptional curve $F tilde.equiv PP^1$, and the residue
+there is $overline(q(x) slash q(t))$. That is a square, by the relation $A C = B^2$ among the
+invariants $A = s^2$, $B = s u$, $C = u^2$ of the local $plus.minus$-action. This last step is
+sketched, not verified in detail --- see @sec-brauer-status.
+
+=== It reproduces $beta$ <sec-brauer-check>
+
+By construction, and `azumaya.gp` checks it place by place against the classical descent maps,
+together with $product_v "inv"_v cal(A) = 1$ on rational pairs:
+
+#align(center, table(
+  columns: 5, align: (left, right, right, center, center),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([$f$], [pairs], [place evaluations],
+               [$"inv"_v cal(A) != beta_v$], [reciprocity failures]),
+  [$x^3 + x$], [140], [584], [*0*], [*0*],
+  [`15a4`], [48], [200], [*0*], [*0*],
+  [`15a1`, $(c_1, c_3)$], [156], [736], [*0*], [*0*],
+  [`15a1`, transpose], [156], [736], [*0*], [*0*],
+  [`15a1`, untwisted], [156], [736], [*0*], [*0*],
+  [$x(x-1)(x-4)$], [80], [260], [*0*], [*0*],
+))
+
+#v(2mm)
+
+3252 place evaluations, no mismatch. The untwisted row is included as a control: it matches too,
+which it must --- the twisting is a choice of $phi$, not a change in the dictionary between $c_i$
+and the coordinates of $X$.
+
+== Level 3: it is cyclic, not a symbol <sec-brauer-3>
+
+At level 3 a symbol algebra $(g_1, g_2)_3$ is the natural guess, and it is right in *shape* --- the
+class has order 3 and the algebra has degree 3, so dimension 9 over the function field --- but the
+two slots are not alike, and cannot be.
+
+$E[3] = C_1 xor C_2$ with $C_1 tilde.equiv ZZ slash 3$ and $C_2 tilde.equiv mu_3$. Over a field
+$k$,
+$ H^1 (k, C_1) = "Hom"(G_k, ZZ slash 3) quad "— a cyclic cubic extension", $
+$ H^1 (k, C_2) = k^times slash (k^times)^3 quad "— a function value", $
+and $beta_v (P,Q) = ⟨alpha_2 (P), space alpha_1 (Q)⟩_v$ is the cup product of a $mu_3$-class with a
+$ZZ slash 3$-class. That cup product is the class of the *cyclic algebra*
+$(L_chi slash k, sigma, g)$: the crossed product of the cubic extension $L_chi$ cut out by
+$alpha_1 (Q)$ with the value $g = alpha_2 (P)$. It collapses to a symbol $(g_1, g_2)_3$ only over a
+field containing $zeta_3$ --- and $zeta_3 in.not QQ$, so over $QQ(X)$ it has to stay in cyclic
+form. The asymmetry is the same $ZZ slash 3$-versus-$mu_3$ asymmetry that made one of the two
+isogenies of §5.1.5 free and the other not.
+
+Neither half is exotic.
+
+*The cubic extension is a function field extension.* By Step 5 of §5.1.5, $alpha_1$ is the descent
+map for $hat(psi)_2 : B_2 -> E$, whose kernel is $psi_2 (C_1) tilde.equiv ZZ slash 3$. An isogeny
+with constant cyclic kernel is a cyclic étale cover, so $QQ(B_2) slash QQ(E)$ *is* a cyclic cubic
+extension of function fields, and $chi$ is its class. The cover is the same $B_2$ whose Weierstrass
+equation @sec-magma tabulates.
+
+*The function is a tangent line.* For $E_d : y^2 = x^3 - 2d^3$ the point $T_d = (2d, sqrt(6d^3))$
+has tangent
+$ ell_(T_d) : quad y = sqrt(6d) space (x - d), quad quad "since" quad
+  x^3 - 2d^3 - 6d(x-d)^2 = (x - 2d)^3 , $
+so $g = y - sqrt(6d)(x-d)$ has $"div"(g) = 3(T_d) - 3(O)$ and $alpha_2 (P) = g(P)$ modulo cubes,
+over $QQ(sqrt(6d))$. The companion function for $C_2$ is $h = y - d sqrt(-2d)$, with
+$"div"(h) = 3(0, d sqrt(-2d)) - 3(O)$, over $QQ(sqrt(-2d))$. Their compositum contains
+$sqrt(6d dot (-2d)) = 2d sqrt(-3)$, hence $zeta_3$ --- which is the Weil pairing
+$C_1 times.o C_2 tilde.equiv mu_3$ made visible.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *What is missing, precisely.* At level 2 the twist cancelled because descent and twisting are
+  *both* modulo squares. At level 3 descent is modulo cubes while the twist is quadratic, so the
+  same cancellation is unavailable and the $d$'s do not visibly leave $g$ and $h$. They must leave
+  in the end: a point of $X$ determines $d$ only up to squares, while a symbol's entry matters
+  modulo cubes, so a formula that genuinely depended on $d$ modulo cubes could not be a function on
+  $X$ at all. The gap is therefore a *normalisation*: descent functions are defined only up to a
+  multiplicative constant, and a constant is invisible modulo squares but not modulo cubes. Fixing
+  that normalisation --- not guessing a better shape --- is the next step.
+]
+
+== What is and is not claimed <sec-brauer-status>
+
+#align(center, table(
+  columns: 2, align: (left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([statement], [status]),
+  [$c_i (P) equiv product_(j != i)(x - e_j)$ mod squares],
+    [*proved* --- one line from $product_i (U - d e_i) = Y^2$],
+  [$cal(A)_(i j)$ is a quaternion algebra over $QQ(X)$ with no twist in it], [*immediate*],
+  [$cal(A)_(i j)$ is unramified on $E_d times E_d$, for every $d$],
+    [*proved* --- the divisors are 2-divisible],
+  [$cal(A)_(i j)$ is unramified on the Kummer surface],
+    [*sketched* at the sixteen exceptional curves],
+  [$"inv"_v cal(A) = beta_v$ at level 2],
+    [*proved*, and checked at 3252 place evaluations],
+  [the level-3 class is cyclic of degree 3, not a symbol],
+    [*proved* --- $zeta_3 in.not QQ$],
+  [an explicit level-3 formula], [*open* --- a normalisation, see above],
+  [the general $cal(A)_phi$ for $phi in "End"_G (E[ell])$],
+    [*conjectural here*; expected to be in the literature],
+))
+
+#v(2mm)
+
+What this buys, when it is finished, is uniformity. The theorems of @sec-thm2, @sec-15a1 and
+@sec-15a4 are each proved twist by twist, with a separate local analysis for each class of $d$;
+$cal(A)$ is a single object on a single surface, and "$"inv"_p cal(A)$ is non-constant on
+$X(QQ_p)$" is one statement covering every twist at once. That is what the twist-by-twist proofs
+were reaching for, and at level 2 the reaching is over.
+
 = Remarks
 
 == The obstruction is not about complex multiplication <sec-notcm>

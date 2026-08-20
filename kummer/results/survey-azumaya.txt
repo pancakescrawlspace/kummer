@@ -1,0 +1,18 @@
+=== the level-2 Brauer class: inv_v A  vs  beta_v ===
+
+  x^3 + x        (thm of sec 5.5):  beta = (x(P), x(Q)),  A = (q(x), q(t)) with q = f/u
+     140 rational pairs over 12 twists, 584 place evaluations;  mismatches beta_v vs inv_v A: 0;  reciprocity failures: 0
+  15a4  x(x^2+14x+625):  beta = (x(P), x(Q)),  A = (q(x), q(t)) with q = f/u
+     48 rational pairs over 10 twists, 200 place evaluations;  mismatches beta_v vs inv_v A: 0;  reciprocity failures: 0
+
+  15a1  (x-17)(x-1)(x+8):  beta = (c_1(P), c_3(Q))
+     156 rational pairs over 8 twists, 736 place evaluations;  mismatches beta_v vs inv_v A: 0;  reciprocity failures: 0
+  15a1, transpose      :  beta = (c_3(P), c_1(Q))
+     156 rational pairs over 8 twists, 736 place evaluations;  mismatches beta_v vs inv_v A: 0;  reciprocity failures: 0
+  15a1, untwisted pair :  beta = (c_1(P), c_2(Q))
+     156 rational pairs over 8 twists, 736 place evaluations;  mismatches beta_v vs inv_v A: 0;  reciprocity failures: 0
+  x(x-1)(x-4)          :  beta = (c_1(P), c_3(Q))
+     80 rational pairs over 7 twists, 260 place evaluations;  mismatches beta_v vs inv_v A: 0;  reciprocity failures: 0
+
+### azumaya finished
+gp -q -s 2000000000 < azumaya.gp  0.04s user 0.00s system 95% cpu 0.041 total
