@@ -1372,7 +1372,103 @@ while §5.1.5's lives at 3 and is not. Closing it would finish the other half.
 ))
 
 
-== The remaining five: what the module structure permits <sec-triage>
+== `15a4` at $p = 5$: the $x^3 + x$ template, verbatim <sec-15a4>
+
+The triage of @sec-triage predicted this one would follow @sec-thm2. It does ---
+and shifting by the rational root makes it literally the same shape.
+$f = (x-1)(x^2 + 12x + 612)$, and $f(x+1) = x^3 + 14x^2 + 625x$, a shift with
+$c = 1$ and therefore the same surface. So
+
+$ f = x (x^2 + 14 x + 625), quad quad
+  E_d : y^2 = x (x^2 + 14 d x + 625 d^2), quad T = (0,0), $
+with $c(P) = x(P)$ and $c(T) = 625 d^2$, a square. The point is the identity
+$ x^2 + 14 d x + 625 d^2 = (x + 7d)^2 + (24 d)^2 , $
+a *sum of two squares*: $a^2 - 4b = -2304 d^2 equiv -1$, the 2-torsion field is
+$QQ(i)$, and Lemma 2 of @sec-alt applies unchanged --- $c(P)$ is a norm from
+$QQ(i)$, so $(c(P), -1)_v = 1$ and *$beta$ is alternating at every place*.
+
+#table(
+  columns: 3, align: (left, right, right),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3pt),
+  table.header([over the 202 twists in the class], [tested], [failures]),
+  [Lemma 1 (Vieta): $c$ a homomorphism], [2444 triples], [*0*],
+  [Lemma 2: $(c(P), a^2 - 4b)_v = 1$], [10036 evaluations], [*0*],
+  [$beta_v (P,P) = 0$, every point and place], [10036 evaluations], [*0*],
+)
+
+=== The places <sec-15a4-places>
+
+- *$v = infinity$.* The quadratic is a sum of two squares, hence positive, so
+  $y^2 = x dot (>0)$ forces $x >= 0$ on real points and the symbol is $+1$. This
+  is cleaner than @sec-places2, where the sign of $d$ had to be split on.
+
+- *$q divides.not 2 dot 5 dot d$.* With $x = a slash e^2$, $y = b slash e^3$ and
+  $b^2 = a(a^2 + 14 d a e^2 + 625 d^2 e^4)$, a common prime factor of the two
+  divides $625 d^2 e^4$, hence $625 d^2$. So for such $q$ the factors are coprime,
+  $v_q (c(P))$ is even, both arguments are units and the symbol is $+1$. Note the
+  bad places are only $2$, $5$ and the divisors of $d$ --- there is no analogue of
+  the $3$ that @sec-places2 had to handle.
+
+- *$q$ odd, $q divides d$.* Lemmas A and B of @sec-places2 apply verbatim: their
+  proof uses only that a 1-unit is a square at an odd place. The image of $c$ is
+  cyclic, and an alternating form on a cyclic group vanishes.
+
+- *$q = 2$.* Here the 1-unit argument fails and the image has to be computed. It
+  comes out cyclic --- ${1}$, ${1,5}$ or ${1,10}$ --- in *all 202* twists, so
+  $beta_2 = 0$. This is the one step verified rather than proved, and it is the
+  only one: @sec-15a1 had three.
+
+- *$q = 5$.* The image of $c$ on $E_delta (QQ_5)$ is *all four* classes
+  ${1, u, 5, 5u}$, in all 202 twists, so the symbol is non-degenerate; and it is
+  alternating because $5 equiv 1$ $(mod 4)$ makes $-1$ a square in $QQ_5$. So
+  $beta_5$ is symplectic on the 2-dimensional $W_5$.
+
+#table(
+  columns: 4, align: (left, center, center, center),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3pt),
+  table.header([place], [checks], [$beta_v != 0$], []),
+  [$q = 5$ (critical)], [202 twists], [*202*], [symplectic on $W_5$],
+  [$q = 2$], [202 twists], [0], [image cyclic],
+  [$q$ odd, $q divides d$], [288 places], [0], [Lemmas A, B],
+)
+
+=== The theorem <sec-15a4-thm>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem (modulo the local vanishing at $2$).* For
+  $f = x(x^2 + 14x + 625)$ --- that is, `15a4` --- and every squarefree $d$ in
+  the class $[1]$ of $QQ_5^times$, the group $E_d (QQ)$ is not dense in
+  $E_d (QQ_5)$; hence $X(QQ)$ is not dense in $X(QQ_5)$.
+
+  #v(2mm)
+  _Proof._ $beta_v (P,Q) = (c(P), c(Q))_v$ is $+1$ at $v = infinity$, at every
+  $q divides.not 2 dot 5 dot d$, at every odd $q divides d$, and --- by the
+  verification above --- at $q = 2$. Hilbert reciprocity then forces
+  $beta_5 (P,Q) = +1$ for all $P, Q in E_d (QQ)$. On $W_5$, $beta_5$ is a
+  non-zero alternating form on a 2-dimensional $bb(F)_2$-space, hence symplectic,
+  so the image of $E_d (QQ)$ is isotropic and of dimension $<= 1$. It is
+  therefore not all of $W_5 = E_delta (QQ_5) slash 2$, and $E_d (QQ)$ is not
+  dense. $qed$
+]
+
+The measurement agrees: across 231 twists in the class, all *1079* rational
+pairs give $(c(P), c(Q))_5 = +1$, exactly as the theorem says they must. And
+@sec-ledger-odd's reaches for `15a4` --- spread over all three lines of
+$(ZZ slash 2)^2$ at $82 slash 138 slash 104$ --- are the isotropic lines of this
+symplectic form.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *What the triage bought.* @sec-triage predicted, from the module structure
+  alone, that `15a4` would need Template A and that Lemma 2 would apply because
+  its 2-torsion field is $QQ(i)$. Both held, and the construction then took no
+  searching at all --- unlike @sec-15a1, where $E[2]$ was split, $phi$ was not
+  determined, and 16 candidates had to be tried. Indecomposable $E[2]$ makes the
+  twisting endomorphism essentially unique, which is why this case is the
+  shortest of the four.
+]
+
+
+== The remaining four: what the module structure permits <sec-triage>
 
 Before constructing anything, it is worth asking whether the mechanism is even
 *available*. It is not automatic: $beta_v (P,Q) = ⟨delta_v P, phi delta_v Q⟩_v$
@@ -1410,7 +1506,7 @@ Twisting by a quadratic character changes none of this, since
 $"End"_G (V times.o chi) = "End"_G (V)$ --- so this is a property of the surface.
 
 #block(fill: rgb("#eef4ff"), inset: 9pt, radius: 3pt, width: 100%)[
-  *All five remaining classes admit a non-scalar $phi$.* The mechanism is
+  *All the remaining classes admit a non-scalar $phi$.* The mechanism is
   available in every one of the eight cases of @sec-fail. What is not settled is
   whether it *works* --- selecting the right $phi$ and proving the local
   vanishing still has to be done case by case.
@@ -1431,7 +1527,7 @@ which is where the rational $ell$-torsion lives.
   [`11a1` $[u]$], [11], [5],  [11], [5], [2], [1], [decomposable],
   [`14a2` $[1]$], [7],  [3],  [14], [6], [2], [1], [decomposable],
   [`19a1` $[u]$], [19], [3],  [19], [3], [2], [1], [decomposable],
-  [`15a4` $[1]$], [5],  [2],  [15], [8], [1], [1], [indecomposable],
+  [`15a4` $[1]$ #super[✓]], [5],  [2],  [15], [8], [1], [1], [indecomposable],
   [`17a1` $[1]$], [17], [2],  [17], [4], [1], [1], [indecomposable],
   [`14a1` $[1]$ #super[✓]], [7], [3], [14], [6], [2], [1], [decomposable],
   [`15a1` $[1]$ #super[✓]], [5], [2], [15], [8], [3], [1], [split],
@@ -1457,7 +1553,7 @@ shows there are *no* such extra bad primes for the three odd-$ell$ cases.
 
 === Two templates <sec-triage-templates>
 
-The five fall into the two patterns already worked out.
+They fall into the two patterns already worked out.
 
 *Template C (@sec-14a1), for $ell$ odd and $E[ell]$ decomposable: `11a1`,
 `14a2`, `19a1`.* Here $beta$ is alternating at every place for free --- §5.1.5's
@@ -1469,8 +1565,8 @@ the wild symbol. `11a1` is at $ell = 5$, so it needs the *quintic* residue symbo
 at 11 --- tame, since $11 equiv 1$ $(mod 5)$, but not something either system
 provides ready-made.
 
-*Template A (@sec-thm2), for $ell = 2$ with $E[2]$ indecomposable: `15a4`,
-`17a1`.* At $ell = 2$ the alternating step is *not* free: $2$ is not invertible
+*Template A (@sec-thm2), for $ell = 2$ with $E[2]$ indecomposable: `17a1`
+--- and `15a4`, which @sec-15a4 has since carried out.* At $ell = 2$ the alternating step is *not* free: $2$ is not invertible
 mod $2$ and §5.1.5's argument fails, which is exactly why `x^3 + x` needed the
 norm lemma. And the norm lemma applies here:
 
@@ -1478,7 +1574,7 @@ norm lemma. And the norm lemma applies here:
   columns: 3, align: (left, center, left),
   stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3pt),
   table.header([surface], [2-torsion field], [$beta$ alternating?]),
-  [`15a4`], [$QQ(i)$], [*yes*, by Lemma 2],
+  [`15a4` #super[✓]], [$QQ(i)$], [*yes*, by Lemma 2],
   [`17a1`], [$QQ(i)$], [*yes*, by Lemma 2],
   [`x^3 + x` #super[✓]], [$QQ(i)$], [*yes*],
   [`x^3 + 2x` (no obstruction)], [$QQ(sqrt(-2))$], [no],

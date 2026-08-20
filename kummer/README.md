@@ -849,7 +849,58 @@ not the critical one.
 | `15a1` (§6.1) | 2 | 5 | split over Q | local vanishing verified |
 | `14a1` (§6.2) | 3 | 7 -- **tame** | decomposable | complete for half the class |
 
-### The remaining five: what the module structure permits (document §6.3)
+### 15a4 at p = 5: the x^3+x template, verbatim (document §6.3)
+
+The triage predicted this would follow §5.5.4, and it does -- shifting by the
+rational root makes it literally the same shape.
+`f = (x-1)(x^2+12x+612)` and `f(x+1) = x^3+14x^2+625x`, a shift with `c = 1`, so
+the same surface:
+
+    f = x(x^2 + 14x + 625),   E_d : y^2 = x(x^2 + 14dx + 625d^2),  T = (0,0)
+
+with `c(P) = x(P)` and `c(T) = 625d^2`, a square. The point is
+
+    x^2 + 14dx + 625d^2 = (x+7d)^2 + (24d)^2
+
+-- a **sum of two squares**. So `a^2-4b = -2304d^2 = -1` mod squares, the
+2-torsion field is `Q(i)`, Lemma 2 applies unchanged, and **beta is alternating
+at every place**. Over the 202 twists in the class: Lemma 1 on 2444 triples,
+Lemma 2 on 10036 evaluations, `beta_v(P,P) = 0` on 10036 -- zero failures each.
+
+**The places.** `v = inf`: the quadratic is a sum of two squares hence positive,
+so `x >= 0` on real points -- cleaner than `x^3+x`, no sign case-split.
+`q` outside `{2,5}` and prime to `d`: a common factor of `a` and
+`a^2+14dae^2+625d^2e^4` divides `625d^2`, so `v_q(c)` is even and both arguments
+are units. *The bad places are only 2, 5 and `q | d` -- no analogue of the 3
+that `x^3+x` had.* Odd `q | d`: Lemmas A and B verbatim (their proof only uses
+that a 1-unit is a square at an odd place). `q = 2`: the 1-unit argument fails,
+so the image is computed -- cyclic (`{1}`, `{1,5}` or `{1,10}`) in **all 202**
+twists. `q = 5`: the image is **all four** classes, so the symbol is
+non-degenerate, and alternating since `5 = 1 mod 4` makes `-1` a square.
+
+| place | checks | beta_v != 0 | |
+|---|---|---|---|
+| q = 5 (critical) | 202 twists | **202** | symplectic on W_5 |
+| q = 2 | 202 twists | 0 | image cyclic |
+| q odd, q \| d | 288 places | 0 | Lemmas A, B |
+
+```
+homtest([14,625,0], 11, 6);  normtest([14,625,0], 11, 100);
+nzbeta(cimagep([14,625,0], 11, 5, 40, 6, 50), 5);   /* 1 */
+nzbeta(cimagep([14,625,0], 11, 2, 40, 8, 50), 2);   /* 0 */
+```
+
+> *Theorem* (modulo the local vanishing at 2): for `f = x(x^2+14x+625)` and
+> every squarefree `d` in the class `[1]` of `Q_5`, `E_d(Q)` is not dense in
+> `E_d(Q_5)`; hence `X(Q)` is not dense in `X(Q_5)`.
+
+Across 231 twists, all **1079** rational pairs give `(c(P),c(Q))_5 = +1`, as the
+theorem requires; and §3.3.1's reaches for 15a4, spread 82/138/104 over the three
+lines, are the isotropic lines of this symplectic form. **One** step is verified
+rather than proved here, against three for 15a1 -- indecomposable `E[2]` makes
+phi essentially unique, so no search was needed at all.
+
+### The remaining four: what the module structure permits (document §6.4)
 
 Before constructing anything, ask whether the mechanism is *available*: it is
 not automatic. `beta_v(P,Q) = <delta_v P, phi delta_v Q>` is useful only when
@@ -876,7 +927,7 @@ pairingpossible("11a1", [-11,-1,-83], 5);
 triagepair("11a1", [-11,-1,-83], 11, 1, 5);
 ```
 
-> **All five remaining classes admit a non-scalar phi** -- the mechanism is
+> **All the remaining classes admit a non-scalar phi** -- the mechanism is
 > available in every one of the eight cases of §3.3. What is *not* settled is
 > whether it fires: selecting the right phi and proving the local vanishing
 > still has to be done case by case.
@@ -890,7 +941,7 @@ minimal quadratic twist -- that is where the rational `l`-torsion lives.
 | 11a1 [u] | 11 | 5 | 11 | 5 | 2 | 1 | decomposable |
 | 14a2 [1] | 7 | 3 | 14 | 6 | 2 | 1 | decomposable |
 | 19a1 [u] | 19 | 3 | 19 | 3 | 2 | 1 | decomposable |
-| 15a4 [1] | 5 | 2 | 15 | 8 | 1 | 1 | indecomposable |
+| 15a4 [1] done | 5 | 2 | 15 | 8 | 1 | 1 | indecomposable |
 | 17a1 [1] | 17 | 2 | 17 | 4 | 1 | 1 | indecomposable |
 | 14a1 [1] done | 7 | 3 | 14 | 6 | 2 | 1 | decomposable |
 | 15a1 [1] done | 5 | 2 | 15 | 8 | 3 | 1 | split |
@@ -910,7 +961,8 @@ such extra bad primes for the three odd-`l` cases.
   through exactly as 14a1 did. `11a1` is at `l = 5`, so it needs the **quintic**
   residue symbol at 11 -- tame, since `11 = 1 mod 5`, but not something either
   system provides.
-* *Template A (§5.5.4), l = 2 with E[2] indecomposable*: `15a4`, `17a1`. Here
+* *Template A (§5.5.4), l = 2 with E[2] indecomposable*: `17a1`, and `15a4`
+  which §6.3 has since carried out. Here
   the alternating step is not free (2 is not invertible mod 2). But the norm
   lemma applies: **both have 2-torsion field `Q(i)`**, so `(c(P),-1)_v = 1` and
   beta is alternating for the same reason as `x^3+x`.
