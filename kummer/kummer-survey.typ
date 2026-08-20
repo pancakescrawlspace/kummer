@@ -1596,6 +1596,49 @@ line is isotropic there, so the only content is that dimension 2 is unreachable.
   $E^0$. For `11a1` both fail to, and the pairing exists.
 ]
 
+=== A third check on §5.1.5's input <sec-magma>
+
+That same input --- $beta_3 equiv.not 0$ for $f = x^3 - 2$, i.e. that both dual
+3-isogeny images lie in $E_1 (QQ_3)$ --- has now been confirmed a third time, in
+Magma, by a different route from the other two. The companion notes' PARI check
+built the duals by hand; Sage's `verify-dual.sage` constructed $QQ_3$-points and
+tested membership; this evaluates the dual isogeny's *rational maps*
+`IsogenyMapPhi` / `IsogenyMapPsi` at 3-adic $x$-coordinates and reads off
+$v_3 (x(hat(phi) P'))$, constructing no points at all.
+
+#align(center, table(
+  columns: 5, align: (right, center, center, right, center),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3pt),
+  table.header([$d$], [Kodaira at 3], [$c_3$], [points of $E'(QQ_3)$],
+               [outside $E_1$]),
+  [$-3$],  [$"IV"^*$], [3], [244 / 20], [*0 / 0*],
+  [$6$],   [$"IV"^*$], [3], [244 / 20], [*0 / 0*],
+  [$-21$], [$"IV"^*$], [3], [244 / 20], [*0 / 0*],
+  [$87$],  [$"IV"^*$], [3], [244 / 20], [*0 / 0*],
+)) 
+
+#v(2mm)
+
+(The two counts are the two kernels, $x$ and $x - 2d$; the difference is only how
+many sampled $x$-coordinates happen to give points.) Magma also independently
+returns $"IV"^*$ and $c_3 = 3$, the labels Sage corrected in the companion notes.
+
+*Why this is more than a sample.* The image of
+$hat(phi) : E'(QQ_3) -> A = E(QQ_3) slash E_1$ is a *subgroup* of $A$, and
+$\#A = M = 9$. If it were non-trivial its kernel would have index at least 3, so
+at least two thirds of $E'(QQ_3)$ would land outside $E_1$ --- observing none of
+244 is a structural zero, not a near miss. The one caveat is that points with
+$v_3 (x) < 0$ lie in $E'_1$ and map into $E_1$ automatically, so they test
+nothing; the sample's informative part is the roughly 180 with $v_3 (x) >= 0$,
+which do lie outside $E'_1$.
+
+*What would make it a proof.* $hat(phi)(E'_1) subset.eq E_1$, so the map factors
+through the *finite* group $A' = E'(QQ_3) slash E'_1$ --- an exhaustive check
+over $\#A'$ cosets, not a sample. Since all $d$ in a square class give
+$QQ_3$-isomorphic curves, one such check settles the whole class, which is what
+§5.1.5 needs. That is a short computation and is not done here.
+
+
 
 == The remaining three: what the module structure permits <sec-triage>
 

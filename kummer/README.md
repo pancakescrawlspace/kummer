@@ -958,6 +958,68 @@ reduction it is free, since `W_p` is then forced to be `H^1` of the Tate `mu_l`:
 the mechanism fires iff the Tate `mu_l` is neither `C_1` nor `C_2`, i.e. iff
 neither global subgroup meets `E^0`.
 
+### A third check on §5.1.5's input (document §6.4.1)
+
+`beta_3 != 0` for `x^3-2` -- i.e. that both dual 3-isogeny images lie in
+`E_1(Q_3)` -- confirmed a third time, in Magma, by a different route: the PARI
+check built the duals by hand, `verify-dual.sage` constructed `Q_3`-points and
+tested membership, and this evaluates the dual isogeny's *rational maps*
+(`IsogenyMapPhi` / `IsogenyMapPsi`) at 3-adic x-coordinates, constructing no
+points at all.
+
+```
+Qx<x> := PolynomialRing(Rationals());
+K := pAdicField(3, 200);
+for d in [-3, 6, -21, 87] do
+  E := EllipticCurve([0,0,0,0,-2*d^3]);
+  printf "\nd = %o   Kodaira at 3 = %o   c_3 = %o\n",
+         d, KodairaSymbol(E,3), TamagawaNumber(E,3);
+  for ker in [x, x - 2*d] do
+    Ep, phi := IsogenyFromKernel(E, ker);
+    ph  := DualIsogeny(phi);
+    num := IsogenyMapPhi(ph);  den := IsogenyMapPsi(ph);
+    a := aInvariants(Ep);  A := K!a[4];  B := K!a[5];
+    tot := 0; bad := 0;
+    for n in [-8..30] do
+      for u in [1,2,4,5,7,8,10,11] do
+        x0 := K!u * K!3^n;
+        v  := x0^3 + A*x0 + B;
+        if v ne 0 and IsSquare(v) then
+          d0 := Evaluate(ChangeRing(den, K), x0);
+          if d0 ne 0 then
+            X := Evaluate(ChangeRing(num, K), x0) / d0^2;
+            tot +:= 1;
+            if X ne 0 and Valuation(X) ge 0 then bad +:= 1; end if;
+          end if;
+        end if;
+      end for;
+    end for;
+    printf "  kernel %o : %o points of E'(Q_3), %o outside E_1\n", ker, tot, bad;
+  end for;
+end for;
+```
+
+| d | Kodaira at 3 | c_3 | points of E'(Q_3) | outside E_1 |
+|---|---|---|---|---|
+| -3 | IV* | 3 | 244 / 20 | **0 / 0** |
+| 6 | IV* | 3 | 244 / 20 | **0 / 0** |
+| -21 | IV* | 3 | 244 / 20 | **0 / 0** |
+| 87 | IV* | 3 | 244 / 20 | **0 / 0** |
+
+(The two counts are the two kernels `x` and `x-2d`.) Magma also independently
+returns `IV*` and `c_3 = 3`, the labels Sage corrected.
+
+**More than a sample.** The image of `phihat : E'(Q_3) -> A = E(Q_3)/E_1` is a
+*subgroup*, and `#A = M = 9`; if it were non-trivial its kernel would have index
+at least 3, so at least two thirds of `E'(Q_3)` would land outside `E_1`. Zero of
+244 is a structural zero. Caveat: points with `v_3(x) < 0` lie in `E'_1` and map
+into `E_1` for free, so the informative part is the ~180 with `v_3(x) >= 0`.
+
+**What would finish it.** `phihat(E'_1)` is inside `E_1`, so the map factors
+through the *finite* `A' = E'(Q_3)/E'_1` -- an exhaustive check over `#A'`
+cosets rather than a sample, and one such check settles the whole square class
+since all `d` in a class give `Q_3`-isomorphic curves. Short, and not done here.
+
 ### The remaining three: what the module structure permits (document §6.5)
 
 Before constructing anything, ask whether the mechanism is *available*: it is
