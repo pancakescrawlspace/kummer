@@ -1486,10 +1486,39 @@ $C_i$-component of $delta_3$; and $ker alpha_i$ is the image of the correspondin
 Both dual images were computed to be exactly $E_1 = 3 E_delta (QQ_3)$, i.e. *zero* in $W_3$. So
 both intersections vanish, $W_3$ is not $phi$-stable, and $beta_3 equiv.not 0$. This is one local
 computation, valid for the whole class, since all $d$ in a square class give $QQ_3$-isomorphic
-curves; it was checked for eight twists as a consistency test.
+curves; it was checked for eight twists as a consistency test, and is settled outright below.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *Theorem (modulo the local computation of $beta_3 equiv.not 0$).* For $f = x^3 - 2$ and *every*
+  *The dual images, exhaustively.* An isogeny extends to the Néron models, so
+  $hat(phi)(E'_1) subset.eq E_1$; therefore $hat(phi)$ induces a map of the *finite* groups
+  $A' = E'(QQ_3) slash E'_1 --> A = E(QQ_3) slash E_1$, and checking that map is a finite
+  computation rather than a search. Four facts settle it.
+
+  #v(1.5mm)
+  - $\#E[3](QQ_3) = 3$: of the two kernels only $x = 2d$ is $QQ_3$-rational, that being $T_d$.
+    Hence $\#E(QQ_3) slash 3E = 3 dot 3 = 9$.
+  - $\#A = M = 9$, and four distinct classes outside $E_1$ are all killed by 3, so
+    $\#A[3] >= 5 > 3$. So $A$ is not cyclic: $A tilde.equiv (ZZ slash 3)^2$, and therefore
+    $3 E(QQ_3) = E_1$ --- both have index 9.
+  - $\#A' = M' = 3$, which is *prime*: any single class outside $E'_1$ generates $A'$.
+  - For such a class, $v_3 (x(hat(phi) P')) = -2 < 0$, so $hat(phi) P' in E_1$.
+
+  #v(1.5mm)
+  A homomorphism that kills a generator is zero, so
+  $hat(phi)(E'(QQ_3)) subset.eq E_1 = 3E(QQ_3)$ for *both* 3-isogenies: the two dual images are
+  zero in $W_3$, both intersections vanish, and $beta_3 equiv.not 0$.
+
+  #v(2mm)
+  The primality of $\#A'$ is what makes a single evaluation enough. It is the same order-3
+  observation recorded in the status note below as blocking a structural shortcut --- true, a map
+  $ZZ slash 3 -> (ZZ slash 3)^2$ need not vanish for order reasons, but a cyclic source of prime
+  order is exactly what turns one point into an exhaustive check. Both kernels and
+  $d = -3, 6, -21, 87, -30, 69$ give the same numbers; one $d$ suffices, since all $d$ in a class
+  give $QQ_3$-isomorphic curves.
+]
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem.* For $f = x^3 - 2$ and *every*
   squarefree $d$ in the class $[u dot 3]$, the group $E_d (QQ)$ is not dense in $E_d (QQ_3)$.
   Consequently, by the equivalence of @sec-criterion, $X(QQ)$ is *not* dense in $X(QQ_3)$.
 
@@ -1510,10 +1539,18 @@ pursuing: the mechanism, not the class, is what does the work. Constructing
 $cal(A) in "Br"(X)$ explicitly remains a separate and more ambitious question.
 
 #block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
-  *Status.* The one input not verified symbolically is $beta_3 equiv.not 0$, i.e. the failure of
-  $phi$-stability of $W_3$; it rests on the computation that both dual-isogeny images equal $E_1$.
-  Everything else is standard: Tate local duality, isotropy of the Kummer image, reciprocity for
-  the sum of local invariants. The argument should be checked by hand before being relied on.
+  *Status.* The argument is complete. What was for a long time its one unverified input ---
+  $beta_3 equiv.not 0$, i.e. the failure of $phi$-stability of $W_3$ --- is settled by the
+  exhaustive coset computation above, whose only imported ingredient is the standard fact that an
+  isogeny carries $E'_1$ into $E_1$. Everything else is standard too: Tate local duality, isotropy
+  of the Kummer image, reciprocity for the sum of local invariants. The argument should still be
+  checked by hand before being relied on.
+
+  #v(2mm)
+  Before that, the input had been confirmed numerically three times, in three systems and by three
+  different routes. The three are kept below, since they were what gave confidence that the
+  statement was true while it was still unproved, and the last of them is what prompted looking
+  for a proof.
 
   #v(2mm)
   *Independently verified in Sage 10.9.* The PARI computation built the dual isogenies by hand
@@ -1521,15 +1558,61 @@ $cal(A) in "Br"(X)$ explicitly remains a separate and more ambitious question.
   re-run using Sage's `EllipticCurveIsogeny.dual()` and `rational_maps()`. Sage reproduces the
   same codomains, confirms $hat(phi)_i compose phi_i = [3]$, and finds *no* $QQ_3$-point of either
   codomain whose image leaves $E_1$: 3376 points tested across $d = -3, 6, -21, 87$, zero
-  outside. A structural shortcut is not available --- the induced map
+  outside. A structural shortcut looked unavailable --- the induced map
   $E' (QQ_3) slash E'_1 -> E (QQ_3) slash E_1$ has source of order 3, so it is not forced to
-  vanish for order reasons.
+  vanish for order reasons. That is right as far as it goes, but the same order-3 fact is what
+  makes the one-point check above exhaustive.
 
   #v(1mm)
   Sage also corrected the Kodaira labels in the table above, which read $I I^*$ in an earlier
   draft: PARI's code $-4$ is $I V^*$, not $I I^*$ (its starred types mirror the unstarred ones),
   and $I I^*$ is in any case incompatible with $c_3 = 3$. The mislabelling was cosmetic --- every
   computation used the numeric $c_p$ and $M$, never the symbol.
+
+  #v(2mm)
+  *And in Magma.* A third system and a third route: rather than construct $QQ_3$-points at all,
+  evaluate the dual isogeny's rational maps `IsogenyMapPhi` and `IsogenyMapPsi` at 3-adic
+  $x$-coordinates and read off the valuation of $x(hat(phi) P')$. For $d = -3, 6, -21, 87$ and both
+  kernels: 244 and 20 points of $E'(QQ_3)$, *none* leaving $E_1$. Magma independently returns
+  $I V^*$ and $c_3 = 3$ as well, confirming Sage's correction.
+
+  ```
+  Qx<x> := PolynomialRing(Rationals());
+  K := pAdicField(3, 200);
+  for d in [-3, 6, -21, 87] do
+    E := EllipticCurve([0,0,0,0,-2*d^3]);
+    printf "\nd = %o   Kodaira at 3 = %o   c_3 = %o\n",
+           d, KodairaSymbol(E,3), TamagawaNumber(E,3);
+    for ker in [x, x - 2*d] do
+      Ep, phi := IsogenyFromKernel(E, ker);
+      ph  := DualIsogeny(phi);
+      num := IsogenyMapPhi(ph);  den := IsogenyMapPsi(ph);
+      a := aInvariants(Ep);  A := K!a[4];  B := K!a[5];
+      tot := 0; bad := 0;
+      for n in [-8..30] do
+        for u in [1,2,4,5,7,8,10,11] do
+          x0 := K!u * K!3^n;
+          v  := x0^3 + A*x0 + B;
+          if v ne 0 and IsSquare(v) then
+            d0 := Evaluate(ChangeRing(den, K), x0);
+            if d0 ne 0 then
+              X := Evaluate(ChangeRing(num, K), x0) / d0^2;
+              tot +:= 1;
+              if X ne 0 and Valuation(X) ge 0 then bad +:= 1; end if;
+            end if;
+          end if;
+        end for;
+      end for;
+      printf "  kernel %o : %o points of E'(Q_3), %o outside E_1\n", ker, tot, bad;
+    end for;
+  end for;
+  ```
+
+  #v(1mm)
+  This route is superseded by the exhaustive argument above, and is kept because it is the
+  cleanest of the three to re-run: it touches no point construction, only polynomial evaluation.
+  It is also what prompted the exhaustive argument --- asking how much a clean sample was really
+  worth led to computing $\#A' = M'$, and the answer, 3, made the rest immediate.
 ]
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[

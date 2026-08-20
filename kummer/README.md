@@ -24,7 +24,7 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `p2.gp` | the `p = 2` variant: `densegroup2`, `M2val`, `sqclass2` (8 classes), `report2`. |
 | `cover2.gp` | independent verification for odd `p`: `coverage(A,B,p,k,ds,NB)` checks that every genuine reduction mod `p^k` of a point of `X(Z_p)` with `y` a unit is hit by an honest rational point. |
 | `families.gp` | enumerates all quadratic-twist families with `E[3]` decomposable and tests the denominator-of-`j` criterion (document §5.2.3): `families`, `testfamily`, `sweepfamilies`. |
-| `verify-dual.sage` | independent Sage check of the one computational input to the §5.2.4 theorem (uses Sage's own `.dual()`); run under Docker, see below. |
+| `verify-dual.sage` | independent Sage check of the one computational input to the §5.1.5 theorem (uses Sage's own `.dual()`); run under Docker, see below. That input is now *proved* -- see below and document §5.1.5. |
 | `sadic.gp` | `S`-adic density (document §2.2): `Mstar`, `coprimeS`, `densefactorwise`, `denseS`, `reportS`; the level-2 product test `inE2p`, `Border`, `denseprod`, `reportSprod`, and the per-tuple search `tuplepart`, `tuplename`, `reportSprodk`, `reportSprodtuples`; and the rank dichotomy `torsdim`, `torsdimloc`, `gexactS` (exact) against `torsdimUB`, `gtop`, `triage` (bounds). |
 | `ledger.gp` | the ledger and star test at level 1 (document §2.3.1): `arenainit`, `reachmap`, `signact`, `ledgeradd`, `maskvec`, `startest`, `runledger`, `rungraded`. Reduction-agnostic arena (§2.3.4): `shortmodel`, `shortdata`, `cosetreps1`, `cosetclose`, `cosetidx`. Sweeps over all tuples (§2.3.6): `sweepgraded`, and the per-tuple search `rungradedk`, `sweeptuples` (on `tuplepart`/`tuplename` from `sadic.gp`); `showcert` for the certificate. |
 | `control.gp` | the control experiment for the `p = 3` open case (document §5.2.2): `armA`, `find3`, `armB`. |
@@ -1109,6 +1109,37 @@ such extra bad primes for the three odd-`l` cases.
 Suggestive rather than proved: of the four defective classes at `l = 2`, the
 three with `E[2]` indecomposable all have 2-torsion field `Q(i)` -- the condition
 making beta alternating -- while `x^3+2x`, which has no obstruction, does not.
+
+## beta_3 =/= 0 is now proved (document §5.1.5)
+
+The one input the §5.1.5 theorem rested on -- that both dual 3-isogeny images
+lie in `E_1(Q_3)`, equivalently that `W_3` is not phi-stable -- is settled, and
+the theorem there is no longer conditional.
+
+An isogeny extends to the Neron models, so `phihat(E'_1)` is inside `E_1` and
+phihat induces a map of the **finite** groups `A' = E'(Q_3)/E'_1 -> A =
+E(Q_3)/E_1`. Four facts settle that map:
+
+* `#E[3](Q_3) = 3` -- of the two kernels only `x = 2d` is `Q_3`-rational, that
+  being `T_d` -- so `#E(Q_3)/3E = 9`;
+* `#A = M = 9`, and four distinct classes outside `E_1` are all killed by 3, so
+  `#A[3] >= 5 > 3`: `A` is not cyclic, `A = (Z/3)^2`, and `3E(Q_3) = E_1`;
+* `#A' = M' = 3`, **prime**, so any single class outside `E'_1` generates `A'`;
+* for such a class, `v_3(x(phihat P')) = -2 < 0`, so `phihat P'` is in `E_1`.
+
+A homomorphism killing a generator is zero. The primality of `#A'` is what makes
+one evaluation enough -- it is the same order-3 observation the old status note
+recorded as *blocking* a structural shortcut, which is true but is also exactly
+what turns one point into an exhaustive check. Both kernels and
+`d = -3, 6, -21, 87, -30, 69` agree; one `d` suffices, since all `d` in a class
+give `Q_3`-isomorphic curves.
+
+Raw output in `results/survey-beta3-exhaustive.txt`; the machinery (`ppointsE`,
+`firstout`, `isogapply`) is in `survey.gp`. Before this the input had been
+confirmed numerically three times -- PARI, Sage (`verify-dual.sage`, 3376
+points) and Magma (rational maps of the dual, no point construction at all,
+244 + 20 points) -- and all three are kept in §5.1.5, the last being what
+prompted looking for a proof.
 
 ## The Sage cross-check
 

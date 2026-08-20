@@ -1253,9 +1253,10 @@ the *tame cubic Hilbert symbol*.
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   This is the point of difference with §5.1.5. There the critical place *was*
   $ell = 3$, where the cubic symbol is wildly ramified and needs an explicit
-  reciprocity law --- which is why that document leaves
-  $beta_3 equiv.not 0$ unverified. Here the critical place is $7$, the symbol is
-  tame, and the tame formula
+  reciprocity law --- which is why that document long left
+  $beta_3 equiv.not 0$ unproved (@sec-magma closes it, but by a coset count, not
+  by evaluating a symbol). Here the critical place is $7$, the symbol is tame,
+  and the tame formula
   $(a,b)_v = ((-1)^(alpha beta) a^beta slash b^alpha)^((q-1) slash 3)$ evaluates
   it outright.
 ]
@@ -1363,7 +1364,7 @@ while §5.1.5's lives at 3 and is not. Closing it would finish the other half.
   stroke: 0.4pt + luma(170), inset: (x: 6pt, y: 3pt),
   table.header([case], [level], [critical place], [$E[ell]$], [status]),
   [$x^3 - 2$ (§5.1.5)], [3], [3 --- *wild*], [decomposable],
-    [$beta_3 equiv.not 0$ unverified],
+    [$beta_3 equiv.not 0$ closed in @sec-magma],
   [$x^3 + x$ (@sec-thm2)], [2], [2], [*indecomposable*], [complete],
   [`15a1` (@sec-15a1)], [2], [5], [split over $QQ$],
     [local vanishing verified],
@@ -1589,7 +1590,8 @@ line is isotropic there, so the only content is that dimension 2 is unreachable.
   *The lesson for the triage.* @sec-triage checked that a non-scalar $phi$
   exists. That is necessary but not sufficient: one also needs $W_p$ not to be
   $phi$-stable, which is a further *local* condition --- and it is exactly the
-  input §5.1.5 leaves unverified for $x^3 - 2$. At a place of multiplicative
+  input §5.1.5 leaves open for $x^3 - 2$, closed in @sec-magma. At a place of
+  multiplicative
   reduction it is decidable for free, because $W_p$ is then forced to be
   $H^1$ of the Tate $mu_ell$: the mechanism fires precisely when the Tate
   $mu_ell$ is neither $C_1$ nor $C_2$, i.e. when neither global subgroup meets
