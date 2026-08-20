@@ -1581,51 +1581,113 @@ $ ker alpha_i = hat(psi)_j (B_j (QQ_3)) slash 3E(QQ_3) space subset.eq space W_3
   quad quad j != i . $
 In particular $ker alpha_i = 0$ if and only if $hat(psi)_j (B_j (QQ_3)) subset.eq 3E(QQ_3)$.
 
-*Step 6: both dual images land in $3E(QQ_3)$.* By Steps 3--5 the claim has been reduced to a
-statement about two explicit isogenies, and it is finite.
+*Step 6: both dual images land in $3E(QQ_3)$.* By Steps 3--5 the claim is now a statement about
+two explicit isogenies. Before proving it, here are the curves; their reduction at 3 is where
+$\#A_i = 3$ comes from, and it is also the cheapest cross-check on the rest of the step.
+
+*The three curves.* Take $d = -3$; the other five $d$ tested behave identically
+(@sec-cm-beta3-remarks). Then $E = E_(-3) : y^2 = x^3 + 54$, and
+$ psi_3 = 3x (x + 6)(x^2 - 6x + 36) $
+has the two rational roots $x = 0$ and $x = 2d = -6$ --- hence the two Galois-stable lines. At
+$x = -6$ one has $y^2 = -162 = 81 dot (-2)$ with $-2 in (ZZ_3^times)^2$, so
+$C_1 = ⟨(-6, 9 sqrt(-2))⟩$ is $QQ_3$-rational, $C_1 tilde.equiv ZZ slash 3$; at $x = 0$ one has
+$y^2 = 54$ with $v_3 (54) = 3$ odd, so $C_2$ is not, and $C_2 tilde.equiv mu_3$ by the Weil
+pairing. Quotienting by each gives:
+
+#align(center, table(
+  columns: 7, align: (left, left, center, center, center, center, center),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([curve], [model minimal at 3], [Kodaira], [comps.],
+               [mult. 1], [$Phi$], [$c_3$]),
+  [$E$], [$y^2 = x^3 + 54$], [$"IV"^*$], [7], [3], [$ZZ slash 3$], [3],
+  [$B_1 = E slash C_1$], [$y^2 = x^3 - 1080 x + 13662$], [$"II"^*$], [9], [1], [$0$], [1],
+  [$B_2 = E slash C_2$], [$y^2 = x^3 - 2$], [$"II"$], [1], [1], [$0$], [1],
+))
+
+#v(2mm)
+
+All three reductions are *additive*, so $tilde(C)^"ns" (bb(F)_3) tilde.equiv bb(F)_3^+$ has order
+3 in every row and $M = c_3 dot 3$: thus $M = 9$ for $E$ --- as @sec-cm-resid already recorded ---
+and $M_1 = M_2 = 3$.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *A trap worth naming.* `ellisogeny` returns $y^2 = x^3 - 1458$ for $B_2$, which is *not*
+  minimal at 3: $1458 = 2 dot 3^6$, so $u = 3$ and the minimal model is $y^2 = x^3 - 2$ --- the
+  curve of the title, i.e. the member $d = 1$ of the family. Since $E_1$ and $N_i$ are defined by
+  $v_3 (x) < 0$ *on a minimal model*, the raw equation gives the wrong membership test. $B_1$ and
+  $E$ happen to come out minimal at 3 already for $d = -3$, but not for every $d$: at $d = 6$ all
+  three need a change of model.
+]
+
+*Why $\#A_i = 3$.* Kodaira types $"II"$ and $"II"^*$ both have *trivial component group* ---
+$"II"$ has a single component, and $"II"^*$ has nine of which exactly one has multiplicity 1 ---
+so $c_3 (B_i) = 1$ for both $i$. That is the statement that
+$B_i (QQ_3) = B_i^0 (QQ_3)$: *every* $QQ_3$-point of $B_i$ lies on the identity component, and
+none reduces to the singular point of the special fibre. Hence
+$ A_i = B_i (QQ_3) slash N_i tilde.equiv tilde(B_i)^"ns" (bb(F)_3) tilde.equiv ZZ slash 3 , $
+so $\#A_i = 3$ --- prime for a structural reason, not as the outcome of a count.
+
+*And why $E$ is not like that.* $"IV"^*$ has seven components, three of multiplicity 1, and
+$c_3 = 3$ says all three are rational. So $E(QQ_3)$ carries the full filtration
+$ E_1 subset.eq E_0 (QQ_3) subset.eq E(QQ_3), quad
+  E_0 (QQ_3) slash E_1 tilde.equiv bb(F)_3^+, quad
+  E(QQ_3) slash E_0 (QQ_3) tilde.equiv ZZ slash 3 , $
+which recovers $\#A = 9$ but leaves $A$ as either $ZZ slash 9$ or $(ZZ slash 3)^2$: an extension
+of $ZZ slash 3$ by $ZZ slash 3$ can be either, and no reduction datum decides it. That is exactly
+what half one has to settle, and it is why half one needs a point and not just a Kodaira symbol.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *To be shown:* $hat(psi)_i (B_i (QQ_3)) subset.eq 3 E(QQ_3)$ for $i = 1$ and $i = 2$.
 
   #v(2.5mm)
   The proof has two halves: that the subgroup $3E(QQ_3)$ *is* the kernel of reduction $E_1$, and
-  that each $hat(psi)_i$ lands in $E_1$. Only the second involves the isogenies; the first is a
-  count.
+  that each $hat(psi)_i$ lands in $E_1$. Only the second involves the isogenies.
 
   #v(2.5mm)
   *Half one: $3 E(QQ_3) = E_1$.* Of the two 3-torsion kernels only $x = 2d$ is $QQ_3$-rational ---
   that point being $T_d$ --- so $\#E[3](QQ_3) = 3$, and the local formula
   $\#E(K) slash n E(K) = \#E(K)[n] dot |n|_K^(-1)$ gives
-  $ \#E(QQ_3) slash 3E(QQ_3) = 3 dot 3 = 9 . $
-  Also $\#E(QQ_3) slash E_1 = M = 9$ (@sec-cm-resid). So $3E$ and $E_1$ have the *same index* in
-  $E(QQ_3)$, and it is enough to show that one contains the other.
+  $ \#E(QQ_3) slash 3E(QQ_3) = 3 dot 3 = 9 = \#E(QQ_3) slash E_1 . $
+  So $3E$ and $E_1$ have the *same index* in $E(QQ_3)$, and it is enough to show that one contains
+  the other.
 
   #v(1mm)
-  Write $A = E(QQ_3) slash E_1$, a group of order 9. Sampling $E(QQ_3)$ turns up four distinct
-  classes outside $E_1$, and $3P in E_1$ for a representative $P$ of each. Together with the
-  identity that is at least five elements of $A$ killed by 3, so $\#A[3] >= 5$; but $A[3]$ is a
-  subgroup of $A$, so $\#A[3]$ divides 9, and therefore $\#A[3] = 9$. Thus $A$ is killed by 3,
+  Write $A = E(QQ_3) slash E_1$ and $A_0 = E_0 (QQ_3) slash E_1 subset.eq A$. By the filtration
+  above, $A_0 tilde.equiv bb(F)_3^+$ is killed by 3 and $A slash A_0 tilde.equiv ZZ slash 3$. Take
+  any $P in E(QQ_3)$ with $P in.not E_0 (QQ_3)$; its class generates $A slash A_0$, so
+  $A = ⟨A_0, overline(P)⟩$. Evaluating at one such point --- any $P$ with
+  $x(P) equiv 3$ $(mod 27)$ will do --- gives $3P in E_1$, i.e. $overline(P)$ is killed by 3 too.
+  So the abelian group $A$ is generated by elements killed by 3 and is therefore killed by 3,
   which says $3E subset.eq E_1$; with equal indices, $3E = E_1$.
 
   #v(2.5mm)
   *Half two: $hat(psi)_i (B_i (QQ_3)) subset.eq E_1$.* An isogeny extends to the Néron models and
   hence carries the kernel of reduction into the kernel of reduction:
   $hat(psi)_i (N_i) subset.eq E_1$. So $hat(psi)_i$ induces a homomorphism of *finite* groups
-  $ overline(hat(psi)_i) : A_i := B_i (QQ_3) slash N_i --> A = E(QQ_3) slash E_1 . $
+  $ overline(hat(psi)_i) : A_i = B_i (QQ_3) slash N_i --> A = E(QQ_3) slash E_1 . $
   What this half asserts is exactly that $overline(hat(psi)_i)$ is the *zero map*: that statement
   concerns $\#A_i$ elements, so establishing it is a finite check, not a search over the infinite
   group $B_i (QQ_3)$.
 
   #v(1mm)
-  For both $i$ the computation gives $\#A_i = 3$. Being of *prime* order, $A_i$ is cyclic and
-  *any* class outside $N_i$ generates it. So pick a single $P_i in B_i (QQ_3)$ with
-  $P_i in.not N_i$. Evaluating the dual isogeny at it gives $v_3 (x(hat(psi)_i P_i)) = -2 < 0$,
-  so $hat(psi)_i P_i in E_1$. The homomorphism $overline(hat(psi)_i)$ therefore kills a generator
-  of its source and is zero, which is to say $hat(psi)_i (B_i (QQ_3)) subset.eq E_1$.
+  By the table, $\#A_i = 3$. Being of *prime* order, $A_i$ is cyclic and *any* class outside $N_i$
+  generates it. So pick a single $P_i in B_i (QQ_3)$ with $P_i in.not N_i$. Evaluating the dual
+  isogeny at it gives $v_3 (x(hat(psi)_i P_i)) = -2 < 0$, so $hat(psi)_i P_i in E_1$. The
+  homomorphism $overline(hat(psi)_i)$ therefore kills a generator of its source and is zero, which
+  is to say $hat(psi)_i (B_i (QQ_3)) subset.eq E_1$.
 
   #v(2.5mm)
   *Together.* $hat(psi)_i (B_i (QQ_3)) subset.eq E_1 = 3E(QQ_3)$ for $i = 1, 2$. $qed$
 ]
+
+*The reduction data as a cross-check.* Both halves make predictions about where sampled
+$QQ_3$-points fall, and `beta3.gp` checks them. Of 162 sampled points of $E(QQ_3)$: 108 in $E_1$,
+27 in $E_0 without E_1$, and 27 outside $E_0$ --- all three layers occupied, as $c_3 = 3$ requires,
+and every one of the 27 satisfies $3P in E_1$, not just the one half one uses. Of the sampled
+points of $B_1 (QQ_3)$ and $B_2 (QQ_3)$: *none* outside the identity component, which is the direct
+corroboration of $c_3 (B_i) = 1$. And the target curve `ellisogeny` produces for $hat(psi)_i$ has
+the same minimal model as $E$ in every case, confirming that the isogeny built from the kernel
+$psi_i (C_j)$ really does land back on $E$.
 
 Reading the steps back: both dual images lie in $3E(QQ_3)$ (Step 6), so
 $ker alpha_1 = ker alpha_2 = 0$ (Step 5), so $L_3 inter H_1 = L_3 inter H_2 = 0$ (Step 4), so
@@ -1633,24 +1695,30 @@ $L_3$ is not $phi_*$-stable (Steps 3 and 2), so $beta_3 equiv.not 0$ (Step 1). $
 
 ==== Three remarks on Step 6 <sec-cm-beta3-remarks>
 
-*Where the finiteness comes from.* The reduction to a single point is the primality of $\#A_i = 3$,
-and that is the same order-3 observation the status note below records as *blocking* a structural
-shortcut. Both readings are correct. A homomorphism $ZZ slash 3 -> (ZZ slash 3)^2$ need not vanish
-for order reasons, so the map is not zero automatically; but a cyclic source of prime order is
-also precisely what turns one evaluation into an exhaustive check.
+*Where the finiteness comes from.* The reduction to a single point in half two is the primality of
+$\#A_i = 3$, and that in turn is the triviality of the component group at $"II"$ and $"II"^*$ ---
+so it is a fact about the special fibre of $B_i$, not an accident of the sample. It is also the
+same order-3 observation the status note below records as *blocking* a structural shortcut, and
+both readings are correct: a homomorphism $ZZ slash 3 -> (ZZ slash 3)^2$ need not vanish for order
+reasons, so $overline(hat(psi)_i)$ is not zero automatically; but a cyclic source of prime order is
+exactly what turns one evaluation into an exhaustive check.
 
 *One twist settles the class.* All $d$ in a square class give $QQ_3$-isomorphic curves, so a
 single $d$ suffices. Both kernels and $d = -3, 6, -21, 87, -30, 69$ were run, with identical
-numbers throughout.
+results throughout: $E$ of type $"IV"^*$ with $c_3 = 3$, $B_1$ of type $"II"^*$ and $B_2$ of type
+$"II"$, both with $c_3 = 1$, and $v_3 (x(hat(psi)_i P_i)) = -2$ in all twelve cases. The equations
+change with $d$; the reduction data does not.
 
-*The computational inputs, and how they were checked.* Step 6 rests on three finite facts: that
-$\#E[3](QQ_3) = 3$, that $A$ has four classes outside $E_1$ with $3P in E_1$, and that
-$v_3 (x(hat(psi)_i P_i)) = -2$. Each was obtained three times independently --- by a PARI script
-that builds the duals by hand, by Sage's `verify-dual.sage`, which constructs $QQ_3$-points and
-tests membership, and by a Magma run that evaluates the dual isogenies' rational maps
-(`IsogenyMapPhi` / `IsogenyMapPsi`) at 3-adic $x$-coordinates and reads off the valuation,
-constructing no points at all. Magma also independently returned Kodaira type $"IV"^*$ and
-$c_3 = 3$, the labels @sec-cm-resid records.
+*The computational inputs, and how they were checked.* After the reduction data is in hand, Step 6
+rests on exactly three finite facts: that $\#E[3](QQ_3) = 3$; that some $P in.not E_0 (QQ_3)$ has
+$3P in E_1$; and that $v_3 (x(hat(psi)_i P_i)) = -2$ for some $P_i in.not N_i$. Each was obtained
+three times independently --- by a PARI script that builds the duals by hand, by Sage's
+`verify-dual.sage`, which constructs $QQ_3$-points and tests membership, and by a Magma run that
+evaluates the dual isogenies' rational maps (`IsogenyMapPhi` / `IsogenyMapPsi`) at 3-adic
+$x$-coordinates and reads off the valuation, constructing no points at all. Magma also
+independently returned Kodaira type $"IV"^*$ and $c_3 = 3$ for $E$, the labels @sec-cm-resid
+records. The table of curves, the Kodaira types of the $B_i$ and the layer census are produced by
+`beta3.gp`; its output is `results/survey-beta3-curves.txt`.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *Theorem.* For $f = x^3 - 2$ and *every*
