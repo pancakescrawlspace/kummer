@@ -4,80 +4,110 @@ E_d : y^2 = x^3 - 2d^3,  d in the class [u*3] at 3
 d = -3   E : y^2 = x^3 - 2d^3 = x^3 + 54
   E   minimal [0, 0, 0, 0, 54]  change [1, 0, 0, 0]   Kodaira IV*  c_3 = 3  M = c_3 * #Ens(F_3) = 3 * 3 = 9
       singular point of the reduction: [0, 0]   sampled points by layer [E_1, E_0\E_1, outside E_0]: [108, 27, 27]
-      P outside E_0 with x = 3 (mod 27):  3P in E_1 ? 1
+      T_d = (2d, sqrt(6d^3)):  3 T_d = O ? 1   in E_1 ? 0   in E_0 ? 0      v_3(disc) = 9 (< 12, so minimal at 3)
+      cross-check: P outside E_0 with x = 3 (mod 27) also has 3P in E_1 ? 1
   B_1 = E/C_1  (C_1 : x = -6)   raw [0, 0, 0, -1080, 13662]   minimal [0, 0, 0, -1080, 13662]   change [1, 0, 0, 0]
       Kodaira II*  c_3 = 1   M_1 = 1 * 3 = 3   singular point [0, 0]   layers [108, 27, 0]
       dual psihat_1 : B_1 -> [0, 0, 0, 0, 39366]   whose minimal model is [0, 0, 0, 0, 54]   = minimal model of E ? 1
+      ker psihat_1 = psi_1(C_2) at x = 18   Q_3-rational ? 0      #B_1[3](Q_3) roots of psi_3 in Q_3: 1 of which carrying a Q_3-point: 0
+      psi_1(E(Q_3)) outside N_1: 45 of 162 sampled points   => S_1 = psi_1(E(Q_3)) spans A_1 ? yes
       P_1 outside N_1 has x = 1 (mod 27);  v_3(x(psihat_1 P_1)) = -2   in E_1 ? 1
   B_2 = E/C_2  (C_2 : x = 0)   raw [0, 0, 0, 0, -1458]   minimal [0, 0, 0, 0, -2]   change [3, 0, 0, 0]
       Kodaira II  c_3 = 1   M_2 = 1 * 3 = 3   singular point [2, 0]   layers [108, 3240, 0]
       dual psihat_2 : B_2 -> [0, 0, 0, 0, 39366]   whose minimal model is [0, 0, 0, 0, 54]   = minimal model of E ? 1
+      ker psihat_2 = psi_2(C_1) at x = 0   Q_3-rational ? 1      #B_2[3](Q_3) roots of psi_3 in Q_3: 2 of which carrying a Q_3-point: 1
+      psi_2(E(Q_3)) outside N_2: 27 of 162 sampled points   => S_2 = psi_2(E(Q_3)) spans A_2 ? yes
       P_2 outside N_2 has x = 0 (mod 27);  v_3(x(psihat_2 P_2)) = -2   in E_1 ? 1
 
 d = 6   E : y^2 = x^3 - 2d^3 = x^3 + -432
   E   minimal [0, 0, 1, 0, -7]  change [2, 0, 0, 4]   Kodaira IV*  c_3 = 3  M = c_3 * #Ens(F_3) = 3 * 3 = 9
       singular point of the reduction: [0, 1]   sampled points by layer [E_1, E_0\E_1, outside E_0]: [108, 27, 27]
-      P outside E_0 with x = 3 (mod 27):  3P in E_1 ? 1
+      T_d = (2d, sqrt(6d^3)):  3 T_d = O ? 1   in E_1 ? 0   in E_0 ? 0      v_3(disc) = 9 (< 12, so minimal at 3)
+      cross-check: P outside E_0 with x = 3 (mod 27) also has 3P in E_1 ? 1
   B_1 = E/C_1  (C_1 : x = 12)   raw [0, 0, 0, -4320, -109296]   minimal [0, 0, 1, -270, -1708]   change [2, 0, 0, 4]
       Kodaira II*  c_3 = 1   M_1 = 1 * 3 = 3   singular point [0, 1]   layers [108, 27, 0]
       dual psihat_1 : B_1 -> [0, 0, 0, 0, -314928]   whose minimal model is [0, 0, 1, 0, -7]   = minimal model of E ? 1
+      ker psihat_1 = psi_1(C_2) at x = -36   Q_3-rational ? 0      #B_1[3](Q_3) roots of psi_3 in Q_3: 1 of which carrying a Q_3-point: 0
+      psi_1(E(Q_3)) outside N_1: 45 of 162 sampled points   => S_1 = psi_1(E(Q_3)) spans A_1 ? yes
       P_1 outside N_1 has x = 4 (mod 27);  v_3(x(psihat_1 P_1)) = -2   in E_1 ? 1
   B_2 = E/C_2  (C_2 : x = 0)   raw [0, 0, 0, 0, 11664]   minimal [0, 0, 1, 0, 0]   change [6, 0, 0, 108]
       Kodaira II  c_3 = 1   M_2 = 1 * 3 = 3   singular point [2, 1]   layers [108, 3240, 0]
       dual psihat_2 : B_2 -> [0, 0, 0, 0, -314928]   whose minimal model is [0, 0, 1, 0, -7]   = minimal model of E ? 1
+      ker psihat_2 = psi_2(C_1) at x = 0   Q_3-rational ? 1      #B_2[3](Q_3) roots of psi_3 in Q_3: 2 of which carrying a Q_3-point: 1
+      psi_2(E(Q_3)) outside N_2: 27 of 162 sampled points   => S_2 = psi_2(E(Q_3)) spans A_2 ? yes
       P_2 outside N_2 has x = 0 (mod 27);  v_3(x(psihat_2 P_2)) = -2   in E_1 ? 1
 
 d = -21   E : y^2 = x^3 - 2d^3 = x^3 + 18522
   E   minimal [0, 0, 0, 0, 18522]  change [1, 0, 0, 0]   Kodaira IV*  c_3 = 3  M = c_3 * #Ens(F_3) = 3 * 3 = 9
       singular point of the reduction: [0, 0]   sampled points by layer [E_1, E_0\E_1, outside E_0]: [108, 27, 27]
-      P outside E_0 with x = 3 (mod 27):  3P in E_1 ? 1
+      T_d = (2d, sqrt(6d^3)):  3 T_d = O ? 1   in E_1 ? 0   in E_0 ? 0      v_3(disc) = 9 (< 12, so minimal at 3)
+      cross-check: P outside E_0 with x = 3 (mod 27) also has 3P in E_1 ? 1
   B_1 = E/C_1  (C_1 : x = -42)   raw [0, 0, 0, -52920, 4686066]   minimal [0, 0, 0, -52920, 4686066]   change [1, 0, 0, 0]
       Kodaira II*  c_3 = 1   M_1 = 1 * 3 = 3   singular point [0, 0]   layers [108, 27, 0]
       dual psihat_1 : B_1 -> [0, 0, 0, 0, 13502538]   whose minimal model is [0, 0, 0, 0, 18522]   = minimal model of E ? 1
+      ker psihat_1 = psi_1(C_2) at x = 126   Q_3-rational ? 0      #B_1[3](Q_3) roots of psi_3 in Q_3: 1 of which carrying a Q_3-point: 0
+      psi_1(E(Q_3)) outside N_1: 45 of 162 sampled points   => S_1 = psi_1(E(Q_3)) spans A_1 ? yes
       P_1 outside N_1 has x = 1 (mod 27);  v_3(x(psihat_1 P_1)) = -2   in E_1 ? 1
   B_2 = E/C_2  (C_2 : x = 0)   raw [0, 0, 0, 0, -500094]   minimal [0, 0, 0, 0, -686]   change [3, 0, 0, 0]
       Kodaira II  c_3 = 1   M_2 = 1 * 3 = 3   singular point [2, 0]   layers [108, 3240, 0]
       dual psihat_2 : B_2 -> [0, 0, 0, 0, 13502538]   whose minimal model is [0, 0, 0, 0, 18522]   = minimal model of E ? 1
+      ker psihat_2 = psi_2(C_1) at x = 0   Q_3-rational ? 1      #B_2[3](Q_3) roots of psi_3 in Q_3: 2 of which carrying a Q_3-point: 1
+      psi_2(E(Q_3)) outside N_2: 27 of 162 sampled points   => S_2 = psi_2(E(Q_3)) spans A_2 ? yes
       P_2 outside N_2 has x = 0 (mod 27);  v_3(x(psihat_2 P_2)) = -2   in E_1 ? 1
 
 d = 87   E : y^2 = x^3 - 2d^3 = x^3 + -1317006
   E   minimal [0, 0, 0, 0, -1317006]  change [1, 0, 0, 0]   Kodaira IV*  c_3 = 3  M = c_3 * #Ens(F_3) = 3 * 3 = 9
       singular point of the reduction: [0, 0]   sampled points by layer [E_1, E_0\E_1, outside E_0]: [108, 27, 27]
-      P outside E_0 with x = 3 (mod 27):  3P in E_1 ? 1
+      T_d = (2d, sqrt(6d^3)):  3 T_d = O ? 1   in E_1 ? 0   in E_0 ? 0      v_3(disc) = 9 (< 12, so minimal at 3)
+      cross-check: P outside E_0 with x = 3 (mod 27) also has 3P in E_1 ? 1
   B_1 = E/C_1  (C_1 : x = 174)   raw [0, 0, 0, -908280, -333202518]   minimal [0, 0, 0, -908280, -333202518]   change [1, 0, 0, 0]
       Kodaira II*  c_3 = 1   M_1 = 1 * 3 = 3   singular point [0, 0]   layers [108, 27, 0]
       dual psihat_1 : B_1 -> [0, 0, 0, 0, -960097374]   whose minimal model is [0, 0, 0, 0, -1317006]   = minimal model of E ? 1
+      ker psihat_1 = psi_1(C_2) at x = -522   Q_3-rational ? 0      #B_1[3](Q_3) roots of psi_3 in Q_3: 1 of which carrying a Q_3-point: 0
+      psi_1(E(Q_3)) outside N_1: 45 of 162 sampled points   => S_1 = psi_1(E(Q_3)) spans A_1 ? yes
       P_1 outside N_1 has x = 1 (mod 27);  v_3(x(psihat_1 P_1)) = -2   in E_1 ? 1
   B_2 = E/C_2  (C_2 : x = 0)   raw [0, 0, 0, 0, 35559162]   minimal [0, 0, 0, 0, 48778]   change [3, 0, 0, 0]
       Kodaira II  c_3 = 1   M_2 = 1 * 3 = 3   singular point [2, 0]   layers [108, 3240, 0]
       dual psihat_2 : B_2 -> [0, 0, 0, 0, -960097374]   whose minimal model is [0, 0, 0, 0, -1317006]   = minimal model of E ? 1
+      ker psihat_2 = psi_2(C_1) at x = 0   Q_3-rational ? 1      #B_2[3](Q_3) roots of psi_3 in Q_3: 2 of which carrying a Q_3-point: 1
+      psi_2(E(Q_3)) outside N_2: 27 of 162 sampled points   => S_2 = psi_2(E(Q_3)) spans A_2 ? yes
       P_2 outside N_2 has x = 0 (mod 27);  v_3(x(psihat_2 P_2)) = -2   in E_1 ? 1
 
 d = -30   E : y^2 = x^3 - 2d^3 = x^3 + 54000
   E   minimal [0, 0, 0, 0, 54000]  change [1, 0, 0, 0]   Kodaira IV*  c_3 = 3  M = c_3 * #Ens(F_3) = 3 * 3 = 9
       singular point of the reduction: [0, 0]   sampled points by layer [E_1, E_0\E_1, outside E_0]: [108, 27, 27]
-      P outside E_0 with x = 3 (mod 27):  3P in E_1 ? 1
+      T_d = (2d, sqrt(6d^3)):  3 T_d = O ? 1   in E_1 ? 0   in E_0 ? 0      v_3(disc) = 9 (< 12, so minimal at 3)
+      cross-check: P outside E_0 with x = 3 (mod 27) also has 3P in E_1 ? 1
   B_1 = E/C_1  (C_1 : x = -60)   raw [0, 0, 0, -108000, 13662000]   minimal [0, 0, 0, -108000, 13662000]   change [1, 0, 0, 0]
       Kodaira II*  c_3 = 1   M_1 = 1 * 3 = 3   singular point [0, 0]   layers [108, 27, 0]
       dual psihat_1 : B_1 -> [0, 0, 0, 0, 39366000]   whose minimal model is [0, 0, 0, 0, 54000]   = minimal model of E ? 1
+      ker psihat_1 = psi_1(C_2) at x = 180   Q_3-rational ? 0      #B_1[3](Q_3) roots of psi_3 in Q_3: 1 of which carrying a Q_3-point: 0
+      psi_1(E(Q_3)) outside N_1: 45 of 162 sampled points   => S_1 = psi_1(E(Q_3)) spans A_1 ? yes
       P_1 outside N_1 has x = 1 (mod 27);  v_3(x(psihat_1 P_1)) = -2   in E_1 ? 1
   B_2 = E/C_2  (C_2 : x = 0)   raw [0, 0, 0, 0, -1458000]   minimal [0, 0, 0, 0, -2000]   change [3, 0, 0, 0]
       Kodaira II  c_3 = 1   M_2 = 1 * 3 = 3   singular point [2, 0]   layers [108, 3240, 0]
       dual psihat_2 : B_2 -> [0, 0, 0, 0, 39366000]   whose minimal model is [0, 0, 0, 0, 54000]   = minimal model of E ? 1
+      ker psihat_2 = psi_2(C_1) at x = 0   Q_3-rational ? 1      #B_2[3](Q_3) roots of psi_3 in Q_3: 2 of which carrying a Q_3-point: 1
+      psi_2(E(Q_3)) outside N_2: 27 of 162 sampled points   => S_2 = psi_2(E(Q_3)) spans A_2 ? yes
       P_2 outside N_2 has x = 0 (mod 27);  v_3(x(psihat_2 P_2)) = -2   in E_1 ? 1
 
 d = 69   E : y^2 = x^3 - 2d^3 = x^3 + -657018
   E   minimal [0, 0, 0, 0, -657018]  change [1, 0, 0, 0]   Kodaira IV*  c_3 = 3  M = c_3 * #Ens(F_3) = 3 * 3 = 9
       singular point of the reduction: [0, 0]   sampled points by layer [E_1, E_0\E_1, outside E_0]: [108, 27, 27]
-      P outside E_0 with x = 3 (mod 27):  3P in E_1 ? 1
+      T_d = (2d, sqrt(6d^3)):  3 T_d = O ? 1   in E_1 ? 0   in E_0 ? 0      v_3(disc) = 9 (< 12, so minimal at 3)
+      cross-check: P outside E_0 with x = 3 (mod 27) also has 3P in E_1 ? 1
   B_1 = E/C_1  (C_1 : x = 138)   raw [0, 0, 0, -571320, -166225554]   minimal [0, 0, 0, -571320, -166225554]   change [1, 0, 0, 0]
       Kodaira II*  c_3 = 1   M_1 = 1 * 3 = 3   singular point [0, 0]   layers [108, 27, 0]
       dual psihat_1 : B_1 -> [0, 0, 0, 0, -478966122]   whose minimal model is [0, 0, 0, 0, -657018]   = minimal model of E ? 1
+      ker psihat_1 = psi_1(C_2) at x = -414   Q_3-rational ? 0      #B_1[3](Q_3) roots of psi_3 in Q_3: 1 of which carrying a Q_3-point: 0
+      psi_1(E(Q_3)) outside N_1: 45 of 162 sampled points   => S_1 = psi_1(E(Q_3)) spans A_1 ? yes
       P_1 outside N_1 has x = 1 (mod 27);  v_3(x(psihat_1 P_1)) = -2   in E_1 ? 1
   B_2 = E/C_2  (C_2 : x = 0)   raw [0, 0, 0, 0, 17739486]   minimal [0, 0, 0, 0, 24334]   change [3, 0, 0, 0]
       Kodaira II  c_3 = 1   M_2 = 1 * 3 = 3   singular point [2, 0]   layers [108, 3240, 0]
       dual psihat_2 : B_2 -> [0, 0, 0, 0, -478966122]   whose minimal model is [0, 0, 0, 0, -657018]   = minimal model of E ? 1
+      ker psihat_2 = psi_2(C_1) at x = 0   Q_3-rational ? 1      #B_2[3](Q_3) roots of psi_3 in Q_3: 2 of which carrying a Q_3-point: 1
+      psi_2(E(Q_3)) outside N_2: 27 of 162 sampled points   => S_2 = psi_2(E(Q_3)) spans A_2 ? yes
       P_2 outside N_2 has x = 0 (mod 27);  v_3(x(psihat_2 P_2)) = -2   in E_1 ? 1
 
 ### beta3 finished
-gp -q -s 2000000000 < beta3.gp  0.17s user 0.00s system 98% cpu 0.175 total
+gp -q -s 2000000000 < beta3.gp  0.22s user 0.01s system 98% cpu 0.225 total

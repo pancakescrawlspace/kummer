@@ -5,7 +5,10 @@
  *       B_i = E_d/C_i: minimal model, Kodaira type, c_3, and M = c_3 * #Ens,
  *   (b) the filtration E_1 < E_0 < E(Q_3) of the sampled points, which is
  *       what makes A = E(Q_3)/E_1 killed by 3,
- *   (c) v_3(x(psihat_i P_i)) for a point P_i of B_i(Q_3) outside N_i.
+ *   (c) v_3(x(psihat_i P_i)) for a point P_i of B_i(Q_3) outside N_i,
+ *   (d) the two inputs half two actually uses: whether ker(psihat_i) is
+ *       pointwise Q_3-rational (it is for i=2 and not for i=1), and whether
+ *       psi_i(E(Q_3)) escapes N_i.
  *
  * Run:  gp -q -s 2000000000 < beta3.gp
  */
@@ -34,6 +37,12 @@ singpt(Cm, p) = {
   -1;
 }
 
+/* is the point of C with x = x0 rational over Q_p ? */
+ratpt(C, x0, p) = {
+  my(D = (C.a1*x0 + C.a3)^2 + 4*(x0^3 + C.a2*x0^2 + C.a4*x0 + C.a6) + O(p^20));
+  if(D == 0, return(1)); issquare(D);
+}
+
 /* 0 = in E_1, 1 = in E_0 \ E_1, 2 = outside E_0 */
 layer(Cm, P, p, sp) = {
   if(P == [0] || valuation(P[1], p) < 0, return(0));
@@ -42,6 +51,8 @@ layer(Cm, P, p, sp) = {
      return(2));
   1;
 }
+
+inE0(Cm, P, p, sp) = (layer(Cm, P, p, sp) != 2);
 
 /* first sampled point in a prescribed layer, or 0 */
 firstinlayer(Cm, p, prec, XMAX, want) = {
@@ -58,8 +69,8 @@ layercensus(Cm, p, prec, XMAX) = {
 }
 
 run(d) = {
-  my(E, Em, vE, lrE, sp, P, Ep, ker, kerdual, Ei, B, Bm, vB, lr,
-     Edd, Eddm, vdd, w, Pi, img, xv);
+  my(E, Em, vE, lrE, sp, P, Td, Ep, ker, kerdual, Ei, B, Bm, vB, lr,
+     Edd, Eddm, vdd, Pi, img, xv);
   E  = ellinit([0,0,0,0,-2*d^3]);
   Em = ellminimalmodel(E, &vE);
   lrE = elllocalred(Em, 3);
@@ -72,12 +83,17 @@ run(d) = {
   print("      singular point of the reduction: ", sp,
         "   sampled points by layer [E_1, E_0\\E_1, outside E_0]: ",
         layercensus(Em, 3, 30, 60));
-  /* half one, structurally: one point outside E_0, killed by 3 in A */
+  /* half one: T_d itself is outside E_0, and is killed by 3 */
+  Td = ellchangepoint([2*d + O(3^30), sqrtn(6*d^3 + O(3^30), 2)], vE);
+  print("      T_d = (2d, sqrt(6d^3)):  3 T_d = O ? ",
+        ellmul(Ep, Td, 3) == [0], "   in E_1 ? ", inE1(Td, 3),
+        "   in E_0 ? ", inE0(Em, Td, 3, sp),
+        "      v_3(disc) = ", valuation(Em.disc, 3), " (< 12, so minimal at 3)");
   P = firstinlayer(Em, 3, 30, 60, 2);
   if(P == 0,
-    print("      NO point outside E_0 found"),
-    print("      P outside E_0 with x = ", truncate(P[1]) % 27,
-          " (mod 27):  3P in E_1 ? ", inE1(ellmul(Ep, P, 3), 3)));
+    print("      NO other point outside E_0 found"),
+    print("      cross-check: P outside E_0 with x = ", truncate(P[1]) % 27,
+          " (mod 27) also has 3P in E_1 ? ", inE1(ellmul(Ep, P, 3), 3)));
   for(i = 1, 2,
     ker     = if(i == 1, x - 2*d, x);
     kerdual = if(i == 1, 0, 2*d);   /* x-coord of the OTHER kernel */
@@ -99,6 +115,22 @@ run(d) = {
     print("      dual psihat_", i, " : B_", i, " -> ", Edd[1],
           "   whose minimal model is ", mod5(Eddm),
           "   = minimal model of E ? ", mod5(Eddm) == mod5(Em));
+    /* (d1) is ker(psihat_i) = psi_i(C_j) pointwise Q_3-rational? */
+    print("      ker psihat_", i, " = psi_", i, "(C_", 3-i, ") at x = ", xk,
+          "   Q_3-rational ? ", ratpt(B, xk, 3),
+          "      #B_", i, "[3](Q_3) roots of psi_3 in Q_3: ",
+          my(rr = polrootspadic(elldivpol(B, 3), 3, 20));
+          Str(#rr, " of which carrying a Q_3-point: ",
+              sum(k = 1, #rr, ratpt(B, rr[k], 3))));
+    /* (d2) does psi_i(E(Q_3)) escape N_i? */
+    my(epts = ppointsE(Em, 3, 30, 60), out = 0, im);
+    for(k = 1, #epts,
+      im = isogapply(Ei[2], ellchangepointinv(epts[k], vE));
+      if(im == [0], next);
+      if(!inE1(ellchangepoint(im, vB), 3), out++));
+    print("      psi_", i, "(E(Q_3)) outside N_", i, ": ", out, " of ", #epts,
+          " sampled points   => S_", i, " = psi_", i, "(E(Q_3)) spans A_", i,
+          " ? ", if(out > 0, "yes", "no"));
     Pi = firstinlayer(Bm, 3, 30, 60, 1);
     if(Pi == 0, print("      NO point outside N_", i, " found"),
       Pi  = ellchangepointinv(Pi, vB);            /* back to the raw B_i */
