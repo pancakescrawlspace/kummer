@@ -654,9 +654,30 @@ gives only `(c(P),-2)_v = 1`, its diagonal is not `+`, reciprocity localises
 nothing -- 132/395 and 214/464 rational pairs have a *non-trivial* symbol at 2,
 and all four of its classes are witnessed.
 
-The dictionary back to §5.1.5 (`c = pi o delta_v`, symbol = cup product,
-Lemma 2 = "beta alternating", reciprocity = `sum inv_v beta_v = 0`) is in
-document §5.5.5. Read that way the argument goes further than §5.1.5 could at
+Document §5.5.5 gives the same argument cohomologically, as completely as it
+can be given: Kummer/Tate/reciprocity as the standard input, `E[2]`
+indecomposable but `End_G` non-scalar, `N = iota o n o pi`, and then
+
+> **Lemma C.** `C_1^perp = C_1` (the Weil pairing is alternating, so
+> `C_1 <= C_1^perp`, and perfect, so dims force equality), whence `e_2` induces
+> a *perfect* `ebar` on `(E[2]/C_1) x C_1`.
+>
+> **Lemma D.** Cup product is functorial in the coefficient pairing:
+> `f_*(a) cup_phi g_*(b) = a cup_{phi o (f x g)} b`, proved on cochains -- the
+> two cocycles are *equal*, not just cohomologous.
+>
+> **Lemma E (the adjunction).** `<a, iota_* z> = <pi_* a, z>_ebar`. The whole
+> content is one identity *between pairings of modules*,
+> `e_2 o (id x iota) = ebar o (pi x id)`, which holds because `ebar` is *defined*
+> by `ebar(xbar,t) = e_2(x,t)` -- legitimate exactly because `C_1` is isotropic.
+> Lemma D applied twice then does it.
+
+So the isotropy of `C_1` is not a convenience: it is what makes `ebar` exist and
+therefore what makes the adjunction true. The section also identifies
+`pi_* o delta_v` with the `phi-hat`-descent map via the map of short exact
+sequences (`phi-hat o phi = [2]`, and `phi` induces `E[2]/C_1 = ker phi-hat`),
+notes that `N` is self-adjoint for `e_2` so `beta` is symmetric, and ends with
+the dictionary table. Read that way the argument goes further than §5.1.5 could at
 level 3 on both points it leaves open -- the alternating property, which there
 needs decomposability of `E[3]`, is Lemma 2 here; and the local input
 `beta_3 != 0`, which there needs a cubic norm-residue symbol at a wildly

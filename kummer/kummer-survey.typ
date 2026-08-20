@@ -441,8 +441,9 @@ $x^3 + x$, with the descent done by 2 instead of by 3, and better than that: it
 can be written down with *no cohomology at all*. The twisted pairing turns out to be the Hilbert symbol of two
 $x$-coordinates, and the only imported theorem is Hilbert reciprocity ---
 equivalently quadratic reciprocity. The next four subsections are self-contained
-and elementary; @sec-dict then translates them back into the language of
-§5.1.5, which is where the argument came from but not what it needs.
+and elementary; @sec-dict then gives the cohomological proof in full --- the
+form the argument was found in, and where each step is an instance of something
+standard --- which is where it came from but not what it needs.
 
 Throughout, $E_d : y^2 = x (x^2 + d^2)$, $T = (0,0)$, and $d$ is a squarefree
 integer.
@@ -459,7 +460,8 @@ integer.
   So below the level is *never* given a letter: it is always the literal $2$, in
   $E[2]$ and in "modulo squares". Places do get letters --- $v$ for a place of
   $QQ$, including $v = infinity$ and $v = 2$, and $q$ for a finite *odd* place,
-  where $v_q$ is the $q$-adic valuation. Nothing in this section is denoted $ell$.
+  where $v_q$ is the $q$-adic valuation. Nothing is denoted $ell$ until
+  @sec-dict, where $ell$ resumes its §5.1.5 meaning of a *level*.
 ]
 
 === The square-class map, and the norm lemma <sec-alt>
@@ -704,22 +706,49 @@ its symbol table is not $+$, the odd places are not killed and reciprocity
 localises nothing --- there 132 of 395 and 214 of 464 rational pairs have a
 *non-trivial* symbol at 2, and all four of its classes are witnessed.
 
-=== What this is, in the language of §5.1.5 <sec-dict>
+=== The cohomological proof <sec-dict>
 
-The argument was found through the twisted-pairing picture, and it is worth
-recording the dictionary --- but nothing above depends on it.
+The argument was found through the twisted-pairing picture of §5.1.5, and it is
+worth writing that version out in full: every step above is then an instance of
+something standard, and the mechanism becomes directly comparable with the
+$ell = 3$ case. Nothing in @sec-thm2 depends on this subsection.
 
-Let $C_1 = ⟨T⟩ = {O, T}$, the unique Galois-stable line in $E[2]$: stable because
-$T$ is rational, and unique because the other two 2-torsion points sit at
-$x = plus.minus i$ and are interchanged by $"Gal"(QQ(i) slash QQ)$. In the basis
-$(e_1, e_2)$ with $e_1 = T$ the non-trivial element of that group acts by
-$mat(1, 1; 0, 1)$, so *$E[2]$ is indecomposable* --- $⟨e_1⟩$ has no stable
-complement --- and §5.1.5's route to a twisting endomorphism, projection onto a
+In it, $ell$ resumes its §5.1.5 meaning of a *level*: here always 2. Places keep
+the letters $v$ and $q$ of the notation box.
+
+*The standard input.* Write $G_v = "Gal"(overline(QQ)_v slash QQ_v)$. Three
+facts, all classical:
+
++ *(Kummer)* $0 -> E[2] -> E attach(-->, t: 2) E -> 0$ gives an injection
+  $delta_v : E_d (QQ_v) slash 2 arrow.hook H^1 (QQ_v, E[2])$ with image $W_v$.
++ *(Tate)* The Weil pairing $e_2 : E[2] times E[2] -> mu_2$ is perfect and
+  Galois-equivariant, and cup product followed by
+  $"inv"_v : H^2 (QQ_v, mu_2) tilde.equiv 1/2 ZZ slash ZZ$ gives a *perfect*
+  pairing $⟨ , ⟩_v$ on $H^1 (QQ_v, E[2])$, for which $W_v$ is its own
+  annihilator --- a Lagrangian.
++ *(Reciprocity)* For global $alpha, beta in H^1 (QQ, E[2])$,
+  $sum_v "inv"_v (op("res")_v alpha union op("res")_v beta) = 0$, because the
+  global cup product lands in $H^2 (QQ, mu_2) subset "Br"(QQ)$ and the sum of
+  local invariants vanishes there.
+
+The untwisted pairing is useless on its own: $W_v$ is Lagrangian, so
+$⟨delta_v P, delta_v Q⟩_v = 0$ identically and reciprocity says $0 = 0$. The
+point of §5.1.5 is to break that by twisting with a non-scalar endomorphism.
+
+==== The twisting endomorphism
+
+The 2-torsion sits at $x = 0$ and $x = plus.minus i$, so the 2-torsion field is
+$QQ(i)$ and Galois acts through $ZZ slash 2$, fixing $e_1 = T = (0,0)$ and
+interchanging the other two points; in the basis $(e_1, e_2)$ the non-trivial
+element acts by $mat(1, 1; 0, 1)$. Hence $C_1 := ⟨T⟩ = {O, T}$ is the *unique*
+Galois-stable line, it has no stable complement, and *$E[2]$ is
+indecomposable* --- §5.1.5's route to a twisting endomorphism, projection onto a
 summand, is closed.
 
 It is not needed. $bb(F)_2 [ZZ slash 2]$ is not semisimple, and the commutant of
 a single unipotent Jordan block is $bb(F)_2 [N] slash (N^2)$, which contains the
-non-scalar $N : e_1 |-> 0, e_2 |-> e_1$.
+non-scalar
+$ N : e_1 |-> 0, quad e_2 |-> e_1 . $
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   What §5.1.5 actually needs is that the endomorphism ring of the torsion module
@@ -733,38 +762,160 @@ non-scalar $N : e_1 |-> 0, e_2 |-> e_1$.
 Since $ker N = "im" N = C_1$, $N$ factors as
 $ E[2] attach(-->, t: pi) E[2] slash C_1 attach(-->, t: n) C_1 attach(arrow.hook, t: iota) E[2], $
 with $pi$ the quotient map, $iota$ the inclusion, and $n$ the unique isomorphism
-between them; both $C_1$ and $E[2] slash C_1$ are the *trivial* module
-$ZZ slash 2$ ($C_1$ because $T$ is rational, $E[2] slash C_1$ because
-$sigma(e_2) - e_2 = e_1 in C_1$), so $n$ is the only non-zero map between them
-and is automatically Galois-equivariant. The Weil pairing is alternating and
-non-degenerate on the 2-dimensional $E[2]$, so $C_1^perp = C_1$ and it descends
-to a perfect pairing $overline(e)$ on $(E[2] slash C_1) times C_1$, giving the
-adjunction $⟨a, iota_* z⟩_v = ⟨pi_* a, z⟩_(overline(e))$. Hence
+between them. Both $C_1$ and $E[2] slash C_1$ are the *trivial* module
+$ZZ slash 2$ --- $C_1$ because $T$ is rational, $E[2] slash C_1$ because
+$sigma(e_2) - e_2 = e_1 in C_1$ --- so $n$ is the only non-zero map between them
+and is automatically Galois-equivariant. On the basis, $pi(e_1) = 0$,
+$pi(e_2) = overline(e)_2$, $n(overline(e)_2) = e_1$, $iota(e_1) = e_1$, so
+$iota compose n compose pi = N$.
+
+Define $ beta_v (P, Q) = ⟨delta_v P, N_* delta_v Q⟩_v . $
+Since $N$ is defined over $QQ$, $N_*$ commutes with restriction, so
+$sum_v beta_v = 0$ for global points --- reciprocity survives the twist. That is
+the whole idea.
+
+==== $C_1$ is its own annihilator, and the induced pairing
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma C.* $C_1^perp = C_1$, and $e_2$ induces a *perfect* pairing
+  $ overline(e) : (E[2] slash C_1) times C_1 --> mu_2, quad
+    overline(e) (overline(x), t) = e_2 (x, t) . $
+
+  #v(1.5mm)
+  _Proof._ $e_2$ is alternating, so $e_2 (t,t) = 1$ for every $t$; as
+  $C_1 = {O, T}$ this gives $e_2 (C_1, C_1) = 1$, i.e. $C_1 subset.eq C_1^perp$.
+  Since $e_2$ is perfect on the 2-dimensional $E[2]$, $dim C_1^perp = 2 - 1 = 1$,
+  so $C_1^perp = C_1$.
+
+  Well-definedness: if $x' = x + t_0$ with $t_0 in C_1$ then
+  $e_2 (x', t) = e_2 (x,t) e_2 (t_0, t) = e_2 (x,t)$ for $t in C_1$. Perfectness:
+  both sides have order 2, and if $overline(e)(overline(x), dot) equiv 1$ then
+  $x in C_1^perp = C_1$, so $overline(x) = 0$. $qed$
+]
+
+==== The adjunction, and why it holds
+
+This is the step that carries the argument, and it is worth doing slowly.
+
+Recall that a Galois-equivariant pairing $phi : M times N -> P$ induces a cup
+product $union_phi : H^i (M) times H^j (N) -> H^(i+j) (P)$, given on cochains by
+$ (a union_phi b)(sigma_1, ..., sigma_(i+j))
+  = phi lr(( a(sigma_1, ..., sigma_i), space
+             sigma_1 dots.c sigma_i dot b(sigma_(i+1), ..., sigma_(i+j)) )) . $
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma D (functoriality in the coefficients).* Let $f : M' -> M$ and
+  $g : N' -> N$ be Galois maps. Then for $a in H^i (M')$, $b in H^j (N')$,
+  $ f_* (a) union_phi g_* (b) = a union_(phi compose (f times g)) b . $
+
+  #v(1.5mm)
+  _Proof._ On cochains $f_* a = f compose a$ and $g_* b = g compose b$, so the
+  left-hand side is
+  $sigma |-> phi(f(a(...)), space sigma dot g(b(...)))$. As $g$ is
+  Galois-equivariant, $sigma dot g(b(...)) = g(sigma dot b(...))$, and the
+  expression becomes
+  $sigma |-> (phi compose (f times g))(a(...), space sigma dot b(...))$, which is
+  the right-hand side. The two cocycles are *equal*, not merely cohomologous.
+  $qed$
+
+  #v(2.5mm)
+  *Lemma E (the adjunction).* For $a in H^1 (QQ_v, E[2])$ and
+  $z in H^1 (QQ_v, C_1)$,
+  $ ⟨ a, iota_* z ⟩_v = ⟨ pi_* a, space z ⟩_(overline(e)) . $
+
+  #v(1.5mm)
+  _Proof._ Everything rests on one identity *between pairings of modules*:
+  $ e_2 compose (op("id") times iota) = overline(e) compose (pi times op("id"))
+    quad "as maps" quad E[2] times C_1 --> mu_2 . $
+  Indeed both send $(x, t)$ to $e_2 (x, t)$ --- the right-hand one by the very
+  definition of $overline(e)$ in Lemma C, which is legitimate exactly because
+  $C_1$ is isotropic. Now apply Lemma D twice:
+  $ a union_(e_2) iota_* z
+      = a union_(e_2 compose (op("id") times iota)) z
+      = a union_(overline(e) compose (pi times op("id"))) z
+      = pi_* a union_(overline(e)) z , $
+  the first step by Lemma D with $f = op("id")$, $g = iota$, and the third by
+  Lemma D with $f = pi$, $g = op("id")$. Apply $"inv"_v$. $qed$
+]
+
+So the isotropy of $C_1$ is not a convenience: it is what makes $overline(e)$
+exist, and therefore what makes the adjunction true. Combining Lemma E with
+$N = iota compose n compose pi$, and taking $z = n_* pi_* delta_v Q$,
+$ beta_v (P,Q) = ⟨delta_v P, space iota_* n_* pi_* delta_v Q⟩_v
+  = ⟨pi_* delta_v P, space n_* pi_* delta_v Q⟩_(overline(e)) . $
+Identifying $C_1$ and $E[2] slash C_1$ with $ZZ slash 2$ makes $n$ the identity
+and $overline(e)$ the multiplication $ZZ slash 2 times ZZ slash 2 -> mu_2$, so
+$ beta_v (P, Q) = ⟨pi_* delta_v P, space pi_* delta_v Q⟩ . $
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *$beta$ is symmetric.* $e_2$ makes $N$ *self-adjoint*: both
+  $e_2 (N x, y)$ and $e_2 (x, N y)$ vanish on all basis pairs except
+  $(e_2, e_2)$, where both equal $e_2 (e_1, e_2) = -1$. (Equivalently: on a
+  2-dimensional symplectic space the adjoint of $M$ is $op("tr")(M) op("id") - M$,
+  and $op("tr") N = 0$.) Since cup product on $H^1$ is anti-symmetric and
+  $-1 = 1$ in characteristic 2, $⟨ , ⟩_v$ is symmetric, hence so is $beta_v$.
+]
+
+==== Identifying $pi_* compose delta_v$
+
+Let $phi : E -> E' = E slash C_1$ be the 2-isogeny with kernel $C_1$, and
+$hat(phi) : E' -> E$ its dual, so $hat(phi) compose phi = [2]$. Then
+$phi(E[2]) subset.eq ker hat(phi)$, and counting orders
+($4 slash 2 = 2 = \# ker hat(phi)$) shows $phi$ induces an isomorphism
+$E[2] slash C_1 tilde.equiv ker hat(phi)$. Under it, the diagram of
+$G_QQ$-modules
+
+$ 0 --> E[2] --> E attach(-->, t: 2) E --> 0 $
+$ 0 --> ker hat(phi) --> E' attach(-->, t: hat(phi)) E --> 0 $
+
+has exact rows and commutes, with vertical maps $pi$, $phi$ and $op("id")$: the
+right square is $hat(phi) compose phi = [2]$ and the left one is the definition
+of $pi$. Functoriality of connecting homomorphisms therefore gives
+$ pi_* compose delta_v = delta_v^(hat(phi)) : E_d (QQ_v) --> H^1 (QQ_v, ker hat(phi)) . $
+And $ker hat(phi) = ⟨(0,0)⟩ tilde.equiv ZZ slash 2$ with trivial action, so
+Kummer theory identifies $H^1 (QQ_v, ker hat(phi))$ with
+$QQ_v^times slash (QQ_v^times)^2$; under that identification
+$delta_v^(hat(phi))$ is the classical descent map $c(P) = x(P)$ of
+@sec-alt. That last identification is the standard computation
+(Silverman X.4.9); a one-line check of its shape is that
+$x compose hat(phi) = (Y slash X)^2$ on $E'$, so $c$ does kill
+$hat(phi)(E'(QQ_v))$ as it must.
+
+Finally, $H^1 (QQ_v, mu_2) = QQ_v^times slash (QQ_v^times)^2$ and the cup
+product $H^1 (mu_2) times H^1 (mu_2) -> H^2 (mu_2)$ followed by $"inv"_v$ *is*
+the quadratic Hilbert symbol. Assembling,
+$ beta_v (P, Q) = (x(P), x(Q))_v , $
+which is where @sec-alt starts.
+
+==== The dictionary
 
 #table(
   columns: 2, align: (left, left), stroke: 0.4pt + luma(150),
   inset: (x: 7pt, y: 4pt),
-  table.header([elementary object above], [what it is in §5.1.5]),
+  table.header([elementary statement], [cohomological content]),
   [$c(P) = x(P)$ modulo squares],
-    [$pi_* delta_v P$, the 2-isogeny descent map],
+    [$pi_* delta_v P$, by the isogeny diagram above],
   [Lemma 1 (Vieta)], [$delta_v$ and $pi_*$ are homomorphisms],
   [the Hilbert symbol $( , )_v$],
-    [the cup product on $H^1 (QQ_v, ZZ slash 2)$ paired by $overline(e)$],
+    [cup product on $H^1 (QQ_v, mu_2)$, then $"inv"_v$],
   [$beta_v (P,Q) = (x(P), x(Q))_v$],
-    [$⟨delta_v P, N_* delta_v Q⟩_v$, the twisted Tate pairing],
-  [Lemma 2, giving $(c(P), -1)_v = 1$], [$beta_v$ is alternating],
+    [$⟨delta_v P, N_* delta_v Q⟩_v$, via Lemmas C--E],
+  [Lemma 2, giving $(c(P), -1)_v = 1$],
+    [$beta_v$ is alternating on $W_v$],
   [Lemmas A and B], [$beta_q equiv 0$ at bad odd $q$],
-  [$c(E_d (QQ_2)) = {1,5,2,10}$ with the symbol non-degenerate],
-    [$beta_2 equiv.not 0$ on $W_2$],
+  [$c(E_d (QQ_2)) = {1,5,2,10}$, symbol non-degenerate],
+    [$beta_2 equiv.not 0$ on the Lagrangian $W_2$],
   [Hilbert reciprocity], [$sum_v "inv"_v beta_v = 0$],
   [$\#H <= 2$], [the rational image in $W_2$ is $beta_2$-isotropic],
+  [$c$ locally constant, $U$ open and missed],
+    [$W_2$ is the Frattini quotient; topological Nakayama],
 )
 
 #v(2mm)
 
-Read that way, the theorem is §5.1.5's mechanism run at *level* 2, and it goes
-further than §5.1.5 could at level 3 on both of the points that document
-leaves open: the alternating property, which there needs decomposability, is
+Read this way the theorem is §5.1.5's mechanism run at level 2, and it goes
+further than §5.1.5 could at level 3 on both of the points that document leaves
+open: the alternating property, which there needs $E[3]$ decomposable, is
 Lemma 2 here; and the local input $beta_3 equiv.not 0$, which there needs a
 cubic norm-residue symbol at a wildly ramified place, is here the mod-8 table of
 @sec-img2. That is not a coincidence: at level 2 the norm-residue symbol is
