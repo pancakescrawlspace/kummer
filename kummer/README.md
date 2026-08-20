@@ -31,7 +31,7 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `cm-torsion.gp` | the CM mechanism at `p = 3` for `f = x^3-2` (document §5.2.1): `torsionQ3`, `row`, `correlate`, `structure`. |
 | `cover-p2.gp` | the same check at `p = 2`, with exact rational arithmetic and the corrected target set (see below). |
 | `results/` | raw output of the tuple sweeps, kept verbatim because it carries the certificates -- the witnessing twist per tuple for `S = {5,7}` and `S = {3,5,7}`, and the twists and signs behind every maximal reach for `S = {11,13,17}`. All of it is now tabulated in the document (§2.2.1, §2.3.6); these files are the machine-generated source. Also `survey-*.txt`, the raw output behind `kummer-survey.typ`, and `surfaces-cremona.txt`, the curve list. |
-| `survey.gp` | **the survey** (`kummer-survey.typ`), both batches. The same test for a *general monic cubic* `f = x^3+ax^2+bx+c`, passed as `F=[a,b,c]`: `twistdata3`, `sweep3`, `sweptdata3`, `procyclic3`, `witnessodd`, `witness2`, `runsurface`. Deeper passes `deephunt`, `hunt2`; diagnostics `gloc`, `gloc2`, `classaudit`, `rankaudit`, `rankaudit2`. Family scans `sexticscan`, `quarticscan`. The §5.1.5 machinery at `l = 2`: `torsionmodule`, `halvable`, `dimW`, `cosetsE2`, `mod2A`, `imagelines`, and the Hilbert-symbol pairing `cmap`, `betav`, `alttest`, `normtest`, `cimagep`, `nzbeta`, `lemmaA`, `cyctest`. The single-place ledger: `ppoints`, `arena1`, `modlA`, `lbasis`, `ledgerp`. Constructing the pairing when `f` splits: `cvals`, `betan`, `badplaceset`, `nmats`, `cpairimage`, `nzlocal`; and at level 3: `cubeclass`, `cubeclassp`, `cubicsym`, `cubicsymp`, `tangent3`. |
+| `survey.gp` | **the survey** (`kummer-survey.typ`), both batches. The same test for a *general monic cubic* `f = x^3+ax^2+bx+c`, passed as `F=[a,b,c]`: `twistdata3`, `sweep3`, `sweptdata3`, `procyclic3`, `witnessodd`, `witness2`, `runsurface`. Deeper passes `deephunt`, `hunt2`; diagnostics `gloc`, `gloc2`, `classaudit`, `rankaudit`, `rankaudit2`. Family scans `sexticscan`, `quarticscan`. The §5.1.5 machinery at `l = 2`: `torsionmodule`, `halvable`, `dimW`, `cosetsE2`, `mod2A`, `imagelines`, and the Hilbert-symbol pairing `cmap`, `betav`, `alttest`, `normtest`, `cimagep`, `nzbeta`, `lemmaA`, `cyctest`. The single-place ledger: `ppoints`, `arena1`, `modlA`, `lbasis`, `ledgerp`. Constructing the pairing when `f` splits: `cvals`, `betan`, `badplaceset`, `nmats`, `cpairimage`, `nzlocal`; and at level 3: `cubeclass`, `cubeclassp`, `cubicsym`, `cubicsymp`, `tangent3`; and the triage `nisog`, `pairingpossible`, `triagepair`. |
 | `cm-surfaces.sage` | the CM surface list: the eleven rigid CM surfaces plus the sextic (`j=0`) and quartic (`j=1728`) families, reduced to small monic cubics. Output in `results/surfaces-cm.txt`. |
 | `surfaces.sage` | the surface list: every curve of conductor <= 40 from Sage's Cremona database, grouped into quadratic-twist classes and reduced to a small monic cubic. Output kept in `results/surfaces-cremona.txt`. |
 | `survey-tables.py` | turns `results/survey-*.txt` into `survey-tables.typ` (generated; not edited by hand). |
@@ -848,6 +848,76 @@ not the critical one.
 | `x^3+x` (§5.5.4) | 2 | 2 | **indecomposable** | complete |
 | `15a1` (§6.1) | 2 | 5 | split over Q | local vanishing verified |
 | `14a1` (§6.2) | 3 | 7 -- **tame** | decomposable | complete for half the class |
+
+### The remaining five: what the module structure permits (document §6.3)
+
+Before constructing anything, ask whether the mechanism is *available*: it is
+not automatic. `beta_v(P,Q) = <delta_v P, phi delta_v Q>` is useful only when
+`phi` is **non-scalar**, since a scalar collapses beta to the untwisted Tate
+pairing, which vanishes on the Lagrangian `W_v`. So the first question is
+whether `End_G(E[l]) != F_l`.
+
+| structure of E[l] | End_G | non-scalar? |
+|---|---|---|
+| two stable lines (decomposable) | `F_l x F_l` | **yes** |
+| one stable line, characters agree | `F_l[N]/(N^2)` | **yes** |
+| one stable line, characters differ | `F_l` | no |
+| irreducible, image in nonsplit Cartan | `F_{l^2}` | **yes** |
+| irreducible, larger image | `F_l` | no |
+
+The Weil pairing forces `chi_1 chi_2 = cyclo_l`, so with a rational `l`-torsion
+point (`chi_1 = 1`) the characters agree **only for l = 2**. Hence: at `l = 2`,
+reducible always works, irreducible works iff `disc f` is a square; at odd `l`,
+need two stable lines or a nonsplit-Cartan image. Twisting changes none of it,
+since `End_G(V (x) chi) = End_G(V)`.
+
+```
+pairingpossible("11a1", [-11,-1,-83], 5);
+triagepair("11a1", [-11,-1,-83], 11, 1, 5);
+```
+
+> **All five remaining classes admit a non-scalar phi** -- the mechanism is
+> available in every one of the eight cases of §3.3. What is *not* settled is
+> whether it fires: selecting the right phi and proving the local vanishing
+> still has to be done case by case.
+
+**Caveat on the model.** The reduced monic cubic is a model of the *surface*,
+and `reduce_cubic` can twist the curve, so the curve to analyse is `E_0`, the
+minimal quadratic twist -- that is where the rational `l`-torsion lives.
+
+| class | p | l | E_0: N | tors | stable lines | p mod l | E[l] |
+|---|---|---|---|---|---|---|---|
+| 11a1 [u] | 11 | 5 | 11 | 5 | 2 | 1 | decomposable |
+| 14a2 [1] | 7 | 3 | 14 | 6 | 2 | 1 | decomposable |
+| 19a1 [u] | 19 | 3 | 19 | 3 | 2 | 1 | decomposable |
+| 15a4 [1] | 5 | 2 | 15 | 8 | 1 | 1 | indecomposable |
+| 17a1 [1] | 17 | 2 | 17 | 4 | 1 | 1 | indecomposable |
+| 14a1 [1] done | 7 | 3 | 14 | 6 | 2 | 1 | decomposable |
+| 15a1 [1] done | 5 | 2 | 15 | 8 | 3 | 1 | split |
+
+Two things hold across the board. **`p = 1 mod l` in every case, and it is
+forced** (`dim W_p = 2` needs `mu_l` in `Q_p`), so at the *critical* place the
+symbol is always the **tame** `l`-th power residue symbol, never the wild one --
+the structural reason every case here is more tractable than §5.1.5's. And the
+places that can carry beta are only three kinds: the critical `p`, the wild
+`v = l`, and bad primes `= 1 mod l` where `d` is a square -- and there are **no**
+such extra bad primes for the three odd-`l` cases.
+
+**Two templates.**
+
+* *Template C (§6.2), l odd and E[l] decomposable*: `11a1`, `14a2`, `19a1`. beta
+  is alternating for free, so only the wild `v = l` is left; these should go
+  through exactly as 14a1 did. `11a1` is at `l = 5`, so it needs the **quintic**
+  residue symbol at 11 -- tame, since `11 = 1 mod 5`, but not something either
+  system provides.
+* *Template A (§5.5.4), l = 2 with E[2] indecomposable*: `15a4`, `17a1`. Here
+  the alternating step is not free (2 is not invertible mod 2). But the norm
+  lemma applies: **both have 2-torsion field `Q(i)`**, so `(c(P),-1)_v = 1` and
+  beta is alternating for the same reason as `x^3+x`.
+
+Suggestive rather than proved: of the four defective classes at `l = 2`, the
+three with `E[2]` indecomposable all have 2-torsion field `Q(i)` -- the condition
+making beta alternating -- while `x^3+2x`, which has no obstruction, does not.
 
 ## The Sage cross-check
 

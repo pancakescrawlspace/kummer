@@ -1372,6 +1372,142 @@ while §5.1.5's lives at 3 and is not. Closing it would finish the other half.
 ))
 
 
+== The remaining five: what the module structure permits <sec-triage>
+
+Before constructing anything, it is worth asking whether the mechanism is even
+*available*. It is not automatic: $beta_v (P,Q) = ⟨delta_v P, phi delta_v Q⟩_v$
+is useful only when $phi$ is *non-scalar*, since a scalar $phi$ collapses $beta$
+to the untwisted Tate pairing, which vanishes on the Lagrangian $W_v$. So the
+first question about each open class is whether
+$"End"_G (E[ell]) != bb(F)_ell$.
+
+For a 2-dimensional $bb(F)_ell$-module $V = E[ell]$ the possibilities are:
+
+#table(
+  columns: 3, align: (left, left, center),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3pt),
+  table.header([structure of $E[ell]$], [$"End"_G$], [non-scalar?]),
+  [two stable lines (decomposable)], [$bb(F)_ell times bb(F)_ell$], [*yes*],
+  [one stable line, characters on sub and quotient *agree*],
+    [$bb(F)_ell [N] slash (N^2)$], [*yes*],
+  [one stable line, characters *differ*], [$bb(F)_ell$], [no],
+  [irreducible, image in a nonsplit Cartan], [$bb(F)_(ell^2)$], [*yes*],
+  [irreducible, larger image], [$bb(F)_ell$], [no],
+)
+
+#v(2mm)
+
+The Weil pairing forces $chi_1 chi_2 = $ cyclotomic mod $ell$, so with a rational
+point of order $ell$ (giving $chi_1 = 1$) the two characters agree *only when
+$ell = 2$*, where $bb(F)_2^times$ is trivial. Hence the criterion splits:
+
+- *$ell = 2$*: reducible $=>$ always non-scalar; irreducible $=>$ non-scalar iff
+  $op("Gal")(f) = ZZ slash 3$, i.e. iff $op("disc") f$ is a square.
+- *$ell$ odd*: need *two* stable lines, or an irreducible image inside a nonsplit
+  Cartan.
+
+Twisting by a quadratic character changes none of this, since
+$"End"_G (V times.o chi) = "End"_G (V)$ --- so this is a property of the surface.
+
+#block(fill: rgb("#eef4ff"), inset: 9pt, radius: 3pt, width: 100%)[
+  *All five remaining classes admit a non-scalar $phi$.* The mechanism is
+  available in every one of the eight cases of @sec-fail. What is not settled is
+  whether it *works* --- selecting the right $phi$ and proving the local
+  vanishing still has to be done case by case.
+]
+
+=== The structural data <sec-triage-data>
+
+One caveat first. The reduced monic cubic of @sec-which is a model of the
+*surface*, and the reduction $f |-> q^(-3) f(q x + mu)$ can twist the curve; so
+the curve to analyse is not $y^2 = f(x)$ but $E_0$, the minimal quadratic twist,
+which is where the rational $ell$-torsion lives.
+
+#table(
+  columns: 8, align: (left, center, center, center, center, center, center, left),
+  stroke: 0.4pt + luma(170), inset: (x: 5pt, y: 3pt),
+  table.header([class], [$p$], [$ell$], [$E_0$: $N$], [tors], [stable lines],
+               [$p mod ell$], [$E[ell]$]),
+  [`11a1` $[u]$], [11], [5],  [11], [5], [2], [1], [decomposable],
+  [`14a2` $[1]$], [7],  [3],  [14], [6], [2], [1], [decomposable],
+  [`19a1` $[u]$], [19], [3],  [19], [3], [2], [1], [decomposable],
+  [`15a4` $[1]$], [5],  [2],  [15], [8], [1], [1], [indecomposable],
+  [`17a1` $[1]$], [17], [2],  [17], [4], [1], [1], [indecomposable],
+  [`14a1` $[1]$ #super[✓]], [7], [3], [14], [6], [2], [1], [decomposable],
+  [`15a1` $[1]$ #super[✓]], [5], [2], [15], [8], [3], [1], [split],
+)
+
+#v(2mm)
+
+Two things are true across the board.
+
+*$p equiv 1$ $(mod ell)$ in every case, and it is forced.* $dim W_p = 2$ requires
+$E_delta [ell](QQ_p) = (ZZ slash ell)^2$, hence $mu_ell subset QQ_p$. So at the
+*critical* place the symbol is always the *tame* $ell$-th power residue symbol,
+never the wild one. This is the structural reason every case here is more
+tractable than §5.1.5's, where the critical place was $ell = 3$ itself.
+
+*The places that can carry $beta$ are few.* Good places die by unramified
+isotropy, and $beta_v = 0$ wherever $dim W_v <= 1$. With $chi_1 = 1$ and
+$chi_2 = $ cyclotomic, $C_1^((d))(QQ_v)$ and $C_2^((d))(QQ_v)$ are both non-zero
+only if $mu_ell subset QQ_v$, i.e. $v equiv 1$ $(mod ell)$. So only three kinds
+of place remain: the critical $p$; the wild place $v = ell$; and bad primes
+$equiv 1$ $(mod ell)$ at which $d$ is a square. The last column of the triage
+shows there are *no* such extra bad primes for the three odd-$ell$ cases.
+
+=== Two templates <sec-triage-templates>
+
+The five fall into the two patterns already worked out.
+
+*Template C (@sec-14a1), for $ell$ odd and $E[ell]$ decomposable: `11a1`,
+`14a2`, `19a1`.* Here $beta$ is alternating at every place for free --- §5.1.5's
+argument needs only decomposability and $2$ invertible mod $ell$ --- so the whole
+analysis reduces to $dim W_v$, and by the triage the only place left is the wild
+$v = ell$. These should go through exactly as `14a1` did, giving a theorem on the
+half of each class where $E_d [ell](QQ_ell) = 0$, with the other half waiting on
+the wild symbol. `11a1` is at $ell = 5$, so it needs the *quintic* residue symbol
+at 11 --- tame, since $11 equiv 1$ $(mod 5)$, but not something either system
+provides ready-made.
+
+*Template A (@sec-thm2), for $ell = 2$ with $E[2]$ indecomposable: `15a4`,
+`17a1`.* At $ell = 2$ the alternating step is *not* free: $2$ is not invertible
+mod $2$ and §5.1.5's argument fails, which is exactly why `x^3 + x` needed the
+norm lemma. And the norm lemma applies here:
+
+#align(center, table(
+  columns: 3, align: (left, center, left),
+  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3pt),
+  table.header([surface], [2-torsion field], [$beta$ alternating?]),
+  [`15a4`], [$QQ(i)$], [*yes*, by Lemma 2],
+  [`17a1`], [$QQ(i)$], [*yes*, by Lemma 2],
+  [`x^3 + x` #super[✓]], [$QQ(i)$], [*yes*],
+  [`x^3 + 2x` (no obstruction)], [$QQ(sqrt(-2))$], [no],
+))
+
+#v(2mm)
+
+Both open cases have 2-torsion field $QQ(i)$, so $(c(P), -1)_v = 1$ and $beta$ is
+alternating for the same reason as in @sec-alt. Since $E_d [2] tilde.equiv E[2]$
+as Galois modules for every $d$ ($chi_d$ is trivial on $bb(F)_2^times$), this is a
+surface invariant.
+
+That is a suggestive pattern rather than a theorem: of the four defective classes
+at $ell = 2$, the three with $E[2]$ indecomposable all have 2-torsion field
+$QQ(i)$ --- the condition that makes $beta$ alternating --- while `x^3 + 2x`,
+which has no obstruction, does not. It would be worth knowing whether a defective
+class at $ell = 2$ with indecomposable $E[2]$ *must* have 2-torsion field
+$QQ(i)$. Nothing here decides that.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *What this does not show.* That $"End"_G (E[ell]) != bb(F)_ell$ makes the
+  mechanism possible, not that it fires. For each class one still has to pick the
+  right $phi$ out of the available ones --- the step that took a 16-candidate
+  search at `15a1` --- and then prove the local vanishing. The triage says only
+  that no case is ruled out on module-theoretic grounds, and which of the two
+  worked examples each should imitate.
+]
+
+
 = Remarks
 
 == The obstruction is not about complex multiplication <sec-notcm>

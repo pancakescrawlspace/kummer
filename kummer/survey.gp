@@ -1132,3 +1132,88 @@ cubicsymp(a, b, p) = {
   for(k = 0, 2, if(lift(Mod(z,p)^k) == t, return(k)));
   -1;
 }
+
+/* =====================================================================
+   Is a twisted pairing possible at all?
+
+   The mechanism needs a NON-SCALAR phi in End_G(E[l]): a scalar phi
+   collapses beta to the untwisted Tate pairing, which vanishes on the
+   Lagrangian W_v.  For a 2-dimensional F_l-module V = E[l]:
+
+     - two stable lines (decomposable)   -> End = F_l x F_l   NON-SCALAR
+     - one stable line, non-split, with equal characters on sub and
+       quotient                          -> End = F_l[N]/(N^2)  NON-SCALAR
+     - one stable line, non-split, characters DIFFER
+                                         -> End = F_l          scalars only
+     - irreducible, image in a nonsplit Cartan -> End = F_{l^2} NON-SCALAR
+     - irreducible, bigger image         -> End = F_l          scalars only
+
+   The Weil pairing forces chi_1 chi_2 = cyclotomic mod l.  So with a
+   RATIONAL point of order l (chi_1 = 1) one gets chi_2 = cyclotomic,
+   which is trivial only for l = 2.  Hence:
+
+     l = 2 : reducible => always non-scalar (the cyclotomic character is
+             trivial mod 2, so the two characters agree); irreducible =>
+             non-scalar iff Gal(f) = Z/3, i.e. iff disc f is a square.
+     l odd : need TWO stable lines, or an irreducible image inside a
+             nonsplit Cartan.
+
+   Twisting by a quadratic character does not change any of this, since
+   End_G(V (x) chi) = End_G(V); so this is a property of the surface.
+   ===================================================================== */
+
+nisog(Em, l) = { my(m = ellisomat(Em, l)[2]); sum(j = 1, #m, m[1,j] == l); }
+
+pairingpossible(lbl, F, l) = {
+  my(Em = ellminimalmodel(Ecurve(F, 1)), ns = nisog(Em, l), ff, irr, dsq, verdict);
+  ff = x^3 + F[1]*x^2 + F[2]*x + F[3];
+  irr = polisirreducible(ff);
+  dsq = issquare(poldisc(ff));
+  if(l == 2,
+    verdict = if(!irr, "YES (reducible)",
+                 if(dsq, "YES (irreducible, disc square: image = Z/3, End = F_4)",
+                         "NO (irreducible, disc non-square: image = S_3, End = F_2)"))
+  ,
+    verdict = if(ns >= 2, "YES (decomposable)",
+                 if(ns == 1, "NO (one stable line, characters differ)",
+                             "irreducible -- needs the image type"))
+  );
+  print("  ", lbl, "  l=", l, "   stable lines = ", ns,
+        "   f ", if(irr, "irreducible", "reducible"),
+        "   disc square: ", dsq, "   ==> ", verdict);
+  verdict;
+}
+
+/* Structural triage for one open class.
+
+   The reduced monic cubic is only a model of the SURFACE: the curve
+   y^2 = f(x) can be a quadratic twist of the labelled curve.  So take
+   E_0 = the minimal quadratic twist, which is where the rational
+   l-torsion lives, and re-express the failing class relative to it.
+
+   With a rational l-torsion point on E_0 one has chi_1 = 1 and, by the
+   Weil pairing, chi_2 = cyclotomic mod l.  For the twist E_0^(d),
+
+     C_1(Q_v) != 0  <=>  d a square in Q_v,
+     C_2(Q_v) != 0  <=>  cyclo_l * chi_d trivial on G_v,
+
+   so BOTH need mu_l in Q_v, i.e. v = 1 mod l (for v != l).  Since good
+   places die by unramified isotropy and beta is alternating whenever
+   dim W_v <= 1, the only places that can carry beta are the critical p,
+   the wild place v = l, and bad primes = 1 mod l at which d is a square.
+*/
+triagepair(lbl, F, p, k, l) = {
+  my(dref = classrep3(p, k, 4000), E = Ecurve(F, dref), dm, E0, N0, ns, bad, other);
+  dm = ellminimaltwist(E);
+  E0 = ellminimalmodel(ellinit(elltwist(E, dm)));
+  N0 = ellglobalred(E0)[1];
+  ns = nisog(E0, l);
+  bad = factor(N0)[,1]~;
+  other = select(q -> q != p && q % l == 1, bad);
+  print("  ", lbl, "  l=", l,
+        "   E_0: N=", N0, " torsion=", elltors(E0)[1], " stable lines=", ns);
+  print("      p = ", p % l, " mod l",
+        "     bad primes of E_0: ", bad,
+        "     other bad = 1 mod l: ", if(#other, Vec(other), "none"),
+        "     wild place: ", l);
+}

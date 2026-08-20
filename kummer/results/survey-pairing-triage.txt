@@ -1,0 +1,39 @@
+=== Is a twisted pairing possible?  Preliminary analysis of all eight ===
+
+--- (a) does a non-scalar phi in End_G(E[l]) exist? ---
+  11a1  p=11 [u]  l=5   stable lines = 2   f irreducible   disc square: 0   ==> YES (decomposable)
+  14a2  p=7  [1]  l=3   stable lines = 2   f reducible   disc square: 0   ==> YES (decomposable)
+  19a1  p=19 [u]  l=3   stable lines = 2   f irreducible   disc square: 0   ==> YES (decomposable)
+  15a4  p=5  [1]  l=2   stable lines = 1   f reducible   disc square: 0   ==> YES (reducible)
+  17a1  p=17 [1]  l=2   stable lines = 1   f reducible   disc square: 0   ==> YES (reducible)
+  -- already done --
+  14a1  p=7  [1]  l=3   stable lines = 2   f reducible   disc square: 0   ==> YES (decomposable)
+  15a1  p=5  [1]  l=2   stable lines = 3   f reducible   disc square: 1   ==> YES (reducible)
+  x^3-2 p=3 [u3]  l=3   stable lines = 2   f irreducible   disc square: 0   ==> YES (decomposable)
+
+--- (b) the places that can carry beta ---
+  11a1  p=11 [u]  l=5   E_0: N=11 torsion=5 stable lines=2
+      p = 1 mod l     bad primes of E_0: [11]     other bad = 1 mod l: none     wild place: 5
+  14a2  p=7  [1]  l=3   E_0: N=14 torsion=6 stable lines=2
+      p = 1 mod l     bad primes of E_0: [2, 7]     other bad = 1 mod l: none     wild place: 3
+  19a1  p=19 [u]  l=3   E_0: N=19 torsion=3 stable lines=2
+      p = 1 mod l     bad primes of E_0: [19]     other bad = 1 mod l: none     wild place: 3
+  15a4  p=5  [1]  l=2   E_0: N=15 torsion=8 stable lines=1
+      p = 1 mod l     bad primes of E_0: [3, 5]     other bad = 1 mod l: [3]     wild place: 2
+  17a1  p=17 [1]  l=2   E_0: N=17 torsion=4 stable lines=1
+      p = 1 mod l     bad primes of E_0: [17]     other bad = 1 mod l: none     wild place: 2
+  -- already done --
+  14a1  p=7  [1]  l=3   E_0: N=14 torsion=6 stable lines=2
+      p = 1 mod l     bad primes of E_0: [2, 7]     other bad = 1 mod l: none     wild place: 3
+  15a1  p=5  [1]  l=2   E_0: N=15 torsion=8 stable lines=3
+      p = 1 mod l     bad primes of E_0: [3, 5]     other bad = 1 mod l: [3]     wild place: 2
+
+--- (c) at l = 2: is beta alternating?  (2-torsion field = Q(i)?) ---
+  15a4   2-torsion field Q(sqrt(-1))   <-- Q(i): beta ALTERNATING by Lemma 2
+  17a1   2-torsion field Q(sqrt(-1))   <-- Q(i): beta ALTERNATING by Lemma 2
+  -- controls --
+  x^3+x   2-torsion field Q(sqrt(-1))   <-- Q(i): beta ALTERNATING by Lemma 2
+  15a1: f splits, 2-torsion field = Q
+  x^3+2x  (clean, no obstruction)   2-torsion field Q(sqrt(-2))   beta NOT alternating
+### prelim finished
+gp -q -s 4000000000  < /dev/null  0.05s user 0.00s system 96% cpu 0.056 total
