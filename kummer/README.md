@@ -900,7 +900,65 @@ lines, are the isotropic lines of this symplectic form. **One** step is verified
 rather than proved here, against three for 15a1 -- indecomposable `E[2]` makes
 phi essentially unique, so no search was needed at all.
 
-### The remaining four: what the module structure permits (document §6.4)
+### 11a1 at p = 11, level 5 -- and no quintic symbol needed (document §6.4)
+
+The triage flagged this as needing the **quintic** residue symbol at 11. It does
+not: the proof needs `beta_11` to be *non-degenerate*, not to be *evaluated*, and
+multiplicative reduction settles that for free.
+
+Caveat first: the reduced monic cubic `x^3-11x^2-x-83` has `N = 704` and trivial
+torsion -- it is a twist. Take `E_0 = 11a1 = [0,-1,1,-10,-20]`, `N = 11`, torsion
+`Z/5 = <(5,5)>`, two 5-isogenies, so `E[5] = C_1 + C_2` with `C_1 = <T> = Z/5`
+and `C_2 = mu_5`. The failing class is `[1]` at 11 in this parametrisation.
+
+**W_11 is forced.** `11a1` has *split multiplicative* reduction at 11
+(`a_11 = 1`, `I_5`, `c_11 = 5`), so over `Q_11` it is a Tate curve
+`Q_11^x / q^Z` with `v(q) = 5`. For a Tate curve the Kummer cocycle of `[x]` is
+`sigma -> sigma(y)/y` with `y^5` in `x q^Z`, which lies in `mu_5` for *every*
+point -- so `W_11` sits inside `H^1(Q_11, mu_5)`. Both have dimension 2
+(`11 = 1 mod 5`, so `zeta_5` is in `Q_11`), hence **`W_11 = H^1(Tate mu_5)`**.
+
+The Tate `mu_5` is intrinsic: `[x] -> v(x) mod 5` is the map to the component
+group, so `mu_5 = E[5] cap E^0`. If it were `C_2`, `phi` would kill `W_11`; if it
+were `C_1`, `beta` would be the untwisted pairing, zero on the Lagrangian. So
+everything turns on whether either global subgroup meets `E^0` -- and neither
+does:
+
+| subgroup | x-coords mod 11 | in E^0? |
+|---|---|---|
+| singular point | (5,5) -- **the 5-torsion point itself** | -- |
+| `C_1 = <(5,5)>` | 5 and 16 = 5 | **no** |
+| `C_2 : 5x^2+5x-29` | disc `605 = 5*11^2`, double root `-1/2 = 5` | **no** |
+
+So the Tate `mu_5` is a *third* line, `phi` restricts to an isomorphism
+`mu_5 -> C_1`, and the Weil pairing of two distinct lines in a symplectic plane
+is perfect: **`beta_11` is non-degenerate on `W_11`**.
+
+**The other places.** beta is alternating everywhere (§5.1.5's argument:
+decomposable, 2 invertible mod 5), so `beta_v = 0` wherever `dim W_v <= 1`.
+`W_inf = 0` (5-divisible); good `v != 5` by unramified isotropy; at `q | d` both
+`C_i^(d)(Q_q) = 0` since `chi_d` is ramified there and the cyclotomic character
+is not, so `W_q = 0`; at `v = 5` the cyclotomic character has order 4 on `G_5`
+while `chi_d` has order <= 2, so `C_2^(d)(Q_5) = 0` always and
+`dim W_5 = 1 + [d square in Q_5]`.
+
+> *Theorem.* Let `d` be squarefree, a square in `Q_11` (class `[1]`), and **not**
+> a square in `Q_5`. Then `E_0^(d)(Q)` is not dense in `E_0^(d)(Q_11)`; hence
+> `X(Q)` is not dense in `X(Q_11)`.
+
+652 of the 1115 squarefree `d` in the class with `|d| <= 2000` -- 58.5%. §3.3.1
+agrees: none of 584 twists reached the full `(Z/5)^2`, and the six lines came up
+92/97/97/103/77/95 -- which is all an alternating form on `(Z/5)^2` can say,
+since *every* line there is isotropic.
+
+**Lesson for the triage.** A non-scalar `phi` is necessary but not sufficient:
+one also needs `W_p` not to be `phi`-stable, a further *local* condition -- and
+it is exactly the input §5.1.5 leaves unverified. At a place of multiplicative
+reduction it is free, since `W_p` is then forced to be `H^1` of the Tate `mu_l`:
+the mechanism fires iff the Tate `mu_l` is neither `C_1` nor `C_2`, i.e. iff
+neither global subgroup meets `E^0`.
+
+### The remaining three: what the module structure permits (document §6.5)
 
 Before constructing anything, ask whether the mechanism is *available*: it is
 not automatic. `beta_v(P,Q) = <delta_v P, phi delta_v Q>` is useful only when
@@ -938,7 +996,7 @@ minimal quadratic twist -- that is where the rational `l`-torsion lives.
 
 | class | p | l | E_0: N | tors | stable lines | p mod l | E[l] |
 |---|---|---|---|---|---|---|---|
-| 11a1 [u] | 11 | 5 | 11 | 5 | 2 | 1 | decomposable |
+| 11a1 [u] done | 11 | 5 | 11 | 5 | 2 | 1 | decomposable |
 | 14a2 [1] | 7 | 3 | 14 | 6 | 2 | 1 | decomposable |
 | 19a1 [u] | 19 | 3 | 19 | 3 | 2 | 1 | decomposable |
 | 15a4 [1] done | 5 | 2 | 15 | 8 | 1 | 1 | indecomposable |
@@ -956,11 +1014,10 @@ such extra bad primes for the three odd-`l` cases.
 
 **Two templates.**
 
-* *Template C (§6.2), l odd and E[l] decomposable*: `11a1`, `14a2`, `19a1`. beta
-  is alternating for free, so only the wild `v = l` is left; these should go
-  through exactly as 14a1 did. `11a1` is at `l = 5`, so it needs the **quintic**
-  residue symbol at 11 -- tame, since `11 = 1 mod 5`, but not something either
-  system provides.
+* *Template C (§6.2), l odd and E[l] decomposable*: `14a2`, `19a1`, and `11a1`
+  which §6.4 has since carried out. beta is alternating for free, so only the
+  wild `v = l` is left; these should go through exactly as 14a1 did. (The worry
+  that `11a1` would need a quintic symbol was unfounded -- see §6.4.)
 * *Template A (§5.5.4), l = 2 with E[2] indecomposable*: `17a1`, and `15a4`
   which §6.3 has since carried out. Here
   the alternating step is not free (2 is not invertible mod 2). But the norm
