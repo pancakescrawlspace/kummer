@@ -1596,11 +1596,12 @@ line is isotropic there, so the only content is that dimension 2 is unreachable.
   $E^0$. For `11a1` both fail to, and the pairing exists.
 ]
 
-=== A third check on §5.1.5's input <sec-magma>
+=== §5.1.5's input, checked in Magma and then proved <sec-magma>
 
 That same input --- $beta_3 equiv.not 0$ for $f = x^3 - 2$, i.e. that both dual
-3-isogeny images lie in $E_1 (QQ_3)$ --- has now been confirmed a third time, in
-Magma, by a different route from the other two. The companion notes' PARI check
+3-isogeny images lie in $E_1 (QQ_3)$ --- was first confirmed a third time, in
+Magma, by a different route from the other two; and then, prompted by what that
+run showed, settled outright. The companion notes' PARI check
 built the duals by hand; Sage's `verify-dual.sage` constructed $QQ_3$-points and
 tested membership; this evaluates the dual isogeny's *rational maps*
 `IsogenyMapPhi` / `IsogenyMapPsi` at 3-adic $x$-coordinates and reads off
@@ -1632,13 +1633,43 @@ $v_3 (x) < 0$ lie in $E'_1$ and map into $E_1$ automatically, so they test
 nothing; the sample's informative part is the roughly 180 with $v_3 (x) >= 0$,
 which do lie outside $E'_1$.
 
-*What would make it a proof.* $hat(phi)(E'_1) subset.eq E_1$, so the map factors
-through the *finite* group $A' = E'(QQ_3) slash E'_1$ --- an exhaustive check
-over $\#A'$ cosets, not a sample. Since all $d$ in a square class give
-$QQ_3$-isomorphic curves, one such check settles the whole class, which is what
-§5.1.5 needs. That is a short computation and is not done here.
+*And now a proof.* $hat(phi)(E'_1) subset.eq E_1$ --- an isogeny extends to the
+Néron models, so it respects the kernel of reduction --- hence $hat(phi)$ induces
+a map of the *finite* groups $A' = E'(QQ_3) slash E'_1 -> A = E(QQ_3) slash E_1$.
+Checking that map is exhaustive, not a sample, and it needs only one point:
 
+#align(center, table(
+  columns: 4, align: (left, center, center, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([step], [value], [], [conclusion]),
+  [$\#E[3](QQ_3)$], [$3$], [only $x = 2d$ is rational],
+    [$\#E(QQ_3) slash 3E = 9$],
+  [$\#A = M$], [$9$], [4 classes found outside $E_1$, all killed by 3],
+    [$\#A[3] >= 5 > 3$, so $A$ is not cyclic: $A tilde.equiv (ZZ slash 3)^2$
+     and $3E = E_1$],
+  [$\#A' = M'$], [$3$], [*prime*], [one class generates $A'$],
+  [$v_3 (x(hat(phi) P'))$], [$-2$], [for $P'$ outside $E'_1$],
+    [$hat(phi) P' in E_1$, so $hat(phi)(A') = 0$],
+))
 
+#v(2mm)
+
+The last two lines are the whole content: because $\#A' = 3$ is *prime*, any
+single class outside $E'_1$ generates $A'$, so one evaluation of $hat(phi)$
+settles the induced map. Both kernels $x$ and $x - 2d$ give
+$v_3 = -2$, and the same numbers come out for
+$d = -3, 6, -21, 87, -30, 69$. One $d$ suffices, since all $d$ in a square class
+give $QQ_3$-isomorphic curves --- which is exactly the reduction §5.1.5 needs.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  So $hat(phi)(E'(QQ_3)) subset.eq E_1 (QQ_3) = 3 E(QQ_3)$ for *both* 3-isogenies:
+  the two dual images are zero in $W_3 = E(QQ_3) slash 3$, so
+  $W_3 inter H^1 (C_1) = W_3 inter H^1 (C_2) = 0$, so $W_3$ is not $phi$-stable,
+  so $beta_3 equiv.not 0$. The input §5.1.5 leaves open is closed.
+]
+
+The one thing still taken on trust is the standard fact that an isogeny carries
+$E'_1$ into $E_1$; everything else above is a finite computation.
 
 == The remaining three: what the module structure permits <sec-triage>
 
@@ -1733,9 +1764,8 @@ argument needs only decomposability and $2$ invertible mod $ell$ --- so the whol
 analysis reduces to $dim W_v$, and by the triage the only place left is the wild
 $v = ell$. These should go through exactly as `14a1` did, giving a theorem on the
 half of each class where $E_d [ell](QQ_ell) = 0$, with the other half waiting on
-the wild symbol. `11a1` is at $ell = 5$, so it needs the *quintic* residue symbol
-at 11 --- tame, since $11 equiv 1$ $(mod 5)$, but not something either system
-provides ready-made.
+the wild symbol. The worry that `11a1` would need a *quintic* residue symbol
+turned out to be unfounded --- see @sec-11a1.
 
 *Template A (@sec-thm2), for $ell = 2$ with $E[2]$ indecomposable: `17a1`
 --- and `15a4`, which @sec-15a4 has since carried out.* At $ell = 2$ the alternating step is *not* free: $2$ is not invertible

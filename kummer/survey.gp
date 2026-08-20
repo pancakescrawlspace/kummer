@@ -1217,3 +1217,52 @@ triagepair(lbl, F, p, k, l) = {
         "     other bad = 1 mod l: ", if(#other, Vec(other), "none"),
         "     wild place: ", l);
 }
+
+/* =====================================================================
+   Exhaustive version of section 5.1.5's local input.
+
+   Claim: for E_d : y^2 = x^3 - 2d^3 with d in the class [u*3] at 3, both
+   dual 3-isogeny images lie in E_1(Q_3).  Since an isogeny extends to
+   the Neron models, phihat(E'_1) is inside E_1, so the induced map
+   factors through the FINITE group A' = E'(Q_3)/E'_1 -- and checking it
+   on a set of coset representatives is exhaustive, not a sample.  One
+   such check settles a whole square class, because all d in a class give
+   Q_3-isomorphic curves.
+   ===================================================================== */
+
+/* p-adic points of an arbitrary model, from a scan of x-coordinates */
+ppointsE(Eg, p, prec, XMAX) = {
+  my(L = List(), a1 = Eg.a1, a2 = Eg.a2, a3 = Eg.a3, a4 = Eg.a4, a6 = Eg.a6, D, y, u);
+  for(k = -8, XMAX,
+    for(m = 1, 40,
+      if(m % p == 0, next);
+      for(sg = 0, 1,
+        u = (-1)^sg * if(k <= 0, m/p^(-k), m*p^k);
+        D = (a1*u + a3)^2 + 4*(u^3 + a2*u^2 + a4*u + a6) + O(p^prec);
+        if(D == 0, listput(L, [u + O(p^prec), (-(a1*u+a3)/2) + O(p^prec)]); next);
+        if(!issquare(D, &y), next);
+        listput(L, [u + O(p^prec), (-(a1*u + a3) + y)/2]))));
+  Vec(L);
+}
+
+/* A representative of E_1 in Eg(Q_p) lying OUTSIDE E_1: membership is
+   tested on the minimal model Emin, reached by the change of variable vch.
+   When A' = E'(Q_p)/E'_1 has PRIME order this single representative
+   generates it, so checking the isogeny on it is exhaustive. */
+firstout(Eg, Emin, vch, p, prec, XMAX) = {
+  my(pts = ppointsE(Eg, p, prec, XMAX), Q);
+  for(i = 1, #pts,
+    Q = ellchangepoint(pts[i], vch);
+    if(!inE1(Q, p), return(pts[i])));
+  0;
+}
+
+/* apply an ellisogeny map [f, g, h] : (x,y) -> (f/h^2, g/h^3) */
+isogapply(mp, P) = {
+  if(P == [0], return([0]));
+  my(f = subst(mp[1], x, P[1]),
+     h = subst(mp[3], x, P[1]),
+     g = subst(subst(mp[2], x, P[1]), y, P[2]));
+  if(h == 0, return([0]));
+  [f/h^2, g/h^3];
+}

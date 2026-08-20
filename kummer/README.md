@@ -958,7 +958,7 @@ reduction it is free, since `W_p` is then forced to be `H^1` of the Tate `mu_l`:
 the mechanism fires iff the Tate `mu_l` is neither `C_1` nor `C_2`, i.e. iff
 neither global subgroup meets `E^0`.
 
-### A third check on §5.1.5's input (document §6.4.1)
+### §5.1.5's input, checked in Magma and then proved (document §6.4.1)
 
 `beta_3 != 0` for `x^3-2` -- i.e. that both dual 3-isogeny images lie in
 `E_1(Q_3)` -- confirmed a third time, in Magma, by a different route: the PARI
@@ -1009,16 +1009,36 @@ end for;
 (The two counts are the two kernels `x` and `x-2d`.) Magma also independently
 returns `IV*` and `c_3 = 3`, the labels Sage corrected.
 
-**More than a sample.** The image of `phihat : E'(Q_3) -> A = E(Q_3)/E_1` is a
-*subgroup*, and `#A = M = 9`; if it were non-trivial its kernel would have index
-at least 3, so at least two thirds of `E'(Q_3)` would land outside `E_1`. Zero of
-244 is a structural zero. Caveat: points with `v_3(x) < 0` lie in `E'_1` and map
-into `E_1` for free, so the informative part is the ~180 with `v_3(x) >= 0`.
+**And then a proof.** `phihat(E'_1)` is inside `E_1` -- an isogeny extends to the
+Neron models, so it respects the kernel of reduction -- hence phihat induces a
+map of the *finite* groups `A' = E'(Q_3)/E'_1 -> A = E(Q_3)/E_1`. Checking that
+is exhaustive, and it needs one point:
 
-**What would finish it.** `phihat(E'_1)` is inside `E_1`, so the map factors
-through the *finite* `A' = E'(Q_3)/E'_1` -- an exhaustive check over `#A'`
-cosets rather than a sample, and one such check settles the whole square class
-since all `d` in a class give `Q_3`-isomorphic curves. Short, and not done here.
+| step | value | | conclusion |
+|---|---|---|---|
+| `#E[3](Q_3)` | 3 | only `x = 2d` is rational | `#E(Q_3)/3E = 9` |
+| `#A = M` | 9 | 4 classes found outside `E_1`, all killed by 3 | `#A[3] >= 5 > 3`, so `A` is not cyclic: `A = (Z/3)^2` and `3E = E_1` |
+| `#A' = M'` | 3 | **prime** | one class generates `A'` |
+| `v_3(x(phihat P'))` | -2 | for `P'` outside `E'_1` | `phihat P'` is in `E_1`, so `phihat(A') = 0` |
+
+The last two lines are the content: since `#A' = 3` is **prime**, any single
+class outside `E'_1` generates `A'`, so one evaluation settles the induced map.
+Both kernels give `v_3 = -2`, and the same numbers come out for
+`d = -3, 6, -21, 87, -30, 69`. One `d` suffices, since all `d` in a square class
+give `Q_3`-isomorphic curves -- exactly the reduction §5.1.5 needs.
+
+> So `phihat(E'(Q_3))` is inside `E_1(Q_3) = 3E(Q_3)` for **both** 3-isogenies:
+> the two dual images are zero in `W_3`, so `W_3` meets neither `H^1(C_1)` nor
+> `H^1(C_2)`, so `W_3` is not phi-stable, so **`beta_3 != 0`**. The input §5.1.5
+> leaves open is closed.
+
+```
+gp -q -s 4000000000 survey.gp < /dev/null
+firstout(...); isogapply(...)     /* see results/survey-beta3-exhaustive.txt */
+```
+
+The only thing still taken on trust is the standard fact that an isogeny carries
+`E'_1` into `E_1`; everything else is a finite computation.
 
 ### The remaining three: what the module structure permits (document §6.5)
 
