@@ -1,0 +1,21 @@
+  ***   syntax error, unexpected end of file, expecting )-> or ',' or ')': 
+  ***   ...ra=",elllocalred(Em,2)[2],
+  ***                               ^-
+... skipping file '/private/tmp/claude-501/-Users-rene-dev-c-asm/94c57393-e23c-4e26-baae-995d213f901a/scratchpad/q1.gp'
+  ***   syntax error, unexpected ',', expecting end of file: " c_2="
+  ***   ,elllocalred(Em,2)[4]," M2=",M2val(Em),
+  ***   ^---------------------------------------
+  ***   syntax error, unexpected ',', expecting end of file: " g2="
+  ***   ,gloc2(F,1)," rootsQ2=",#polrootspadic(x
+  ***   ^----------------------------------------
+  ***   syntax error, unexpected ',', expecting end of file: " tors="
+  ***   ,elltors(Em)[1]);
+  ***   ^-----------------
+RANK2 j1728:1 class [2]  m<=4000  g=2  M2=4  withpoints=810  rank 0/1/2/3/4+: [323, 408, 79, 0, 0]  rank>=2: 79  time=3996
+RANK2 j1728:1 class [14]  m<=4000  g=2  M2=4  withpoints=810  rank 0/1/2/3/4+: [323, 408, 79, 0, 0]  rank>=2: 79  time=3948
+HUNT2 j1728:1 class [2]: NOT FOUND m<=30000 time=45126
+deep [2]  -> 0
+HUNT2 j1728:1 class [14]: NOT FOUND m<=30000 time=44982
+deep [14] -> 0
+### q1 finished
+gp -q -s 4000000000  < /dev/null  97.63s user 0.34s system 99% cpu 1:38.07 total

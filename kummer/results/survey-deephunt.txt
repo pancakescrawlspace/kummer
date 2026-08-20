@@ -1,0 +1,29 @@
+--- 11a1  p=11 class u  m <= 20000
+  HUNT p=11 class u: NOT FOUND for cofactor 1 <= m <= 20000
+    result d=0  time=43219
+--- 14a1  p=7 class 1  m <= 20000
+  HUNT p=7 class 1: NOT FOUND for cofactor 1 <= m <= 20000
+    result d=0  time=89975
+--- 14a2  p=7 class 1  m <= 20000
+  HUNT p=7 class 1: NOT FOUND for cofactor 1 <= m <= 20000
+    result d=0  time=75320
+--- 15a1  p=5 class 1  m <= 20000
+  HUNT p=5 class 1: NOT FOUND for cofactor 1 <= m <= 20000
+    result d=0  time=117603
+--- 15a4  p=5 class 1  m <= 20000
+  HUNT p=5 class 1: NOT FOUND for cofactor 1 <= m <= 20000
+    result d=0  time=77615
+--- 17a1  p=17 class 1  m <= 20000
+  HUNT p=17 class 1: NOT FOUND for cofactor 1 <= m <= 20000
+    result d=0  time=95981
+--- 19a1  p=19 class u  m <= 20000
+  HUNT p=19 class u: NOT FOUND for cofactor 1 <= m <= 20000
+    result d=0  time=43527
+--- 19a3  p=3 class 3  m <= 20000
+  HUNT p=3 class 3: d=12306  rank in [2,2]
+    result d=12306  time=6867
+--- 27a1  p=3 class u*3  m <= 20000
+  HUNT p=3 class u*3: NOT FOUND for cofactor 1 <= m <= 20000
+    result d=0  time=45534
+### deep finished
+gp -q -s 4000000000  < /dev/null  592.59s user 2.22s system 99% cpu 9:55.66 total

@@ -1,0 +1,28 @@
+== x^3 + x   (A=1, defective at [2] and [14])
+  [1] d=1  M2=4  kodaira=2  c_2=1  g2=2  tors(Q)=2
+  [3] d=3  M2=4  kodaira=2  c_2=1  g2=2  tors(Q)=2
+  [5] d=-3  M2=4  kodaira=2  c_2=1  g2=2  tors(Q)=2
+  [7] d=-1  M2=4  kodaira=2  c_2=1  g2=2  tors(Q)=2
+  [2] d=2  M2=16  kodaira=-7  c_2=4  g2=2  tors(Q)=4
+  [6] d=6  M2=8  kodaira=-7  c_2=2  g2=2  tors(Q)=2
+  [10] d=-6  M2=8  kodaira=-7  c_2=2  g2=2  tors(Q)=2
+  [14] d=-2  M2=16  kodaira=-7  c_2=4  g2=2  tors(Q)=4
+== x^3 - x   (A=-1, clean)
+  [1] d=1  M2=8  kodaira=3  c_2=2  g2=3  tors(Q)=4
+  [3] d=3  M2=8  kodaira=3  c_2=2  g2=3  tors(Q)=4
+  [5] d=-3  M2=8  kodaira=3  c_2=2  g2=3  tors(Q)=4
+  [7] d=-1  M2=8  kodaira=3  c_2=2  g2=3  tors(Q)=4
+  [2] d=2  M2=16  kodaira=-6  c_2=4  g2=3  tors(Q)=4
+  [6] d=6  M2=16  kodaira=-6  c_2=4  g2=3  tors(Q)=4
+  [10] d=-6  M2=16  kodaira=-6  c_2=4  g2=3  tors(Q)=4
+  [14] d=-2  M2=16  kodaira=-6  c_2=4  g2=3  tors(Q)=4
+== x^3 + 2x  (A=2, clean)
+  [1] d=1  M2=8  kodaira=3  c_2=2  g2=2  tors(Q)=2
+  [3] d=3  M2=8  kodaira=3  c_2=2  g2=2  tors(Q)=2
+  [5] d=-3  M2=8  kodaira=3  c_2=2  g2=2  tors(Q)=2
+  [7] d=-1  M2=8  kodaira=3  c_2=2  g2=2  tors(Q)=2
+  [2] d=2  M2=8  kodaira=-3  c_2=2  g2=2  tors(Q)=2
+  [6] d=6  M2=8  kodaira=-3  c_2=2  g2=2  tors(Q)=2
+  [10] d=-6  M2=8  kodaira=-3  c_2=2  g2=2  tors(Q)=2
+  [14] d=-2  M2=8  kodaira=-3  c_2=2  g2=2  tors(Q)=2
+### q3 finished

@@ -1,0 +1,27 @@
+### DEFECTIVE classes of x^3 + x
+IMAGE x^3+x  [2]  DEFECTIVE   |A| = 16   |A/2A| = 4
+      twists with >= 2 generators: 168    image dim 0/1/2: [14, 154, 0]
+      dim-1 images by line: ["[2]", 73; "[3]", 34; "[4]", 47]
+      time=1102
+IMAGE x^3+x  [14] DEFECTIVE   |A| = 16   |A/2A| = 4
+      twists with >= 2 generators: 168    image dim 0/1/2: [14, 154, 0]
+      dim-1 images by line: ["[2]", 73; "[3]", 34; "[4]", 47]
+      time=1095
+### WITNESSED classes of x^3 + x, as controls
+IMAGE x^3+x  [6]  witnessed   |A| = 8   |A/2A| = 4
+      twists with >= 2 generators: 133    image dim 0/1/2: [0, 93, 40]
+      dim-1 images by line: Mat(["[3]", 93])
+      time=1719
+IMAGE x^3+x  [10] witnessed   |A| = 8   |A/2A| = 4
+      twists with >= 2 generators: 132    image dim 0/1/2: [0, 93, 39]
+      dim-1 images by line: Mat(["[3]", 93])
+      time=1721
+### a clean surface of the same family
+IMAGE x^3+2x [2]  witnessed   |A| = 8   |A/2A| = 4
+      twists with >= 2 generators: 127    image dim 0/1/2: [0, 27, 100]
+      dim-1 images by line: Mat(["[4]", 27])
+      time=2153
+IMAGE x^3-x  [2]  witnessed   |A| = 16   |A/2A| = 8
+   (A/2A is not (Z/2)^2 -- skipping)
+### tp6 finished
+gp -q -s 4000000000  < /dev/null  7.76s user 0.04s system 99% cpu 7.811 total

@@ -1,0 +1,69 @@
+
+===== 0. the classical identity (a,a)_v = (a,-1)_v that the reduction uses =====
+  1920 tested, 0 mismatches
+
+===== 1. the norm identity (x, a^2-4b)_v = 1, which forces the alternating property =====
+  A=1 : 6032 evaluations, 0 non-trivial
+  A=2 : 6760 evaluations, 0 non-trivial
+  A=-3 : 5720 evaluations, 0 non-trivial
+
+===== 2. is beta alternating?  x^3 + Ax, every point, every v <= 100 =====
+  A=1   2-torsion field Q(sqrt(-1))   beta_v(P,P) non-zero: 0 of 6032     <-- ALTERNATING
+  A=2   2-torsion field Q(sqrt(-2))   beta_v(P,P) non-zero: 128 of 6760
+  A=3   2-torsion field Q(sqrt(-3))   beta_v(P,P) non-zero: 364 of 5720
+  A=5   2-torsion field Q(sqrt(-5))   beta_v(P,P) non-zero: 64 of 6240
+  A=-2   2-torsion field Q(sqrt(2))   beta_v(P,P) non-zero: 400 of 6760
+  A=-3   2-torsion field Q(sqrt(3))   beta_v(P,P) non-zero: 388 of 5720
+  A=6   2-torsion field Q(sqrt(-6))   beta_v(P,P) non-zero: 360 of 5824
+  A=7   2-torsion field Q(sqrt(-7))   beta_v(P,P) non-zero: 364 of 6344
+
+===== 3. beta_2 on W_2, square class by square class =====
+  x^3 + x    (defective at [2], [14])
+    [1]  d=1   c(E_d(Q_2)) = [1]   beta_2 non-zero: 0
+    [3]  d=3   c(E_d(Q_2)) = [1]   beta_2 non-zero: 0
+    [5]  d=-3   c(E_d(Q_2)) = [1]   beta_2 non-zero: 0
+    [7]  d=-1   c(E_d(Q_2)) = [1]   beta_2 non-zero: 0
+    [2]  d=2   c(E_d(Q_2)) = [1, 5, 2, 10]   beta_2 non-zero: 1
+    [6]  d=6   c(E_d(Q_2)) = [1, 5]   beta_2 non-zero: 0
+    [10]  d=-6   c(E_d(Q_2)) = [1, 5]   beta_2 non-zero: 0
+    [14]  d=-2   c(E_d(Q_2)) = [1, 5, 2, 10]   beta_2 non-zero: 1
+  x^3 + 2x   (clean; beta not alternating)
+    [1]  d=1   c(E_d(Q_2)) = [1, 3, 2, 6]   beta_2 non-zero: 1
+    [3]  d=3   c(E_d(Q_2)) = [1, 3, 2, 6]   beta_2 non-zero: 1
+    [5]  d=-3   c(E_d(Q_2)) = [1, 3, 2, 6]   beta_2 non-zero: 1
+    [7]  d=-1   c(E_d(Q_2)) = [1, 3, 2, 6]   beta_2 non-zero: 1
+    [2]  d=2   c(E_d(Q_2)) = [1, 2]   beta_2 non-zero: 0
+    [6]  d=6   c(E_d(Q_2)) = [1, 2]   beta_2 non-zero: 0
+    [10]  d=-6   c(E_d(Q_2)) = [1, 2]   beta_2 non-zero: 0
+    [14]  d=-2   c(E_d(Q_2)) = [1, 2]   beta_2 non-zero: 0
+  x^3 - x    (clean; g_2 = 3)
+    [1]  d=1   c(E_d(Q_2)) = [1, 7]   beta_2 non-zero: 1
+    [3]  d=3   c(E_d(Q_2)) = [1, 3, 5, 7]   beta_2 non-zero: 1
+    [5]  d=-3   c(E_d(Q_2)) = [1, 3, 5, 7]   beta_2 non-zero: 1
+    [7]  d=-1   c(E_d(Q_2)) = [1, 7]   beta_2 non-zero: 1
+    [2]  d=2   c(E_d(Q_2)) = [1, 3, 5, 7, 2, 6, 10, 14]   beta_2 non-zero: 1
+    [6]  d=6   c(E_d(Q_2)) = [1, 3, 5, 7, 2, 6, 10, 14]   beta_2 non-zero: 1
+    [10]  d=-6   c(E_d(Q_2)) = [1, 3, 5, 7, 2, 6, 10, 14]   beta_2 non-zero: 1
+    [14]  d=-2   c(E_d(Q_2)) = [1, 3, 5, 7, 2, 6, 10, 14]   beta_2 non-zero: 1
+
+===== 4. beta_l at the bad odd places, for x^3 + x =====
+  l = 1 mod 4 dividing d : 22 cases, beta_l non-zero in 0
+  l = 3 mod 4 dividing d : 22 cases, beta_l non-zero in 0
+    d=10 l=5 (1 mod 4)  dim W_l = 2   c(E_d(Q_l)) = [1, 5]  -- cyclic, so beta_l = 0
+    d=26 l=13 (1 mod 4)  dim W_l = 2   c(E_d(Q_l)) = [1, 13]  -- cyclic, so beta_l = 0
+    d=34 l=17 (1 mod 4)  dim W_l = 2   c(E_d(Q_l)) = [1, 17]  -- cyclic, so beta_l = 0
+    d=66 l=3 (3 mod 4)  dim W_l = 1   c(E_d(Q_l)) = [1]  -- cyclic, so beta_l = 0
+    d=66 l=11 (3 mod 4)  dim W_l = 1   c(E_d(Q_l)) = [1]  -- cyclic, so beta_l = 0
+    d=130 l=5 (1 mod 4)  dim W_l = 2   c(E_d(Q_l)) = [1, 10]  -- cyclic, so beta_l = 0
+    d=130 l=13 (1 mod 4)  dim W_l = 2   c(E_d(Q_l)) = [1, 26]  -- cyclic, so beta_l = 0
+    d=82 l=41 (1 mod 4)  dim W_l = 2   c(E_d(Q_l)) = [1, 41]  -- cyclic, so beta_l = 0
+
+===== 5. the punchline: (x(P),x(Q))_2 on RATIONAL pairs =====
+  x^3+x  [2]  DEFECTIVE           : 95 twists, 475 rational pairs, 0 with non-trivial symbol at 2
+  x^3+x  [14] DEFECTIVE           : 95 twists, 475 rational pairs, 0 with non-trivial symbol at 2
+  x^3+x  [6]  witnessed           : 80 twists, 400 rational pairs, 0 with non-trivial symbol at 2
+  x^3+2x [1]  witnessed, b2 =/= 0 : 80 twists, 395 rational pairs, 132 with non-trivial symbol at 2
+  x^3+2x [3]  witnessed, b2 =/= 0 : 91 twists, 464 rational pairs, 214 with non-trivial symbol at 2
+
+### alternating run finished
+gp -q -s 4000000000  < /dev/null  5.45s user 0.02s system 99% cpu 5.483 total

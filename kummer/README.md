@@ -25,12 +25,16 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `cover2.gp` | independent verification for odd `p`: `coverage(A,B,p,k,ds,NB)` checks that every genuine reduction mod `p^k` of a point of `X(Z_p)` with `y` a unit is hit by an honest rational point. |
 | `families.gp` | enumerates all quadratic-twist families with `E[3]` decomposable and tests the denominator-of-`j` criterion (document §5.2.3): `families`, `testfamily`, `sweepfamilies`. |
 | `verify-dual.sage` | independent Sage check of the one computational input to the §5.2.4 theorem (uses Sage's own `.dual()`); run under Docker, see below. |
-| `sadic.gp` | `S`-adic density (document §2.2): `Mstar`, `coprimeS`, `densefactorwise`, `denseS`, `reportS`; and the level-2 product test `inE2p`, `Border`, `denseprod`, `reportSprod`; and the rank dichotomy `torsdimUB`, `gtop`, `triage`. |
-| `ledger.gp` | the ledger and star test at level 1 (document §2.3.1): `arenainit`, `reachmap`, `signact`, `ledgeradd`, `maskvec`, `startest`, `runledger`, `rungraded`. Reduction-agnostic arena (§2.3.4): `shortmodel`, `shortdata`, `cosetreps1`, `cosetclose`, `cosetidx`. Sweeps over all tuples (§2.3.6): `sweepgraded`, and the per-tuple search `tuplepart`, `rungradedk`, `sweeptuples`; `tuplename` for readable labels, `showcert` for the certificate. |
+| `sadic.gp` | `S`-adic density (document §2.2): `Mstar`, `coprimeS`, `densefactorwise`, `denseS`, `reportS`; the level-2 product test `inE2p`, `Border`, `denseprod`, `reportSprod`, and the per-tuple search `tuplepart`, `tuplename`, `reportSprodk`, `reportSprodtuples`; and the rank dichotomy `torsdim`, `torsdimloc`, `gexactS` (exact) against `torsdimUB`, `gtop`, `triage` (bounds). |
+| `ledger.gp` | the ledger and star test at level 1 (document §2.3.1): `arenainit`, `reachmap`, `signact`, `ledgeradd`, `maskvec`, `startest`, `runledger`, `rungraded`. Reduction-agnostic arena (§2.3.4): `shortmodel`, `shortdata`, `cosetreps1`, `cosetclose`, `cosetidx`. Sweeps over all tuples (§2.3.6): `sweepgraded`, and the per-tuple search `rungradedk`, `sweeptuples` (on `tuplepart`/`tuplename` from `sadic.gp`); `showcert` for the certificate. |
 | `control.gp` | the control experiment for the `p = 3` open case (document §5.2.2): `armA`, `find3`, `armB`. |
 | `cm-torsion.gp` | the CM mechanism at `p = 3` for `f = x^3-2` (document §5.2.1): `torsionQ3`, `row`, `correlate`, `structure`. |
 | `cover-p2.gp` | the same check at `p = 2`, with exact rational arithmetic and the corrected target set (see below). |
-| `results/` | raw output of the two 64-tuple sweeps, kept verbatim because it carries the certificates -- the twists and signs behind every maximal reach -- which the write-up only summarises. |
+| `results/` | raw output of the tuple sweeps, kept verbatim because it carries the certificates -- the witnessing twist per tuple for `S = {5,7}` and `S = {3,5,7}`, and the twists and signs behind every maximal reach for `S = {11,13,17}`. All of it is now tabulated in the document (§2.2.1, §2.3.6); these files are the machine-generated source. Also `survey-*.txt`, the raw output behind `kummer-survey.typ`, and `surfaces-cremona.txt`, the curve list. |
+| `survey.gp` | **the survey** (`kummer-survey.typ`), both batches. The same test for a *general monic cubic* `f = x^3+ax^2+bx+c`, passed as `F=[a,b,c]`: `twistdata3`, `sweep3`, `sweptdata3`, `procyclic3`, `witnessodd`, `witness2`, `runsurface`. Deeper passes `deephunt`, `hunt2`; diagnostics `gloc`, `gloc2`, `classaudit`, `rankaudit`, `rankaudit2`. Family scans `sexticscan`, `quarticscan`. The §5.1.5 machinery at `l = 2`: `torsionmodule`, `halvable`, `dimW`, `cosetsE2`, `mod2A`, `imagelines`, and the Hilbert-symbol pairing `cmap`, `betav`, `alttest`, `normtest`, `cimagep`, `nzbeta`, `lemmaA`, `cyctest`. |
+| `cm-surfaces.sage` | the CM surface list: the eleven rigid CM surfaces plus the sextic (`j=0`) and quartic (`j=1728`) families, reduced to small monic cubics. Output in `results/surfaces-cm.txt`. |
+| `surfaces.sage` | the surface list: every curve of conductor <= 40 from Sage's Cremona database, grouped into quadratic-twist classes and reduced to a small monic cubic. Output kept in `results/surfaces-cremona.txt`. |
+| `survey-tables.py` | turns `results/survey-*.txt` into `survey-tables.typ` (generated; not edited by hand). |
 | `kummer.gp` | the earlier single-generator version (`densecyclic`, `scan`) over the `t_0`-family. Kept only as the reference implementation for `validate.gp`. |
 | `validate.gp` | validates the `p`-adic density test against an exact-rational reference implementation, and `densegroup` against `densecyclic`. |
 
@@ -242,7 +246,7 @@ read("sadic.gp");
 Border(ellinit([1,1]), [5,7]);          /* 1575                            */
 denseprod(ellinit([1,1]), [[0,1]], [5,7]);   /* 0: rank 1 cannot generate  */
 reportSprod(1, 1, [5,7],  4000);        /* 16/16 tuples: X(Q) dense in X(Q_S) */
-reportSprod(1, 1, [3,5,7], 6000);       /* 46/64 so far                    */
+reportSprod(1, 1, [3,5,7], 6000);       /* 46/64 -- a starved search, see below */
 ```
 
 Finding one witness per tuple proves density outright, with no hypothesis.
@@ -250,24 +254,74 @@ Only the converse -- reading a failed search as genuine failure -- needs
 `E_delta(Q_S)` to be topologically 2-generated, which is a local check and is
 strictly weaker than the coprimality condition above.
 
-### Triage before searching
+### Enumerating by tuple, not by size
 
-`gtop` bounds the minimal number of topological generators `g` of the arena
-`prod_p E^delta(Q_p)`, from local data only. When `g <= 2` partial twists are
-useless and `denseprod` settles the class outright; only when `g >= 3` can a
-union of partial reaches do something a single twist cannot.
+The 18 tuples the uniform sweep misses at `S = {3,5,7}` are starved, not
+obstructed. A tuple fixes the parity of `v_p(d)` at each place, so the
+odd-valuation places force a divisor `P = prod{p : v_p(d) odd}` of `d`; the
+eight all-odd tuples need `105 | d`, and `|d| <= 6000` offers those eight a
+total of 38 candidates -- while the tuple `(1,1,1)` gets the whole squarefree
+range. All 18 missed tuples have `P > 1`.
+
+`reportSprodtuples` walks the same squarefree `d` ordered by the cofactor
+instead, `d = +-P*m` with `m` squarefree and coprime to `S`, so every tuple
+gets a comparable supply:
 
 ```
 read("sadic.gp");
-gtop(1, 1, 1, [5,7]);          /* 2 */
-gtop(1, 1, 1, [11,13,17]);     /* 3 */
-triage(1, 1, [5,7],     2000); /* 14 tuples with g <= 2, 2 with g = 3 */
-triage(1, 1, [11,13,17], 600); /* all 48 realised tuples have g = 3   */
+reportSprodtuples(1, 1, [5,7],   20000, 1500);   /* 16/16 tuples, 0.3 s */
+reportSprodtuples(1, 1, [3,5,7], 20000, 1500);   /* 64/64 tuples, ~17 s */
 ```
 
-Beware: `g >= 3` does **not** say no full twist exists, only that none is
-forced. Both `g = 3` tuples for `S = {5,7}` do have full twists, of
-Mordell-Weil rank at least 3.
+**All 64 tuples are witnessed**, the hardest at `d = 31290`, so `X(Q)` is dense
+in `X(Q_S)` for `S = {3,5,7}` -- again with no hypothesis, since every tuple is
+settled by a single full twist. Raw output, with the witness for each tuple, is
+in `results/sadic-pertuple-S3-5-7.txt` and `results/sadic-pertuple-S5-7.txt`;
+both witness lists are tabulated in the document, §2.2.1.
+
+Raw `|d|` is the wrong scale to judge that list by. The median witness is
+`|d| = 1335`, but the median *cofactor* `|d|/P` is 131 over the eight
+unramified tuples and 166 over the other 56 -- indistinguishable. The spread in
+`|d|` is the forced divisor and nothing else.
+
+Two local filters do the pruning, in increasing order of price: a twist with
+fewer than `g` independent points cannot surject onto `B_d`, and density in the
+product implies density in each factor, so three `densegroup` calls screen for
+each expensive `denseprod`. Re-verifying every witness through the unfiltered
+`twistdata` path reproduces all 64, and 24 of them are confirmed independently
+by the coprimality criterion `(*)`.
+
+### Triage before searching
+
+`g`, the minimal number of topological generators of the arena
+`prod_p E^delta(Q_p)`, is local data and needs no point search. When `g <= 2`
+partial twists are useless and `denseprod` settles the class outright; only
+when `g >= 3` can a union of partial reaches do something a single twist
+cannot.
+
+```
+read("sadic.gp");
+gexactS(1, 1, 1, [5,7]);        /* 2 -- exact                          */
+gexactS(1, 1, 1, [11,13,17]);   /* 3                                   */
+gtop(1, 1, 1, [11,13,17]);      /* 3 -- the upper bound, here tight    */
+triage(1, 1, [11,13,17], 600);  /* all 48 realised tuples have g = 3   */
+```
+
+**Use `gexactS`, not `gtop`.** `gtop` bounds `dim E(Q_p)[l]` by `v_l(M_p)`,
+which reads `l | M_p` as `l`-torsion -- but `M_p = #E(Q_p)/E_1` counts a
+*quotient*, and `E(Q_p) = Z_p` with no torsion at all already has `M_p = 9`.
+The bound is loose in exactly the direction that misleads: `triage` reports
+`g = 3` for 2 of the 16 tuples at `S = {5,7}` and 24 of the 64 at
+`S = {3,5,7}`, all of which in truth have `g <= 2` -- consistent with every
+one of them being settled by a full twist above. It is tight at
+`S = {11,13,17}`, where all 64 tuples really do have `g = 3`. `gexactS`
+computes the dimension properly and is still purely local: at good reduction
+with `l != p` reduction is an isomorphism on `l`-torsion, so `ellgroup`
+settles it; only `l = p`, or `l` dividing the component group at additive
+reduction, needs a division polynomial.
+
+Beware also that `g >= 3` does **not** say no full twist exists, only that
+none is forced.
 
 ## The ledger
 
@@ -370,7 +424,11 @@ twists to collect all seven.
 
 Run with `m <= 2000` and a cap of 250 candidates per tuple, `sweeptuples`
 proves **13 of the 64** tuples dense -- eleven on a single full twist, and
-`(1,1,1)` and `(1,13,u*17)` on seven hyperplanes. The two enumerations are
+`(1,1,1)` and `(1,13,u*17)` on seven hyperplanes. Document §2.3.6 lists the
+witness `d` for all thirteen. All eleven full twists have Mordell-Weil rank
+*exactly* 3, the least `g = 3` permits, so the mechanism is not that those
+tuples sit under twists of unusually large rank -- only that the search met a
+rank-3 twist there. The two enumerations are
 complementary rather than nested: the uniform sweep still proves `(u,1,1)`
 and `(u,1,u)`, which the capped per-tuple run misses (102 and 98 twists with
 points, against 177 and 185). Together they settle **15 of the 64 tuples**,
@@ -391,6 +449,219 @@ computation, not the bookkeeping: the `O(N)` triangular method is already imprac
 for three places (`1.1e7`) and hopeless at level 3 (`2.7e10`). Granularities
 need an `l`-primary rewrite, which is also the right representation since
 closures in a profinite abelian group decompose over primes.
+
+## The survey over thirty surfaces
+
+`kummer-survey.typ` runs the same test over the thirty smallest surfaces and
+reports p-adic density for every `p <= 200`.
+
+**Which surfaces.** `X` sees `f` only through `f -> c^-3 f(cx+mu)`, so surfaces
+are elliptic curves *up to quadratic twist* and the invariant to sort by is
+`N_min`, the conductor of the minimal twist. Taken: all 28 surfaces with
+`N_min <= 20` (complete, from Cremona via Sage), plus `27a1` and `496a` as
+controls -- which are exactly the `x^3-2` and `x^3+x+1` of the main document,
+so the two known answers are re-derived.
+
+**Monic cubics, not depressed ones.** Depressing costs a shift `x -> x-a/3`,
+cleared by `3^2, 3^3`, so coefficients blow up by `3^4` and `3^6`: curve 11a2
+is `x^3-14x^2-31216x-1983614` but depresses to `x^3-281532x+57496282`. That is
+an artefact of the model. `survey.gp` carries `F=[a,b,c]` throughout; the twist
+is `Y^2 = U^3 + a d U^2 + b d^2 U + c d^3` with `(U,Y) = (du, d^2 v)`, and
+everything downstream is unchanged.
+
+**Enumerate by cofactor, not by |d|.** The classes `[p]`, `[u p]` force `p | d`,
+so a bound on `|d|` starves them ~`p/2` to 1. Writing `d = +-P*m` with `P = p`
+for those two classes and bounding the *cofactor* `m` fixes it -- the same
+lesson as the S-adic tuple sweep, at a single place. Under the old bound 11a3
+reports 44/45 and the shortfall looks like an obstruction; under the new one,
+45/45.
+
+```
+gp -q -s 4000000000 survey.gp < /dev/null
+runsurface("11a3", [1,-1,1], 1500, 50, 200, 60, 3000, 300);   /* ~6 s */
+```
+
+**Result.** 5392 of the 5400 (odd prime, square class) pairs carry a witness;
+22 of the 30 surfaces are witnessed at every odd `p <= 200`; at `p = 2`, 239 of
+240 classes, so 21 are witnessed at every `p <= 200`. Total 321 s for the
+main run, about 21.5 min including the follow-ups.
+
+**The eight that fail** sit on eight distinct surfaces, each at exactly one
+prime, and that prime always divides the conductor. All have `g = 2` -- so a
+rank->=2 twist is mandatory -- and between 96 and 167 rank->=2 twists were
+tested in the failing class without a witness, over a range then extended
+6.7-fold. Seven of the eight are *non-CM*, which says the CM mechanism of
+§5.1 explains which class fails for `x^3-2` but is not the general reason a
+class fails; the common signature is multiplicative reduction with
+`gcd(c_p, p-a_p) > 1`, making `E_delta(Q_p)/E_1` have `(Z/l)^2` as a quotient.
+
+```
+deephunt([-11,-1,-83], 11, 1, 1, 20000);       /* 11a1, p=11, class [u] */
+gloc([10,105,-116], 1, 7);                     /* 2 -- rank 1 is useless */
+rankaudit("14a1", [10,105,-116], 7, 0, 3000);  /* 144 rank->=2 twists, none dense */
+```
+
+**`p = 2`.** When `f` splits completely over `Q_2` (ten of the thirty),
+`E_delta(Q_2) = Z_2 x (Z/2)^2` for *every* delta, needs three generators, and
+the Kummer surface only supplies pairs -- the criterion stops being an
+equivalence. Seven of those ten fall short at `m <= 300`; deeper passes recover
+all but `17a4`, class `[7]`, always on a rank-2 or rank-3 twist.
+
+**Model-independence.** Rewriting the surface permutes the class labels by the
+class of `c`. Checked on 14a1 in three models: the failing class moves from
+`[1]` to `[u]` and back, exactly as `(3|7) = (-1|7) = -1` predicts -- which also
+re-runs the case through the original depressed code path.
+
+Rebuild the document with `typst compile kummer-survey.typ` after
+`python3 survey-tables.py`.
+
+## The CM batch
+
+`kummer-survey.typ` §5. The first batch was chosen by size and came out non-CM
+throughout, leaving `x^3-2` -- the one surface known to be defective -- with no
+company.
+
+**Which CM surfaces there are.** Thirteen CM `j`-invariants; for `j != 0, 1728`
+each is a *single* quadratic-twist class, hence one surface -- eleven rigid
+points, `D = -7,-8,-11,-12,-16,-19,-27,-28,-43,-67,-163`. For `j = 0` and
+`j = 1728` the twisting is sextic and quartic, so one `j` spreads over infinitely
+many surfaces:
+
+    D = -3 :  f = x^3 + B,   surfaces <-> B > 0 cubefree
+    D = -4 :  f = x^3 + A x, surfaces <-> A != 0 squarefree
+
+`x^3-2` is the member `B = 2` of the first. That is the point: the family can be
+*walked*, so "is the defect about the CM order or about that surface?" is
+decidable.
+
+```
+docker run --rm --platform linux/amd64 -v "$PWD":/work -w /work \
+       sagemath/sagemath:latest sage cm-surfaces.sage    /* the list */
+gp -q -s 4000000000 survey.gp < /dev/null
+sexticscan(100, 3, 3000);      /* 85 surfaces at p = 3, 72 s  */
+quarticscan(60, 1500);         /* 74 surfaces at p = 2, 10 s  */
+```
+
+**Result.** 43 CM surfaces over all `p <= 200` (334 s): of 7740 (odd p, class)
+pairs all but one are witnessed, of 344 classes at `p = 2` all but two. *Two*
+surfaces are defective: `x^3+2` at `p = 3` (the quadratic twist of `x^3-2`, so
+the known one) and **`x^3+x` at `p = 2`, which is new**. The deepest witness
+anywhere in the project is `D = -163` at `p = 199`, `d = 1949802`, rank 3.
+
+**Walking the families settles it.** Of the 85 sextic surfaces `B <= 100`,
+exactly one is defective at 3: `B = 2`. Of the 74 quartic surfaces `|A| <= 60`,
+exactly one is defective at 2: `A = 1`. So the defect does not spread -- it is a
+fact about the individual surface, not about CM. Combined with the seven non-CM
+defects of the first batch, CM is neither necessary nor sufficient; what the
+defective cases share is only `g = 2` at the failing place.
+
+**Why `x^3+x` at `p = 2` counts.** `f = x(x^2+1)` has exactly one root in `Q_2`,
+so `dim E[2](Q_2) = 1`, `E_delta(Q_2)` is 2-generated and the necessity argument
+applies -- the first `p = 2` shortfall in either batch that is evidence of
+non-density rather than a limitation of the criterion. The local structure picks
+the classes out on its own, exactly as `find3` does at `p = 3`: the defective
+classes are the two with `M_2 = 16`, `c_2 = 4` and rational 4-torsion, against
+`M_2 = 8`, `c_2 = 2`, 2-torsion for the two witnessed even classes. They are
+`delta = 2` and `delta = -2`, one square class seen twice, since `E_d = E_{-d}`
+for `f = x^3 + Ax`.
+
+### The obstruction at the place 2, elementary form (the §5.1.5 question)
+
+§5.1.5 of the main document identifies a *mechanism* -- a Galois-twisted Tate
+pairing plus reciprocity. The same mechanism works for `x^3+x` with the descent
+done by 2 instead of 3, and it can be written down with **no cohomology at
+all**: the twisted pairing is the
+quadratic Hilbert symbol of two x-coordinates, and the only imported theorem is
+Hilbert reciprocity (equivalently quadratic reciprocity). Document §5.5.
+
+For `E_d : y^2 = x(x^2+d^2)`, `T = (0,0)`, set `c(O) = 1`, `c(T) = d^2`,
+`c(x,y) = x`, a map to `K^x` modulo squares.
+
+**Lemma 1 (Vieta).** `c` is a homomorphism. Three collinear points have
+x-coordinates the roots of `x^3 - lam^2 x^2 + (d^2 - 2 lam nu) x - nu^2`, whose
+product is `nu^2`, a square; if `nu = 0` the line passes through `T` and the
+other two x's multiply to `d^2`. *(7780 triples tested, 0 failures.)*
+
+**Lemma 2 (norm lemma).** `x(x^2+d^2) = y^2` makes `x = x^2+d^2` mod squares, and
+`x^2+d^2 = N_{K(i)/K}(x+di)`. So `c(P)` is a **norm from `Q(i)`**, i.e.
+`(c(P),-1)_v = 1` everywhere. For general `y^2 = x(x^2+ax+b)` the field is
+`Q(sqrt(a^2-4b))`; the twist of `x^3+Ax` has `a^2-4b = -4Ad^2 = -A`, so it is
+`Q(i)` **exactly when A = 1** -- the defective member. That is the answer to
+"why exactly A = 1", the analogue of §5.1.1.
+
+**Notation: two different 2's.** The *level* of the descent is 2 (`E[2]`, square
+classes) and the *place* that survives reciprocity is also `v = 2`. These are the
+two families of primes §2.3 keeps apart -- a layer and a place -- and here they
+coincide numerically, so they must be separated in the notation. Below the level
+is never given a letter (always the literal 2); `v` is a place of `Q`, and `q` a
+finite *odd* place. Nothing here is called `l`.
+
+**The symbol vanishes away from 2.** At `v = inf`, `x >= 0` on real points. At
+odd `q` not dividing `2d`, `v_q(c(P))` is even (from `b^2 = a(a^2+d^2e^4)` and
+coprimality), and two units pair trivially. At odd `q | d`:
+
+> **Lemma A.** If `k = v_q(x(P)) != e = v_q(d)` then `c(P) = 1`: for `k < e`,
+> `x^2+d^2 = x^2(1+(d/x)^2)` with the second factor a 1-unit hence a square
+> (`q` odd); for `k > e` symmetrically. Either way `x(x^2+d^2) = y^2` makes `x`
+> a square.
+>
+> **Lemma B.** `S = c(E_d(Q_q))` has order at most 2. By Lemma 1 `S` is a
+> subgroup of a group of order 4, and by Lemma A every non-identity element has
+> valuation `= e mod 2`. If `e` is even `S` is inside the units; if `e` is odd
+> and `S` held both `q` and `qu`, it would hold `u` -- even valuation,
+> contradiction.
+
+Then `(g^i,g^j)_q = (g,-1)_q^{ij} = 1` by Lemma 2. *(Lemma A: 3345 points, 0
+exceptions. Lemma B: 1851 bad odd places, `#S` always 1 or 2.)*
+
+**The image at 2 is a mod-8 computation.** For `d = 2m`, `m` odd, writing
+`x = 2^k u`: `k < 0` or `k >= 3` give class 1; `k = 0` needs `x = 5 mod 8`;
+`k = 2` needs `u = 5 mod 8`; and `k = 1` needs `uw = 1 mod 8` with
+`w = (u^2+m^2)/2`. Only `k = 1` sees `m`:
+
+| m mod 8 | k=1 solvable? | c(E_d(Q_2)) |
+|---|---|---|
+| ±1 | yes: u = 1 (class 2) and u = 5 (class 10) | **{1,5,2,10}** |
+| ±3 | no | {1,5} |
+
+(and `{1}` for `d` odd). A scan of 324 squarefree `d` reproduces this exactly.
+The Hilbert symbol on `{1,5,2,10}` has `+` on the diagonal (Lemma 2 again) and
+`(2,5)_2 = -1`: non-degenerate, so its isotropic subgroups have order <= 2.
+
+> **Theorem.** Let `d = 2m` be squarefree with `m = ±1 mod 8` (square class `[2]`
+> or `[14]`). Then `E_d(Q)` is not dense in `E_d(Q_2)`, hence `X(Q)` is not
+> dense in `X(Q_2)`.
+>
+> *Proof.* By the above and Hilbert reciprocity, `(c(P),c(Q))_2 = +1` for all
+> rational `P,Q`, so `H = c(E_d(Q))` is an isotropic subgroup of `{1,5,2,10}`
+> and `#H <= 2`. But `c` is *locally constant* on `E_d(Q_2)` (squares are open)
+> and surjects onto `{1,5,2,10}`. So `U = {P : c(P) not in H}` is open,
+> non-empty, and contains no rational point nor any limit of them.
+
+No cohomology, no Selmer groups, no Frattini subgroups, no Nakayama: Vieta, a
+norm identity, three valuation arguments, a computation mod 8, and reciprocity.
+The proof covers **all** twists in the two classes at once.
+
+```
+homtest([0,1,0], 130, 6);          /* Lemma 1  */
+lemmaA([0,1,0], 130, 5, 30, 5, 60); cyctest([0,1,0], 2, 1200, 30);
+img2table([0,1,0], 200);           /* the mod-8 table */
+```
+
+Checks: across 190 twists in the two defective classes, all 950 rational pairs
+give `(c(P),c(Q))_2 = +1`. The control `x^3+2x` has `a^2-4b = -2`, so Lemma 2
+gives only `(c(P),-2)_v = 1`, its diagonal is not `+`, reciprocity localises
+nothing -- 132/395 and 214/464 rational pairs have a *non-trivial* symbol at 2,
+and all four of its classes are witnessed.
+
+The dictionary back to §5.1.5 (`c = pi o delta_v`, symbol = cup product,
+Lemma 2 = "beta alternating", reciprocity = `sum inv_v beta_v = 0`) is in
+document §5.5.5. Read that way the argument goes further than §5.1.5 could at
+level 3 on both points it leaves open -- the alternating property, which there
+needs decomposability of `E[3]`, is Lemma 2 here; and the local input
+`beta_3 != 0`, which there needs a cubic norm-residue symbol at a wildly
+ramified place, is here the mod-8 table. That is exactly because at level 2 the
+norm-residue symbol is *quadratic*, while at level 3 it is cubic.
 
 ## The Sage cross-check
 

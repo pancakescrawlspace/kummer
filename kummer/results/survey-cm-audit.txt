@@ -1,0 +1,28 @@
+== audits, odd primes ==
+  ***   at top-level: classaudit("rigid:-163",R163,199,2,3000)
+  ***                 ^----------------------------------------
+  ***   in function classaudit: ...dr=classrep3(p,k,4000);g=
+  ***   gloc(F,dr,p);Em=twist
+  ***   ^---------------------
+  ***   in function gloc: ...l=ells[i];r=if(l==p,1,0)+torsdimloc3(F,d,Em,p,
+  ***                                                 ^---------------------
+  ***   in function torsdimloc3: ...m,p)[4]%l!=0,return(0)));torsdim3(F,d,p,l)
+  ***                                                        ^-----------------
+  ***   in function torsdim3: ...linit([0,a2,0,a4,a6]);ps=elldivpol(Ec,l);rt=po
+  ***                                                     ^---------------------
+  *** elldivpol: the PARI stack overflows !
+  current stack size: 4000000000 (3814.697 Mbytes)
+  [hint] set 'parisizemax' to a nonzero value in your GPRC
+
+... skipping file '/private/tmp/claude-501/-Users-rene-dev-c-asm/94c57393-e23c-4e26-baae-995d213f901a/scratchpad/cmfollow.gp'
+RANK rigid:-163 p=199 class 199  m<=3000  withpoints=82  rank 0/1/2/3/4+: [0, 77, 4, 1, 0]  rank>=2: 5  time=15006
+AUDIT j0:2 p=3 class 3  g=2  M=9  kodaira=-4 c_p=3  procyclic=0
+      twists tried=1368  with points=605  by #generators: [520, 82, 3, 0, 0, 0]  time=5191
+RANK j0:2 p=3 class 3  m<=3000  withpoints=606  rank 0/1/2/3/4+: [1, 508, 94, 3, 0]  rank>=2: 97  time=5276
+== deep hunts, odd primes ==
+  HUNT p=199 class 199: d=1949802  rank in [3,3]
+rigid:-163 -> 1949802
+  HUNT p=3 class 3: NOT FOUND for cofactor 1 <= m <= 20000
+j0:2       -> 0
+### cmfollow finished
+gp -q -s 4000000000  < /dev/null  194.90s user 2.01s system 99% cpu 3:17.79 total

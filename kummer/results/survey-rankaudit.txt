@@ -1,0 +1,10 @@
+RANK 11a1 p=11 class u  m<=3000  withpoints=824  rank 0/1/2/3/4+: [1, 708, 112, 3, 0]  rank>=2: 115  time=5350
+RANK 14a1 p=7 class 1  m<=3000  withpoints=1597  rank 0/1/2/3/4+: [653, 800, 138, 6, 0]  rank>=2: 144  time=8875
+RANK 14a2 p=7 class 1  m<=3000  withpoints=1597  rank 0/1/2/3/4+: [654, 800, 137, 6, 0]  rank>=2: 143  time=6893
+RANK 15a1 p=5 class 1  m<=3000  withpoints=1522  rank 0/1/2/3/4+: [609, 768, 142, 3, 0]  rank>=2: 145  time=10163
+RANK 15a4 p=5 class 1  m<=3000  withpoints=1522  rank 0/1/2/3/4+: [610, 768, 141, 3, 0]  rank>=2: 144  time=7264
+RANK 17a1 p=17 class 1  m<=3000  withpoints=1718  rank 0/1/2/3/4+: [702, 849, 157, 10, 0]  rank>=2: 167  time=10386
+RANK 19a1 p=19 class u  m<=3000  withpoints=781  rank 0/1/2/3/4+: [1, 684, 91, 5, 0]  rank>=2: 96  time=5212
+RANK 27a1 p=3 class u*3  m<=3000  withpoints=605  rank 0/1/2/3/4+: [1, 508, 93, 3, 0]  rank>=2: 96  time=5366
+### rank finished
+gp -q -s 4000000000  < /dev/null  59.25s user 0.20s system 99% cpu 59.526 total
