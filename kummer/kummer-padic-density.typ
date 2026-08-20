@@ -317,14 +317,96 @@ against the provable coprimality test on 312 twists with no disagreement, and de
 that test left open. Searching by tuple:
 
 #table(
-  columns: 4, align: (center, center, center, left), stroke: 0.4pt + luma(150),
-  table.header([$S$ (for $f = x^3+x+1$)], [tuples], [witnessed], [outcome]),
-  [${5, 7}$],    [16], [16], [*$X(QQ)$ is dense in $X(QQ_S)$*, $|d| <= 4000$, 0.4 s],
-  [${3, 5, 7}$], [64], [46], [inconclusive so far, $|d| <= 6000$],
+  columns: 5, align: (center, center, center, center, left), stroke: 0.4pt + luma(150),
+  table.header([$S$ (for $f = x^3+x+1$)], [tuples], [enumeration], [witnessed], [outcome]),
+  [${5, 7}$],    [16], [$|d| <= 4000$],         [16], [*$X(QQ)$ is dense in $X(QQ_S)$*, 0.4 s],
+  [${3, 5, 7}$], [64], [$|d| <= 6000$],         [46], [inconclusive],
+  [${5, 7}$],    [16], [by tuple, $m <= 20000$], [16], [*$X(QQ)$ is dense in $X(QQ_S)$*, 0.3 s],
+  [${3, 5, 7}$], [64], [by tuple, $m <= 20000$], [64], [*$X(QQ)$ is dense in $X(QQ_S)$*, 17 s],
 )
 
-The three-place case is not a failure, only an unfinished search: witnesses become scarcer as
-$|S|$ grows, since a twist must now be simultaneously good at every place.
+The second row is not a failure but a starved search, and the fault is in the *enumeration*, not
+in the surface. A tuple fixes the parity of $v_p (d)$ at each place, so the places of odd
+valuation force a divisor $P_(arrow(delta)) = product {p : v_p (d) "odd"}$ of $d$; for
+$S = {3,5,7}$ the eight all-odd tuples need $105 | d$, and a uniform sweep of $|d| <= 6000$ offers
+those eight tuples 38 candidates in total --- four to six apiece --- while the tuple
+$arrow(delta) = (1,1,1)$ gets the whole squarefree range. Every one of the eighteen tuples the
+uniform sweep missed has $P_(arrow(delta)) > 1$.
+
+Walking the same squarefree $d$ ordered by the *cofactor* instead --- $d = plus.minus
+P_(arrow(delta)) m$ with $m$ squarefree and coprime to $S$ --- gives every tuple a comparable
+supply, and all 64 fall, the hardest of them at $d = 31290$. This is `reportSprodtuples`; each
+witness is a single full twist, so by the remark above the conclusion needs no hypothesis. Two
+cheap filters keep it to 17 seconds: a twist with fewer than $g(arrow(delta))$ independent points
+cannot surject onto $B_d$ --- $g$ is the minimal number of topological generators of the arena,
+@sec-ledger, and it is a local computation needing no point search --- and density in the product
+implies density in each factor, so three `densegroup` calls screen for each expensive
+`denseprod`. Re-verified through the unfiltered
+`twistdata` path, all 64 witnesses stand, and 24 of them are confirmed independently by the
+coprimality criterion $(star)$.
+
+*The witnesses.* One full twist per tuple, each certifying density in its own component of
+$X(QQ_S)$ on its own; $u$ denotes any non-residue. For $S = {5,7}$, with the tuple read as
+$(delta_5, delta_7)$ --- the same 16 components as the first row of the table above, now settled
+in 0.3 s rather than 0.4:
+
+#table(
+  columns: 4, align: (left, right, left, right), stroke: 0.4pt + luma(150),
+  table.header([tuple], [witness $d$], [tuple], [witness $d$]),
+  [$(1, 1)$], [$51$], [$(5, 1)$], [$1730$],
+  [$(1, u)$], [$-1$], [$(5, u)$], [$5$],
+  [$(1, 7)$], [$-21$], [$(5, 7)$], [$595$],
+  [$(1, u dot 7)$], [$91$], [$(5, u dot 7)$], [$770$],
+  [$(u, 1)$], [$53$], [$(u dot 5, 1)$], [$-185$],
+  [$(u, u)$], [$3$], [$(u dot 5, u)$], [$-85$],
+  [$(u, 7)$], [$7$], [$(u dot 5, 7)$], [$-35$],
+  [$(u, u dot 7)$], [$42$], [$(u dot 5, u dot 7)$], [$-210$],
+)
+
+And for $S = {3,5,7}$, the tuple read as $(delta_3, delta_5, delta_7)$:
+
+#table(
+  columns: 4, align: (left, right, left, right), stroke: 0.4pt + luma(150),
+  table.header([tuple], [witness $d$], [tuple], [witness $d$]),
+  [$(1, 1, 1)$], [$781$], [$(3, 1, 1)$], [$-789$],
+  [$(1, 1, u)$], [$-11$], [$(3, 1, u)$], [$-519$],
+  [$(1, 1, 7)$], [$-1169$], [$(3, 1, 7)$], [$3486$],
+  [$(1, 1, u dot 7)$], [$3451$], [$(3, 1, u dot 7)$], [$1659$],
+  [$(1, u, 1)$], [$3343$], [$(3, u, 1)$], [$16158$],
+  [$(1, u, u)$], [$223$], [$(3, u, u)$], [$957$],
+  [$(1, u, 7)$], [$-1883$], [$(3, u, 7)$], [$25977$],
+  [$(1, u, u dot 7)$], [$1687$], [$(3, u, u dot 7)$], [$-987$],
+  [$(1, 5, 1)$], [$3355$], [$(3, 5, 1)$], [$-20445$],
+  [$(1, 5, u)$], [$55$], [$(3, 5, u)$], [$255$],
+  [$(1, 5, 7)$], [$-2345$], [$(3, 5, 7)$], [$-6405$],
+  [$(1, 5, u dot 7)$], [$25795$], [$(3, 5, u dot 7)$], [$-22470$],
+  [$(1, u dot 5, 1)$], [$-185$], [$(3, u dot 5, 1)$], [$18615$],
+  [$(1, u dot 5, u)$], [$-365$], [$(3, u dot 5, u)$], [$1335$],
+  [$(1, u dot 5, 7)$], [$7315$], [$(3, u dot 5, 7)$], [$2415$],
+  [$(1, u dot 5, u dot 7)$], [$-1085$], [$(3, u dot 5, u dot 7)$], [$1785$],
+  [$(u, 1, 1)$], [$-451$], [$(u dot 3, 1, 1)$], [$366$],
+  [$(u, 1, u)$], [$131$], [$(u dot 3, 1, u)$], [$-561$],
+  [$(u, 1, 7)$], [$-511$], [$(u dot 3, 1, 7)$], [$15414$],
+  [$(u, 1, u dot 7)$], [$581$], [$(u dot 3, 1, u dot 7)$], [$-714$],
+  [$(u, u, 1)$], [$53$], [$(u dot 3, u, 1)$], [$5343$],
+  [$(u, u, u)$], [$-127$], [$(u dot 3, u, u)$], [$-498$],
+  [$(u, u, 7)$], [$15743$], [$(u dot 3, u, 7)$], [$21147$],
+  [$(u, u, u dot 7)$], [$7973$], [$(u dot 3, u, u dot 7)$], [$9933$],
+  [$(u, 5, 1)$], [$1730$], [$(u dot 3, 5, 1)$], [$-8805$],
+  [$(u, 5, u)$], [$5$], [$(u dot 3, 5, u)$], [$-30$],
+  [$(u, 5, 7)$], [$-6895$], [$(u dot 3, 5, 7)$], [$8295$],
+  [$(u, 5, u dot 7)$], [$770$], [$(u dot 3, 5, u dot 7)$], [$-15645$],
+  [$(u, u dot 5, 1)$], [$-985$], [$(u dot 3, u dot 5, 1)$], [$4785$],
+  [$(u, u dot 5, u)$], [$290$], [$(u dot 3, u dot 5, u)$], [$510$],
+  [$(u, u dot 5, 7)$], [$665$], [$(u dot 3, u dot 5, 7)$], [$31290$],
+  [$(u, u dot 5, u dot 7)$], [$-4585$], [$(u dot 3, u dot 5, u dot 7)$], [$-210$],
+)
+
+Raw size is the wrong scale to read that table by. The median witness is $|d| = 1335$, but the
+median *cofactor* $|d| slash P_(arrow(delta))$ is $131$ over the eight unramified tuples and $166$
+over the other 56 --- indistinguishable. The spread in $|d|$ is the forced divisor and nothing
+else, which is the whole point: once each tuple is searched on its own progression, no tuple is
+harder than any other.
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   *Which surface.* All of §2.2 is computed for the *non-CM* curve $f = x^3 + x + 1$, which is
@@ -408,11 +490,22 @@ $cal(G)_(arrow(delta))$, computed locally as $max_ell ([ell in S] + sum_p dim E^
 
 So the bookkeeping is trivial exactly when $g <= 2$, and that is decidable locally before any point
 search. Note carefully that $g >= 3$ does *not* mean no full twist exists: it only means one is no
-longer forced. For $f = x^3+x+1$ and $S = {5,7}$, computing $g$ over the 16 tuples gives $g <= 2$
-for fourteen of them and $g = 3$ for two --- and yet @sec-sadic-level found a full twist for all
-sixteen, so those two are settled by rank-$>= 3$ twists rather than by any ledger. For
-$S = {11,13,17}$ all 48 realised tuples have $g = 3$, since the cubic has a root in each of
-$QQ_11, QQ_13, QQ_17$; that is where a ledger would first be needed if full twists ran out.
+longer forced. For $f = x^3+x+1$ and $S = {5,7}$ all sixteen tuples have $g <= 2$, and for
+$S = {3,5,7}$ all 64 do (24 with $g = 1$, 40 with $g = 2$) --- consistent with @sec-sadic-level
+finding a full twist for every tuple of both. For $S = {11,13,17}$, by contrast, all 64 tuples
+have $g = 3$, since the cubic has a root in each of $QQ_11, QQ_13, QQ_17$; that is where the
+ledger first does real work.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Compute $g$ exactly, not from $M_p$.* The tempting shortcut is to read $ell | M_p$ as
+  $ell$-torsion in $E^(delta_p)(QQ_p)$. It is not: $M_p = \#E(QQ_p) slash E_1$ counts a
+  *quotient*, and $E(QQ_p) = ZZ_p$ with no torsion at all already has $M_p = 9$. Bounding
+  $dim E[ell]$ by $v_ell (M_p)$ inflates $g$ --- it reports $g = 3$ for two tuples of ${5,7}$ and
+  24 tuples of ${3,5,7}$ that in truth have $g <= 2$. `gexactS` computes $dim E^(delta_p)(QQ_p)
+  [ell]$ properly and is still a purely local calculation: at good reduction with $ell != p$
+  reduction is an isomorphism on $ell$-torsion, so `ellgroup` settles it; only $ell = p$, or
+  $ell$ dividing the component group at additive reduction, needs a division polynomial.
+]
 
 *Monotonicity.* Truncation $cal(G)(n+1) -> cal(G)(n)$ is surjective and carries reaches onto
 reaches, so coverage at level $n+1$ implies coverage at level $n$. Deficiency is therefore
@@ -739,27 +832,38 @@ is a property of the curve, not of the search.
 enumeration proves *13 of the 64* tuples dense, against 5 for the uniform sweep:
 
 #table(
-  columns: 4, align: (left, right, right, left), stroke: 0.4pt + luma(150),
-  table.header([tuple], [$d_0$], [$N$], [mechanism]),
-  [$(1,1,1)$],            [$1$],     [$4536$],  [seven hyperplanes],
-  [$(1,13,u dot 17)$],    [$663$],   [$12376$], [seven hyperplanes],
-  [$(1,1,u)$],            [$3$],     [$4536$],  [full twist],
-  [$(1,u,17)$],           [$34$],    [$4760$],  [full twist],
-  [$(1,13,1)$],           [$-13$],   [$6552$],  [full twist],
-  [$(1,13,17)$],          [$221$],   [$12376$], [full twist],
-  [$(u,u dot 13,u dot 17)$], [$-1105$], [$8840$],  [full twist],
-  [$(11,u,u)$],           [$11$],    [$3960$],  [full twist],
-  [$(11,u dot 13,u)$],    [$-143$],  [$10296$], [full twist],
-  [$(u dot 11,1,1)$],     [$-55$],   [$7128$],  [full twist],
-  [$(u dot 11,1,u dot 17)$], [$-374$], [$13464$], [full twist],
-  [$(u dot 11,u,1)$],     [$-33$],   [$3960$],  [full twist],
-  [$(u dot 11,13,1)$],    [$715$],   [$10296$], [full twist],
+  columns: 5, align: (left, right, right, left, right), stroke: 0.4pt + luma(150),
+  table.header([tuple], [$d_0$], [$N$], [mechanism], [witness $d$]),
+  [$(1,1,1)$],            [$1$],     [$4536$],  [seven hyperplanes], [see below],
+  [$(1,13,u dot 17)$],    [$663$],   [$12376$], [seven hyperplanes], [see below],
+  [$(1,1,u)$],            [$3$],     [$4536$],  [full twist], [$335$],
+  [$(1,u,17)$],           [$34$],    [$4760$],  [full twist], [$21981$],
+  [$(1,13,1)$],           [$-13$],   [$6552$],  [full twist], [$23673$],
+  [$(1,13,17)$],          [$221$],   [$12376$], [full twist], [$214591$],
+  [$(u,u dot 13,u dot 17)$], [$-1105$], [$8840$],  [full twist], [$-12818$],
+  [$(11,u,u)$],           [$11$],    [$3960$],  [full twist], [$4279$],
+  [$(11,u dot 13,u)$],    [$-143$],  [$10296$], [full twist], [$52195$],
+  [$(u dot 11,1,1)$],     [$-55$],   [$7128$],  [full twist], [$-13354$],
+  [$(u dot 11,1,u dot 17)$], [$-374$], [$13464$], [full twist], [$17391$],
+  [$(u dot 11,u,1)$],     [$-33$],   [$3960$],  [full twist], [$17633$],
+  [$(u dot 11,13,1)$],    [$715$],   [$10296$], [full twist], [$-188045$],
 )
 
+Note that $d_0$ is only the first candidate in the tuple's progression, present to name the arena;
+the witness is the last column. The two hyperplane certificates are
+$d in {-1590, -519, -127, 53, 586, 1730, 1923}$ for $(1,1,1)$, each of index 2 in an arena of
+order $4536$, and
+$d in {-323765, -303654, -189397, -72709, -6409, 40001, 384319}$ for $(1,13,u dot 17)$, each of
+index 2 in an arena of order $12376$.
+
 Eleven of the thirteen close on a *single full twist* --- a ledger with one member of index 1 ---
-and only $(1,1,1)$ and $(1,13,u dot 17)$ need the hyperplane mechanism. The reason the ramified
-tuples so often have a full twist is presumably that their arenas, while larger, are reached by
-twists of larger rank; that is a guess, not a result.
+and only $(1,1,1)$ and $(1,13,u dot 17)$ need the hyperplane mechanism. All eleven full twists have
+Mordell--Weil rank *exactly* 3, which is the least $g = 3$ permits and worth recording, since it
+says the mechanism is not "these tuples happen to sit under twists of unusually large rank". Ten
+of the eleven are ramified at some place of $S$, but so are 56 of the 64 tuples, so the rate is
+about the same either way; and $d = 335$ shows that a rank-3 twist can turn up at small $|d|$
+in an unramified tuple too. What separates the eleven from the rest is that the search met a
+rank-3 twist, not that their arenas demanded one.
 
 *The two enumerations are complementary, not nested.* The uniform sweep still proves $(u,1,1)$ and
 $(u,1,u)$, which the per-tuple run misses: capped at 250 candidates it drew only 102 and 98 twists

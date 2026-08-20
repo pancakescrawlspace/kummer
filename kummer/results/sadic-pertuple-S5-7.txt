@@ -1,0 +1,20 @@
+  f = x^3+(1)x+(1)   S = [5, 7]   m <= 20000, cap 1500 twists per tuple
+    tuple 0 (1, 1) P=1 g=2  tried 12 with 2+ points 1 factorwise 1   WITNESS d = 51
+    tuple 1 (1, u) P=1 g=1  tried 1 with 1+ points 1 factorwise 1   WITNESS d = -1
+    tuple 2 (1, 7) P=7 g=1  tried 2 with 1+ points 1 factorwise 1   WITNESS d = -21
+    tuple 3 (1, u*7) P=7 g=1  tried 3 with 1+ points 1 factorwise 1   WITNESS d = 91
+    tuple 4 (u, 1) P=1 g=2  tried 12 with 2+ points 1 factorwise 1   WITNESS d = 53
+    tuple 5 (u, u) P=1 g=1  tried 2 with 1+ points 1 factorwise 1   WITNESS d = 3
+    tuple 6 (u, 7) P=7 g=1  tried 1 with 1+ points 1 factorwise 1   WITNESS d = 7
+    tuple 7 (u, u*7) P=7 g=1  tried 2 with 1+ points 2 factorwise 1   WITNESS d = 42
+    tuple 8 (5, 1) P=5 g=2  tried 77 with 2+ points 1 factorwise 1   WITNESS d = 1730
+    tuple 9 (5, u) P=5 g=1  tried 1 with 1+ points 1 factorwise 1   WITNESS d = 5
+    tuple 10 (5, 7) P=35 g=1  tried 4 with 1+ points 1 factorwise 1   WITNESS d = 595
+    tuple 11 (5, u*7) P=35 g=1  tried 5 with 1+ points 1 factorwise 1   WITNESS d = 770
+    tuple 12 (u*5, 1) P=5 g=2  tried 8 with 2+ points 1 factorwise 1   WITNESS d = -185
+    tuple 13 (u*5, u) P=5 g=1  tried 4 with 1+ points 1 factorwise 1   WITNESS d = -85
+    tuple 14 (u*5, 7) P=35 g=1  tried 1 with 1+ points 1 factorwise 1   WITNESS d = -35
+    tuple 15 (u*5, u*7) P=35 g=1  tried 2 with 1+ points 1 factorwise 1   WITNESS d = -210
+  tuples witnessed: 16 / 16
+  elapsed ms = 318
+  witnesses = [51, -1, -21, 91, 53, 3, 7, 42, 1730, 5, 595, 770, -185, -85, -35, -210]

@@ -165,16 +165,6 @@ ledgeradd(L, ar, bm, d) = {
   out;
 }
 
-/* Readable name of a square-class tuple: sqclassS folds base 4 over S in
-   order, digits 0,1,2,3 = 1, u, p, u*p.  "tuple 37" says nothing; the tuple
-   (u*11, 1, u) says which component of X(Q_S) is meant.                    */
-tuplename(k, S) = {
-  my(v = vector(#S), i, t = k, out = "(");
-  forstep(i = #S, 1, -1, v[i] = t % 4; t = t \ 4);
-  for(i = 1, #S, out = Str(out, sqclassname(v[i], S[i]), if(i < #S, ", ", ")")));
-  out;
-}
-
 /* the twists behind a closed ledger, deduplicated */
 certtwists(L) = { my(i, T = List()); for(i = 1, #L, listput(T, L[i][2])); Set(Vec(T)); }
 
@@ -459,13 +449,6 @@ cosetclose(Ep, R, p, M) = {
    m squarefree and coprime to S instead, so every tuple gets a comparable
    supply, and stop a tuple as soon as its ledger closes.
    ===================================================================== */
-
-tuplepart(k, S) = {
-  my(v = vector(#S), i, t = k, P = 1);
-  forstep(i = #S, 1, -1, v[i] = t % 4; t = t \ 4);
-  for(i = 1, #S, if(v[i] >= 2, P *= S[i]));
-  P;
-}
 
 rungradedk(A, B, S, k, MMAX, CAP) = {
   my(P = tuplepart(k, S), Q = prod(i = 1, #S, S[i]), d0 = 0, ar = 0, L = List(),

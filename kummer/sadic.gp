@@ -53,6 +53,25 @@ sqclassS(d, S) = {
   k;
 }
 
+/* Readable name of a square-class tuple: sqclassS folds base 4 over S in
+   order, digits 0,1,2,3 = 1, u, p, u*p.  "tuple 37" says nothing; the tuple
+   (u*11, 1, u) says which component of X(Q_S) is meant.                    */
+tuplename(k, S) = {
+  my(v = vector(#S), i, t = k, out = "(");
+  forstep(i = #S, 1, -1, v[i] = t % 4; t = t \ 4);
+  for(i = 1, #S, out = Str(out, sqclassname(v[i], S[i]), if(i < #S, ", ", ")")));
+  out;
+}
+
+/* The divisor a tuple forces.  A tuple fixes the parity of v_p(d) at each
+   place, so the places of odd valuation force P_k = prod{p : v_p odd} | d.  */
+tuplepart(k, S) = {
+  my(v = vector(#S), i, t = k, P = 1);
+  forstep(i = #S, 1, -1, v[i] = t % 4; t = t \ 4);
+  for(i = 1, #S, if(v[i] >= 2, P *= S[i]));
+  P;
+}
+
 /* For each tuple of square classes, look for a twist witnessing density.
    Sufficiency only needs ONE good d per tuple, so (*) is tested per d.    */
 reportS(A, B, S, DMAX) = {
@@ -168,18 +187,18 @@ reportSprod(A, B, S, DMAX) = {
 /* dim_{F_l} E_d(Q_p)[l], computed on the short model (torsion is a
    Q-isomorphism invariant, so minimality is irrelevant here) */
 torsdim(A, B, d, p, l) = {
-  my(a4 = A*d^2, a6 = B*d^3, Ec = ellinit([a4, a6]), ps, fa, i, r, x0, s, v, cnt);
+  my(a4 = A*d^2, a6 = B*d^3, Ec = ellinit([a4, a6]), ps, rt, i, x0, s, cnt);
   ps = elldivpol(Ec, l);
-  fa = factorpadic(ps, p, 30);
+  /* only the Q_p-roots are wanted, and asking for just those is the
+     difference between instant and unusable: a full factorpadic of psi_17
+     (degree 144) does not finish, polrootspadic returns at once           */
+  rt = polrootspadic(ps, p, 30);
   cnt = 1;                                   /* the identity */
-  for(i = 1, #fa~,
-    if(poldegree(fa[i,1]) != 1, next);
-    x0 = -polcoeff(fa[i,1], 0)/polcoeff(fa[i,1], 1);
+  for(i = 1, #rt,
+    x0 = rt[i];
     if(l == 2, cnt += 1; next);              /* y = 0, always rational */
     s = x0^3 + a4*x0 + a6;
-    if(s == 0, cnt += 1; next);
-    v = valuation(s, p);
-    if(v % 2 == 0 && issquare(Mod(truncate(s/p^v), p)), cnt += 2)
+    if(issquare(s), cnt += 2)                /* two points, +-y */
   );
   valuation(cnt, l);
 }
@@ -209,6 +228,57 @@ gtop(A, B, d, S) = {
   g;
 }
 
+/* dim_{F_l} E^d(Q_p)[l] again, but cheaply where that is possible.
+
+   Good reduction, l != p: reduction is an ISOMORPHISM on l-torsion --
+   injective because E_1 is torsion-free (p odd), surjective because l is
+   invertible on E_1 = Z_p, so an l-torsion point of E(F_p) can be corrected
+   inside E_1.  ellgroup then reads the dimension straight off E(F_p).
+
+   Good reduction, l = p: reduction is still injective on p-torsion, so
+   p | #E(F_p) is necessary and usually already fails.
+
+   Additive reduction, l != p: E_0 is pro-p (E_1 = Z_p and E_0/E_1 = F_p^+),
+   so prime-to-p torsion injects into the component group, of order c <= 4.
+
+   Only what survives all three -- l = p at bad reduction, l | c at additive
+   reduction, and multiplicative reduction, which for a twist of x^3+x+1
+   happens only at p = 31 -- pays for a division polynomial.                 */
+torsdimloc(A, B, d, Em, p, l) = {
+  my(G, c = 0, i);
+  if(elllocalred(Em, p)[2] == 1,
+    if(l != p,
+      G = ellgroup(Em, p);
+      for(i = 1, #G, if(G[i] % l == 0, c++));
+      return(c));
+    if((p + 1 - ellap(Em, p)) % p != 0, return(0))
+  ,
+    if(l != p && ellap(Em, p) == 0 && elllocalred(Em, p)[4] % l != 0, return(0))
+  );
+  torsdim(A, B, d, p, l);
+}
+
+/* The same quantity computed EXACTLY, with torsdimloc in place of torsdimUB.
+   The bound is loose in a way that matters: torsdimUB reads l | M_p as
+   l-torsion, but M_p = #E(Q_p)/E_1 counts a quotient, not the torsion
+   subgroup -- E(Q_p) = Z_p (no torsion) with M_p = 9 already makes it
+   report dim E[3] = 1.  Costs one division polynomial per (p, l), which is
+   still no point search, so it is the right thing to triage with.          */
+gexactS(A, B, d, S) = {
+  my(Ec = ellinit([A*d^2, B*d^3]), Em = ellminimalmodel(Ec), ells = List(),
+     i, j, l, r, g = 0, fa);
+  for(i = 1, #S, listput(ells, S[i]);
+    fa = factor(Mval(Em, S[i]))[,1]~;
+    for(j = 1, #fa, listput(ells, fa[j])));
+  ells = Set(Vec(ells));
+  for(i = 1, #ells,
+    l = ells[i];
+    r = if(setsearch(Set(S), l), 1, 0);
+    for(j = 1, #S, r += torsdimloc(A, B, d, Em, S[j], l));
+    if(r > g, g = r));
+  g;
+}
+
 /* classify every tuple of square classes by g, before any point search */
 triage(A, B, S, DMAX) = {
   my(nt = 4^#S, seen = vector(nt, i, 0), d, n, sg, k, g, hist = Map(), c, ks, i);
@@ -227,4 +297,83 @@ triage(A, B, S, DMAX) = {
   for(i = 1, #ks,
     print("      g = ", ks[i], " : ", mapget(hist, ks[i]), " tuples",
           if(ks[i] <= 2, "   (denseprod decides)", "   (ledger needed)")));
+}
+
+/* =====================================================================
+   Per-tuple witness search   (document, section 2.2.1)
+
+   reportSprod sweeps |d| <= DMAX uniformly, which starves exactly the
+   tuples that need help.  A tuple fixes the parity of v_p(d) at each place,
+   so the odd-valuation places force the divisor P_k = tuplepart(k, S) of d.
+   For S = {3,5,7} the all-odd tuples need 105 | d, and |d| <= 6000 offers
+   those eight tuples 38 candidates in total -- while the tuple d0 = 1 gets
+   the whole squarefree range.  That, and not any obstruction, is why the
+   uniform sweep stalled at 46 of 64: all eighteen tuples it missed have
+   P_k > 1.
+
+   Enumerating d = eps*P_k*m with m squarefree and coprime to S walks the
+   same set of squarefree d, ordered by the cofactor rather than by |d|, so
+   every tuple gets a comparable supply.  Same shape as sweeptuples in
+   ledger.gp, but the acceptance test is denseprod: one full twist per
+   tuple, hence density with no hypothesis at all.
+
+   Two filters keep the cost down, in increasing order of price:
+     - g = gexactS generators are needed to surject onto B, so a twist with
+       fewer points than that cannot be full.  g depends only on the tuple,
+       so it is computed once and costs no point search.
+     - density in the product implies density in each factor, so the three
+       cheap densegroup tests screen for the one expensive denseprod.
+   ===================================================================== */
+
+/* ellrank without the saturation, which is only worth paying for on the
+   twists that survive the generator-count filter */
+rawdata(A, B, d) = {
+  my(Ec = ellinit([A*d^2, B*d^3]), Em = ellminimalmodel(Ec), R = ellrank(Em));
+  [Em, R[4], elltors(Em)[3]];
+}
+
+/* Search tuple k alone: d = eps*P_k*m, m <= MMAX squarefree and coprime to
+   S, at most CAP candidates.  Returns the witness d, or 0.                 */
+reportSprodk(A, B, S, k, MMAX, CAP, verb = 1) = {
+  my(P = tuplepart(k, S), Q = prod(i = 1, #S, S[i]), d0 = 0, g = 0, w = 0,
+     m, sg, d, rd, pts, tried = 0, seen = 0, tested = 0);
+  for(m = 1, MMAX,
+    if(!issquarefree(m) || gcd(m, Q) > 1, next);
+    for(sg = 0, 1,
+      d = if(sg == 0, m*P, -m*P);
+      if(sqclassS(d, S) != k, next);
+      if(tried >= CAP, break(2));
+      tried++;
+      /* g depends only on the tuple, so the first candidate fixes it */
+      if(d0 == 0, d0 = d; g = gexactS(A, B, d, S));
+      rd = rawdata(A, B, d);
+      if(#rd[2] + #rd[3] < g, next);
+      seen++;
+      pts = if(#rd[2] > 0, ellsaturation(rd[1], rd[2], 50), rd[2]);
+      pts = concat(pts, rd[3]);
+      if(!densefactorwise(rd[1], pts, S), next);
+      tested++;
+      if(denseprod(rd[1], pts, S), w = d; break(2))));
+  if(verb,
+    if(d0 == 0,
+       print("    tuple ", k, " ", tuplename(k, S), "   no candidate in range")
+     , print("    tuple ", k, " ", tuplename(k, S), " P=", P, " g=", g,
+             "  tried ", tried, " with ", g, "+ points ", seen,
+             " factorwise ", tested,
+             if(w, Str("   WITNESS d = ", w), "   none"))));
+  w;
+}
+
+/* All tuples, each searched in its own arithmetic progression. */
+reportSprodtuples(A, B, S, MMAX, CAP) = {
+  my(nt = 4^#S, w = vector(nt, i, 0), k, nf = 0);
+  print("  f = x^3+(", A, ")x+(", B, ")   S = ", S,
+        "   m <= ", MMAX, ", cap ", CAP, " twists per tuple");
+  for(k = 0, nt-1,
+    w[k+1] = reportSprodk(A, B, S, k, MMAX, CAP);
+    if(w[k+1], nf++));
+  print("  tuples witnessed: ", nf, " / ", nt);
+  for(k = 0, nt-1, if(w[k+1] == 0,
+    print("      tuple ", k, " ", tuplename(k, S), " : none found")));
+  [nf, w];
 }
