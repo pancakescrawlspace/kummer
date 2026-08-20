@@ -31,7 +31,7 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `cm-torsion.gp` | the CM mechanism at `p = 3` for `f = x^3-2` (document §5.2.1): `torsionQ3`, `row`, `correlate`, `structure`. |
 | `cover-p2.gp` | the same check at `p = 2`, with exact rational arithmetic and the corrected target set (see below). |
 | `results/` | raw output of the tuple sweeps, kept verbatim because it carries the certificates -- the witnessing twist per tuple for `S = {5,7}` and `S = {3,5,7}`, and the twists and signs behind every maximal reach for `S = {11,13,17}`. All of it is now tabulated in the document (§2.2.1, §2.3.6); these files are the machine-generated source. Also `survey-*.txt`, the raw output behind `kummer-survey.typ`, and `surfaces-cremona.txt`, the curve list. |
-| `survey.gp` | **the survey** (`kummer-survey.typ`), both batches. The same test for a *general monic cubic* `f = x^3+ax^2+bx+c`, passed as `F=[a,b,c]`: `twistdata3`, `sweep3`, `sweptdata3`, `procyclic3`, `witnessodd`, `witness2`, `runsurface`. Deeper passes `deephunt`, `hunt2`; diagnostics `gloc`, `gloc2`, `classaudit`, `rankaudit`, `rankaudit2`. Family scans `sexticscan`, `quarticscan`. The §5.1.5 machinery at `l = 2`: `torsionmodule`, `halvable`, `dimW`, `cosetsE2`, `mod2A`, `imagelines`, and the Hilbert-symbol pairing `cmap`, `betav`, `alttest`, `normtest`, `cimagep`, `nzbeta`, `lemmaA`, `cyctest`. The single-place ledger: `ppoints`, `arena1`, `modlA`, `lbasis`, `ledgerp`. |
+| `survey.gp` | **the survey** (`kummer-survey.typ`), both batches. The same test for a *general monic cubic* `f = x^3+ax^2+bx+c`, passed as `F=[a,b,c]`: `twistdata3`, `sweep3`, `sweptdata3`, `procyclic3`, `witnessodd`, `witness2`, `runsurface`. Deeper passes `deephunt`, `hunt2`; diagnostics `gloc`, `gloc2`, `classaudit`, `rankaudit`, `rankaudit2`. Family scans `sexticscan`, `quarticscan`. The §5.1.5 machinery at `l = 2`: `torsionmodule`, `halvable`, `dimW`, `cosetsE2`, `mod2A`, `imagelines`, and the Hilbert-symbol pairing `cmap`, `betav`, `alttest`, `normtest`, `cimagep`, `nzbeta`, `lemmaA`, `cyctest`. The single-place ledger: `ppoints`, `arena1`, `modlA`, `lbasis`, `ledgerp`. Constructing the pairing when `f` splits: `cvals`, `betan`, `badplaceset`, `nmats`, `cpairimage`, `nzlocal`. |
 | `cm-surfaces.sage` | the CM surface list: the eleven rigid CM surfaces plus the sextic (`j=0`) and quartic (`j=1728`) families, reduced to small monic cubics. Output in `results/surfaces-cm.txt`. |
 | `surfaces.sage` | the surface list: every curve of conductor <= 40 from Sage's Cremona database, grouped into quadratic-twist classes and reduced to a small monic cubic. Output kept in `results/surfaces-cremona.txt`. |
 | `survey-tables.py` | turns `results/survey-*.txt` into `survey-tables.typ` (generated; not edited by hand). |
@@ -729,6 +729,63 @@ needs decomposability of `E[3]`, is Lemma 2 here; and the local input
 `beta_3 != 0`, which there needs a cubic norm-residue symbol at a wildly
 ramified place, is here the mod-8 table. That is exactly because at level 2 the
 norm-residue symbol is *quadratic*, while at level 3 it is cubic.
+
+## A twisted pairing for a non-CM case: 15a1 at p = 5 (document §6)
+
+§3.3.1 found all seven open classes carry the pairing signature; this constructs
+the pairing in one of them, at a **non-CM** surface -- so the mechanism is not
+about complex multiplication.
+
+`15a1` has `f = (x-17)(x-1)(x+8)`, so **f splits over Q**: `E[2]` is the trivial
+Galois module and `End_G(E[2]) = M_2(F_2)`. In contrast with `x^3+x`, where the
+twisting endomorphism was essentially unique, here it is not scarce at all --
+it has to be **chosen**. Every candidate has the shape
+
+    beta_n(P,Q) = prod_{i,j in {1,2}} ( c_i(P), c_j(Q) )_v ^ n_ij,
+    c_i(P) = x(P) - d e_i,   c1 c2 c3 = y^2,   n in M_2(F_2)
+
+-- 16 of them, the untwisted Tate pairing being the antidiagonal, which dies on
+the Lagrangian `W_v`. Two conditions pin `n` down:
+
+* **beta_5 must not vanish on W_5.** Sampling `E_d(Q_5)` gives `c2` always a
+  square, so `c3 = c1` there, while `c1` is *onto* `Q_5^x` mod squares. Every
+  `beta_n` collapses on `W_5` to `(c1(P),c1(Q))_5 ^ n_11`, so `n_11 = 1`.
+* **beta_v must vanish at every v != 5.** Testing all 16 on 7318 rational pairs
+  from 150 twists leaves four, two of them with `n_11 = 1`.
+
+The survivors are transposes of each other, and their product is the untwisted
+pairing (so beta is symmetric on `W_v`):
+
+    beta_v(P,Q) = ( c1(P), c3(Q) )_v = ( x(P) - 17d, x(Q) + 8d )_v
+
+```
+loc5(1);            /* c2 is a square, c1 is onto */
+search();           /* the 16 candidates */
+sweepv(400);        /* local vanishing at 2, 3 and q | d */
+```
+
+**Local statements.** `beta_5` is alternating (`(c1,c3) = (c2,d)(c3,-1)` for one
+point, and at 5 both die: `c2` is a square there and `-1` is a square in `Q_5`
+since `5 = 1 mod 4`) and non-zero (`c1` onto, `(5,u)_5 = -1`) -- so symplectic on
+the 2-dimensional `W_5`. `beta_inf = 1`: for `d > 0` real points have `x >= -8d`
+so `c3 >= 0`; for `d < 0`, `x >= 17d` so `c1 >= 0`. For `q` outside `{2,3,5}` and
+prime to `d`, the `c_i` differ by `16d, 25d, 9d`, so at most one is a non-unit
+and its valuation is even -- both arguments are units and the symbol is 1. *That
+the root differences 16, 25, 9 are perfect squares is what confines the rest to
+2, 3, 5 and `q | d`; 5 survives because `e1 - e3 = 25`.*
+
+The places 2, 3 and `q | d` are **verified, not proved**: over all 202 squarefree
+`d` in the class with `|d| <= 400`, `beta_q` vanishes on the whole *local* group
+at 640 of 640 such places, and `beta_5 != 0` on `W_5` for all 202.
+
+> *Theorem* (modulo that verification): for every squarefree `d` in the class
+> `[1]` of `Q_5`, `E_d(Q)` is not dense in `E_d(Q_5)`; hence `X(Q)` is not dense
+> in `X(Q_5)`.
+
+It also explains the §3.3.1 measurement -- the reaches spread over all three
+lines 180/129/170 -- since an isotropic line of a symplectic form is exactly a
+line forced to exist without being preferred. The selection step is what would
+have to be redone for each of the other six classes; that is not done.
 
 ## The Sage cross-check
 

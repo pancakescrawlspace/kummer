@@ -1057,6 +1057,155 @@ is forced to exist without being preferred.
 #cmprimetables
 
 
+= A twisted pairing for a non-CM case: `15a1` at $p = 5$ <sec-15a1>
+
+@sec-ledger-odd found that all seven open classes of @sec-fail carry the pairing
+signature --- reaches isotropic, every line occurring, none preferred. This
+section constructs the pairing in one of them. It is the same mechanism as
+@sec-pairing, at a *non-CM* surface, which settles that the mechanism is not
+about complex multiplication.
+
+Take `15a1`, $p = 5$, class $[1]$. Here
+$ f = (x - 17)(x - 1)(x + 8), quad quad e = (17, 1, -8), $
+so *$f$ splits over $QQ$* --- the row $n_QQ = 3$ of @sec-which's table. The
+twist is $E_d : y^2 = (x - 17d)(x - d)(x + 8d)$, and the three descent maps of
+@sec-alt become
+$ c_i (P) = x(P) - d e_i, quad c_i (T_i) = product_(j != i) d(e_i - e_j),
+  quad c_1 c_2 c_3 = y^2 . $
+
+== Choosing the endomorphism <sec-15a1-choose>
+
+$E[2]$ is now the *trivial* Galois module, so $"End"_G (E[2]) = M_2 (bb(F)_2)$:
+in contrast with $x^3 + x$, where the twisting endomorphism was essentially
+unique, here it is not scarce at all --- it has to be *chosen*. Writing
+$a = (c_1 (P), c_2 (P))$ and $b = (c_1 (Q), c_2 (Q))$ as coordinates on
+$H^1 (QQ_v, E[2]) = (QQ_v^times slash (QQ_v^times)^2)^2$, every
+$phi in "End"_G (E[2])$ produces a pairing of the shape
+$ beta_n (P, Q) = product_(i, j in {1,2}) (c_i (P), c_j (Q))_v^(n_(i j)),
+  quad quad n in M_2 (bb(F)_2), $
+and all 16 of them arise. The *untwisted* Tate pairing is the antidiagonal
+$n = mat(0,1;1,0)$, which dies on $W_v$ because $W_v$ is Lagrangian --- that is
+the $0 = 0$ the twist has to break.
+
+Two conditions pin $n$ down.
+
+*First, $beta_5$ must not vanish on $W_5$.* Sampling $E_d (QQ_5)$ for $d$ in the
+class gives the local image
+
+#align(center, table(
+  columns: 4, align: (right, center, center, center),
+  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3pt),
+  table.header([$d$], [$c_1$], [$c_2$], [$c_3$]),
+  [1],  [$1, u, 5, 5u$], [$1$], [$1, u, 5, 5u$],
+  [-1], [$1, u, 5, 5u$], [$1$], [$1, u, 5, 5u$],
+  [11], [$1, u, 5, 5u$], [$1$], [$1, u, 5, 5u$],
+  [19], [$1, u, 5, 5u$], [$1$], [$1, u, 5, 5u$],
+))
+
+#v(2mm)
+
+--- $c_2$ is *always a square* on $E_delta (QQ_5)$, so $c_3 = c_1 c_2 = c_1$
+there, while $c_1$ is *onto* $QQ_5^times slash (QQ_5^times)^2$. Hence every
+$beta_n$ collapses on $W_5$ to $(c_1 (P), c_1 (Q))_5^(n_11)$, which is non-zero
+exactly when $n_11 = 1$.
+
+*Second, $beta_v$ must vanish at every $v != 5$*, or reciprocity localises
+nothing. Testing all 16 candidates on 7318 rational pairs drawn from 150 twists
+leaves exactly four, and two of those are the ones with $n_11 = 1$:
+
+#align(center, table(
+  columns: 3, align: (center, left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3pt),
+  table.header([$n$], [$beta_n$], [ ]),
+  [$mat(0,0;0,0)$], [trivial], [--],
+  [$mat(0,1;1,0)$], [$(c_1 (P), c_2 (Q))(c_2 (P), c_1 (Q))$],
+    [the untwisted pairing, zero on $W_v$],
+  [$mat(1,1;0,0)$], [$(c_1 (P), c_1 (Q) c_2 (Q)) = (c_1 (P), c_3 (Q))$], [*the twist*],
+  [$mat(1,0;1,0)$], [$(c_1 (P) c_2 (P), c_1 (Q)) = (c_3 (P), c_1 (Q))$], [its transpose],
+))
+
+#v(2mm)
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  $ beta_v (P, Q) = (c_1 (P), space c_3 (Q))_v
+    = ( x(P) - 17 d, space x(Q) + 8 d )_v . $
+]
+
+The two survivors are transposes, and their product is the untwisted pairing,
+which is $1$ on $W_v$: so $beta_v (Q, P) = beta_v (P, Q)$ there --- $beta$ is
+*symmetric* on $W_v$, as it must be.
+
+== The local statements <sec-15a1-local>
+
+*$beta_5$ is alternating and non-zero on $W_5$.* From
+$c_1 - c_3 = -25 d$ and the Steinberg relation one gets, for a single point,
+$ (c_1, c_3)_v = (c_2, d)_v dot (c_3, -1)_v . $
+At $v = 5$ both factors are trivial: $c_2$ is a square on $E_delta (QQ_5)$ by
+the table, and $-1$ is a square in $QQ_5$ because $5 equiv 1 (mod 4)$. So
+$beta_5 (P,P) = 1$. And $beta_5 != 0$ since $c_1$ is onto and
+$(5, u)_5 = -1$. A non-zero alternating form on the 2-dimensional $W_5$ is
+symplectic, so its isotropic subspaces have dimension $<= 1$.
+
+*$beta_infinity = 1$.* For $d > 0$ the roots are $-8d < d < 17d$, so real points
+have $x >= -8d$ and $c_3 >= 0$; for $d < 0$ they are $17d < d < -8d$, so
+$x >= 17d$ and $c_1 >= 0$. Either way one argument is non-negative and the
+symbol is $+1$.
+
+*$beta_q = 1$ for $q in.not {2, 3, 5}$ with $q divides.not d$.* The $c_i$ differ
+by $d(e_i - e_j) in {16d, 25d, 9d}$, so for such $q$ at most one $c_i$ is a
+non-unit, and then $v_q (c_i) = v_q (y^2)$ is even. Both arguments are units and
+the symbol is $+1$.
+
+That the root differences $16, 25, 9$ are *perfect squares* is what confines the
+remaining places to $2$, $3$, $5$ and the divisors of $d$ --- and $5$ survives
+because $e_1 - e_3 = 25$.
+
+*The places $2$, $3$ and $q divides d$.* Here $beta_q$ vanishes identically on
+the *local* group, which is stronger than vanishing on rational pairs. Over all
+202 squarefree $d$ in the class with $|d| <= 400$: *640 of 640* such places
+checked, $beta_q equiv 1$ at every one; and $beta_5 != 0$ on $W_5$ for all 202.
+This is verified, not proved.
+
+== The theorem <sec-15a1-thm>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem (modulo the local vanishing at $2$, $3$ and $q divides d$).* For
+  $f = (x-17)(x-1)(x+8)$ and every squarefree $d$ in the class $[1]$ of
+  $QQ_5^times$, the group $E_d (QQ)$ is not dense in $E_d (QQ_5)$; hence
+  $X(QQ)$ is not dense in $X(QQ_5)$.
+
+  #v(2mm)
+  _Proof._ $beta_v (P,Q) = (c_1 (P), c_3 (Q))_v$ is $+1$ at $v = infinity$, at
+  every $q in.not {2,3,5}$ prime to $d$, and --- by the verification above --- at
+  $2$, $3$ and each $q divides d$. Hilbert reciprocity
+  $product_v (c_1 (P), c_3 (Q))_v = 1$ then forces $beta_5 (P,Q) = 1$ for all
+  $P, Q in E_d (QQ)$. So the image of $E_d (QQ)$ in $W_5$ is isotropic for
+  $beta_5$, which is a non-zero alternating form on the 2-dimensional $W_5$;
+  the image therefore has dimension $<= 1$ and is not all of $W_5$. As
+  $W_5 = E_delta (QQ_5) slash 2$ is the Frattini quotient, $E_d (QQ)$ is not
+  dense. $qed$
+]
+
+Three remarks.
+
+*The mechanism is not about CM.* `15a1` has $j = 111284641 slash 50625$ and no
+complex multiplication, and the pairing is of exactly the shape @sec-thm2
+exhibits for $x^3 + x$. What §5.1.1 explains for $x^3 - 2$ is *which* class
+fails, not why any class fails at all.
+
+*It explains the measurement.* @sec-ledger-odd found the reaches at `15a1`,
+$p = 5$ spread over all three lines of $(ZZ slash 2)^2$, $180 slash 129 slash 170$
+--- and an isotropic line of a symplectic form is precisely a line that is
+forced to exist without being preferred.
+
+*The endomorphism had to be chosen, not found.* For $x^3 + x$ the module $E[2]$
+was indecomposable and $phi$ was essentially unique; here $E[2]$ is split and
+$"End"_G (E[2])$ is all of $M_2 (bb(F)_2)$, so the content moved from *existence*
+to *selection* --- the two conditions of @sec-15a1-choose cut 16 candidates down
+to one, up to transpose. That is the part of the construction that would have to
+be redone for each of the other six classes; nothing here does that.
+
+
 = Remarks
 
 == The obstruction is not about complex multiplication <sec-notcm>

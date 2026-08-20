@@ -982,3 +982,92 @@ ledgerp(lbl, F, p, k, l, MMAX, prec) = {
   if(#Mat(lines) > 0, print("       lines among dim-1 reaches: ", Mat(lines),
                             "   (", l+1, " lines exist)"));
 }
+
+/* =====================================================================
+   Constructing the twisted pairing when f splits over Q.
+
+   For f = (x-e1)(x-e2)(x-e3) with rational e_i the twist is
+   E_d : y^2 = (x - d e1)(x - d e2)(x - d e3), E[2] is the TRIVIAL Galois
+   module, and End_G(E[2]) = M_2(F_2): the twisting endomorphism is not
+   scarce, it is a 16-element search space.  The descent maps are
+
+       c_i(P) = x(P) - d e_i,   c_i(T_i) = prod_{j != i} d(e_i - e_j),
+
+   with c1 c2 c3 = y^2, and every pairing of the shape
+
+       beta_n(P,Q) = prod_{i,j in {1,2}} ( c_i(P), c_j(Q) )_v ^ n_ij
+
+   arises from some phi in End_G(E[2]) -- the untwisted Tate pairing is
+   n = antidiag(1,1), which dies on W_v.  The construction is then a
+   finite search: find n with beta_v = 1 on rational pairs at every
+   v != p, and beta_p not identically 1 on W_p.
+   ===================================================================== */
+
+/* the three descent values of a point on E_d */
+cvals(rts, d, P) = {
+  my(v = vector(3), xx);
+  if(P == [0], return([1,1,1]));
+  xx = P[1];
+  for(i = 1, 3,
+    if(xx == d*rts[i],
+      v[i] = prod(j = 1, 3, if(j == i, 1, d*rts[i] - d*rts[j])),
+      v[i] = xx - d*rts[i]));
+  v;
+}
+
+/* beta_n at one place */
+betan(n, cP, cQ, v) = {
+  my(s = 1);
+  for(i = 1, 2, for(j = 1, 2,
+    if(n[i][j], s *= hilbert(cP[i], cQ[j], v))));
+  if(s == 1, 0, 1);
+}
+
+/* the places where beta_n(P,Q) could be non-trivial */
+badplaceset(cP, cQ) = {
+  my(S = List([0, 2]), z);
+  for(i = 1, 2, for(k = 1, 2,
+    z = if(k == 1, cP[i], cQ[i]);
+    if(z == 0, next);
+    foreach(factor(abs(numerator(z)*denominator(z)))[,1]~, q, listput(S, q))));
+  vecsort(Set(Vec(S)));
+}
+
+/* all 16 exponent matrices */
+nmats() = vector(16, k, [[bittest(k-1,0), bittest(k-1,1)], [bittest(k-1,2), bittest(k-1,3)]]);
+nname(n) = Str("[", n[1][1], n[1][2], ";", n[2][1], n[2][2], "]");
+
+/* square classes of (c_i(P), c_j(P)) as P runs over E_d(Q_v), v = q odd
+   or q = 2; used to decide whether beta_n is identically 1 on the LOCAL
+   group, which is stronger than vanishing on rational points. */
+cpairimage(rts, d, q, prec, EMAX, MMAX) = {
+  my(ff, S = List(), s, cc, xx);
+  ff = prod(i = 1, 3, (x - d*rts[i]));
+  for(i = 1, 3, cc = cvals(rts, d, [d*rts[i], 0]);
+    listput(S, vector(3, t, if(q == 2, sqclass2(cc[t]), sqclass(cc[t], q)))));
+  listput(S, [0,0,0]);
+  for(e = -EMAX, EMAX,
+    for(m = 1, MMAX,
+      if(m % q == 0, next);
+      for(sg = 0, 1,
+        xx = (-1)^sg * q^e * m;
+        s = subst(ff, x, xx);
+        if(s == 0 || !issquare(s + O(q^prec)), next);
+        cc = cvals(rts, d, [xx, 0]);
+        listput(S, vector(3, t, if(q == 2, sqclass2(cc[t]), sqclass(cc[t], q)))))));
+  Set(Vec(S));
+}
+
+/* is beta_n identically 1 on that local image? */
+nzlocal(im, n, q) = {
+  my(r1, r2);
+  for(a = 1, #im, for(b = 1, #im,
+    my(s = 1);
+    for(i = 1, 2, for(j = 1, 2,
+      if(n[i][j],
+        r1 = if(q == 2, clsrep(im[a][i], 2), clsrep(im[a][i], q));
+        r2 = if(q == 2, clsrep(im[b][j], 2), clsrep(im[b][j], q));
+        s *= hilbert(r1, r2, q))));
+    if(s == -1, return(1))));
+  0;
+}
