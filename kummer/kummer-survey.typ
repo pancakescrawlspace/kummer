@@ -1057,14 +1057,31 @@ is forced to exist without being preferred.
 #cmprimetables
 
 
-= Twisted pairings for two non-CM cases <sec-nonCM>
+= Twisted pairings at non-CM surfaces <sec-nonCM>
 
 @sec-ledger-odd found that all seven open classes of @sec-fail carry the pairing
 signature --- reaches isotropic, every line occurring, none preferred. This
-section constructs the pairing in two of them, at *non-CM* surfaces, which
-settles that the mechanism is not about complex multiplication. The two run at
-different levels, $ell = 2$ and $ell = 3$, and the second reaches the cubic
-symbols §5.1.5 could not evaluate.
+section constructs the pairing in four of them, all at *non-CM* surfaces, which
+settles that the mechanism is not about complex multiplication. They run at
+three different levels --- $ell = 2$ in @sec-15a1 and @sec-15a4, $ell = 3$ in
+@sec-14a1, $ell = 5$ in @sec-11a1 --- and the level-3 case reaches the cubic
+symbols §5.1.5 could not evaluate. @sec-magma then closes the one local input
+§5.1.5 itself left open, and @sec-triage asks what the module structure permits
+in the three classes still untouched.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Notation for the values of $beta$.* $beta_v$ takes values in
+  $"Br"(QQ_v)[ell] tilde.equiv (1 slash ell) ZZ slash ZZ$, which we write
+  *additively*: the trivial value is $0$ and reciprocity reads
+  $sum_v beta_v = 0$. At $ell = 2$ it is more natural to write the pairing as a
+  quadratic Hilbert symbol, with values $plus.minus 1$ written
+  *multiplicatively*: there the trivial value is $+1$ and reciprocity reads
+  $product_v beta_v = 1$. These are the same thing under
+  $plus.minus 1 tilde.equiv (1 slash 2) ZZ slash ZZ$. Each section below keeps
+  to one convention --- @sec-15a1 and @sec-15a4 multiplicative, @sec-14a1 and
+  @sec-11a1 additive --- and where the distinction is immaterial we say that
+  $beta_v$ is *trivial* or *non-trivial* rather than naming a value.
+]
 
 == `15a1` at $p = 5$: level 2, $f$ split <sec-15a1>
 
@@ -1080,7 +1097,7 @@ $ c_i (P) = x(P) - d e_i, quad c_i (T_i) = product_(j != i) d(e_i - e_j),
 
 $E[2]$ is now the *trivial* Galois module, so $"End"_G (E[2]) = M_2 (bb(F)_2)$:
 in contrast with $x^3 + x$, where the twisting endomorphism was essentially
-unique, here it is not scarce at all --- it has to be *chosen*. Writing
+unique, here they are not scarce at all, and $phi$ has to be *chosen*. Writing
 $a = (c_1 (P), c_2 (P))$ and $b = (c_1 (Q), c_2 (Q))$ as coordinates on
 $H^1 (QQ_v, E[2]) = (QQ_v^times slash (QQ_v^times)^2)^2$, every
 $phi in "End"_G (E[2])$ produces a pairing of the shape
@@ -1088,11 +1105,11 @@ $ beta_n (P, Q) = product_(i, j in {1,2}) (c_i (P), c_j (Q))_v^(n_(i j)),
   quad quad n in M_2 (bb(F)_2), $
 and all 16 of them arise. The *untwisted* Tate pairing is the antidiagonal
 $n = mat(0,1;1,0)$, which dies on $W_v$ because $W_v$ is Lagrangian --- that is
-the $0 = 0$ the twist has to break.
+the $1 = 1$ the twist has to break.
 
 Two conditions pin $n$ down.
 
-*First, $beta_5$ must not vanish on $W_5$.* Sampling $E_d (QQ_5)$ for $d$ in the
+*First, $beta_5$ must be non-trivial on $W_5$.* Sampling $E_d (QQ_5)$ for $d$ in the
 class gives the local image
 
 #align(center, table(
@@ -1107,12 +1124,12 @@ class gives the local image
 
 #v(2mm)
 
---- $c_2$ is *always a square* on $E_delta (QQ_5)$, so $c_3 = c_1 c_2 = c_1$
+In every case $c_2$ is a *square* on $E_delta (QQ_5)$, so $c_3 = c_1 c_2 = c_1$
 there, while $c_1$ is *onto* $QQ_5^times slash (QQ_5^times)^2$. Hence every
-$beta_n$ collapses on $W_5$ to $(c_1 (P), c_1 (Q))_5^(n_11)$, which is non-zero
-exactly when $n_11 = 1$.
+$beta_n$ collapses on $W_5$ to $(c_1 (P), c_1 (Q))_5^(n_11)$, which is
+non-trivial exactly when $n_11 = 1$.
 
-*Second, $beta_v$ must vanish at every $v != 5$*, or reciprocity localises
+*Second, $beta_v$ must be trivial at every $v != 5$*, or reciprocity localises
 nothing. Testing all 16 candidates on 7318 rational pairs drawn from 150 twists
 leaves exactly four, and two of those are the ones with $n_11 = 1$:
 
@@ -1122,7 +1139,7 @@ leaves exactly four, and two of those are the ones with $n_11 = 1$:
   table.header([$n$], [$beta_n$], [ ]),
   [$mat(0,0;0,0)$], [trivial], [--],
   [$mat(0,1;1,0)$], [$(c_1 (P), c_2 (Q))(c_2 (P), c_1 (Q))$],
-    [the untwisted pairing, zero on $W_v$],
+    [the untwisted pairing, trivial on $W_v$],
   [$mat(1,1;0,0)$], [$(c_1 (P), c_1 (Q) c_2 (Q)) = (c_1 (P), c_3 (Q))$], [*the twist*],
   [$mat(1,0;1,0)$], [$(c_1 (P) c_2 (P), c_1 (Q)) = (c_3 (P), c_1 (Q))$], [its transpose],
 ))
@@ -1140,13 +1157,13 @@ which is $1$ on $W_v$: so $beta_v (Q, P) = beta_v (P, Q)$ there --- $beta$ is
 
 === The local statements <sec-15a1-local>
 
-*$beta_5$ is alternating and non-zero on $W_5$.* From
+*$beta_5$ is alternating and non-trivial on $W_5$.* From
 $c_1 - c_3 = -25 d$ and the Steinberg relation one gets, for a single point,
 $ (c_1, c_3)_v = (c_2, d)_v dot (c_3, -1)_v . $
 At $v = 5$ both factors are trivial: $c_2$ is a square on $E_delta (QQ_5)$ by
 the table, and $-1$ is a square in $QQ_5$ because $5 equiv 1 (mod 4)$. So
-$beta_5 (P,P) = 1$. And $beta_5 != 0$ since $c_1$ is onto and
-$(5, u)_5 = -1$. A non-zero alternating form on the 2-dimensional $W_5$ is
+$beta_5 (P,P) = +1$. And $beta_5$ is non-trivial, since $c_1$ is onto and
+$(5, u)_5 = -1$. A non-trivial alternating form on the 2-dimensional $W_5$ is
 symplectic, so its isotropic subspaces have dimension $<= 1$.
 
 *$beta_infinity = 1$.* For $d > 0$ the roots are $-8d < d < 17d$, so real points
@@ -1166,7 +1183,7 @@ because $e_1 - e_3 = 25$.
 *The places $2$, $3$ and $q divides d$.* Here $beta_q$ vanishes identically on
 the *local* group, which is stronger than vanishing on rational pairs. Over all
 202 squarefree $d$ in the class with $|d| <= 400$: *640 of 640* such places
-checked, $beta_q equiv 1$ at every one; and $beta_5 != 0$ on $W_5$ for all 202.
+checked, $beta_q equiv 1$ at every one; and $beta_5$ is non-trivial on $W_5$ for all 202.
 This is verified, not proved.
 
 === The theorem <sec-15a1-thm>
@@ -1183,7 +1200,7 @@ This is verified, not proved.
   $2$, $3$ and each $q divides d$. Hilbert reciprocity
   $product_v (c_1 (P), c_3 (Q))_v = 1$ then forces $beta_5 (P,Q) = 1$ for all
   $P, Q in E_d (QQ)$. So the image of $E_d (QQ)$ in $W_5$ is isotropic for
-  $beta_5$, which is a non-zero alternating form on the 2-dimensional $W_5$;
+  $beta_5$, which is a non-trivial alternating form on the 2-dimensional $W_5$;
   the image therefore has dimension $<= 1$ and is not all of $W_5$. As
   $W_5 = E_delta (QQ_5) slash 2$ is the Frattini quotient, $E_d (QQ)$ is not
   dense. $qed$
@@ -1196,7 +1213,7 @@ complex multiplication, and the pairing is of exactly the shape @sec-thm2
 exhibits for $x^3 + x$. What §5.1.1 explains for $x^3 - 2$ is *which* class
 fails, not why any class fails at all.
 
-*It explains the measurement.* @sec-ledger-odd found the reaches at `15a1`,
+*The pairing explains the measurement.* @sec-ledger-odd found the reaches at `15a1`,
 $p = 5$ spread over all three lines of $(ZZ slash 2)^2$, $180 slash 129 slash 170$
 --- and an isotropic line of a symplectic form is precisely a line that is
 forced to exist without being preferred.
@@ -1206,7 +1223,8 @@ was indecomposable and $phi$ was essentially unique; here $E[2]$ is split and
 $"End"_G (E[2])$ is all of $M_2 (bb(F)_2)$, so the content moved from *existence*
 to *selection* --- the two conditions of @sec-15a1-choose cut 16 candidates down
 to one, up to transpose. That is the part of the construction that would have to
-be redone for each of the other six classes; nothing here does that.
+be redone for each remaining class; @sec-triage says which of them can expect
+to avoid it.
 
 
 == `14a1` at $p = 7$: the same at level 3 <sec-14a1>
@@ -1267,17 +1285,9 @@ $W_7$ with $QQ_7^times slash (QQ_7^times)^3$ and
 $beta_7 (P,Q) = -(c_1 (P), c_1 (Q))_7$. Its table on the nine classes
 $7^a u$, $a = 0,1,2$, $u = 1, 3, 2$:
 
-#align(center, table(
-  columns: 4, align: (left, center, center, left),
-  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3pt),
-  table.header([], [entries], [diagonal], []),
-  [tame cubic symbol on $W_7$], [48 of 81 non-zero], [all $0$],
-    [non-degenerate and alternating],
-))
-
-#v(2mm)
-
-The diagonal vanishes because $-1 = (-1)^3$ is a cube, so $(a,a)_7 = (a,-1)_7 = 0$.
+Tabulating it on all 81 pairs: 48 of the values are non-zero, and every diagonal
+value $(a,a)_7$ is $0$ --- so the form is non-degenerate and alternating. The
+diagonal vanishes because $-1 = (-1)^3$ is a cube, so $(a,a)_7 = (a,-1)_7 = 0$.
 A non-zero alternating form on $(ZZ slash 3)^2$ is symplectic, and its isotropic
 subspaces are the four lines --- exactly the four @sec-ledger-odd counted, hit
 $120 slash 126 slash 139 slash 118$ times.
@@ -1394,7 +1404,7 @@ $QQ(i)$, so $(c(P), -1)_v = 1$ and *$beta$ is alternating at every place*.
   table.header([over the 202 twists in the class], [tested], [failures]),
   [Lemma 1 (Vieta): $c$ a homomorphism], [2444 triples], [*0*],
   [Lemma 2: $(c(P), a^2 - 4b)_v = 1$], [10036 evaluations], [*0*],
-  [$beta_v (P,P) = 0$, every point and place], [10036 evaluations], [*0*],
+  [$beta_v (P,P) = +1$, every point and place], [10036 evaluations], [*0*],
 )
 
 === The places <sec-15a4-places>
@@ -1412,11 +1422,11 @@ $QQ(i)$, so $(c(P), -1)_v = 1$ and *$beta$ is alternating at every place*.
 
 - *$q$ odd, $q divides d$.* Lemmas A and B of @sec-places2 apply verbatim: their
   proof uses only that a 1-unit is a square at an odd place. The image of $c$ is
-  cyclic, and an alternating form on a cyclic group vanishes.
+  cyclic, and an alternating form on a cyclic group is trivial.
 
 - *$q = 2$.* Here the 1-unit argument fails and the image has to be computed. It
   comes out cyclic --- ${1}$, ${1,5}$ or ${1,10}$ --- in *all 202* twists, so
-  $beta_2 = 0$. This is the one step verified rather than proved, and it is the
+  $beta_2 equiv 1$. This is the one step verified rather than proved, and it is the
   only one: @sec-15a1 had three.
 
 - *$q = 5$.* The image of $c$ on $E_delta (QQ_5)$ is *all four* classes
@@ -1427,7 +1437,7 @@ $QQ(i)$, so $(c(P), -1)_v = 1$ and *$beta$ is alternating at every place*.
 #table(
   columns: 4, align: (left, center, center, center),
   stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3pt),
-  table.header([place], [checks], [$beta_v != 0$], []),
+  table.header([place], [checks], [$beta_v$ non-trivial], []),
   [$q = 5$ (critical)], [202 twists], [*202*], [symplectic on $W_5$],
   [$q = 2$], [202 twists], [0], [image cyclic],
   [$q$ odd, $q divides d$], [288 places], [0], [Lemmas A, B],
@@ -1446,7 +1456,7 @@ $QQ(i)$, so $(c(P), -1)_v = 1$ and *$beta$ is alternating at every place*.
   $q divides.not 2 dot 5 dot d$, at every odd $q divides d$, and --- by the
   verification above --- at $q = 2$. Hilbert reciprocity then forces
   $beta_5 (P,Q) = +1$ for all $P, Q in E_d (QQ)$. On $W_5$, $beta_5$ is a
-  non-zero alternating form on a 2-dimensional $bb(F)_2$-space, hence symplectic,
+  non-trivial alternating form on a 2-dimensional $bb(F)_2$-space, hence symplectic,
   so the image of $E_d (QQ)$ is isotropic and of dimension $<= 1$. It is
   therefore not all of $W_5 = E_delta (QQ_5) slash 2$, and $E_d (QQ)$ is not
   dense. $qed$
@@ -1460,7 +1470,8 @@ symplectic form.
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   *What the triage bought.* @sec-triage predicted, from the module structure
-  alone, that `15a4` would need Template A and that Lemma 2 would apply because
+  alone, that `15a4` would follow the $x^3 + x$ template and that Lemma 2 would
+  apply because
   its 2-torsion field is $QQ(i)$. Both held, and the construction then took no
   searching at all --- unlike @sec-15a1, where $E[2]$ was split, $phi$ was not
   determined, and 16 candidates had to be tried. Indecomposable $E[2]$ makes the
@@ -1595,17 +1606,21 @@ line is isotropic there, so the only content is that dimension 2 is unreachable.
   reduction it is decidable for free, because $W_p$ is then forced to be
   $H^1$ of the Tate $mu_ell$: the mechanism fires precisely when the Tate
   $mu_ell$ is neither $C_1$ nor $C_2$, i.e. when neither global subgroup meets
-  $E^0$. For `11a1` both fail to, and the pairing exists.
+  $E^0$. For `11a1` neither $C_1$ nor $C_2$ meets $E^0$, and the pairing exists.
 ]
 
-=== §5.1.5's input, checked in Magma and then proved <sec-magma>
+== §5.1.5's input, checked in Magma and then proved <sec-magma>
 
-That same input --- $beta_3 equiv.not 0$ for $f = x^3 - 2$, i.e. that both dual
-3-isogeny images lie in $E_1 (QQ_3)$ --- was first confirmed a third time, in
-Magma, by a different route from the other two; and then, prompted by what that
-run showed, settled outright. The companion notes' PARI check
-built the duals by hand; Sage's `verify-dual.sage` constructed $QQ_3$-points and
-tested membership; this evaluates the dual isogeny's *rational maps*
+The local condition the previous section needed --- that $W_p$ not be
+$phi$-stable --- is the one input §5.1.5 leaves open for $f = x^3 - 2$: there it
+takes the form $beta_3 equiv.not 0$, equivalently that the images of *both* dual
+3-isogenies lie in $E_1 (QQ_3)$. This section settles it. The statement had
+already been checked twice --- the companion notes' PARI check built the duals by
+hand, and Sage's `verify-dual.sage` constructed $QQ_3$-points and tested
+membership --- and it is checked a third time here, in Magma, by a route that
+constructs no points at all; the Magma run then makes visible why the check can
+be replaced by a proof, which is what the second half of this section does. The
+Magma script evaluates the dual isogeny's *rational maps*
 `IsogenyMapPhi` / `IsogenyMapPsi` at 3-adic $x$-coordinates and reads off
 $v_3 (x(hat(phi) P'))$, constructing no points at all.
 
@@ -1638,7 +1653,10 @@ which do lie outside $E'_1$.
 *And now a proof.* $hat(phi)(E'_1) subset.eq E_1$ --- an isogeny extends to the
 Néron models, so it respects the kernel of reduction --- hence $hat(phi)$ induces
 a map of the *finite* groups $A' = E'(QQ_3) slash E'_1 -> A = E(QQ_3) slash E_1$.
-Checking that map is exhaustive, not a sample, and it needs only one point:
+What has to be shown is that this induced map is zero, since that says exactly
+that $hat(phi)(E'(QQ_3)) subset.eq E_1 (QQ_3)$. Because $A'$ and $A$ are finite,
+showing it is a finite check rather than a sample --- and, as the last two rows
+below show, a check on a single point:
 
 #align(center, table(
   columns: 4, align: (left, center, center, left),
@@ -1675,8 +1693,9 @@ $E'_1$ into $E_1$; everything else above is a finite computation.
 
 == The remaining three: what the module structure permits <sec-triage>
 
-Before constructing anything, it is worth asking whether the mechanism is even
-*available*. It is not automatic: $beta_v (P,Q) = ⟨delta_v P, phi delta_v Q⟩_v$
+Three classes are left: `14a2`, `19a1` and `17a1`. Before constructing anything
+in a given case it is worth asking whether the mechanism is even *available*
+there, and that is not automatic: $beta_v (P,Q) = ⟨delta_v P, phi delta_v Q⟩_v$
 is useful only when $phi$ is *non-scalar*, since a scalar $phi$ collapses $beta$
 to the untwisted Tate pairing, which vanishes on the Lagrangian $W_v$. So the
 first question about each open class is whether
@@ -1712,7 +1731,9 @@ $"End"_G (V times.o chi) = "End"_G (V)$ --- so this is a property of the surface
 
 #block(fill: rgb("#eef4ff"), inset: 9pt, radius: 3pt, width: 100%)[
   *All the remaining classes admit a non-scalar $phi$.* The mechanism is
-  available in every one of the eight cases of @sec-fail. What is not settled is
+  available in every one of the seven classes of @sec-fail that remained open ---
+  the eighth is the class where non-density was already proved outright. What is
+  not settled is
   whether it *works* --- selecting the right $phi$ and proving the local
   vanishing still has to be done case by case.
 ]
@@ -1753,15 +1774,18 @@ isotropy, and $beta_v = 0$ wherever $dim W_v <= 1$. With $chi_1 = 1$ and
 $chi_2 = $ cyclotomic, $C_1^((d))(QQ_v)$ and $C_2^((d))(QQ_v)$ are both non-zero
 only if $mu_ell subset QQ_v$, i.e. $v equiv 1$ $(mod ell)$. So only three kinds
 of place remain: the critical $p$; the wild place $v = ell$; and bad primes
-$equiv 1$ $(mod ell)$ at which $d$ is a square. The last column of the triage
-shows there are *no* such extra bad primes for the three odd-$ell$ cases.
+$equiv 1$ $(mod ell)$ at which $d$ is a square. The conductor column of the triage shows
+there are *no* such extra bad primes in the three odd-$ell$ cases: each
+conductor's only prime factors are $ell$ itself, the critical $p$, and primes
+$equiv.not 1$ $(mod ell)$.
 
 === Two templates <sec-triage-templates>
 
 They fall into the two patterns already worked out.
 
-*Template C (@sec-14a1), for $ell$ odd and $E[ell]$ decomposable: `14a2` and
-`19a1` --- and `11a1`, which @sec-11a1 has since carried out.* Here $beta$ is alternating at every place for free --- §5.1.5's
+*The `14a1` template --- $ell$ odd, $E[ell]$ decomposable (@sec-14a1). Open
+cases: `14a2` and `19a1`; `11a1` also belongs here and @sec-11a1 has since
+carried it out.* Here $beta$ is alternating at every place for free --- §5.1.5's
 argument needs only decomposability and $2$ invertible mod $ell$ --- so the whole
 analysis reduces to $dim W_v$, and by the triage the only place left is the wild
 $v = ell$. These should go through exactly as `14a1` did, giving a theorem on the
@@ -1769,8 +1793,9 @@ half of each class where $E_d [ell](QQ_ell) = 0$, with the other half waiting on
 the wild symbol. The worry that `11a1` would need a *quintic* residue symbol
 turned out to be unfounded --- see @sec-11a1.
 
-*Template A (@sec-thm2), for $ell = 2$ with $E[2]$ indecomposable: `17a1`
---- and `15a4`, which @sec-15a4 has since carried out.* At $ell = 2$ the alternating step is *not* free: $2$ is not invertible
+*The $x^3 + x$ template --- $ell = 2$, $E[2]$ indecomposable (@sec-thm2). Open
+case: `17a1`; `15a4` also belongs here and @sec-15a4 has since carried it out.*
+At $ell = 2$ the alternating step is *not* free: $2$ is not invertible
 mod $2$ and §5.1.5's argument fails, which is exactly why `x^3 + x` needed the
 norm lemma. And the norm lemma applies here:
 
