@@ -1071,3 +1071,64 @@ nzlocal(im, n, q) = {
     if(s == -1, return(1))));
   0;
 }
+
+/* =====================================================================
+   Level 3, for a curve with decomposable E[3].
+
+   In the 3-torsion normal form y^2 + a1 xy + a3 y = x^3 the point
+   T = (0,0) has order 3, and for any T of order 3 the tangent at T meets
+   E only there: div(tangent) = 3(T) - 3(O).  So the descent map attached
+   to <T> is c_T(P) = (tangent at T evaluated at P), modulo CUBES.
+
+   At a place v with v = 1 mod 3 one has zeta_3 in Q_v, both kernels are
+   rational there, and the pairing is the TAME cubic Hilbert symbol --
+   elementary, unlike the wild cubic symbol at v = 3 that section 5.1.5
+   could not evaluate.
+   ===================================================================== */
+
+/* class of a in Q_p^x modulo cubes, p = 1 mod 3: [v mod 3, unit mod cubes] */
+cubeclass(a, p) = {
+  my(v = valuation(a, p), u = a / p^v, r);
+  r = lift(Mod(numerator(u), p) / Mod(denominator(u), p));
+  [v % 3, lift(Mod(r, p)^((p-1)/3))];
+}
+
+/* the tame cubic Hilbert symbol at p = 1 mod 3, as an element of mu_3
+   written as a power of zeta = a fixed primitive cube root mod p */
+cubicsym(a, b, p) = {
+  my(al = valuation(a, p), be = valuation(b, p), t, z, k);
+  t = (-1)^(al*be) * (a/p^al)^be / ((b/p^be)^al);
+  t = lift(Mod(numerator(t), p) / Mod(denominator(t), p));
+  t = lift(Mod(t, p)^((p-1)/3));
+  z = lift(Mod(znprimroot(p), p)^((p-1)/3));   /* a primitive cube root */
+  for(k = 0, 2, if(lift(Mod(z,p)^k) == t, return(k)));
+  -1;
+}
+
+/* the tangent line at a point T of order 3, as [lam, nu] with y = lam x + nu */
+tangent3(E, T) = {
+  my(x0 = T[1], y0 = T[2], num, den, lam);
+  num = 3*x0^2 + 2*E.a2*x0 + E.a4 - E.a1*y0;
+  den = 2*y0 + E.a1*x0 + E.a3;
+  if(den == 0, error("vertical tangent"));
+  lam = num/den;
+  [lam, y0 - lam*x0];
+}
+
+/* cube class of a p-adic number, p = 1 mod 3 */
+cubeclassp(a, p) = {
+  my(v = valuation(a, p), u, r);
+  u = a / p^v;
+  r = lift(Mod(truncate(u), p));
+  [v % 3, lift(Mod(r, p)^((p-1)/3))];
+}
+
+/* tame cubic symbol for p-adic arguments */
+cubicsymp(a, b, p) = {
+  my(al = valuation(a,p), be = valuation(b,p), t, z, k);
+  t = (-1)^(al*be) * (a/p^al)^be / ((b/p^be)^al);
+  t = lift(Mod(truncate(t), p)^((p-1)/3));
+  z = lift(Mod(znprimroot(p), p)^((p-1)/3));
+  for(k = 0, 2, if(lift(Mod(z,p)^k) == t, return(k)));
+  -1;
+}

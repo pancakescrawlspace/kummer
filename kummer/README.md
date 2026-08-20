@@ -31,7 +31,7 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `cm-torsion.gp` | the CM mechanism at `p = 3` for `f = x^3-2` (document §5.2.1): `torsionQ3`, `row`, `correlate`, `structure`. |
 | `cover-p2.gp` | the same check at `p = 2`, with exact rational arithmetic and the corrected target set (see below). |
 | `results/` | raw output of the tuple sweeps, kept verbatim because it carries the certificates -- the witnessing twist per tuple for `S = {5,7}` and `S = {3,5,7}`, and the twists and signs behind every maximal reach for `S = {11,13,17}`. All of it is now tabulated in the document (§2.2.1, §2.3.6); these files are the machine-generated source. Also `survey-*.txt`, the raw output behind `kummer-survey.typ`, and `surfaces-cremona.txt`, the curve list. |
-| `survey.gp` | **the survey** (`kummer-survey.typ`), both batches. The same test for a *general monic cubic* `f = x^3+ax^2+bx+c`, passed as `F=[a,b,c]`: `twistdata3`, `sweep3`, `sweptdata3`, `procyclic3`, `witnessodd`, `witness2`, `runsurface`. Deeper passes `deephunt`, `hunt2`; diagnostics `gloc`, `gloc2`, `classaudit`, `rankaudit`, `rankaudit2`. Family scans `sexticscan`, `quarticscan`. The §5.1.5 machinery at `l = 2`: `torsionmodule`, `halvable`, `dimW`, `cosetsE2`, `mod2A`, `imagelines`, and the Hilbert-symbol pairing `cmap`, `betav`, `alttest`, `normtest`, `cimagep`, `nzbeta`, `lemmaA`, `cyctest`. The single-place ledger: `ppoints`, `arena1`, `modlA`, `lbasis`, `ledgerp`. Constructing the pairing when `f` splits: `cvals`, `betan`, `badplaceset`, `nmats`, `cpairimage`, `nzlocal`. |
+| `survey.gp` | **the survey** (`kummer-survey.typ`), both batches. The same test for a *general monic cubic* `f = x^3+ax^2+bx+c`, passed as `F=[a,b,c]`: `twistdata3`, `sweep3`, `sweptdata3`, `procyclic3`, `witnessodd`, `witness2`, `runsurface`. Deeper passes `deephunt`, `hunt2`; diagnostics `gloc`, `gloc2`, `classaudit`, `rankaudit`, `rankaudit2`. Family scans `sexticscan`, `quarticscan`. The §5.1.5 machinery at `l = 2`: `torsionmodule`, `halvable`, `dimW`, `cosetsE2`, `mod2A`, `imagelines`, and the Hilbert-symbol pairing `cmap`, `betav`, `alttest`, `normtest`, `cimagep`, `nzbeta`, `lemmaA`, `cyctest`. The single-place ledger: `ppoints`, `arena1`, `modlA`, `lbasis`, `ledgerp`. Constructing the pairing when `f` splits: `cvals`, `betan`, `badplaceset`, `nmats`, `cpairimage`, `nzlocal`; and at level 3: `cubeclass`, `cubeclassp`, `cubicsym`, `cubicsymp`, `tangent3`. |
 | `cm-surfaces.sage` | the CM surface list: the eleven rigid CM surfaces plus the sextic (`j=0`) and quartic (`j=1728`) families, reduced to small monic cubics. Output in `results/surfaces-cm.txt`. |
 | `surfaces.sage` | the surface list: every curve of conductor <= 40 from Sage's Cremona database, grouped into quadratic-twist classes and reduced to a small monic cubic. Output kept in `results/surfaces-cremona.txt`. |
 | `survey-tables.py` | turns `results/survey-*.txt` into `survey-tables.typ` (generated; not edited by hand). |
@@ -730,7 +730,9 @@ needs decomposability of `E[3]`, is Lemma 2 here; and the local input
 ramified place, is here the mod-8 table. That is exactly because at level 2 the
 norm-residue symbol is *quadratic*, while at level 3 it is cubic.
 
-## A twisted pairing for a non-CM case: 15a1 at p = 5 (document §6)
+## Twisted pairings for two non-CM cases (document §6)
+
+### 15a1 at p = 5: level 2, f split (document §6.1)
 
 §3.3.1 found all seven open classes carry the pairing signature; this constructs
 the pairing in one of them, at a **non-CM** surface -- so the mechanism is not
@@ -786,6 +788,66 @@ It also explains the §3.3.1 measurement -- the reaches spread over all three
 lines 180/129/170 -- since an isotropic line of a symplectic form is exactly a
 line forced to exist without being preferred. The selection step is what would
 have to be redone for each of the other six classes; that is not done.
+
+### 14a1 at p = 7: the same at level 3 (document §6.2)
+
+The second construction runs at a different **level**. §3.3.1 puts the
+obstruction for 14a1 at `l = 3`, so this needs 3-descent and cubic norm-residue
+symbols -- the machinery §5.1.5 records as missing. It works anyway, because
+**the critical place is 7, not 3**, and `7 = 1 mod 3`, so the symbol there is
+*tame*.
+
+**E[3] is decomposable.** `psi_3 = (x-2)(3x+1)(x^2+2x+13)`: two rational
+subgroups, confirmed by `ellisomat` (two independent 3-isogenies). So §5.1.5's
+hypothesis holds on the nose -- unlike `x^3+x`, where `E[2]` was indecomposable.
+`C1 = <(2,2)> = Z/3`; the other subgroup has `x = -7/3` with `y` in `Q(sqrt(-3))`,
+so `C2 = mu_3`. In 3-torsion normal form
+
+    E : y^2 + 5xy + 7y = x^3,  T1 = (0,0);   E_d : Y^2 = 4X^3 + d(5X+7d)^2
+
+and since the tangent at a point of order 3 meets E only there,
+`div(tangent) = 3(T) - 3(O)`: the descent map is `c_T(P) = tangent_T(P)` modulo
+**cubes**, and for `T1` the tangent is `y = 0`, so `c1(P) = y(P)`. With `phi` the
+projection onto `C1`, `beta_v(P,Q) = -<c2(P), c1(Q)>_v`.
+
+**The critical place is tame.** `7 = 1 mod 3` so `zeta_3` is in `Q_7`, both
+kernels are rational there, `E[3](Q_7) = (Z/3)^2` and `dim W_7 = 2`. Sampling
+`E(Q_7)` shows the image of `(c1,c2)` is the **diagonal**, so
+`beta_7(P,Q) = -(c1(P),c1(Q))_7`, the tame cubic symbol on `Q_7^x/cubes`:
+48 of 81 entries non-zero, diagonal all 0 (since `-1 = (-1)^3` is a cube). So
+non-degenerate and alternating -- symplectic on `(Z/3)^2`, whose isotropic
+subspaces are the four lines §3.3.1 counted at 120/126/139/118.
+
+**Every other place, structurally.** beta is alternating at *every* place for
+free: `E[3]` decomposable gives §5.1.5's argument verbatim (`0 = <dP,dP> =
+2<a1,a2>` and 2 is invertible mod 3). So `beta_v = 0` whenever `dim W_v <= 1`,
+and the analysis reduces to computing `dim W_v`. With
+`C1^(d) = Z/3 (x) chi_d` and `C2^(d) = mu_3 (x) chi_d`,
+
+    C1^(d)(Q_v) != 0  iff  d square in Q_v,    C2^(d)(Q_v) != 0  iff  -3d square
+
+so both need `-3` square in `Q_v` -- false at 2 (`-3 = 5 mod 8`) and 3 (odd
+valuation), true at 7 (`-3 = 4`). Hence `W_inf = 0` (3-divisible), good `v != 3`
+by unramified isotropy, `dim W_2 <= 1`, `W_q = 0` for `q | d` (both `d` and
+`-3d` have odd valuation), and only `v = 3` imposes a condition.
+
+> *Theorem.* For squarefree `d` in the class `[1]` of `Q_7` with
+> `E_d[3](Q_3) = 0` -- that is `d = 2 mod 3`, or `3 | d` with `d/3 = 1 mod 3` --
+> `E_d(Q)` is not dense in `E_d(Q_7)`, hence `X(Q)` is not dense in `X(Q_7)`.
+
+533 of the 1062 squarefree `d` in the class with `|d| <= 2000` satisfy it,
+exactly half. **Nothing was verified numerically** here except the symbol table
+at 7 -- decomposability hands over the alternating property and the places fall
+out of one fact about `-3`. The other half needs `beta_3` at the *wild* place,
+i.e. the cubic symbol §5.1.5 also lacks -- but here it is an auxiliary place,
+not the critical one.
+
+| case | level | critical place | E[l] | status |
+|---|---|---|---|---|
+| `x^3-2` (§5.1.5) | 3 | 3 -- **wild** | decomposable | `beta_3 != 0` unverified |
+| `x^3+x` (§5.5.4) | 2 | 2 | **indecomposable** | complete |
+| `15a1` (§6.1) | 2 | 5 | split over Q | local vanishing verified |
+| `14a1` (§6.2) | 3 | 7 -- **tame** | decomposable | complete for half the class |
 
 ## The Sage cross-check
 

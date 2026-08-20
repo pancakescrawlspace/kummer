@@ -1057,13 +1057,16 @@ is forced to exist without being preferred.
 #cmprimetables
 
 
-= A twisted pairing for a non-CM case: `15a1` at $p = 5$ <sec-15a1>
+= Twisted pairings for two non-CM cases <sec-nonCM>
 
 @sec-ledger-odd found that all seven open classes of @sec-fail carry the pairing
 signature --- reaches isotropic, every line occurring, none preferred. This
-section constructs the pairing in one of them. It is the same mechanism as
-@sec-pairing, at a *non-CM* surface, which settles that the mechanism is not
-about complex multiplication.
+section constructs the pairing in two of them, at *non-CM* surfaces, which
+settles that the mechanism is not about complex multiplication. The two run at
+different levels, $ell = 2$ and $ell = 3$, and the second reaches the cubic
+symbols §5.1.5 could not evaluate.
+
+== `15a1` at $p = 5$: level 2, $f$ split <sec-15a1>
 
 Take `15a1`, $p = 5$, class $[1]$. Here
 $ f = (x - 17)(x - 1)(x + 8), quad quad e = (17, 1, -8), $
@@ -1073,7 +1076,7 @@ twist is $E_d : y^2 = (x - 17d)(x - d)(x + 8d)$, and the three descent maps of
 $ c_i (P) = x(P) - d e_i, quad c_i (T_i) = product_(j != i) d(e_i - e_j),
   quad c_1 c_2 c_3 = y^2 . $
 
-== Choosing the endomorphism <sec-15a1-choose>
+=== Choosing the endomorphism <sec-15a1-choose>
 
 $E[2]$ is now the *trivial* Galois module, so $"End"_G (E[2]) = M_2 (bb(F)_2)$:
 in contrast with $x^3 + x$, where the twisting endomorphism was essentially
@@ -1135,7 +1138,7 @@ The two survivors are transposes, and their product is the untwisted pairing,
 which is $1$ on $W_v$: so $beta_v (Q, P) = beta_v (P, Q)$ there --- $beta$ is
 *symmetric* on $W_v$, as it must be.
 
-== The local statements <sec-15a1-local>
+=== The local statements <sec-15a1-local>
 
 *$beta_5$ is alternating and non-zero on $W_5$.* From
 $c_1 - c_3 = -25 d$ and the Steinberg relation one gets, for a single point,
@@ -1166,7 +1169,7 @@ the *local* group, which is stronger than vanishing on rational pairs. Over all
 checked, $beta_q equiv 1$ at every one; and $beta_5 != 0$ on $W_5$ for all 202.
 This is verified, not proved.
 
-== The theorem <sec-15a1-thm>
+=== The theorem <sec-15a1-thm>
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *Theorem (modulo the local vanishing at $2$, $3$ and $q divides d$).* For
@@ -1204,6 +1207,169 @@ $"End"_G (E[2])$ is all of $M_2 (bb(F)_2)$, so the content moved from *existence
 to *selection* --- the two conditions of @sec-15a1-choose cut 16 candidates down
 to one, up to transpose. That is the part of the construction that would have to
 be redone for each of the other six classes; nothing here does that.
+
+
+== `14a1` at $p = 7$: the same at level 3 <sec-14a1>
+
+The second construction runs at a different *level*. @sec-ledger-odd puts the
+obstruction for `14a1` at $ell = 3$, not 2 --- so this needs 3-descent and cubic
+norm-residue symbols, exactly the machinery §5.1.5 records as missing. It works
+anyway, for a reason worth isolating: *the critical place is 7, not 3*, and
+$7 equiv 1$ $(mod 3)$, so the symbol there is *tame*.
+
+=== $E[3]$ is decomposable, so §5.1.5 applies on the nose <sec-14a1-str>
+
+$ psi_3 = 3x^4 + x^3 + 27x^2 - 69x - 26 = (x-2)(3x+1)(x^2 + 2x + 13) . $
+Two rational roots, hence *two* Galois-stable lines in $E[3]$ --- confirmed by
+`ellisomat`, which gives two independent 3-isogenies. So $E[3] = C_1 xor C_2$
+is *decomposable*, and §5.1.5's route to a twisting endomorphism, projection onto
+a summand, is open. (Contrast $x^3 + x$, where $E[2]$ was indecomposable and the
+non-scalar $phi$ had to come from the non-semisimplicity of $bb(F)_2 [ZZ slash 2]$.)
+
+$C_1 = ⟨(2,2)⟩$ consists of rational points, so $C_1 tilde.equiv ZZ slash 3$; by
+the Weil pairing $C_2 tilde.equiv mu_3$, and indeed the other subgroup has
+$x = -7 slash 3$ with $y in QQ(sqrt(-3)) = QQ(zeta_3)$.
+
+Moving $T_1$ to the origin and shearing so its tangent is $y = 0$ puts the curve
+in *3-torsion normal form*,
+$ E : y^2 + 5 x y + 7 y = x^3, quad T_1 = (0,0),
+  quad quad E_d : Y^2 = 4X^3 + d (5X + 7d)^2 . $
+For any $T$ of order 3 the tangent at $T$ meets $E$ only there, so
+$op("div")(ell_T) = 3(T) - 3(O)$ and the descent map attached to $⟨T⟩$ is
+$c_T (P) = ell_T (P)$ modulo *cubes*. For $T_1$ the tangent is $y = 0$, so
+$c_1 (P) = y(P)$ --- the level-3 analogue of $c(P) = x(P)$.
+
+With $phi$ the projection onto $C_1$,
+$ beta_v (P, Q) = ⟨delta_v P, phi delta_v Q⟩_v = -⟨c_2 (P), space c_1 (Q)⟩_v . $
+
+=== The critical place is tame <sec-14a1-seven>
+
+$7 equiv 1$ $(mod 3)$, so $zeta_3 in QQ_7$ and *both* kernels are rational over
+$QQ_7$: $E[3](QQ_7) = (ZZ slash 3)^2$ and $W_7 = E_delta (QQ_7) slash 3$ has
+dimension 2, matching the layer @sec-ledger-odd measured. Both $c_i$ then land in
+$QQ_7^times slash (QQ_7^times)^3 tilde.equiv (ZZ slash 3)^2$, and the pairing is
+the *tame cubic Hilbert symbol*.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  This is the point of difference with §5.1.5. There the critical place *was*
+  $ell = 3$, where the cubic symbol is wildly ramified and needs an explicit
+  reciprocity law --- which is why that document leaves
+  $beta_3 equiv.not 0$ unverified. Here the critical place is $7$, the symbol is
+  tame, and the tame formula
+  $(a,b)_v = ((-1)^(alpha beta) a^beta slash b^alpha)^((q-1) slash 3)$ evaluates
+  it outright.
+]
+
+Sampling $E(QQ_7)$ shows the image of $(c_1, c_2)$ is the *diagonal* of
+$(QQ_7^times slash (QQ_7^times)^3)^2$, of size 9 --- so $c_1$ alone identifies
+$W_7$ with $QQ_7^times slash (QQ_7^times)^3$ and
+$beta_7 (P,Q) = -(c_1 (P), c_1 (Q))_7$. Its table on the nine classes
+$7^a u$, $a = 0,1,2$, $u = 1, 3, 2$:
+
+#align(center, table(
+  columns: 4, align: (left, center, center, left),
+  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3pt),
+  table.header([], [entries], [diagonal], []),
+  [tame cubic symbol on $W_7$], [48 of 81 non-zero], [all $0$],
+    [non-degenerate and alternating],
+))
+
+#v(2mm)
+
+The diagonal vanishes because $-1 = (-1)^3$ is a cube, so $(a,a)_7 = (a,-1)_7 = 0$.
+A non-zero alternating form on $(ZZ slash 3)^2$ is symplectic, and its isotropic
+subspaces are the four lines --- exactly the four @sec-ledger-odd counted, hit
+$120 slash 126 slash 139 slash 118$ times.
+
+=== Every other place, structurally <sec-14a1-places>
+
+*$beta$ is alternating at every place, for free.* This is §5.1.5's argument and it
+applies verbatim, because $E[3]$ is decomposable: write $delta_v P = a_1 + a_2$
+with $a_i in H^1 (QQ_v, C_i)$; each $H^1 (C_i)$ is isotropic since the Weil
+pairing is trivial on the cyclic $C_i$; $W_v$ is isotropic, so
+$0 = ⟨delta_v P, delta_v P⟩ = 2 ⟨a_1, a_2⟩$ and $2$ is invertible mod 3, whence
+$beta_v (P,P) = ⟨a_1, a_1⟩ + ⟨a_2, a_1⟩ = 0$. *So $beta_v equiv 0$ whenever
+$dim W_v <= 1$*, and the whole place analysis reduces to computing $dim W_v$.
+
+For $v divides.not 3$, $dim W_v = dim E_d [3](QQ_v)$; at $v = 3$ it is one more.
+And since $C_1^((d)) tilde.equiv ZZ slash 3 times.o chi_d$ and
+$C_2^((d)) tilde.equiv mu_3 times.o chi_d$,
+$ C_1^((d)) (QQ_v) != 0 <==> d in (QQ_v^times)^2, quad quad
+  C_2^((d)) (QQ_v) != 0 <==> -3d in (QQ_v^times)^2, $
+so *both* hold only if $-3$ is a square in $QQ_v$. That is false at $2$
+($-3 equiv 5$ mod 8) and at $3$ (odd valuation), and true at $7$
+($-3 equiv 4 equiv 2^2$). Hence:
+
+#table(
+  columns: 3, align: (left, left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([place], [why], [$beta_v$]),
+  [$v = infinity$], [$E_d (RR)$ is 3-divisible, so $W_infinity = 0$], [$0$],
+  [$v$ good, $v != 3$], [$W_v = H^1_"ur"$ is its own annihilator and $phi$
+    preserves it], [$0$],
+  [$v = 2$], [$-3$ is not a square in $QQ_2$, so $dim W_2 <= 1$], [$0$],
+  [$v = q divides d$, $q != 3$], [$v_q (d) = v_q (-3d) = 1$ is odd, so
+    $W_q = 0$], [$0$],
+  [$v = 3$], [$dim W_3 = 1 + dim E_d [3](QQ_3)$], [$0$ iff that is $1$],
+  [$v = 7$], [$dim W_7 = 2$, symbol non-degenerate], [$!= 0$],
+)
+
+#v(2mm)
+
+Only $v = 3$ imposes a condition, and it is explicit: $E_d [3](QQ_3) = 0$ exactly
+when
+$ 3 divides.not d "and" d equiv 2 (mod 3), quad "or" quad
+  3 divides d "and" d slash 3 equiv 1 (mod 3), $
+since $d$ is a square in $QQ_3$ iff $d equiv 1$ $(mod 3)$, and $-3d$ is a square
+iff $3 divides d$ with $-d slash 3 equiv 1$. Of the 1062 squarefree $d$ in the
+class with $|d| <= 2000$, *533* satisfy it --- exactly half.
+
+=== The theorem <sec-14a1-thm>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem.* Let $d$ be squarefree in the class $[1]$ of $QQ_7^times$ and suppose
+  $E_d [3](QQ_3) = 0$, i.e. $d equiv 2$ $(mod 3)$, or $3 divides d$ with
+  $d slash 3 equiv 1$ $(mod 3)$. Then $E_d (QQ)$ is not dense in $E_d (QQ_7)$;
+  hence $X(QQ)$ is not dense in $X(QQ_7)$ for $X : y^2 = f(x) f(t)$,
+  $f = x^3 + 10x^2 + 105x - 116$.
+
+  #v(2mm)
+  _Proof._ $beta$ is alternating at every place, so $beta_v = 0$ wherever
+  $dim W_v <= 1$; by the table that is every $v != 7$. Reciprocity
+  $sum_v "inv"_v beta_v = 0$ then gives $beta_7 (P,Q) = 0$ for all
+  $P, Q in E_d (QQ)$. On $W_7$, $beta_7$ is the tame cubic symbol transported by
+  $c_1$, non-zero and alternating on a 2-dimensional $bb(F)_3$-space, hence
+  symplectic; the image of $E_d (QQ)$ is isotropic and so has dimension $<= 1$.
+  It is therefore not all of $W_7 = E_delta (QQ_7) slash 3$, the Frattini
+  quotient at the layer, and $E_d (QQ)$ is not dense. $qed$
+]
+
+Two things distinguish this from @sec-15a1.
+
+*Nothing was verified numerically.* At level 2 the alternating property had to be
+proved by hand (`x^3 + x`) or the local vanishing checked by machine (`15a1`).
+Here decomposability hands over the alternating property, and the places then
+fall out of a single fact --- $-3$ is a square in $QQ_7$ and in neither $QQ_2$
+nor $QQ_3$. The only computation is the symbol table at 7.
+
+*The remaining half needs exactly what §5.1.5 needs.* For $d equiv 1$ $(mod 3)$,
+$dim W_3 = 2$ and $beta_3$ has to be evaluated at the wild place --- the cubic
+norm-residue symbol at $3$ that neither PARI nor Sage provides. The difference is
+that here it is an *auxiliary* place: the obstruction lives at 7 and is tame,
+while §5.1.5's lives at 3 and is not. Closing it would finish the other half.
+
+#align(center, table(
+  columns: 5, align: (left, center, center, center, left),
+  stroke: 0.4pt + luma(170), inset: (x: 6pt, y: 3pt),
+  table.header([case], [level], [critical place], [$E[ell]$], [status]),
+  [$x^3 - 2$ (§5.1.5)], [3], [3 --- *wild*], [decomposable],
+    [$beta_3 equiv.not 0$ unverified],
+  [$x^3 + x$ (@sec-thm2)], [2], [2], [*indecomposable*], [complete],
+  [`15a1` (@sec-15a1)], [2], [5], [split over $QQ$],
+    [local vanishing verified],
+  [`14a1` (@sec-14a1)], [3], [7 --- *tame*], [decomposable],
+    [complete for half the class],
+))
 
 
 = Remarks
@@ -1294,6 +1460,15 @@ lemmaA([0,1,0], 130, 5, 30, 5, 60);            /* [510, 0] -- Lemma A          *
 cyctest([0,1,0], 2, 1200, 30);                 /* #S is 1 or 2, never 4        */
 img2table([0,1,0], 200);                       /* the mod-8 table at 2         */
 nzbeta(cimagep([0,1,0], 2, 2, 40, 8, 60), 2);  /* 1 -- symbol non-degenerate   */
+
+/* the ledger at one odd place (section 3.3.1) */
+ledgerp("15a1", [-10,-127,136], 5, 0, 2, 2000, 30);
+
+/* the pairings of section 6 */
+cvals([17,1,-8], 1, [5, 10]);                  /* the three descent values     */
+nzlocal(cpairimage([17,1,-8], 11, 3, 30, 4, 40), [[1,1],[0,0]], 3);
+cubicsym(3, 7, 7);                             /* the tame cubic symbol at 7   */
+tangent3(ellinit([5,0,7,0,0]), [0,0]);         /* 14a1: tangent at T1 is y = 0 */
 ```
 
 The two surface lists come from Sage:
