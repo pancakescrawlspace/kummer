@@ -1324,8 +1324,14 @@ $G_v = "Gal"(overline(QQ_v) slash QQ_v)$, and $W_v = E(QQ_v) slash ell E(QQ_v)$.
 $0 -> E[ell] -> E limits(-->)^ell E -> 0$ over $QQ_v$ gives a connecting map
 $ delta_v : E(QQ_v) slash ell E(QQ_v) arrow.hook H^1 (G_v, E[ell]), $
 explicitly $delta_v (P) = (sigma |-> sigma Q - Q)$ for any $Q$ with $ell Q = P$; changing $Q$
-changes the cocycle by a coboundary. It is injective, and we write $W_v$ for both the group and
-its image, the *local Kummer image*. The same construction over $QQ$ gives a global
+changes the cocycle by a coboundary. It is injective, and we keep its source and its image apart:
+$W_v$ always denotes the *quotient group* $E(QQ_v) slash ell$, and
+$ L_v := delta_v (W_v) subset.eq H^1 (G_v, E[ell]) $
+its image, the *local Kummer image*. They are isomorphic, but $W_v$ is a quotient of a group of
+points --- the one the density criterion of @sec-local speaks about --- while $L_v$ is a subspace
+of a cohomology group, and only $L_v$ can be intersected with, or compared to, other subgroups of
+$H^1$. A bilinear form on $L_v$ pulls back along $delta_v$ to a form on $W_v$ and we give the two
+the same name; a *subgroup of $H^1$* is never written $W_v$. The same construction over $QQ$ gives a global
 $delta : E(QQ) slash ell -> H^1 (G_QQ, E[ell])$ whose localisation at $v$ is $delta_v$.
 
 *The local pairing.* Cup product gives
@@ -1346,8 +1352,8 @@ $dim U + dim U^perp = dim V$, so isotropic forces $dim U <= dim V slash 2$; a su
 that bound, $U = U^perp$, is *Lagrangian* (= maximal isotropic).
 
 *Tate local duality* says the pairing is non-degenerate and, crucially, that
-$ W_v "is Lagrangian:" quad W_v = W_v^perp . $
-That $W_v$ is isotropic is the concrete half one actually uses; the reason is that two points of
+$ L_v "is Lagrangian:" quad L_v = L_v^perp . $
+That $L_v$ is isotropic is the concrete half one actually uses; the reason is that two points of
 $E(QQ_v)$ can be divided by $ell$ inside a common field, so their cocycles cup to a class that
 splits. The dimension is fixed by the local Euler characteristic
 $\#H^1 = \#H^0 dot \#H^2 dot |\#E[ell]|_v^(-1)$ together with $\#H^2 = \#H^0$ (also duality). At
@@ -1368,10 +1374,10 @@ nothing, the remaining place inherits a condition.
 
 *Two vanishing facts.* (i) $H^1 (G_v, C_i)$ is isotropic, because the pairing factors through
 $e_ell$ restricted to $C_i times C_i$, which is trivial: $e_ell$ is alternating and $C_i$ is
-cyclic. (ii) At $v tilde.not ell$ of good reduction, $W_v$ equals the *unramified* subgroup
+cyclic. (ii) At $v tilde.not ell$ of good reduction, $L_v$ equals the *unramified* subgroup
 $H^1_"ur" (G_v, E[ell]) = H^1 ("Gal"(QQ_v^"ur" slash QQ_v), E[ell]^(I_v))$, which is its own
-annihilator; and a Galois-equivariant $psi$ preserves it, so the pairing of $W_v$ against
-$psi W_v$ vanishes.
+annihilator; and a Galois-equivariant $psi$ preserves it, so the pairing of $L_v$ against
+$psi L_v$ vanishes.
 
 *Two counting facts.* (iii) For $v tilde.not ell$, $E(QQ_v)$ is (topologically) a product of a
 pro-$v$ group with a finite group; the pro-$v$ part is uniquely $ell$-divisible, so multiplication
@@ -1406,7 +1412,7 @@ Decomposability of $E[3]$ supplies a *non-scalar* $phi in "End"_G (E[3])$, namel
 $C_1$. Twist the local Tate pairing by it:
 $ beta_v (P, Q) = ⟨ delta_v P, phi delta_v Q ⟩_v . $
 This is the step that was missing earlier. The *untwisted* pairing vanishes identically on the
-Kummer image $W_v$, because $W_v$ is Lagrangian --- which is why plain reciprocity gave only
+Kummer image $L_v$, because $L_v$ is Lagrangian --- which is why plain reciprocity gave only
 $0 = 0$ in @sec-cm-resid. The twisted pairing carries no such constraint. Since $phi$ is
 Galois-equivariant, reciprocity still gives $sum_v beta_v (P,Q) = 0$ for global $P, Q$. If
 $beta_v equiv 0$ for every $v != 3$, then $beta_3$ vanishes on all rational pairs, so the image of
@@ -1424,7 +1430,7 @@ That is precisely the measured phenomenon, and it explains all four observations
      linear functional, which is why the search for a universal functional failed],
   [decomposable $E[3]$ necessary],
     [otherwise $"End"_G (E[3]) = bb(F)_3$, $phi$ is scalar and $beta$ collapses to the untwisted
-     pairing, which vanishes on $W_v$],
+     pairing, which vanishes on $L_v$],
   [few bad primes necessary (@sec-cm-rare)],
     [each extra place with $beta_v equiv.not 0$ lets the sum be balanced away from 3],
 )
@@ -1443,15 +1449,17 @@ mixes ranks $2$ and higher, which biases the rate up rather than down.)
 reach turns out to be elementary for this family. Three observations:
 
 - $W_infinity = E_d (RR) slash 3 = 0$, since $E_d (RR)$ is 3-divisible.
-- At a prime $ell != 3$ of *good* reduction, $W_ell = H^1_"ur" (QQ_ell, E[3])$ is its own
-  annihilator under the Tate pairing, and $phi$ is Galois-equivariant so preserves
-  unramifiedness; hence $beta_ell (W_ell, W_ell) subset.eq ⟨H^1_"ur", H^1_"ur"⟩ = 0$.
-- At any $ell != 3$, $W_ell tilde.equiv E_d (QQ_ell)[3]$, because $E_d (QQ_ell)$ has a
+- At a prime $q != 3$ of *good* reduction, $L_q = H^1_"ur" (QQ_q, E[3])$ is its own
+  annihilator under the Tate pairing, and $phi$ is Galois-equivariant so $phi_*$ preserves
+  unramifiedness; hence $beta_q (W_q, W_q) subset.eq ⟨H^1_"ur", H^1_"ur"⟩ = 0$.
+- At any $q != 3$, $W_q tilde.equiv E_d (QQ_q)[3]$, because $E_d (QQ_q)$ has a
   3-divisible subgroup of finite index. For $E_d : y^2 = x^3 - 2d^3$ the 3-torsion sits at
-  $x = 0$ and $x = 2d$, so $W_ell != 0$ requires $-2d$ or $6d$ to be a square in $QQ_ell$.
+  $x = 0$ and $x = 2d$, so $W_q != 0$ requires $-2d$ or $6d$ to be a square in $QQ_q$.
 
-The bad primes of $E_d$ divide $6d$. For $ell divides d$ with $ell != 2, 3$ and $d$ squarefree,
-$v_ell (-2d) = v_ell (6d) = 1$ is *odd*, so neither is a square and $W_ell = 0$. This is a proof,
+(Here and below $q$ denotes a place; $ell$ is reserved for the *level* of the descent, which is
+$3$ throughout this subsection.) The bad primes of $E_d$ divide $6d$. For $q divides d$ with
+$q != 2, 3$ and $d$ squarefree,
+$v_q (-2d) = v_q (6d) = 1$ is *odd*, so neither is a square and $W_q = 0$. This is a proof,
 uniform in $d$, not a check: a scan of all 456 twists with $|d| <= 3000$ in the class finds no
 exception. Hence
 
@@ -1468,7 +1476,7 @@ $beta_3 equiv.not 0$*.
 
 *$beta$ is alternating, which kills every place with $dim W_v <= 1$.* Write
 $delta_v P = a_1 + a_2$ with $a_i in H^1 (QQ_v, C_i)$. Each $H^1 (C_i)$ is isotropic for the Tate
-pairing, since the Weil pairing restricted to the cyclic $C_i$ is trivial; and $W_v$ is isotropic,
+pairing, since the Weil pairing restricted to the cyclic $C_i$ is trivial; and $L_v$ is isotropic,
 so $0 = ⟨delta_v P, delta_v P⟩ = 2 ⟨a_1, a_2⟩$, whence $⟨a_1, a_2⟩ = 0$ as $2$ is invertible mod 3.
 Therefore
 $ beta_v (P,P) = ⟨a_1 + a_2, a_1⟩ = ⟨a_1,a_1⟩ + ⟨a_2,a_1⟩ = 0 . $
@@ -1479,68 +1487,170 @@ That disposes of $v = 2$: since $zeta_3 in.not QQ_2$ (the extension $QQ_2 (zeta_
 the unramified quadratic one), full 3-torsion is never $QQ_2$-rational, so $dim W_2 <= 1$ and
 $beta_2 equiv 0$ for *every* $d$ --- the even-$d$ case included.
 
-*$beta_3 equiv.not 0$.* $W_3$ is Lagrangian in $H^1 (QQ_3, E[3])$, so $beta_3 equiv 0$ on $W_3$
-iff $phi W_3 subset.eq W_3^perp = W_3$, i.e. iff $W_3$ is $phi$-stable. Since $phi$ is idempotent,
-a $phi$-stable $W_3$ would split as the sum of $W_3 inter H^1 (C_1)$ and $W_3 inter H^1 (C_2)$;
-as $dim W_3 = 2$, it is therefore enough to show that both of those intersections vanish. Now
-$W_3 inter H^1 (C_1) = ker alpha_2$ and $W_3 inter H^1 (C_2) = ker alpha_1$, where $alpha_i$ is the
-$C_i$-component of $delta_3$; and $ker alpha_i$ is the image of the corresponding dual isogeny.
-So everything turns on those two images. The box below computes them.
+*$beta_3 equiv.not 0$.* This is the one point where the argument needs a fact about $E$ at 3 that
+is not formal. The rest of this subsection proves it.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *The dual images, exhaustively.* What remains to be shown, for each of the two
-  3-isogenies, is
-
-  $ hat(phi)(E'(QQ_3)) subset.eq 3 E(QQ_3) , $
-
-  since $W_3 = E(QQ_3) slash 3$, so that "$ker alpha_i$ is zero in $W_3$" says exactly this. The
-  proof falls into two halves: that $3E(QQ_3)$ is the group $E_1$, and that $hat(phi)$ lands in
-  $E_1$.
-
-  #v(2.5mm)
-  *Half one: $3 E(QQ_3) = E_1$.* Of the two kernels only $x = 2d$ is $QQ_3$-rational --- that one
-  being $T_d$ --- so $\#E[3](QQ_3) = 3$, and the local formula
-  $\#E(K) slash n E(K) = \#E(K)[n] dot |n|_K^(-1)$ gives
-  $\#E(QQ_3) slash 3E(QQ_3) = 3 dot 3 = 9$. Since $\#E(QQ_3) slash E_1 = M = 9$ as well, the two
-  subgroups $3E$ and $E_1$ have the *same* index in $E(QQ_3)$, and it is enough to show that one
-  contains the other.
-
-  #v(1mm)
-  Write $A = E(QQ_3) slash E_1$, of order 9. Sampling $E(QQ_3)$ turns up four distinct classes
-  outside $E_1$, and $3P$ lies in $E_1$ for a representative $P$ of each, so $\#A[3] >= 5$. A
-  cyclic group of order 9 has only three elements killed by 3, so $A$ is not cyclic; being of
-  order 9 it is $(ZZ slash 3)^2$, which says $3E subset.eq E_1$. With equal indices,
-  $3E = E_1$.
-
-  #v(2.5mm)
-  *Half two: $hat(phi)(E'(QQ_3)) subset.eq E_1$.* An isogeny extends to the Néron models, so
-  $hat(phi)(E'_1) subset.eq E_1$, and $hat(phi)$ therefore induces a homomorphism of *finite*
-  groups
-  $ overline(hat(phi)) : A' = E'(QQ_3) slash E'_1 --> A = E(QQ_3) slash E_1 . $
-  What this half asserts is precisely that $overline(hat(phi))$ is the zero map --- a statement
-  about $\#A'$ elements, hence a finite check rather than a search over $E'(QQ_3)$.
-
-  #v(1mm)
-  Now $\#A' = M' = 3$ is *prime*, so $A'$ is cyclic and *any* class outside $E'_1$ generates it.
-  Take a point $P' in E'(QQ_3)$ with $P' in.not E'_1$. Evaluating the dual at it gives
-  $v_3 (x(hat(phi) P')) = -2 < 0$, so $hat(phi) P' in E_1$: the homomorphism
-  $overline(hat(phi))$ kills a generator of its source, hence is zero.
-
-  #v(2.5mm)
-  Putting the halves together, $hat(phi)(E'(QQ_3)) subset.eq E_1 = 3E(QQ_3)$ for both
-  3-isogenies. So $ker alpha_1$ and $ker alpha_2$ are zero in $W_3$, the intersections
-  $W_3 inter H^1 (C_1)$ and $W_3 inter H^1 (C_2)$ vanish, $W_3$ is not $phi$-stable, and
-  $beta_3 equiv.not 0$.
-
-  #v(2.5mm)
-  Two remarks. The primality of $\#A'$ is what reduces half two to a single evaluation, and it is
-  the same order-3 observation that the status note below records as blocking a structural
-  shortcut. That reading is right as far as it goes --- a map $ZZ slash 3 -> (ZZ slash 3)^2$ need
-  not vanish for order reasons --- but a cyclic source of prime order is also exactly what turns
-  one point into an exhaustive check. Second, one $d$ settles the whole class, since all $d$ in a
-  square class give $QQ_3$-isomorphic curves; both kernels and $d = -3, 6, -21, 87, -30, 69$ were
-  run, with identical numbers throughout.
+  *Claim.* Let $d$ be squarefree in the class $[u dot 3]$ and write $E = E_d$. The twisted pairing
+  $ beta_3 (P, Q) = ⟨ delta_3 P, space phi_* delta_3 Q ⟩_3 $
+  is *not* identically zero on $W_3 = E(QQ_3) slash 3 E(QQ_3)$.
 ]
+
+==== Notation, kept apart <sec-cm-notation>
+
+Three pairs of objects have to be distinguished; earlier drafts of these notes did not
+distinguish them, and the argument is unreadable without the distinction.
+
+- *The quotient and its Kummer image.* $W_3 = E(QQ_3) slash 3E(QQ_3)$ is a *quotient of the group
+  of local points*, an $bb(F)_3$-vector space of dimension 2; it is the Frattini quotient that the
+  density criterion of @sec-local refers to. Its image under the injective Kummer map is
+  $ L_3 := delta_3 (W_3) subset.eq H^1 (QQ_3, E[3]), $
+  a *subspace of a cohomology group*. The two are isomorphic, but they are not the same object,
+  and only $L_3$ can be intersected with subgroups of $H^1$.
+
+- *The projector and the map it induces.* $phi$ is the projector of $E[3]$ onto $C_1$ along $C_2$
+  --- an endomorphism of a *Galois module*. Since $E[3] = C_1 xor C_2$ gives
+  $H^1 (QQ_3, E[3]) = H_1 xor H_2$ with $H_i := H^1 (QQ_3, C_i)$, the map $phi$ induces on
+  cohomology, written $phi_*$, is the projector onto $H_1$ along $H_2$.
+
+- *The projector and the isogenies.* $psi_i : E -> B_i := E slash C_i$ is the 3-isogeny with kernel
+  $C_i$, and $hat(psi)_i : B_i -> E$ is its dual, so $hat(psi)_i psi_i = 3$. These are isogenies of
+  *curves*, whereas $phi$ is an endomorphism of the 3-torsion; earlier drafts wrote $phi$ and
+  $hat(phi)$ for both. Here $E_1$ keeps the meaning it has from @sec-local --- the kernel of
+  reduction --- and $N_i subset.eq B_i (QQ_3)$ denotes the kernel of reduction of $B_i$.
+
+$beta_3$ is a bilinear form on $W_3$. Every statement below about *isotropy* is about subspaces of
+$W_3$; every statement about *stability* is about the subspace $L_3$ of $H^1 (QQ_3, E[3])$.
+
+==== The proof, in six steps <sec-cm-beta3>
+
+*Step 1: $beta_3 equiv 0$ if and only if $L_3$ is $phi_*$-stable.* By definition $beta_3 equiv 0$
+says $⟨w, phi_* w'⟩_3 = 0$ for all $w, w' in L_3$, that is, $phi_* L_3 subset.eq L_3^perp$. Tate
+local duality (@sec-cm-bg) gives $L_3^perp = L_3$. So $beta_3 equiv 0$ iff
+$phi_* L_3 subset.eq L_3$.
+
+*Step 2: $L_3$ is $phi_*$-stable if and only if $L_3 = (L_3 inter H_1) xor (L_3 inter H_2)$.* If
+$L_3$ is that direct sum it is stable, since $phi_*$ is the identity on $H_1$ and zero on $H_2$.
+Conversely suppose $phi_* L_3 subset.eq L_3$. Then $(1 - phi_*) L_3 subset.eq L_3$ as well, and
+since $phi_*$ is idempotent every $w in L_3$ decomposes as $w = phi_* w + (1 - phi_*) w$ with
+$phi_* w in L_3 inter H_1$ and $(1 - phi_*) w in L_3 inter H_2$. The sum is direct because
+$H_1 inter H_2 = 0$.
+
+*Step 3: it therefore suffices to prove $L_3 inter H_1 = L_3 inter H_2 = 0$.* If both vanish then
+by Step 2 a $phi_*$-stable $L_3$ would be zero --- but $dim L_3 = dim W_3 = 2$. So $L_3$ is not
+$phi_*$-stable, and $beta_3 equiv.not 0$ by Step 1.
+
+*Step 4: the two intersections, expressed inside $W_3$.* Let
+$pi_i : H^1 (QQ_3, E[3]) -> H_i$ be the two projections attached to $H^1 = H_1 xor H_2$, and set
+$ alpha_i := pi_i compose delta_3 : W_3 --> H_i . $
+So $alpha_i$ is defined *on $W_3$*, and $ker alpha_i$ is a subspace of $W_3$ --- not of $H^1$. A
+class $w = delta_3 (overline(P)) in L_3$ lies in $H_1$ exactly when its $H_2$-component vanishes,
+i.e. exactly when $alpha_2 (overline(P)) = 0$, and symmetrically for $H_2$. Hence
+$ L_3 inter H_1 = delta_3 (ker alpha_2), quad quad L_3 inter H_2 = delta_3 (ker alpha_1), $
+and since $delta_3$ is injective the two intersections vanish if and only if
+$ker alpha_1 = ker alpha_2 = 0$.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  Earlier drafts wrote "$L_3 inter H_1 = ker alpha_2$". That cannot be right as stated: the left
+  side is a subspace of $H^1 (QQ_3, E[3])$ and the right side a subspace of
+  $W_3 = E(QQ_3) slash 3$. What is true is that the first is the *image under $delta_3$* of the
+  second; because $delta_3$ is injective this suffices for the only use made of the identity,
+  namely that one vanishes exactly when the other does.
+]
+
+*Step 5: $ker alpha_i$ is the image of a dual isogeny.* Fix $i$ and let $j != i$. From
+$hat(psi)_j psi_j = 3$ and $C_i inter C_j = 0$,
+$ ker hat(psi)_j = psi_j (E[3]) = psi_j (C_i), $
+and $psi_j$ restricts to an isomorphism of Galois modules $C_i arrow.r.tilde ker hat(psi)_j$. Take
+$P in E(QQ_3)$ and $Q$ with $3Q = P$, and split the Kummer cocycle along $E[3] = C_1 xor C_2$:
+$ sigma Q - Q = c_1 (sigma) + c_2 (sigma), quad c_i (sigma) in C_i, $
+so that $alpha_i (overline(P)) = [c_i]$ by definition. Applying $psi_j$, which kills $C_j$,
+$ sigma (psi_j Q) - psi_j Q = psi_j (c_i (sigma)) . $
+The left-hand side is the cocycle of the *isogeny* Kummer map for $hat(psi)_j$ at $P$: indeed
+$hat(psi)_j (psi_j Q) = 3Q = P$, so $psi_j Q$ is a $hat(psi)_j$-preimage of $P$, and the connecting
+map of $0 -> ker hat(psi)_j -> B_j -> E -> 0$ is exactly
+$ delta_(hat(psi)_j) : E(QQ_3) slash hat(psi)_j (B_j (QQ_3)) arrow.hook
+  H^1 (QQ_3, ker hat(psi)_j) . $
+Therefore $alpha_i$ factors as
+$ W_3 = E(QQ_3) slash 3E(QQ_3) arrow.r.twohead E(QQ_3) slash hat(psi)_j (B_j (QQ_3))
+  arrow.hook H^1 (QQ_3, ker hat(psi)_j) arrow.r.tilde H_i , $
+where the second map is $delta_(hat(psi)_j)$ and the third is induced by $psi_j^(-1)$; the first is
+defined because $3 E(QQ_3) = hat(psi)_j psi_j E(QQ_3) subset.eq hat(psi)_j (B_j (QQ_3))$. The
+second and third maps are injective, so $ker alpha_i$ is the kernel of the first:
+$ ker alpha_i = hat(psi)_j (B_j (QQ_3)) slash 3E(QQ_3) space subset.eq space W_3,
+  quad quad j != i . $
+In particular $ker alpha_i = 0$ if and only if $hat(psi)_j (B_j (QQ_3)) subset.eq 3E(QQ_3)$.
+
+*Step 6: both dual images land in $3E(QQ_3)$.* By Steps 3--5 the claim has been reduced to a
+statement about two explicit isogenies, and it is finite.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *To be shown:* $hat(psi)_i (B_i (QQ_3)) subset.eq 3 E(QQ_3)$ for $i = 1$ and $i = 2$.
+
+  #v(2.5mm)
+  The proof has two halves: that the subgroup $3E(QQ_3)$ *is* the kernel of reduction $E_1$, and
+  that each $hat(psi)_i$ lands in $E_1$. Only the second involves the isogenies; the first is a
+  count.
+
+  #v(2.5mm)
+  *Half one: $3 E(QQ_3) = E_1$.* Of the two 3-torsion kernels only $x = 2d$ is $QQ_3$-rational ---
+  that point being $T_d$ --- so $\#E[3](QQ_3) = 3$, and the local formula
+  $\#E(K) slash n E(K) = \#E(K)[n] dot |n|_K^(-1)$ gives
+  $ \#E(QQ_3) slash 3E(QQ_3) = 3 dot 3 = 9 . $
+  Also $\#E(QQ_3) slash E_1 = M = 9$ (@sec-cm-resid). So $3E$ and $E_1$ have the *same index* in
+  $E(QQ_3)$, and it is enough to show that one contains the other.
+
+  #v(1mm)
+  Write $A = E(QQ_3) slash E_1$, a group of order 9. Sampling $E(QQ_3)$ turns up four distinct
+  classes outside $E_1$, and $3P in E_1$ for a representative $P$ of each. Together with the
+  identity that is at least five elements of $A$ killed by 3, so $\#A[3] >= 5$; but $A[3]$ is a
+  subgroup of $A$, so $\#A[3]$ divides 9, and therefore $\#A[3] = 9$. Thus $A$ is killed by 3,
+  which says $3E subset.eq E_1$; with equal indices, $3E = E_1$.
+
+  #v(2.5mm)
+  *Half two: $hat(psi)_i (B_i (QQ_3)) subset.eq E_1$.* An isogeny extends to the Néron models and
+  hence carries the kernel of reduction into the kernel of reduction:
+  $hat(psi)_i (N_i) subset.eq E_1$. So $hat(psi)_i$ induces a homomorphism of *finite* groups
+  $ overline(hat(psi)_i) : A_i := B_i (QQ_3) slash N_i --> A = E(QQ_3) slash E_1 . $
+  What this half asserts is exactly that $overline(hat(psi)_i)$ is the *zero map*: that statement
+  concerns $\#A_i$ elements, so establishing it is a finite check, not a search over the infinite
+  group $B_i (QQ_3)$.
+
+  #v(1mm)
+  For both $i$ the computation gives $\#A_i = 3$. Being of *prime* order, $A_i$ is cyclic and
+  *any* class outside $N_i$ generates it. So pick a single $P_i in B_i (QQ_3)$ with
+  $P_i in.not N_i$. Evaluating the dual isogeny at it gives $v_3 (x(hat(psi)_i P_i)) = -2 < 0$,
+  so $hat(psi)_i P_i in E_1$. The homomorphism $overline(hat(psi)_i)$ therefore kills a generator
+  of its source and is zero, which is to say $hat(psi)_i (B_i (QQ_3)) subset.eq E_1$.
+
+  #v(2.5mm)
+  *Together.* $hat(psi)_i (B_i (QQ_3)) subset.eq E_1 = 3E(QQ_3)$ for $i = 1, 2$. $qed$
+]
+
+Reading the steps back: both dual images lie in $3E(QQ_3)$ (Step 6), so
+$ker alpha_1 = ker alpha_2 = 0$ (Step 5), so $L_3 inter H_1 = L_3 inter H_2 = 0$ (Step 4), so
+$L_3$ is not $phi_*$-stable (Steps 3 and 2), so $beta_3 equiv.not 0$ (Step 1). $qed$
+
+==== Three remarks on Step 6 <sec-cm-beta3-remarks>
+
+*Where the finiteness comes from.* The reduction to a single point is the primality of $\#A_i = 3$,
+and that is the same order-3 observation the status note below records as *blocking* a structural
+shortcut. Both readings are correct. A homomorphism $ZZ slash 3 -> (ZZ slash 3)^2$ need not vanish
+for order reasons, so the map is not zero automatically; but a cyclic source of prime order is
+also precisely what turns one evaluation into an exhaustive check.
+
+*One twist settles the class.* All $d$ in a square class give $QQ_3$-isomorphic curves, so a
+single $d$ suffices. Both kernels and $d = -3, 6, -21, 87, -30, 69$ were run, with identical
+numbers throughout.
+
+*The computational inputs, and how they were checked.* Step 6 rests on three finite facts: that
+$\#E[3](QQ_3) = 3$, that $A$ has four classes outside $E_1$ with $3P in E_1$, and that
+$v_3 (x(hat(psi)_i P_i)) = -2$. Each was obtained three times independently --- by a PARI script
+that builds the duals by hand, by Sage's `verify-dual.sage`, which constructs $QQ_3$-points and
+tests membership, and by a Magma run that evaluates the dual isogenies' rational maps
+(`IsogenyMapPhi` / `IsogenyMapPsi`) at 3-adic $x$-coordinates and reads off the valuation,
+constructing no points at all. Magma also independently returned Kodaira type $"IV"^*$ and
+$c_3 = 3$, the labels @sec-cm-resid records.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *Theorem.* For $f = x^3 - 2$ and *every*
@@ -1549,8 +1659,8 @@ So everything turns on those two images. The box below computes them.
 
   #v(2mm)
   _Proof._ $beta_v equiv 0$ for every $v != 3$: at $v = infinity$ because $W_infinity = 0$; at
-  good $ell != 3$ by unramified isotropy; at $ell divides d$ with $ell != 2,3$ because
-  $W_ell = 0$ (odd valuation of $-2d$ and $6d$); and at $ell = 2$ because $dim W_2 <= 1$ and
+  good $q != 3$ by unramified isotropy; at $q divides d$ with $q != 2,3$ because
+  $W_q = 0$ (odd valuation of $-2d$ and $6d$); and at $q = 2$ because $dim W_2 <= 1$ and
   $beta$ is alternating. Reciprocity $sum_v beta_v = 0$ then forces $beta_3 (P,Q) = 0$ for all
   $P, Q in E_d (QQ)$. Since $beta_3$ is alternating and non-zero on the 2-dimensional $W_3$ it is
   a symplectic form, so its isotropic subspaces have dimension $<= 1$; hence the image of
@@ -1565,7 +1675,7 @@ $cal(A) in "Br"(X)$ explicitly remains a separate and more ambitious question.
 
 #block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
   *Status.* The argument is complete. What was for a long time its one unverified input ---
-  $beta_3 equiv.not 0$, i.e. the failure of $phi$-stability of $W_3$ --- is settled by the
+  $beta_3 equiv.not 0$, i.e. the failure of $phi_*$-stability of $L_3$ --- is settled by the
   exhaustive coset computation above, whose only imported ingredient is the standard fact that an
   isogeny carries $E'_1$ into $E_1$. Everything else is standard too: Tate local duality, isotropy
   of the Kummer image, reciprocity for the sum of local invariants. The argument should still be
@@ -1665,7 +1775,8 @@ $QQ_p$; write $E^c$ for that common curve, $W_v (d) = E^d (QQ_v) slash ell$, and
     $"End"_(G_QQ) (E[ell]) supset.neq bb(F)_ell$. (Twist-invariant.)
   + $dim_(bb(F)_ell) W_p = 2$. For $p = ell$ this says $E^c (QQ_p)[ell] != 0$; for $p != ell$ it
     says $E[ell] subset.eq E^c (QQ_p)$, which forces $p equiv 1 space (mod ell)$.
-  + $W_p$ is *not* stable under $phi$, the projection of $E[ell]$ onto $C_1$ along $C_2$.
+  + The local Kummer image $L_p = delta_p (W_p (d))$ is *not* stable under $phi_*$, where
+    $phi$ is the projection of $E[ell]$ onto $C_1$ along $C_2$.
     Equivalently both dual-isogeny images $hat(psi)_i (E^c slash C_i)(QQ_p)$ lie in
     $ell E^c (QQ_p)$.
   + No prime $q != p$ is *dangerous*, where $q$ is dangerous when
@@ -1673,7 +1784,7 @@ $QQ_p$; write $E^c$ for that common curve, $W_v (d) = E^d (QQ_v) slash ell$, and
   + $beta_v equiv 0$ on $W_v (d)$ at every remaining place, for every $d in c$. If $p = ell$
     there are none. If $p != ell$ the place $v = ell$ remains, where
     $dim W_ell = 1 + dim E^d (QQ_ell)[ell]$, so it suffices that $E^d (QQ_ell)[ell] = 0$ or that
-    $W_ell$ be $phi$-stable.
+    $L_ell$ be $phi_*$-stable.
 
   #v(2mm)
   Then for *every* $d in c$ the image of $E^d (QQ)$ in $W_p$ has dimension $<= 1$, so $E^d (QQ)$
@@ -1685,7 +1796,7 @@ criterion is uniform in $d$ --- which is what lets it beat any finite search.
 
 _Why each place is harmless._ The pairing $beta_v (P,Q) = ⟨delta_v P, phi delta_v Q⟩_v$ is
 alternating on $W_v$ (@sec-cm-form), so it vanishes as soon as $dim W_v <= 1$. At $v = infinity$,
-$W_infinity = 0$ since $ell$ is odd. At $v tilde.not ell$ of good reduction, $W_v = H^1_"ur"$ is
+$W_infinity = 0$ since $ell$ is odd. At $v tilde.not ell$ of good reduction, $L_v = H^1_"ur"$ is
 its own annihilator and $phi$ preserves unramifiedness. At $v tilde.not ell$ of *additive*
 reduction --- which includes every $q divides d$, so the varying twist does no harm ---
 $E^d (QQ_v)[ell]$ injects into the component group, of order $<= 4$, so $dim W_v <= 1$ whenever
@@ -1708,8 +1819,8 @@ unsatisfiable, at least for $ell = 3$. The two kernels are cut by quadratic char
 $chi_(d_1), chi_(d_2)$ with $d_1 d_2 equiv -3$ modulo squares (computed: $d_1 = 1$, $d_2 = -3$ for
 every family checked), and $E^d$ has $C_i$ pointwise $QQ_3$-rational exactly when $d_i d$ is a
 square in $QQ_3$. When $p != 3$ the class $c$ constrains $d$ only at $p$, so $d$ is free at 3 and
-some $d in c$ makes $d_1 d$ a square --- giving $dim W_3 = 2$. For those twists $W_3$ is not
-$phi$-stable, by the very computation that (C) demands, so $beta_3 != 0$ and (E) fails. Note also
+some $d in c$ makes $d_1 d$ a square --- giving $dim W_3 = 2$. For those twists $L_3$ is not
+$phi_*$-stable, by the very computation that (C) demands, so $beta_3 != 0$ and (E) fails. Note also
 that $d_1 d$ and $d_2 d$ cannot both be squares, since $-3$ is not one in $QQ_3$; this is why
 $dim W_3 <= 2$ throughout.
 
