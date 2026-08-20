@@ -30,6 +30,7 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `control.gp` | the control experiment for the `p = 3` open case (document §5.2.2): `armA`, `find3`, `armB`. |
 | `cm-torsion.gp` | the CM mechanism at `p = 3` for `f = x^3-2` (document §5.2.1): `torsionQ3`, `row`, `correlate`, `structure`. |
 | `cover-p2.gp` | the same check at `p = 2`, with exact rational arithmetic and the corrected target set (see below). |
+| `results/` | raw output of the two 64-tuple sweeps, kept verbatim because it carries the certificates -- the twists and signs behind every maximal reach -- which the write-up only summarises. |
 | `kummer.gp` | the earlier single-generator version (`densecyclic`, `scan`) over the `t_0`-family. Kept only as the reference implementation for `validate.gp`. |
 | `validate.gp` | validates the `p`-adic density test against an exact-rational reference implementation, and `densegroup` against `densecyclic`. |
 
