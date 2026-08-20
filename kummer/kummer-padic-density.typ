@@ -1480,41 +1480,66 @@ the unramified quadratic one), full 3-torsion is never $QQ_2$-rational, so $dim 
 $beta_2 equiv 0$ for *every* $d$ --- the even-$d$ case included.
 
 *$beta_3 equiv.not 0$.* $W_3$ is Lagrangian in $H^1 (QQ_3, E[3])$, so $beta_3 equiv 0$ on $W_3$
-iff $phi W_3 subset.eq W_3^perp = W_3$, i.e. iff $W_3$ is $phi$-stable. Now
+iff $phi W_3 subset.eq W_3^perp = W_3$, i.e. iff $W_3$ is $phi$-stable. Since $phi$ is idempotent,
+a $phi$-stable $W_3$ would split as the sum of $W_3 inter H^1 (C_1)$ and $W_3 inter H^1 (C_2)$;
+as $dim W_3 = 2$, it is therefore enough to show that both of those intersections vanish. Now
 $W_3 inter H^1 (C_1) = ker alpha_2$ and $W_3 inter H^1 (C_2) = ker alpha_1$, where $alpha_i$ is the
 $C_i$-component of $delta_3$; and $ker alpha_i$ is the image of the corresponding dual isogeny.
-Both dual images were computed to be exactly $E_1 = 3 E_delta (QQ_3)$, i.e. *zero* in $W_3$. So
-both intersections vanish, $W_3$ is not $phi$-stable, and $beta_3 equiv.not 0$. This is one local
-computation, valid for the whole class, since all $d$ in a square class give $QQ_3$-isomorphic
-curves; it was checked for eight twists as a consistency test, and is settled outright below.
+So everything turns on those two images. The box below computes them.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *The dual images, exhaustively.* An isogeny extends to the Néron models, so
-  $hat(phi)(E'_1) subset.eq E_1$; therefore $hat(phi)$ induces a map of the *finite* groups
-  $A' = E'(QQ_3) slash E'_1 --> A = E(QQ_3) slash E_1$, and checking that map is a finite
-  computation rather than a search. Four facts settle it.
+  *The dual images, exhaustively.* What remains to be shown, for each of the two
+  3-isogenies, is
 
-  #v(1.5mm)
-  - $\#E[3](QQ_3) = 3$: of the two kernels only $x = 2d$ is $QQ_3$-rational, that being $T_d$.
-    Hence $\#E(QQ_3) slash 3E = 3 dot 3 = 9$.
-  - $\#A = M = 9$, and four distinct classes outside $E_1$ are all killed by 3, so
-    $\#A[3] >= 5 > 3$. So $A$ is not cyclic: $A tilde.equiv (ZZ slash 3)^2$, and therefore
-    $3 E(QQ_3) = E_1$ --- both have index 9.
-  - $\#A' = M' = 3$, which is *prime*: any single class outside $E'_1$ generates $A'$.
-  - For such a class, $v_3 (x(hat(phi) P')) = -2 < 0$, so $hat(phi) P' in E_1$.
+  $ hat(phi)(E'(QQ_3)) subset.eq 3 E(QQ_3) , $
 
-  #v(1.5mm)
-  A homomorphism that kills a generator is zero, so
-  $hat(phi)(E'(QQ_3)) subset.eq E_1 = 3E(QQ_3)$ for *both* 3-isogenies: the two dual images are
-  zero in $W_3$, both intersections vanish, and $beta_3 equiv.not 0$.
+  since $W_3 = E(QQ_3) slash 3$, so that "$ker alpha_i$ is zero in $W_3$" says exactly this. The
+  proof falls into two halves: that $3E(QQ_3)$ is the group $E_1$, and that $hat(phi)$ lands in
+  $E_1$.
 
-  #v(2mm)
-  The primality of $\#A'$ is what makes a single evaluation enough. It is the same order-3
-  observation recorded in the status note below as blocking a structural shortcut --- true, a map
-  $ZZ slash 3 -> (ZZ slash 3)^2$ need not vanish for order reasons, but a cyclic source of prime
-  order is exactly what turns one point into an exhaustive check. Both kernels and
-  $d = -3, 6, -21, 87, -30, 69$ give the same numbers; one $d$ suffices, since all $d$ in a class
-  give $QQ_3$-isomorphic curves.
+  #v(2.5mm)
+  *Half one: $3 E(QQ_3) = E_1$.* Of the two kernels only $x = 2d$ is $QQ_3$-rational --- that one
+  being $T_d$ --- so $\#E[3](QQ_3) = 3$, and the local formula
+  $\#E(K) slash n E(K) = \#E(K)[n] dot |n|_K^(-1)$ gives
+  $\#E(QQ_3) slash 3E(QQ_3) = 3 dot 3 = 9$. Since $\#E(QQ_3) slash E_1 = M = 9$ as well, the two
+  subgroups $3E$ and $E_1$ have the *same* index in $E(QQ_3)$, and it is enough to show that one
+  contains the other.
+
+  #v(1mm)
+  Write $A = E(QQ_3) slash E_1$, of order 9. Sampling $E(QQ_3)$ turns up four distinct classes
+  outside $E_1$, and $3P$ lies in $E_1$ for a representative $P$ of each, so $\#A[3] >= 5$. A
+  cyclic group of order 9 has only three elements killed by 3, so $A$ is not cyclic; being of
+  order 9 it is $(ZZ slash 3)^2$, which says $3E subset.eq E_1$. With equal indices,
+  $3E = E_1$.
+
+  #v(2.5mm)
+  *Half two: $hat(phi)(E'(QQ_3)) subset.eq E_1$.* An isogeny extends to the Néron models, so
+  $hat(phi)(E'_1) subset.eq E_1$, and $hat(phi)$ therefore induces a homomorphism of *finite*
+  groups
+  $ overline(hat(phi)) : A' = E'(QQ_3) slash E'_1 --> A = E(QQ_3) slash E_1 . $
+  What this half asserts is precisely that $overline(hat(phi))$ is the zero map --- a statement
+  about $\#A'$ elements, hence a finite check rather than a search over $E'(QQ_3)$.
+
+  #v(1mm)
+  Now $\#A' = M' = 3$ is *prime*, so $A'$ is cyclic and *any* class outside $E'_1$ generates it.
+  Take a point $P' in E'(QQ_3)$ with $P' in.not E'_1$. Evaluating the dual at it gives
+  $v_3 (x(hat(phi) P')) = -2 < 0$, so $hat(phi) P' in E_1$: the homomorphism
+  $overline(hat(phi))$ kills a generator of its source, hence is zero.
+
+  #v(2.5mm)
+  Putting the halves together, $hat(phi)(E'(QQ_3)) subset.eq E_1 = 3E(QQ_3)$ for both
+  3-isogenies. So $ker alpha_1$ and $ker alpha_2$ are zero in $W_3$, the intersections
+  $W_3 inter H^1 (C_1)$ and $W_3 inter H^1 (C_2)$ vanish, $W_3$ is not $phi$-stable, and
+  $beta_3 equiv.not 0$.
+
+  #v(2.5mm)
+  Two remarks. The primality of $\#A'$ is what reduces half two to a single evaluation, and it is
+  the same order-3 observation that the status note below records as blocking a structural
+  shortcut. That reading is right as far as it goes --- a map $ZZ slash 3 -> (ZZ slash 3)^2$ need
+  not vanish for order reasons --- but a cyclic source of prime order is also exactly what turns
+  one point into an exhaustive check. Second, one $d$ settles the whole class, since all $d$ in a
+  square class give $QQ_3$-isomorphic curves; both kernels and $d = -3, 6, -21, 87, -30, 69$ were
+  run, with identical numbers throughout.
 ]
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
