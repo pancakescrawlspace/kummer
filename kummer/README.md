@@ -1593,7 +1593,27 @@ Since a surface-level statement needs the `q | d` places dead (§6.8), and that
 condition kills the additive ones too, **an additive critical place of this kind
 can never be the only live one**.
 
-**But `x^3-2` IS an honest additive example** (spotted by Rene), and it escapes
+**Half the wild place is now closed (Lemma 12, §10.7.3).** For `ell` odd and
+`E_d` potentially multiplicative at `v = ell`, `beta_ell = 0` whatever phi is.
+The Kummer cocycle still lands in `mu_ell`, so `L_ell` sits inside
+`H^1(Q_ell, C_can)`; and `dim Q_ell^x/(Q_ell^x)^ell = 1 + 1 + 0 = 2`, the middle
+1 being the principal units -- the formal group, exactly what is absent when
+`v` does not divide `ell`. Then either `q` is not an `ell`-th power, so
+`dim W_ell = 1` and an alternating form on a line vanishes; or it is, and
+`L_ell = H^1(Q_ell, C_can)` with `C_can` phi-stable for EVERY phi, since
+`Hom_G(mu_ell, Z/ell) = 0` because `zeta_ell` is not in `Q_ell`. The non-split
+and `I_n*` cases follow by restriction to the quadratic extension.
+
+**So Corollary 6's hypothesis weakens** from "`ell` does not divide `N_E`" to
+"`E` has good or potentially multiplicative reduction at `ell`" -- what must be
+excluded is potentially GOOD ADDITIVE reduction at `ell`. Honestly, this buys
+little supply: for a Tate curve the extension `0 -> mu_ell -> E[ell] -> Z/ell -> 0`
+has class the Kummer class of `q`, so local decomposability at `ell` forces
+`q` to be an `ell`-th power, and a scan of 3037 `j` on `X_0(3)` found NO curve
+with `E[3]` decomposable and potentially multiplicative at 3. It closes a case
+rather than opening one.
+
+**And `x^3-2` IS an honest additive example** (spotted by Rene), and it escapes
 all of the above. Its live class `[u*3]` at `v = 3` has type **IV\*** with
 `c_3 = 3` -- potentially good, and NOT a quadratic twist of good reduction (no
 quadratic twist of it is good at 3, checked). It escapes the parity argument

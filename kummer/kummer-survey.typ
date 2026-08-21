@@ -4093,6 +4093,70 @@ $phi$-stability of $C_"can" (v)$ --- both directions, with no computation.
   Theorem 5 in coordinates.
 ]
 
+=== The wild place when $E$ is potentially multiplicative <sec-dep-wildmult>
+
+Half of the gap of @sec-dep-thegap closes, and the argument is short because at $v = ell$ the
+Kummer cocycle still lands in the canonical line.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma 12.* Let $ell$ be odd and suppose $E_d$ has *potentially multiplicative* reduction at
+  $v = ell$, i.e. $v_ell (j) < 0$. Then $beta_ell equiv 0$, whatever $phi$ is.
+
+  #v(2mm)
+  _Proof._ Suppose first that $E_d$ is split multiplicative over $QQ_ell$, with Tate parameter $q$.
+  Lemma 4(a) goes through unchanged: a point represented by $u in QQ_ell^times$ has
+  $delta_ell (P)(sigma) = sigma(u^(1 slash ell)) slash u^(1 slash ell) in mu_ell$, so
+  $L_ell subset.eq H^1 (QQ_ell, C_"can" (ell))$. Now
+  $ dim_(bb(F)_ell) QQ_ell^times slash (QQ_ell^times)^ell = 1 + [QQ_ell : QQ_ell] + dim mu_ell (QQ_ell)
+    = 1 + 1 + 0 = 2, $
+  the middle 1 being the principal units --- the formal group --- which is exactly what is absent
+  when $v divides.not ell$. Two cases.
+
+  #v(1.5mm)
+  If $q in.not (QQ_ell^times)^ell$ then $W_ell = QQ_ell^times slash (q^ZZ (QQ_ell^times)^ell)$ has
+  dimension 1, and an alternating form on a line vanishes, $beta$ being alternating at odd $ell$.
+
+  #v(1.5mm)
+  If $q in (QQ_ell^times)^ell$ then $dim W_ell = 2 = dim H^1 (QQ_ell, mu_ell)$ by Kummer theory, so
+  the inclusion above is an *equality*: $L_ell = H^1 (QQ_ell, C_"can" (ell))$. And $C_"can" (ell)$
+  is $phi$-stable for *every* $phi$, since the $E[ell] slash C_"can"$-component of
+  $phi|_(C_"can")$ would be a non-zero element of
+  $ "Hom"_(G_(QQ_ell)) (mu_ell, ZZ slash ell) = 0, $
+  the group being zero because $zeta_ell in.not QQ_ell$ for $ell$ odd. So
+  $phi_* L_ell = H^1 (QQ_ell, phi(C_"can" (ell))) subset.eq L_ell$, and @sec-dep-crit gives
+  $beta_ell equiv 0$.
+
+  #v(1.5mm)
+  For the other reduction types --- non-split multiplicative, or additive of type $"I"_n^*$ --- let
+  $K'$ be the quadratic extension of $QQ_ell$ over which $E_d$ becomes split. Restriction
+  $H^1 (QQ_ell, -) -> H^1 (K', -)$ is injective on $ell$-torsion, $[K' : QQ_ell] = 2$ being prime
+  to $ell$; applying it to the image of $L_ell$ in $H^1 (QQ_ell, E[ell] slash C_"can")$, which dies
+  in $H^1 (K', dot)$ by the split case, gives $L_ell subset.eq H^1 (QQ_ell, C_"can" (ell))$ again.
+  Here $C_"can" (ell)$ is $mu_ell$ twisted by the quadratic character $psi$, so the
+  Euler characteristic gives $dim H^1 (QQ_ell, C_"can") = 0 + 0 + 1 = 1$, whence $dim L_ell <= 1$
+  and $beta_ell$ vanishes for being alternating on a line. $qed$
+]
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Corollary 6, improved.* Its hypothesis "$ell divides.not N_E$" may be relaxed to
+  #v(1mm)
+  *$E$ has good or potentially multiplicative reduction at $ell$,*
+  #v(1mm)
+  since Lemma 1(b) covers the first case and Lemma 12 the second. Equivalently: what must be
+  excluded at $v = ell$ is *potentially good, additive* reduction.
+]
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *How much this buys, honestly.* Less than it looks, at least at $ell = 3$. For a Tate curve the
+  extension $0 -> mu_ell -> E[ell] -> ZZ slash ell -> 0$ has class the Kummer class of $q$, so
+  $E[ell]$ is *locally* decomposable at $ell$ exactly when $q in (QQ_ell^times)^ell$ --- and global
+  decomposability forces local. That is restrictive: a scan of 3037 values of $j$ on $X_0 (3)$
+  found *no* curve at all with $E[3]$ decomposable and potentially multiplicative at 3, and the one
+  curve in the $ell = 5$ search with $5 divides N_E$ (conductor 550) is of type $"III"$ at 5,
+  potentially *good*. So Lemma 12 closes a case rather than enlarging the supply of examples. What
+  it does do is sharpen the gap.
+]
+
 === Tested out of sample <sec-dep-oos>
 
 Theorem 5 predicts more than a verdict. At a live place $beta_v$ should be *non-degenerate*, so
@@ -4635,7 +4699,10 @@ recipe mechanical.
 
 === The gap, precisely <sec-dep-thegap>
 
-*The one structural gap is the place $v = ell$ when $E_d$ has bad reduction there.* Every tool in
+*The one structural gap is the place $v = ell$ when $E_d$ has *potentially good but additive*
+reduction there.* Lemma 1(b) covers good reduction and Lemma 12 covers the potentially
+multiplicative case, so what is left is the additive fibres with $v_ell (j) >= 0$ --- types
+$"II"$, $"III"$, $"IV"$, $"I"_0^*$, $"IV"^*$, $"III"^*$, $"II"^*$ at $v = ell$. Every tool in
 this chapter is built for $v divides.not ell$, and each fails at $v = ell$ for the same reason ---
 the formal group is pro-$ell$, so it survives into $W_v$:
 
@@ -4644,6 +4711,7 @@ the formal group is pro-$ell$, so it survives into $W_v$:
   stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
   table.header([result], [why it does not reach $v = ell$ with bad reduction]),
   [Lemma 1(b)], [covers $v = ell$ only under *good* reduction],
+  [Lemma 12], [covers $v = ell$ only under *potentially multiplicative* reduction],
   [Lemma 3], [uses $dim W_v = dim E_d [ell](QQ_v)$, which needs $E_d (QQ_v) tilde.equiv ZZ_v times T$
      with $v != ell$; at $v = ell$ it is $1 + dim T[ell]$],
   [Lemma 7], [needs $E_0 (QQ_v)$ pro-$v$, false at $v = ell$],
@@ -4659,9 +4727,10 @@ $dim W_3 <= 1$, and $beta$ being alternating at odd $ell$ they would force $beta
 fact $dim W_3 = 2$ and $beta_3 equiv.not 0$ (§5.1.5): the extra dimension is the formal group.
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
-  So the gap is not a corner case --- it is where the only *honest* additive critical places live.
-  Both surfaces settled by hand, $x^3 - 2$ at $v = 3$ (type $"IV"^*$) and $x^3 + x$ at $v = 2$, sit
-  in it, and @sec-dep-noadd shows that away from it, at odd $v$ with split $f$, an additive
+  So the gap is not a corner case --- it is where the only *honest* additive critical places live,
+  and Lemma 12 has now squeezed it down to precisely the potentially good additive fibres at
+  $v = ell$. Both surfaces settled by hand, $x^3 - 2$ at $v = 3$ (type $"IV"^*$, $j = 0$) and
+  $x^3 + x$ at $v = 2$, sit in it, and @sec-dep-noadd shows that away from it, at odd $v$ with split $f$, an additive
   critical place is always an $"I"_0^*$ fibre, hence a $q divides d$ place in another model.
 
   #v(1.5mm)
