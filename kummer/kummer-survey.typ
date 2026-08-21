@@ -1492,6 +1492,12 @@ $ell$ is an *auxiliary* place the wild contribution has so far always turned out
 one of the two mechanisms of @sec-tk-wild; when $ell$ is the *critical* place, as for $x^3 - 2$ and
 $x^3 + x$, it must not be, and that is the whole content of the argument.
 
+Every row of the table has *one* critical place: that is what makes reciprocity conclude
+$beta_p = 0$. @sec-twoplace asks what the same tools give when two places survive, and shows that
+the two structural lemmas of this chapter --- @sec-alt for the alternating property and
+@sec-tk-lemAB for $q divides d$ --- cut the level-2 family down to the Pythagorean triples, where
+the surviving places can be read off the hypotenuse.
+
 = Twisted pairings at non-CM surfaces <sec-nonCM>
 
 @sec-ledger-odd found that all seven open classes of @sec-fail carry the pairing
@@ -3361,6 +3367,193 @@ $X(QQ_p)$" is one statement covering every twist at once. That is what the twist
 were reaching for --- and, with @sec-brauer-unram2, the reaching is over: $cal(A)$ is a genuine
 element of $"Br"(X)$ at both levels, so "non-density at $p$" is now literally a Brauer--Manin
 obstruction to weak approximation on $X$, given by one algebra.
+
+= Two live places <sec-twoplace>
+
+Every theorem of @sec-nonCM works the same way: arrange for $beta_v$ to be trivial at all places
+but one, so that reciprocity pins the survivor to zero on rational pairs. This chapter asks what
+happens when *two* places survive. The answer is that reciprocity still says something --- but
+something of a different kind, a *correlation* between the two places rather than a constraint at
+either --- and that the phenomenon does occur, though not at any surface small enough to have been
+surveyed in @sec-result.
+
+== What reciprocity still gives <sec-tp-crit>
+
+Suppose $beta_v$ is trivial for every $v in.not {p, q}$, on the local groups, for every $d$ in a
+fixed pair of square classes --- one at $p$, one at $q$. Reciprocity then reads
+$ beta_p (P, Q) + beta_q (P, Q) = 0 quad "for all" P, Q in E_d (QQ), $
+which is *not* $beta_p = 0$. Writing $R subset.eq W_p xor W_q$ for the image of $E_d (QQ)$, it says
+exactly that $R$ is *isotropic* for
+$ gamma := beta_p xor beta_q quad "on" W_p xor W_q . $
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Criterion.* If $gamma != 0$ then $R$ is a *proper* subgroup of $W_p xor W_q$, and $E_d (QQ)$ is
+  not dense in $E_d (QQ_p) times E_d (QQ_q)$. If moreover $beta_p$ and $beta_q$ are both
+  non-degenerate and alternating on 2-dimensional spaces, $gamma$ is symplectic on a
+  *4-dimensional* space and $dim R <= 2$.
+]
+
+Two steps make that a statement about density. First, $W_p times W_q$ is a *finite discrete*
+quotient of $E_d (QQ_p) times E_d (QQ_q)$, since $ell E_d (QQ_v)$ is open; a dense subgroup would
+have to surject onto it, and $R$ does not. Second, running over all $d$ in the fixed pair of
+classes: each closure is a proper closed subgroup, a proper closed subgroup of a topological group
+is nowhere dense, and a countable union of nowhere-dense sets is not dense (Baire) --- the argument
+of @sec-class-warning, one dimension up. So $X(QQ)$ is not dense in $X(QQ_p) times X(QQ_q)$.
+
+If the Azumaya algebra of @sec-brauer is available the argument is shorter and needs neither Baire
+nor the decomposition by twist: $"inv"_v cal(A)$ is locally constant on $X(QQ_v)$, so
+$ {(T_p, T_q) : "inv"_p cal(A)(T_p) + "inv"_q cal(A)(T_q) != 0 } $
+is a non-empty open subset of $X(QQ_p) times X(QQ_q)$ --- non-empty precisely because both
+invariants are non-constant --- and $X(QQ)$ misses it, because the standing hypothesis makes
+$"inv"_v cal(A)$ vanish at every other place, so that global reciprocity is the two-term relation
+above. That is the Brauer--Manin obstruction to
+weak approximation in its usual adelic form; @sec-nonCM's theorems are the special case where only
+one invariant is non-constant.
+
+== It is invisible one place at a time <sec-tp-invisible>
+
+This is the point of the chapter. $R$ can have dimension 2 and still project *onto* $W_p$ and
+*onto* $W_q$: take $R$ the graph of an isomorphism $psi : W_p -> W_q$ with
+$psi^* beta_q = -beta_p$, which exists because all symplectic forms on $(ZZ slash ell)^2$ are
+isomorphic. So $X(QQ)$ may be dense in $X(QQ_p)$ *and* dense in $X(QQ_q)$ and still fail to be
+dense in the product. Neither single-place argument gives anything, since reciprocity yields
+$beta_p = -beta_q$ rather than $beta_p = 0$.
+
+A surface of this kind is therefore invisible to @sec-result, which tests one prime at a time and
+would report a witness in every class. The place it could show up is the
+$S$-adic ledger of the companion notes, whose sweep over the 64 tuples for
+$S = {11, 13, 17}$ proved only 13 --- an $S$-adic test *is* a several-places-at-once test, and a
+tuple it fails to prove is exactly a correlation it cannot rule out.
+
+== Where to look <sec-tp-family>
+
+For the criterion to apply, *every* place except $p$ and $q$ must be dead, and at level 2 with
+$f = x q(x)$ that needs both structural lemmas at once:
+
+- $beta$ alternating at every place, which by Lemma 2 of @sec-alt asks that the 2-torsion field be
+  $QQ(i)$, i.e. that $q$ be a *sum of two squares*;
+- $beta_q$ trivial at odd $q divides d$, which by @sec-tk-lemAB asks that $b$ be a *perfect square*.
+
+Writing $q(x) = (x + alpha)^2 + mu^2$, so that $b = alpha^2 + mu^2$, the two conditions together
+say $alpha^2 + mu^2 = k^2$: *the family is indexed by Pythagorean triples*.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma.* For $f = x q(x)$ with $q(x) = (x + alpha)^2 + mu^2$ and $alpha^2 + mu^2 = k^2$, every
+  place at which $beta_v$ can be non-trivial divides $2 k$.
+
+  #v(2mm)
+  _Proof._ At $v = infinity$, $q > 0$ forces $x >= 0$ on real points, so the symbol is $+1$. At an
+  odd $q$ dividing $d$, @sec-tk-lemAB applies because $b = k^2$ is a square. At any other
+  $q divides.not 2 b d$: writing $x = a slash e^2$, $y = b slash e^3$, a common prime factor of $a$
+  and $a^2 + 2 alpha d a e^2 + k^2 d^2 e^4$ divides $k^2 d^2 e^4$, hence $k^2 d^2$, so the two are
+  coprime, $v_q (c(P))$ is even, both arguments are units and the symbol is $+1$. What is left is
+  $2$ and the primes of $b = k^2$. $qed$
+]
+
+So the *odd* live places lie among the prime factors of the *hypotenuse*. For a primitive triple
+$k$ is a product of primes $equiv 1$ $(mod 4)$, so two live odd places require a hypotenuse that is
+not a prime power, and the smallest candidates are $k = 65 = 5 dot 13$ and $k = 85 = 5 dot 17$.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  That is why the phenomenon never appeared in @sec-nonCM. The three surfaces of this family that
+  were surveyed are $x^3 + x$ with $(alpha, mu, k) = (0,1,1)$, `15a4` with $(7, 24, 25)$ and `17a1`
+  with $(15, 8, 17)$ --- and $1$, $25$, $17$ are all prime powers. One live place is exactly what a
+  prime-power hypotenuse allows.
+]
+
+== The screen <sec-tp-screen>
+
+`twoplace.gp` runs the family over the first 24 triples, testing at each candidate place and
+each square class of $d$ whether the image of $c$ is *non-isotropic* for the Hilbert symbol --- the
+correct test, since a one-dimensional image can be non-isotropic when $beta$ fails to be
+alternating, so "the image is everything" would be too strong. A representative point of view
+matters here: for $v equiv 1$ $(mod 4)$ the list $1, -1, v, -v$ covers only *two* of the four
+classes, because $-1$ is then a residue; the script uses a primitive root.
+
+#align(center, table(
+  columns: 4, align: (left, left, center, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([$(alpha, mu, k)$], [$f = x(x^2 + 2 alpha x + k^2)$], [$N$], [live places]),
+  [$(0,1,1)$ = $x^3 + x$], [$x(x^2 + 1)$], [64], [2],
+  [$(7,24,25)$ = `15a4`], [$x(x^2 + 14x + 625)$], [15], [5],
+  [$(15,8,17)$ = `17a1`], [$x(x^2 + 30x + 289)$], [17], [17],
+  [$(3,4,5)$], [$x(x^2 + 6x + 25)$], [40], [5],
+  [$(5,12,13)$], [$x(x^2 + 10x + 169)$], [624], [13],
+  [$(8,15,17)$], [$x(x^2 + 16x + 289)$], [16320], [*2 and 17*],
+  [$(33,56,65)$], [$x(x^2 + 66x + 4225)$], [7280], [*5 and 13*],
+  [$(13,84,85)$], [$x(x^2 + 26x + 7225)$], [28560], [*5 and 17*],
+  [$(16,63,65)$], [$x(x^2 + 32x + 4225)$], [87360], [*2, 5 and 13*],
+))
+
+#v(2mm)
+
+Eleven of the twenty-four have a single live place; the other thirteen have two or three. Note that swapping
+$alpha$ and $mu$ within a triple changes the answer --- $(15,8,17)$ has one live place and
+$(8,15,17)$ has two --- because it changes $q(x)$, not just the curve.
+
+== An example <sec-tp-example>
+
+Take $(alpha, mu, k) = (33, 56, 65)$:
+$ f = x (x^2 + 66 x + 4225), quad q(x) = (x + 33)^2 + 56^2, quad b = 65^2, quad N = 7280 . $
+It is the cleanest of the hits: both live places are *odd*, and each is live in exactly one square
+class. The complete local picture, over every place and every class:
+
+#align(center, table(
+  columns: 4, align: (center, left, center, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([$v$], [classes of $d$], [$|$image of $c|$], [verdict]),
+  [$infinity$], [all], [---], [dead: $q > 0$ forces $x >= 0$],
+  [$2$], [all *eight*], [1 or 2], [dead in every class],
+  [$5$], [$[1]$], [*4*], [*live*: symplectic on the 2-dimensional $W_5$],
+  [$5$], [the other three], [2], [dead],
+  [$13$], [$[1]$], [*4*], [*live*: symplectic on the 2-dimensional $W_13$],
+  [$13$], [the other three], [2], [dead],
+  [$7$], [all four], [1 or 2], [dead --- computed, and predicted by coprimality],
+  [every other $q divides.not 2 dot 5 dot 13 dot d$], [all], [---],
+    [dead by the coprimality argument],
+  [odd $q divides d$], [---], [$<= 2$], [dead by @sec-tk-lemAB, $b = 65^2$],
+))
+
+#v(2mm)
+
+Once $beta$ is alternating, $beta(P,P) = 0$, so an image of size $1$ or $2$ is automatically
+isotropic and the place is dead; "image of size 4" is therefore the live condition, and it makes
+$beta_v$ non-degenerate as well as non-zero. In each computed row the sampled points are shown to
+generate the relevant quotient of
+$E_d (QQ_v)$ --- $E_1$ at odd $v$, $E_3$ at $v = 2$ --- so the images are exhaustive, and the four
+square classes at 5 and 13 and the eight at 2 cover every squarefree $d$.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem.* Let $f = x(x^2 + 66x + 4225)$ and $X : y^2 = f(x) f(t)$. For every squarefree $d$ that
+  is a square in $QQ_5^times$ *and* a square in $QQ_13^times$, the group $E_d (QQ)$ is not dense in
+  $E_d (QQ_5) times E_d (QQ_13)$. Hence $X(QQ)$ is not dense in $X(QQ_5) times X(QQ_13)$.
+
+  #v(2mm)
+  _Proof._ $q$ is a sum of two squares, so the 2-torsion field is $QQ(i)$ and $beta$ is alternating
+  at every place (Lemma 2 of @sec-alt). By the table, $beta_v$ is trivial at every $v != 5, 13$.
+  Reciprocity gives $beta_5 (P,Q) + beta_13 (P,Q) = 0$ for all $P, Q in E_d (QQ)$, so the image $R$
+  of $E_d (QQ)$ in $W_5 xor W_13$ is isotropic for $gamma = beta_5 xor beta_13$. Both summands are
+  non-trivial alternating forms on 2-dimensional $bb(F)_2$-spaces, hence symplectic, so $gamma$ is
+  symplectic on a 4-dimensional space and $dim R <= 2 < 4$. As $W_5 times W_13$ is a finite
+  discrete quotient of $E_d (QQ_5) times E_d (QQ_13)$, a dense subgroup would surject onto it, and
+  $R$ does not. The passage to $X$ is @sec-tp-crit. $qed$
+]
+
+== What is not settled <sec-tp-open>
+
+- *Whether the obstruction is genuinely two-place here.* @sec-tp-invisible shows it *can* be, but
+  for this surface it is not checked whether $X(QQ)$ is dense in $X(QQ_5)$ and in $X(QQ_13)$
+  separately. If it is, this is a failure of weak approximation that no single-place argument can
+  see; if not, the two-place statement is weaker than a single-place one and the interest is only
+  in the mechanism. Running @sec-result's witness search at $p = 5$ and $p = 13$ for this surface
+  would settle it, and is the obvious next step.
+- *The Brauer class.* @sec-brauer-2 writes the algebra down for level 2, and @sec-brauer-unram-2
+  gives the criterion for it to be unramified on the Kummer surface. Neither has been checked here.
+- *Level 3, and split $f$.* The family above is the indecomposable level-2 case. The decomposable
+  cases have their own pair of structural lemmas (@sec-tk-ramtwist kills $q divides d$ for free at
+  odd $ell$), so the analogous family should be easier to describe, and is not described here.
+- *More than two live places.* $(16,63,65)$ has three. Reciprocity then makes $R$ isotropic in a
+  6-dimensional space, giving $dim R <= 3$ of $6$; nothing in @sec-tp-crit is special to two.
 
 = Remarks
 
