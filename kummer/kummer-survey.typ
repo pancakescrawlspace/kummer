@@ -4157,6 +4157,115 @@ one must add @sec-tk-lemAB and the norm lemma, exactly as @sec-nonCM does. And $
 *independent of $d$*, which is what lets the conclusion be about the surface rather than about one
 twist.
 
+== Additive places <sec-dep-add>
+
+Theorem 5 needs multiplicative reduction. The gap it leaves is the *additive* candidates, and this
+section closes most of it --- entirely for $ell$ odd. Two observations do the work: one about which
+square class to look in, and one about what $W_v$ can be.
+
+=== The split class need not be unramified <sec-dep-ram>
+
+Step 4 of @sec-dep-recipe says the live class is the unique *unramified* class making $E_d$ split
+multiplicative. That is right when $E$ is multiplicative at $v$, and wrong when $E$ is additive of
+type $"I"_n^*$, i.e. *potentially multiplicative*: there the split class is the *ramified* one.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  `11a1` is split $"I"_5$ at 11. Its twist by 11 is $"I"_5^*$ at 11 with $c_v = 4$, and among the
+  four classes it is $d = 11$ --- ramified --- that returns split multiplicative reduction. Exactly
+  one of the four classes is split multiplicative in either case; which one it is, is not always
+  unramified.
+]
+
+So potentially multiplicative additive places are *not a gap at all*: Theorem 5 governs them, via a
+twist with $v divides d$. Only the bookkeeping of Step 4 had to be widened, and `depends.gp` now
+scans all four classes.
+
+=== At an additive place, $W_v$ is the component group <sec-dep-comp>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma 7.* Let $v divides.not ell$ be a place at which $E_d$ has additive reduction, and let
+  $Phi_v$ be its component group. Then
+  $ W_v = E_d (QQ_v) slash ell tilde.equiv Phi_v slash ell . $
+  Consequently, since $c_v <= 4$ at every additive place:
+  #v(1mm)
+  --- $ell >= 5$: $W_v = 0$, so $beta_v equiv 0$;
+  #v(1mm)
+  --- $ell = 3$: $dim W_v <= 1$, attained only for $Phi_v = ZZ slash 3$ (types $"IV"$, $"IV"^*$);
+  #v(1mm)
+  --- $ell = 2$: $dim W_v <= 2$, with equality exactly when $Phi_v tilde.equiv (ZZ slash 2)^2$,
+  i.e. type $"I"_n^*$ with $n$ *even*.
+
+  #v(2mm)
+  _Proof._ In the filtration $E_1 subset.eq E_0 subset.eq E_d (QQ_v)$, the formal group
+  $E_1 (QQ_v)$ is pro-$v$, and $E_0 slash E_1 tilde.equiv tilde(E)^"ns" (bb(F)_v) = bb(F)_v^+$
+  because the reduction is *additive* --- also of order a power of $v$. So $E_0 (QQ_v)$ is a
+  pro-$v$ group, hence $ell$-divisible for $ell != v$, and $E_0 (QQ_v) slash ell = 0$. The exact
+  sequence $E_0 slash ell -> E_d (QQ_v) slash ell -> Phi_v slash ell -> 0$ then gives the
+  isomorphism. For the consequences, the component group of an additive fibre is trivial,
+  $ZZ slash 2$, $ZZ slash 3$, $ZZ slash 4$, or $(ZZ slash 2)^2$, the last exactly for $"I"_n^*$
+  with $n$ even; and $|Phi slash ell| = |Phi[ell]|$. $qed$
+]
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Corollary.* For $ell$ odd and $v divides.not ell$, additive reduction gives $beta_v equiv 0$.
+
+  #v(2mm)
+  _Proof._ For $ell >= 5$, $W_v = 0$. For $ell = 3$, $dim W_v <= 1$ and $beta_v$ is alternating
+  (Lemma 3's hypothesis is automatic at odd $ell$), and an alternating form on a space of dimension
+  $<= 1$ vanishes. $qed$
+]
+
+Putting this beside Lemma 1 and Theorem 5 settles every place away from $ell$, for $ell$ odd:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem 8 (complete classification at $v divides.not ell$, $ell$ odd).* Let $ell >= 3$ and
+  $v divides.not ell$. Then $v in Sigma_phi (d)$ *if and only if*
+  #v(1mm)
+  (a) $E_d$ has split multiplicative reduction at $v$; and
+  #v(1mm)
+  (b) $E_d [ell] subset.eq E_d (QQ_v)$; and
+  #v(1mm)
+  (c) $phi(C_"can") subset.eq.not C_"can"$.
+
+  #v(2mm)
+  _Proof._ Good reduction is Lemma 1, additive reduction is the Corollary, non-split multiplicative
+  reduction has $dim W_v <= 1$ --- the Tate parametrisation is only defined over the unramified
+  quadratic extension, so $E_d [ell](QQ_v)$ cannot be everything --- and split multiplicative
+  reduction is Theorem 5 together with Lemma 3 for the necessity of (b). $qed$
+]
+
+That is the sufficiency question answered outright for $ell$ odd, away from the wild place.
+
+=== The remaining case: $ell = 2$, and the wild place <sec-dep-add2>
+
+At $ell = 2$ Lemma 7 leaves additive places alive, with $W_v = Phi_v [2]$ of dimension 1 or 2. The
+2-dimensional case is $Phi_v tilde.equiv (ZZ slash 2)^2$, type $"I"_n^*$ with $n$ even. For
+$n >= 2$ that is potentially multiplicative and @sec-dep-ram applies; the genuinely new case is
+$"I"_0^*$ with $c_v = 4$, which is potentially *good*. There the answer is as explicit as Theorem 5:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Proposition 9.* Let $ell = 2$, $v$ odd, $f = (x - e_1)(x - e_2)(x - e_3)$ with $E_d$ of type
+  $"I"_0^*$ at $v$ and $c_v = 4$. Then $W_v = Phi_v$ is generated by the images of the three
+  2-torsion points, so $beta_v$ is computed from the *root differences* alone:
+  $ c_i (T_j) = e_j - e_i quad (j != i), quad quad
+    c_i (T_i) = product_(k != i) (e_i - e_k), $
+  and $beta_v (T_j, T_k) = (c_a (T_j), c_b (T_k))_v$ for $phi$ with stable lines $a$, $b$. No point
+  search is involved.
+]
+
+`additive.gp` checks this against a direct search: on $x(x-5)(x+5)$ at 5, $x(x-7)(x+7)$ at 7,
+$x(x-3)(x+3)$ at 3 and $x(x-11)(x+11)$ at 11, for all three rank-one $phi$ each, the images and the
+symbol counts agree exactly, and *these places are live*. So an additive place really can carry the
+obstruction at $ell = 2$ --- Theorem 8 has no analogue there.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Why the wild place is different, in one line.* Lemma 7 needs $v divides.not ell$ so that the
+  formal group is prime to $ell$. At $v = ell$ the formal group is pro-$ell$ and contributes
+  *everything*. That is why $x^3 - 2$ is live at $v = 3$ on a type $"II"$ fibre with $c_v = 1$,
+  where $Phi_v slash 3 = 0$: its $W_3$ is entirely formal-group. The wild place is the only place
+  at which $W_v$ sees the formal group at all, and no argument in this chapter reaches it.
+]
+
 == What is proved, and what is not <sec-dep-gaps>
 
 *Proved.* The criterion of @sec-dep-crit; Lemmas 1, 2 and 3; the square-class corollary of
@@ -4171,25 +4280,27 @@ both directions where it counts:
   as a *necessary* condition.
 ]
 
-*What the remaining gap actually is.* Steps 1--4 rule places out; Theorem 5 rules them in, but only
-under its hypothesis (b), full local $ell$-torsion. Since (b) is exactly the dimension condition of
-Lemma 3, and (a) is what Step 4 selects the square class by, the only candidates the theorem does
-not settle are the *additive* ones --- $ell divides c_v$ with $c_v <= 4$, so $ell in {2,3}$ and
-Kodaira type $"III"$, $"IV"$, $"I"_n^*$, $"IV"^*$ or $"III"^*$. There the Tate parametrisation is
-unavailable over $QQ_v$ and $L_v$ has to be computed some other way. Both surfaces whose
-obstruction sits at such a place --- $x^3 - 2$ and $x^3 + x$, each at $v = ell$ --- were settled by
-hand in @sec-cm, which is evidence that the additive case is tractable but not a proof of anything
-general.
+*What the remaining gap actually is.* @sec-dep-add closed the additive case away from $ell$:
+Lemma 7 computes $W_v$ there as the component group mod $ell$, which kills every additive place at
+odd $ell$ and leaves, at $ell = 2$, only $Phi_v tilde.equiv (ZZ slash 2)^2$ --- handled by
+@sec-dep-ram when the type is $"I"_n^*$ with $n >= 2$, and by Proposition 9, explicitly in root
+differences, when it is $"I"_0^*$. So for $ell$ odd Theorem 8 is a complete answer at every
+$v divides.not ell$, and at $ell = 2$ what is missing is the *degenerate* additive case
+$dim W_v = 1$, where $beta_v$ can be non-zero only by failing to be alternating.
+
+*The wild place is what is really left.* $v = ell$ is outside every argument here, for the reason
+in @sec-dep-add2: it is the only place where the formal group survives into $W_v$. Both surfaces
+whose obstruction sits there --- $x^3 - 2$ and $x^3 + x$ --- were settled by hand in @sec-cm, which
+is evidence that the case is tractable but not a proof of anything general.
 
 *Still not written out.* The identification of $C_"can"$ by the discriminant valuations of the
 $ell$-isogenous curves (Step 5) is used to *locate* the canonical line but is not needed for
 Theorem 5, which takes $C_"can"$ as given; it deserves a proof anyway, since it is what makes the
 recipe mechanical.
 
-*Two ranges are untouched.* The wild place $v = ell$ falls outside Theorem 5 by hypothesis, and
-Lemma 1(b) covers it only under good reduction; when $E$ is additive at $ell$, as for $x^3 - 2$,
-nothing here applies. And at $ell = 2$ Corollary 6 needs @sec-tk-lemAB and the norm lemma to handle
-$infinity$ and the $q divides d$, because Lemma 2 fails there.
+*Still untouched.* Lemma 1(b) covers $v = ell$ only under good reduction; when $E$ is additive at
+$ell$, as for $x^3 - 2$, nothing here applies. And at $ell = 2$ Corollary 6 needs @sec-tk-lemAB and
+the norm lemma to handle $infinity$ and the $q divides d$, because Lemma 2 fails there.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *The $ell = 2$ caveat is not a formality.* @sec-dep-15a1 exhibits a $phi$ on `15a1` for which the

@@ -1,0 +1,75 @@
+=== (1) the split-multiplicative class can be RAMIFIED ===
+11a1 is split I5 at 11; its twist by 11 is I5*, and the class that
+makes THAT split multiplicative is the ramified one.
+   11a1  v = 11   E is I5 with c_v = 5   v(j) = -5   split-multiplicative class: d = [1]
+   11a1 twisted by 11  v = 11   E is I5* with c_v = 4   v(j) = -5   split-multiplicative class: d = [11]   <== RAMIFIED
+
+=== (2) Lemma 7: at additive v not dividing ell, W_v = Phi_v / ell ===
+   x(x-5)(x+5)   v = 5   type I0*   c_v = 4   |Phi/2| = 4   measured |W_v| = 4   AGREE
+   x(x-7)(x+7)   v = 7   type I0*   c_v = 4   |Phi/2| = 4   measured |W_v| = 4   AGREE
+   x(x-3)(x+3)   v = 3   type I0*   c_v = 4   |Phi/2| = 4   measured |W_v| = 4   AGREE
+   x(x-11)(x+11)   v = 11   type I0*   c_v = 4   |Phi/2| = 4   measured |W_v| = 4   AGREE
+   x(x-6)(x+3)   v = 3   type I2*   c_v = 4   |Phi/2| = 4   measured |W_v| = 4   AGREE
+   x(x-9)(x+3)   v = 3   type I2*   c_v = 4   |Phi/2| = 4   measured |W_v| = 4   AGREE
+   x(x-12)(x+15)   v = 3   type I4*   c_v = 4   |Phi/2| = 4   measured |W_v| = 4   AGREE
+   (the last three are I_n* with n even, hence Phi = (Z/2)^2, not Z/4)
+
+=== (3) additive places at ell = 2: I0* with c_v = 4 gives dim W_v = 2 ===
+
+   f = (x-0)(x-5)(x--5)   v = 5   type I0*   c_v = 4   v(j) = 0
+    phi = (c_1, c_3):
+      from root differences: |im c_1| = 2  |im c_3| = 4   non-trivial 2/8   LIVE
+      direct point search:   |im c_1| = 2  |im c_3| = 4   non-trivial 2/8   LIVE
+    phi = (c_1, c_2):
+      from root differences: |im c_1| = 2  |im c_2| = 4   non-trivial 2/8   LIVE
+      direct point search:   |im c_1| = 2  |im c_2| = 4   non-trivial 2/8   LIVE
+    phi = (c_2, c_3):
+      from root differences: |im c_2| = 4  |im c_3| = 4   non-trivial 6/16   LIVE
+      direct point search:   |im c_2| = 4  |im c_3| = 4   non-trivial 6/16   LIVE
+    -- root-difference prediction agrees with the search on every phi
+
+   f = (x-0)(x-7)(x--7)   v = 7   type I0*   c_v = 4   v(j) = 0
+    phi = (c_1, c_3):
+      from root differences: |im c_1| = 4  |im c_3| = 2   non-trivial 2/8   LIVE
+      direct point search:   |im c_1| = 4  |im c_3| = 2   non-trivial 2/8   LIVE
+    phi = (c_1, c_2):
+      from root differences: |im c_1| = 4  |im c_2| = 2   non-trivial 2/8   LIVE
+      direct point search:   |im c_1| = 4  |im c_2| = 2   non-trivial 2/8   LIVE
+    phi = (c_2, c_3):
+      from root differences: |im c_2| = 2  |im c_3| = 2   non-trivial 0/4   trivial
+      direct point search:   |im c_2| = 2  |im c_3| = 2   non-trivial 0/4   trivial
+    -- root-difference prediction agrees with the search on every phi
+
+   f = (x-0)(x-3)(x--3)   v = 3   type I0*   c_v = 4   v(j) = 3
+    phi = (c_1, c_3):
+      from root differences: |im c_1| = 4  |im c_3| = 4   non-trivial 6/16   LIVE
+      direct point search:   |im c_1| = 4  |im c_3| = 4   non-trivial 6/16   LIVE
+    phi = (c_1, c_2):
+      from root differences: |im c_1| = 4  |im c_2| = 4   non-trivial 6/16   LIVE
+      direct point search:   |im c_1| = 4  |im c_2| = 4   non-trivial 6/16   LIVE
+    phi = (c_2, c_3):
+      from root differences: |im c_2| = 4  |im c_3| = 4   non-trivial 6/16   LIVE
+      direct point search:   |im c_2| = 4  |im c_3| = 4   non-trivial 6/16   LIVE
+    -- root-difference prediction agrees with the search on every phi
+
+   f = (x-0)(x-11)(x--11)   v = 11   type I0*   c_v = 4   v(j) = 0
+    phi = (c_1, c_3):
+      from root differences: |im c_1| = 4  |im c_3| = 4   non-trivial 6/16   LIVE
+      direct point search:   |im c_1| = 4  |im c_3| = 4   non-trivial 6/16   LIVE
+    phi = (c_1, c_2):
+      from root differences: |im c_1| = 4  |im c_2| = 4   non-trivial 6/16   LIVE
+      direct point search:   |im c_1| = 4  |im c_2| = 4   non-trivial 6/16   LIVE
+    phi = (c_2, c_3):
+      from root differences: |im c_2| = 4  |im c_3| = 4   non-trivial 6/16   LIVE
+      direct point search:   |im c_2| = 4  |im c_3| = 4   non-trivial 6/16   LIVE
+    -- root-difference prediction agrees with the search on every phi
+
+=== (4) which component groups actually occur at additive places ===
+in the full-2-torsion family f = x(x-e2)(x-e3), |e| <= 20:
+      I0* c=4
+      I2* c=4
+      I4* c=4
+   every one has Phi = (Z/2)^2, i.e. dim W_v = 2 -- the cases with
+   dim W_v = 1 (Phi = Z/2 or Z/4) do not arise with full 2-torsion here.
+
+### additive finished

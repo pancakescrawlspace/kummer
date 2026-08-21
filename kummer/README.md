@@ -28,6 +28,7 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `sadic.gp` | `S`-adic density (document §2.2): `Mstar`, `coprimeS`, `densefactorwise`, `denseS`, `reportS`; the level-2 product test `inE2p`, `Border`, `denseprod`, `reportSprod`, and the per-tuple search `tuplepart`, `tuplename`, `reportSprodk`, `reportSprodtuples`; and the rank dichotomy `torsdim`, `torsdimloc`, `gexactS` (exact) against `torsdimUB`, `gtop`, `triage` (bounds). |
 | `ledger.gp` | the ledger and star test at level 1 (document §2.3.1): `arenainit`, `reachmap`, `signact`, `ledgeradd`, `maskvec`, `startest`, `runledger`, `rungraded`. Reduction-agnostic arena (§2.3.4): `shortmodel`, `shortdata`, `cosetreps1`, `cosetclose`, `cosetidx`. Sweeps over all tuples (§2.3.6): `sweepgraded`, and the per-tuple search `rungradedk`, `sweeptuples` (on `tuplepart`/`tuplename` from `sadic.gp`); `showcert` for the certificate. |
 | `depends.gp` | **the obstructed set S read off (E, ell, phi) directly** (survey document §10). No local points, no descent images, no symbols: only reduction data. Five steps -- (1) bad primes only, since at good `v != ell` the local condition is `H^1_ur` and at good `v = ell` it is `H^1_f`, both functorial hence phi-stable for EVERY phi; (2) discard `v != 1 mod ell`, since a non-zero alternating `beta_v` needs all of `E_d[ell]` rational over `Q_v`; (3) keep multiplicative `v` with `ell | v(Delta_min)`; (4) the live square class is the unique unramified one making `E_d` SPLIT; (5) phi decides -- live iff the canonical line `C_can = mu_ell` is not phi-stable, detected by which `ell`-isogeny MULTIPLIES `v(Delta)` by `ell`. `sqreps`, `tw`, `ratroots`, `ntorsx`, `redtype`, `canline`, `splitclass`, `run`. Output: `results/survey-depends.txt`. |
+| `additive.gp` | **the additive places** (survey document §10.8). Three computations: (1) the split-multiplicative square class can be RAMIFIED -- 11a1 twisted by 11 is `I5*` at 11, and it is `d = 11` that returns split multiplicative reduction, so Step 4 must scan all four classes and potentially multiplicative additive places are covered by Theorem 5 after all; (2) Lemma 7, `W_v = Phi_v/ell` at additive `v` not dividing `ell`, verified by measuring `|W_v|` against `|Phi/2|` (note `Phi = (Z/2)^2` for `I_n*` with `n` EVEN, not `Z/4`); (3) at `I0*` with `c_v = 4` the pairing is a Hilbert symbol of ROOT DIFFERENCES, checked against a direct search for all three phi on four curves -- exact agreement, and these places are LIVE. `kodname`, `splitscan`, `phimod2`, `wsize`, `lemma7`, `ci`, `imgs`, `predict`, `direct`, `census`, `run`. Output: `results/survey-additive.txt`. |
 | `depends-15a1-sigma.gp` | **the full `Sigma(d)` for both phi on 15a1**, `d = -1` (survey document §10.5.1). Prompted by an apparent conflict: §3 witnesses every class of 15a1 at `p = 3`, while §10's recipe reports 3 as critical for the phi pairing `c_2, c_3`. No conflict: `phi_A = (c_1,c_3)` has `Sigma = {5}` (the §7.1 theorem), while `phi_B = (c_2,c_3)` has `Sigma = {infinity, 2, 3}` -- a three-place correlation with no constraint at 3 alone. Also shows `beta_oo =/= 0` on the ONE-dimensional `W_oo`, so beta is not alternating for `phi_B`: the norm lemma is about a pair of descent maps, not about the curve. `realchk`, `fin`. Output: `results/survey-15a1-sigma.txt`. |
 | `depends-check.gp` | **out-of-sample test of the sufficiency theorem** (survey document §10.7.1). For curves appearing nowhere else, and each of the three rank-one phi on a curve with full rational 2-torsion, predicts the verdict at every odd bad place from reduction data alone and then computes the symbol table. Theorem 5 predicts non-degeneracy at a live place -- both images all four classes, 6 of 16 ordered pairs with a non-trivial symbol -- and a COLLAPSE of the canonical line's descent map at a dead one. 13 predictions, 13 agreements. CAVEAT: the sampler uses `x = +- m p^k` with `m <= 40`, so an image can be reported as 3 (impossible for a subgroup) -- a live verdict is still a proof, a dead one is evidence. `symtab`, `canroot`, `splitclass`, `oos`. Output: `results/survey-depends-check.txt`. |
 | `twoplace.gp` | **the two-place screen** (survey document §9). Restricts to the family where *both* structural lemmas hold — `q(x) = (x+al)^2 + mu^2` a sum of two squares (so beta is alternating) and `b = al^2 + mu^2 = k^2` a perfect square (so §6.2.2 kills the places `q | d`) — i.e. `f = x q(x)` indexed by **Pythagorean triples**, where the odd live places lie among the prime factors of the hypotenuse `k`. For each triple, each candidate place (`2` and the primes of `b`) and each square class of `d` (4 classes for odd `v`, 8 for `v=2`) it reports whether the image of `c` is *non-isotropic* for the Hilbert symbol, and checks that the sampled points generate `E_1` (odd `v`) or `E_3` (`v=2`). NOTE `sqreps`: for `v = 1 mod 4` the list `1,-1,v,-v` covers only two of the four classes, so a primitive root is used. `sqreps`, `probe`, `run`, `detail`. Output: `results/survey-twoplace.txt`. |
@@ -1405,13 +1406,40 @@ non-constant as soon as one summand is, so one non-zero `beta_p` inside a finite
 `S` is all an obstruction needs -- and `S` does not depend on `d`, which is what
 makes the conclusion about the surface.
 
-Still open: the ADDITIVE candidates (`ell | c_v` with `c_v <= 4`, so
-`ell` in {2,3}), where the Tate parametrisation is unavailable -- that is now
-the whole remaining gap on the sufficiency side. Also not written out: the
-identification of `C_can` by the discriminant valuations of the `ell`-isogenous
-curves. Out of scope: the wild place `v = ell`, where `x^3-2`'s obstruction
-lives, and at `ell = 2` the places `infinity` and `q | d`, which need §6.2.2 and
-the norm lemma.
+**The additive case is now done away from `ell`** (§10.8). Two observations:
+
+* The split-multiplicative class need not be UNRAMIFIED. When `E` is additive of
+  type `I_n*` -- potentially multiplicative -- it is a ramified class that makes
+  `E_d` split, so those places were never a gap: Theorem 5 governs them via a
+  twist with `v | d`. Step 4 and `splitclass` now scan all four classes.
+* **Lemma 7**: at an additive `v` not dividing `ell`, the formal group is pro-`v`
+  and `E_0/E_1` is the additive group of the residue field, so `E_0(Q_v)` is
+  pro-`v` and `W_v = Phi_v/ell`, the component group mod `ell`. Since `c_v <= 4`:
+  `ell >= 5` gives `W_v = 0`; `ell = 3` gives `dim W_v <= 1`, hence
+  `beta_v = 0` since beta is alternating at odd `ell`; `ell = 2` gives
+  `dim W_v <= 2`, with equality exactly for `Phi = (Z/2)^2`, i.e. `I_n*` with `n`
+  EVEN.
+
+**Theorem 8**: for `ell >= 3` and `v` not dividing `ell`, `v` is in `Sigma(d)`
+if and only if `E_d` is split multiplicative at `v`, `E_d[ell]` is fully rational
+over `Q_v`, and phi does not stabilise `C_can`. That is sufficiency answered
+outright at every place away from the wild one.
+
+At `ell = 2` additive places really can be live. **Proposition 9**: for type
+`I0*` with `c_v = 4`, `W_v = Phi_v` is generated by the 2-torsion, so beta is a
+Hilbert symbol of ROOT DIFFERENCES -- `c_i(T_j) = e_j - e_i` -- with no point
+search. Verified exactly against a direct search on four curves and all three
+phi, and those places are live.
+
+Still open: the degenerate `ell = 2` additive case `dim W_v = 1`, where beta can
+be non-zero only by failing to be alternating; and the wild place. Also not written out: the
+identification of `C_can` by the `j`-valuations of the `ell`-isogenous curves.
+
+**Why the wild place is genuinely different**, in one line: Lemma 7 needs
+`v` not dividing `ell` so the formal group is prime to `ell`. At `v = ell` the
+formal group is pro-`ell` and contributes EVERYTHING -- which is why `x^3-2` is
+live at `v = 3` on a type II fibre with `c_v = 1`, where `Phi/3 = 0`. Its `W_3`
+is entirely formal group. That is the one place no argument in §10 reaches.
 
 ## beta_3 =/= 0 is now proved (document §5.1.5)
 

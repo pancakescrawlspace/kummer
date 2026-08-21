@@ -75,9 +75,12 @@ canline(Ea, ell, v) = { my(E = ellminimalmodel(Ea), vq = -valuation(E.j, v), lab
     for(i = 2, #cs, if(-valuation(ellminimalmodel(ellinit(cs[i])).j, v) == ell*vq, lab = [1, i])));
   lab; }
 
-/* step 4: which unramified square class makes E_d split multiplicative at v */
+/* step 4: which square class makes E_d split multiplicative at v.  ALL FOUR are
+   scanned, not just the unramified two: when E is additive of type I_n* -- that
+   is, potentially multiplicative -- the split class is RAMIFIED.  See document
+   10.8.1; 11a1 twisted by 11 is the example. */
 splitclass(E, v) = { my(reps = sqreps(v), out = 0);
-  for(i = 1, 2, my(Ed = tw(E, reps[i]));
+  for(i = 1, #reps, my(Ed = tw(E, reps[i]));
     if(ismult(Ed, v) && ellap(Ed, v) == 1, out = reps[i])); out; }
 
 /* one case.  excl = the x-coordinate of the line phi does NOT stabilise
