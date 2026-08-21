@@ -258,24 +258,55 @@ out as groups of order 4 --- which is $dim L_2 = dim M^(G_2) + 1 = 2$, as it mus
   *only* place of discrepancy, and the ranks are equal.
 ]
 
-== What is left: the primes dividing $a$ <sec-pf-a>
+== The primes dividing $a$ <sec-pf-a>
 
-At an odd $v divides a$ the argument is the same in shape but not yet complete. Write $t = dim L_v =
-dim E[2](QQ_v)$. If $t = 0$ both conditions vanish. If $t >= 1$ the conditions agree as soon as the
-2-torsion image spans $L_v$, by Lemma C, and the $QQ_v$-component of $delta(T)$ is again the class
-of 3. So:
+The last range. Everything is decided by two valuations.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  (#sym.star) holds at every odd $v divides a$ with $t = 1$ *unless* 3 is a square modulo $v$ *and*
-  the remaining component of $delta(T)$ is a square --- in which case $delta(T) = 1$, the 2-torsion
-  image is trivial, and $L_v$ needs a generator that Lemma C does not supply. The case $t = 2$,
-  which needs $v equiv 1$ $(mod 3)$ and all three roots in $QQ_v$, is likewise open.
+  *Proposition E.* Let $v$ be an odd prime, $v != 3$, with $v divides a$. Then
+  $L_v (E_a) = L_v (E_(-1 slash a))$.
+
+  #v(2mm)
+  _Proof._ Sixth powers change neither curve, so we may take $m = v(a)$ with $1 <= m <= 5$.
+
+  #v(1.5mm)
+  *(i)* If $3 divides.not m$, a root of $t^3 + a$ would have valuation $m slash 3 in.not ZZ$, so
+  $E[2](QQ_v) = 0$ and $dim L_v = dim E[2](QQ_v) = 0$. Both conditions vanish.
+
+  #v(1.5mm)
+  *(ii)* So $m = 3$; write $a = v^3 a_0$ with $v divides.not a_0$. A root lies in $QQ_v$ only if
+  $a_0$ is a cube in $ZZ_v^times$; if it is not, again $L_v = 0 = L'_v$.
+
+  #v(1.5mm)
+  *(iii)* Otherwise let $theta_1 in QQ_v$ be that root, so $v(theta_1) = 1$, the others being
+  $theta_1 zeta$ and $theta_1 zeta^2$. Two valuations decide everything:
+  $ v(f'(theta_i)) = v(3 theta_i^2) = 2 quad "is EVEN" quad (v != 3), $
+  $ v(theta_i - theta_j) = v(theta_1 (zeta^r - zeta^s)) = 1 quad "is ODD" quad (i != j), $
+  the second because $N(1 - zeta) = (1-zeta)(1-zeta^2) = 3$ is a *unit* at $v$, so $zeta^r - zeta^s$
+  is a unit. Now split on $v$ modulo 3.
+
+  #v(1.5mm)
+  If $v equiv 2$ $(mod 3)$ then $zeta in.not QQ_v$, $t := dim L_v = 1$, and
+  $A_v = QQ_v times F$ with $F = QQ_v (zeta)$ unramified quadratic. The $F$-component of
+  $delta(T_1)$ is $theta_1 (1 - zeta)$, of *odd* valuation, hence not a square; so
+  $delta(T_1) != 1$ and it spans the line $L_v$.
+
+  #v(1.5mm)
+  If $v equiv 1$ $(mod 3)$ then $zeta in QQ_v$, $t = 2$, and $A_v = QQ_v^3$. Reading off
+  valuation parities coordinate by coordinate,
+  $ delta(T_1) |-> (0, 1, 1), quad delta(T_2) |-> (1, 0, 1) , $
+  which are independent over $bb(F)_2$; so $delta(T_1), delta(T_2)$ span the 2-dimensional $L_v$.
+
+  #v(1.5mm)
+  In both cases the image of the 2-torsion is all of $L_v$, and Lemma C identifies it with the image
+  of the 2-torsion of $E'$, which is all of $L'_v$. Hence $L_v = L'_v$. $qed$
 ]
 
-Note also that only $v divides a$ with $v(a) equiv 3$ $(mod 6)$ can matter: $v(Delta) = 2 v(a)$, and
-$v(a) equiv 0$ $(mod 6)$ can be scaled away by a sixth power, while $3 divides.not v(a)$ forces
-$t = 0$. Such a $v$ carries a fibre of type $"I"_0^*$, where the local image is the 2-torsion of the
-component group --- exactly the situation of the additive analysis in the companion survey.
+The same valuation argument is what settled $v = 3$ in @sec-pf-3, there in the simpler form that
+$3$ is a uniformiser, so that $v_3 (3 theta_1^2)$ is *odd* and $delta(T)$ cannot be trivial. Note
+that the two cases of (iii) are exactly the fibres of type $"I"_0^*$ with $c_v = 2$ and $c_v = 4$:
+the local image is the 2-torsion of the component group, and it is spanned by the 2-torsion of the
+curve --- the situation Proposition 9 of the companion survey describes in general.
 
 = Status <sec-status>
 
@@ -294,11 +325,28 @@ $dim L_3 <= 1$ and $delta(T)$ has $QQ_3$-component the class of the uniformiser 
 non-trivial), and --- by a finite and *exhaustive* computation, four classes covering every odd $a$
 --- at $v = 2$.
 
-*Not proved.* (#sym.star) at the odd primes $v divides a$, and only in the configurations described
-in @sec-pf-a: $t = 1$ with $delta(T) = 1$, which needs 3 to be a square modulo $v$, and the case
-$t = 2$. Everything else is done. Since only $v(a) equiv 3$ $(mod 6)$ can contribute, and such a
-place carries an $"I"_0^*$ fibre where the local image is the 2-torsion of the component group, this
-is a concrete and finite-looking remainder rather than an open field.
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem.* Let $a$ be an odd integer. Then
+  $ "Sel"_2 (y^2 = x^3 + a) = "Sel"_2 (y^2 = x^3 - a^(-1)) $
+  *as subgroups of $H^1 (QQ, M)$*; in particular the two 2-Selmer ranks are equal.
+
+  #v(2mm)
+  _Proof._ Theorem A identifies the two mod-2 modules, so both Selmer groups are cut out of the same
+  $H^1 (QQ, M)$ by local conditions. Those conditions agree at every place: at $infinity$ because
+  $H^1 (RR, M) = 0$; at every good place because both are $H^1_"ur"$; at $v = 3$ by @sec-pf-3; at
+  the odd $v divides a$ by Proposition E; and at $v = 2$ by the exhaustive computation of
+  @sec-pf-2, four square classes covering every odd $a$. Equal local conditions cut out equal
+  Selmer groups. $qed$
+]
+
+*The one computational input* is @sec-pf-2, and it is finite and exhaustive rather than a sample:
+over $QQ_2$ the curve depends only on $a$ modulo 8. A hand proof there would make the argument
+entirely free of machine computation, and is the only thing still worth doing.
+
+*Where the hypothesis is used.* Oddness of $a$ enters exactly once, at $v = 2$: it is what makes the
+sextic twist parameter a *unit*, hence a cube, hence reduces $E_a slash QQ_2$ to a quadratic twist
+class depending only on $a bold("mod") 8$. For even $a$ that fails, and so does the conclusion ---
+14 of the 16 even $a$ tested have Selmer ranks differing by exactly 1.
 
 *A remark on what "equal" costs.* Comparing two Selmer structures on a self-dual module, the
 Greenberg--Wiles formula gives only
