@@ -4738,6 +4738,9 @@ fact $dim W_3 = 2$ and $beta_3 equiv.not 0$ (§5.1.5): the extra dimension is th
   $L_ell subset.eq H^1 (QQ_ell, E_d [ell])$ under bad reduction at $ell$ --- the analogue of
   "$L_v = H^1_"ur"$" and "$L_ell = H^1_f$", which is what makes Lemma 1 a one-line proof, and of
   Lemma 4's "$L_v = H^1 (QQ_v, C_"can" (v))$", which is what makes Theorem 5 an equivalence.
+  @sec-wild attacks it: for $ell$ odd it confines a live wild place to $dim W_ell = 2$ with a
+  rational $ell$-torsion line and a non-collapsing descent map, which is a necessary condition but
+  not yet a criterion.
 ]
 
 *Loose ends, of a different kind.* At $ell = 2$ there is no analogue of Corollary 6, since Lemma 2
@@ -4766,6 +4769,158 @@ critical prime is only observed to be plentiful, not proved infinite.
   for.
 ]
 
+
+= The wild place <sec-wild>
+
+@sec-dep-thegap left one gap: the place $v = ell$ when $E_d$ has *potentially good but additive*
+reduction there. It is where the only honest additive critical places live --- $x^3 - 2$ at
+$v = 3$, on a fibre of type $"IV"^*$, and $x^3 + x$ at $v = 2$ --- and where none of @sec-depends's
+machinery applies, because the formal group is pro-$ell$ and survives into $W_v$ instead of dying.
+
+This chapter does not close the gap. It does cut it down: three results confine a live wild place
+to a narrow shape, and the shape is exactly what $x^3 - 2$ has.
+
+Throughout, $ell$ is *odd* and $v = ell$; $ell = 2$ is discussed at the end.
+
+== The dimension is at most two <sec-wild-dim>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem W1.* At $v = ell$,
+  $ dim W_ell = 1 + dim E_d [ell](QQ_ell), quad "and" quad dim E_d [ell](QQ_ell) <= 1 . $
+  So $dim W_ell in {1, 2}$; and if $dim W_ell = 1$ then $beta_ell equiv 0$.
+
+  #v(2mm)
+  _Proof._ $E_d (QQ_ell) tilde.equiv ZZ_ell times T$ with $T$ finite, so
+  $W_ell = E_d (QQ_ell) slash ell$ has dimension $1 + dim T[ell]$; the leading 1 is the formal
+  group, which at $v = ell$ is pro-$ell$ and therefore contributes --- this is the whole difference
+  from Lemma 7, where it was prime to $v$ and contributed nothing. For the bound: two independent
+  $QQ_ell$-rational $ell$-torsion points would make the Weil pairing put $zeta_ell$ in $QQ_ell$,
+  impossible for $ell$ odd. Finally an alternating form on a space of dimension $<= 1$ vanishes,
+  and $beta$ is alternating at odd $ell$. $qed$
+]
+
+So a live wild place *requires a $QQ_ell$-rational $ell$-torsion point*. That is already a strong
+constraint, and it is one the existing scripts have been using without stating: `alpha3.gp` prints
+"no $QQ_3$-rational 3-torsion, so $dim W_3 = 1$ and $beta_3 = 0$" for exactly this reason.
+
+== The local module is rigid, and $phi$ cannot move its rational line <sec-wild-mod>
+
+Assume from now on $dim W_ell = 2$, and write $C_0 = E_d [ell](QQ_ell)$ for the rational
+$ell$-torsion line.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem W2.* The local Galois module sits in an exact sequence
+  $ 0 -> ZZ slash ell -> E_d [ell] -> mu_ell -> 0 , $
+  with $C_0$ the sub, and *every* $phi in "End"_G (E[ell])$ preserves $C_0$.
+
+  #v(2mm)
+  _Proof._ $C_0$ is a rational line, so $G_(QQ_ell)$ acts trivially on it; the determinant of
+  $E_d [ell]$ is $chi_"cyc"$, so the quotient is $mu_ell$. If $phi(C_0) subset.eq.not C_0$ then the
+  composite $C_0 -> E_d [ell] -> mu_ell$ is a non-zero $G_(QQ_ell)$-map, i.e. a non-zero element of
+  $"Hom"_G (ZZ slash ell, mu_ell) = mu_ell (QQ_ell) = 0$. $qed$
+]
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  Note the *orientation*. In the Tate case of Lemma 12 the canonical line $mu_ell$ was the *sub*
+  and $ZZ slash ell$ the quotient; here $ZZ slash ell$ is the sub and $mu_ell$ the quotient. Both
+  times the relevant $"Hom"$ vanishes because $zeta_ell in.not QQ_ell$, and both times $phi$ is
+  forced to preserve the distinguished line. What differs is what that buys, and it is much less
+  here: knowing $phi(C_0) subset.eq C_0$ does not by itself say anything about $L_ell$, because
+  $L_ell$ need not be built out of $C_0$.
+]
+
+== The criterion: $L_ell$ against the torsion condition <sec-wild-crit>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem W3.* $H^1 (QQ_ell, C_0)$ is *maximal isotropic* of dimension 2 in the 4-dimensional
+  $H^1 (QQ_ell, E_d [ell])$. Consequently
+  $ L_ell = H^1 (QQ_ell, C_0) quad ==> quad beta_ell equiv 0 , $
+  and $L_ell subset.eq H^1 (QQ_ell, C_0)$ holds exactly when the $C_0$-descent map
+  $alpha = pi_* compose delta_ell$ vanishes identically on $E_d (QQ_ell)$.
+
+  #v(2mm)
+  _Proof._ $e(C_0, C_0) = 1$, so $H^1 (QQ_ell, C_0)$ is isotropic; its dimension is
+  $h^0 + h^2 + 1 = 1 + 0 + 1 = 2$ by the local Euler characteristic, and
+  $dim H^1 (QQ_ell, E_d [ell]) = 2 h^0 + 2 = 4$, so it is maximal isotropic. If
+  $L_ell = H^1 (QQ_ell, C_0)$ then by W2 $phi_* L_ell = H^1 (QQ_ell, phi(C_0)) subset.eq L_ell$,
+  and @sec-dep-crit gives $beta_ell equiv 0$. The last clause is the exactness of
+  $H^1 (C_0) -> H^1 (E_d [ell]) -> H^1 (mu_ell)$: a class lies in $H^1 (C_0)$ iff its image under
+  $pi_*$ vanishes. $qed$
+]
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Corollary.* A live wild place needs *both*
+  #v(1mm)
+  (i) a $QQ_ell$-rational $ell$-torsion point, so that $dim W_ell = 2$; and
+  #v(1mm)
+  (ii) the $C_0$-descent map $alpha$ *not* identically zero on $E_d (QQ_ell)$.
+]
+
+Condition (ii) is the *collapse* mechanism of @sec-tk-collapse, met there as a convenient way of
+proving vanishing. What W3 says is that at the wild place collapse is not merely one route to
+$beta_ell equiv 0$ --- it is the only thing that has to be ruled out once (i) holds.
+
+== $x^3 - 2$, and what separates its four classes <sec-wild-x32>
+
+The chapter's one worked example is also its only test. `wild.gp` runs all four square classes of
+$x^3 - 2$ at $v = 3$; the obstruction is known to live in the class $[u dot 3]$, represented by
+$d = 6$.
+
+#align(center, table(
+  columns: 7, align: (center, center, center, center, center, center, left),
+  stroke: 0.4pt + luma(170), inset: (x: 6pt, y: 3.5pt),
+  table.header([$d$], [type], [$c_3$], [$3 divides c_3$], [rational 3-torsion], [$dim W_3$],
+               [verdict]),
+  [1], [$"II"$],   [1], [no],  [yes], [2], [$alpha equiv 0$: *collapse*, so $beta_3 = 0$ by W3],
+  [2], [$"II"$],   [1], [no],  [no],  [1], [$beta_3 = 0$ by W1],
+  [3], [$"IV"^*$], [1], [no],  [no],  [1], [$beta_3 = 0$ by W1],
+  [6], [$"IV"^*$], [3], [*yes*], [yes], [2], [$alpha equiv.not 0$: *live*, and it is],
+))
+
+#v(2mm)
+
+Every class is accounted for, and by a different clause. Two die by dimension, one dies by
+collapse, and the survivor is exactly the class where the obstruction is proved to sit in §5.1.5.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *What tracks the two conditions is the Tamagawa number.* Compare $d = 1$ and $d = 6$: both have
+  $dim W_3 = 2$, and they differ in $c_3$, hence in *where the second dimension comes from*. The
+  filtration $E_1 subset.eq E_0 subset.eq E_d (QQ_ell)$ has graded pieces $ZZ_ell$ (the formal
+  group), $bb(F)_ell^+$ (additive reduction) and $Phi_ell$. When $ell divides c_ell$ the second
+  dimension can come from the component group; when it does not, it must come from the additive
+  layer $E_0 slash E_1$ --- and in the one case we can compute, that is exactly when $alpha$
+  collapses.
+
+  #v(1.5mm)
+  So the natural conjecture is that a live wild place needs $ell divides c_ell$ as well. We have
+  one surface to test it on, and it passes on all four classes. That is not evidence of much, and
+  the chapter states it as a question, not a result.
+]
+
+== Status, and $ell = 2$ <sec-wild-status>
+
+*Proved:* W1, W2, W3 and the Corollary --- necessary conditions, valid for every odd $ell$ and
+every $phi$, with no computation.
+
+*Not proved:* sufficiency. Nothing here shows that (i) and (ii) together force $beta_ell != 0$;
+they are what must be checked, and in the decomposable case the check is the criterion of
+@sec-tk-criterion, $dim ker alpha_1 + dim ker alpha_2 = dim W_ell$, which §5.1.5 carries out by
+hand for $x^3 - 2$. Nor is there a criterion for (ii) in terms of reduction data --- the Tamagawa
+conjecture above is exactly the missing piece, and it is what would make the wild place as
+mechanical as @sec-dep-recipe made the rest.
+
+*At $ell = 2$* W1 fails at the second step: $zeta_2 = -1$ is in $QQ_2$, so $E_d [2](QQ_2)$ can be
+2-dimensional and $dim W_2$ can reach 3. W2 fails with it, the two orientations of the module
+coinciding. The one worked case, $x^3 + x$ at $v = 2$, was settled in @sec-cm by a direct symbol
+computation over the eight square classes, and nothing in this chapter improves on that.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *What the gap has become.* Before this chapter: "$v = ell$ with potentially good additive
+  reduction --- no criterion of any kind". After it: for $ell$ odd, a live wild place must carry a
+  rational $ell$-torsion point and a non-collapsing $C_0$-descent map, and the question is whether
+  those two conditions suffice and whether they are governed by $ell divides c_ell$. That is a
+  sharper question than the one we started with, on a strictly smaller set of curves.
+]
 
 = Remarks
 
