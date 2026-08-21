@@ -1397,32 +1397,44 @@ prove the statement on its own, so the class became an optional extra rather tha
 It also accounts for every observation above, including the one that resisted longest.
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
-  *Why the class is still not exhibited.* Two separate reasons, and only one of them is about
-  tools.
+  *The class, and the symbol that was missing.* Both of the obstacles this box used to record have
+  since been removed. They are recorded here because the argument below was built to avoid them,
+  and still does.
 
   #v(1.5mm)
-  *The shape is now known.* $E[3] = C_1 xor C_2$ with $C_1 tilde.equiv ZZ slash 3$ and
+  *The class.* $E[3] = C_1 xor C_2$ with $C_1 tilde.equiv ZZ slash 3$ and
   $C_2 tilde.equiv mu_3$, so $beta_3 (P,Q) = ⟨alpha_2 (P), alpha_1 (Q)⟩_3$ is the cup product of a
-  class in $QQ_3^times slash 3$ with a class in $"Hom"(G_3, ZZ slash 3)$. That is the class of a
-  *cyclic algebra* $(L_chi slash k, sigma, g)$ of degree 3 --- not a symbol $(g_1, g_2)_3$, which
-  would need $zeta_3$, and $zeta_3 in.not QQ$. The cubic extension $L_chi$ is the function field
-  extension $QQ(B_2) slash QQ(E)$ cut out by $hat(psi)_2$, and the function is the tangent at
-  $T_d$, namely $g = y - sqrt(6d)(x - d)$, since
-  $x^3 - 2d^3 - 6d(x-d)^2 = (x - 2d)^3$. The level-2 analogue of all this is carried out in full in
-  the survey document, §7, where the class comes out as an explicit quaternion algebra over
-  $QQ(X)$; what is still missing at level 3 is the normalisation that clears the twist $d$ out of
-  $g$.
+  class in $QQ_3^times slash 3$ with a class in $"Hom"(G_3, ZZ slash 3)$: a *cyclic algebra* of
+  degree 3, not a symbol $(g_1, g_2)_3$, which would need $zeta_3 in.not QQ$. Both entries are
+  explicit. Setting $w = v sqrt(6d) slash 6$ and $z = v sqrt(-2d) slash 2$ on $E_d : d v^2 = f(x)$
+  clears the twist and lands on two *fixed* curves of conductor 27, each with a rational 3-torsion
+  point,
+  $ E_((6)) : 6w^2 = x^3 - 2, quad T = (2,1); quad quad E_((-2)) : -2z^2 = t^3 - 2, quad S = (0,1), $
+  whose tangents there are $w = x-1$ and $z = 1$. Normalised as $G = 36(w - x + 1)$ and
+  $H = (z-1) slash 2$ they satisfy $G sigma(G) = (-6(x-2))^3$ and $H sigma(H) = (t slash 2)^3$, and
+  $cal(A) = "cor"_(F(X) slash QQ(X)) (G, H)_3$ with $F(X) = QQ(X)(zeta_3, sqrt(6 f(x)))$. The full
+  account, with the level-2 analogue worked out as an explicit quaternion algebra, is §7 of the
+  survey document.
 
   #v(1.5mm)
-  *And the tools are missing too.* Both computer
-  algebra systems used here were checked: PARI's `nfhilbert` and Sage's `hilbert_symbol` are
-  *quadratic only* --- neither takes an exponent argument --- Sage's `three_selmer_rank` shells
-  out to Magma, and neither system has Brauer groups of surfaces. What is missing is a cubic
-  norm-residue symbol at $v = 3$. Away from 3 the symbol is *tame* and elementary, but those are
-  exactly the places the argument already disposes of structurally; the one place that would need
-  a symbol, $v = ell = 3$, is wildly ramified, where one needs an explicit reciprocity law
-  (Artin--Hasse, Coleman) rather than a formula. That is an implementation task, not a conceptual
-  gap --- but it is a real one, and it is not what the theorem below rests on.
+  *The symbol.* PARI's `nfhilbert` and Sage's `hilbert_symbol` are *quadratic only*, and neither
+  system has Brauer groups of surfaces, so a cubic norm-residue symbol at $v = 3$ had to be built.
+  Away from 3 the symbol is *tame* and elementary; at $v = ell = 3$ it is wildly ramified, and the
+  expectation here was that it would need an explicit reciprocity law (Artin--Hasse, Coleman). It
+  does not. $QQ(zeta_3)$ has a *single* prime above 3, so for global $a, b$ the product formula
+  gives the wild symbol as minus the sum of the tame ones; and every class of
+  $K^times slash (K^times)^3$, $K = QQ_3 (zeta_3)$, has a global representative, since
+  $U^((4)) subset.eq (K^times)^3$ and $pi^4$ generates $(9)$, so a class is determined by its
+  valuation and its unit part modulo 9. The resulting symbol is non-degenerate, skew, and kills
+  $(a, 1-a)$; `level3.gp` carries it out.
+
+  #v(1.5mm)
+  *What that buys.* $beta_3$ can now be *evaluated*. On 161 sampled points of $E_(-3)(QQ_3)$ it is
+  alternating (0 of 161 diagonal values non-zero), it vanishes on all 9 pairs from $E_(-3)(QQ)$ ---
+  the theorem below, seen at the critical place --- and its Gram matrix on a basis of $W_3$ is
+  $mat(0,2;1,0)$. So $beta_3 equiv.not 0$ is now a computation as well as the coset argument of
+  @sec-cm-beta3, and the two agree. Nothing below depends on this; the argument is still the one that
+  needs no symbol at all.
 ]
 
 Decomposability of $E[3]$ supplies a *non-scalar* $phi in "End"_G (E[3])$, namely projection onto
