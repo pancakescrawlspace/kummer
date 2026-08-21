@@ -81,15 +81,72 @@ $x^3 - a^5$ agree at every good prime up to 300, and the 2-division fields are i
 = What remains: a purely local statement <sec-local>
 
 Fix $M = E_a [2] = E_(-1 slash a) [2]$ and write $L_v (E) subset.eq H^1 (QQ_v, M)$ for the image of
-$E(QQ_v) slash 2$. Both $L_v (E_a)$ and $L_v (E_(-1 slash a))$ are *maximal isotropic* subspaces of
-the same $H^1 (QQ_v, M)$, and their dimensions agree at every place, being determined by $M$ alone:
-$ dim L_v = cases(
-  dim M^(G_v) & v "finite", v divides.not 2,
-  dim M^(G_2) + 1 & v = 2,
-  dim M^(G_infinity) - 1 & v = infinity.
-) $
+$E(QQ_v) slash 2$ under the Kummer map $delta_v$. The first thing to record is that the *dimension*
+of $L_v$ is not a property of the curve at all --- it depends only on $M$ and on $v$.
 
-So the conjecture would follow at once from
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma B$'$.* For every place $v$,
+  $ dim_(bb(F)_2) L_v = cases(
+    dim M^(G_v) & v "finite", v divides.not 2,
+    dim M^(G_2) + 1 & v = 2,
+    dim M^(G_infinity) - 1 & v = infinity.
+  ) $
+]
+
+Since the two curves have the same $M$ by Theorem A, this already gives $dim L_v (E_a) = dim L_v
+(E_(-1 slash a))$ at every place. Here are two proofs, because the second explains *why* the
+answer is curve-independent.
+
+=== First proof: the structure of $E(QQ_v)$ <sec-dimL-1>
+
+The Kummer sequence
+$ 0 -> E(QQ_v) slash 2 E(QQ_v) -->^(delta_v) H^1 (QQ_v, M) -> H^1 (QQ_v, E)[2] -> 0 $
+makes $delta_v$ *injective*, so $dim L_v = dim_(bb(F)_2) E(QQ_v) slash 2 E(QQ_v)$, and it is that
+group we must count.
+
+For $K$ a finite extension of $QQ_p$, the formal group gives a finite-index subgroup of $E(K)$
+isomorphic to $(frak(m)_K, +) tilde.equiv ZZ_p^([K : QQ_p])$, whence an isomorphism of topological
+groups
+$ E(K) tilde.equiv ZZ_p^([K : QQ_p]) times T, quad T "finite" . $
+Now divide by 2. The finite part contributes $dim T slash 2T = dim T[2] = dim E(K)[2] = dim
+M^(G_K)$, a finite abelian group having equal 2-rank in $T slash 2T$ and $T[2]$. The free part
+contributes $dim ZZ_p^([K:QQ_p]) slash 2 = 0$ when $p$ is *odd*, since 2 is then invertible in
+$ZZ_p$, and $[K : QQ_p]$ when $p = 2$. For $K = QQ_v$ this is the first two lines.
+
+For $v = infinity$: $E(RR)$ is a compact real Lie group of dimension 1, so
+$E(RR) tilde.equiv RR slash ZZ$ or $RR slash ZZ times ZZ slash 2$ according as the real locus has
+one or two components. In the first case $E(RR)$ is 2-divisible and $E(RR) slash 2 = 0$, while
+$E(RR)[2] = ZZ slash 2$; in the second $E(RR) slash 2 = ZZ slash 2$ and $E(RR)[2] = (ZZ slash 2)^2$.
+Both times $dim E(RR) slash 2 = dim M^(G_infinity) - 1$, the point being that a real cubic always
+has at least one real root, so $M^(G_infinity) != 0$.
+
+=== Second proof: maximal isotropy and the Euler characteristic <sec-dimL-2>
+
+This one is shorter and shows the shape of the answer. By Tate local duality, the Weil pairing
+makes $M$ self-dual and the local condition $L_v$ is *its own annihilator* under the induced
+pairing on $H^1 (QQ_v, M)$ --- the classical fact that the image of the Kummer map is maximal
+isotropic. Hence
+$ dim L_v = 1/2 dim H^1 (QQ_v, M) . $
+For finite $v$ the local Euler characteristic formula gives
+$ h^0 - h^1 + h^2 = -[QQ_v : QQ_2] dim M , $
+with the convention $[QQ_v : QQ_2] = 0$ for $v divides.not 2$; and local duality together with
+self-duality of $M$ gives $h^2 = h^0$. So
+$ h^1 = 2 h^0 + [QQ_v : QQ_2] dim M = 2 dim M^(G_v) + 2 [QQ_v : QQ_2] , $
+using $dim M = 2$, and halving returns $dim L_v = dim M^(G_v) + [QQ_v : QQ_2]$ --- the first two
+lines at once. The archimedean place is not covered by that formula, and is the one place where the
+count has to be done by hand, as above.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  Every quantity on the right-hand side --- $M^(G_v)$, $[QQ_v : QQ_2]$, $dim M$ --- is an invariant
+  of the *Galois module*, not of the curve. That is the structural reason two curves with the same
+  $M$ have local conditions of the same dimension at every place, and it is why the comparison in
+  (#sym.star) is about which subspace, never about how big. A worked instance: at $v = 2$ we shall
+  find $dim M^(G_2) = 1$, so $dim L_2 = 2$ and $|L_2| = 4$ --- which is exactly what the computation
+  of @sec-pf-2 returns, for both curves and all four classes of $a$.
+]
+
+Both $L_v (E_a)$ and $L_v (E_(-1 slash a))$ are therefore maximal isotropic subspaces of the same
+dimension in the same $H^1 (QQ_v, M)$. So the conjecture would follow at once from
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *(#sym.star)* $L_v (E_a) = L_v (E_(-1 slash a))$ for every place $v$.
