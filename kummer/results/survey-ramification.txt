@@ -1,0 +1,21 @@
+=== level 2, f split over Q (residues must be squares in Q) ===
+  15a1  (x-17)(x-1)(x+8), the twist that works   A_13:  UNRAMIFIED
+  15a1  its transpose                            A_31:  UNRAMIFIED
+  15a1  a rejected candidate, n = E_12           A_12:  ramified on 4 of 16 -- ["(2,2):-144", "(2,3):-144", "(3,2):-144", "(3,3):-225"]
+  x(x-1)(x-4)                                    A_13:  ramified on 4 of 16 -- ["(2,2):3", "(2,3):12", "(3,2):12", "(3,3):12"]
+  x(x-1)(x+8)                                    A_11:  ramified on 8 of 16 -- ["(1,2):-8", "(1,3):-8", "(2,1):-8", "(2,2):-1", "(2,3):8", "(3,1):-8", "(3,2):8", "(3,3):-64"]
+
+=== level 2, f = (x-e1) q(x) with q irreducible ===
+  x^3 + x        q = x^2+1,      e1 = 0   K = Q(sqrt(-4)) = Q(i) :  UNRAMIFIED
+  15a4           q = x^2+14x+625, e1 = 0   K = Q(sqrt(-2304)) = Q(i) :  UNRAMIFIED
+  x^3 + 2x       q = x^2+2,      e1 = 0   K = Q(sqrt(-8))         :  RAMIFIED -- ["(a,a): -1 is not a square in K", "(a,1): q(e1) = 2"]
+  x(x^2+2x+2)    q = x^2+2x+2,   e1 = 0   K = Q(sqrt(-4)) = Q(i) :  RAMIFIED -- ["(2,3): -q(e1) = -2", "(a,1): q(e1) = 2"]
+  x^3 - 2x       q = x^2-2,      e1 = 0   K = Q(sqrt(8))         :  RAMIFIED -- ["(a,a): -1 is not a square in K", "(a,1): q(e1) = -2"]
+
+=== level 3 ===
+  Unramified with no condition. On E_(6) x E_(-2) the two entries have
+  div(G) = 3(T) - 3(O) and div(H) = 3(S) - 3(O), so after blowing up the
+  sixteen fixed points every valuation of G and of H is 0 or -3, hence
+  3-divisible, and the pullback of A is unramified. Restriction along a
+  degree-4 map is injective on Br[3], so A itself is unramified.
+gp -q < ramification.gp  0.01s user 0.00s system 75% cpu 0.019 total

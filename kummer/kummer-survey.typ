@@ -2085,6 +2085,151 @@ The last line is the point. §5.1.5's one open local input, $beta_3 equiv.not 0$
 two agree. The 1854 non-zero values split $927 slash 927$ between the two non-trivial classes, as a
 skew form must.
 
+== Unramified on the Kummer surface <sec-brauer-unram2>
+
+The one thing left open above was whether $cal(A)$ is unramified on $X$ itself rather than on
+$E_d times E_d$. It is, in every case worked out here --- for free at level 3, and at level 2 under
+an explicit condition that the surfaces in question satisfy. There are two routes; they agree, and
+each says something the other does not.
+
+Prime divisors of $X$ come in two kinds: the sixteen *exceptional curves* $F_(a b)$ of the
+resolution $X -> Y = (E times E) slash iota$, lying over the fixed points $(T_a, T_b)$ of
+$iota = (-1,-1)$ with $T_a, T_b in E[2]$; and the strict transforms of prime divisors of $Y$, which
+correspond to $iota$-orbits of prime divisors of $E times E$.
+
+*The second kind is free, at both levels.* $E times E -> Y$ is étale in codimension one --- it
+ramifies only at the sixteen fixed points --- so a divisorial valuation $v_D$ of $QQ(X)$ of the
+second kind extends to $QQ(E times E)$ with $e = 1$, and $v_D (g) = v_(D') (g)$ for $D'$ above $D$.
+Every entry $g$ of $cal(A)$ has $ell$-divisible divisor on $E times E$ (@sec-brauer-unram), so
+$v_D (g)$ is divisible by $ell$ and the residue vanishes.
+
+=== Level 3: no condition <sec-brauer-unram-3>
+
+Blow up the sixteen fixed points first. On $tilde(B) = "Bl"_16 (E_((6)) times E_((-2)))$ the
+involution acts trivially on each exceptional $PP^1$ --- it acts by $-1$ on the tangent space, hence
+trivially on its projectivisation --- so $tilde(B) -> X$ is finite, and $F$ is now the image of a
+*divisor* $tilde(F)$ with ramification index $e = 2$. Residue functoriality gives
+$ partial_(tilde(F)) (rho^* cal(A)) = 2 dot partial_F (cal(A)) , $
+and $2$ is invertible modulo 3. So it is enough that $rho^* cal(A) = (G, H)_3$ be unramified on
+$tilde(B)$ --- and it is: $"div"(G) = 3(T) - 3(O)$ and $"div"(H) = 3(S) - 3(O)$ on the two factors,
+$T$ and $S$ have order 3 while the blown-up points are 2-torsion, so
+$v_(tilde(F))(G), v_(tilde(F))(H) in {0, -3}$, divisible by 3. Every residue vanishes. Since
+$[F(X) : QQ(X)] = 4$ is coprime to 3, restriction is injective on $"Br"[3]$ and $cal(A)$ itself is
+unramified.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  That argument dies at level 2 for one reason: $partial_(tilde(F)) = 2 partial_F$ and $2 = 0$ in
+  $ZZ slash 2$. So the pullback being unramified says nothing, and the residue has to be computed on
+  $X$ directly. Level 3 is the easy case here, which is the reverse of the pattern everywhere else
+  in these notes.
+]
+
+=== Level 2: the residue is a constant, and it is computable <sec-brauer-unram-2>
+
+At $(T_a, T_b)$ take anti-invariant local uniformisers $s, u$ ($s = y$ on $E$ at $T_a != O$, and
+$s = -x slash y$ at $O$). Both entries of $cal(A)$ expand in *even* powers, since each depends only
+on $x$ or only on $t$, so
+$ g_1 = C_1 s^(2 alpha) (1 + O(s^2)), quad quad g_2 = C_2 u^(2 beta) (1 + O(u^2)) . $
+The $A_1$ singularity resolves with $sans(A) = s^2$ and $lambda = u slash s$ --- both invariant ---
+so $v_F = "ord" slash 2$, $kappa(F) = k_(a b)(lambda)$ with $k_(a b) = QQ(e_a, e_b)$, and
+$ partial_F (g_1, g_2) = (-1)^(alpha beta) C_1^beta C_2^(-alpha) lambda^(-2 alpha beta)
+  = (-1)^(alpha beta) C_1^beta C_2^alpha quad (mod "squares") , $
+because $lambda^(-2 alpha beta)$ is a square. *The residue is a constant*, so it is trivial exactly
+when it is a square in $k_(a b)$.
+
+For $cal(A)_(i j) = (product_(k != i)(x - e_k), space product_(l != j)(t - e_l))$ one has
+$alpha$ odd exactly when $a in.not {i, 0}$, and likewise $beta$, which gives:
+
+#align(center, table(
+  columns: 2, align: (left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3.5pt),
+  table.header([the curve $F_(a b)$], [$partial_F cal(A)_(i j)$, modulo squares]),
+  [$a in.not {i,0}$ and $b in.not {j,0}$ --- 4 curves],
+    [$-(e_a - e_i)(e_b - e_j)$],
+  [$a in.not {i,0}$, $b = j$ --- 2 curves], [$f'(e_j)$],
+  [$a = i$, $b in.not {j,0}$ --- 2 curves], [$f'(e_i)$],
+  [all others --- 8 curves], [$1$],
+))
+
+#v(2mm)
+
+The twist $d$ cancels out of every entry, as it must for a statement about $X$. Running this
+(`ramification.gp`):
+
+#align(center, table(
+  columns: 3, align: (left, left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([surface and class], [verdict], [why]),
+  [`15a1`, $cal(A)_13$ (@sec-15a1)], [*unramified*],
+    [all root differences $16, 25, 9$ are squares],
+  [`15a1`, transpose $cal(A)_31$], [*unramified*], [same],
+  [`15a1`, the rejected $cal(A)_12$], [ramified on 4 of 16], [residues $-144, -225$],
+  [$x^3 + x$ (@sec-thm2)], [*unramified*], [$K = QQ(i)$ and $q(0) = 1$],
+  [`15a4` (@sec-15a4)], [*unramified*], [$K = QQ(i)$ and $q(0) = 625 = 25^2$],
+  [$x^3 + 2x$ (no obstruction)], [ramified], [$K = QQ(sqrt(-2))$, so $-1$ is not a square],
+  [$x(x-1)(x-4)$], [ramified on 4 of 16], [$f'(4) = 12$ is not a square],
+))
+
+#v(2mm)
+
+Two criteria fall out, and both were already visible in the earlier sections under other
+descriptions.
+
+*When $f$ splits*, the conditions are that $f'(e_i)$, $f'(e_j)$ and $-(e_a - e_i)(e_b - e_j)$ be
+squares --- conditions on *root differences*. @sec-15a1 already singled out
+"the root differences $16, 25, 9$ are perfect squares" as what confines the bad places of `15a1` to
+$2, 3, 5$ and the divisors of $d$. It is the same fact, and it is also what makes the algebra
+unramified.
+
+*When $f = (x - e_1) q(x)$ with $q$ irreducible*, the curve $F_(a a)$ with $a in {2,3}$ has residue
+$-(e_a - e_1)^2$, a square in $K = QQ(e_2)$ exactly when $-1$ is --- that is, exactly when the
+*2-torsion field is $QQ(i)$*, which is precisely @sec-alt's Lemma 2 condition for $beta$ to be
+alternating. The remaining curves need $q(e_1)$ to be a square in $K$. Both hold for $x^3 + x$ and
+for `15a4`; the first fails for $x^3 + 2x$, which @sec-triage-templates records as having no
+obstruction at all.
+
+=== Harari's theorem, and what it adds <sec-brauer-harari>
+
+There is a second route, and it is cleaner than the computation above. Harari's formal lemma
+--- D. Harari, _Méthode des fibrations et obstruction de Manin_, Duke Math. J. 75 (1994),
+Théorème 2.1.1, p. 226 --- reads:
+
+#block(fill: luma(245), inset: 9pt, radius: 3pt, width: 100%)[
+  *Théorème 2.1.1.* _Soient $k$ un corps de nombres et $X$ une $k$-variété géométriquement intègre,
+  projective et lisse, dont on note $k(X)$ le corps des fonctions. Soient $alpha$ un élément de
+  $"Br"(k(X))$ qui n'est pas dans $"Br" X$ et $U$ un ouvert de Zariski non vide de $X$ tel que
+  $alpha in "Br" U$. Alors, il existe une infinité de places $v$ de $k$ telles que la flèche
+  $U(k_v) -> "Br" k_v$ induite par $alpha$ prenne une valeur non nulle._
+]
+
+Contrapositive: if $"inv"_v cal(A)$ vanishes identically on $X(QQ_v)$ for all but finitely many
+$v$, then $cal(A) in "Br"(X)$. That hypothesis is exactly what the place analysis of each theorem
+establishes --- $beta_v equiv 0$ at every place of good reduction, by unramified isotropy --- and
+$X(QQ_v) = union.sq_delta (E_delta times E_delta)(QQ_v) slash plus.minus$, so the evaluation map
+*is* $beta_v$. So the theorems already proved imply that $cal(A)$ is unramified, with no geometry
+at all.
+
+Three things worth separating.
+
+*Where Harari is enough on its own.* For $x^3 - 2$ (§5.1.5) and for `15a4` (@sec-15a4) the place
+analysis is proved for every twist at every $v$ outside a fixed finite set --- including
+$v divides d$, where §5.1.5 uses the odd valuation of $-2d$ and $6d$, and @sec-15a4-places uses
+Lemmas A and B. So Harari gives unramifiedness unconditionally there.
+
+*Where the direct computation is stronger.* For `15a1` the vanishing at $q divides d$ was
+*verified over 640 places, not proved* (@sec-15a1-local). Harari's hypothesis therefore rests on
+that verification, while the residue computation does not: it is a finite calculation with the
+roots $17, 1, -8$ and needs no local analysis. So for `15a1` the geometry gives what the arithmetic
+only checked.
+
+*What the pair of them says about @sec-15a1-choose.* That section cut 16 candidate $phi$ down to
+four by imposing two conditions, the second being "$beta_v$ must vanish at every $v != 5$, or
+reciprocity localises nothing". Harari's theorem turns that condition into an equivalence: a
+candidate satisfies it if and only if the corresponding $cal(A)_(i j)$ lies in $"Br"(X)$. And the
+residue table confirms it in the one case where the two can be compared --- the rejected
+$cal(A)_12$ is exactly the one that comes out ramified. The 16-candidate search was a search for an
+unramified class, without knowing it.
+
 == What is and is not claimed <sec-brauer-status>
 
 #align(center, table(
@@ -2096,8 +2241,13 @@ skew form must.
   [$cal(A)_(i j)$ is a quaternion algebra over $QQ(X)$ with no twist in it], [*immediate*],
   [$cal(A)_(i j)$ is unramified on $E_d times E_d$, for every $d$],
     [*proved* --- the divisors are 2-divisible],
-  [$cal(A)_(i j)$ is unramified on the Kummer surface],
-    [*sketched* at the sixteen exceptional curves],
+  [$cal(A)_(i j)$ is unramified on the Kummer surface, level 2],
+    [*proved* --- the residue at each exceptional curve is a constant; unramified iff those are
+     squares, which holds for `15a1`, `15a4`, $x^3 + x$],
+  [$cal(A)$ is unramified on the Kummer surface, level 3],
+    [*proved* --- no condition; $partial_(tilde(F)) = 2 partial_F$ and 2 is invertible mod 3],
+  [the same, independently of the geometry],
+    [*proved* by Harari's Théorème 2.1.1 wherever the place analysis is proved for every twist],
   [$"inv"_v cal(A) = beta_v$ at level 2],
     [*proved*, and checked at 3252 place evaluations],
   [the level-3 class is cyclic of degree 3, not a symbol],
@@ -2119,8 +2269,9 @@ What this buys is uniformity. The theorems of @sec-thm2, @sec-15a1 and
 @sec-15a4 are each proved twist by twist, with a separate local analysis for each class of $d$;
 $cal(A)$ is a single object on a single surface, and "$"inv"_p cal(A)$ is non-constant on
 $X(QQ_p)$" is one statement covering every twist at once. That is what the twist-by-twist proofs
-were reaching for. What is left is not the algebra but the geometry: checking that $cal(A)$ is
-unramified on the Kummer surface itself, at both levels.
+were reaching for --- and, with @sec-brauer-unram2, the reaching is over: $cal(A)$ is a genuine
+element of $"Br"(X)$ at both levels, so "non-density at $p$" is now literally a Brauer--Manin
+obstruction to weak approximation on $X$, given by one algebra.
 
 = Remarks
 
