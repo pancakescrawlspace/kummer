@@ -1525,7 +1525,9 @@ Every row of the table has *one* critical place: that is what makes reciprocity 
 $beta_p = 0$. @sec-twoplace asks what the same tools give when two places survive, and shows that
 the two structural lemmas of this chapter --- @sec-alt for the alternating property and
 @sec-tk-lemAB for $q divides d$ --- cut the level-2 family down to the Pythagorean triples, where
-the surviving places can be read off the hypotenuse.
+the surviving places can be read off the hypotenuse. @sec-depends then asks which places can be
+critical *at all*, and answers it from the reduction data of $E$ alone; several lemmas of this
+chapter turn out to be special cases, @sec-tk-ordinary among them.
 
 = Twisted pairings at non-CM surfaces <sec-nonCM>
 
@@ -3494,7 +3496,9 @@ say $alpha^2 + mu^2 = k^2$: *the family is indexed by Pythagorean triples*.
   $2$ and the primes of $b = k^2$. $qed$
 ]
 
-So the *odd* live places lie among the prime factors of the *hypotenuse*. For a primitive triple
+So the *odd* live places lie among the prime factors of the *hypotenuse*. (@sec-dep-dim explains
+why: the 2-torsion field is $QQ(i)$, so a live place needs $-1$ to be a square, i.e.
+$v equiv 1$ $(mod 4)$ --- and those are exactly the primes that divide a hypotenuse.) For a primitive triple
 $k$ is a product of primes $equiv 1$ $(mod 4)$, so two live odd places require a hypotenuse that is
 not a prime power, and the smallest candidates are $k = 65 = 5 dot 13$ and $k = 85 = 5 dot 17$.
 
@@ -3599,8 +3603,312 @@ square classes at 5 and 13 and the eight at 2 cover every squarefree $d$.
 - *Level 3, and split $f$.* The family above is the indecomposable level-2 case. The decomposable
   cases have their own pair of structural lemmas (@sec-tk-ramtwist kills $q divides d$ for free at
   odd $ell$), so the analogous family should be easier to describe, and is not described here.
+- *Finding more of them.* @sec-dep-recipe replaces this screen: the condition is two bad primes
+  $equiv 1$ $(mod ell)$ with $ell divides v_p (Delta)$ whose canonical lines escape $phi$, which is
+  a discriminant computation rather than a point search.
 - *More than two live places.* $(16,63,65)$ has three. Reciprocity then makes $R$ isotropic in a
   6-dimensional space, giving $dim R <= 3$ of $6$; nothing in @sec-tp-crit is special to two.
+
+= What the obstruction depends on <sec-depends>
+
+@sec-nonCM and @sec-twoplace build examples one at a time: pick a surface, analyse $beta_v$ place
+by place, collect what survives. This chapter asks the structural question instead. Given $E$,
+$ell$ and a non-scalar $phi in "End"_G (E[ell])$, which sets $S$ of primes are obstructed, and in
+which square classes --- *without* analysing the $beta_v$? The answer is that almost all of it is
+reduction data: Tate's algorithm, the factorisation of the minimal discriminant, and the
+$ell$-isogeny class. Two gaps remain, and @sec-dep-gaps says exactly where they are.
+
+== The criterion, restated once and for all <sec-dep-crit>
+
+The classical fact behind descent is that the local Kummer image
+$ L_v = delta_v (E_d (QQ_v) slash ell) subset.eq H^1 (QQ_v, E_d [ell]) $
+is *maximal isotropic* for the cup product with the Weil pairing: it is its own annihilator. Since
+$beta_v (P,Q) = ⟨c(P), phi_* c(Q)⟩$ with both arguments in $L_v$:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  $ beta_v equiv 0 quad <==> quad phi_* L_v subset.eq L_v^perp = L_v quad <==> quad
+    L_v "is" phi_*"-stable". $
+  So there is only one object in the theory: the set
+  $ Sigma(d) = { v : L_v "is not" phi_*"-stable" }, $
+  and by @sec-class-warning and @sec-tp-crit the obstructed sets are exactly the $S$ containing
+  $Sigma(d)$.
+]
+
+Everything below computes $Sigma(d)$. Note that $phi$ is a *twist-invariant* datum: $E_d [ell]$ is $E[ell]$ twisted by
+the quadratic character $chi_d$, so $"End"_G (E_d [ell]) = "End"_G (E[ell])$ and the same $phi$ serves every twist at once.
+
+== Step 1: almost every place dies by functoriality <sec-dep-func>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma 1.* Let $v$ be a place at which $E_d$ has good reduction.
+  #v(1.5mm)
+  (a) If $v != ell$ then $L_v = H^1_"ur" (QQ_v, E_d [ell])$.
+  #v(1mm)
+  (b) If $v = ell >= 3$ then $L_ell = H^1_f (QQ_ell, E_d [ell])$.
+  #v(1.5mm)
+  In both cases $L_v$ is $phi_*$-stable for *every* $phi$, so $v in.not Sigma(d)$.
+
+  #v(2mm)
+  _Proof._ (a) and (b) are the standard identifications of the local condition. What matters here
+  is that both $H^1_"ur"$ and $H^1_f$ are *functorial in the Galois module*: an unramified class
+  pushes forward to an unramified class, and $H^1_f$ is functorial for maps of finite flat group
+  schemes (which $phi$ is, by Raynaud, since $e = 1 < ell - 1$ for $ell >= 3$). A subgroup carried
+  into itself by every $phi$ is in particular carried into itself by ours. $qed$
+]
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  Lemma 1(b) *upgrades @sec-tk-ordinary*. That lemma proved the vanishing at $v = ell$ under good
+  *ordinary* reduction, by splitting the connected--étale sequence. The ordinarity was never
+  needed: good reduction alone gives $L_ell = H^1_f$, and functoriality does the rest. The
+  supersingular case is covered too.
+]
+
+Two more places die for $ell$ odd, and here the twist is what kills them.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma 2.* Let $ell$ be odd. Then $W_infinity = 0$, and $W_q = 0$ for every prime $q divides d$,
+  $q != ell$, at which $E$ has good reduction.
+
+  #v(2mm)
+  _Proof._ $E_d (RR)$ is a compact Lie group, hence divisible by the odd $ell$. At $q divides d$
+  the twisting character $chi_d$ is ramified, so inertia acts on $E_d [ell]$, the twist of $E[ell]$ by $chi_d$,
+  by $-1$ times an unramified action; as $ell$ is odd, $-1 != 1$ and there are no non-zero inertia
+  invariants, so $E_d [ell](QQ_q) = 0$. Since $E_d (QQ_q) tilde.equiv ZZ_q times T$ with $T$ finite
+  and $q != ell$, $W_q = E_d (QQ_q) slash ell tilde.equiv T slash ell$ has the same order as
+  $E_d [ell](QQ_q)$, namely $1$. $qed$
+]
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Corollary.* For $ell$ odd, $Sigma(d) subset.eq { v : v divides N_E } union { ell }$, and the
+  right-hand side does not depend on $d$: *the arena is the conductor of $E$*.
+]
+
+At $ell = 2$ Lemma 2 fails --- $chi_d$ takes values in ${plus.minus 1}$, which is trivial modulo 2
+--- and $infinity$ and the $q divides d$ have to be handled by hand. That is exactly what
+@sec-tk-lemAB and the norm lemma do, and it is why the level-2 arguments are longer.
+
+== Step 2: the dimension condition is a splitting condition <sec-dep-dim>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma 3.* Suppose $beta_v$ is alternating (automatic for $ell$ odd; for $ell = 2$ this is the
+  norm lemma of @sec-alt). If $beta_v equiv.not 0$ then $dim W_v = 2$, i.e. *all* of $E_d [ell]$ is
+  rational over $QQ_v$. For $v != ell$ this forces $zeta_ell in QQ_v$, hence
+  $ v equiv 1 quad (mod ell). $
+
+  #v(2mm)
+  _Proof._ $dim W_v = dim E_d [ell](QQ_v) <= 2$. An alternating form on a space of dimension
+  $<= 1$ vanishes, so $beta_v equiv.not 0$ needs dimension exactly 2, which is all of $E_d [ell]$.
+  The Weil pairing then puts $mu_ell$ inside $QQ_v^times$. $qed$
+]
+
+This single congruence is the sharpest filter in the chapter. Every live place in the whole
+document satisfies it, and every place that the cruder tests wrongly flag fails it:
+
+#align(center, table(
+  columns: 5, align: (left, center, center, center, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([case], [$ell$], [$v$], [$v mod ell$], [$ell$-torsion $x$-coordinates over $QQ_v$]),
+  [`14a1`, `14a2`], [3], [7], [1], [4 of 4 --- full, and *live*],
+  [`19a1` (class $[u]$)], [3], [19], [1], [4 of 4 --- full, and *live*],
+  [`11a1`], [5], [11], [1], [12 of 12 --- full, and *live*],
+  [`15a1`, `15a4`, `17a1`, @sec-tp-example], [2], [5, 13, 17], [1], [3 of 3 --- full, and *live*],
+  [`14a1`, `14a2` at the other bad place], [3], [2], [2], [1 of 4 --- dead, though $3 divides c_2$],
+  [@sec-tp-example at 7], [2], [7], [1], [1 of 3 --- dead, though $7$ is split multiplicative],
+  [`15a4` at 3], [2], [3], [1], [1 of 3 --- dead],
+))
+
+#v(2mm)
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *This is where the hypotenuse came from.* In the family of @sec-tp-family the 2-torsion field is
+  $QQ(i)$ --- that was forced by the norm lemma --- so full local 2-torsion means $-1$ is a square
+  in $QQ_v$, i.e. $v equiv 1$ $(mod 4)$. The primes dividing the hypotenuse of a primitive
+  Pythagorean triple are precisely the primes $equiv 1$ $(mod 4)$. The empirical lemma of
+  @sec-tp-family, found by screening, is a one-line corollary of Lemma 3.
+]
+
+== Step 3: which reduction types can carry it <sec-dep-red>
+
+At a multiplicative $v != ell$ the Tate parametrisation gives $E_d (overline(QQ)_v) = overline(QQ)_v^times slash q^ZZ$
+with $E_d [ell] = ⟨zeta_ell, q^(1 slash ell)⟩$. Full rationality of $E_d[ell]$ therefore asks for
+two things: $zeta_ell in QQ_v$, which is Lemma 3 again, and $q in (QQ_v^times)^ell$ --- which in
+particular forces
+$ ell divides v(q) = v(Delta_min). $
+Additive places have $c_v <= 4$ for every Kodaira type, so they can only contribute for small
+$ell$: type $"IV"$ or $"IV"^*$ with $c_v = 3$ at $ell = 3$ (which is what $x^3 - 2$ does at its
+wild place), and types with $c_v in {2,4}$ at $ell = 2$.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Corollary.* For $ell >= 5$, every place of $Sigma(d)$ is a place of *split multiplicative*
+  reduction of $E_d$ with $ell divides v(Delta_min)$. The obstructed set is read off the
+  factorisation of the discriminant.
+]
+
+`11a1` is the whole story in one line: $Delta = -11^5$, and $ell = 5$.
+
+== Step 4: the square class comes for free <sec-dep-class>
+
+Let $v divides.not 2 ell$ and let $E$ have multiplicative reduction at $v$. The four square classes
+of $QQ_v^times$ do the following to $E_d$:
+
+#align(center, table(
+  columns: 3, align: (center, left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([class of $d$], [reduction of $E_d$ at $v$], [verdict]),
+  [$[1]$, $[u]$], [multiplicative, same $v(Delta)$; one of the two is *split*, the other non-split],
+    [only the split one can be live],
+  [$[v]$, $[u v]$], [additive (type $"I"_n^*$), $c_v <= 4$],
+    [dead for $ell >= 5$; needs checking for $ell <= 3$],
+))
+
+#v(2mm)
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Corollary.* At each place at most *one* square class is live: the unique unramified class making
+  $E_d$ split multiplicative at $v$. Which one it is depends only on whether $E$ itself is split
+  there.
+]
+
+That is the "one class out of four" which every theorem of @sec-nonCM reports, and which the survey
+of @sec-result measures class by class. It was never a computational accident.
+
+== Step 5: where $phi$ finally enters <sec-dep-phi>
+
+Steps 1--4 do not mention $phi$ at all: they cut the places down to a candidate set determined by
+$E$ and $ell$ alone. $phi$ decides among the candidates, and it does so by a single comparison.
+
+At a split multiplicative $v$ the module $E_d [ell]$ carries a distinguished $G_v$-stable line, the
+kernel of reduction
+$ C_"can" = mu_ell subset overline(QQ)_v^times slash q^ZZ . $
+It is $G_v$-stable but *need not be $G_QQ$-stable*: that is the whole point, and it is why
+@sec-14a1 records that at the critical place both global lines become $QQ_p$-rational, leaving room
+for a third.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Criterion.* At such a $v$, $beta_v equiv.not 0$ iff $C_"can"$ is *not* one of the $phi$-stable
+  lines --- for a rank-one $phi$, iff $C_"can" in.not { ker phi, "im" phi }$.
+]
+
+And $C_"can"$ can be seen with no local points at all. Quotienting the Tate curve by $mu_ell$ sends
+$q |-> q^ell$, while quotienting by an étale line sends $q |-> q^(1 slash ell)$. So:
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  A rational $ell$-isogeny $E -> E slash C$ has
+  $ v(Delta_(E slash C)) = ell dot v(Delta_E) quad "if" C = C_"can", quad quad
+    v(Delta_(E slash C)) = v(Delta_E) slash ell quad "if" C "is étale". $
+  So: label each candidate place by the rational line canonical there --- the one whose isogeny
+  *multiplies* $v(Delta)$ by $ell$ --- or by "irrational" if no rational line does. Then $S_phi$ is
+  the set of labelled places whose label $phi$ fails to stabilise, and places labelled "irrational"
+  are live for every $phi$.
+]
+
+There is a second, independent signature of the same thing, and it connects back to the machinery
+of @sec-nonCM: $C_i = C_"can"$ exactly when the descent map $c_i$ *collapses*, i.e. its image on
+$E_d (QQ_v)$ is a single square class.
+
+=== `15a1`, where $phi$ actually changes the answer <sec-dep-15a1>
+
+With three rational 2-torsion lines there are three choices of rank-one $phi$, each excluding one
+line, and the labels separate them. For $f = (x-17)(x-1)(x+8)$:
+
+#align(center, table(
+  columns: 5, align: (center, center, center, left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([$v$], [reduction], [live class], [canonical line], [$phi = (c_1, c_3)$ excludes $e = 1$]),
+  [3], [$"I"_4$ non-split], [$[u]$], [$e = 17$, since $v(Delta)$ goes $4 -> 8$],
+    [$e=17$ *is* $phi$-stable: dead],
+  [5], [$"I"_4$ split], [$[1]$], [$e = 1$, since $v(Delta)$ goes $4 -> 8$],
+    [$e=1$ is *not* $phi$-stable: *live*],
+))
+
+#v(2mm)
+
+So the recipe predicts $S = {5}$ in class $[1]$ for the $phi$ of @sec-15a1 --- which is the theorem
+proved there --- and $S = {3}$ in class $[u]$ for the $phi$ pairing $c_2$ with $c_3$. That second
+prediction was made from the table above and then tested directly:
+
+#align(center, table(
+  columns: 3, align: (left, left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([$phi$], [$v = 5$, class $[1]$], [$v = 3$, class $[u]$]),
+  [$(c_1, c_3)$ --- @sec-15a1's], [$|"im" c_1| = 4$, six non-trivial symbols: *live*],
+    [$|"im" c_1| = 1$: trivial],
+  [$(c_2, c_3)$ --- the other], [$|"im" c_2| = 1$: trivial],
+    [$|"im" c_2| = 4$, six non-trivial symbols: *live*],
+))
+
+#v(2mm)
+
+The two obstructed sets are disjoint, and the collapse of $c_i$ at the place where $C_i$ is
+canonical is visible in the second column of each row. The same curve, the same $ell$, two
+endomorphisms, two different obstructed primes.
+
+== The recipe <sec-dep-recipe>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Input:* $E$, $ell$, and $phi$ given by its stable lines. *Output:* $Sigma(d)$ and the class at
+  each place. *No local points, no descent images, no symbols.*
+
+  #v(2mm)
+  1. Start with the primes dividing $N_E$ (Lemma 1; for $ell$ odd this is already everything, by
+     Lemma 2).
+  2. Discard every $v$ with $v equiv.not 1$ $(mod ell)$ (Lemma 3).
+  3. Keep $v$ multiplicative with $ell divides v_v (Delta_min)$; for $ell >= 5$ that is the only
+     possibility, for $ell <= 3$ also check additive types with $ell divides c_v$.
+  4. The class at $v$ is the unique unramified class making $E_d$ split multiplicative.
+  5. Label $v$ by the canonical line, via the $ell$-isogeny that multiplies $v(Delta)$ by $ell$;
+     keep $v$ iff $phi$ does not stabilise the label.
+  #v(1.5mm)
+  Then $S = Sigma(d)$, and $S$ together with its supersets are the obstructed sets.
+]
+
+`depends.gp` runs exactly this, and `results/survey-depends.txt` is its output on every case in the
+document. The predicted sets agree with the computed ones throughout:
+
+#align(center, table(
+  columns: 5, align: (left, center, left, left, center),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([case], [$ell$], [predicted $S$], [computed], [agree]),
+  [`11a1`], [5], [${11}$, class $[1]$], [${11}$, class $[1]$], [yes],
+  [`14a1`], [3], [${7}$, class $[1]$], [${7}$, class $[1]$], [yes],
+  [`14a2`], [3], [${7}$, class $[1]$], [${7}$, class $[1]$], [yes],
+  [`19a1`], [3], [${19}$, class $[u]$], [${19}$, class $[u]$], [yes],
+  [`15a4`], [2], [${5}$, class $[1]$], [${5}$, class $[1]$], [yes],
+  [`17a1`], [2], [${17}$, class $[1]$], [${17}$, class $[1]$], [yes],
+  [@sec-tp-example], [2], [${5, 13}$, class $[1]$ of each], [${5,13}$, class $[1]$ of each], [yes],
+  [`15a1`, $phi$ excl. $e=1$], [2], [${5}$, class $[1]$], [${5}$, class $[1]$], [yes],
+  [`15a1`, $phi$ excl. $e=17$], [2], [${3}$, class $[u]$], [${3}$, class $[u]$], [yes],
+  [$x^3 - 2$], [3], [--- (wild place)], [${3}$, class $[u dot 3]$], [out of scope],
+))
+
+== What is proved, and what is not <sec-dep-gaps>
+
+*Proved here:* the criterion of @sec-dep-crit, Lemmas 1, 2 and 3, and the square-class corollary of
+@sec-dep-class. Together these are a genuine *necessary* condition: a place outside the candidate
+set of steps 1--4 cannot be in $Sigma(d)$, for any $phi$.
+
+*Argued but not written out:* the Tate computation of step 3 --- that full local $ell$-torsion
+forces $q in (QQ_v^times)^ell$ --- and the discriminant characterisation of $C_"can"$ in step 5.
+Both are standard, and both should be given proper proofs before this chapter is used in anger.
+
+*The weakest link is sufficiency.* The recipe as stated predicts that a place surviving all five
+steps *is* live. That direction has been verified in the nine cases above and never yet fails, but
+it is not proved: what the argument gives directly is only that $L_v$ is not forced to be
+$phi$-stable.
+
+*Two ranges are untouched.* The wild place $v = ell$ is outside the whole scheme: Lemma 1(b) covers
+it only under good reduction, and when $E$ is additive at $ell$ --- as for $x^3 - 2$, where the
+obstruction lives precisely there --- steps 2--5 do not apply. And at $ell = 2$ the places
+$infinity$ and $q divides d$ need @sec-tk-lemAB and the norm lemma, as they always did.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *What it buys.* Finding a two-place surface no longer needs a screen. One wants two bad primes
+  $equiv 1$ $(mod ell)$ with $ell divides v_p (Delta)$, both labels escaping $phi$ --- a condition
+  on the factorisation of a discriminant, checkable over a table of curves in seconds, where
+  @sec-tp-screen had to sample points on twenty-four surfaces. It also explains the scarcity at
+  level 3: in the box $|A|, |B| <= 60$ only twelve curves $y^2 = x^3 + A x + B$ have $E[3]$
+  decomposable at all, and only one of those has even a single live place.
+]
 
 = Remarks
 

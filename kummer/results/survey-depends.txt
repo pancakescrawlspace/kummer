@@ -1,0 +1,60 @@
+=== the recipe of chapter 10, run on every case in the document ===
+No local points, no descent images, no symbols: reduction data only.
+
+=== x^3-2   ell = 3   N = 1728   phi stabilises all rational lines
+    v = 2   additive   v(Delta) = 6   split class = none   torsion 0/4   canonical line irrational      dead -- step 2: v is not 1 mod ell, so zeta_ell is not in Q_v
+    v = 3 = ell   WILD PLACE, not covered by the recipe (see 10.8)
+    PREDICTED S = []        observed: 3 (the wild place)
+
+=== 11a1   ell = 5   N = 11   phi stabilises all rational lines
+    v = 11   I5 split   v(Delta) = 5   split class = 1   torsion 12/12   canonical line irrational      ==> LIVE
+    PREDICTED S = [11]        observed: 11, class [1]
+
+=== 14a1   ell = 3   N = 14   phi stabilises all rational lines
+    v = 2   I6 nonsplit   v(Delta) = 6   split class = none   torsion 0/4   canonical line rational      dead -- step 2: v is not 1 mod ell, so zeta_ell is not in Q_v
+    v = 7   I3 split   v(Delta) = 3   split class = 1   torsion 4/4   canonical line irrational      ==> LIVE
+    PREDICTED S = [7]        observed: 7, class [1]
+
+=== 14a2   ell = 3   N = 14   phi stabilises all rational lines
+    v = 2   I3 nonsplit   v(Delta) = 3   split class = none   torsion 0/4   canonical line rational      dead -- step 2: v is not 1 mod ell, so zeta_ell is not in Q_v
+    v = 7   I6 split   v(Delta) = 6   split class = 1   torsion 4/4   canonical line irrational      ==> LIVE
+    PREDICTED S = [7]        observed: 7, class [1]
+
+=== 19a1(tw)   ell = 3   N = 1216   phi stabilises all rational lines
+    v = 2   additive   v(Delta) = 6   split class = none   torsion 0/4   canonical line irrational      dead -- step 2: v is not 1 mod ell, so zeta_ell is not in Q_v
+    v = 19   I3 nonsplit   v(Delta) = 3   split class = 2   torsion 4/4   canonical line irrational      ==> LIVE
+    PREDICTED S = [19]        observed: 19, class [u]
+
+=== 15a4   ell = 2   N = 15   phi stabilises all rational lines
+    v = 3   I2 nonsplit   v(Delta) = 2   split class = 2   torsion 1/3   canonical line 0      dead -- step 2: only 1 of 3 ell-torsion x-coords are Q_v-rational
+    v = 5   I8 split   v(Delta) = 8   split class = 1   torsion 3/3   canonical line irrational      ==> LIVE
+    PREDICTED S = [5]        observed: 5, class [1]
+
+=== 17a1   ell = 2   N = 17   phi stabilises all rational lines
+    v = 17   I4 split   v(Delta) = 4   split class = 1   torsion 3/3   canonical line irrational      ==> LIVE
+    PREDICTED S = [17]        observed: 17, class [1]
+
+=== twoplace   ell = 2   N = 7280   phi stabilises all rational lines
+    v = 2 = ell   WILD PLACE, not covered by the recipe (see 10.8)
+    v = 5   I4 split   v(Delta) = 4   split class = 1   torsion 3/3   canonical line irrational      ==> LIVE
+    v = 7   I2 split   v(Delta) = 2   split class = 1   torsion 1/3   canonical line 0      dead -- step 2: only 1 of 3 ell-torsion x-coords are Q_v-rational
+    v = 13   I4 split   v(Delta) = 4   split class = 1   torsion 3/3   canonical line irrational      ==> LIVE
+    PREDICTED S = [5, 13]        observed: 5 and 13, class [1] of each
+
+=== 15a1: full 2-torsion, so phi matters.  f = (x-17)(x-1)(x+8) ===
+The document's phi pairs c_1 and c_3, i.e. stabilises e = 17 and e = -8,
+and therefore EXCLUDES e = 1.
+
+=== 15a1, phi excluding e = 1   ell = 2   N = 15   phi excludes the line e = 1
+    v = 3   I4 nonsplit   v(Delta) = 4   split class = 2   torsion 3/3   canonical line 17      dead -- step 5: the canonical line e = 17 IS phi-stable
+    v = 5   I4 split   v(Delta) = 4   split class = 1   torsion 3/3   canonical line 1      ==> LIVE
+    PREDICTED S = [5]        observed: 5, class [1]
+
+The other phi, pairing c_2 and c_3, excludes e = 17.  PREDICTION:
+
+=== 15a1, phi excluding e = 17   ell = 2   N = 15   phi excludes the line e = 17
+    v = 3   I4 nonsplit   v(Delta) = 4   split class = 2   torsion 3/3   canonical line 17      ==> LIVE
+    v = 5   I4 split   v(Delta) = 4   split class = 1   torsion 3/3   canonical line 1      dead -- step 5: the canonical line e = 1 IS phi-stable
+    PREDICTED S = [3]        observed: not yet computed
+
+### depends finished

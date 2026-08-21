@@ -1,0 +1,7 @@
+=== phi_A = (c_1, c_3), the document's choice: predicted LIVE at 5, dead at 3 ===
+   d = 1  v = 5  phi = (c_1, c_3)   #pts = 2706   |im c_a| = 4   |im c_b| = 4   non-trivial symbols: 6   ==> beta LIVE
+   d = 2  v = 3  phi = (c_1, c_3)   #pts = 132   |im c_a| = 1   |im c_b| = 4   non-trivial symbols: 0   ==> beta trivial
+
+=== phi_B = (c_2, c_3), the other choice: predicted dead at 5, LIVE at 3 ===
+   d = 1  v = 5  phi = (c_2, c_3)   #pts = 2706   |im c_a| = 1   |im c_b| = 4   non-trivial symbols: 0   ==> beta trivial
+   d = 2  v = 3  phi = (c_2, c_3)   #pts = 132   |im c_a| = 4   |im c_b| = 4   non-trivial symbols: 6   ==> beta LIVE
