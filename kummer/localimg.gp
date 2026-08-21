@@ -141,6 +141,56 @@ print("    since beta is alternating there (Lemma 2). The class of d at 2 is");
 print("    unconstrained by the class at 5, so all EIGHT classes are needed. ---");
 foreach([1, -1, 2, -2, 5, -5, 10, -10, 34], d, runc("15a4", 14, 625, d, 2, 40, 40));
 
+
+/* ---------------- 15a1, f = (x-17)(x-1)(x+8), level 2 ----------------
+ * beta_v(P,Q) = (c_1(P), c_3(Q))_v with c_i(P) = x(P) - d e_i, and
+ * c_i(T_i) = prod_{j != i} d(e_i - e_j) at the 2-torsion point T_i. */
+EE = [17, 1, -8];
+E15a1(d) = [0, -d*(EE[1]+EE[2]+EE[3]), 0, d^2*(EE[1]*EE[2]+EE[1]*EE[3]+EE[2]*EE[3]), -d^3*EE[1]*EE[2]*EE[3]];
+cval(d, i, X, v, prec) = if(valuation(X - d*EE[i], v) > prec - 10, prod(j = 1, 3, if(j == i, 1, d*(EE[i] - EE[j]))), X - d*EE[i]);
+unitpart(a, v) = truncate(a*v^(-valuation(a, v))) * v^valuation(a, v);
+
+run1(d, v, prec, XMAX, wantgen) = {
+  my(E = ellinit(E15a1(d)), Em, vE, pts, g, S1 = Set(), S3 = Set(), bad = 0,
+     R1 = List(), R3 = List(), tot);
+  Em = ellminimalmodel(E, &vE);
+  pts = ppointsE(E, v, prec, XMAX);
+  g = if(wantgen, genq(Em, v, apply(P -> ellchangepoint(P, vE), pts)), [0,0]);
+  for(k = 1, #pts,
+    my(a = cval(d,1,pts[k][1],v,prec), b = cval(d,3,pts[k][1],v,prec));
+    S1 = setunion(S1, [sqcls(a, v)]); S3 = setunion(S3, [sqcls(b, v)]);
+    listput(R1, unitpart(a, v)); listput(R3, unitpart(b, v)));
+  tot = #R1 * #R3;
+  for(i = 1, #R1, for(j = 1, #R3, if(hilbert(R1[i], R3[j], v) != 1, bad++)));
+  print("   d = ", d, "   class of d at ", v, ": ", sqcls(d, v),
+        if(wantgen, Str("   generates ", g[1], " of ", g[2],
+                        if(g[1] == g[2], " yes", " NO")), ""),
+        "   |im c_1| = ", #S1, "  |im c_3| = ", #S3,
+        "   non-trivial symbols: ", bad, " of ", tot);
+  [Vec(S1), Vec(S3), bad];
+}
+
+print("");
+print("=== 15a1, f = (x-17)(x-1)(x+8), level 2 ===");
+print("");
+print("--- v = 5, the critical place: c_1 must be onto Q_5^x/squares, and");
+print("    beta_5 must be non-trivial. One class of Q_5^x, namely [1]. ---");
+foreach([1, -1, 11, 19], d, run1(d, 5, 40, 40, 1));
+print("");
+print("--- v = 3: every symbol must be trivial. All four classes. ---");
+foreach([1, 2, 3, 6], d, run1(d, 3, 40, 40, 1));
+print("");
+print("--- v = 2: every symbol must be trivial. All eight classes. ---");
+foreach([1, -1, 2, -2, 5, -5, 10, -10], d, run1(d, 2, 40, 40, 1));
+print("");
+print("--- odd q | d, q not 3 or 5: the Lemma of section 6.1.3 predicts");
+print("    im c_1 = {1, -q d'} and im c_3 = {1, q d'} with d = q d'.");
+print("    The Lemma proves this for q not dividing 2*3*5*17; at q = 17 the");
+print("    third case of its proof needs 17 | e_1 = 17 handled separately, and");
+print("    17 | d leaves only TWO classes of d in Q_17^x, both run below. ---");
+qcheck(q, d) = { my(r = run1(d, q, 30, 30, 0), dp = d/q); print("        predicted im c_1 = {", sqcls(1,q), ", ", sqcls(-q*dp,q), "}   im c_3 = {", sqcls(1,q), ", ", sqcls(q*dp,q), "}   agrees: ", Set(r[1]) == Set([sqcls(1,q), sqcls(-q*dp,q)]) && Set(r[2]) == Set([sqcls(1,q), sqcls(q*dp,q)]) && r[3] == 0); }
+foreach([[7,7],[7,14],[7,-7],[11,11],[11,-22],[13,13],[23,23],[29,58],[17,17],[17,34],[17,-17],[17,323],[17,51],[17,-51],[17,17*7]], w, qcheck(w[1], w[2]));
+
 print("");
 print("### localimg finished");
 quit;

@@ -40,5 +40,66 @@ are consistency checks.
    15a4  d = -10   class of d at 2: [1, 3]   generates 16 of 16 yes      image of c: 1 classes [[0, 1]]
    15a4  d = 34   class of d at 2: [1, 1]   generates 32 of 32 yes      image of c: 2 classes [[0, 1], [1, 1]]
 
+=== 15a1, f = (x-17)(x-1)(x+8), level 2 ===
+
+--- v = 5, the critical place: c_1 must be onto Q_5^x/squares, and
+    beta_5 must be non-trivial. One class of Q_5^x, namely [1]. ---
+   d = 1   class of d at 5: [0, 1]   generates 16 of 16 yes   |im c_1| = 4  |im c_3| = 4   non-trivial symbols: 66644 of 7322436
+   d = -1   class of d at 5: [0, 1]   generates 16 of 16 yes   |im c_1| = 4  |im c_3| = 4   non-trivial symbols: 66644 of 7322436
+   d = 11   class of d at 5: [0, 1]   generates 16 of 16 yes   |im c_1| = 4  |im c_3| = 4   non-trivial symbols: 61536 of 7311616
+   d = 19   class of d at 5: [0, 1]   generates 16 of 16 yes   |im c_1| = 4  |im c_3| = 4   non-trivial symbols: 66670 of 7311616
+
+--- v = 3: every symbol must be trivial. All four classes. ---
+   d = 1   class of d at 3: [0, 1]   generates 8 of 8 yes   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 5184729
+   d = 2   class of d at 3: [0, -1]   generates 8 of 8 yes   |im c_1| = 1  |im c_3| = 4   non-trivial symbols: 0 of 17424
+   d = 3   class of d at 3: [1, 1]   generates 12 of 12 yes   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 22500
+   d = 6   class of d at 3: [1, -1]   generates 12 of 12 yes   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 22500
+
+--- v = 2: every symbol must be trivial. All eight classes. ---
+   d = 1   class of d at 2: [0, 1]   generates 16 of 16 yes   |im c_1| = 4  |im c_3| = 2   non-trivial symbols: 0 of 4900
+   d = -1   class of d at 2: [0, 7]   generates 32 of 32 yes   |im c_1| = 4  |im c_3| = 2   non-trivial symbols: 0 of 5184
+   d = 2   class of d at 2: [1, 1]   generates 32 of 32 yes   |im c_1| = 4  |im c_3| = 2   non-trivial symbols: 0 of 2042041
+   d = -2   class of d at 2: [1, 7]   generates 32 of 32 yes   |im c_1| = 4  |im c_3| = 2   non-trivial symbols: 0 of 7569
+   d = 5   class of d at 2: [0, 5]   generates 8 of 8 yes   |im c_1| = 4  |im c_3| = 2   non-trivial symbols: 0 of 3481
+   d = -5   class of d at 2: [0, 3]   generates 32 of 32 yes   |im c_1| = 4  |im c_3| = 2   non-trivial symbols: 0 of 5184
+   d = 10   class of d at 2: [1, 5]   generates 32 of 32 yes   |im c_1| = 4  |im c_3| = 2   non-trivial symbols: 0 of 11449
+   d = -10   class of d at 2: [1, 3]   generates 32 of 32 yes   |im c_1| = 4  |im c_3| = 2   non-trivial symbols: 0 of 7396
+
+--- odd q | d, q not 3 or 5: the Lemma of section 6.1.3 predicts
+    im c_1 = {1, -q d'} and im c_3 = {1, q d'} with d = q d'.
+    The Lemma proves this for q not dividing 2*3*5*17; at q = 17 the
+    third case of its proof needs 17 | e_1 = 17 handled separately, and
+    17 | d leaves only TWO classes of d in Q_17^x, both run below. ---
+   d = 7   class of d at 7: [1, 1]   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 36864
+        predicted im c_1 = {[0, 1], [1, -1]}   im c_3 = {[0, 1], [1, 1]}   agrees: 1
+   d = 14   class of d at 7: [1, 1]   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 36864
+        predicted im c_1 = {[0, 1], [1, -1]}   im c_3 = {[0, 1], [1, 1]}   agrees: 1
+   d = -7   class of d at 7: [1, -1]   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 37636
+        predicted im c_1 = {[0, 1], [1, 1]}   im c_3 = {[0, 1], [1, -1]}   agrees: 1
+   d = 11   class of d at 11: [1, 1]   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 38809
+        predicted im c_1 = {[0, 1], [1, -1]}   im c_3 = {[0, 1], [1, 1]}   agrees: 1
+   d = -22   class of d at 11: [1, 1]   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 38809
+        predicted im c_1 = {[0, 1], [1, -1]}   im c_3 = {[0, 1], [1, 1]}   agrees: 1
+   d = 13   class of d at 13: [1, 1]   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 41616
+        predicted im c_1 = {[0, 1], [1, 1]}   im c_3 = {[0, 1], [1, 1]}   agrees: 1
+   d = 23   class of d at 23: [1, 1]   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 40804
+        predicted im c_1 = {[0, 1], [1, -1]}   im c_3 = {[0, 1], [1, 1]}   agrees: 1
+   d = 58   class of d at 29: [1, -1]   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 42849
+        predicted im c_1 = {[0, 1], [1, -1]}   im c_3 = {[0, 1], [1, -1]}   agrees: 1
+   d = 17   class of d at 17: [1, 1]   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 5574321
+        predicted im c_1 = {[0, 1], [1, 1]}   im c_3 = {[0, 1], [1, 1]}   agrees: 1
+   d = 34   class of d at 17: [1, 1]   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 5579044
+        predicted im c_1 = {[0, 1], [1, 1]}   im c_3 = {[0, 1], [1, 1]}   agrees: 1
+   d = -17   class of d at 17: [1, 1]   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 5574321
+        predicted im c_1 = {[0, 1], [1, 1]}   im c_3 = {[0, 1], [1, 1]}   agrees: 1
+   d = 323   class of d at 17: [1, 1]   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 5564881
+        predicted im c_1 = {[0, 1], [1, 1]}   im c_3 = {[0, 1], [1, 1]}   agrees: 1
+   d = 51   class of d at 17: [1, -1]   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 56644
+        predicted im c_1 = {[0, 1], [1, -1]}   im c_3 = {[0, 1], [1, -1]}   agrees: 1
+   d = -51   class of d at 17: [1, -1]   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 56644
+        predicted im c_1 = {[0, 1], [1, -1]}   im c_3 = {[0, 1], [1, -1]}   agrees: 1
+   d = 119   class of d at 17: [1, -1]   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 55696
+        predicted im c_1 = {[0, 1], [1, -1]}   im c_3 = {[0, 1], [1, -1]}   agrees: 1
+
 ### localimg finished
-gp -q -s 4000000000 < localimg.gp  0.83s user 0.01s system 99% cpu 0.848 total
+gp -q -s 4000000000 < localimg.gp  8.08s user 0.02s system 99% cpu 8.110 total

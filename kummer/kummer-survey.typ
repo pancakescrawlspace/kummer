@@ -1206,23 +1206,92 @@ That the root differences $16, 25, 9$ are *perfect squares* is what confines the
 remaining places to $2$, $3$, $5$ and the divisors of $d$ --- and $5$ survives
 because $e_1 - e_3 = 25$.
 
-*The places $2$, $3$ and $q divides d$.* Here $beta_q$ vanishes identically on
-the *local* group, which is stronger than vanishing on rational pairs. Over all
-202 squarefree $d$ in the class with $|d| <= 400$: *640 of 640* such places
-checked, $beta_q equiv 1$ at every one; and $beta_5$ is non-trivial on $W_5$ for all 202.
-This is verified, not proved.
+*The places $2$, $3$ and $q divides d$.* Here $beta_q$ is trivial on the *local* group, which is
+stronger than triviality on rational pairs. An earlier version of this section had this over 640
+places drawn from 202 twists and called it verified rather than proved. It splits into a finite
+part and a lemma.
+
+*$v = 2$ and $v = 3$: finite.* $E_d$ over $QQ_v$ depends on $d$ only through its class in
+$QQ_v^times slash (QQ_v^times)^2$ --- eight classes at 2, four at 3 --- and the class of $d$ at 5
+constrains neither. `localimg.gp` runs all twelve, checking in each case that the sampled points
+*generate* the relevant finite quotient of $E_d (QQ_v)$ and then evaluating every Hilbert symbol
+between the image of $c_1$ and the image of $c_3$. Every one is trivial. The same runs settle the
+critical place: at $v = 5$ the image of $c_1$ is all four classes of $QQ_5^times$ modulo squares,
+so $beta_5$ is non-trivial there, and only the class $[1]$ of $QQ_5^times$ occurs.
+
+*$q divides d$, $q != 2, 3, 5$: a lemma.* Here $q$ ranges over infinitely many primes and no finite
+check reaches it. What settles it is, once again, that the root differences are squares.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma C.* Let $q$ be a prime not dividing $2 dot 3 dot 5 dot 17$, let $d$ be squarefree with
+  $q divides d$, and write $d = q d'$. Then, modulo squares in $QQ_q^times$,
+  $ c_1 (E_d (QQ_q)) subset.eq {1, space -q d'}, quad quad
+    c_3 (E_d (QQ_q)) subset.eq {1, space q d'} , $
+  and consequently $beta_q equiv 1$ on $E_d (QQ_q)$.
+
+  #v(2mm)
+  _Proof._ $q$ divides none of the root differences $e_1 - e_2 = 16$, $e_1 - e_3 = 25$,
+  $e_2 - e_3 = 9$, none of the roots, and $v_q (d) = 1$. Let $P in E_d (QQ_q)$, $x = x(P)$,
+  $k = v_q (x)$.
+
+  #v(1.5mm)
+  *(i) $k <= 0$.* Then $x - d e_i = x(1 - d e_i slash x)$ with
+  $v_q (d e_i slash x) >= 1 - k >= 1$, so the second factor is a 1-unit and hence a square at an
+  odd place: $c_i equiv x$ for all three $i$. As $c_1 c_2 c_3 = y^2$, $x^3$ is a square, so $x$ is,
+  so all three $c_i$ are trivial.
+
+  #v(1.5mm)
+  *(ii) $k = 1$.* Write $x = q x'$ and $lambda_i = x' - d' e_i$, so $c_i = q lambda_i$ and
+  $y^2 = q^3 lambda_1 lambda_2 lambda_3$. The differences
+  $lambda_i - lambda_j = d'(e_j - e_i)$ are units, so at most one $lambda_i$ is a non-unit, and
+  $v_q (y^2)$ being even forces exactly one, say $lambda_(i_0)$, of odd valuation. Then
+  $x' equiv d' e_(i_0)$ modulo $q$, so for $i != i_0$ the unit $lambda_i equiv d'(e_(i_0) - e_i)$
+  --- and $16, 25, 9$ being squares, its class is that of $d'$ up to the sign of the root
+  difference. With $c_(i_0) equiv product_(i != i_0) c_i$:
+  #v(1mm)
+  #align(center, table(
+    columns: 4, align: (center, center, center, center),
+    stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3pt),
+    table.header([$i_0$], [$c_1$], [$c_2$], [$c_3$]),
+    [1], [$1$], [$q d'$], [$q d'$],
+    [2], [$-q d'$], [$-1$], [$q d'$],
+    [3], [$-q d'$], [$-q d'$], [$1$],
+  ))
+
+  #v(1.5mm)
+  *(iii) $k >= 2$.* Then $x - d e_i = -d e_i (1 - x slash (d e_i))$ with the second factor a
+  1-unit, so $c_i equiv -d e_i$ and
+  $y^2 = product c_i equiv -d^3 e_1 e_2 e_3 = 136 d^3 equiv 136 d$. Since
+  $q divides.not 136 = 8 dot 17$, that has odd valuation and is not a square: *no such $P$
+  exists*.
+
+  #v(1.5mm)
+  So $c_1 in {1, -q d'}$ and $c_3 in {1, q d'}$. The four resulting symbols are $(1,1)$,
+  $(1, q d')$, $(-q d', 1)$ and $(-q d', q d')$; the first three are trivial because an entry is a
+  square, and the last is trivial by the Steinberg relation $(a, -a)_q = 1$ with $a = q d'$, the
+  quadratic Hilbert symbol being symmetric. $qed$
+]
+
+*The prime 17 is left over*, because $17 = e_1$ makes case (iii) of the proof non-vacuous. It is
+finite: $17 divides d$ forces $v_17 (d)$ odd, so only *two* classes of $QQ_17^times$ occur, and
+`localimg.gp` runs both --- the conclusion of Lemma C holds there as well. (Case (iii) at $q = 17$
+forces $2 d'$, hence $d'$, to be a square modulo 17, and then $c_1 equiv -d' equiv 1$ since
+$17 equiv 1$ modulo 4, and $c_3 equiv 8 dot 17 d' equiv q d'$.)
+
+`localimg.gp` also confirms Lemma C's prediction directly at fifteen pairs $(q, d)$, matching the
+predicted images exactly and giving no non-trivial symbol.
 
 === The theorem <sec-15a1-thm>
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *Theorem (modulo the local vanishing at $2$, $3$ and $q divides d$).* For
+  *Theorem.* For
   $f = (x-17)(x-1)(x+8)$ and every squarefree $d$ in the class $[1]$ of
   $QQ_5^times$, the group $E_d (QQ)$ is not dense in $E_d (QQ_5)$; hence
   $X(QQ)$ is not dense in $X(QQ_5)$.
 
   #v(2mm)
   _Proof._ $beta_v (P,Q) = (c_1 (P), c_3 (Q))_v$ is $+1$ at $v = infinity$, at
-  every $q in.not {2,3,5}$ prime to $d$, and --- by the verification above --- at
+  every $q in.not {2,3,5}$ prime to $d$, and --- by @sec-15a1-local --- at
   $2$, $3$ and each $q divides d$. Hilbert reciprocity
   $product_v (c_1 (P), c_3 (Q))_v = 1$ then forces $beta_5 (P,Q) = 1$ for all
   $P, Q in E_d (QQ)$. So the image of $E_d (QQ)$ in $W_5$ is isotropic for
@@ -1233,6 +1302,10 @@ This is verified, not proved.
 ]
 
 Three remarks.
+
+*Nothing is left to a sample.* Every local step of this section is either proved (Lemma C, the
+alternating property, the places prime to $2 dot 3 dot 5 dot d$) or settled over a complete set of
+square classes with a generation check (@sec-15a1-local).
 
 *The mechanism is not about CM.* `15a1` has $j = 111284641 slash 50625$ and no
 complex multiplication, and the pairing is of exactly the shape @sec-thm2
@@ -1470,7 +1543,7 @@ same computation in the third row returns *three* classes, i.e. $dim ker alpha =
 Two things distinguish this from @sec-15a1.
 
 *Nothing here is left to a sample.* At level 2 the alternating property had to be
-proved by hand (`x^3 + x`) or the local vanishing checked over a range of twists (`15a1`).
+proved by hand (`x^3 + x`).
 Here decomposability hands over the alternating property, and the places then
 fall out of a single fact --- $-3$ is a square in $QQ_7$ and in neither $QQ_2$
 nor $QQ_3$. Three things are computed rather than argued, and each is *exhaustive*: the symbol
@@ -1494,8 +1567,7 @@ intersection, not any symbol.
   [$x^3 - 2$ (§5.1.5)], [3], [3 --- *wild*], [decomposable],
     [$beta_3 equiv.not 0$ closed in @sec-magma],
   [$x^3 + x$ (@sec-thm2)], [2], [2], [*indecomposable*], [complete],
-  [`15a1` (@sec-15a1)], [2], [5], [split over $QQ$],
-    [local vanishing at $2$, $3$, $q divides d$ still open],
+  [`15a1` (@sec-15a1)], [2], [5], [split over $QQ$], [complete],
   [`14a1` (@sec-14a1)], [3], [7 --- *tame*], [decomposable], [complete],
 ))
 
