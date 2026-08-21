@@ -1364,7 +1364,7 @@ completely differently, and only one of them is a real obstacle.
   [$3 divides d$, $d slash 3 equiv 1$], [1], [additive $"I"_0^*$], [$0$, alternating],
   [$3 divides.not d$, $d equiv 1$], [2], [good, and *ordinary* ($a_3 = -2$)],
     [$0$, by the lemma of @sec-11a1-five],
-  [$3 divides d$, $d slash 3 equiv 2$], [2], [additive $"I"_0^*$, $c_3 = 2$], [$!= 0$],
+  [$3 divides d$, $d slash 3 equiv 2$], [2], [additive $"I"_0^*$, $c_3 = 2$], [*not settled*],
 ))
 
 #v(2mm)
@@ -1375,15 +1375,39 @@ divisible by 3, so the reduction is ordinary and @sec-11a1-five's lemma applies 
 `vell.gp` confirms it: *54 of 173* and *102 of 2245* dual images escape $3E(QQ_3)$, so both
 $ker alpha_i$ are non-zero and $L_3$ is $phi_*$-stable.
 
-The fourth row is not a gap in the argument but a genuine failure of it. There $E_d$ has *additive*
-reduction, the lemma has nothing to say, and `vell.gp` finds that exactly *one* of the two
-$ker alpha_i$ is non-zero ($d = -3$: $64$ of $146$ against $0$ of $2190$; $d = 33$: the mirror
-image). One is not enough --- stability needs both --- so $L_3$ is not $phi_*$-stable and
-$beta_3 != 0$. Reciprocity then has a second place to balance against and says nothing about
-$beta_7$.
+The fourth row is where $E_d$ has *additive* reduction at 3, the lemma has nothing to say, and the
+status is genuinely open. It is worth being precise about why, because an earlier version of this
+section asserted $beta_3 != 0$ there and that assertion was wrong.
 
-Of the 1062 squarefree $d$ in the class with $|d| <= 2000$, *932* --- $87.7%$ --- avoid the fourth
-row. The previous version of this section excluded the third row as well and reached only 533.
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *A criterion that is sufficient but not necessary.* $L_3$ is $phi_*$-stable iff
+  $L_3 = (L_3 inter H_1) xor (L_3 inter H_2)$. If both intersections are non-zero then, $L_3$ being
+  2-dimensional, each has dimension 1 and the sum is direct --- so *both non-zero* implies stable.
+  The converse fails: if $L_3$ happens to lie inside a single $H_i$ then that intersection has
+  dimension 2, the other is zero, and $L_3$ is a direct sum trivially, hence still stable. So a
+  computation showing one intersection zero and the other non-zero decides nothing until the
+  *dimension* of the non-zero one is known. `vell.gp` tested only non-vanishing, so its negative
+  verdicts have been withdrawn; its positive ones --- rows three above, and `11a1` --- are
+  unaffected.
+]
+
+There is positive evidence that the fourth row is fine too, and it comes from a rational point
+rather than from a local computation. Take $d = 51 = 3 dot 17$, which lies in the class ($51$ is a
+square in $QQ_7$) and in the fourth row ($17 equiv 2$ mod 3). It has rank 2, with saturated
+generators, and the image of $E_51 (QQ)$ has dimension *2* in $W_3$ and dimension *1* in $W_7$.
+Since $beta$ is alternating and $v = 3$ and $v = 7$ are the only places that can contribute, the
+1-dimensional image at 7 makes $beta_7$ vanish on rational pairs, so reciprocity makes $beta_3$
+vanish on rational pairs too --- and those fill all of $W_3$. So $beta_3 equiv 0$ on $W_3$, and the
+fourth row behaves like the other three. The same holds for $d = 267$.
+
+That is an argument from one twist, not a proof for the class; what would settle it is the
+dimension of $ker alpha_1$ at 3 in the fourth-row local class, which needs more 3-adic precision
+than the dual-image computation here achieves --- its class counts come out as $5$ of $9$, and a
+subgroup of $(ZZ slash 3)^2$ cannot have order 5.
+
+If the fourth row does come out with $beta_3 = 0$, the theorem below covers the whole class and
+the conclusion about $X$ follows. As it stands the theorem covers *932* of the 1062 squarefree $d$
+with $|d| <= 2000$ --- $87.7%$, against 533 before the third row was added.
 
 === The theorem <sec-14a1-thm>
 
@@ -1393,10 +1417,26 @@ row. The previous version of this section excluded the third row as well and rea
 
   #v(2mm)
   *This does not yet say anything about $X$.* By @sec-class-warning the surface-level conclusion
-  needs every $d$ in the class, and the excluded $d$ --- $12.3%$ of them --- are exactly the ones
-  where $beta_3 != 0$, so they are not covered by any variant of this argument with this $phi$.
-  What would close it is a second class in $QQ_7^times slash 2$ for which the argument runs without
-  exclusion, or a different $phi$ for the excluded $d$; neither is done here.
+  needs every $d$ in the class, and $12.3%$ are excluded. Two ways out were suggested and both are
+  *closed*, which is worth recording:
+
+  #v(1.5mm)
+  --- *another square class at 7 will not do.* The argument needs $dim W_7 = 2$, i.e. both
+  $C_1^((d))$ and $C_2^((d))$ rational over $QQ_7$; the first asks that $d$ be a square in $QQ_7$
+  and the second that $-3d$ be one, and $-3 equiv 4$ is already a square there. So the two
+  conditions coincide and *only* the class $[1]$ has $dim W_7 = 2$.
+
+  #v(1.5mm)
+  --- *another $phi$ will not do either.* $E[3]$ is decomposable, so
+  $"End"_G (E[3]) = bb(F)_3 times bb(F)_3$, and by @sec-brauer-rank1 the rank-one elements are the
+  ordered pairs of stable lines with an equivariant isomorphism $E[3] slash K -> I$. The pairs
+  $(C_1, C_1)$ and $(C_2, C_2)$ need $mu_3 tilde.equiv ZZ slash 3$ over $QQ$, which is false; so
+  only the two projections survive, and $pi_1 + pi_2 = "id"$ with $beta_"id" = 0$ on every $W_v$
+  makes $beta_(pi_2) = -beta_(pi_1)$. They stand or fall together.
+
+  #v(1.5mm)
+  What is left is the fourth row itself, and @sec-14a1-places gives evidence that it is not an
+  obstacle at all.
 
   #v(2mm)
   _Proof._ $beta$ is alternating at every place, so $beta_v = 0$ wherever
@@ -1423,9 +1463,8 @@ $phi_*$-stability check of @sec-14a1-places.
 remaining twists needed the wild cubic norm-residue symbol at 3, the thing §5.1.5 also lacked.
 Both halves of that have changed. The symbol is no longer missing --- @sec-brauer-3-wild computes
 it --- and it is no longer what stands in the way: for $d equiv 1$ $(mod 3)$ the place is settled
-structurally, and for $3 divides d$ with $d slash 3 equiv 2$ the trouble is that $beta_3$ is
-genuinely non-zero, so reciprocity has two live places and localises nothing. No symbol
-computation repairs that; a different $phi$, or a different square class, would have to.
+structurally, and for $3 divides d$ with $d slash 3 equiv 2$ the open question is whether $beta_3$
+vanishes, which is a question about the *dimension* of an intersection and not about any symbol.
 
 #align(center, table(
   columns: 5, align: (left, center, center, center, left),
@@ -1437,7 +1476,7 @@ computation repairs that; a different $phi$, or a different square class, would 
   [`15a1` (@sec-15a1)], [2], [5], [split over $QQ$],
     [local vanishing verified],
   [`14a1` (@sec-14a1)], [3], [7 --- *tame*], [decomposable],
-    [$87.7%$ of the class; no conclusion about $X$ yet],
+    [$87.7%$ of the class; the rest open, not excluded],
 ))
 
 
