@@ -326,3 +326,12 @@ TWO [-47, 219, -267, 79, 114, 470, 10, 30] cover=8/8 time=525
 TOTAL time=12886
 
 ### corollary6-check finished
+
+=============================================================================
+The two new ell = 5 surfaces (results/survey-corollary6-check5.txt):
+   N=23808  f = x^3 - 4x^2 + 30608x - 5474624   predicted p = 31, class [u]
+        ODD full = 44/45   falls short at P 31, slot 2 (class [u]) -- CONFIRMED
+   N=18176  f = x^3 + 4x^2 - 69104x - 6427840   predicted p = 71, class [u]
+        ODD full = 44/45   falls short at P 71, slot 2 (class [u]) -- CONFIRMED
+   both cover 8/8 at p = 2.
+=============================================================================

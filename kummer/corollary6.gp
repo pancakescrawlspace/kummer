@@ -113,6 +113,42 @@ scan(ell, AMAX, BMAX) = { my(nd = 0, hits = List());
   print("   [", nd, " curves with E[", ell, "] decomposable and good reduction at ", ell, "]");
   Vec(hits); }
 
+/* ---------------------------------------------------------------------------
+   Searching by j-invariant.  Quadratic twists give the SAME Kummer surface --
+   f_d(x) = d^3 f(x/d) and the substitution x = du, t = dw turns y^2 = f_d f_d
+   into y^2 = d^6 f f -- so j, not the curve, is the surface parameter.  Scan
+   the genus-0 Hauptmodul of X_0(ell) and keep the j whose curves have
+   DECOMPOSABLE E[ell].
+   --------------------------------------------------------------------------- */
+j3(t) = (t + 27)*(t + 3)^3 / t;
+j5(t) = (t^2 + 250*t + 3125)^3 / t^5;
+j7(t) = (t^2 + 13*t + 49)*(t^2 + 245*t + 2401)^3 / t^7;
+mintw(jj) = { my(E0 = ellinit(ellfromj(jj)), D = ellminimaltwist(E0));
+  ellminimalmodel(ellinit([-27*E0.c4*D^2, -54*E0.c6*D^3])); }
+scanj(ell, jf, NMAX, DMAX) = { my(seen = List(), hits = List(), n = 0);
+  for(a = -NMAX, NMAX, for(b = 1, DMAX,
+    my(t = a/b, jj, E);
+    if(a == 0 || gcd(a,b) != 1, next);
+    jj = jf(t);
+    if(jj == 0 || jj == 1728, next);
+    if(setsearch(Set(Vec(seen)), jj), next);
+    listput(seen, jj); n++;
+    E = ellminimalmodel(ellinit(ellfromj(jj)));
+    if(nisog(E, ell) < 2, next);
+    listput(hits, jj)));
+  print("   ell = ", ell, ": ", n, " distinct j scanned on X_0(", ell, "),  ",
+        #hits, " with E[", ell, "] decomposable");
+  for(i = 1, #hits, my(Em = mintw(hits[i]), N = ellglobalred(Em)[1], S, F);
+    F = [Em.b2, 8*Em.b4, 16*Em.b6];
+    print("      j = ", hits[i], "   minimal-twist N = ", N);
+    if(N % ell == 0, print("         ", ell, " | N: the wild place is not covered, skipped"), 
+      S = sigma1(Em, ell);
+      if(type(S) == "t_INT", print("         no non-scalar phi"),
+        print("         critical places ", S,
+              if(#S == 1, "   <== SINGLE, f = ", "   "),
+              if(#S == 1, concat(["x^3 + (", F[1], ")x^2 + (", F[2], ")x + (", F[3], ")"]), "")))));
+  Vec(hits); }
+
 main() = {
   print("=== Corollary 6: curves with exactly one critical prime ===");
   print("");
@@ -123,6 +159,18 @@ main() = {
   H5 = scan5(60);
   print("");
   print("total hits at ell = 5: ", #H5);
+  print("");
+  print("=== the j-line search: quadratic twists give the SAME surface, so j is");
+  print("=== the parameter.  Scanning the genus-0 Hauptmodul of X_0(ell).");
+  scanj(5, j5, 200, 8);
+  print("");
+  scanj(7, j7, 200, 8);
+  print("");
+  print("ell = 7 is EMPTY, and necessarily so: E[ell] decomposable forces a");
+  print("rational cyclic ell^2-isogeny on E/C_1, and by Mazur-Kenku the rational");
+  print("cyclic isogeny degrees stop at 19 apart from 21, 25, 27, 37, 43, 67, 163");
+  print("-- so ell^2 must be 4, 9 or 25 and ell <= 5.  For ell = 3 and 5 the");
+  print("families are INFINITE, X_0(9) and X_0(25) both having genus 0.");
 }
 main();
 print("");

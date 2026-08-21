@@ -4320,7 +4320,17 @@ and alone in its range.
   [38],  [$x^3 + x^2 + 152x + 5776$],   [19], [$[1]$],
   [91],  [$x^3 + 4x^2 + 208x + 2704$],  [13], [$[1]$],
   [370], [$x^3 + x^2 - 296x + 21904$],  [37], [$[1]$],
+  table.hline(),
+  [23808], [$x^3 - 4x^2 + 30608x - 5474624$],  [31], [$[u]$],
+  [18176], [$x^3 + 4x^2 - 69104x - 6427840$],  [71], [$[u]$],
 ))
+
+#v(2mm)
+
+The last two are at $ell = 5$ and come from a different search, described in @sec-dep-howmany:
+quadratic twists give the *same* surface, so the parameter is $j$, and one scans the genus-0
+Hauptmodul of $X_0(ell)$ for the $j$ whose curves have decomposable $E[ell]$. Note that their live
+class is $[u]$, not $[1]$ --- the class prediction is doing real work.
 
 #v(2mm)
 
@@ -4335,6 +4345,60 @@ and alone in its range.
   reciprocity forces $beta_p equiv 0$ on rational pairs, and $beta_p$ is non-degenerate on $W_p$ by
   Theorem 5. Apply @sec-class-warning. $qed$
 ]
+
+=== How many are there, and why $ell = 7$ is empty <sec-dep-howmany>
+
+The right parameter is the $j$-invariant, not the curve: quadratic twists give the *same* Kummer
+surface, since $f_d (x) = d^3 f(x slash d)$ and the substitution $x = d u$, $t = d w$ turns
+$y^2 = f_d (x) f_d (t)$ into $y^2 = d^6 f(u) f(w)$. So the question is how many $j$ carry a
+non-scalar $phi$.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *For $ell$ odd, a non-scalar $phi$ forces $E[ell]$ decomposable or a non-split Cartan image.*
+  If $E[ell]$ is reducible and indecomposable with sub- and quotient characters $alpha != beta$
+  then $"End"_G$ is scalar; and $alpha = beta$ would force $alpha^2 = chi_"cyc"$, impossible,
+  because $chi_"cyc"$ is *surjective* onto $bb(F)_ell^times$ while every square lands in the
+  subgroup of index 2. (At $ell = 2$ that obstruction is vacuous, which is why the indecomposable
+  case of @sec-tk-indec exists there and not here.)
+]
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Decomposable $E[ell]$ forces $ell <= 5$.* Let $E[ell] = C_1 xor C_2$ and $E_1 = E slash C_1$.
+  Then $ker hat(psi)_1 = psi_1 (C_2)$, so the composite
+  $ E_1 -->^(hat(psi)_1) E -->^(psi_2) E slash C_2 $
+  has kernel $hat(psi)_1^(-1)(C_2)$, of order $ell^2$; and it is *cyclic*, since
+  $hat(psi)_1 (E_1 [ell]) = ker psi_1 = C_1 != C_2$ means the kernel is not $E_1 [ell]$. So $E_1$
+  carries a rational cyclic $ell^2$-isogeny, and by Mazur and Kenku the rational cyclic isogeny
+  degrees are at most 19 together with $21, 25, 27, 37, 43, 67, 163$. Hence
+  $ell^2 in {4, 9, 25}$ and $ell in {2, 3, 5}$.
+]
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *So $ell = 7$ is empty, and there is nothing to search for.* The computation agrees: scanning
+  2066 distinct $j$ on the Hauptmodul of $X_0 (7)$ turns up *no* curve with $E[7]$ decomposable.
+  The remaining loophole is a non-split Cartan image mod 7, which would give
+  $"End"_G (E[7]) = bb(F)_49$ and a non-scalar --- indeed invertible --- $phi$; nothing in
+  @sec-dep-suff needs $phi$ to have rank one, so Theorem 5 would apply. But a scan of 2596 curves,
+  testing whether $a_p^2 - 4p$ is a non-square modulo 7 at every good $p <= 200$, finds *none*
+  compatible with such an image. We have not pursued it further.
+]
+
+For $ell = 3$ and $ell = 5$, by contrast, the supply is *infinite*: $X_0 (9)$ and $X_0 (25)$ both
+have genus 0, so there are infinitely many $j$ carrying a rational cyclic $ell^2$-isogeny, and the
+middle curve of each chain has $E[ell]$ decomposable. Whether infinitely many of *those* have
+exactly one critical prime we have not proved --- it asks that all but one bad prime fail (a), (b)
+or (c) --- but the observed yield is high: at $ell = 3$, all eight curves in the search range that
+satisfy the hypotheses have exactly one, and at $ell = 5$, three of the four $j$ found do (the
+fourth, $N = 550$, is excluded only because $5 divides N$ leaves its wild place uncovered).
+
+#align(center, table(
+  columns: 4, align: (center, center, center, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([$ell$], [$X_0 (ell^2)$], [supply of $j$], [found here]),
+  [3], [genus 0], [infinite], [8 curves in the scan range, *all* with one critical prime],
+  [5], [genus 0], [infinite], [4 $j$ in 2066 on $X_0 (5)$; 3 usable, all with one critical prime],
+  [7], [no rational cyclic 49-isogeny], [*empty*], [none, and none possible],
+))
 
 === The experiment <sec-dep-newcheck>
 
@@ -4353,13 +4417,16 @@ the witnesses fail exactly where they are predicted to.
   [38],  [19 in $[1]$], [44 of 45], [*19*], [3 of 4 --- $[1]$ missing],
   [91],  [13 in $[1]$], [44 of 45], [*13*], [3 of 4 --- $[1]$ missing],
   [370], [37 in $[1]$], [44 of 45], [*37*], [3 of 4 --- $[1]$ missing],
+  table.hline(),
+  [23808], [31 in $[u]$], [44 of 45], [*31*], [3 of 4 --- $[u]$ missing],
+  [18176], [71 in $[u]$], [44 of 45], [*71*], [3 of 4 --- $[u]$ missing],
 ))
 
 #v(2mm)
 
-Six predictions, six confirmations: in each case the search witnesses all four square classes at
+Eight predictions, eight confirmations: in each case the search witnesses all four square classes at
 every odd prime up to 200 *except* the predicted one, where it witnesses three and misses exactly
-the class $[1]$. The critical prime and the class were read off the conductor, the discriminant and
+the predicted class --- $[1]$ for the six at $ell = 3$, $[u]$ for the two at $ell = 5$. The critical prime and the class were read off the conductor, the discriminant and
 the isogeny class before any point was looked for.
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[

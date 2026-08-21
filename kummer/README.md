@@ -1471,15 +1471,48 @@ i.e. 11a1, the known case, rediscovered and alone in its range.
 the class `[1]` of `Q_p`, `beta_p` vanishes on rational pairs; hence `X(Q)` is
 not dense in `X(Q_p)`.
 
+**Two more at `ell = 5`.** Quadratic twists give the SAME surface -- substituting
+`x = du, t = dw` in `y^2 = f_d(x)f_d(t)` gives `y^2 = d^6 f(u)f(w)` -- so the
+parameter is `j`, and the better search scans the genus-0 Hauptmodul of `X_0(ell)`
+for `j` whose curves have decomposable `E[ell]`. At `ell = 5`, four `j` turn up in
+2066 scanned; one is 11a1, one has `5 | N` (wild place uncovered), and two are new:
+
+| `N_E` | `f` | critical `p` | class |
+|---|---|---|---|
+| 23808 | `x^3 - 4x^2 + 30608x - 5474624` | 31 | `[u]` |
+| 18176 | `x^3 + 4x^2 - 69104x - 6427840` | 71 | `[u]` |
+
+Note the live class is `[u]`, not `[1]`: the class prediction is doing real work.
+
 **The experiment.** Nothing in the prediction used a rational point, so the §3
-search is a genuine test. `corollary6-check.gp` runs it on all six over the 45
-odd primes `<= 200` and the eight classes at 2:
+search is a genuine test. `corollary6-check.gp` runs it over the 45 odd primes
+`<= 200` and the eight classes at 2:
 
-    all six:  44 of 45 odd primes full, and the prime that falls short is
-              EXACTLY the predicted one, missing EXACTLY the class [1].
+    all eight:  44 of 45 odd primes full, and the prime that falls short is
+                EXACTLY the predicted one, missing EXACTLY the predicted class.
 
-Six predictions, six confirmations, with the critical prime and class read off
-the conductor, the discriminant and the isogeny class beforehand. One row needed
+Eight predictions, eight confirmations, with the critical prime and class read
+off the conductor, the discriminant and the isogeny class beforehand.
+
+**How many are there? (§10.9.1)** For odd `ell`, a non-scalar phi needs `E[ell]`
+decomposable or a non-split Cartan image -- the indecomposable-equal-characters
+case would need `alpha^2 = chi_cyc`, impossible since `chi_cyc` is surjective onto
+`F_ell^x` while squares are not. And decomposable `E[ell]` forces `ell <= 5`:
+with `E[ell] = C_1 + C_2` and `E_1 = E/C_1`, the composite
+`E_1 -> E -> E/C_2` has cyclic kernel of order `ell^2` (it is not `E_1[ell]`,
+since `hat-psi_1(E_1[ell]) = C_1 =/= C_2`), so `E_1` carries a rational cyclic
+`ell^2`-isogeny, and Mazur-Kenku bounds those: `ell^2` in {4, 9, 25}.
+
+* **`ell = 7` is EMPTY, necessarily.** Confirmed: 2066 `j` scanned on `X_0(7)`,
+  none decomposable. The remaining loophole is a non-split Cartan image mod 7
+  (giving `End = F_49`; nothing in §10.7 needs phi to have rank one) -- but a
+  scan of 2596 curves testing whether `a_p^2-4p` is a non-square mod 7 at every
+  good `p <= 200` finds none compatible. Not pursued further.
+* **`ell = 3` and `ell = 5` are INFINITE.** `X_0(9)` and `X_0(25)` both have
+  genus 0, so infinitely many `j` carry a rational cyclic `ell^2`-isogeny and the
+  middle curve of each chain has `E[ell]` decomposable. Whether infinitely many
+  have EXACTLY ONE critical prime is not proved, but the yield is high: 8 of 8 at
+  `ell = 3`, and 3 of 4 at `ell = 5`. One row needed
 a second look: at `p = 2` the surface `N_E = 38` first reported 6/8. Theorem 8
 says 2 cannot be critical at `ell = 3` (full rationality of `E_d[3]` over `Q_2`
 would need `zeta_3` in `Q_2`), so that had to be search depth -- raising the

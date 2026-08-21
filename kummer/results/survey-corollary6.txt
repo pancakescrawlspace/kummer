@@ -27,4 +27,24 @@ total hits at ell = 3: 16
 
 total hits at ell = 5: 1
 
+=== the j-line search: quadratic twists give the SAME surface, so j is
+=== the parameter.  Scanning the genus-0 Hauptmodul of X_0(ell).
+   ell = 5: 2066 distinct j scanned on X_0(5),  4 with E[5] decomposable
+      j = 1511372858176/6956883693   minimal-twist N = 23808
+         critical places [[31, 3]]   <== SINGLE, f = x^3 + (-4)x^2 + (30608)x + (-5474624)
+      j = 6761990971/5153632   minimal-twist N = 550
+         5 | N: the wild place is not covered, skipped
+      j = -122023936/161051   minimal-twist N = 11
+         critical places [[11, 1]]   <== SINGLE, f = x^3 + (-4)x^2 + (-160)x + (-1264)
+      j = 17406197775296/1804229351   minimal-twist N = 18176
+         critical places [[71, 7]]   <== SINGLE, f = x^3 + (4)x^2 + (-69104)x + (-6427840)
+
+   ell = 7: 2066 distinct j scanned on X_0(7),  0 with E[7] decomposable
+
+ell = 7 is EMPTY, and necessarily so: E[ell] decomposable forces a
+rational cyclic ell^2-isogeny on E/C_1, and by Mazur-Kenku the rational
+cyclic isogeny degrees stop at 19 apart from 21, 25, 27, 37, 43, 67, 163
+-- so ell^2 must be 4, 9 or 25 and ell <= 5.  For ell = 3 and 5 the
+families are INFINITE, X_0(9) and X_0(25) both having genus 0.
+
 ### corollary6 finished
