@@ -90,6 +90,57 @@ print("E_d over Q_7 depends only on that class, so one d settles it; the rest");
 print("are consistency checks.");
 print("");
 foreach([1, 2, 4, 8, 11, 22], d, run7(d, 40, 40));
+
+/* ---------------- level 2: classes in Q_v^x modulo squares ---------------- */
+sqcls(z, v) = { my(k = valuation(z, v), u = z/v^k);
+  if(v == 2, [k % 2, lift(Mod(truncate(u), 8))],
+             [k % 2, if(issquare(Mod(truncate(u), v)), 1, -1)]); }
+inEn(P, v, n) = (P == [0]) || (valuation(P[1], v) <= -2*n);
+
+/* 2E(Q_v) contains E_1 for v odd (E_1 is pro-v, so uniquely 2-divisible), and
+   contains 2E_2 = E_3 at v = 2 (E_2(Q_2) = Z_2, torsion-free, since the formal
+   logarithm converges from level e/(p-1) + 1 = 2 on). */
+lvl2(v) = if(v == 2, 3, 1);
+genq(Em, v, pts) = {
+  my(n = lvl2(v), Ep = padiccurve(Em, v), G = List([[0]]), nw, grew = 1, T);
+  for(k = 1, #pts, nw = 1;
+    for(j = 1, #G, if(inEn(elladd(Ep, pts[k], ellneg(Ep, G[j])), v, n), nw = 0; break));
+    if(nw, listput(G, pts[k])));
+  while(grew, grew = 0;
+    for(i = 1, #G, for(j = 1, #G, T = elladd(Ep, G[i], G[j]); nw = 1;
+      for(k = 1, #G, if(inEn(elladd(Ep, T, ellneg(Ep, G[k])), v, n), nw = 0; break));
+      if(nw, listput(G, T); grew = 1))));
+  [#G, Mval(Em, v) * if(v == 2, 4, 1)];
+}
+
+/* f = u(u^2 + a u + b), c(P) = x(P) modulo squares, T = (0,0). c(T) = b d^2 is
+   a square, so the 2-torsion point contributes the trivial class. */
+runc(name, a, b, d, v, prec, XMAX) = {
+  my(ev = [0, a*d, 0, b*d^2, 0], E = ellinit(ev), Em, vE, pts, S = Set([[0,1]]), g);
+  Em = ellminimalmodel(E, &vE);
+  pts = ppointsE(E, v, prec, XMAX);
+  g = genq(Em, v, apply(P -> ellchangepoint(P, vE), pts));
+  for(k = 1, #pts,
+    if(valuation(pts[k][1], v) > prec - 10, next);
+    S = setunion(S, [sqcls(pts[k][1], v)]));
+  print("   ", name, "  d = ", d, "   class of d at ", v, ": ", sqcls(d, v),
+        "   generates ", g[1], " of ", g[2], if(g[1] == g[2], " yes", " NO"),
+        "      image of c: ", #S, " classes ", Vec(S));
+  #S;
+}
+
+print("");
+print("=== 15a4, f = x(x^2 + 14x + 625), level 2 ===");
+print("");
+print("--- v = 5, the critical place: the image of c must be ALL FOUR classes.");
+print("    Only the failing class [1] of Q_5^x occurs, so one d settles it. ---");
+foreach([1, 4, 11, 19, 21], d, runc("15a4", 14, 625, d, 5, 40, 40));
+print("");
+print("--- v = 2, the wild place: the image of c must have order at most 2,");
+print("    since beta is alternating there (Lemma 2). The class of d at 2 is");
+print("    unconstrained by the class at 5, so all EIGHT classes are needed. ---");
+foreach([1, -1, 2, -2, 5, -5, 10, -10, 34], d, runc("15a4", 14, 625, d, 2, 40, 40));
+
 print("");
 print("### localimg finished");
 quit;

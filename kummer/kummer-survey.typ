@@ -1495,7 +1495,7 @@ intersection, not any symbol.
     [$beta_3 equiv.not 0$ closed in @sec-magma],
   [$x^3 + x$ (@sec-thm2)], [2], [2], [*indecomposable*], [complete],
   [`15a1` (@sec-15a1)], [2], [5], [split over $QQ$],
-    [local vanishing verified],
+    [local vanishing at $2$, $3$, $q divides d$ still open],
   [`14a1` (@sec-14a1)], [3], [7 --- *tame*], [decomposable], [complete],
 ))
 
@@ -1541,37 +1541,44 @@ $QQ(i)$, so $(c(P), -1)_v = 1$ and *$beta$ is alternating at every place*.
   proof uses only that a 1-unit is a square at an odd place. The image of $c$ is
   cyclic, and an alternating form on a cyclic group is trivial.
 
-- *$q = 2$.* Here the 1-unit argument fails and the image has to be computed. It
-  comes out cyclic --- ${1}$, ${1,5}$ or ${1,10}$ --- in *all 202* twists, so
-  $beta_2 equiv 1$. This is the one step verified rather than proved, and it is the
-  only one: @sec-15a1 had three.
+- *$q = 2$.* Here the 1-unit argument fails and the image has to be computed. Since $beta$ is
+  alternating (Lemma 2), it is enough that the image be of order at most 2. It is, and the check is
+  *exhaustive*: $E_d$ over $QQ_2$ depends on $d$ only through its class in
+  $QQ_2^times slash (QQ_2^times)^2$, and the class at 5 constrains that not at all, so all
+  *eight* classes are needed --- and all eight give an image of order 1 or 2, namely one of
+  ${1}$, ${1,2}$, ${1,5}$, ${1,10}$. (`localimg.gp`; the earlier pass over 202 twists reported only
+  three of those four, having missed the class of $d = 2$.) So $beta_2 equiv 1$, and this is no
+  longer a step taken on trust.
 
 - *$q = 5$.* The image of $c$ on $E_delta (QQ_5)$ is *all four* classes
-  ${1, u, 5, 5u}$, in all 202 twists, so the symbol is non-degenerate; and it is
+  ${1, u, 5, 5u}$, so the symbol is non-degenerate; and it is
   alternating because $5 equiv 1$ $(mod 4)$ makes $-1$ a square in $QQ_5$. So
-  $beta_5$ is symplectic on the 2-dimensional $W_5$.
+  $beta_5$ is symplectic on the 2-dimensional $W_5$. Only the failing class $[1]$ of $QQ_5^times$
+  occurs here, and $E_d$ over $QQ_5$ depends only on that, so one $d$ settles it.
 
 #table(
-  columns: 4, align: (left, center, center, center),
+  columns: 4, align: (left, center, center, left),
   stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3pt),
-  table.header([place], [checks], [$beta_v$ non-trivial], []),
-  [$q = 5$ (critical)], [202 twists], [*202*], [symplectic on $W_5$],
-  [$q = 2$], [202 twists], [0], [image cyclic],
-  [$q$ odd, $q divides d$], [288 places], [0], [Lemmas A, B],
+  table.header([place], [what settles it], [exhaustive?], []),
+  [$q = 5$ (critical)], [1 square class of $QQ_5^times$], [yes],
+    [image of $c$ is all four classes: symplectic on $W_5$],
+  [$q = 2$], [8 square classes of $QQ_2^times$], [yes],
+    [image of $c$ has order $<= 2$, so $beta_2 equiv 1$],
+  [$q$ odd, $q divides d$], [Lemmas A, B], [proved], [image of $c$ is cyclic],
 )
 
 === The theorem <sec-15a4-thm>
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *Theorem (modulo the local vanishing at $2$).* For
+  *Theorem.* For
   $f = x(x^2 + 14x + 625)$ --- that is, `15a4` --- and every squarefree $d$ in
   the class $[1]$ of $QQ_5^times$, the group $E_d (QQ)$ is not dense in
   $E_d (QQ_5)$; hence $X(QQ)$ is not dense in $X(QQ_5)$.
 
   #v(2mm)
   _Proof._ $beta_v (P,Q) = (c(P), c(Q))_v$ is $+1$ at $v = infinity$, at every
-  $q divides.not 2 dot 5 dot d$, at every odd $q divides d$, and --- by the
-  verification above --- at $q = 2$. Hilbert reciprocity then forces
+  $q divides.not 2 dot 5 dot d$, at every odd $q divides d$, and at $q = 2$. Hilbert reciprocity
+  then forces
   $beta_5 (P,Q) = +1$ for all $P, Q in E_d (QQ)$. On $W_5$, $beta_5$ is a
   non-trivial alternating form on a 2-dimensional $bb(F)_2$-space, hence symplectic,
   so the image of $E_d (QQ)$ is isotropic and of dimension $<= 1$. It is
