@@ -4274,10 +4274,12 @@ obstruction at $ell = 2$ --- Theorem 8 has no analogue there.
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   *Why the wild place is different, in one line.* Lemma 7 needs $v divides.not ell$ so that the
-  formal group is prime to $ell$. At $v = ell$ the formal group is pro-$ell$ and contributes
-  *everything*. That is why $x^3 - 2$ is live at $v = 3$ on a type $"II"$ fibre with $c_v = 1$,
-  where $Phi_v slash 3 = 0$: its $W_3$ is entirely formal-group. The wild place is the only place
-  at which $W_v$ sees the formal group at all, and no argument in this chapter reaches it.
+  formal group is prime to $ell$. At $v = ell$ the formal group is pro-$ell$ and contributes as
+  well. That is why $x^3 - 2$ is live at $v = 3$: in its live class $[u dot 3]$ the fibre has type
+  $"IV"^*$ with $c_3 = 3$, so $Phi_3 [3]$ is only *1-dimensional* --- which under Lemma 7 would
+  force $beta_3 equiv 0$, $beta$ being alternating at odd $ell$ --- while in fact $dim W_3 = 2$.
+  The missing dimension is the formal group. The wild place is the only one at which $W_v$ sees it,
+  and no argument in this chapter reaches it.
 ]
 
 == Corollary 6 in the field: six new surfaces <sec-dep-new>
@@ -4551,12 +4553,31 @@ with $c_v = 4$ --- potentially *good*, so no twist makes it multiplicative, and 
 nothing to say. But such a place is never alone:
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  A potentially good additive fibre means the model is a ramified twist of one with good reduction.
-  Rescaling $f$ by a square --- which does not change the surface --- returns a model in which the
-  place is *good*, and the liveness reappears as a place $q divides d$. So an additive live place
-  *is* a $q divides d$ place in another model, and those come as an infinite family indexed by the
-  primes dividing $d$, all live or all dead together by Lemma 11. Since a surface-level statement
-  needs them dead (@sec-class-warning), an additive place can never be the *only* live one.
+  *For split $f$ at an odd $v$, the only potentially good additive type that can be live is
+  $"I"_0^*$.* Two facts do it. First, $"disc" f = product_(i<j)(r_i - r_j)^2$ is a *perfect square*,
+  so $v("disc" f)$ is even, and minimalisation subtracts multiples of 12: hence
+  $v(Delta_min)$ is *even* at every odd $v$, which excludes $"III"$ ($v(Delta) = 3$), $"III"^*$
+  ($9$) and $"I"_n^*$ with $n$ odd. Second, of the remaining potentially good types, $"II"$,
+  $"IV"$, $"IV"^*$ and $"II"^*$ have $Phi_v$ trivial or $ZZ slash 3$, so $Phi_v [2] = 0$ and
+  Lemma 7 gives $W_v = 0$. What is left is $"I"_0^*$.
+
+  #v(1.5mm)
+  And $"I"_0^*$ *is* a ramified quadratic twist of good reduction, so rescaling $f$ by a square ---
+  which does not change the surface --- returns a model in which the place is good, and the
+  liveness reappears as a place $q divides d$. Those come as an infinite family indexed by the
+  primes dividing $d$, all live or all dead together by Lemma 11; a surface-level statement needs
+  them dead (@sec-class-warning), so such a place is never the *only* live one.
+]
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *But $x^3 - 2$ is an honest additive example, and it escapes both facts.* Its live class is
+  $[u dot 3]$ at $v = 3$, where the fibre has type $"IV"^*$ with $c_3 = 3$ --- potentially good, and
+  *not* a quadratic twist of good reduction: none of its quadratic twists is good at 3. It escapes
+  the parity argument because $x^3 - 2$ does not split, and it escapes the $Phi_v [2] = 0$ argument
+  because $ell = 3$ there, where $Phi_v = ZZ slash 3$ is exactly what survives. Most of all it
+  escapes Lemma 7, since $v = ell$: $Phi_3 [3]$ is 1-dimensional while $dim W_3 = 2$, the missing
+  dimension being the formal group. So an additive critical place of the strongest kind does occur
+  --- at the wild place, which is precisely the case this chapter never reaches.
 ]
 
 The two models make this concrete. $x(x-507)(x-845)$ has $507 = 3 dot 13^2$ and $845 = 5 dot 13^2$,

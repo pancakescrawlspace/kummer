@@ -42,7 +42,7 @@
 
 read("kummer2.gp"); read("survey.gp");
 
-kodname(k) = if(k==1,"I0", if(k==2,"II", if(k==3,"III", if(k==4,"IV", if(k>4, concat(["I",k-4]), if(k==-1,"I0*", concat(["I",-k-4,"*"])))))));
+kodname(k) = if(k==1,"I0", if(k==2,"II", if(k==3,"III", if(k==4,"IV", if(k>4, concat(["I",k-4]), if(k==-1,"I0*", if(k==-2,"II*", if(k==-3,"III*", if(k==-4,"IV*", concat(["I",-k-4,"*"]))))))))));
 tw(E,d) = ellminimalmodel(ellinit([-27*E.c4*d^2, -54*E.c6*d^3]));
 uni(a,v) = truncate(a*v^(-valuation(a,v)))*v^valuation(a,v);
 cl(z,v) = [valuation(z,v)%2, if(issquare(Mod(truncate(z/v^valuation(z,v)),v)),1,-1)];

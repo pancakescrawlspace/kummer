@@ -1571,7 +1571,13 @@ which is why that `Sigma` was large. Ordering the roots and writing the gaps as
 again**, 15a1 being (3,4,5) with gaps 9 and 16. And `beta_infinity` dies for
 every `d` exactly when the excluded root is the MIDDLE one.
 
-**Why there is no genuinely additive example.** Additive live places are real:
+**Why no isolated additive example FOR SPLIT `f` AT ODD `v`.** Two facts, not
+one: (i) `disc f` is a perfect square for split `f`, so `v(Delta_min)` is EVEN
+at odd `v`, which excludes `III` (3), `III*` (9) and `I_n*` with `n` odd; and
+(ii) of the remaining potentially good types, `II`, `IV`, `IV*`, `II*` have
+`Phi` trivial or `Z/3`, so `Phi[2] = 0` and Lemma 7 gives `W_v = 0`. Only `I0*`
+survives -- and `I0*` IS a ramified quadratic twist of good reduction. Additive
+live places are real:
 for `x(x-3)(x-5)`, the place 13 is live in class `[13]` on an `I0*` fibre with
 `c_v = 4`, potentially GOOD, so no twist makes it multiplicative. But a
 potentially good additive fibre means the model is a ramified twist of a good
@@ -1584,8 +1590,18 @@ together by Lemma 11. Concretely `x(x-507)(x-845)` is `u(u-3)(u-5)` rescaled by
 even a bad prime. Both report conductor 480.
 
 Since a surface-level statement needs the `q | d` places dead (§6.8), and that
-condition kills the additive ones too, **an additive critical place at `ell = 2`
-can never be the only live one**. It belongs to obstructions whose set `S`
+condition kills the additive ones too, **an additive critical place of this kind
+can never be the only live one**.
+
+**But `x^3-2` IS an honest additive example** (spotted by Rene), and it escapes
+all of the above. Its live class `[u*3]` at `v = 3` has type **IV\*** with
+`c_3 = 3` -- potentially good, and NOT a quadratic twist of good reduction (no
+quadratic twist of it is good at 3, checked). It escapes the parity argument
+because `x^3-2` does not split; the `Phi[2]` argument because `ell = 3` there,
+where `Phi = Z/3` is exactly what survives; and Lemma 7 itself, because
+`v = ell`: `Phi_3[3]` is 1-dimensional while `dim W_3 = 2`, the missing
+dimension being the formal group. So the strongest kind of additive critical
+place does occur -- at the wild place, which is the case §10 never reaches. It belongs to obstructions whose set `S`
 depends on `d` -- exactly what §6.8 cannot convert into a statement about `X`.
 That, not the missing norm lemma, is the real obstacle.
 

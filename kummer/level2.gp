@@ -30,10 +30,20 @@
        (3,4,5).  And beta_infinity dies for every d iff the EXCLUDED root is the
        middle one.
 
-   (4) WHY NO ISOLATED ADDITIVE CRITICAL PLACE.  A potentially good additive
-       fibre (I0*) means the model is a ramified twist of one with good
-       reduction: rescaling f by a square gives an equivalent model where the
-       place is GOOD.  So an additive live place is a q | d place in disguise,
+   (4) WHY NO ISOLATED ADDITIVE CRITICAL PLACE, FOR SPLIT f AT ODD v.  Two
+       facts.  disc f is a perfect square for split f, so v(Delta_min) is EVEN
+       at odd v, excluding III, III* and I_n* with n odd; and of the remaining
+       potentially good types, II, IV, IV* and II* have Phi trivial or Z/3, so
+       Phi[2] = 0 and Lemma 7 gives W_v = 0.  Only I0* is left -- and I0* IS a
+       ramified quadratic twist of good reduction, so rescaling f by a square
+       gives an equivalent model where the place is GOOD.
+
+       THIS DOES NOT APPLY TO x^3 - 2, which is an honest additive example: its
+       live class [u*3] at v = 3 has type IV* with c_3 = 3, and NO quadratic
+       twist of it is good at 3.  It escapes the parity argument (f does not
+       split), the Phi[2] argument (ell = 3 there, and Phi = Z/3 is what
+       survives), and Lemma 7 itself, since v = ell -- Phi_3[3] is 1-dimensional
+       while dim W_3 = 2, the missing dimension being the formal group.  So an additive live place is a q | d place in disguise,
        and those come as an infinite family indexed by the primes dividing d,
        all live or all dead together by the criterion in (3).  A surface-level
        statement needs them dead, so an additive place can never be the only
@@ -48,7 +58,7 @@ read("kummer2.gp"); read("survey.gp");
 
 fp(es, i) = prod(k = 1, 3, if(k == i, 1, es[i]-es[k]));
 ci(es, i, j) = if(i == j, fp(es,i), es[j]-es[i]);
-kodname(k) = if(k==1,"I0", if(k==2,"II", if(k==3,"III", if(k==4,"IV", if(k>4, concat(["I",k-4]), if(k==-1,"I0*", concat(["I",-k-4,"*"])))))));
+kodname(k) = if(k==1,"I0", if(k==2,"II", if(k==3,"III", if(k==4,"IV", if(k>4, concat(["I",k-4]), if(k==-1,"I0*", if(k==-2,"II*", if(k==-3,"III*", if(k==-4,"IV*", concat(["I",-k-4,"*"]))))))))));
 crv(es, d) = ellinit([0, -d*(es[1]+es[2]+es[3]), 0, d^2*(es[1]*es[2]+es[1]*es[3]+es[2]*es[3]), -d^3*es[1]*es[2]*es[3]]);
 uni(a,v) = truncate(a*v^(-valuation(a,v)))*v^valuation(a,v);
 cl(z,v) = if(v==2, [valuation(z,2)%2, lift(Mod(truncate(z/2^valuation(z,2)),8))], [valuation(z,v)%2, if(issquare(Mod(truncate(z/v^valuation(z,v)),v)),1,-1)]);
@@ -113,10 +123,22 @@ main() = {
   analyse([0, 9, 25], 1, 3);       /* g=1, (3,4,5): the 15a1 surface */
   analyse([0, 63, 175], 1, 3);     /* g=7: I0* at 7, and it is DEAD */
   print("");
-  print("=== (4) an additive live place is a q | d place in disguise ===");
+  print("=== (4) an additive live place is a q | d place in disguise (split f, odd v) ===");
   analyse([0, 507, 845], 1, 3);    /* I0* at 13 is live here ... */
   analyse([0, 3, 5], 1, 3);        /* ... but this is the SAME surface, 13 good */
-}
+  print("");
+  print("=== but x^3 - 2 IS an honest additive example, at the WILD place ===");
+  x32(); }
+x32() = { my(E = ellminimalmodel(ellinit([0,0,0,0,-2])), E6, g = 0);
+  foreach([1,2,3,6], d, my(F = ellminimalmodel(ellinit([-27*E.c4*d^2, -54*E.c6*d^3])), r = elllocalred(F,3));
+    print("   d = ", d, "   type ", kodname(r[2]), "   c_3 = ", r[4]));
+  E6 = ellminimalmodel(ellinit([-27*E.c4*36, -54*E.c6*216]));
+  foreach([1,-1,2,-2,3,-3,6,-6,5,-5,10,-10,15,-15,30,-30,7,-7,21,-21], d,
+    if(elllocalred(ellminimalmodel(ellinit([-27*E6.c4*d^2, -54*E6.c6*d^3])),3)[2] == 1, g = 1));
+  print("   the live class [u*3] has type IV* with c_3 = 3, and a quadratic twist of it good at 3: ",
+        if(g, "exists", "DOES NOT EXIST -- honest additive reduction"));
+  print("   it escapes the parity argument (f does not split), the Phi[2] argument");
+  print("   (ell = 3, and Phi = Z/3 is what survives), and Lemma 7 itself (v = ell)."); }
 main();
 print("");
 print("### level2 finished");
