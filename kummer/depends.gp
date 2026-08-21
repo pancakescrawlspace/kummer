@@ -59,14 +59,20 @@ redtype(E, v) = { my(r = elllocalred(E, v), k = r[2]);
 ismult(E, v) = elllocalred(E, v)[2] > 4;
 
 /* step 5: is some rational ell-line canonical at v, i.e. does its quotient
-   MULTIPLY v(Delta) by ell?  Returns the root for ell = 2 (kernels are (e,0)),
-   1 for ell odd if some ell-isogenous curve does it, 0 if none. */
-canline(Ea, ell, v) = { my(E = ellminimalmodel(Ea), vD = valuation(E.disc, v), lab = [0, 0]);
+   MULTIPLY v(q) by ell?  We use v(q) = -v(j) rather than v(Delta): j is
+   TWIST-INVARIANT, which is why the label may be read off the untwisted curve
+   (document 10.7, the remark after Theorem 5), and unlike v(Delta) it survives
+   additive potentially multiplicative reduction, where a type I_n* fibre adds 6.
+   Returns [1, e] with e the root for ell = 2 (kernels are (e,0)), [1, i] with i
+   the index in the isogeny class for ell odd, [0, 0] if no rational line is
+   canonical. */
+canline(Ea, ell, v) = { my(E = ellminimalmodel(Ea), vq = -valuation(E.j, v), lab = [0, 0]);
+  if(vq <= 0, return(lab));       /* not potentially multiplicative at v */
   if(ell == 2,
     foreach(ratroots(x^3 + Ea.a2*x^2 + Ea.a4*x + Ea.a6), e,
-      if(valuation(ellminimalmodel(ellinit(ellisogeny(Ea, [e,0], 1))).disc, v) == 2*vD, lab = [1, e])),
+      if(-valuation(ellminimalmodel(ellinit(ellisogeny(Ea, [e,0], 1))).j, v) == 2*vq, lab = [1, e])),
     my(cs = ellisomat(E, ell, 1)[1]);
-    for(i = 2, #cs, if(valuation(ellminimalmodel(ellinit(cs[i])).disc, v) == ell*vD, lab = [1, i])));
+    for(i = 2, #cs, if(-valuation(ellminimalmodel(ellinit(cs[i])).j, v) == ell*vq, lab = [1, i])));
   lab; }
 
 /* step 4: which unramified square class makes E_d split multiplicative at v */

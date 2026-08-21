@@ -4028,7 +4028,8 @@ $phi$-stability of $C_"can"$ --- both directions, with no computation.
   #v(1mm)
   (b) $E_d [ell] subset.eq E_d (QQ_v)$;
   #v(1mm)
-  (c) $phi(C_"can") subset.eq.not C_"can"$.
+  (c) $phi(C_"can") subset.eq.not C_"can"$ --- *a condition on $E$, $ell$, $phi$ and $v$ alone,
+  with no reference to $d$* (see the remark below).
   #v(1.5mm)
   Then, writing $phi(s) = a s + b t$ with $b != 0$,
   $ beta_v (P, Q) = b dot (u, w)_ell $
@@ -4044,6 +4045,30 @@ $phi$-stability of $C_"can"$ --- both directions, with no computation.
   $chi_u union chi_w$ evaluated through $e(s,t) = zeta_ell$ --- that is, $b$ times the $ell$-th
   power Hilbert symbol $(u, w)_ell$. Since $zeta_ell in QQ_v$, that symbol is a non-degenerate
   pairing on $QQ_v^times slash (QQ_v^times)^ell$, which is $W_v$ by Lemma 4(b). $qed$
+]
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Condition (c) is twist-invariant.* $C_"can"$ is the kernel of reduction, and quadratic twisting
+  by $d$ is an *isomorphism* $psi : E -> E_d$ over $K = QQ_v (sqrt(d))$. An isomorphism of curves
+  over $K$ is an isomorphism of Néron models over $cal(O)_K$, so it carries formal group to formal
+  group and hence $C_"can" (E)$ to $C_"can" (E_d)$; under the canonical identification
+  $E_d [ell] = E[ell]$ of $bb(F)_ell$-spaces the two lines coincide. So $C_"can"$, and with it
+  condition (c), depends only on $E$, $ell$, $phi$ and $v$.
+
+  #v(1.5mm)
+  The computational shadow of this is that the invariant separating the lines is
+  $v(q) = -v(j)$, and $j$ is twist-invariant. Indeed $C = C_"can"$ iff
+  $v(j_(E slash C)) = ell dot v(j_E)$, which is why `depends.gp` may read the label off the
+  untwisted curve. Note that this formulation, unlike the one in terms of $v(Delta)$, survives
+  *additive potentially multiplicative* reduction, where $v(Delta)$ picks up the extra 6 of a
+  type $"I"_n^*$ fibre.
+
+  #v(1.5mm)
+  What is *not* twist-invariant is the Galois characterisation. Under (b) the local representation
+  on $E_d [ell]$ is trivial, so $C_"can"$ is not visible in the Galois module at all --- it is a
+  property of the curve, of its Néron model. That is precisely the room @sec-14a1 exploits when it
+  records that both global lines become $QQ_p$-rational at the critical place, leaving a third line
+  free to be canonical.
 ]
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
@@ -4099,8 +4124,15 @@ rather than a single place.
   *Corollary 6 (failure of weak approximation).* Let $ell >= 3$, let $phi in "End"_G (E[ell])$ be
   non-scalar, and put
   $ S = {infinity, ell} union { v : v divides N_E } . $
-  Suppose there are a place $p in S$, $p != ell$, and a square class $delta_p$ of $QQ_p^times$ such
-  that hypotheses (a), (b), (c) of Theorem 5 hold for $E_d$, $d in delta_p$. Then for every tuple
+  Suppose there is a place $p in S$, $p != ell$, at which
+  #v(1mm)
+  --- condition (c) of Theorem 5 holds. This is checked *once*, on $E$ itself: it involves no
+  twist, and if it fails at $p$ then no $d$ whatever will make $p$ critical.
+  #v(1mm)
+  --- and there is a square class $delta_p$ of $QQ_p^times$ for which conditions (a) and (b) hold.
+  These are the only $d$-dependent hypotheses, and they depend on $d$ only through $delta_p$.
+  #v(1.5mm)
+  Then for every tuple
   of square classes $(delta_v)_(v in S)$ extending $delta_p$, the surface $X$ satisfies
   $ X(QQ) "is not dense in" product_(v in S) X(QQ_v) . $
   In particular $X$ fails weak approximation.
