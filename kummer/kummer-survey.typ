@@ -4437,6 +4437,52 @@ the isogeny class before any point was looked for.
   $8 slash 8$. The theory said where to look, and what to expect to find.
 ]
 
+=== Additive at the critical prime <sec-dep-addex>
+
+Theorem 8's hypothesis (a) is about $E_d$, not about $E$, and @sec-dep-ram showed that when $E$ is
+of type $"I"_n^*$ --- additive, but *potentially multiplicative* --- the class making $E_d$ split
+is the *ramified* one. None of the eight surfaces above is presented that way: all eight have their
+critical class among $[1]$ and $[u]$. Twisting the defining cubic by its own critical prime,
+$ f_p (x) = p^3 f(x slash p), $
+gives the *same* Kummer surface in a model where $E$ is additive at $p$, and the critical class
+must move to $[p]$ or $[u p]$.
+
+#align(center, table(
+  columns: 5, align: (left, center, center, center, center),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([$f$ after twisting], [$ell$], [type at $p$], [predicted class], [search]),
+  [$x^3 + 28x^2 + 7056x + 27440$], [3], [$"I"_3^*$ at 7], [$[7]$], [44/45, misses $[7]$ at 7],
+  [$x^3 + 13x^2 - 12168x - 1089712$], [3], [$"I"_3^*$ at 13], [$[13]$],
+    [44/45, misses $[13]$ at 13],
+  [$x^3 + 148x^2 - 503792x - 161279152$], [3], [$"I"_3^*$ at 37], [$[37]$],
+    [44/45, misses $[37]$ at 37],
+  [$x^3 + 284x^2 - 348353264x - 2300594642240$], [5], [$"I"_5^*$ at 71], [$[u dot 71]$],
+    [44/45, misses $[u dot 71]$ at 71],
+))
+
+#v(2mm)
+
+(The $ell = 5$ row first reported $7 slash 8$ at $p = 2$; Lemma 3 forbids 2 from being critical
+there, since $zeta_5 in.not QQ_2$, so it had to be search depth, and raising the bound to
+$M_2 = 6000$ gives $8 slash 8$ --- the same episode as in @sec-dep-newcheck.)
+
+Four for four, and the last is the sharpest: the recipe named the *fourth* of the four classes,
+$[u dot 71]$ rather than $[71]$, and that is the one the search misses. Since a surface and its
+twists are the same surface, these are the same four surfaces as before in different models --- so
+what is being tested is not a new obstruction but @sec-dep-ram itself, together with the
+class-label transport of @sec-verify: change the model, and the obstruction reappears in the class
+the recipe says it should.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *At odd $ell$ that is the only way an additive critical place arises.* By Lemma 7 a place with
+  *potentially good* additive reduction has $dim W_v <= 1$ at $ell = 3$ and $W_v = 0$ for
+  $ell >= 5$, so it is dead. Hence every critical place at odd $ell$ has $v(j) < 0$, and whether
+  its model shows multiplicative or additive reduction is a choice of twist. Genuinely additive
+  critical places --- potentially good, with no twist making them multiplicative --- exist only at
+  $ell = 2$, where they are the $"I"_0^*$ fibres with $c_v = 4$ of Proposition 9, and Corollary 6
+  does not reach them.
+]
+
 == What is proved, and what is not <sec-dep-gaps>
 
 *Proved.* The criterion of @sec-dep-crit; Lemmas 1, 2 and 3; the square-class corollary of

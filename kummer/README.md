@@ -29,6 +29,7 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `ledger.gp` | the ledger and star test at level 1 (document §2.3.1): `arenainit`, `reachmap`, `signact`, `ledgeradd`, `maskvec`, `startest`, `runledger`, `rungraded`. Reduction-agnostic arena (§2.3.4): `shortmodel`, `shortdata`, `cosetreps1`, `cosetclose`, `cosetidx`. Sweeps over all tuples (§2.3.6): `sweepgraded`, and the per-tuple search `rungradedk`, `sweeptuples` (on `tuplepart`/`tuplename` from `sadic.gp`); `showcert` for the certificate. |
 | `depends.gp` | **the obstructed set S read off (E, ell, phi) directly** (survey document §10). No local points, no descent images, no symbols: only reduction data. Five steps -- (1) bad primes only, since at good `v != ell` the local condition is `H^1_ur` and at good `v = ell` it is `H^1_f`, both functorial hence phi-stable for EVERY phi; (2) discard `v != 1 mod ell`, since a non-zero alternating `beta_v` needs all of `E_d[ell]` rational over `Q_v`; (3) keep multiplicative `v` with `ell | v(Delta_min)`; (4) the live square class is the unique unramified one making `E_d` SPLIT; (5) phi decides -- live iff the canonical line `C_can = mu_ell` is not phi-stable, detected by which `ell`-isogeny MULTIPLIES `v(Delta)` by `ell`. `sqreps`, `tw`, `ratroots`, `ntorsx`, `redtype`, `canline`, `splitclass`, `run`. Output: `results/survey-depends.txt`. |
 | `corollary6.gp` | **search for surfaces with exactly one critical prime** (survey document §10.9). Uses Corollary 6 plus Theorem 8: `ell` odd, `E[ell]` decomposable, `ell` NOT dividing `N_E` (so Lemma 1(b) kills the wild place), and exactly one bad prime passing (a) split multiplicative, (b) full local `ell`-torsion, (c) no rational line canonical. Scans the universal 3-torsion curve `y^2+axy+by=x^3` at `ell=3` and the Tate 5-torsion form at `ell=5`, since decomposable `E[ell]` is rare in a naive box. `monicF`, `nisog`, `canrational`, `splitclass`, `fulltors`, `sigma1`, `scan`, `scan5`. Output: `results/survey-corollary6.txt`. |
+| `corollary6-additive.gp` | **obstructed surfaces whose curve is ADDITIVE at the critical prime** (survey document §10.9.2). Theorem 8's hypothesis (a) is about `E_d`, not `E`, and by §10.8.1 the split class is RAMIFIED when `E` is type `I_n*`. Twisting the defining cubic by its own critical prime, `f_p(x) = p^3 f(x/p)` -- the SAME Kummer surface -- gives a model additive at `p`, and the critical class must move to `[p]` or `[u*p]`. Four cases, all confirmed by `runsurface`. Output: `results/survey-corollary6-additive.txt`. |
 | `corollary6-check.gp` | **the §3 density check on those predictions** (survey document §10.9.1). Runs `runsurface` with the survey's own parameters over all 45 odd primes `<= 200` plus the eight classes at 2. Output: `results/survey-corollary6-check.txt`. |
 | `additive.gp` | **the additive places** (survey document §10.8). Three computations: (1) the split-multiplicative square class can be RAMIFIED -- 11a1 twisted by 11 is `I5*` at 11, and it is `d = 11` that returns split multiplicative reduction, so Step 4 must scan all four classes and potentially multiplicative additive places are covered by Theorem 5 after all; (2) Lemma 7, `W_v = Phi_v/ell` at additive `v` not dividing `ell`, verified by measuring `|W_v|` against `|Phi/2|` (note `Phi = (Z/2)^2` for `I_n*` with `n` EVEN, not `Z/4`); (3) at `I0*` with `c_v = 4` the pairing is a Hilbert symbol of ROOT DIFFERENCES, checked against a direct search for all three phi on four curves -- exact agreement, and these places are LIVE. `kodname`, `splitscan`, `phimod2`, `wsize`, `lemma7`, `ci`, `imgs`, `predict`, `direct`, `census`, `run`. Output: `results/survey-additive.txt`. |
 | `depends-15a1-sigma.gp` | **the full `Sigma(d)` for both phi on 15a1**, `d = -1` (survey document §10.5.1). Prompted by an apparent conflict: §3 witnesses every class of 15a1 at `p = 3`, while §10's recipe reports 3 as critical for the phi pairing `c_2, c_3`. No conflict: `phi_A = (c_1,c_3)` has `Sigma = {5}` (the §7.1 theorem), while `phi_B = (c_2,c_3)` has `Sigma = {infinity, 2, 3}` -- a three-place correlation with no constraint at 3 alone. Also shows `beta_oo =/= 0` on the ONE-dimensional `W_oo`, so beta is not alternating for `phi_B`: the norm lemma is about a pair of descent maps, not about the curve. `realchk`, `fin`. Output: `results/survey-15a1-sigma.txt`. |
@@ -1517,6 +1518,31 @@ a second look: at `p = 2` the surface `N_E = 38` first reported 6/8. Theorem 8
 says 2 cannot be critical at `ell = 3` (full rationality of `E_d[3]` over `Q_2`
 would need `zeta_3` in `Q_2`), so that had to be search depth -- raising the
 bound from 300 to 4000 gives 8/8.
+
+**Additive at the critical prime (§10.9.2).** None of the eight has its critical
+class among the ramified ones. But hypothesis (a) is about `E_d`, not `E`, and by
+§10.8.1 the split class is RAMIFIED when `E` is of type `I_n*`. Twisting the
+defining cubic by its own critical prime, `f_p(x) = p^3 f(x/p)`, gives the SAME
+surface in a model where `E` is additive at `p`, and the critical class must move:
+
+| `f` after twisting | `ell` | type at `p` | predicted class | search |
+|---|---|---|---|---|
+| `x^3 + 28x^2 + 7056x + 27440` | 3 | `I3*` at 7 | `[7]` | 44/45, misses `[7]` |
+| `x^3 + 13x^2 - 12168x - 1089712` | 3 | `I3*` at 13 | `[13]` | 44/45, misses `[13]` |
+| `x^3 + 148x^2 - 503792x - 161279152` | 3 | `I3*` at 37 | `[37]` | 44/45, misses `[37]` |
+| `x^3 + 284x^2 - 348353264x - 2300594642240` | 5 | `I5*` at 71 | `[u*71]` | 44/45, misses `[u*71]` |
+
+Four for four, the last being sharpest: the recipe named the FOURTH of the four
+classes and that is the one the search misses. These are the same surfaces in
+different models, so what is tested is §10.8.1 plus the class-label transport --
+change the model and the obstruction reappears where the recipe says.
+
+**At odd `ell` that is the only way an additive critical place arises**: by
+Lemma 7 a potentially GOOD additive place has `dim W_v <= 1` at `ell = 3` and
+`W_v = 0` for `ell >= 5`, so it is dead. Every critical place at odd `ell` has
+`v(j) < 0`, and multiplicative-versus-additive is a choice of twist. Genuinely
+additive critical places exist only at `ell = 2`, as the `I0*` fibres with
+`c_v = 4` of Proposition 9, which Corollary 6 does not reach.
 
 ## beta_3 =/= 0 is now proved (document §5.1.5)
 
