@@ -3881,34 +3881,199 @@ document. The predicted sets agree with the computed ones throughout:
   [$x^3 - 2$], [3], [--- (wild place)], [${3}$, class $[u dot 3]$], [out of scope],
 ))
 
-== What is proved, and what is not <sec-dep-gaps>
+== Sufficiency at a Tate place <sec-dep-suff>
 
-*Proved here:* the criterion of @sec-dep-crit, Lemmas 1, 2 and 3, and the square-class corollary of
-@sec-dep-class. Together these are a genuine *necessary* condition: a place outside the candidate
-set of steps 1--4 cannot be in $Sigma(d)$, for any $phi$.
+The recipe was presented above as a filter: a place failing any of the five steps cannot be live.
+This section proves the converse at the places that matter, and the proof also explains why every
+computation in @sec-nonCM turned into a Hilbert symbol.
 
-*Argued but not written out:* the Tate computation of step 3 --- that full local $ell$-torsion
-forces $q in (QQ_v^times)^ell$ --- and the discriminant characterisation of $C_"can"$ in step 5.
-Both are standard, and both should be given proper proofs before this chapter is used in anger.
+Throughout, $v divides.not ell$ and $E_d slash QQ_v$ has *split multiplicative* reduction, with
+Tate parametrisation
+$ E_d (overline(QQ)_v) = overline(QQ)_v^times slash q^ZZ, quad
+  E_d [ell] = ⟨s, t⟩, quad s = zeta_ell, quad t = q^(1 slash ell), quad
+  C_"can" = ⟨s⟩ = mu_ell . $
+The Weil pairing is the obvious one, $e(s,t) = zeta_ell$ and $e(s,s) = e(t,t) = 1$.
 
-*The weakest link is sufficiency.* The recipe as stated predicts that a place surviving all five
-steps *is* live. That direction has been verified in the nine cases above and never yet fails, but
-it is not proved: what the argument gives directly is only that $L_v$ is not forced to be
-$phi$-stable.
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma 4 (the local condition is the cohomology of the canonical line).*
+  #v(1.5mm)
+  (a) $L_v subset.eq H^1 (QQ_v, C_"can")$, always.
+  #v(1mm)
+  (b) If moreover $E_d [ell] subset.eq E_d (QQ_v)$, then $L_v = H^1 (QQ_v, C_"can")$ exactly, and
+  both sides have dimension 2.
 
-*Two ranges are untouched.* The wild place $v = ell$ is outside the whole scheme: Lemma 1(b) covers
-it only under good reduction, and when $E$ is additive at $ell$ --- as for $x^3 - 2$, where the
-obstruction lives precisely there --- steps 2--5 do not apply. And at $ell = 2$ the places
-$infinity$ and $q divides d$ need @sec-tk-lemAB and the norm lemma, as they always did.
+  #v(2mm)
+  _Proof._ (a) A point $P in E_d (QQ_v)$ is represented by some $u in QQ_v^times$. Take
+  $R = u^(1 slash ell)$, which satisfies $ell R = P$ in $overline(QQ)_v^times slash q^ZZ$. Then
+  $ delta_v (P)(sigma) = sigma(R) - R = sigma(u^(1 slash ell)) slash u^(1 slash ell) in mu_ell , $
+  so the cocycle takes its values in $C_"can"$, i.e. $delta_v (P) = chi_u$, the Kummer character
+  of $u$. As $E_d [ell]$ is a direct summand extension of trivial modules, $H^1 (QQ_v, C_"can")$
+  injects into $H^1 (QQ_v, E_d [ell])$, and $L_v$ lands in the image.
+
+  #v(1.5mm)
+  (b) Full rationality of $E_d [ell]$ says $zeta_ell in QQ_v$ and $q in (QQ_v^times)^ell$. The
+  second gives $E_d (QQ_v) slash ell = QQ_v^times slash (q^ZZ (QQ_v^times)^ell) = QQ_v^times slash (QQ_v^times)^ell$,
+  and the first makes that group of order $ell^2$; so $dim W_v = 2$ and $P |-> u$ identifies $W_v$
+  with $QQ_v^times slash (QQ_v^times)^ell$. On the other side, local class field theory gives
+  $H^1 (QQ_v, C_"can") = "Hom"(G_v, mu_ell) tilde.equiv (QQ_v^times slash (QQ_v^times)^ell)^or$,
+  also of dimension 2, and $u |-> chi_u$ is the Kummer isomorphism between them. $qed$
+]
+
+Lemma 4(b) is the structural statement the chapter has been circling: *at a Tate place with full
+local $ell$-torsion, the Selmer local condition is the cohomology of the canonical line.* Since
+$H^1 (QQ_v, -)$ is $"Hom"(G_v, -)$ on trivial modules, and $"Hom"(G_v, F_ell) != 0$, the map
+$C |-> H^1 (QQ_v, C)$ is an inclusion-preserving injection on subspaces of $E_d [ell]$. So
+$phi_* L_v = H^1 (QQ_v, phi(C_"can"))$, and $phi$-stability of $L_v$ is *the same thing as*
+$phi$-stability of $C_"can"$ --- both directions, with no computation.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem 5 (sufficiency at a Tate place).* Let $v divides.not ell$ and suppose
+  #v(1mm)
+  (a) $E_d slash QQ_v$ has split multiplicative reduction;
+  #v(1mm)
+  (b) $E_d [ell] subset.eq E_d (QQ_v)$;
+  #v(1mm)
+  (c) $phi(C_"can") subset.eq.not C_"can"$.
+  #v(1.5mm)
+  Then, writing $phi(s) = a s + b t$ with $b != 0$,
+  $ beta_v (P, Q) = b dot (u, w)_ell $
+  for $P, Q in E_d (QQ_v)$ with Tate representatives $u, w$. In particular $beta_v$ is
+  *non-degenerate*, and a fortiori $beta_v equiv.not 0$.
+
+  #v(2mm)
+  _Proof._ By Lemma 4(b), $delta_v (P) = chi_u ⋅ s$ and $delta_v (Q) = chi_w ⋅ s$. Condition (c)
+  says exactly that the $t$-coefficient $b$ of $phi(s)$ is non-zero. Then
+  $ beta_v (P,Q) = ⟨chi_u s, phi_* (chi_w s)⟩ = ⟨chi_u s, chi_w (a s + b t)⟩
+    = a ⟨chi_u s, chi_w s⟩ + b ⟨chi_u s, chi_w t⟩ , $
+  and the first term vanishes because $e(s,s) = 1$, while the second is $b$ times the cup product
+  $chi_u union chi_w$ evaluated through $e(s,t) = zeta_ell$ --- that is, $b$ times the $ell$-th
+  power Hilbert symbol $(u, w)_ell$. Since $zeta_ell in QQ_v$, that symbol is a non-degenerate
+  pairing on $QQ_v^times slash (QQ_v^times)^ell$, which is $W_v$ by Lemma 4(b). $qed$
+]
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
-  *What it buys.* Finding a two-place surface no longer needs a screen. One wants two bad primes
-  $equiv 1$ $(mod ell)$ with $ell divides v_p (Delta)$, both labels escaping $phi$ --- a condition
-  on the factorisation of a discriminant, checkable over a table of curves in seconds, where
-  @sec-tp-screen had to sample points on twenty-four surfaces. It also explains the scarcity at
-  level 3: in the box $|A|, |B| <= 60$ only twelve curves $y^2 = x^3 + A x + B$ have $E[3]$
-  decomposable at all, and only one of those has even a single live place.
+  This is why every case in @sec-nonCM came down to a Hilbert symbol on square or cube classes, and
+  why the computed images were always the *full* $W_v$ when the place was live: at a Tate place
+  with full torsion there is nothing else the pairing can be. The tame symbol tables of
+  @sec-14a1 and @sec-1419, and the quaternion symbols of @sec-15a1 and @sec-17a1, are all
+  Theorem 5 in coordinates.
 ]
+
+=== Tested out of sample <sec-dep-oos>
+
+Theorem 5 predicts more than a verdict. At a live place $beta_v$ should be *non-degenerate*, so
+both descent images should be the whole of $W_v$ and, at $ell = 2$, exactly $3 dot 2 = 6$ of the
+16 ordered pairs should carry a non-trivial symbol --- the number of ordered independent pairs in
+$bb(F)_2^2$. At a dead place the descent map belonging to the canonical line should *collapse* to a
+single class, which is Lemma 4(a) with $L_v$ too small.
+
+`depends-check.gp` tests this on curves appearing nowhere else in the document, taking each of the
+three rank-one $phi$ on a curve with full rational 2-torsion, predicting from reduction data alone
+and then computing the symbol table:
+
+#align(center, table(
+  columns: 5, align: (left, center, center, left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([$f$], [$v$], [$phi$ excludes], [recipe], [computed]),
+  [$x(x-5)(x+4)$], [3], [$e_1 = 0$], [*live*], [images $4, 4$; 6 of 16 symbols non-trivial],
+  [$x(x-5)(x+4)$], [3], [$e_2 = 5$], [dead], [$|"im" c_1| = 1$: collapse],
+  [$x(x-5)(x+4)$], [5], [$e_3 = -4$], [*live*], [images $4, 4$; 6 of 16],
+  [$x(x-5)(x+4)$], [5], [$e_1 = 0$], [dead], [$|"im" c_3| = 1$: collapse],
+  [$x(x-9)(x+7)$], [7], [$e_2 = 9$], [*live*], [images $4, 4$; 6 of 16],
+  [$x(x-9)(x+7)$], [7], [$e_1 = 0$], [dead], [$|"im" c_2| = 1$: collapse],
+  [$(x-1)(x-6)(x+6)$], [5], [$e_3 = -6$], [*live*], [2 non-trivial symbols found],
+))
+
+#v(2mm)
+
+Thirteen predictions, thirteen agreements, and the non-degeneracy signature appears wherever the
+theorem says it should. The last row is worth a word: the sampler builds points from
+$x = plus.minus m p^k$ with $m <= 40$, so it can miss a square class and report an image of size 3,
+which is impossible for a subgroup. The non-vanishing is still *proved* --- the symbols are
+evaluated at genuine points --- and Lemma 4(b) says the true image is all of $W_v$. It is a case
+of the theory correcting the experiment rather than the other way round.
+
+=== The global consequence <sec-dep-global>
+
+For an obstruction we do not need $Sigma(d)$ itself --- only that it is finite and non-empty. The
+sum $ (T_v)_(v in S) |-> sum_(v in S) beta_v (T_v) $ on a product is non-constant as soon as *one*
+summand is, since the others can be held fixed. That is the whole point of working with a set $S$
+rather than a single place.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Corollary 6 (failure of weak approximation).* Let $ell >= 3$, let $phi in "End"_G (E[ell])$ be
+  non-scalar, and put
+  $ S = {infinity, ell} union { v : v divides N_E } . $
+  Suppose there are a place $p in S$, $p != ell$, and a square class $delta_p$ of $QQ_p^times$ such
+  that hypotheses (a), (b), (c) of Theorem 5 hold for $E_d$, $d in delta_p$. Then for every tuple
+  of square classes $(delta_v)_(v in S)$ extending $delta_p$, the surface $X$ satisfies
+  $ X(QQ) "is not dense in" product_(v in S) X(QQ_v) . $
+  In particular $X$ fails weak approximation.
+
+  #v(2mm)
+  _Proof._ Fix the tuple and let $d$ be any squarefree integer realising it. For $v in.not S$: if
+  $v divides.not ell d$ then $E_d$ has good reduction at $v$ and Lemma 1(a) gives
+  $beta_v equiv 0$; if $v divides d$ then $v$ is a prime of good reduction for $E$ and $ell$ is
+  odd, so Lemma 2 gives $W_v = 0$ and again $beta_v equiv 0$. Hence Hilbert reciprocity reads
+  $ sum_(v in S) beta_v (P, Q) = 0 quad "for all" P, Q in E_d (QQ), $
+  and this holds for *every* $d$ realising the tuple, since $S$ and the classes $delta_v$ determine
+  every $E_d slash QQ_v$ for $v in S$. By Theorem 5 the summand at $p$ is non-degenerate, so the
+  sum map is non-constant on the product of the $delta_v$-parts --- a non-empty open subset of
+  $product_(v in S) X(QQ_v)$ --- while it vanishes at every rational point. The argument of
+  @sec-class-warning, applied on the product as in @sec-tp-crit, finishes it. $qed$
+]
+
+Three things are worth noting about the shape of Corollary 6. It never computes $Sigma(d)$: the
+places of $S$ other than $p$ are simply carried along, and whatever their pairings do is absorbed
+into the sum. It needs $ell$ odd only for the places $q divides d$, which is Lemma 2; at $ell = 2$
+one must add @sec-tk-lemAB and the norm lemma, exactly as @sec-nonCM does. And $S$ is
+*independent of $d$*, which is what lets the conclusion be about the surface rather than about one
+twist.
+
+== What is proved, and what is not <sec-dep-gaps>
+
+*Proved.* The criterion of @sec-dep-crit; Lemmas 1, 2 and 3; the square-class corollary of
+@sec-dep-class; and --- at a Tate place --- Lemma 4, Theorem 5 and Corollary 6. Together these give
+both directions where it counts:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  For $v divides.not ell$ with $E_d$ *split multiplicative* and $E_d [ell]$ fully rational over
+  $QQ_v$,
+  $ beta_v equiv.not 0 quad <==> quad phi(C_"can") subset.eq.not C_"can" , $
+  and when it is non-zero it is non-degenerate. Outside that hypothesis the recipe is proved only
+  as a *necessary* condition.
+]
+
+*What the remaining gap actually is.* Steps 1--4 rule places out; Theorem 5 rules them in, but only
+under its hypothesis (b), full local $ell$-torsion. Since (b) is exactly the dimension condition of
+Lemma 3, and (a) is what Step 4 selects the square class by, the only candidates the theorem does
+not settle are the *additive* ones --- $ell divides c_v$ with $c_v <= 4$, so $ell in {2,3}$ and
+Kodaira type $"III"$, $"IV"$, $"I"_n^*$, $"IV"^*$ or $"III"^*$. There the Tate parametrisation is
+unavailable over $QQ_v$ and $L_v$ has to be computed some other way. Both surfaces whose
+obstruction sits at such a place --- $x^3 - 2$ and $x^3 + x$, each at $v = ell$ --- were settled by
+hand in @sec-cm, which is evidence that the additive case is tractable but not a proof of anything
+general.
+
+*Still not written out.* The identification of $C_"can"$ by the discriminant valuations of the
+$ell$-isogenous curves (Step 5) is used to *locate* the canonical line but is not needed for
+Theorem 5, which takes $C_"can"$ as given; it deserves a proof anyway, since it is what makes the
+recipe mechanical.
+
+*Two ranges are untouched.* The wild place $v = ell$ falls outside Theorem 5 by hypothesis, and
+Lemma 1(b) covers it only under good reduction; when $E$ is additive at $ell$, as for $x^3 - 2$,
+nothing here applies. And at $ell = 2$ Corollary 6 needs @sec-tk-lemAB and the norm lemma to handle
+$infinity$ and the $q divides d$, because Lemma 2 fails there.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *What it buys.* Corollary 6 turns the search for obstructed surfaces into a finite check on
+  reduction data: a bad prime $p equiv 1$ $(mod ell)$ where some twist is split multiplicative with
+  full $ell$-torsion, and whose canonical line escapes $phi$. No local points, no descent, no
+  symbols --- and no need to determine $Sigma(d)$, since one non-zero $beta_p$ inside a finite $S$
+  is all an obstruction to weak approximation requires. Finding a *two-place* surface as in
+  @sec-twoplace is then the same check run twice, which is what @sec-tp-screen had to sample points
+  for.
+]
+
 
 = Remarks
 

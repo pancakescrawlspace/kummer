@@ -1,0 +1,26 @@
+=== out-of-sample: curves that appear nowhere in the document ===
+
+f = (x-0)(x-5)(x--4)   N = 240   phi = (c_2, c_3), excluding e_1 = 0
+   v = 3   split class d = 2   2-torsion x-coords 3/3   canonical line e_1   RECIPE: LIVE      DIRECT: |im c_a| = 4 |im c_b| = 4  non-trivial symbols 6/16   AGREE
+   v = 5   split class d = 1   2-torsion x-coords 3/3   canonical line e_3   RECIPE: dead      DIRECT: |im c_a| = 4 |im c_b| = 1  non-trivial symbols 0/4   AGREE
+
+f = (x-0)(x-5)(x--4)   N = 240   phi = (c_1, c_3), excluding e_2 = 5
+   v = 3   split class d = 2   2-torsion x-coords 3/3   canonical line e_1   RECIPE: dead      DIRECT: |im c_a| = 1 |im c_b| = 4  non-trivial symbols 0/4   AGREE
+   v = 5   split class d = 1   2-torsion x-coords 3/3   canonical line e_3   RECIPE: dead      DIRECT: |im c_a| = 4 |im c_b| = 1  non-trivial symbols 0/4   AGREE
+
+f = (x-0)(x-5)(x--4)   N = 240   phi = (c_1, c_2), excluding e_3 = -4
+   v = 3   split class d = 2   2-torsion x-coords 3/3   canonical line e_1   RECIPE: dead      DIRECT: |im c_a| = 1 |im c_b| = 4  non-trivial symbols 0/4   AGREE
+   v = 5   split class d = 1   2-torsion x-coords 3/3   canonical line e_3   RECIPE: LIVE      DIRECT: |im c_a| = 4 |im c_b| = 4  non-trivial symbols 6/16   AGREE
+
+f = (x-0)(x-9)(x--7)   N = 21   phi = (c_2, c_3), excluding e_1 = 0
+   v = 3   split class d = 1   2-torsion x-coords 3/3   canonical line e_3   RECIPE: dead      DIRECT: |im c_a| = 4 |im c_b| = 1  non-trivial symbols 0/4   AGREE
+   v = 7   split class d = 3   2-torsion x-coords 3/3   canonical line e_2   RECIPE: dead      DIRECT: |im c_a| = 1 |im c_b| = 4  non-trivial symbols 0/4   AGREE
+
+f = (x-0)(x-9)(x--7)   N = 21   phi = (c_1, c_3), excluding e_2 = 9
+   v = 3   split class d = 1   2-torsion x-coords 3/3   canonical line e_3   RECIPE: dead      DIRECT: |im c_a| = 4 |im c_b| = 1  non-trivial symbols 0/4   AGREE
+   v = 7   split class d = 3   2-torsion x-coords 3/3   canonical line e_2   RECIPE: LIVE      DIRECT: |im c_a| = 4 |im c_b| = 4  non-trivial symbols 6/16   AGREE
+
+f = (x-1)(x-6)(x--6)   N = 840   phi = (c_1, c_2), excluding e_3 = -6
+   v = 3   split class d = 2   2-torsion x-coords 3/3   canonical line e_1   RECIPE: dead      DIRECT: |im c_a| = 1 |im c_b| = 4  non-trivial symbols 0/4   AGREE
+   v = 5   split class d = 2   2-torsion x-coords 3/3   canonical line e_3   RECIPE: LIVE      DIRECT: |im c_a| = 3 |im c_b| = 3  non-trivial symbols 2/9   AGREE
+   v = 7   split class d = 1   2-torsion x-coords 3/3   canonical line e_2   RECIPE: dead      DIRECT: |im c_a| = 4 |im c_b| = 1  non-trivial symbols 0/4   AGREE
