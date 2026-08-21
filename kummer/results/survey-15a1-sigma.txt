@@ -1,0 +1,19 @@
+=== phi_B = (c_2, c_3) on 15a1, d = -1 (class [u] at 3, class [1] at 5) ===
+ real place:
+   d = -1  real roots [-17, -1, 8]   phi = (c_2, c_3)
+      egg: x = -9   c_2 = -8   c_3 = -17   symbol = -1
+      unbounded: x = 23   c_2 = 24   c_3 = 15   symbol = 1
+ finite places:
+   d = -1  v = 2  phi = (c_2, c_3)   |im c_a| = 7  |im c_b| = 2   non-trivial symbols 3/14   ==> LIVE
+   d = -1  v = 3  phi = (c_2, c_3)   |im c_a| = 4  |im c_b| = 4   non-trivial symbols 6/16   ==> LIVE
+   d = -1  v = 5  phi = (c_2, c_3)   |im c_a| = 1  |im c_b| = 4   non-trivial symbols 0/4   ==> trivial
+
+=== the document's phi_A = (c_1, c_3) at the same d, for contrast ===
+ real place:
+   d = -1  real roots [-17, -1, 8]   phi = (c_1, c_3)
+      egg: x = -9   c_1 = 8   c_3 = -17   symbol = 1
+      unbounded: x = 23   c_1 = 40   c_3 = 15   symbol = 1
+ finite places:
+   d = -1  v = 2  phi = (c_1, c_3)   |im c_a| = 4  |im c_b| = 2   non-trivial symbols 0/8   ==> trivial
+   d = -1  v = 3  phi = (c_1, c_3)   |im c_a| = 1  |im c_b| = 4   non-trivial symbols 0/4   ==> trivial
+   d = -1  v = 5  phi = (c_1, c_3)   |im c_a| = 4  |im c_b| = 4   non-trivial symbols 6/16   ==> LIVE

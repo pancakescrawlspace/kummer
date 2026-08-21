@@ -3824,7 +3824,8 @@ line, and the labels separate them. For $f = (x-17)(x-1)(x+8)$:
 #v(2mm)
 
 So the recipe predicts $S = {5}$ in class $[1]$ for the $phi$ of @sec-15a1 --- which is the theorem
-proved there --- and $S = {3}$ in class $[u]$ for the $phi$ pairing $c_2$ with $c_3$. That second
+proved there --- and that $3 in Sigma(d)$ in class $[u]$ for the $phi$ pairing $c_2$ with $c_3$,
+where @sec-15a1 has nothing to say. That second
 prediction was made from the table above and then tested directly:
 
 #align(center, table(
@@ -3839,9 +3840,41 @@ prediction was made from the table above and then tested directly:
 
 #v(2mm)
 
-The two obstructed sets are disjoint, and the collapse of $c_i$ at the place where $C_i$ is
-canonical is visible in the second column of each row. The same curve, the same $ell$, two
-endomorphisms, two different obstructed primes.
+The collapse of $c_i$ at the place where $C_i$ is canonical is visible in the second column of each
+row. The same curve, the same $ell$, two endomorphisms, two different critical primes.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *But $Sigma(d)$ is not ${3}$, and the recipe never said it was.* At $ell = 2$ steps 1--5 govern
+  only the *odd places of multiplicative reduction*: Lemma 2 fails, so $infinity$ and the
+  $q divides d$ are outside the scheme, and $v = 2$ is the wild place. @sec-15a1 supplies exactly
+  those places for its own $phi$ --- Lemma C is a statement about $c_1$ and $c_3$ --- and supplies
+  nothing for any other. Computing them for $phi = (c_2, c_3)$ at $d = -1$:
+
+  #v(2mm)
+  #align(center, table(
+    columns: 5, align: (left, center, center, center, center),
+    stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+    table.header([$phi$], [$infinity$], [$2$], [$3$], [$5$]),
+    [$(c_1, c_3)$ --- @sec-15a1's], [trivial], [trivial], [trivial], [*live*],
+    [$(c_2, c_3)$ --- the other], [*live*], [*live*], [*live*], [trivial],
+  ))
+
+  #v(2mm)
+  So $Sigma_(phi_B)(-1) = {infinity, 2, 3}$: reciprocity gives
+  $beta_infinity + beta_2 + beta_3 = 0$, a *three-place correlation*, and no constraint at $3$
+  alone. That is @sec-tp-invisible again, and it is why @sec-fail's search --- which tests one
+  prime at a time --- witnesses every class of `15a1` at $p = 3$ and fails only at $p = 5$. There
+  is no conflict between the two.
+]
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  The real place is also a reminder that the *alternating* property is $phi$-dependent. For
+  $phi_B$ and $d < 0$ both $c_2$ and $c_3$ are negative on the egg of $E_d (RR)$, so
+  $beta_infinity != 0$ on the *1-dimensional* $W_infinity$ --- which an alternating form could not
+  manage. Lemma 3 therefore does not even apply to $phi_B$ at $infinity$: the norm lemma of
+  @sec-alt buys the alternating property for a particular pair of descent maps, not for the
+  curve.
+]
 
 == The recipe <sec-dep-recipe>
 
@@ -3859,7 +3892,11 @@ endomorphisms, two different obstructed primes.
   5. Label $v$ by the canonical line, via the $ell$-isogeny that multiplies $v(Delta)$ by $ell$;
      keep $v$ iff $phi$ does not stabilise the label.
   #v(1.5mm)
-  Then $S = Sigma(d)$, and $S$ together with its supersets are the obstructed sets.
+  For $ell$ odd this is $Sigma(d)$ entire, and $S = Sigma(d)$ together with its supersets are the
+  obstructed sets. *At $ell = 2$ it is only $Sigma(d)$ intersected with the odd places of
+  multiplicative reduction*: $infinity$, $v = 2$ and the $q divides d$ must be added by hand, with
+  @sec-tk-lemAB and the norm lemma, and until that is done a one-element output does *not* mean a
+  one-place obstruction. @sec-dep-15a1 shows what goes wrong if this is forgotten.
 ]
 
 `depends.gp` runs exactly this, and `results/survey-depends.txt` is its output on every case in the
@@ -3876,10 +3913,18 @@ document. The predicted sets agree with the computed ones throughout:
   [`15a4`], [2], [${5}$, class $[1]$], [${5}$, class $[1]$], [yes],
   [`17a1`], [2], [${17}$, class $[1]$], [${17}$, class $[1]$], [yes],
   [@sec-tp-example], [2], [${5, 13}$, class $[1]$ of each], [${5,13}$, class $[1]$ of each], [yes],
-  [`15a1`, $phi$ excl. $e=1$], [2], [${5}$, class $[1]$], [${5}$, class $[1]$], [yes],
-  [`15a1`, $phi$ excl. $e=17$], [2], [${3}$, class $[u]$], [${3}$, class $[u]$], [yes],
+  [`15a1`, $phi$ excl. $e=1$], [2], [$5$ in, $3$ out], [$Sigma = {5}$, class $[1]$], [yes],
+  [`15a1`, $phi$ excl. $e=17$], [2], [$3$ in, $5$ out], [$Sigma = {infinity, 2, 3}$], [yes #super[\#]],
   [$x^3 - 2$], [3], [--- (wild place)], [${3}$, class $[u dot 3]$], [out of scope],
 ))
+
+#v(2mm)
+
+The marked row is the one to read carefully. The recipe's two assertions --- $3$ is critical, $5$
+is not --- are both correct, and the computed $Sigma$ contains two further places that the recipe
+does not claim to see, because at $ell = 2$ it covers only the odd multiplicative ones. For the
+other eight rows the missing places were supplied by @sec-nonCM for the $phi$ in question, which is
+why $Sigma$ came out equal to the predicted set there.
 
 == Sufficiency at a Tate place <sec-dep-suff>
 
@@ -4063,6 +4108,15 @@ recipe mechanical.
 Lemma 1(b) covers it only under good reduction; when $E$ is additive at $ell$, as for $x^3 - 2$,
 nothing here applies. And at $ell = 2$ Corollary 6 needs @sec-tk-lemAB and the norm lemma to handle
 $infinity$ and the $q divides d$, because Lemma 2 fails there.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *The $ell = 2$ caveat is not a formality.* @sec-dep-15a1 exhibits a $phi$ on `15a1` for which the
+  recipe correctly reports that $3$ is critical, while $Sigma(d) = {infinity, 2, 3}$ --- so there
+  is no obstruction at $3$ alone, and @sec-fail's search rightly witnesses that class. At $ell = 2$
+  a one-element output of @sec-dep-recipe is a statement about *one* place being critical, never
+  about the others being inert. Corollary 6 is stated for $ell >= 3$ for exactly this reason, and
+  the honest level-2 statement needs the structural lemmas of @sec-toolkit alongside it.
+]
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   *What it buys.* Corollary 6 turns the search for obstructed surfaces into a finite check on

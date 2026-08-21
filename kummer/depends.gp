@@ -25,6 +25,15 @@
         C_can is detected without local points -- quotienting by it MULTIPLIES
         v(Delta) by ell, an etale line DIVIDES it by ell.
 
+   CAVEAT AT ell = 2.  Step 1 leans on Lemma 2, which needs ell odd.  At ell = 2
+   the output is Sigma(d) intersected with the ODD MULTIPLICATIVE places: it says
+   which of those are critical, and NOTHING about infinity, v = 2, or the q | d,
+   which need 6.2.2 and the norm lemma and are phi-dependent.  A one-element
+   output at ell = 2 is therefore NOT a one-place obstruction.  Worked example:
+   for 15a1 with phi = (c_2,c_3) the recipe correctly reports 3 as critical, but
+   Sigma(-1) = {infinity, 2, 3}, so nothing is obstructed at 3 alone -- which is
+   why the chapter 3 search witnesses that class.  See document 10.5.1.
+
    Functions: sqreps, tw, ratroots, ntorsx, redtype, canline, splitclass, run.
    Output: results/survey-depends.txt
    ============================================================================ */
@@ -88,7 +97,11 @@ run(nam, ainv, ell, excl, obs) = { my(Ea = ellinit(ainv), E, N, bad, S = List())
           "   torsion ", nt, "/", needx(ell),
           "   canonical line ", if(lab[1] == 0, "irrational", if(ell == 2, lab[2], "rational")),
           if(live, "      ==> LIVE", concat(["      dead -- ", why]))));
-  print("    PREDICTED S = ", Vec(S), "        observed: ", obs); }
+  if(ell == 2,
+    print("    CRITICAL PLACES FOUND = ", Vec(S),
+          "   (ell = 2: infinity, v = 2 and the q | d are NOT covered -- this is NOT all of Sigma)"),
+    print("    PREDICTED S = ", Vec(S)));
+  print("        observed: ", obs); }
 
 main() = {
   print("=== the recipe of chapter 10, run on every case in the document ===");
@@ -108,7 +121,8 @@ main() = {
   run("15a1, phi excluding e = 1",  [0,-10,0,-127,136], 2, 1,  "5, class [1]");
   print("");
   print("The other phi, pairing c_2 and c_3, excludes e = 17.  PREDICTION:");
-  run("15a1, phi excluding e = 17", [0,-10,0,-127,136], 2, 17, "not yet computed");
+  run("15a1, phi excluding e = 17", [0,-10,0,-127,136], 2, 17,
+      "3 IS critical (confirmed), but Sigma(-1) = {infinity, 2, 3}: see 10.5.1");
 }
 main();
 print("");
