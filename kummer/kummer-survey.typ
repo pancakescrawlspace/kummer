@@ -1873,7 +1873,7 @@ That is the Kummer map before any point is chosen; everything below is $tau$ pus
 Let $A = E times E$ with projections $p_1, p_2$, and let $phi in "End"_G (E[n])$.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  $ cal(A)_phi := e_(n *) ( p_1^* tau space union space phi_* p_2^* tau )
+  $ cal(A)_phi := e_(n *) ( p_1^* tau space union space phi_* (p_2^* tau) )
     space in space H^2 (A, mu_n) , $
   where $union$ is the cup product and $e_(n*)$ pushes forward along the Weil pairing
   $e_n : E[n] times.o E[n] -> mu_n$. Its image under
@@ -2521,7 +2521,7 @@ unramified class, without knowing it.
   [the wild cubic symbol at $v = 3$ is computable],
     [*implemented* --- validated non-degenerate, skew, Steinberg],
   [$beta_3 equiv.not 0$], [*evaluated* --- symplectic Gram matrix on $W_3$],
-  [the general construction $cal(A)_phi = e_(n*)(p_1^* tau union phi_* p_2^* tau)$],
+  [the general construction $cal(A)_phi = e_(n*)(p_1^* tau union phi_* (p_2^* tau))$],
     [*proved* --- evaluation is $beta_phi$ by functoriality, Azumaya by the Kummer sequence,
      unramified on $E times E$ because $"div"(f_C)$ is $ell$-divisible],
   [rank-one $phi$ $<->$ ordered pairs of stable lines, and the resulting symbol],
