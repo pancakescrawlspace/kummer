@@ -1496,7 +1496,7 @@ $x^3 + x$, it must not be, and that is the whole content of the argument.
 
 @sec-ledger-odd found that all seven open classes of @sec-fail carry the pairing
 signature --- reaches isotropic, every line occurring, none preferred. This
-section constructs the pairing in six of them, all at *non-CM* surfaces, which
+section constructs the pairing in all seven, at *non-CM* surfaces, which
 settles that the mechanism is not about complex multiplication. They run at
 three different levels --- $ell = 2$ in @sec-15a1 and @sec-15a4, $ell = 3$ in
 @sec-14a1, $ell = 5$ in @sec-11a1 --- and the level-3 case reaches the cubic
@@ -1968,6 +1968,7 @@ intersection, not any symbol.
   [`15a1` (@sec-15a1)], [2], [5], [split over $QQ$], [complete],
   [`14a1` (@sec-14a1)], [3], [7 --- *tame*], [decomposable], [complete],
   [`14a2`, `19a1` (@sec-1419)], [3], [7, 19 --- *tame*], [decomposable], [complete],
+  [`17a1` (@sec-17a1)], [2], [17 --- *tame*], [*indecomposable*], [complete],
 ))
 
 
@@ -2509,11 +2510,12 @@ give $QQ_3$-isomorphic curves --- which is exactly the reduction §5.1.5 needs.
 The one thing still taken on trust is the standard fact that an isogeny carries
 $E'_1$ into $E_1$; everything else above is a finite computation.
 
-== The one that is left: what the module structure permits <sec-triage>
+== The triage, in hindsight <sec-triage>
 
-This section was written when three classes were left --- `14a2`, `19a1` and `17a1`. The first two
-have since been done (@sec-1419); `17a1` remains. Before constructing anything in a given case it
-is worth asking whether the mechanism is even *available* there, and that is not automatic: $beta_v (P,Q) = ⟨delta_v P, phi delta_v Q⟩_v$
+This section was written when three classes were left --- `14a2`, `19a1` and `17a1`. All three have
+since been done, the first two in @sec-1419 and the last in @sec-17a1, so it is now a record of what
+could be predicted before any of them was attempted. The question it asks is whether the mechanism
+is even *available*, and that is not automatic: $beta_v (P,Q) = ⟨delta_v P, phi delta_v Q⟩_v$
 is useful only when $phi$ is *non-scalar*, since a scalar $phi$ collapses $beta$
 to the untwisted Tate pairing, which vanishes on the Lagrangian $W_v$. So the
 first question about each open class is whether
@@ -2572,7 +2574,7 @@ which is where the rational $ell$-torsion lives.
   [`14a2` $[1]$ #super[✓]], [7],  [3],  [14], [6], [2], [1], [decomposable],
   [`19a1` $[u]$ #super[✓]], [19], [3],  [19], [3], [2], [1], [decomposable],
   [`15a4` $[1]$ #super[✓]], [5],  [2],  [15], [8], [1], [1], [indecomposable],
-  [`17a1` $[1]$], [17], [2],  [17], [4], [1], [1], [indecomposable],
+  [`17a1` $[1]$ #super[✓]], [17], [2],  [17], [4], [1], [1], [indecomposable],
   [`14a1` $[1]$ #super[✓]], [7], [3], [14], [6], [2], [1], [decomposable],
   [`15a1` $[1]$ #super[✓]], [5], [2], [15], [8], [3], [1], [split],
 )
@@ -2613,8 +2615,8 @@ depends only on the class of $d$ modulo squares, four local computations settle 
 @sec-class-warning is why it matters that they cover all four. The worry
 that `11a1` would need a *quintic* residue symbol turned out to be unfounded --- see @sec-11a1.
 
-*The $x^3 + x$ template --- $ell = 2$, $E[2]$ indecomposable (@sec-thm2). Open
-case: `17a1`; `15a4` also belongs here and @sec-15a4 has since carried it out.*
+*The $x^3 + x$ template --- $ell = 2$, $E[2]$ indecomposable (@sec-thm2). No open cases left:
+`15a4` was carried out in @sec-15a4 and `17a1` in @sec-17a1.*
 At $ell = 2$ the alternating step is *not* free: $2$ is not invertible
 mod $2$ and §5.1.5's argument fails, which is exactly why `x^3 + x` needed the
 norm lemma. And the norm lemma applies here:
