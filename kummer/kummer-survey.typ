@@ -4882,20 +4882,61 @@ $d = 6$.
 Every class is accounted for, and by a different clause. Two die by dimension, one dies by
 collapse, and the survivor is exactly the class where the obstruction is proved to sit in §5.1.5.
 
-#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
-  *What tracks the two conditions is the Tamagawa number.* Compare $d = 1$ and $d = 6$: both have
-  $dim W_3 = 2$, and they differ in $c_3$, hence in *where the second dimension comes from*. The
-  filtration $E_1 subset.eq E_0 subset.eq E_d (QQ_ell)$ has graded pieces $ZZ_ell$ (the formal
-  group), $bb(F)_ell^+$ (additive reduction) and $Phi_ell$. When $ell divides c_ell$ the second
-  dimension can come from the component group; when it does not, it must come from the additive
-  layer $E_0 slash E_1$ --- and in the one case we can compute, that is exactly when $alpha$
-  collapses.
+It is tempting to read the Tamagawa number as the invariant behind both conditions. Compare
+$d = 1$ and $d = 6$: both have $dim W_3 = 2$, and they differ in $c_3$, hence in *where the second
+dimension comes from*. The filtration $E_1 subset.eq E_0 subset.eq E_d (QQ_ell)$ has graded pieces
+$ZZ_ell$ (the formal group), $bb(F)_ell^+$ (additive reduction) and $Phi_ell$; when
+$ell divides c_ell$ the second dimension can come from the component group, and when it does not it
+must come from the additive layer. On $x^3 - 2$ that matches perfectly: collapse happens exactly in
+the class with $3 divides.not c_3$.
 
-  #v(1.5mm)
-  So the natural conjecture is that a live wild place needs $ell divides c_ell$ as well. We have
-  one surface to test it on, and it passes on all four classes. That is not evidence of much, and
-  the chapter states it as a question, not a result.
+== The Tamagawa reading is false <sec-wild-tam>
+
+It is also wrong, and testing it is the point of `wild-tamagawa.gp`. The test is *local*: whether
+$alpha$ collapses involves no $phi$ and no decomposability, so every curve with additive
+potentially good reduction at 3 and $dim W_3 = 2$ is a data point, and there are plenty.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Two measurement traps had to be cleared first,* and they are worth recording because the second
+  is one this project has now met three times. The image of $alpha$ is a subgroup of
+  $QQ_3^times slash (QQ_3^times)^3$ --- but the set of *values over a sample* of points is not,
+  the sample not being closed under addition. That is why `alpha3.gp` reports image sizes such as
+  2 and 5 and flags them "not a subgroup order": the flag is right, and reading $\#S$ as a
+  dimension is what is wrong. One must take the *span*. Before trusting even that, the tangent
+  evaluation was checked to be multiplicative modulo cubes --- 400 of 400 pairs on each of three
+  curves --- so the map is a genuine homomorphism and the sample is the whole explanation.
+  Calibrated against $x^3 - 2$, the corrected measurement returns $dim = 0$ at $d = 1$ and
+  $dim = 2$ at $d = 6$, as §5.1.5 requires.
 ]
+
+With that fixed, the conjecture fails on 8 of 14 curves --- and it fails *structurally*:
+
+#align(center, table(
+  columns: 4, align: (left, center, center, center),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([$f$], [type at 3], [$c_3$], [$dim "im" alpha$]),
+  [$x^3 - 3x^2 + 3x - 3$], [$"II"$], [1], [0],
+  [$x^3 - 3x^2 + 3x + 6$], [$"II"$], [1], [0],
+  [$x^3 + 3x^2 + 6x - 7$], [$"II"$], [1], [0],
+  [$x^3 - 3x^2 + 3x - 6$], [$"II"$], [1], [*1*],
+  [$x^3 - 3x^2 + 3x + 3$], [$"II"$], [1], [*1*],
+  [$x^3 + 6x^2 - 9x + 3$], [$"II"$], [1], [*1*],
+  [$x^3 + 9x^2 - 6x + 1$], [$"II"$], [1], [*1*],
+))
+
+#v(2mm)
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Type $"II"$ with $c_3 = 1$ occurs both with $alpha equiv 0$ and with $alpha equiv.not 0$.* So
+  the reduction type and the Tamagawa number *together do not determine* whether $alpha$ vanishes,
+  and no criterion in the style of @sec-dep-recipe --- reduction data only --- can decide the wild
+  place. This is not a matter of not having found the right invariant: there is no invariant of
+  that kind.
+]
+
+What survives is one direction, as an observation rather than a theorem: in every case tested
+$ell divides c_ell$ *did* imply $alpha equiv.not 0$ (four of four, $x^3 - 2$ at $d = 6$ among
+them). That is the useless direction for proving vanishing, which is what a recipe needs.
 
 == Status, and $ell = 2$ <sec-wild-status>
 
@@ -4905,9 +4946,13 @@ every $phi$, with no computation.
 *Not proved:* sufficiency. Nothing here shows that (i) and (ii) together force $beta_ell != 0$;
 they are what must be checked, and in the decomposable case the check is the criterion of
 @sec-tk-criterion, $dim ker alpha_1 + dim ker alpha_2 = dim W_ell$, which §5.1.5 carries out by
-hand for $x^3 - 2$. Nor is there a criterion for (ii) in terms of reduction data --- the Tamagawa
-conjecture above is exactly the missing piece, and it is what would make the wild place as
-mechanical as @sec-dep-recipe made the rest.
+hand for $x^3 - 2$.
+
+*Disproved:* that (ii) can be read off the reduction data. @sec-wild-tam settles that negatively,
+and it is the sharpest thing the chapter has to say: the wild place is not merely unfinished, it is
+*not of the same kind* as the places @sec-depends handles. Everywhere else the answer is a function
+of the conductor, the discriminant and the isogeny class; here two curves agreeing on all of that
+can differ.
 
 *At $ell = 2$* W1 fails at the second step: $zeta_2 = -1$ is in $QQ_2$, so $E_d [2](QQ_2)$ can be
 2-dimensional and $dim W_2$ can reach 3. W2 fails with it, the two orientations of the module

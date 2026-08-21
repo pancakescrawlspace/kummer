@@ -32,6 +32,7 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `corollary6-additive.gp` | **obstructed surfaces whose curve is ADDITIVE at the critical prime** (survey document §10.9.2). Theorem 8's hypothesis (a) is about `E_d`, not `E`, and by §10.8.1 the split class is RAMIFIED when `E` is type `I_n*`. Twisting the defining cubic by its own critical prime, `f_p(x) = p^3 f(x/p)` -- the SAME Kummer surface -- gives a model additive at `p`, and the critical class must move to `[p]` or `[u*p]`. Four cases, all confirmed by `runsurface`. Output: `results/survey-corollary6-additive.txt`. |
 | `corollary6-check.gp` | **the §3 density check on those predictions** (survey document §10.9.1). Runs `runsurface` with the survey's own parameters over all 45 odd primes `<= 200` plus the eight classes at 2. Output: `results/survey-corollary6-check.txt`. |
 | `level2.gp` | **the `ell = 2` split case** (survey document §10.10). (1) The norm lemma is FALSE for split `f`: it controls `(c(P),c(P)) = (c(P),-1)`, which is the diagonal only when both slots carry the same descent map, i.e. in the indecomposable case; for split `f` the diagonal is `(c_a(P),c_b(P))` and is non-trivial at the 2-torsion. (2) So beta is SYMMETRIC with a quadratic refinement `q_v(P) = beta_v(P,P)`; "alternating" is the case `q_v = 0`. Lemma 3's dimension bound fails, so a 1-dimensional `W_v` can be live -- as at infinity for 15a1's second phi. (3) **Lemma 11**: `beta_q = 0` for every odd `q | d` prime to `2 disc f` iff `f'(e_a)` and `f'(e_b)` are both perfect squares (Lemma C is 15a1: 400 and 225). The family is Pythagorean again -- root gaps `g a^2`, `g b^2` with `a^2+b^2` square, 15a1 being (3,4,5). (4) An additive live place is a `q | d` place in another model, so it is never isolated. `fp`, `ci`, `diagonal`, `betaq`, `qdtest`, `live`, `analyse`. Output: `results/survey-level2.txt`. |
+| `wild-tamagawa.gp` | **tests, and REFUTES, chapter 11's Tamagawa conjecture** (survey document §11.5). The test is local -- whether alpha collapses involves no phi -- so every curve with additive potentially good reduction at 3 and `dim W_3 = 2` is a data point. Two measurement traps cleared first: the image of alpha is a subgroup but the set of values over a SAMPLE is not (the sample is not closed under addition -- this is why `alpha3.gp` reports sizes like 2 and 5 and flags them), so one must take the SPAN; and the tangent evaluation was first checked to be multiplicative mod cubes, 400/400 pairs on each of three curves. Calibrated on `x^3-2`: dim 0 at `d=1`, dim 2 at `d=6`. Result: fails 8 of 14, and structurally -- type II with `c_3 = 1` occurs both with `alpha = 0` and `alpha =/= 0`. Output: `results/survey-wild-tamagawa.txt`. |
 | `wild.gp` | **the wild place `v = ell` with potentially good additive reduction** (survey document chapter 11). Inlines alpha3.gp's tangent/descent machinery so that reading it does not run alpha3's driver. Runs all four square classes of `x^3-2` at `v = 3` and shows that each is accounted for by a different clause: two die by dimension (`dim W_3 = 1`), one by COLLAPSE (`alpha = 0`), and the survivor is the class where §5.1.5 proves the obstruction sits. Output: `results/survey-wild.txt`. |
 | `additive.gp` | **the additive places** (survey document §10.8). Three computations: (1) the split-multiplicative square class can be RAMIFIED -- 11a1 twisted by 11 is `I5*` at 11, and it is `d = 11` that returns split multiplicative reduction, so Step 4 must scan all four classes and potentially multiplicative additive places are covered by Theorem 5 after all; (2) Lemma 7, `W_v = Phi_v/ell` at additive `v` not dividing `ell`, verified by measuring `|W_v|` against `|Phi/2|` (note `Phi = (Z/2)^2` for `I_n*` with `n` EVEN, not `Z/4`); (3) at `I0*` with `c_v = 4` the pairing is a Hilbert symbol of ROOT DIFFERENCES, checked against a direct search for all three phi on four curves -- exact agreement, and these places are LIVE. `kodname`, `splitscan`, `phimod2`, `wsize`, `lemma7`, `ci`, `imgs`, `predict`, `direct`, `census`, `run`. Output: `results/survey-additive.txt`. |
 | `depends-15a1-sigma.gp` | **the full `Sigma(d)` for both phi on 15a1**, `d = -1` (survey document §10.5.1). Prompted by an apparent conflict: §3 witnesses every class of 15a1 at `p = 3`, while §10's recipe reports 3 as critical for the phi pairing `c_2, c_3`. No conflict: `phi_A = (c_1,c_3)` has `Sigma = {5}` (the §7.1 theorem), while `phi_B = (c_2,c_3)` has `Sigma = {infinity, 2, 3}` -- a three-place correlation with no constraint at 3 alone. Also shows `beta_oo =/= 0` on the ONE-dimensional `W_oo`, so beta is not alternating for `phi_B`: the norm lemma is about a pair of descent maps, not about the curve. `realchk`, `fin`. Output: `results/survey-15a1-sigma.txt`. |
@@ -1661,13 +1662,23 @@ accounted for by a different clause:
 
 and the survivor is exactly the class where §5.1.5 proves the obstruction sits.
 
-**What tracks both conditions is the Tamagawa number.** `d = 1` and `d = 6` both
-have `dim W_3 = 2` and differ in `c_3`, i.e. in WHERE the second dimension comes
-from: the filtration has graded pieces `Z_ell` (formal), `F_ell^+` (additive)
-and `Phi_ell`, and when `ell` does not divide `c_ell` the second dimension must
-come from the additive layer -- which is precisely when alpha collapses here. So
-the natural conjecture is that a live wild place also needs `ell | c_ell`. One
-surface, four classes, all consistent; stated as a question, not a result.
+**The Tamagawa reading is tempting and FALSE.** `d = 1` and `d = 6` both have
+`dim W_3 = 2` and differ in `c_3`, i.e. in where the second dimension comes from,
+so on `x^3-2` collapse happens exactly when `3` does not divide `c_3`. Tested
+properly (`wild-tamagawa.gp`, §11.5) it fails on 8 of 14 curves -- and fails
+STRUCTURALLY: **type II with `c_3 = 1` occurs both with `alpha = 0` and with
+`alpha =/= 0`**. So reduction type and Tamagawa number together do not determine
+whether alpha vanishes, and no recipe in the style of §10.6 can reach the wild
+place. There is no invariant of that kind to find. What survives, as an
+observation, is the useless direction: `3 | c_3` did always imply `alpha =/= 0`.
+
+Two measurement traps had to be cleared to see this, the second for the third
+time in this project: the image of alpha is a subgroup, but the set of values
+over a SAMPLE is not (the sample is not closed under addition) -- which is why
+`alpha3.gp` prints sizes like 2 and 5 and flags them as impossible. One must
+take the SPAN. And the tangent evaluation was checked to be multiplicative mod
+cubes first (400/400 pairs, three curves), so the map is a genuine homomorphism
+and sampling is the whole explanation.
 
 Not proved: sufficiency, and any criterion for non-collapse in terms of
 reduction data. At `ell = 2` W1 already fails, since `zeta_2 = -1` is in `Q_2`,
