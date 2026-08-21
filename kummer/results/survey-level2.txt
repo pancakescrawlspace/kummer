@@ -1,0 +1,56 @@
+=== (1) the norm lemma fails for split f: beta is not alternating ===
+   x(x-5)(x+5)  v = 5  phi = (c_2,c_3):  2 of the 3 two-torsion points have beta(P,P) != 0   ==> NOT ALTERNATING
+   x(x-5)(x+5)  v = 5  phi = (c_1,c_3):  2 of the 3 two-torsion points have beta(P,P) != 0   ==> NOT ALTERNATING
+   x(x-3)(x+3)  v = 3  phi = (c_2,c_3):  2 of the 3 two-torsion points have beta(P,P) != 0   ==> NOT ALTERNATING
+
+=== (3) what replaces it at q | d: f'(e_a) and f'(e_b) both squares ===
+   15a1, phi = (c_1,c_3)   f'(e_1) = 400 (square)   f'(e_3) = 225 (square)   ==> every q | d DEAD
+   15a1, phi = (c_2,c_3)   f'(e_2) = -144 (NOT)   f'(e_3) = 225 (square)   ==> 39 live (q,d) pairs
+   x(x-9)(x-25)           f'(e_1) = 225 (square)   f'(e_3) = 400 (square)   ==> every q | d DEAD
+   x(x-3)(x-5)            f'(e_1) = 15 (NOT)   f'(e_3) = 10 (NOT)   ==> 59 live (q,d) pairs
+
+=== the Pythagorean family: roots r, r+g a^2, r+g(a^2+b^2), a^2+b^2 square ===
+
+   f = (x-0)(x-9)(x-25)  phi = (c_1,c_3)   N = 15   bad [2, 3, 5]
+      v = 5  d = 1  I4  c_v = 4  v(j) = -4   LIVE
+      live: [[5, 1]]
+
+   f = (x-0)(x-63)(x-175)  phi = (c_1,c_3)   N = 11760   bad [2, 3, 5, 7]
+      v = 5  d = 2  I4  c_v = 4  v(j) = -4   LIVE
+      live: [[5, 2]]
+
+=== (4) an additive live place is a q | d place in disguise ===
+
+   f = (x-0)(x-507)(x-845)  phi = (c_1,c_3)   N = 480   bad [2, 3, 5, 13]
+      v = 2  d = 1  III  c_v = 2  v(j) = 6   LIVE   *** additive, potentially good ***
+      v = 2  d = -1  III  c_v = 2  v(j) = 6   LIVE   *** additive, potentially good ***
+      v = 2  d = 2  I2*  c_v = 4  v(j) = 6   LIVE   *** additive, potentially good ***
+      v = 2  d = -2  I2*  c_v = 4  v(j) = 6   LIVE   *** additive, potentially good ***
+      v = 2  d = 5  III  c_v = 2  v(j) = 6   LIVE   *** additive, potentially good ***
+      v = 2  d = 10  I2*  c_v = 4  v(j) = 6   LIVE   *** additive, potentially good ***
+      v = 2  d = -10  I2*  c_v = 4  v(j) = 6   LIVE   *** additive, potentially good ***
+      v = 3  d = 2  I2  c_v = 2  v(j) = -2   LIVE
+      v = 3  d = 6  I2*  c_v = 4  v(j) = -2   LIVE
+      v = 5  d = 1  I2  c_v = 2  v(j) = -2   LIVE
+      v = 5  d = 2  I2  c_v = 2  v(j) = -2   LIVE
+      v = 5  d = 10  I2*  c_v = 4  v(j) = -2   LIVE
+      v = 13  d = 13  I0*  c_v = 4  v(j) = 0   LIVE   *** additive, potentially good ***
+      v = 13  d = 26  I0*  c_v = 4  v(j) = 0   LIVE   *** additive, potentially good ***
+      live: [[2, 1], [2, -1], [2, 2], [2, -2], [2, 5], [2, 10], [2, -10], [3, 2], [3, 6], [5, 1], [5, 2], [5, 10], [13, 13], [13, 26]]
+
+   f = (x-0)(x-3)(x-5)  phi = (c_1,c_3)   N = 480   bad [2, 3, 5]
+      v = 2  d = 1  III  c_v = 2  v(j) = 6   LIVE   *** additive, potentially good ***
+      v = 2  d = -1  III  c_v = 2  v(j) = 6   LIVE   *** additive, potentially good ***
+      v = 2  d = 2  I2*  c_v = 4  v(j) = 6   LIVE   *** additive, potentially good ***
+      v = 2  d = -2  I2*  c_v = 4  v(j) = 6   LIVE   *** additive, potentially good ***
+      v = 2  d = 5  III  c_v = 2  v(j) = 6   LIVE   *** additive, potentially good ***
+      v = 2  d = 10  I2*  c_v = 4  v(j) = 6   LIVE   *** additive, potentially good ***
+      v = 2  d = -10  I2*  c_v = 4  v(j) = 6   LIVE   *** additive, potentially good ***
+      v = 3  d = 2  I2  c_v = 2  v(j) = -2   LIVE
+      v = 3  d = 6  I2*  c_v = 4  v(j) = -2   LIVE
+      v = 5  d = 1  I2  c_v = 2  v(j) = -2   LIVE
+      v = 5  d = 2  I2  c_v = 2  v(j) = -2   LIVE
+      v = 5  d = 10  I2*  c_v = 4  v(j) = -2   LIVE
+      live: [[2, 1], [2, -1], [2, 2], [2, -2], [2, 5], [2, 10], [2, -10], [3, 2], [3, 6], [5, 1], [5, 2], [5, 10]]
+
+### level2 finished

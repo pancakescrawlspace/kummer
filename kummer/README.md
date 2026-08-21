@@ -31,6 +31,7 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `corollary6.gp` | **search for surfaces with exactly one critical prime** (survey document §10.9). Uses Corollary 6 plus Theorem 8: `ell` odd, `E[ell]` decomposable, `ell` NOT dividing `N_E` (so Lemma 1(b) kills the wild place), and exactly one bad prime passing (a) split multiplicative, (b) full local `ell`-torsion, (c) no rational line canonical. Scans the universal 3-torsion curve `y^2+axy+by=x^3` at `ell=3` and the Tate 5-torsion form at `ell=5`, since decomposable `E[ell]` is rare in a naive box. `monicF`, `nisog`, `canrational`, `splitclass`, `fulltors`, `sigma1`, `scan`, `scan5`. Output: `results/survey-corollary6.txt`. |
 | `corollary6-additive.gp` | **obstructed surfaces whose curve is ADDITIVE at the critical prime** (survey document §10.9.2). Theorem 8's hypothesis (a) is about `E_d`, not `E`, and by §10.8.1 the split class is RAMIFIED when `E` is type `I_n*`. Twisting the defining cubic by its own critical prime, `f_p(x) = p^3 f(x/p)` -- the SAME Kummer surface -- gives a model additive at `p`, and the critical class must move to `[p]` or `[u*p]`. Four cases, all confirmed by `runsurface`. Output: `results/survey-corollary6-additive.txt`. |
 | `corollary6-check.gp` | **the §3 density check on those predictions** (survey document §10.9.1). Runs `runsurface` with the survey's own parameters over all 45 odd primes `<= 200` plus the eight classes at 2. Output: `results/survey-corollary6-check.txt`. |
+| `level2.gp` | **the `ell = 2` split case** (survey document §10.10). (1) The norm lemma is FALSE for split `f`: it controls `(c(P),c(P)) = (c(P),-1)`, which is the diagonal only when both slots carry the same descent map, i.e. in the indecomposable case; for split `f` the diagonal is `(c_a(P),c_b(P))` and is non-trivial at the 2-torsion. (2) So beta is SYMMETRIC with a quadratic refinement `q_v(P) = beta_v(P,P)`; "alternating" is the case `q_v = 0`. Lemma 3's dimension bound fails, so a 1-dimensional `W_v` can be live -- as at infinity for 15a1's second phi. (3) **Lemma 11**: `beta_q = 0` for every odd `q | d` prime to `2 disc f` iff `f'(e_a)` and `f'(e_b)` are both perfect squares (Lemma C is 15a1: 400 and 225). The family is Pythagorean again -- root gaps `g a^2`, `g b^2` with `a^2+b^2` square, 15a1 being (3,4,5). (4) An additive live place is a `q | d` place in another model, so it is never isolated. `fp`, `ci`, `diagonal`, `betaq`, `qdtest`, `live`, `analyse`. Output: `results/survey-level2.txt`. |
 | `additive.gp` | **the additive places** (survey document §10.8). Three computations: (1) the split-multiplicative square class can be RAMIFIED -- 11a1 twisted by 11 is `I5*` at 11, and it is `d = 11` that returns split multiplicative reduction, so Step 4 must scan all four classes and potentially multiplicative additive places are covered by Theorem 5 after all; (2) Lemma 7, `W_v = Phi_v/ell` at additive `v` not dividing `ell`, verified by measuring `|W_v|` against `|Phi/2|` (note `Phi = (Z/2)^2` for `I_n*` with `n` EVEN, not `Z/4`); (3) at `I0*` with `c_v = 4` the pairing is a Hilbert symbol of ROOT DIFFERENCES, checked against a direct search for all three phi on four curves -- exact agreement, and these places are LIVE. `kodname`, `splitscan`, `phimod2`, `wsize`, `lemma7`, `ci`, `imgs`, `predict`, `direct`, `census`, `run`. Output: `results/survey-additive.txt`. |
 | `depends-15a1-sigma.gp` | **the full `Sigma(d)` for both phi on 15a1**, `d = -1` (survey document §10.5.1). Prompted by an apparent conflict: §3 witnesses every class of 15a1 at `p = 3`, while §10's recipe reports 3 as critical for the phi pairing `c_2, c_3`. No conflict: `phi_A = (c_1,c_3)` has `Sigma = {5}` (the §7.1 theorem), while `phi_B = (c_2,c_3)` has `Sigma = {infinity, 2, 3}` -- a three-place correlation with no constraint at 3 alone. Also shows `beta_oo =/= 0` on the ONE-dimensional `W_oo`, so beta is not alternating for `phi_B`: the norm lemma is about a pair of descent maps, not about the curve. `realchk`, `fin`. Output: `results/survey-15a1-sigma.txt`. |
 | `depends-check.gp` | **out-of-sample test of the sufficiency theorem** (survey document §10.7.1). For curves appearing nowhere else, and each of the three rank-one phi on a curve with full rational 2-torsion, predicts the verdict at every odd bad place from reduction data alone and then computes the symbol table. Theorem 5 predicts non-degeneracy at a live place -- both images all four classes, 6 of 16 ordered pairs with a non-trivial symbol -- and a COLLAPSE of the canonical line's descent map at a dead one. 13 predictions, 13 agreements. CAVEAT: the sampler uses `x = +- m p^k` with `m <= 40`, so an image can be reported as 3 (impossible for a subgroup) -- a live verdict is still a proof, a dead one is evidence. `symtab`, `canroot`, `splitclass`, `oos`. Output: `results/survey-depends-check.txt`. |
@@ -1543,6 +1544,50 @@ Lemma 7 a potentially GOOD additive place has `dim W_v <= 1` at `ell = 3` and
 `v(j) < 0`, and multiplicative-versus-additive is a choice of twist. Genuinely
 additive critical places exist only at `ell = 2`, as the `I0*` fibres with
 `c_v = 4` of Proposition 9, which Corollary 6 does not reach.
+
+## Level 2: the norm lemma is false, and additive places are never isolated (§10.10)
+
+**The norm lemma cannot be repaired for split `f`.** It controls
+`(c(P),c(P)) = (c(P),-1)`, which is the diagonal of beta only when BOTH SLOTS
+carry the same descent map -- true in the indecomposable case, where
+`ker N = im N`. For split `f` the rank-one phi has `ker = C_a`, `im = C_b` with
+`a =/= b`, and the diagonal is `(c_a(P), c_b(P))`, which nothing controls: for
+`x(x-5)(x+5)` at 5, two of the three 2-torsion points have `beta(P,P) =/= 0`.
+
+**The right statement**: isotropy of `L_v` gives
+`(c_a(P),c_b(Q)) = (c_b(P),c_a(Q))`, so beta is SYMMETRIC, with a quadratic
+refinement `q_v(P) = beta_v(P,P)`; "alternating" is the case `q_v = 0`. So
+Lemma 3's dimension bound FAILS for split `f` -- a 1-dimensional `W_v` can be
+live through the diagonal alone, which is exactly what happened at infinity for
+15a1's second phi.
+
+**Lemma 11** replaces the norm lemma at the places `q | d`: for split `f`,
+`beta_q = 0` for every odd `q | d` prime to `2 disc f` **iff `f'(e_a)` and
+`f'(e_b)` are both perfect squares**. Lemma C of §7.1.2 is the case of 15a1
+(`f'(e_1) = 400`, `f'(e_3) = 225`); its second phi fails it (`f'(e_2) = -144`),
+which is why that `Sigma` was large. Ordering the roots and writing the gaps as
+`p, q`, the condition is `p(p+q)` and `q(p+q)` square, hence `pq` square; with
+`p = g a^2, q = g b^2` it becomes `a^2 + b^2 = square` -- **Pythagorean triples
+again**, 15a1 being (3,4,5) with gaps 9 and 16. And `beta_infinity` dies for
+every `d` exactly when the excluded root is the MIDDLE one.
+
+**Why there is no genuinely additive example.** Additive live places are real:
+for `x(x-3)(x-5)`, the place 13 is live in class `[13]` on an `I0*` fibre with
+`c_v = 4`, potentially GOOD, so no twist makes it multiplicative. But a
+potentially good additive fibre means the model is a ramified twist of a good
+one -- rescaling `f` by a square, which does not change the surface, returns a
+model where the place is good and the liveness reappears as a place `q | d`. So
+an additive live place IS a `q | d` place in another model, and those come as an
+infinite family indexed by the primes dividing `d`, all live or all dead
+together by Lemma 11. Concretely `x(x-507)(x-845)` is `u(u-3)(u-5)` rescaled by
+`169`: in the first model 13 carries a live `I0*` fibre, in the second 13 is not
+even a bad prime. Both report conductor 480.
+
+Since a surface-level statement needs the `q | d` places dead (§6.8), and that
+condition kills the additive ones too, **an additive critical place at `ell = 2`
+can never be the only live one**. It belongs to obstructions whose set `S`
+depends on `d` -- exactly what §6.8 cannot convert into a statement about `X`.
+That, not the missing norm lemma, is the real obstacle.
 
 ## beta_3 =/= 0 is now proved (document §5.1.5)
 
