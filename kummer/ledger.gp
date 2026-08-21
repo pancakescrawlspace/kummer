@@ -225,7 +225,7 @@ runledger(A, B, d0, S, DMAX, verbose) = {
       if(#td[2] == 0, next);
       bm = reachmap(ar, d, d0, S, td[2]);
       if(bmsize(bm) <= 1, next);
-      L = ledgeradd(L, ar, bm);
+      L = ledgeradd(L, ar, bm, d);
       cnt++;
       if(verbose || cnt % 5 == 0,
         st = startest(L, N);
