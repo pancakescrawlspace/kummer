@@ -1065,8 +1065,10 @@ half-dozen moves have been made repeatedly, in four different families and at th
 are worth stating once. Nothing in this chapter is new; it is the accumulated technique of
 @sec-nonCM and of §5.1.5 of the companion notes, pulled out of the worked examples.
 
-Throughout: $E slash QQ$ has $E[ell] = C_1 xor C_2$ decomposable, $phi$ is the projector onto
-$C_1$ along $C_2$, and for a place $v$,
+Throughout, unless said otherwise, $E slash QQ$ has $E[ell] = C_1 xor C_2$ *decomposable* and
+$phi$ is the projector onto $C_1$ along $C_2$; that is the situation of five of the six worked
+cases, and @sec-tk-indec says what changes in the sixth, where $E[ell]$ has a unique stable line.
+For a place $v$,
 $ W_v = E_d (QQ_v) slash ell, quad quad L_v = delta_v (W_v) subset.eq H^1 (QQ_v, E[ell]) =: H_1 xor H_2, $
 with $H_i = H^1 (QQ_v, C_i)$ and $alpha_i = pi_i compose delta_v : W_v -> H_i$. Recall from
 §5.1.4 that $W_v$ is a *quotient of points* and $L_v$ a *subspace of cohomology*: they are
@@ -1110,6 +1112,96 @@ $phi_* L_v subset.eq L_v^perp$, and $L_v^perp = L_v$ because $L_v$ is Lagrangian
   the non-zero one is known. Both possibilities occur in practice: dimensions $1 + 1$ at `11a1` and
   at the good-reduction twists of `14a1`, and $2 + 0$ at `14a1`'s additive twists (@sec-14a1-places).
 ]
+
+== The indecomposable case <sec-tk-indec>
+
+Everything so far has assumed $E[ell] = C_1 xor C_2$ decomposable, which is the situation of five
+of the six worked cases. When $E[ell]$ has a *unique* stable line the decomposition is not
+available, and the criterion of @sec-tk-criterion has to be restated. It becomes simpler, not
+harder.
+
+=== The unique twisting endomorphism, and what replaces $phi_*$-stability <sec-tk-indec-crit>
+
+Suppose $E[ell]$ has exactly one Galois-stable line $C$, and that the characters on $C$ and on
+$E[ell] slash C$ agree --- automatic at $ell = 2$, where $bb(F)_2^times$ is trivial. Then
+$"End"_G (E[ell]) = bb(F)_ell [N] slash (N^2)$: the commutant of a single unipotent Jordan block.
+By the classification of @sec-brauer-rank1 there is *exactly one* rank-one $phi$, namely the
+nilpotent $N$, with
+$ ker N = "im" N = C , $
+which is why @sec-triage-templates can call the twisting endomorphism "essentially unique" here
+while `15a1`, with three stable lines, needed a search among nine.
+
+Write $c = pi_(C *) compose delta_v : W_v -> H^1 (QQ_v, E[ell] slash C)$ for the descent map
+attached to $C$, as in @sec-tk-alpha. Since $N$ factors as
+$E[ell] arrow.r.twohead E[ell] slash C limits(-->)^(overline(N), tilde) C arrow.hook E[ell]$, and
+the Weil pairing is alternating so that $C^perp = C$ and it induces a perfect pairing of
+$E[ell] slash C$ with $C$, the adjunction of @sec-brauer-cor gives
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  $ beta_v (P, Q) = ⟨c(P), space overline(N)_* c(Q)⟩ $
+  --- *the same map in both slots*. So $beta_v$ is trivial if and only if the image $c(W_v)$ is
+  *isotropic* for the induced pairing on $H^1 (QQ_v, E[ell] slash C)$, and non-degenerate exactly
+  when that image is everything and the pairing is non-degenerate on it.
+]
+
+That is the structural difference. In the decomposable case the two slots carry *different* maps
+$alpha_1$ and $alpha_2$, and the question is whether $L_v$ *splits*; here they carry the *same*
+map, and the question is whether one subgroup is *isotropic*. In particular a *cyclic* image is
+isotropic as soon as the pairing is alternating on it, which is the form the argument takes at
+every auxiliary place.
+
+At $ell = 2$ everything is concrete. $E[2] slash C tilde.equiv ZZ slash 2 tilde.equiv mu_2$, so
+$H^1 (QQ_v, E[2] slash C) = QQ_v^times slash (QQ_v^times)^2$, the induced pairing is the quadratic
+Hilbert symbol, and with $f = (u - e_1) q(u)$ and $C = ⟨T⟩$, $T = (e_1, 0)$,
+$ c(P) = x(P) - e_1 quad (mod "squares"), quad quad
+  beta_v (P,Q) = (c(P) , space c(Q))_v . $
+Alternating is then the condition $(c(P), -1)_v = 1$, which is Lemma 2 of @sec-alt: it holds when
+the 2-torsion field is $QQ(i)$, equivalently when $q$ is a *sum of two squares*, because then
+$c(P)$ is a norm from $QQ(i)$.
+
+=== The image at a ramified odd place <sec-tk-lemAB>
+
+The one auxiliary place that is not covered by @sec-tk-places is $q divides d$ with $q$ odd: as
+@sec-tk-ramtwist observes, the twist does nothing to $E[2]$, so the torsion is not killed and
+$W_q$ need not vanish. What settles it instead is that the *image* of $c$ is small. This was
+proved for $x^3 + x$ in @sec-places2 and used verbatim for `15a4` and `17a1`; the hypothesis that
+makes it transfer is worth naming.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma (A and B).* Let $f = u(u^2 + a u + b)$ with $b$ a *perfect square*, and let
+  $E_d : y^2 = x(x^2 + a d x + b d^2)$ with $c(P) = x(P)$ modulo squares. Let $q$ be an odd prime
+  with $q divides.not b$ and $q divides d$, $d$ squarefree, so $e := v_q (d) = 1$. Then
+
+  #v(1.5mm)
+  *(A)* every $P in E_d (QQ_q)$ with $v_q (x(P)) != 1$ has $c(P) = 1$; and
+
+  *(B)* the image $S := c(E_d (QQ_q))$ has order at most 2.
+
+  #v(1.5mm)
+  Consequently, if $beta$ is alternating at $q$ then $beta_q$ is trivial.
+
+  #v(2mm)
+  _Proof._ (A) Write $k = v_q (x(P))$. If $k < 1$ then
+  $x^2 + a d x + b d^2 = x^2 (1 + a d slash x + b d^2 slash x^2)$, and both correction terms have
+  positive valuation, so the bracket is a 1-unit and hence a *square* at an odd place; then
+  $y^2 = x dot x^2 dot (square)$ exhibits $x$ as a square. If $k > 1$, put $t = x slash d$, so
+  $v_q (t) = k - 1 > 0$ and
+  $ x^2 + a d x + b d^2 = b d^2 (1 + (a slash b) t + t^2 slash b) , $
+  where $q divides.not b$ makes the bracket integral and again a 1-unit, hence a square. Then
+  $y^2 = x dot b d^2 dot (square)$ gives $c(P) = x equiv b$ modulo squares --- and $b$ is a square.
+
+  #v(1.5mm)
+  (B) $S$ is a subgroup of $QQ_q^times slash (QQ_q^times)^2$, and by (A) each of its elements is
+  either trivial or the class of some $x$ with $v_q (x) = 1$, i.e. of *odd* valuation. If $S$ had
+  two distinct non-trivial elements, their product would be a non-trivial element of *even*
+  valuation, which (A) forbids. So $\#S <= 2$. An alternating form vanishes on a group of order
+  $<= 2$. $qed$
+]
+
+Both hypotheses are used, and both hold in the cases here: $b = 1$ for $x^3 + x$, $b = 625 = 25^2$
+for `15a4`, $b = 289 = 17^2$ for `17a1`; and in each the only prime dividing $b$ is the *critical*
+$p$, which cannot divide $d$ because the failing class asks $d$ to be a square in $QQ_p^times$. For
+$f$ *split* over $QQ$ the lemma does not apply at all, and @sec-15a1 needs its own Lemma C.
 
 == The two faces of $alpha_i$ <sec-tk-alpha>
 
@@ -1328,7 +1420,7 @@ The identities that keep coming up.
 - *Steinberg.* $(a, 1-a)_v = 0$ and $(a, -a)_v = 0$. The second closes Lemma C of @sec-15a1-local:
   the only possibly non-trivial symbol there is $(-q d', q d')_q$.
 - *1-units are $ell$-th powers at $v$ prime to $ell$.* Hence at an odd $q$, a factor
-  $1 + O(q)$ may be discarded modulo squares --- the engine of Lemmas A and B of @sec-places2 and
+  $1 + O(q)$ may be discarded modulo squares --- the engine of Lemma A and B (@sec-tk-lemAB) and
   of cases (i) and (iii) of Lemma C.
 - *The tame formula.* At $v tilde.not ell$ with $mu_ell subset QQ_v$,
   $(a,b)_v = ((-1)^(alpha beta) a^beta slash b^alpha)^((N v - 1) slash ell)$ with
@@ -1377,7 +1469,7 @@ The identities that keep coming up.
   stroke: 0.4pt + luma(170), inset: (x: 6pt, y: 3.5pt),
   table.header([case], [$ell$], [critical $p$], [wild place $v = ell$], [other places]),
   [$x^3 + x$ (@sec-thm2)], [2], [2 --- also the wild place], [---],
-    [Lemmas A, B; norm lemma],
+    [indecomposable; @sec-tk-lemAB; norm lemma],
   [$x^3 - 2$ (§5.1.5)], [3], [3 --- also the wild place],
     [$beta_3 equiv.not 0$ needed, and proved], [structural],
   [`15a1` (@sec-15a1)], [2], [tame; $c_1$ onto], [$v = 2$: 8 square classes],
@@ -1385,7 +1477,9 @@ The identities that keep coming up.
   [`14a1` (@sec-14a1)], [3], [tame; descent image, 1 class],
     [good ordinary, and collapse], [structural],
   [`15a4` (@sec-15a4)], [2], [tame; $c$ onto, 1 class], [$v = 2$: 8 square classes],
-    [Lemmas A, B; norm lemma],
+    [indecomposable; @sec-tk-lemAB; norm lemma],
+  [`17a1` (@sec-17a1)], [2], [tame; $c$ onto, 1 class], [$v = 2$: 8 square classes],
+    [indecomposable; @sec-tk-lemAB; norm lemma],
   [`11a1` (@sec-11a1)], [5], [Tate curve, non-degenerate], [@sec-tk-ordinary], [structural],
   [`14a2`, `19a1` (@sec-1419)], [3], [tame; descent image, 1 class],
     [good ordinary *and* collapse], [structural; $v = 2$ for `14a2`],
@@ -2247,6 +2341,91 @@ With these, *seven* of the eight classes of @sec-fail are settled --- the eighth
 proved non-dense outright --- and only `17a1` at $p = 17$ is left. It is the one remaining case at
 $ell = 2$ with $E[2]$ indecomposable, so it belongs to the $x^3 + x$ template rather than this one;
 @sec-triage-templates records what is expected there.
+
+== `17a1` at $p = 17$: the last class <sec-17a1>
+
+The eighth and last class of @sec-fail, and the only one at $ell = 2$ with $E[2]$ indecomposable.
+It is the shortest of the six, because it turns out to have exactly the shape of @sec-15a4.
+
+=== The surface <sec-17a1-surface>
+
+$f = x^3 - 6x^2 + x - 876 = (x - 12)(x^2 + 6x + 73)$, and $y^2 = f(x)$ *is* `17a1`: conductor 17,
+torsion $ZZ slash 4$, rank 0, so no reindexing is needed. Shifting by the rational root --- with
+$c = 1$, so the same surface by @sec-which ---
+$ f(x + 12) = x (x^2 + 30 x + 289), quad quad 289 = 17^2 . $
+Two features of that quadratic do all the work:
+
+#align(center, table(
+  columns: 2, align: (left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3.5pt),
+  table.header([feature], [what it gives]),
+  [$x^2 + 30x + 289 = (x + 15)^2 + 8^2$, a *sum of two squares*],
+    [$a^2 - 4b = -256 equiv -1$, so the 2-torsion field is $QQ(i)$, so $c(P)$ is a norm from
+     $QQ(i)$ and $beta$ is *alternating* at every place (Lemma 2 of @sec-alt)],
+  [$b = 289 = 17^2$ is a *perfect square*],
+    [@sec-tk-lemAB applies at every odd $q divides d$],
+))
+
+#v(2mm)
+
+$E[2]$ has the unique stable line $C = ⟨T⟩$, $T = (0,0)$, so @sec-tk-indec applies: the twisting
+endomorphism is the nilpotent $N$ and is essentially unique, $c(P) = x(P)$ modulo squares, and
+$ beta_v (P, Q) = (c(P), space c(Q))_v , $
+with triviality at $v$ meaning that the image of $c$ is *isotropic* there.
+
+=== The places <sec-17a1-places>
+
+- *$v = infinity$.* The quadratic is a sum of two squares, hence positive, so $y^2 = x dot (>0)$
+  forces $x >= 0$ on real points and the symbol is $+1$.
+
+- *$q divides.not 2 dot 17 dot d$.* With $x = a slash e^2$, $y = b slash e^3$ and
+  $b^2 = a(a^2 + 30 d a e^2 + 289 d^2 e^4)$, a common prime factor of the two divides
+  $289 d^2 e^4$, hence $289 d^2$. So for such $q$ the factors are coprime, $v_q (c(P))$ is even,
+  both arguments are units and the symbol is $+1$. The bad places are therefore only $2$, $17$ and
+  the divisors of $d$ --- as for @sec-15a4, and again with no analogue of the extra $3$ that
+  @sec-places2 had to handle.
+
+- *$q$ odd, $q divides d$.* @sec-tk-lemAB: $b = 289$ is a perfect square and its only prime is
+  $17$, which cannot divide $d$ because the failing class asks $d$ to be a square in
+  $QQ_17^times$. So the image of $c$ has order at most 2, and $beta$ being alternating, $beta_q$ is
+  trivial.
+
+- *$q = 2$, the wild place.* Here the 1-unit argument fails and the image has to be computed. It
+  has order at most 2 in *all eight* square classes of $QQ_2^times$ --- the class of $d$ at 2 being
+  unconstrained by its class at 17 --- with the sampled points shown to generate
+  $E_d (QQ_2) slash E_3$ each time. So $beta_2$ is trivial. (`localimg.gp`; the images are ${1}$,
+  ${1,2}$, ${1,5}$, ${1,10}$, exactly the four that occur for `15a4`.)
+
+- *$q = 17$, the critical place.* The image of $c$ on $E_delta (QQ_17)$ is *all four* classes of
+  $QQ_17^times$ modulo squares, so the symbol is non-degenerate; and it is alternating because
+  $17 equiv 1$ $(mod 4)$ makes $-1$ a square in $QQ_17$. So $beta_17$ is symplectic on the
+  2-dimensional $W_17$. Only the failing class $[1]$ of $QQ_17^times$ occurs, so one $d$ settles
+  it; $d = 1, 2, 13, 15, 19$ all agree, each generating $E_d (QQ_17) slash E_1$ --- $64$ of $64$,
+  the reduction at 17 being split multiplicative of type $"I"_4$ with $c_17 = 4$.
+
+=== The theorem <sec-17a1-thm>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem.* For $f = x(x^2 + 30x + 289)$ --- that is, `17a1` --- and *every* squarefree $d$ in the
+  class $[1]$ of $QQ_17^times$, the group $E_d (QQ)$ is not dense in $E_d (QQ_17)$; hence $X(QQ)$
+  is not dense in $X(QQ_17)$.
+
+  #v(2mm)
+  _Proof._ $beta_v (P,Q) = (c(P), c(Q))_v$ is $+1$ at $v = infinity$, at every
+  $q divides.not 2 dot 17 dot d$, at every odd $q divides d$, and at $q = 2$, by
+  @sec-17a1-places. Hilbert reciprocity then forces $beta_17 (P,Q) = +1$ for all
+  $P, Q in E_d (QQ)$. On $W_17$, $beta_17$ is a non-trivial alternating form on a 2-dimensional
+  $bb(F)_2$-space, hence symplectic, so the image of $E_d (QQ)$ is isotropic and of dimension
+  $<= 1$: not all of $W_17 = E_delta (QQ_17) slash 2$. Topological Nakayama gives non-density, and
+  the hypothesis being vacuous on the class, @sec-class-warning gives the statement about $X$.
+  $qed$
+]
+
+*All eight classes of @sec-fail are now settled* --- seven by a twisted pairing and one by the
+direct non-density proof that put it on the list. The four surfaces at $ell = 2$ split two ways:
+`15a1`, where $f$ splits over $QQ$ and three stable lines force a search among nine candidate
+$phi$ (@sec-15a1-choose); and $x^3 + x$, `15a4`, `17a1`, all indecomposable, all with $q$ a sum of
+two squares and $b$ a perfect square, and all following @sec-thm2 with nothing to choose.
 
 == §5.1.5's input, checked in Magma and then proved <sec-magma>
 

@@ -117,5 +117,30 @@ are consistency checks.
    q = 13   d = 26   # Q_q-rational 2-torsion points: 3
    q = 23   d = 23   # Q_q-rational 2-torsion points: 3
 
+=== 17a1, f = x(x^2 + 30x + 289), level 2 ===
+
+f = x^3-6x^2+x-876 = (x-12)(x^2+6x+73); shifting by 12 (with c = 1, so the
+same surface) gives x(x^2+30x+289), with 289 = 17^2 a square and
+x^2+30x+289 = (x+15)^2 + 8^2 a sum of two squares. That is the 15a4 shape.
+
+--- v = 17, the critical place: image of c must be ALL FOUR classes.
+    Only the failing class [1] of Q_17^x occurs, so one d settles it. ---
+   17a1  d = 1   class of d at 17: [0, 1]   generates 64 of 64 yes      image of c: 4 classes [[0, -1], [0, 1], [1, -1], [1, 1]]
+   17a1  d = 2   class of d at 17: [0, 1]   generates 64 of 64 yes      image of c: 4 classes [[0, -1], [0, 1], [1, -1], [1, 1]]
+   17a1  d = 13   class of d at 17: [0, 1]   generates 64 of 64 yes      image of c: 4 classes [[0, -1], [0, 1], [1, -1], [1, 1]]
+   17a1  d = 15   class of d at 17: [0, 1]   generates 64 of 64 yes      image of c: 4 classes [[0, -1], [0, 1], [1, -1], [1, 1]]
+   17a1  d = 19   class of d at 17: [0, 1]   generates 64 of 64 yes      image of c: 4 classes [[0, -1], [0, 1], [1, -1], [1, 1]]
+
+--- v = 2, the wild place: image of c must have order at most 2.
+    All EIGHT classes of Q_2^x are needed. ---
+   17a1  d = 1   class of d at 2: [0, 1]   generates 16 of 16 yes      image of c: 2 classes [[0, 1], [0, 5]]
+   17a1  d = -1   class of d at 2: [0, 7]   generates 16 of 16 yes      image of c: 1 classes [[0, 1]]
+   17a1  d = 2   class of d at 2: [1, 1]   generates 32 of 32 yes      image of c: 2 classes [[0, 1], [1, 1]]
+   17a1  d = -2   class of d at 2: [1, 7]   generates 16 of 16 yes      image of c: 1 classes [[0, 1]]
+   17a1  d = 5   class of d at 2: [0, 5]   generates 8 of 8 yes      image of c: 2 classes [[0, 1], [0, 5]]
+   17a1  d = -5   class of d at 2: [0, 3]   generates 16 of 16 yes      image of c: 1 classes [[0, 1]]
+   17a1  d = 10   class of d at 2: [1, 5]   generates 32 of 32 yes      image of c: 2 classes [[0, 1], [1, 5]]
+   17a1  d = -10   class of d at 2: [1, 3]   generates 16 of 16 yes      image of c: 1 classes [[0, 1]]
+
 ### localimg finished
-gp -q -s 4000000000 < localimg.gp  8.23s user 0.02s system 99% cpu 8.258 total
+gp -q -s 4000000000 < localimg.gp  10.28s user 0.04s system 99% cpu 10.341 total

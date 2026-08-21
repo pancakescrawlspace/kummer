@@ -217,6 +217,22 @@ print("--- ell = 2, 15a1 (f split): the lemma does not apply, expect 3 ---");
 tors2(q, d) = print("   q = ", q, "   d = ", d, "   # Q_q-rational 2-torsion points: ", dimtors(E15a1(d), 2, q, 30));
 foreach([[7,7],[11,11],[13,26],[23,23]], w, tors2(w[1], w[2]));
 
+
+print("");
+print("=== 17a1, f = x(x^2 + 30x + 289), level 2 ===");
+print("");
+print("f = x^3-6x^2+x-876 = (x-12)(x^2+6x+73); shifting by 12 (with c = 1, so the");
+print("same surface) gives x(x^2+30x+289), with 289 = 17^2 a square and");
+print("x^2+30x+289 = (x+15)^2 + 8^2 a sum of two squares. That is the 15a4 shape.");
+print("");
+print("--- v = 17, the critical place: image of c must be ALL FOUR classes.");
+print("    Only the failing class [1] of Q_17^x occurs, so one d settles it. ---");
+foreach([1, 2, 13, 15, 19], d, runc("17a1", 30, 289, d, 17, 40, 40));
+print("");
+print("--- v = 2, the wild place: image of c must have order at most 2.");
+print("    All EIGHT classes of Q_2^x are needed. ---");
+foreach([1, -1, 2, -2, 5, -5, 10, -10], d, runc("17a1", 30, 289, d, 2, 40, 40));
+
 print("");
 print("### localimg finished");
 quit;
