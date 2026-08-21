@@ -3829,17 +3829,17 @@ $E$ and $ell$ alone. $phi$ decides among the candidates, and it does so by a sin
 
 At a split multiplicative $v$ the module $E_d [ell]$ carries a distinguished $G_v$-stable line, the
 kernel of reduction
-$ C_"can" = mu_ell subset overline(QQ)_v^times slash q^ZZ . $
+$ C_"can" (v) = mu_ell subset overline(QQ)_v^times slash q^ZZ . $
 It is $G_v$-stable but *need not be $G_QQ$-stable*: that is the whole point, and it is why
 @sec-14a1 records that at the critical place both global lines become $QQ_p$-rational, leaving room
 for a third.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *Criterion.* At such a $v$, $beta_v equiv.not 0$ iff $C_"can"$ is *not* one of the $phi$-stable
-  lines --- for a rank-one $phi$, iff $C_"can" in.not { ker phi, "im" phi }$.
+  *Criterion.* At such a $v$, $beta_v equiv.not 0$ iff $C_"can" (v)$ is *not* one of the $phi$-stable
+  lines --- for a rank-one $phi$, iff $C_"can" (v) in.not { ker phi, "im" phi }$.
 ]
 
-And $C_"can"$ can be seen with no local points at all. Quotienting the Tate curve by $mu_ell$ sends
+And $C_"can" (v)$ can be seen with no local points at all. Quotienting the Tate curve by $mu_ell$ sends
 $q |-> q^ell$, while quotienting by an étale line sends $q |-> q^(1 slash ell)$. So:
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
@@ -3986,8 +3986,29 @@ Throughout, $v divides.not ell$ and $E_d slash QQ_v$ has *split multiplicative* 
 Tate parametrisation
 $ E_d (overline(QQ)_v) = overline(QQ)_v^times slash q^ZZ, quad
   E_d [ell] = ⟨s, t⟩, quad s = zeta_ell, quad t = q^(1 slash ell), quad
-  C_"can" = ⟨s⟩ = mu_ell . $
+  C_"can" (v) = ⟨s⟩ = mu_ell . $
 The Weil pairing is the obvious one, $e(s,t) = zeta_ell$ and $e(s,s) = e(t,t) = 1$.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *The canonical line is local, and the argument is kept.* $C_"can" (v)$ is *not* a globally defined
+  subgroup of $E[ell]$: it is attached to the place $v$, and it exists only when $E$ is
+  *potentially multiplicative* at $v$, i.e. $v(j) < 0$. Different places give different lines ---
+  for `15a1` it is $e = 1$ at $v = 5$ and $e = 17$ at $v = 3$ (@sec-dep-15a1) --- so the argument
+  $v$ is written throughout.
+
+  #v(1.5mm)
+  What it does *not* depend on is $d$. The condition $v(j) < 0$ for its existence is
+  twist-invariant, and so is the line: quadratic twisting by $d$ is an isomorphism
+  $psi : E -> E_d$ over $QQ_v (sqrt(d))$, hence an isomorphism of Néron models over the ring of
+  integers, so it carries kernel of reduction to kernel of reduction, and under the canonical
+  identification $E_d [ell] = E[ell]$ the two lines coincide. (Only $psi$ up to sign is canonical,
+  which is enough for a *subgroup*.) What the twist *does* change is the Galois module structure
+  carried by that line: $mu_ell$ for one twist, $mu_ell$ times $chi_d$ for another. The line stays
+  put; the action on it moves.
+
+  #v(1.5mm)
+  Inside a proof, where $v$ is fixed once and for all, we drop the argument and write $C_"can"$.
+]
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *Lemma 4 (the local condition is the cohomology of the canonical line).*
@@ -4001,7 +4022,7 @@ The Weil pairing is the obvious one, $e(s,t) = zeta_ell$ and $e(s,s) = e(t,t) = 
   _Proof._ (a) A point $P in E_d (QQ_v)$ is represented by some $u in QQ_v^times$. Take
   $R = u^(1 slash ell)$, which satisfies $ell R = P$ in $overline(QQ)_v^times slash q^ZZ$. Then
   $ delta_v (P)(sigma) = sigma(R) - R = sigma(u^(1 slash ell)) slash u^(1 slash ell) in mu_ell , $
-  so the cocycle takes its values in $C_"can"$, i.e. $delta_v (P) = chi_u$, the Kummer character
+  so the cocycle takes its values in $C_"can" (v)$, i.e. $delta_v (P) = chi_u$, the Kummer character
   of $u$. As $E_d [ell]$ is a direct summand extension of trivial modules, $H^1 (QQ_v, C_"can")$
   injects into $H^1 (QQ_v, E_d [ell])$, and $L_v$ lands in the image.
 
@@ -4019,7 +4040,7 @@ local $ell$-torsion, the Selmer local condition is the cohomology of the canonic
 $H^1 (QQ_v, -)$ is $"Hom"(G_v, -)$ on trivial modules, and $"Hom"(G_v, F_ell) != 0$, the map
 $C |-> H^1 (QQ_v, C)$ is an inclusion-preserving injection on subspaces of $E_d [ell]$. So
 $phi_* L_v = H^1 (QQ_v, phi(C_"can"))$, and $phi$-stability of $L_v$ is *the same thing as*
-$phi$-stability of $C_"can"$ --- both directions, with no computation.
+$phi$-stability of $C_"can" (v)$ --- both directions, with no computation.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *Theorem 5 (sufficiency at a Tate place).* Let $v divides.not ell$ and suppose
@@ -4028,7 +4049,7 @@ $phi$-stability of $C_"can"$ --- both directions, with no computation.
   #v(1mm)
   (b) $E_d [ell] subset.eq E_d (QQ_v)$;
   #v(1mm)
-  (c) $phi(C_"can") subset.eq.not C_"can"$ --- *a condition on $E$, $ell$, $phi$ and $v$ alone,
+  (c) $phi(C_"can" (v)) subset.eq.not C_"can" (v)$ --- *a condition on $E$, $ell$, $phi$ and $v$ alone,
   with no reference to $d$* (see the remark below).
   #v(1.5mm)
   Then, writing $phi(s) = a s + b t$ with $b != 0$,
@@ -4048,15 +4069,8 @@ $phi$-stability of $C_"can"$ --- both directions, with no computation.
 ]
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *Condition (c) is twist-invariant.* $C_"can"$ is the kernel of reduction, and quadratic twisting
-  by $d$ is an *isomorphism* $psi : E -> E_d$ over $K = QQ_v (sqrt(d))$. An isomorphism of curves
-  over $K$ is an isomorphism of Néron models over $cal(O)_K$, so it carries formal group to formal
-  group and hence $C_"can" (E)$ to $C_"can" (E_d)$; under the canonical identification
-  $E_d [ell] = E[ell]$ of $bb(F)_ell$-spaces the two lines coincide. So $C_"can"$, and with it
-  condition (c), depends only on $E$, $ell$, $phi$ and $v$.
-
-  #v(1.5mm)
-  The computational shadow of this is that the invariant separating the lines is
+  *How to check (c) in practice.* The preamble to this section explains why $C_"can" (v)$, and with
+  it condition (c), does not depend on $d$. The computational shadow of that is that the invariant separating the lines is
   $v(q) = -v(j)$, and $j$ is twist-invariant. Indeed $C = C_"can"$ iff
   $v(j_(E slash C)) = ell dot v(j_E)$, which is why `depends.gp` may read the label off the
   untwisted curve. Note that this formulation, unlike the one in terms of $v(Delta)$, survives
@@ -4065,7 +4079,7 @@ $phi$-stability of $C_"can"$ --- both directions, with no computation.
 
   #v(1.5mm)
   What is *not* twist-invariant is the Galois characterisation. Under (b) the local representation
-  on $E_d [ell]$ is trivial, so $C_"can"$ is not visible in the Galois module at all --- it is a
+  on $E_d [ell]$ is trivial, so $C_"can" (v)$ is not visible in the Galois module at all --- it is a
   property of the curve, of its Néron model. That is precisely the room @sec-14a1 exploits when it
   records that both global lines become $QQ_p$-rational at the critical place, leaving a third line
   free to be canonical.
@@ -4225,7 +4239,7 @@ Putting this beside Lemma 1 and Theorem 5 settles every place away from $ell$, f
   #v(1mm)
   (b) $E_d [ell] subset.eq E_d (QQ_v)$; and
   #v(1mm)
-  (c) $phi(C_"can") subset.eq.not C_"can"$.
+  (c) $phi(C_"can" (v)) subset.eq.not C_"can" (v)$.
 
   #v(2mm)
   _Proof._ Good reduction is Lemma 1, additive reduction is the Corollary, non-split multiplicative
@@ -4293,9 +4307,9 @@ in @sec-dep-add2: it is the only place where the formal group survives into $W_v
 whose obstruction sits there --- $x^3 - 2$ and $x^3 + x$ --- were settled by hand in @sec-cm, which
 is evidence that the case is tractable but not a proof of anything general.
 
-*Still not written out.* The identification of $C_"can"$ by the discriminant valuations of the
+*Still not written out.* The identification of $C_"can" (v)$ by the discriminant valuations of the
 $ell$-isogenous curves (Step 5) is used to *locate* the canonical line but is not needed for
-Theorem 5, which takes $C_"can"$ as given; it deserves a proof anyway, since it is what makes the
+Theorem 5, which takes $C_"can" (v)$ as given; it deserves a proof anyway, since it is what makes the
 recipe mechanical.
 
 *Still untouched.* Lemma 1(b) covers $v = ell$ only under good reduction; when $E$ is additive at
