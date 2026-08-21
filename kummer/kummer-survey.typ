@@ -1305,11 +1305,32 @@ the *tame cubic Hilbert symbol*.
   it outright.
 ]
 
-Sampling $E(QQ_7)$ shows the image of $(c_1, c_2)$ is the *diagonal* of
-$(QQ_7^times slash (QQ_7^times)^3)^2$, of size 9 --- so $c_1$ alone identifies
-$W_7$ with $QQ_7^times slash (QQ_7^times)^3$ and
-$beta_7 (P,Q) = -(c_1 (P), c_1 (Q))_7$. Its table on the nine classes
-$7^a u$, $a = 0,1,2$, $u = 1, 3, 2$:
+The image of $(c_1, c_2)$ on $W_7$ has *9 elements*, and $c_2$ is determined by $c_1$: the pair
+runs over the *antidiagonal* $c_2 = c_1^(-1)$ of
+$(QQ_7^times slash (QQ_7^times)^3)^2$. So $c_1$ alone identifies $W_7$ with
+$QQ_7^times slash (QQ_7^times)^3$, and
+$ beta_7 (P,Q) = -⟨c_2 (P), c_1 (Q)⟩_7 = ⟨c_1 (P), c_1 (Q)⟩_7 . $
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  Diagonal or antidiagonal is a *choice*, not a fact: the two generators of $C_2$ give tangents
+  whose values are inverse to one another, so replacing $T_2$ by $-T_2$ swaps the two descriptions
+  and flips the sign in the display above. Neither the non-degeneracy nor the alternating property
+  is affected, so the theorem is untouched; an earlier version of this section wrote "diagonal" and
+  carried the other sign.
+
+  #v(1.5mm)
+  What *is* a fact, and what an earlier version of this section obtained only by sampling, is that
+  the image has exactly 9 elements. `localimg.gp` makes it exhaustive: the sampled points of
+  $E_d (QQ_7)$ are shown to generate $E_d (QQ_7) slash E_1$ --- *18 of 18* --- and $3E$ contains
+  $E_1$ at $v = 7$, since $E_1$ is pro-7 and hence uniquely 3-divisible, so they generate $W_7$;
+  the $c_i$ are homomorphisms, so their image on a generating set is the whole image. And the class
+  of a value in $QQ_7^times slash (QQ_7^times)^3$ is read off from $v_7$ modulo 3 together with the
+  unit *modulo 7*, since $1 + 7 ZZ_7$ consists of cubes. Nothing is sampled and no precision is
+  lost. One $d$ suffices, $E_d$ over $QQ_7$ depending only on the class of $d$ modulo squares;
+  $d = 1, 2, 4, 8, 11, 22$ all agree.
+]
+
+The symbol table on the nine classes $7^a u$, $a = 0,1,2$, $u = 1, 3, 2$:
 
 Tabulating it on all 81 pairs: 48 of the values are non-zero, and every diagonal
 value $(a,a)_7$ is $0$ --- so the form is non-degenerate and alternating. The
@@ -1448,12 +1469,16 @@ same computation in the third row returns *three* classes, i.e. $dim ker alpha =
 
 Two things distinguish this from @sec-15a1.
 
-*Almost nothing was verified numerically.* At level 2 the alternating property had to be
-proved by hand (`x^3 + x`) or the local vanishing checked by machine (`15a1`).
+*Nothing here is left to a sample.* At level 2 the alternating property had to be
+proved by hand (`x^3 + x`) or the local vanishing checked over a range of twists (`15a1`).
 Here decomposability hands over the alternating property, and the places then
 fall out of a single fact --- $-3$ is a square in $QQ_7$ and in neither $QQ_2$
-nor $QQ_3$. The computations are the symbol table at 7 and, at the wild place, the
-$phi_*$-stability check of @sec-14a1-places.
+nor $QQ_3$. Three things are computed rather than argued, and each is *exhaustive*: the symbol
+table at 7 (all 81 pairs of a 9-element group, by the explicit tame formula); the image of the
+descent maps at 7 (@sec-14a1-seven); and the $phi_*$-stability at 3 (@sec-14a1-places). The last
+two are exhaustive because the sampled points are shown to generate the relevant quotient and the
+maps are homomorphisms, and because $E_d$ over $QQ_v$ depends only on the class of $d$ modulo
+squares --- one class at 7, four at 3.
 
 *What is missing is not a symbol but a mechanism.* An earlier version of this section said the
 remaining twists needed the wild cubic norm-residue symbol at 3, the thing §5.1.5 also lacked.

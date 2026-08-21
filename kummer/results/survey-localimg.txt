@@ -1,0 +1,21 @@
+=== 14a1 at v = 7 (level 3): the image of the two descent maps ===
+
+Only the class [1] of Q_7^x matters (that is the failing class), and
+E_d over Q_7 depends only on that class, so one d settles it; the rest
+are consistency checks.
+
+   d = 1   lines at x = [0, -28/3]   tangents triple: 1   generates E(Q_7)/E_1: 18 of 18 yes
+      image of (c_1, c_2): 9 elements;  on the diagonal 1, on the ANTIdiagonal 9   => c_2 = c_1^-1, so c_1 is an isomorphism W_7 -> Q_7^x/cubes
+   d = 2   lines at x = [0, -56/3]   tangents triple: 1   generates E(Q_7)/E_1: 18 of 18 yes
+      image of (c_1, c_2): 9 elements;  on the diagonal 1, on the ANTIdiagonal 9   => c_2 = c_1^-1, so c_1 is an isomorphism W_7 -> Q_7^x/cubes
+   d = 4   lines at x = [0, -112/3]   tangents triple: 1   generates E(Q_7)/E_1: 18 of 18 yes
+      image of (c_1, c_2): 9 elements;  on the diagonal 1, on the ANTIdiagonal 9   => c_2 = c_1^-1, so c_1 is an isomorphism W_7 -> Q_7^x/cubes
+   d = 8   lines at x = [0, -224/3]   tangents triple: 1   generates E(Q_7)/E_1: 18 of 18 yes
+      image of (c_1, c_2): 9 elements;  on the diagonal 1, on the ANTIdiagonal 9   => c_2 = c_1^-1, so c_1 is an isomorphism W_7 -> Q_7^x/cubes
+   d = 11   lines at x = [0, -308/3]   tangents triple: 1   generates E(Q_7)/E_1: 18 of 18 yes
+      image of (c_1, c_2): 9 elements;  on the diagonal 1, on the ANTIdiagonal 9   => c_2 = c_1^-1, so c_1 is an isomorphism W_7 -> Q_7^x/cubes
+   d = 22   lines at x = [0, -616/3]   tangents triple: 1   generates E(Q_7)/E_1: 18 of 18 yes
+      image of (c_1, c_2): 9 elements;  on the diagonal 1, on the ANTIdiagonal 9   => c_2 = c_1^-1, so c_1 is an isomorphism W_7 -> Q_7^x/cubes
+
+### localimg finished
+gp -q -s 4000000000 < localimg.gp  0.38s user 0.01s system 96% cpu 0.402 total
