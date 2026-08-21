@@ -755,8 +755,9 @@ most 2.
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *Theorem.* Let $d = 2m$ be squarefree with $m equiv plus.minus 1$ $(mod 8)$ ---
   that is, $d$ in the square class $[2]$ or $[14]$ of $QQ_2^times$. Then
-  $E_d (QQ)$ is not dense in $E_d (QQ_2)$; and hence $X(QQ)$ is not dense in
-  $X(QQ_2)$ for $X : y^2 = (x^3 + x)(t^3 + t)$. (The criterion of the companion
+  $(c(P), c(Q))_2 = +1$ for all $P, Q in E_d (QQ)$. Hence $E_d (QQ)$ is not dense in
+  $E_d (QQ_2)$, and --- by @sec-class-warning, the vanishing holding for every $d$ in the two
+  classes --- $X(QQ)$ is not dense in $X(QQ_2)$ for $X : y^2 = (x^3 + x)(t^3 + t)$. (The criterion of the companion
   notes, §2, is an equivalence at $p = 2$ here: $f = x(x^2+1)$ has exactly one
   root in $QQ_2$, so $E_delta (QQ_2)$ is topologically 2-generated and the
   necessity argument applies.)
@@ -778,7 +779,8 @@ most 2.
   $ U = { P in E_d (QQ_2) : c(P) in.not H } $
   is open, non-empty, and contains no rational point --- and being open it
   contains no limit of rational points either. Hence $E_d (QQ)$ is not dense in
-  $E_d (QQ_2)$. $qed$
+  $E_d (QQ_2)$. The statement about $X$ is @sec-class-warning applied to the pair statement
+  $(c(P), c(Q))_2 = +1$, which is what reciprocity gave in the first place. $qed$
 ]
 
 Nothing in that proof uses cohomology, Selmer groups, Frattini subgroups or
@@ -1436,31 +1438,58 @@ The identities that keep coming up.
   for `15a1`: it confines the bad places (@sec-15a1-local), it proves Lemma C, and it makes
   $cal(A)$ unramified on the Kummer surface (@sec-brauer-unram-2).
 
-== A condition on $d$ is not free <sec-class-warning>
+== From a pairing to a statement about the surface <sec-class-warning>
+
+Each theorem of @sec-nonCM proves something about $E_d (QQ)$ for $d$ in a square class and then
+draws a conclusion about the *surface*. Two things are needed, and the first is not what it looks
+like: the conclusion has to be read on *pairs*.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  Each theorem of @sec-nonCM proves something about $E_d (QQ)$ for $d$ in a square class, and then
-  draws a conclusion about the *surface*. The second step needs the first to hold for *every* $d$
-  in the class, and it is easy to get this wrong.
+  *Lemma.* Fix a place $p$ and a square class $delta$ of $QQ_p^times$, and write
+  $W_delta = E_delta (QQ_p) slash ell$. Suppose $beta_p equiv.not 0$ on $W_delta$, and suppose that
+  for *every* squarefree $d$ in the class,
+  $ beta_p (P, Q) = 0 quad "for all" P, Q in E_d (QQ). $
+  Then $X(QQ)$ is not dense in $X(QQ_p)$.
 
-  #v(1.5mm)
-  The reason is the decomposition. $X(QQ_p) = union.sq_delta (E_delta times E_delta)(QQ_p) slash
-  plus.minus$ over the four square classes $delta$ of $QQ_p^times$, while
-  $X(QQ) = union.sq_d (E_d times E_d)(QQ) slash plus.minus$ over the *global* squarefree $d$. The
-  part of $X(QQ)$ sitting over one local class $delta$ is therefore the union of the
-  $(E_d times E_d)(QQ)$ for *all* $d$ mapping to $delta$ --- a countable union. If each of those is
-  a proper closed subgroup of $(E_delta times E_delta)(QQ_p)$ then, being a countable union of
-  closed nowhere-dense sets, it is not dense (Baire), and $X(QQ)$ is not dense in $X(QQ_p)$. But if
-  the theorem only covers *some* of the $d$ in the class, the remaining ones are unconstrained and
-  may well fill the local class up: nothing about the surface follows.
-
-  #v(1.5mm)
-  So a theorem of the shape "for $d$ in the class *and* satisfying $C$, $E_d (QQ)$ is not dense"
-  supports a statement about $X$ only when $C$ is vacuous on the class. All four theorems of
-  @sec-nonCM clear this bar --- but @sec-11a1 and @sec-14a1 only after their conditions at
-  $v = ell$ were removed, which took @sec-tk-ordinary and the collapse mechanism respectively. The
-  bar is easy to miss.
+  #v(2mm)
+  _Proof._ On the locus $y != 0$ the class of $f(x)$ in $QQ_p^times slash (QQ_p^times)^2$ is
+  locally constant, so the part of $X(QQ_p)$ lying over $delta$ --- namely
+  $(E_delta times E_delta)(QQ_p) slash plus.minus$ --- is *open* in $X(QQ_p)$; and for every $d$ in
+  the class $E_d$ is $QQ_p$-isomorphic to $E_delta$, so $beta_p$ is one and the same pairing on one
+  and the same $W_delta$ for all of them. The pairing factors through the *finite
+  discrete* quotient $W_delta times W_delta$, so
+  $ Z = { (P, Q) in (E_delta times E_delta)(QQ_p) : beta_p (P,Q) = 0 } $
+  is open and closed, and *proper* because $beta_p equiv.not 0$. It is stable under
+  $(P,Q) |-> (-P,-Q)$, so it descends to a proper open subset of the $delta$-part. Every rational
+  point of $X$ lying over $delta$ is a pair of points of $E_d (QQ)$ for some squarefree $d$ in the
+  class, hence lies in $Z$. So $X(QQ)$ misses the non-empty open complement. $qed$
 ]
+
+*Why the group statement is too weak.* The same hypothesis also gives that the image $R_d$ of
+$E_d (QQ)$ in $W_delta$ is isotropic --- hence, when $beta_p$ is non-degenerate on the
+2-dimensional $W_delta$, a *proper subspace* --- and therefore that $E_d (QQ)$ is not dense in
+$E_d (QQ_p)$. That is true, and it is not enough. The preimage of a proper subspace is an *open*
+subgroup, so it is not nowhere dense and no countable-union or Baire argument applies to the union
+over the $d$ in the class. Worse, the union really can be everything: $W_delta$ is 2-dimensional,
+so it is the union of its $ell + 1$ lines, and as few as $ell + 1$ twists with distinct $R_d$
+already fill the local class.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  The repair is combinatorial, not topological. Both $P$ and $Q$ land in the *same* $R_d$, and any
+  two elements of a subspace of dimension $<= 1$ are $bb(F)_ell$-multiples of one another. That is
+  a condition on the *pair* which does not depend on which line $R_d$ is, so it is uniform over the
+  twists --- and in the 2-dimensional non-degenerate case it is exactly $beta_p (P,Q) = 0$. An
+  earlier version of this section argued the passage to $X$ by Baire; that argument was wrong, and
+  the lemma above replaces it.
+]
+
+*The class must still be covered.* The lemma needs the vanishing for *every* $d$ in the class. If a
+theorem covers only *some* of them --- carrying a side condition $C$ on $d$ --- the remaining
+twists are unconstrained and may fill the local class up, and nothing about the surface follows. So
+a theorem of the shape "for $d$ in the class *and* satisfying $C$" supports a statement about $X$
+only when $C$ is vacuous on the class. All the theorems of @sec-nonCM clear this bar --- but
+@sec-11a1 and @sec-14a1 only after their conditions at $v = ell$ were removed, which took
+@sec-tk-ordinary and the collapse mechanism respectively. The bar is easy to miss.
 
 == Where each tool was used <sec-tk-checklist>
 
@@ -1690,7 +1719,8 @@ predicted images exactly and giving no non-trivial symbol.
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *Theorem.* For
   $f = (x-17)(x-1)(x+8)$ and every squarefree $d$ in the class $[1]$ of
-  $QQ_5^times$, the group $E_d (QQ)$ is not dense in $E_d (QQ_5)$; hence
+  $QQ_5^times$, the pairing $beta_5$ vanishes on $E_d (QQ) times E_d (QQ)$. Hence
+  $E_d (QQ)$ is not dense in $E_d (QQ_5)$, and --- by @sec-class-warning ---
   $X(QQ)$ is not dense in $X(QQ_5)$.
 
   #v(2mm)
@@ -1702,7 +1732,8 @@ predicted images exactly and giving no non-trivial symbol.
   $beta_5$, which is a non-trivial alternating form on the 2-dimensional $W_5$;
   the image therefore has dimension $<= 1$ and is not all of $W_5$. As
   $W_5 = E_delta (QQ_5) slash 2$ is the Frattini quotient, $E_d (QQ)$ is not
-  dense. $qed$
+  dense. The vanishing holds for every $d$ in the class, so @sec-class-warning carries it to
+  $X$. $qed$
 ]
 
 Three remarks.
@@ -1924,8 +1955,9 @@ same computation in the third row returns *three* classes, i.e. $dim ker alpha =
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *Theorem.* Let $d$ be squarefree in the class $[1]$ of $QQ_7^times$ --- *any* such $d$, with no
-  further condition. Then $E_d (QQ)$ is not dense in $E_d (QQ_7)$. Since that holds for every $d$
-  in the class, $X(QQ)$ is not dense in $X(QQ_7)$ for $X : y^2 = f(x) f(t)$,
+  further condition. Then $beta_7$ vanishes on $E_d (QQ) times E_d (QQ)$, so $E_d (QQ)$ is not
+  dense in $E_d (QQ_7)$. Since the vanishing holds for every $d$ in the class, @sec-class-warning
+  gives that $X(QQ)$ is not dense in $X(QQ_7)$ for $X : y^2 = f(x) f(t)$,
   $f = x^3 + 10x^2 + 105x - 116$.
 
   #v(2mm)
@@ -1941,7 +1973,8 @@ same computation in the third row returns *three* classes, i.e. $dim ker alpha =
   $c_1$, non-zero and alternating on a 2-dimensional $bb(F)_3$-space, hence
   symplectic; the image of $E_d (QQ)$ is isotropic and so has dimension $<= 1$.
   It is therefore not all of $W_7 = E_delta (QQ_7) slash 3$, the Frattini
-  quotient at the layer, and $E_d (QQ)$ is not dense. $qed$
+  quotient at the layer, and $E_d (QQ)$ is not dense. The vanishing holds for every $d$ in the
+  class, so @sec-class-warning carries it to $X$. $qed$
 ]
 
 Two things distinguish this from @sec-15a1.
@@ -2050,8 +2083,9 @@ $QQ(i)$, so $(c(P), -1)_v = 1$ and *$beta$ is alternating at every place*.
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *Theorem.* For
   $f = x(x^2 + 14x + 625)$ --- that is, `15a4` --- and every squarefree $d$ in
-  the class $[1]$ of $QQ_5^times$, the group $E_d (QQ)$ is not dense in
-  $E_d (QQ_5)$; hence $X(QQ)$ is not dense in $X(QQ_5)$.
+  the class $[1]$ of $QQ_5^times$, the pairing $beta_5$ vanishes on
+  $E_d (QQ) times E_d (QQ)$. Hence $E_d (QQ)$ is not dense in $E_d (QQ_5)$, and --- by
+  @sec-class-warning --- $X(QQ)$ is not dense in $X(QQ_5)$.
 
   #v(2mm)
   _Proof._ $beta_v (P,Q) = (c(P), c(Q))_v$ is $+1$ at $v = infinity$, at every
@@ -2061,7 +2095,8 @@ $QQ(i)$, so $(c(P), -1)_v = 1$ and *$beta$ is alternating at every place*.
   non-trivial alternating form on a 2-dimensional $bb(F)_2$-space, hence symplectic,
   so the image of $E_d (QQ)$ is isotropic and of dimension $<= 1$. It is
   therefore not all of $W_5 = E_delta (QQ_5) slash 2$, and $E_d (QQ)$ is not
-  dense. $qed$
+  dense. The vanishing holds for every $d$ in the class, so @sec-class-warning carries it to
+  $X$. $qed$
 ]
 
 The measurement agrees: across 231 twists in the class, all *1079* rational
@@ -2199,9 +2234,10 @@ dual image outside $5 E(QQ_5)$. Both kernels non-zero, so $beta_5 = 0$.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *Theorem.* Let $d$ be squarefree and a square in $QQ_11^times$ --- that is, *any* $d$ in the
-  class $[1]$, with no further condition. Then $E_0^((d))(QQ)$ is not dense in
-  $E_0^((d))(QQ_11)$. Since that holds for *every* $d$ in the class, $X(QQ)$ is not dense in
-  $X(QQ_11)$ for the surface `11a1`.
+  class $[1]$, with no further condition. Then $beta_11$ vanishes on
+  $E_0^((d))(QQ) times E_0^((d))(QQ)$, so $E_0^((d))(QQ)$ is not dense in $E_0^((d))(QQ_11)$.
+  Since the vanishing holds for *every* $d$ in the class, @sec-class-warning gives that $X(QQ)$ is
+  not dense in $X(QQ_11)$ for the surface `11a1`.
 
   #v(2mm)
   _Proof._ $beta$ is alternating at every place, so $beta_v = 0$ wherever
@@ -2211,7 +2247,8 @@ dual image outside $5 E(QQ_5)$. Both kernels non-zero, so $beta_5 = 0$.
   $P, Q in E_0^((d))(QQ)$. But $beta_11$ is non-degenerate on the 2-dimensional
   $W_11$, so the image of the rational points is a proper subspace, of dimension
   $<= 1$. It is therefore not all of $W_11 = E_delta (QQ_11) slash 5$, and the
-  rational points are not dense. $qed$
+  rational points are not dense. The vanishing holds for every $d$ in the class, so
+  @sec-class-warning carries it to $X$. $qed$
 ]
 
 @sec-ledger-odd's measurement agrees with the
@@ -2326,13 +2363,13 @@ is no such place at all: every bad prime of $E_d$ other than 19 divides $d'$.
 
   #v(1.5mm)
   (a) For $f = x^3 - 11x^2 - 528x - 2240$ (`14a2`) and *every* squarefree $d$ in the class $[1]$ of
-  $QQ_7^times$, the group $E_d (QQ)$ is not dense in $E_d (QQ_7)$; hence $X(QQ)$ is not dense in
-  $X(QQ_7)$.
+  $QQ_7^times$, the pairing $beta_7$ vanishes on $E_d (QQ) times E_d (QQ)$; hence $E_d (QQ)$ is not
+  dense in $E_d (QQ_7)$, and $X(QQ)$ is not dense in $X(QQ_7)$.
 
   #v(1.5mm)
   (b) For $f = x^3 - 10x^2 - 4x - 6$ (`19a1`) and *every* squarefree $d$ in the class $[u]$ of
-  $QQ_19^times$, the group $E_d (QQ)$ is not dense in $E_d (QQ_19)$; hence $X(QQ)$ is not dense in
-  $X(QQ_19)$.
+  $QQ_19^times$, the pairing $beta_19$ vanishes on $E_d (QQ) times E_d (QQ)$; hence $E_d (QQ)$ is
+  not dense in $E_d (QQ_19)$, and $X(QQ)$ is not dense in $X(QQ_19)$.
 
   #v(2mm)
   _Proof._ $beta$ is alternating at every place, $E[3]$ being decomposable and 2 invertible modulo
@@ -2340,8 +2377,9 @@ is no such place at all: every bad prime of $E_d$ other than 19 divides $d'$.
   $sum_v beta_v = 0$ then forces $beta_p (P,Q) = 0$ for all $P, Q in E_d (QQ)$. On $W_p$, $beta_p$
   is the tame cubic symbol transported by $c_1$, symplectic by @sec-1419-crit, so the image of
   $E_d (QQ)$ is isotropic and of dimension $<= 1$: not all of $W_p = E_delta (QQ_p) slash 3$. By
-  topological Nakayama $E_d (QQ)$ is not dense, and the hypothesis being vacuous on the class,
-  @sec-class-warning gives the statement about $X$. $qed$
+  topological Nakayama $E_d (QQ)$ is not dense; and since $beta_p$ vanishes on rational pairs for
+  *every* $d$ in the class --- the hypothesis being vacuous on it --- @sec-class-warning gives the
+  statement about $X$. $qed$
 ]
 
 With these, *seven* of the eight classes of @sec-fail are settled --- the eighth having been
@@ -2414,8 +2452,8 @@ with triviality at $v$ meaning that the image of $c$ is *isotropic* there.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *Theorem.* For $f = x(x^2 + 30x + 289)$ --- that is, `17a1` --- and *every* squarefree $d$ in the
-  class $[1]$ of $QQ_17^times$, the group $E_d (QQ)$ is not dense in $E_d (QQ_17)$; hence $X(QQ)$
-  is not dense in $X(QQ_17)$.
+  class $[1]$ of $QQ_17^times$, the pairing $beta_17$ vanishes on $E_d (QQ) times E_d (QQ)$; hence
+  $E_d (QQ)$ is not dense in $E_d (QQ_17)$, and $X(QQ)$ is not dense in $X(QQ_17)$.
 
   #v(2mm)
   _Proof._ $beta_v (P,Q) = (c(P), c(Q))_v$ is $+1$ at $v = infinity$, at every
@@ -2423,8 +2461,9 @@ with triviality at $v$ meaning that the image of $c$ is *isotropic* there.
   @sec-17a1-places. Hilbert reciprocity then forces $beta_17 (P,Q) = +1$ for all
   $P, Q in E_d (QQ)$. On $W_17$, $beta_17$ is a non-trivial alternating form on a 2-dimensional
   $bb(F)_2$-space, hence symplectic, so the image of $E_d (QQ)$ is isotropic and of dimension
-  $<= 1$: not all of $W_17 = E_delta (QQ_17) slash 2$. Topological Nakayama gives non-density, and
-  the hypothesis being vacuous on the class, @sec-class-warning gives the statement about $X$.
+  $<= 1$: not all of $W_17 = E_delta (QQ_17) slash 2$. Topological Nakayama gives non-density; and
+  since $beta_17$ vanishes on rational pairs for *every* $d$ in the class --- the hypothesis being
+  vacuous on it --- @sec-class-warning gives the statement about $X$.
   $qed$
 ]
 
@@ -3393,15 +3432,20 @@ $ gamma := beta_p xor beta_q quad "on" W_p xor W_q . $
   *4-dimensional* space and $dim R <= 2$.
 ]
 
-Two steps make that a statement about density. First, $W_p times W_q$ is a *finite discrete*
-quotient of $E_d (QQ_p) times E_d (QQ_q)$, since $ell E_d (QQ_v)$ is open; a dense subgroup would
-have to surject onto it, and $R$ does not. Second, running over all $d$ in the fixed pair of
-classes: each closure is a proper closed subgroup, a proper closed subgroup of a topological group
-is nowhere dense, and a countable union of nowhere-dense sets is not dense (Baire) --- the argument
-of @sec-class-warning, one dimension up. So $X(QQ)$ is not dense in $X(QQ_p) times X(QQ_q)$.
+The passage to the surface is @sec-class-warning, read on the product, and it is the *isotropy*
+that transfers, not the properness of $R$. A rational point of $X$ over the pair of classes is a
+pair $(P,Q)$ of points of $E_d (QQ)$ for a single global $d$; its images in $X(QQ_p)$ and
+$X(QQ_q)$ are $(P_p, Q_p)$ and $(P_q, Q_q)$, and isotropy says
+$ beta_p (P_p, Q_p) + beta_q (P_q, Q_q) = 0 . $
+That is a condition on a point of the *product*, it factors through the finite discrete
+$(W_p times W_p) times (W_q times W_q)$, and it is *proper* as soon as one of $beta_p$, $beta_q$
+is non-zero. So the rational points miss a non-empty open subset of $X(QQ_p) times X(QQ_q)$,
+whatever the $R_d$ do individually. As in @sec-class-warning, the properness of $R$ by itself would
+*not* do: the union over the countably many $d$ of the open subgroups it cuts out can be all of
+$W_p xor W_q$.
 
-If the Azumaya algebra of @sec-brauer is available the argument is shorter and needs neither Baire
-nor the decomposition by twist: $"inv"_v cal(A)$ is locally constant on $X(QQ_v)$, so
+If the Azumaya algebra of @sec-brauer is available the argument is shorter and needs no
+decomposition by twist at all: $"inv"_v cal(A)$ is locally constant on $X(QQ_v)$, so
 $ {(T_p, T_q) : "inv"_p cal(A)(T_p) + "inv"_q cal(A)(T_q) != 0 } $
 is a non-empty open subset of $X(QQ_p) times X(QQ_q)$ --- non-empty precisely because both
 invariants are non-constant --- and $X(QQ)$ misses it, because the standing hypothesis makes
@@ -3536,7 +3580,10 @@ square classes at 5 and 13 and the eight at 2 cover every squarefree $d$.
   non-trivial alternating forms on 2-dimensional $bb(F)_2$-spaces, hence symplectic, so $gamma$ is
   symplectic on a 4-dimensional space and $dim R <= 2 < 4$. As $W_5 times W_13$ is a finite
   discrete quotient of $E_d (QQ_5) times E_d (QQ_13)$, a dense subgroup would surject onto it, and
-  $R$ does not. The passage to $X$ is @sec-tp-crit. $qed$
+  $R$ does not. For $X$ the relevant consequence is the isotropy itself:
+  $beta_5 (P_5, Q_5) + beta_13 (P_13, Q_13) = 0$ holds at every rational point and for every $d$ in
+  the pair of classes, which by @sec-tp-crit and @sec-class-warning excludes a non-empty open
+  subset of $X(QQ_5) times X(QQ_13)$. $qed$
 ]
 
 == What is not settled <sec-tp-open>

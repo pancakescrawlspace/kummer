@@ -756,6 +756,18 @@ extra condition, which is what the surface-level conclusion needs (document
 complete set of square classes, with the sampled points shown to generate the
 relevant quotient.
 
+**What the theorems actually establish** (corrected 2026-08-21): the conclusion
+that carries to the surface is not "`E_d(Q)` is not dense in `E_d(Q_p)`" but the
+*pair* statement `beta_p(P,Q) = 0` for all `P,Q` in `E_d(Q)` -- equivalently,
+the image of `E_d(Q)` in `E_d(Q_p)/l` is a proper subspace, so any two of its
+elements are `F_l`-multiples of one another. The group statement is true but too
+weak: the preimage of a proper subspace is an *open* subgroup, hence not nowhere
+dense, so no Baire argument applies over the countably many `d` in the class --
+and since a 2-dimensional `W_p` is the union of its `l+1` lines, as few as `l+1`
+twists can fill the local class. The pair statement is uniform in `d` and cuts
+out a proper open subset of `X(Q_p)` directly. Document §6.8 now carries this as
+a lemma; the earlier Baire argument there was wrong.
+
 | case | l | critical p | E[l] | wild place v = l | status |
 |---|---|---|---|---|---|
 | `x^3-2` (§5.1.5) | 3 | 3 -- **wild** | decomposable | *is* the critical place | complete |
@@ -1278,8 +1290,10 @@ Reciprocity then gives `beta_p + beta_q = 0` on rational pairs, so the image
 `R` of `E_d(Q)` in `W_p (+) W_q` is **isotropic** for `gamma = beta_p (+) beta_q`
 rather than zero. If `gamma =/= 0` then `R` is proper, `W_p x W_q` is a finite
 discrete quotient of `E_d(Q_p) x E_d(Q_q)`, and `E_d(Q)` is not dense in the
-product; Baire over the pair of square classes carries it to `X`. With both
-`beta` non-degenerate alternating, `dim R <= 2` out of 4.
+product. With both `beta` non-degenerate alternating, `dim R <= 2` out of 4.
+The passage to `X` is NOT via the properness of `R` (see §6.8): it is the
+isotropy itself that transfers, since `beta_p(P_p,Q_p) + beta_q(P_q,Q_q) = 0`
+is a proper closed condition on a point of the *product* `X(Q_p) x X(Q_q)`.
 
 The point is that **this is invisible one place at a time**: `R` can be the
 graph of an isomorphism `W_p -> W_q`, so `X(Q)` may be dense in `X(Q_5)` and
