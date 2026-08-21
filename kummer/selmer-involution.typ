@@ -182,6 +182,101 @@ C2(k) = { my(E = ellinit([0,0,0,0,k]), r);
   [*even $a$*], [*2 / 16*], [always off by exactly 1],
 ))
 
+= Completing the proof <sec-proof>
+
+Everything now rests on (#sym.star), and the engine is the following, which is proved outright.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma C.* Under the identification $theta |-> theta' = -1 slash theta$ of Theorem A, the two
+  descent maps *agree on 2-torsion*: for every $i$,
+  $ delta'(T'_i) = delta(T_i) quad "in" A^times slash (A^times)^2 . $
+
+  #v(2mm)
+  _Proof._ On the $i$-th coordinate the value is the derivative: $g'(theta'_i) = 3 theta_i'^2$
+  against $f'(theta_i) = 3 theta_i^2$, and their ratio is $(theta'_i slash theta_i)^2$, a square.
+  On the $j$-th coordinate, $j != i$,
+  $ theta'_i - theta'_j = (-1 slash theta_i) + (1 slash theta_j)
+    = (theta_i - theta_j) slash (theta_i theta_j) , $
+  and $theta_i theta_j = theta_i^2 zeta$ for a cube root of unity $zeta$, because the three roots
+  of $t^3 + a$ are $theta_i$ times the cube roots of unity. Now $theta_i^2$ is a square and
+  $zeta = (zeta^2)^2$ is a square, $zeta$ having *odd* order 3. So the ratio is a square and the
+  two coordinates agree. $qed$
+]
+
+That gives (#sym.star) wherever $L_v$ is spanned by the image of the 2-torsion, and it settles
+three of the four ranges of places.
+
+== The archimedean place, and the good places <sec-pf-good>
+
+At a good $v$ both conditions are $H^1_"ur" (QQ_v, M)$, which depends only on $M$. At $v = infinity$
+there is nothing to check at all: with $G = "Gal"(CC slash RR)$ acting on $M = {0, A, B, C}$ by
+fixing $A$ and swapping $B, C$, one has $M^G = {0, A}$, $(sigma - 1)M = {0, B + C} = {0, A}$ and
+$ker N = {0, A}$, so $H^1 (RR, M) = 0$.
+
+== The place $v = 3$ <sec-pf-3>
+
+Here $dim L_3 = dim E[2](QQ_3) <= 1$, since two independent rational 2-torsion points would force
+$zeta_3 in QQ_3$, which is false. If the dimension is 0 both conditions vanish. If it is 1, then
+$L_3$ is the line spanned by $delta(T)$ *provided* $delta(T) != 1$ --- and it is, because the
+$QQ_3$-component of $delta(T)$ is
+$ f'(theta_1) = 3 theta_1^2 equiv 3 , $
+and 3 is a uniformiser at 3, hence not a square. So $L_3 = ⟨delta(T)⟩ = ⟨delta'(T')⟩ = L'_3$ by
+Lemma C.
+
+== The place $v = 2$: a finite, exhaustive check <sec-pf-2>
+
+This is where the hypothesis "$a$ odd" lives, and where the argument becomes a computation --- but a
+*complete* one, not a sample.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  Over $QQ_2$ every unit is a cube, since cubing is bijective on $ZZ_2^times$. So the cubic part of
+  any sextic twist by a unit is trivial, and for $a$ odd the curve $E_a$ over $QQ_2$ depends only on
+  the class of $a$ in $QQ_2^times slash (QQ_2^times)^2$ --- that is, only on $a bold("mod") 8$.
+  *Four classes, and checking all four settles every odd $a$.*
+]
+
+`selmer-local2.gp` computes both conditions inside the single algebra
+$A_2 = QQ_2 times K$, $K = QQ_2(zeta)$ unramified quadratic, using the identification
+$theta' = -1 slash theta$: the descent value of $E'$ at $X$ is $X + 1 slash theta$ in the
+$QQ_2$-component and $(X - 1 slash theta) - (1 slash theta) zeta$ in the $K$-component. Both come
+out as groups of order 4 --- which is $dim L_2 = dim M^(G_2) + 1 = 2$, as it must be --- and they
+*coincide*, for $a equiv 1, 3, 5, 7$ modulo 8.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *(#sym.star) holds at $v = 2$ for every odd $a$.*
+]
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Two wrong turns, both caught by parity.* Comparing $L_2 (y^2 = x^3 + a)$ with
+  $L_2 (y^2 = x^3 - a)$ under the *naive* identification --- cube root against cube root --- reports
+  a disagreement, but it is meaningless: that identification differs from $theta |-> -1 slash theta$
+  by an automorphism of $E[2]$, so it compares subspaces of two different copies of $H^1$. And a
+  slip in the 2-torsion entry for $E'$, where
+  $theta'_1 - theta'_2 = (zeta^2 - 1) slash theta = (-2 - zeta) slash theta$, inflated the group to
+  order 8 --- impossible, since $dim L_2 = 2$. Both were exposed by the parity constraint: the
+  comparison formula of @sec-status forces the Selmer ranks to differ by an odd number if 2 is the
+  *only* place of discrepancy, and the ranks are equal.
+]
+
+== What is left: the primes dividing $a$ <sec-pf-a>
+
+At an odd $v divides a$ the argument is the same in shape but not yet complete. Write $t = dim L_v =
+dim E[2](QQ_v)$. If $t = 0$ both conditions vanish. If $t >= 1$ the conditions agree as soon as the
+2-torsion image spans $L_v$, by Lemma C, and the $QQ_v$-component of $delta(T)$ is again the class
+of 3. So:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  (#sym.star) holds at every odd $v divides a$ with $t = 1$ *unless* 3 is a square modulo $v$ *and*
+  the remaining component of $delta(T)$ is a square --- in which case $delta(T) = 1$, the 2-torsion
+  image is trivial, and $L_v$ needs a generator that Lemma C does not supply. The case $t = 2$,
+  which needs $v equiv 1$ $(mod 3)$ and all three roots in $QQ_v$, is likewise open.
+]
+
+Note also that only $v divides a$ with $v(a) equiv 3$ $(mod 6)$ can matter: $v(Delta) = 2 v(a)$, and
+$v(a) equiv 0$ $(mod 6)$ can be scaled away by a sixth power, while $3 divides.not v(a)$ forces
+$t = 0$. Such a $v$ carries a fibre of type $"I"_0^*$, where the local image is the 2-torsion of the
+component group --- exactly the situation of the additive analysis in the companion survey.
+
 = Status <sec-status>
 
 *Proved here.* Theorem A --- the two curves have isomorphic mod-2 Galois modules, by the explicit
@@ -192,12 +287,18 @@ cubic twist, so that at every *odd* place the twist is unramified. The reduction
 to the local statement (#sym.star), together with its verification at the good places and at
 $infinity$.
 
-*Not proved.* The local statement (#sym.star) at $v = 2$, $v = 3$ and $v divides a$. The even-$a$
-data says that $v = 2$ carries the real content and that oddness is exactly the hypothesis that
-makes it work; $v = 3$ and $v divides a$ are odd places, where the quadratic part of the twist is
-unramified, so one expects them to be tractable by the standard local analysis --- at an odd place
-of additive reduction, for instance, $E(QQ_v) slash 2$ is the 2-torsion of the component group, and
-the comparison is a finite computation with the Kodaira type.
+*Also proved (@sec-proof).* Lemma C: the two descent maps agree on 2-torsion, by an explicit
+computation with $theta_i theta_j = theta_i^2 zeta$ and the fact that $zeta$ has odd order. With it,
+(#sym.star) holds at every good place, at $infinity$ (where $H^1 (RR, M) = 0$), at $v = 3$ (where
+$dim L_3 <= 1$ and $delta(T)$ has $QQ_3$-component the class of the uniformiser 3, hence is
+non-trivial), and --- by a finite and *exhaustive* computation, four classes covering every odd $a$
+--- at $v = 2$.
+
+*Not proved.* (#sym.star) at the odd primes $v divides a$, and only in the configurations described
+in @sec-pf-a: $t = 1$ with $delta(T) = 1$, which needs 3 to be a square modulo $v$, and the case
+$t = 2$. Everything else is done. Since only $v(a) equiv 3$ $(mod 6)$ can contribute, and such a
+place carries an $"I"_0^*$ fibre where the local image is the 2-torsion of the component group, this
+is a concrete and finite-looking remainder rather than an open field.
 
 *A remark on what "equal" costs.* Comparing two Selmer structures on a self-dual module, the
 Greenberg--Wiles formula gives only
