@@ -4633,9 +4633,50 @@ $ell$-isogenous curves (Step 5) is used to *locate* the canonical line but is no
 Theorem 5, which takes $C_"can" (v)$ as given; it deserves a proof anyway, since it is what makes the
 recipe mechanical.
 
-*Still untouched.* Lemma 1(b) covers $v = ell$ only under good reduction; when $E$ is additive at
-$ell$, as for $x^3 - 2$, nothing here applies. And at $ell = 2$ Corollary 6 needs @sec-tk-lemAB and
-the norm lemma to handle $infinity$ and the $q divides d$, because Lemma 2 fails there.
+=== The gap, precisely <sec-dep-thegap>
+
+*The one structural gap is the place $v = ell$ when $E_d$ has bad reduction there.* Every tool in
+this chapter is built for $v divides.not ell$, and each fails at $v = ell$ for the same reason ---
+the formal group is pro-$ell$, so it survives into $W_v$:
+
+#align(center, table(
+  columns: 2, align: (left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([result], [why it does not reach $v = ell$ with bad reduction]),
+  [Lemma 1(b)], [covers $v = ell$ only under *good* reduction],
+  [Lemma 3], [uses $dim W_v = dim E_d [ell](QQ_v)$, which needs $E_d (QQ_v) tilde.equiv ZZ_v times T$
+     with $v != ell$; at $v = ell$ it is $1 + dim T[ell]$],
+  [Lemma 7], [needs $E_0 (QQ_v)$ pro-$v$, false at $v = ell$],
+  [Lemma 4, Theorem 5], [need $v divides.not ell$ for the dimension count --- and at odd $ell$
+     hypothesis (b) is *impossible* at $v = ell$, since $zeta_ell in.not QQ_ell$],
+))
+
+#v(2mm)
+
+The single missing dimension is exactly what decides the two cases we have. For $x^3 - 2$ in its
+live class $[u dot 3]$, $dim E_d [3](QQ_3) = 1$, so Lemma 3 and Lemma 7 would both give
+$dim W_3 <= 1$, and $beta$ being alternating at odd $ell$ they would force $beta_3 equiv 0$. In
+fact $dim W_3 = 2$ and $beta_3 equiv.not 0$ (§5.1.5): the extra dimension is the formal group.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  So the gap is not a corner case --- it is where the only *honest* additive critical places live.
+  Both surfaces settled by hand, $x^3 - 2$ at $v = 3$ (type $"IV"^*$) and $x^3 + x$ at $v = 2$, sit
+  in it, and @sec-dep-noadd shows that away from it, at odd $v$ with split $f$, an additive
+  critical place is always an $"I"_0^*$ fibre, hence a $q divides d$ place in another model.
+
+  #v(1.5mm)
+  What closing it needs is a usable description of the local condition
+  $L_ell subset.eq H^1 (QQ_ell, E_d [ell])$ under bad reduction at $ell$ --- the analogue of
+  "$L_v = H^1_"ur"$" and "$L_ell = H^1_f$", which is what makes Lemma 1 a one-line proof, and of
+  Lemma 4's "$L_v = H^1 (QQ_v, C_"can" (v))$", which is what makes Theorem 5 an equivalence.
+]
+
+*Loose ends, of a different kind.* At $ell = 2$ there is no analogue of Corollary 6, since Lemma 2
+fails: $infinity$ and the $q divides d$ need substitutes, and the ones we have are
+family-specific --- @sec-tk-lemAB for $f = x q(x)$ with $b$ a square, Lemma 11 for split $f$, and
+the middle-root condition of @sec-dep-l2qd at $infinity$. The non-split Cartan case at odd $ell$ is
+covered by Theorem 5 but has no known example. And the supply of surfaces with *exactly one*
+critical prime is only observed to be plentiful, not proved infinite.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *The $ell = 2$ caveat is not a formality.* @sec-dep-15a1 exhibits a $phi$ on `15a1` for which the
