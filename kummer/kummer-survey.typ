@@ -2126,67 +2126,182 @@ unramified.
 
 === Level 2: the residue is a constant, and it is computable <sec-brauer-unram-2>
 
-At $(T_a, T_b)$ take anti-invariant local uniformisers $s, u$ ($s = y$ on $E$ at $T_a != O$, and
-$s = -x slash y$ at $O$). Both entries of $cal(A)$ expand in *even* powers, since each depends only
-on $x$ or only on $t$, so
-$ g_1 = C_1 s^(2 alpha) (1 + O(s^2)), quad quad g_2 = C_2 u^(2 beta) (1 + O(u^2)) . $
-The $A_1$ singularity resolves with $sans(A) = s^2$ and $lambda = u slash s$ --- both invariant ---
-so $v_F = "ord" slash 2$, $kappa(F) = k_(a b)(lambda)$ with $k_(a b) = QQ(e_a, e_b)$, and
-$ partial_F (g_1, g_2) = (-1)^(alpha beta) C_1^beta C_2^(-alpha) lambda^(-2 alpha beta)
-  = (-1)^(alpha beta) C_1^beta C_2^alpha quad (mod "squares") , $
-because $lambda^(-2 alpha beta)$ is a square. *The residue is a constant*, so it is trivial exactly
-when it is a square in $k_(a b)$.
+This subsection is deliberately structured in two stages, and it is worth saying so at the outset.
+*Stages 1 and 2 assume nothing about the surfaces this document is actually about*: they compute the
+residue of $cal(A)_(i j)$ along all sixteen exceptional curves for an *arbitrary* monic separable
+cubic $f$ over $QQ$ and an *arbitrary* choice of indices $i, j$. The answer is a table of
+constants, and the criterion for being unramified is that those constants be squares. Only in
+stage 3 is the criterion applied to $x^3 + x$, `15a4` and `15a1`.
 
-For $cal(A)_(i j) = (product_(k != i)(x - e_k), space product_(l != j)(t - e_l))$ one has
-$alpha$ odd exactly when $a in.not {i, 0}$, and likewise $beta$, which gives:
+==== Stage 1: the hypotheses, and what $T_a$, $T_b$ are <sec-unram-hyp>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *(H1)* $f = (u - e_1)(u - e_2)(u - e_3) in QQ[u]$ is monic, separable, of degree 3. Its roots
+  $e_1, e_2, e_3$ lie in $overline(QQ)$ and *need not be rational*; the Galois action permutes them.
+  $E : v^2 = f(u)$ is the associated elliptic curve.
+
+  *(H2)* $E[2] = {T_0, T_1, T_2, T_3}$ with $T_0 = O$ and $T_m = (e_m, 0)$ for $m = 1,2,3$. These
+  are the *2-torsion points*, and they are the points at which the descent functions of @sec-alt
+  have their zeros: $"div"(u - e_m) = 2(T_m) - 2(O)$.
+
+  *(H3)* $X = "Kum"(E times E)$: the minimal resolution of $Y = (E times E) slash iota$, where
+  $iota = (-1,-1)$ is the *diagonal* involution. The fixed points of $iota$ are exactly the pairs of
+  2-torsion points,
+  $ (T_a, T_b), quad a, b in {0,1,2,3} , $
+  sixteen of them, each an $A_1$ singularity of $Y$, and $F_(a b)$ is the exceptional curve above
+  $(T_a, T_b)$. So *$T_a$ is a 2-torsion point of the first factor and $T_b$ one of the second*, and
+  the pair $(a,b)$ is nothing but an address for one of the sixteen curves.
+
+  *(H4)* $i, j in {1,2,3}$ are fixed but arbitrary, and
+  $ cal(A)_(i j) = \( product_(k != i) (x - e_k), space product_(l != j)(t - e_l) \)_2 , $
+  the class of @sec-brauer-2. Write $g_1, g_2$ for its two entries.
+]
+
+Nothing else is assumed. In particular $f$ may split over $QQ$ or not, $i$ may equal $j$ or not,
+and the twist $d$ does not appear --- $cal(A)_(i j)$ is a class on the single surface $X$, and the
+computation below never mentions a twist.
+
+One point about fields, needed because of (H1). The Galois group permutes the sixteen points
+$(T_a, T_b)$, so a *prime divisor of $X$ over $QQ$* is a Galois orbit of exceptional curves, and its
+residue field is $k_(a b)(lambda)$ where
+$ k_(a b) := QQ(e_a, e_b) $
+is the field of definition of the point (with $e_0 := $ nothing, so $k_(0 b) = QQ(e_b)$ and
+$k_(0 0) = QQ$). A *constant* $c in k_(a b)^times$ is a square in $k_(a b)(lambda)$ if and only if
+it is a square in $k_(a b)$, since $k_(a b)$ is algebraically closed in $k_(a b)(lambda)$. That is
+the test that will appear.
+
+==== Stage 2: the residue, for arbitrary $f$ and arbitrary $i, j$ <sec-unram-calc>
+
+Fix $(a,b)$ and work locally at $(T_a, T_b)$. Choose *anti-invariant* uniformisers: $s = v$ on the
+first factor if $a != 0$ (the $y$-coordinate vanishes to order 1 at a 2-torsion point) and
+$s = -u slash v$ if $a = 0$; likewise $u$ on the second factor. Then $iota(s, u) = (-s, -u)$, so
+$sans(A) = s^2$, $sans(B) = s u$, $sans(C) = u^2$ generate the invariants, and $lambda = u slash s$
+is invariant. On the minimal resolution the chart $QQ[sans(A), lambda]$ is smooth, $F$ is
+$sans(A) = 0$, and
+$ v_F = "ord" slash 2 quad "on invariant functions", quad quad kappa(F) = k_(a b)(lambda) . $
+
+Each entry of $cal(A)_(i j)$ depends on one factor only, and is a function of $x$ (resp. $t$) alone,
+hence expands in *even* powers of its uniformiser:
+$ g_1 = C_1 space s^(2 alpha) (1 + O(s^2)), quad quad g_2 = C_2 space u^(2 beta) (1 + O(u^2)), $
+with $alpha = v_F (g_1)$ and $beta = v_F (g_2)$. The three local shapes of a single factor are:
 
 #align(center, table(
-  columns: 2, align: (left, left),
-  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3.5pt),
-  table.header([the curve $F_(a b)$], [$partial_F cal(A)_(i j)$, modulo squares]),
-  [$a in.not {i,0}$ and $b in.not {j,0}$ --- 4 curves],
-    [$-(e_a - e_i)(e_b - e_j)$],
-  [$a in.not {i,0}$, $b = j$ --- 2 curves], [$f'(e_j)$],
-  [$a = i$, $b in.not {j,0}$ --- 2 curves], [$f'(e_i)$],
-  [all others --- 8 curves], [$1$],
-))
-
-#v(2mm)
-
-The twist $d$ cancels out of every entry, as it must for a statement about $X$. Running this
-(`ramification.gp`):
-
-#align(center, table(
-  columns: 3, align: (left, left, left),
+  columns: 4, align: (left, center, left, left),
   stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
-  table.header([surface and class], [verdict], [why]),
-  [`15a1`, $cal(A)_13$ (@sec-15a1)], [*unramified*],
-    [all root differences $16, 25, 9$ are squares],
-  [`15a1`, transpose $cal(A)_31$], [*unramified*], [same],
-  [`15a1`, the rejected $cal(A)_12$], [ramified on 4 of 16], [residues $-144, -225$],
-  [$x^3 + x$ (@sec-thm2)], [*unramified*], [$K = QQ(i)$ and $q(0) = 1$],
-  [`15a4` (@sec-15a4)], [*unramified*], [$K = QQ(i)$ and $q(0) = 625 = 25^2$],
-  [$x^3 + 2x$ (no obstruction)], [ramified], [$K = QQ(sqrt(-2))$, so $-1$ is not a square],
-  [$x(x-1)(x-4)$], [ramified on 4 of 16], [$f'(4) = 12$ is not a square],
+  table.header([at $T_m$], [$"ord"(u - e_k)$], [leading coefficient], [reason]),
+  [$m != 0$, $k = m$], [$2$], [$1 slash f'(e_m)$],
+    [$v^2 = (u - e_m) product_(k != m)(u - e_k)$ and the second factor tends to $f'(e_m)$],
+  [$m != 0$, $k != m$], [$0$], [$e_m - e_k$], [$u -> e_m$],
+  [$m = 0$], [$-2$], [$1$], [$u = s^(-2)(1 + O(s))$ for $s = -u slash v$],
 ))
 
 #v(2mm)
 
-Two criteria fall out, and both were already visible in the earlier sections under other
-descriptions.
+Multiplying the two factors of $g_1 = product_(k != i)(u - e_k)$ gives three cases, and this is
+where the index $i$ enters:
 
-*When $f$ splits*, the conditions are that $f'(e_i)$, $f'(e_j)$ and $-(e_a - e_i)(e_b - e_j)$ be
-squares --- conditions on *root differences*. @sec-15a1 already singled out
-"the root differences $16, 25, 9$ are perfect squares" as what confines the bad places of `15a1` to
-$2, 3, 5$ and the divisors of $d$. It is the same fact, and it is also what makes the algebra
-unramified.
+#align(center, table(
+  columns: 3, align: (left, center, left),
+  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3.5pt),
+  table.header([position of $a$], [$alpha$], [$C_1$]),
+  [$a = 0$], [$-2$], [$1$],
+  [$a = i$], [$0$], [$product_(k != i)(e_i - e_k) = f'(e_i)$],
+  [$a in.not {0, i}$], [$1$],
+    [$(e_a - e_c) slash f'(e_a) = 1 slash (e_a - e_i)$, where $c$ is the third index],
+))
 
-*When $f = (x - e_1) q(x)$ with $q$ irreducible*, the curve $F_(a a)$ with $a in {2,3}$ has residue
-$-(e_a - e_1)^2$, a square in $K = QQ(e_2)$ exactly when $-1$ is --- that is, exactly when the
-*2-torsion field is $QQ(i)$*, which is precisely @sec-alt's Lemma 2 condition for $beta$ to be
-alternating. The remaining curves need $q(e_1)$ to be a square in $K$. Both hold for $x^3 + x$ and
-for `15a4`; the first fails for $x^3 + 2x$, which @sec-triage-templates records as having no
-obstruction at all.
+#v(2mm)
+
+So *$alpha$ is odd exactly when $a in.not {0, i}$*, and then $alpha = 1$. The same table with
+$(j, b)$ in place of $(i, a)$ gives $beta$ and $C_2$. Now
+$ partial_F (g_1, g_2) = (-1)^(alpha beta) space overline(g_1^beta g_2^(-alpha))
+  = (-1)^(alpha beta) space C_1^beta C_2^(-alpha) space lambda^(-2 alpha beta) , $
+and $lambda^(-2 alpha beta)$ is a square, so
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  $ partial_F (cal(A)_(i j)) = (-1)^(alpha beta) C_1^beta C_2^alpha
+    quad in k_(a b)^times slash (k_(a b)^times)^2 --- "a constant." $
+  #v(2mm)
+  Substituting the three cases for each of $alpha$ and $beta$:
+  #align(center, table(
+    columns: 3, align: (left, center, left),
+    stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3.5pt),
+    table.header([the curve $F_(a b)$], [how many], [$partial_F cal(A)_(i j)$ mod squares]),
+    [$a in.not {0,i}$ and $b in.not {0,j}$], [4], [$-(e_a - e_i)(e_b - e_j)$],
+    [$a in.not {0,i}$ and $b = j$], [2], [$f'(e_j)$],
+    [$a = i$ and $b in.not {0,j}$], [2], [$f'(e_i)$],
+    [$a = 0$, or $b = 0$, or $(a,b) = (i,j)$], [8], [$1$],
+  ))
+  #v(2mm)
+  *Criterion.* $cal(A)_(i j)$ is unramified along $F_(a b)$ if and only if the entry above is a
+  square in $k_(a b) = QQ(e_a, e_b)$; and unramified on $X$ if and only if that holds for all
+  sixteen, the other kinds of divisor being free (@sec-brauer-unram2).
+]
+
+Two sanity checks on the table. The eight trivial entries are forced: when $alpha$ and $beta$ are
+both even, $C_1^beta$ and $C_2^alpha$ are squares outright. And the twist has vanished --- rescaling
+$f$ by $d$ multiplies $C_1$ and $C_2$ by $d^(plus.minus 1)$ in a way that cancels in every row, as
+it must for a statement about $X$.
+
+==== Stage 3: the criterion applied to the surfaces of this document <sec-unram-apply>
+
+Only now does anything specific to these notes enter. There are two shapes to consider.
+
+*$f$ split over $QQ$.* Every $e_m$ is rational, so every $k_(a b) = QQ$ and the eight conditions are
+squareness in $QQ$. For `15a1` (@sec-15a1) the algebra is $cal(A)_13$ --- $beta_v$ there is
+$(c_1 (P), c_3 (Q))_v$, so $i = 1$ and $j = 3$ --- and $(e_1, e_2, e_3) = (17, 1, -8)$. The eight
+non-trivial curves and their residues:
+
+#align(center, table(
+  columns: 4, align: (center, left, center, center),
+  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3.5pt),
+  table.header([$(a,b)$], [residue], [value], [square?]),
+  [$(2,1)$], [$-(e_2 - e_1)(e_1 - e_3)$], [$400 = 20^2$], [yes],
+  [$(2,2)$], [$-(e_2 - e_1)(e_2 - e_3)$], [$144 = 12^2$], [yes],
+  [$(3,1)$], [$-(e_3 - e_1)(e_1 - e_3)$], [$625 = 25^2$], [yes],
+  [$(3,2)$], [$-(e_3 - e_1)(e_2 - e_3)$], [$225 = 15^2$], [yes],
+  [$(2,3)$, $(3,3)$], [$f'(e_3) = (e_3-e_1)(e_3-e_2)$], [$225 = 15^2$], [yes],
+  [$(1,1)$, $(1,2)$], [$f'(e_1) = (e_1-e_2)(e_1-e_3)$], [$400 = 20^2$], [yes],
+))
+
+#v(2mm)
+
+All eight are squares, so *$cal(A)_13$ is unramified on $X$*. Every value is built from the
+differences $e_1 - e_2 = 16$, $e_1 - e_3 = 25$, $e_2 - e_3 = 9$, which is why they are squares ---
+and @sec-15a1-local had already singled out that those three differences are perfect squares, for
+the different purpose of confining the bad places to $2, 3, 5$ and the divisors of $d$. The two
+facts are the same fact.
+
+*$f = (u - e_1) q(u)$ with $q$ irreducible over $QQ$.* Then $e_1 in QQ$ while $e_2, e_3$ are
+conjugate over $K := QQ(e_2)$, so $k_(a b) = QQ$ when $a, b in {0, 1}$ and $k_(a b) = K$ otherwise.
+The algebra of @sec-thm2 and @sec-15a4 is $(q(x), q(t))$, i.e. $i = j = 1$, so
+$a in.not {0, i}$ means $a in {2,3}$. The eight non-trivial curves fall into three families, all
+with residue field $K(lambda)$:
+
+#align(center, table(
+  columns: 4, align: (center, left, left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3.5pt),
+  table.header([$(a,b)$], [residue], [condition], [$x^3 + x$ / `15a4`]),
+  [$(2,2)$, $(3,3)$], [$-(e_a - e_1)^2$], [$-1$ a square in $K$, i.e. $K = QQ(i)$],
+    [$K = QQ(i)$ / $K = QQ(i)$],
+  [$(2,3)$, $(3,2)$], [$-(e_2 - e_1)(e_3 - e_1) = -q(e_1)$], [$-q(e_1)$ a square in $K$],
+    [$-1 = i^2$ / $-625 = (25 i)^2$],
+  [$(2,1)$, $(3,1)$, $(1,2)$, $(1,3)$], [$f'(e_1) = q(e_1)$], [$q(e_1)$ a square in $K$],
+    [$1$ / $625 = 25^2$],
+))
+
+#v(2mm)
+
+For $x^3 + x$: $e_1 = 0$, $q = u^2 + 1$, $K = QQ(i)$, $q(e_1) = 1$. For `15a4`:
+$f = x(x^2 + 14x + 625)$, so $e_1 = 0$, $q(e_1) = 625$, and $q$ has discriminant
+$14^2 - 4 dot 625 = -2304 = -(48)^2$, so $K = QQ(sqrt(-2304)) = QQ(i)$. All conditions hold in both
+cases, so *both algebras are unramified on $X$*.
+
+The first row is the interesting one: it says the mechanism needs the *2-torsion field to be
+$QQ(i)$* --- and that is exactly Lemma 2 of @sec-alt, the condition that made $beta$ alternating.
+The contrast is $x^3 + 2x$, where $K = QQ(sqrt(-2))$, $-1$ is not a square, the algebra is ramified,
+and @sec-triage-templates records that this surface has no obstruction at all. `ramification.gp`
+runs the criterion on all of these.
 
 === Harari's theorem, and what it adds <sec-brauer-harari>
 

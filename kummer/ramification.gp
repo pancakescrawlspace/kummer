@@ -71,6 +71,19 @@ quadcase(name, e1, a1, b1) = {
         if(#bad == 0, "UNRAMIFIED", Str("RAMIFIED -- ", Vec(bad))));
 }
 
+/* the eight non-trivial curves, printed one by one */
+verbose(name, e, i, j) = {
+  print("  ", name, ",  A_", i, j, ":  the eight non-trivial exceptional curves");
+  for(a = 0, 3, for(b = 0, 3,
+    my(r = resid(e, i, j, a, b), lab);
+    if(r == 1, next);
+    lab = if(a != i && a != 0 && b != j && b != 0,
+             Str("-(e_", a, "-e_", i, ")(e_", b, "-e_", j, ")"),
+             if(b == j, Str("f'(e_", j, ")"), Str("f'(e_", i, ")")));
+    print("     F_", a, b, "   ", lab, " = ", r,
+          if(issquare(r), Str(" = ", sqrtint(r), "^2   square"), "   NOT a square"))));
+}
+
 main() = {
   print("=== level 2, f split over Q (residues must be squares in Q) ===");
   splitcase("15a1  (x-17)(x-1)(x+8), the twist that works ", [17, 1, -8], 1, 3);
@@ -78,6 +91,8 @@ main() = {
   splitcase("15a1  a rejected candidate, n = E_12         ", [17, 1, -8], 1, 2);
   splitcase("x(x-1)(x-4)                                  ", [0, 1, 4], 1, 3);
   splitcase("x(x-1)(x+8)                                  ", [0, 1, -8], 1, 1);
+  print("");
+  verbose("15a1  (x-17)(x-1)(x+8)", [17, 1, -8], 1, 3);
   print("");
   print("=== level 2, f = (x-e1) q(x) with q irreducible ===");
   quadcase("x^3 + x        q = x^2+1,      e1 = 0", 0, 0, 1);
