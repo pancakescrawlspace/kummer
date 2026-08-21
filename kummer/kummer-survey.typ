@@ -3618,7 +3618,39 @@ which square classes --- *without* analysing the $beta_v$? The answer is that al
 reduction data: Tate's algorithm, the factorisation of the minimal discriminant, and the
 $ell$-isogeny class. Two gaps remain, and @sec-dep-gaps says exactly where they are.
 
-== The criterion, restated once and for all <sec-dep-crit>
+== Notation, and the criterion restated <sec-dep-crit>
+
+Everything in this chapter refers to the following fixed data, and to one definition.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Fixed throughout:* an elliptic curve $E slash QQ$ given by $y^2 = f(x)$, a prime $ell$, and a
+  non-scalar $phi in "End"_G (E[ell])$. The surface is $X : y^2 = f(x) f(t)$.
+
+  #v(1.5mm)
+  *$d$ is a squarefree integer* --- an element of $QQ^times$, not a square class --- and
+  $E_d : d y^2 = f(x)$ is the corresponding quadratic twist. *$v$ ranges over all places of $QQ$,
+  the archimedean one included.* For each $d$ and $v$ write
+  $ W_v (d) = E_d (QQ_v) slash ell, quad
+    L_v (d) = delta_v (W_v (d)) subset.eq H^1 (QQ_v, E_d [ell]), $
+  and let $beta_v^((d))$ be the twisted Tate pairing on $W_v (d)$. Superscripts are dropped when
+  $d$ is clear.
+
+  #v(1.5mm)
+  *Definition.* $ Sigma_phi (d) = { v : L_v (d) "is not" phi_*"-stable" } . $
+  We write $Sigma(d)$ when $phi$ is fixed, and keep the subscript when several $phi$ are in play,
+  as in @sec-dep-15a1.
+]
+
+Three things about that definition. It attaches a set of *places* to a single squarefree
+*integer*; no prime and no finite set $S$ is fixed in advance, and $Sigma(d)$ is what the chapter
+computes. It is *finite* for every $d$: Lemma 1 below gives
+$Sigma(d) subset.eq {infinity} union {v : E_d "is bad at" v}$, and that is the first thing to
+prove, since without it nothing in @sec-dep-global would even typecheck. For $ell$ odd Lemma 2
+sharpens this to a bound *independent of $d$*, which is the stronger statement the chapter needs;
+at $ell = 2$ the primes $q divides d$ stay in the bound and have to be removed by hand. And although $d$ is an integer, $E_d slash QQ_v$
+depends on $d$ only through its class in $QQ_v^times slash (QQ_v^times)^2$, so $Sigma(d)$ is
+constant on the tuples of local square classes of @sec-class-warning; that is what lets a statement
+about $Sigma(d)$ become a statement about the surface.
 
 The classical fact behind descent is that the local Kummer image
 $ L_v = delta_v (E_d (QQ_v) slash ell) subset.eq H^1 (QQ_v, E_d [ell]) $
@@ -3627,11 +3659,14 @@ $beta_v (P,Q) = ⟨c(P), phi_* c(Q)⟩$ with both arguments in $L_v$:
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   $ beta_v equiv 0 quad <==> quad phi_* L_v subset.eq L_v^perp = L_v quad <==> quad
-    L_v "is" phi_*"-stable". $
-  So there is only one object in the theory: the set
-  $ Sigma(d) = { v : L_v "is not" phi_*"-stable" }, $
-  and by @sec-class-warning and @sec-tp-crit the obstructed sets are exactly the $S$ containing
-  $Sigma(d)$.
+    L_v "is" phi_*"-stable" quad <==> quad v in.not Sigma_phi (d) . $
+  #v(1.5mm)
+  _Proof._ If $phi_* L_v subset.eq L_v = L_v^perp$ then $beta_v (P,Q) = ⟨c(P), phi_* c(Q)⟩$ pairs
+  an element of $L_v$ against an element of $L_v^perp$, so it vanishes. Conversely if
+  $beta_v equiv 0$ then $phi_* L_v subset.eq L_v^perp = L_v$. $qed$
+  #v(1.5mm)
+  So $Sigma_phi (d) = { v : beta_v equiv.not 0 }$, and by @sec-class-warning and @sec-tp-crit the
+  obstructed sets are exactly the $S$ containing $Sigma_phi (d)$.
 ]
 
 Everything below computes $Sigma(d)$. Note that $phi$ is a *twist-invariant* datum: $E_d [ell]$ is $E[ell]$ twisted by
@@ -3640,7 +3675,7 @@ the quadratic character $chi_d$, so $"End"_G (E_d [ell]) = "End"_G (E[ell])$ and
 == Step 1: almost every place dies by functoriality <sec-dep-func>
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *Lemma 1.* Let $v$ be a place at which $E_d$ has good reduction.
+  *Lemma 1.* Let $v$ be a finite place at which *$E_d$ itself* --- not $E$ --- has good reduction.
   #v(1.5mm)
   (a) If $v != ell$ then $L_v = H^1_"ur" (QQ_v, E_d [ell])$.
   #v(1mm)
@@ -3654,6 +3689,20 @@ the quadratic character $chi_d$, so $"End"_G (E_d [ell]) = "End"_G (E[ell])$ and
   pushes forward to an unramified class, and $H^1_f$ is functorial for maps of finite flat group
   schemes (which $phi$ is, by Raynaud, since $e = 1 < ell - 1$ for $ell >= 3$). A subgroup carried
   into itself by every $phi$ is in particular carried into itself by ours. $qed$
+]
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *What the hypothesis says about $d$.* It is a condition on $E_d$, and for odd $v$ it *almost*
+  forces $v divides.not d$: if $v divides d$ then $chi_d$ is ramified at $v$, and a ramified
+  quadratic twist of a curve with good or multiplicative reduction is additive (type $"I"_n^*$).
+  So if $E$ has good or multiplicative reduction at $v$, then $E_d$ good at $v$ does force
+  $v divides.not d$.
+
+  #v(1.5mm)
+  It does *not* force it when $E$ is additive at $v$, because a ramified twist can then *improve*
+  the reduction. Twisting `11a1` by 3 gives a curve of type $"I"_0^*$ at 3 and conductor 1584;
+  twisting that one by $d = 3$ again --- so $v divides d$ --- returns `11a1`, good at 3. Lemma 1
+  applies to that place, and correctly.
 ]
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
