@@ -101,5 +101,21 @@ are consistency checks.
    d = 119   class of d at 17: [1, -1]   |im c_1| = 2  |im c_3| = 2   non-trivial symbols: 0 of 55696
         predicted im c_1 = {[0, 1], [1, -1]}   im c_3 = {[0, 1], [1, -1]}   agrees: 1
 
+=== the lemma of 6.3.1: a ramified twist kills the ell-torsion, ell odd ===
+
+--- ell = 3, 14a1, at q | d with q != 3: expect 0 ---
+   q = 2   d = 2   # Q_q-rational 3-torsion points: 0
+   q = 2   d = 10   # Q_q-rational 3-torsion points: 0
+   q = 5   d = 5   # Q_q-rational 3-torsion points: 0
+   q = 5   d = -35   # Q_q-rational 3-torsion points: 0
+   q = 11   d = 11   # Q_q-rational 3-torsion points: 0
+   q = 13   d = 26   # Q_q-rational 3-torsion points: 0
+   q = 23   d = -46   # Q_q-rational 3-torsion points: 0
+--- ell = 2, 15a1 (f split): the lemma does not apply, expect 3 ---
+   q = 7   d = 7   # Q_q-rational 2-torsion points: 3
+   q = 11   d = 11   # Q_q-rational 2-torsion points: 3
+   q = 13   d = 26   # Q_q-rational 2-torsion points: 3
+   q = 23   d = 23   # Q_q-rational 2-torsion points: 3
+
 ### localimg finished
-gp -q -s 4000000000 < localimg.gp  8.08s user 0.02s system 99% cpu 8.110 total
+gp -q -s 4000000000 < localimg.gp  8.23s user 0.02s system 99% cpu 8.258 total

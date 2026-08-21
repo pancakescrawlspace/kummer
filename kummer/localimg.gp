@@ -191,6 +191,32 @@ print("    17 | d leaves only TWO classes of d in Q_17^x, both run below. ---");
 qcheck(q, d) = { my(r = run1(d, q, 30, 30, 0), dp = d/q); print("        predicted im c_1 = {", sqcls(1,q), ", ", sqcls(-q*dp,q), "}   im c_3 = {", sqcls(1,q), ", ", sqcls(q*dp,q), "}   agrees: ", Set(r[1]) == Set([sqcls(1,q), sqcls(-q*dp,q)]) && Set(r[2]) == Set([sqcls(1,q), sqcls(q*dp,q)]) && r[3] == 0); }
 foreach([[7,7],[7,14],[7,-7],[11,11],[11,-22],[13,13],[23,23],[29,58],[17,17],[17,34],[17,-17],[17,323],[17,51],[17,-51],[17,17*7]], w, qcheck(w[1], w[2]));
 
+
+/* ---------------- the lemma of section 6.3.1, both sides ----------------
+ * At q | d with q != ell and ell ODD, a ramified quadratic twist kills the
+ * ell-torsion locally: E_d[ell](Q_q) = 0. At ell = 2 the twist does nothing to
+ * the torsion module, and when f splits all three 2-torsion points survive. */
+dimtors(ev, ell, q, prec) = {
+  my(E = ellinit(ev), fa = factor(elldivpol(E, ell)), n = 0, rts, D);
+  for(i = 1, #fa~,
+    if(poldegree(fa[i,1]) > 2, next);
+    rts = polrootspadic(fa[i,1], q, prec);
+    for(k = 1, #rts,
+      D = (E.a1*rts[k] + E.a3)^2
+          + 4*(rts[k]^3 + E.a2*rts[k]^2 + E.a4*rts[k] + E.a6);
+      if(D == 0 || issquare(D + O(q^prec)), n++)));
+  n;
+}
+print("");
+print("=== the lemma of 6.3.1: a ramified twist kills the ell-torsion, ell odd ===");
+print("");
+print("--- ell = 3, 14a1, at q | d with q != 3: expect 0 ---");
+tors3(q, d) = print("   q = ", q, "   d = ", d, "   # Q_q-rational 3-torsion points: ", dimtors(E14(d), 3, q, 30));
+foreach([[2,2],[2,10],[5,5],[5,-35],[11,11],[13,26],[23,-46]], w, tors3(w[1], w[2]));
+print("--- ell = 2, 15a1 (f split): the lemma does not apply, expect 3 ---");
+tors2(q, d) = print("   q = ", q, "   d = ", d, "   # Q_q-rational 2-torsion points: ", dimtors(E15a1(d), 2, q, 30));
+foreach([[7,7],[11,11],[13,26],[23,23]], w, tors2(w[1], w[2]));
+
 print("");
 print("### localimg finished");
 quit;
