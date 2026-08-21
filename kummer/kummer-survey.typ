@@ -1057,17 +1057,20 @@ is forced to exist without being preferred.
 #cmprimetables
 
 
-= Twisted pairings at non-CM surfaces <sec-nonCM>
+= Local technique <sec-toolkit>
 
-@sec-ledger-odd found that all seven open classes of @sec-fail carry the pairing
-signature --- reaches isotropic, every line occurring, none preferred. This
-section constructs the pairing in four of them, all at *non-CM* surfaces, which
-settles that the mechanism is not about complex multiplication. They run at
-three different levels --- $ell = 2$ in @sec-15a1 and @sec-15a4, $ell = 3$ in
-@sec-14a1, $ell = 5$ in @sec-11a1 --- and the level-3 case reaches the cubic
-symbols §5.1.5 could not evaluate. @sec-magma then closes the one local input
-§5.1.5 itself left open, and @sec-triage asks what the module structure permits
-in the three classes still untouched.
+The sections that follow all do the same thing at every place of $QQ$: decide whether the twisted
+pairing $beta_v$ is trivial there, for every twist $d$ in a square class at once. By now the same
+half-dozen moves have been made repeatedly, in four different families and at three levels, so they
+are worth stating once. Nothing in this chapter is new; it is the accumulated technique of
+@sec-nonCM and of §5.1.5 of the companion notes, pulled out of the worked examples.
+
+Throughout: $E slash QQ$ has $E[ell] = C_1 xor C_2$ decomposable, $phi$ is the projector onto
+$C_1$ along $C_2$, and for a place $v$,
+$ W_v = E_d (QQ_v) slash ell, quad quad L_v = delta_v (W_v) subset.eq H^1 (QQ_v, E[ell]) =: H_1 xor H_2, $
+with $H_i = H^1 (QQ_v, C_i)$ and $alpha_i = pi_i compose delta_v : W_v -> H_i$. Recall from
+§5.1.4 that $W_v$ is a *quotient of points* and $L_v$ a *subspace of cohomology*: they are
+isomorphic but only $L_v$ can be intersected with $H_i$.
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   *Notation for the values of $beta$.* $beta_v$ takes values in
@@ -1077,18 +1080,215 @@ in the three classes still untouched.
   quadratic Hilbert symbol, with values $plus.minus 1$ written
   *multiplicatively*: there the trivial value is $+1$ and reciprocity reads
   $product_v beta_v = 1$. These are the same thing under
-  $plus.minus 1 tilde.equiv (1 slash 2) ZZ slash ZZ$. Each section below keeps
+  $plus.minus 1 tilde.equiv (1 slash 2) ZZ slash ZZ$. Each worked section keeps
   to one convention --- @sec-15a1 and @sec-15a4 multiplicative, @sec-14a1 and
-  @sec-11a1 additive --- and where the distinction is immaterial we say that
-  $beta_v$ is *trivial* or *non-trivial* rather than naming a value.
+  @sec-11a1 additive --- and where the distinction is immaterial, as it mostly is in this chapter,
+  we say that $beta_v$ is *trivial* or *non-trivial* rather than naming a value.
 ]
+
+== What has to be shown at a place <sec-tk-criterion>
+
+Everything reduces to one chain of equivalences, established as Steps 1--2 of §5.1.5.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Criterion.* $beta_v equiv 0$ on $W_v$ if and only if $L_v$ is $phi_*$-stable, if and only if
+  $ L_v = (L_v inter H_1) xor (L_v inter H_2) . $
+  Writing $L_v inter H_1 = delta_v (ker alpha_2)$ and $L_v inter H_2 = delta_v (ker alpha_1)$, and
+  noting $ker alpha_1 inter ker alpha_2 = ker delta_v = 0$, this says
+  $ dim ker alpha_1 + dim ker alpha_2 = dim W_v . $
+]
+
+The first equivalence is Tate local duality: $beta_v equiv 0$ says
+$phi_* L_v subset.eq L_v^perp$, and $L_v^perp = L_v$ because $L_v$ is Lagrangian.
+
+#block(fill: rgb("#fff4f4"), inset: 8pt, radius: 3pt, width: 100%)[
+  *The trap.* When $dim W_v = 2$ it is tempting to test stability by asking whether *both*
+  $ker alpha_i$ are non-zero. That is *sufficient* --- each is then 1-dimensional and the sum is
+  direct --- but not necessary: if $L_v$ happens to lie inside a single $H_i$, that intersection
+  has dimension 2, the other is zero, and $L_v$ is a direct sum trivially, hence still stable. A
+  computation returning "one zero, one non-zero" therefore decides *nothing* until the dimension of
+  the non-zero one is known. Both possibilities occur in practice: dimensions $1 + 1$ at `11a1` and
+  at the good-reduction twists of `14a1`, and $2 + 0$ at `14a1`'s additive twists (@sec-14a1-places).
+]
+
+== The two faces of $alpha_i$ <sec-tk-alpha>
+
+The maps $alpha_i$ can be computed in two ways, and which is convenient varies.
+
+*As a dual isogeny image.* With $psi_j : E -> B_j = E slash C_j$ and $hat(psi)_j$ its dual, Step 5
+of §5.1.5 gives
+$ ker alpha_i = hat(psi)_j (B_j (QQ_v)) slash ell E(QQ_v) subset.eq W_v, quad quad j != i . $
+Good for *existence*: exhibiting one point of $B_j (QQ_v)$ whose image escapes $ell E(QQ_v)$ proves
+$ker alpha_i != 0$, and that direction is sound however coarse the sample. Bad for *dimension*,
+which is what the trap above needs, and bad numerically --- the isogeny is evaluated as a rational
+map at $v$-adic points and precision drains fast.
+
+*As a function value.* If $C$ is a Galois-stable line generated by a $QQ_v$-rational point $T$, let
+$f_C$ be the function with $"div"(f_C) = ell(T) - ell(O)$ --- unique up to a constant, and for
+$ell = 3$ simply the tangent at $T$, for $ell = 2$ simply $x - e(T)$. Then, as in
+@sec-brauer-twofns,
+$ pi_(C *) compose delta_v : W_v --> H^1 (QQ_v, E[ell] slash C), quad P |-> f_C (P) space (mod ell"-th powers") . $
+Good for *dimension*: the image is a subgroup of a group of order $ell^2$, and the computation is
+exact (@sec-tk-classes). Available only when the line has a rational generator, which at the wild
+place is exactly the interesting case.
+
+== Places that cannot contribute <sec-tk-places>
+
+Most places are disposed of without any computation. The following are used verbatim in every one
+of the worked cases.
+
+#align(center, table(
+  columns: 3, align: (left, left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([place], [why $beta_v$ is trivial], [needs]),
+  [$v = infinity$], [$E_d (RR)$ is $ell$-divisible, so $W_infinity = 0$], [$ell$ odd],
+  [$v$ good, $v != ell$], [$L_v = H^1_"ur"$ is its own annihilator and $phi_*$ preserves it],
+    [nothing],
+  [$dim W_v <= 1$], [an alternating form on a space of dimension $<= 1$ is zero],
+    [$beta$ alternating],
+  [$q divides d$, $q != ell$], [$chi_d$ is ramified at $q$ while the cyclotomic character is not,
+    so $C_i^((d))(QQ_q) = 0$ and $W_q = 0$], [$d$ squarefree],
+))
+
+#v(2mm)
+
+Two dimension counts drive the third row:
+$ dim W_v = dim E_d [ell](QQ_v) space (v != ell), quad quad
+  dim W_ell = 1 + dim E_d [ell](QQ_ell) , $
+the first because $E_d (QQ_v)$ is a pro-$v$ group times a finite one and the pro-$v$ part is
+uniquely $ell$-divisible, the second from $\#E(K) slash n E(K) = \#E(K)[n] dot |n|_K^(-1)$.
+
+*When is $beta$ alternating?* For $ell$ odd it is free: writing $delta_v P = a_1 + a_2$, each
+$H^1 (C_i)$ is isotropic (the Weil pairing is trivial on a cyclic $C_i$), $L_v$ is isotropic, so
+$0 = ⟨delta_v P, delta_v P⟩ = 2 ⟨a_1, a_2⟩$ and 2 is invertible modulo $ell$. At $ell = 2$ that
+argument dies and one needs the norm lemma: if the 2-torsion field is $QQ(i)$ then
+$(c(P), -1)_v = 1$ and $beta$ is alternating (Lemma 2 of @sec-alt).
+
+*Which places are left.* Since $C_1^((d))$ and $C_2^((d))$ are $ZZ slash ell$ and $mu_ell$ twisted
+by the same quadratic character, both are rational at $v$ only if $mu_ell subset QQ_v$, i.e.
+$v equiv 1$ modulo $ell$. So $dim W_v = 2$ needs that, and at the *critical* place
+$p equiv 1$ modulo $ell$ --- which is why the symbol there is always the *tame* $ell$-th power
+residue symbol, never the wild one. What survives is: the critical $p$; the wild place $v = ell$;
+and bad primes $equiv 1$ modulo $ell$ at which $d$ is a square.
+
+== The wild place $v = ell$ <sec-tk-wild>
+
+This is the one place where the method needs something non-generic, since a 2-dimensional $L_ell$
+inside a 4-dimensional $H^1$ has no reason to be $phi_*$-stable. Two mechanisms have been found to
+make it so, and they are structurally different.
+
+=== The good ordinary case <sec-tk-ordinary>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma.* Let $v = ell$ and suppose $E$ has good
+  *ordinary* reduction at $ell$, with $E[ell] = C_1 xor C_2$ where $C_1 tilde.equiv ZZ slash ell$
+  is generated by a $QQ_ell$-rational point and $C_2 tilde.equiv mu_ell$. Then
+  $L_ell = delta_ell (W_ell)$ is $phi_*$-stable, so $beta_ell equiv 0$.
+
+  #v(2mm)
+  _Proof._ Over $ZZ_ell$ the closure of $C_1$ is the constant, hence *étale*, group scheme
+  $ZZ slash ell$, and the closure of $C_2$ is $mu_ell$, which is *connected* at residue
+  characteristic $ell$. Ordinary reduction means the connected--étale sequence
+  $0 -> cal(E)[ell]^0 -> cal(E)[ell] -> cal(E)[ell]^"ét" -> 0$ has both ends of order $ell$; so
+  $cal(C)_2 = cal(E)[ell]^0$, and $cal(C)_1$ splits the sequence:
+  $cal(E)[ell] = cal(C)_1 xor cal(C)_2$ as finite flat group schemes. At a place of good reduction
+  the Kummer image is the flat subgroup $H^1_f$, which is functorial in the group scheme, so
+  $L_ell$ splits along that decomposition. A split $L_ell$ is $phi_*$-stable. $qed$
+]
+
+The hypothesis is often forced rather than assumed: if $dim W_ell = 2$ requires $d$ to be a square
+in $QQ_ell$, then $d$ is squarefree so $ell divides.not d$, so $E_d tilde.equiv E$ over $QQ_ell$
+and the reduction is whatever $E$'s is. That is how `11a1` at $v = 5$ and the good-reduction twists
+of `14a1` at $v = 3$ are settled.
+
+=== The collapse case <sec-tk-collapse>
+
+When $dim W_ell = 2$ is reached through *additive* reduction the
+lemma says nothing, and what can happen instead is that one of the two descent maps vanishes
+identically. Then $ker alpha_i = W_ell$, $L_ell$ lies inside a single $H_j$, and $L_ell$ is
+$phi_*$-stable for the trivial reason. This is what happens at `14a1`'s additive twists, and it is
+invisible to the "both non-zero" test --- see the trap in @sec-tk-criterion.
+
+=== Detecting either <sec-tk-detect>
+
+Use the function-value description of @sec-tk-alpha: at the wild place the
+relevant line usually *does* have a rational generator, so $alpha$ is evaluation of a tangent, the
+image is computed exactly, and $dim ker alpha = dim W_ell - dim "im" alpha$ settles the criterion.
+
+== Reduction to finitely many computations <sec-tk-classes>
+
+This is the organising principle that turns a claim about infinitely many twists into a bounded
+check, and it is worth stating flatly.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *$E_d$ over $QQ_v$ depends on $d$ only through its class in
+  $QQ_v^times slash (QQ_v^times)^2$*, a group of order 4 for $v$ odd and 8 for $v = 2$. So a
+  statement about $E_d (QQ_v)$ for *all* squarefree $d$ is at most 4 (or 8) local computations. If
+  the twists are further restricted to a square class at some other place $p != v$, that restricts
+  the class at $v$ not at all, and all 4 (or 8) are still needed.
+]
+
+Two things make each computation a *proof* rather than a sample.
+
+*Generation.* The maps in play are homomorphisms out of $W_v$, so an image computed on a set of
+points that *generates* $W_v$ is the whole image. It is enough to generate a finite quotient
+$E_d (QQ_v) slash E_n$ with $E_n subset.eq ell E_d (QQ_v)$, and
+$ ell E supset.eq ell E_1 = E_1 quad (v != ell), quad
+  ell E supset.eq ell E_1 = E_2 quad (v = ell "odd"), quad
+  ell E supset.eq 2 E_2 = E_3 quad (v = ell = 2) , $
+using that $E_1$ is pro-$v$ and uniquely $ell$-divisible in the first case, and that
+$E_n (QQ_v) tilde.equiv ZZ_v$ once $n > e slash (ell - 1)$ in the others. The order of the quotient
+is $M_v$ (or $M_v dot ell$, or $M_v dot 4$), which gives the check something to match.
+
+*Exact classes.* A class in $QQ_v^times slash (QQ_v^times)^ell$ is determined by the valuation
+together with finitely many digits of the unit, because $U^((m)) subset.eq (QQ_v^times)^ell$ as
+soon as $m > ell e slash (ell - 1)$. In the cases used here:
+
+#align(center, table(
+  columns: 3, align: (left, left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([$ell$, $v$], [a class is $(v_v (z) mod ell, dots)$], [order]),
+  [$ell = 2$, $v$ odd], [the quadratic residue symbol of the unit], [4],
+  [$ell = 2$, $v = 2$], [the unit modulo 8], [8],
+  [$ell = 3$, $v equiv 1 (mod 3)$], [$u^((v-1) slash 3)$ modulo $v$], [9],
+  [$ell = 3$, $v = 3$], [the unit modulo 9, up to sign ($1 + 9 ZZ_3$ are cubes, $-1$ is a cube)],
+    [9],
+))
+
+#v(2mm)
+
+No $v$-adic precision is consumed, which matters: the dual-isogeny route of @sec-tk-alpha, which
+does consume it, once returned an "image" of 5 elements inside $(ZZ slash 3)^2$.
+
+== Symbol technique <sec-tk-symbols>
+
+The identities that keep coming up.
+
+- *Steinberg.* $(a, 1-a)_v = 0$ and $(a, -a)_v = 0$. The second closes Lemma C of @sec-15a1-local:
+  the only possibly non-trivial symbol there is $(-q d', q d')_q$.
+- *1-units are $ell$-th powers at $v$ prime to $ell$.* Hence at an odd $q$, a factor
+  $1 + O(q)$ may be discarded modulo squares --- the engine of Lemmas A and B of @sec-places2 and
+  of cases (i) and (iii) of Lemma C.
+- *The tame formula.* At $v tilde.not ell$ with $mu_ell subset QQ_v$,
+  $(a,b)_v = ((-1)^(alpha beta) a^beta slash b^alpha)^((N v - 1) slash ell)$ with
+  $alpha = v(a)$, $beta = v(b)$. This evaluates the critical symbol in every case here, since
+  $p equiv 1$ modulo $ell$ always (@sec-tk-places).
+- *The wild symbol, by going global.* At $v = ell$ the formula fails and an explicit reciprocity
+  law was expected to be needed. It is not: if the global field has a *single* prime above $ell$,
+  the product formula gives the wild symbol as minus the sum of the tame ones, and every local
+  class has a global representative because $U^((m))$ is inside the $ell$-th powers for $m$ large.
+  Carried out for $QQ_3 (zeta_3)$ in @sec-brauer-3-wild.
+- *Square root differences.* When $f$ splits and the differences $e_i - e_j$ are perfect squares,
+  the descent classes collapse to a single quantity up to sign. That fact does three separate jobs
+  for `15a1`: it confines the bad places (@sec-15a1-local), it proves Lemma C, and it makes
+  $cal(A)$ unramified on the Kummer surface (@sec-brauer-unram-2).
 
 == A condition on $d$ is not free <sec-class-warning>
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  Each theorem below proves something about $E_d (QQ)$ for $d$ in a square class, and then draws a
-  conclusion about the *surface*. The second step needs the first to hold for *every* $d$ in the
-  class, and it is easy to get this wrong.
+  Each theorem of @sec-nonCM proves something about $E_d (QQ)$ for $d$ in a square class, and then
+  draws a conclusion about the *surface*. The second step needs the first to hold for *every* $d$
+  in the class, and it is easy to get this wrong.
 
   #v(1.5mm)
   The reason is the decomposition. $X(QQ_p) = union.sq_delta (E_delta times E_delta)(QQ_p) slash
@@ -1103,11 +1303,52 @@ in the three classes still untouched.
 
   #v(1.5mm)
   So a theorem of the shape "for $d$ in the class *and* satisfying $C$, $E_d (QQ)$ is not dense"
-  supports a statement about $X$ only when $C$ is vacuous on the class. All four theorems below
-  clear this bar --- but @sec-11a1 and @sec-14a1 only after their conditions at $v = ell$ were
-  removed, which took the lemma of @sec-11a1-five and the computation of @sec-14a1-places
-  respectively. The bar is easy to miss.
+  supports a statement about $X$ only when $C$ is vacuous on the class. All four theorems of
+  @sec-nonCM clear this bar --- but @sec-11a1 and @sec-14a1 only after their conditions at
+  $v = ell$ were removed, which took @sec-tk-ordinary and the collapse mechanism respectively. The
+  bar is easy to miss.
 ]
+
+== Where each tool was used <sec-tk-checklist>
+
+#align(center, table(
+  columns: 5, align: (left, left, left, left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 6pt, y: 3.5pt),
+  table.header([case], [$ell$], [critical $p$], [wild place $v = ell$], [other places]),
+  [$x^3 + x$ (@sec-thm2)], [2], [2 --- also the wild place], [---],
+    [Lemmas A, B; norm lemma],
+  [$x^3 - 2$ (§5.1.5)], [3], [3 --- also the wild place],
+    [$beta_3 equiv.not 0$ needed, and proved], [structural],
+  [`15a1` (@sec-15a1)], [2], [tame; $c_1$ onto], [$v = 2$: 8 square classes],
+    [$v = 3$: 4 classes; $q divides d$: Lemma C],
+  [`14a1` (@sec-14a1)], [3], [tame; descent image, 1 class],
+    [good ordinary, and collapse], [structural],
+  [`15a4` (@sec-15a4)], [2], [tame; $c$ onto, 1 class], [$v = 2$: 8 square classes],
+    [Lemmas A, B; norm lemma],
+  [`11a1` (@sec-11a1)], [5], [Tate curve, non-degenerate], [@sec-tk-ordinary], [structural],
+))
+
+#v(2mm)
+
+The pattern in the fourth column is the one to carry forward to `14a2`, `19a1` and `17a1`: when
+$ell$ is an *auxiliary* place the wild contribution has so far always turned out to be trivial, by
+one of the two mechanisms of @sec-tk-wild; when $ell$ is the *critical* place, as for $x^3 - 2$ and
+$x^3 + x$, it must not be, and that is the whole content of the argument.
+
+= Twisted pairings at non-CM surfaces <sec-nonCM>
+
+@sec-ledger-odd found that all seven open classes of @sec-fail carry the pairing
+signature --- reaches isotropic, every line occurring, none preferred. This
+section constructs the pairing in four of them, all at *non-CM* surfaces, which
+settles that the mechanism is not about complex multiplication. They run at
+three different levels --- $ell = 2$ in @sec-15a1 and @sec-15a4, $ell = 3$ in
+@sec-14a1, $ell = 5$ in @sec-11a1 --- and the level-3 case reaches the cubic
+symbols §5.1.5 could not evaluate. @sec-magma then closes the one local input
+§5.1.5 itself left open, and @sec-triage asks what the module structure permits
+in the three classes still untouched.
+
+The technique is collected in @sec-toolkit, and this section is where it is applied; the
+conventions for the *values* of $beta$ are fixed there too.
 
 == `15a1` at $p = 5$: level 2, $f$ split <sec-15a1>
 
@@ -1470,7 +1711,7 @@ at once --- this is a complete check, not a sample.
 
 The first two rows are free: $beta$ is alternating, so it vanishes on a space of dimension $<= 1$.
 
-The third row is the lemma of @sec-11a1-five. $d$ a square in $QQ_3$ forces $3 divides.not d$, so
+The third row is @sec-tk-ordinary. $d$ a square in $QQ_3$ forces $3 divides.not d$, so
 $E_d tilde.equiv E_0$ over $QQ_3$ with good reduction, and $a_3 = -2$ is prime to 3, so the
 reduction is *ordinary* and the lemma applies verbatim. `vell.gp` confirms it: *54 of 173* and
 *102 of 2245* dual images escape $3E(QQ_3)$, so both $ker alpha_i$ are non-zero, each therefore has
@@ -1777,23 +2018,10 @@ So suppose $d$ *is* a square in $QQ_5$. Since $d$ is squarefree that forces $5 d
 $E_d tilde.equiv E_0$ over $QQ_5$ and $E_d$ has *good* reduction at 5 --- one curve to check, not a
 family. And $a_5 (E_0) = 1$, not divisible by 5, so the reduction is *ordinary*.
 
-#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *Lemma.* Let $v = ell$ and suppose $E$ has good *ordinary* reduction at $ell$, with
-  $E[ell] = C_1 xor C_2$ where $C_1 tilde.equiv ZZ slash ell$ is generated by a $QQ_ell$-rational
-  point and $C_2 tilde.equiv mu_ell$. Then $L_ell = delta_ell (W_ell)$ is $phi_*$-stable, so
-  $beta_ell equiv 0$.
-
-  #v(2mm)
-  _Proof._ Over $ZZ_ell$ the closure of $C_1$ is the constant, hence *étale*, group scheme
-  $ZZ slash ell$, and the closure of $C_2$ is $mu_ell$, which is *connected* at residue
-  characteristic $ell$. Ordinary reduction means the connected--étale sequence
-  $0 -> cal(E)[ell]^0 -> cal(E)[ell] -> cal(E)[ell]^"ét" -> 0$ has both ends of order $ell$; so
-  $cal(C)_2 = cal(E)[ell]^0$, and $cal(C)_1$ splits the sequence:
-  $cal(E)[ell] = cal(C)_1 xor cal(C)_2$ as finite flat group schemes. At a place of good reduction
-  the Kummer image is the flat subgroup $H^1_f$, which is functorial in the group scheme, so
-  $L_ell$ splits along that decomposition. A split $L_ell$ is $phi_*$-stable, and Step 1 of §5.1.5
-  gives $beta_ell equiv 0$. $qed$
-]
+That is exactly the hypothesis of @sec-tk-ordinary, which therefore gives $beta_5 equiv 0$
+outright: the closure of $C_1$ is étale and that of $C_2$ is connected, ordinarity makes them the
+two ends of the connected--étale sequence, $E[5]$ splits as finite flat group schemes, and the
+Kummer image --- being the flat subgroup $H^1_f$, which is functorial --- splits with it.
 
 `vell.gp` checks the conclusion directly, without the lemma, in the form Steps 4 and 5 of §5.1.5
 give it: $L_ell$ is $phi_*$-stable iff *both* $ker alpha_1$ and $ker alpha_2$ are non-zero, i.e.
@@ -2019,7 +2247,7 @@ carried it out.* Here $beta$ is alternating at every place for free --- §5.1.5'
 argument needs only decomposability and $2$ invertible mod $ell$ --- so the whole
 analysis reduces to $dim W_v$, and by the triage the only place left is the wild
 $v = ell$. Both worked cases came out with $beta_ell = 0$ there, by two different mechanisms, and
-both are worth trying on `14a2` and `19a1`: the lemma of @sec-11a1-five when $dim W_ell = 2$ forces
+both are worth trying on `14a2` and `19a1`: @sec-tk-ordinary when $dim W_ell = 2$ forces
 good ordinary reduction at $ell$, and the descent-image computation of @sec-14a1-places when it
 does not --- there $L_ell$ turned out to lie inside a single $H_i$, which is the other way a
 $phi_*$-stable image can arise. Since $E_d$ over $QQ_ell$ depends only on the class of $d$ modulo
