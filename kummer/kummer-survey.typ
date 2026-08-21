@@ -1103,8 +1103,10 @@ in the three classes still untouched.
 
   #v(1.5mm)
   So a theorem of the shape "for $d$ in the class *and* satisfying $C$, $E_d (QQ)$ is not dense"
-  supports a statement about $X$ only when $C$ is vacuous on the class. @sec-15a1, @sec-15a4 and
-  @sec-11a1 clear this bar; @sec-14a1 does not, and says so.
+  supports a statement about $X$ only when $C$ is vacuous on the class. All four theorems below
+  clear this bar --- but @sec-11a1 and @sec-14a1 only after their conditions at $v = ell$ were
+  removed, which took the lemma of @sec-11a1-five and the computation of @sec-14a1-places
+  respectively. The bar is easy to miss.
 ]
 
 == `15a1` at $p = 5$: level 2, $f$ split <sec-15a1>
@@ -1351,97 +1353,91 @@ so *both* hold only if $-3$ is a square in $QQ_v$. That is false at $2$
 
 #v(2mm)
 
-Only $v = 3$ can impose a condition, and $dim W_3 = 2$ happens in exactly two ways: $E_d [3](QQ_3)$
-is non-zero iff $d$ is a square in $QQ_3$ (i.e. $3 divides.not d$ and $d equiv 1$ mod 3), or
-$-3d$ is a square in $QQ_3$ (i.e. $3 divides d$ and $d slash 3 equiv 2$ mod 3). The two behave
-completely differently, and only one of them is a real obstacle.
+Only $v = 3$ could impose a condition, and it turns out not to. The point to exploit is that
+*$E_d$ over $QQ_3$ depends on $d$ only through its class in $QQ_3^times$ modulo squares*, and for
+squarefree $d$ there are exactly *four* such classes. So four local computations settle every twist
+at once --- this is a complete check, not a sample.
 
 #align(center, table(
-  columns: 4, align: (left, center, left, center),
+  columns: 5, align: (left, center, center, left, left),
   stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
-  table.header([$d$ at 3], [$dim W_3$], [reduction of $E_d$ at 3], [$beta_3$]),
-  [$3 divides.not d$, $d equiv 2$], [1], [good], [$0$, alternating],
-  [$3 divides d$, $d slash 3 equiv 1$], [1], [additive $"I"_0^*$], [$0$, alternating],
-  [$3 divides.not d$, $d equiv 1$], [2], [good, and *ordinary* ($a_3 = -2$)],
-    [$0$, by the lemma of @sec-11a1-five],
-  [$3 divides d$, $d slash 3 equiv 2$], [2], [additive $"I"_0^*$, $c_3 = 2$], [*not settled*],
+  table.header([class of $d$ in $QQ_3^times slash 2$], [$dim W_3$], [reduction at 3],
+               [why $L_3$ is $phi_*$-stable], [$beta_3$]),
+  [$[u]$: $3 divides.not d$, $d equiv 2$], [1], [good], [nothing to check], [$0$],
+  [$[3]$: $3 divides d$, $d slash 3 equiv 1$], [1], [additive $"I"_0^*$],
+    [nothing to check], [$0$],
+  [$[1]$: $3 divides.not d$, $d equiv 1$], [2], [good, *ordinary* ($a_3 = -2$)],
+    [both intersections have dimension 1], [$0$],
+  [$[3u]$: $3 divides d$, $d slash 3 equiv 2$], [2], [additive $"I"_0^*$, $c_3 = 2$],
+    [$L_3$ lies *inside* one $H_i$], [$0$],
 ))
 
 #v(2mm)
 
-The third row is new and removes half of what used to be excluded: $d$ a square in $QQ_3$ forces
-$3 divides.not d$, so $E_d tilde.equiv E_0$ over $QQ_3$ with good reduction, and $a_3 = -2$ is not
-divisible by 3, so the reduction is ordinary and @sec-11a1-five's lemma applies verbatim.
-`vell.gp` confirms it: *54 of 173* and *102 of 2245* dual images escape $3E(QQ_3)$, so both
-$ker alpha_i$ are non-zero and $L_3$ is $phi_*$-stable.
+The first two rows are free: $beta$ is alternating, so it vanishes on a space of dimension $<= 1$.
 
-The fourth row is where $E_d$ has *additive* reduction at 3, the lemma has nothing to say, and the
-status is genuinely open. It is worth being precise about why, because an earlier version of this
-section asserted $beta_3 != 0$ there and that assertion was wrong.
+The third row is the lemma of @sec-11a1-five. $d$ a square in $QQ_3$ forces $3 divides.not d$, so
+$E_d tilde.equiv E_0$ over $QQ_3$ with good reduction, and $a_3 = -2$ is prime to 3, so the
+reduction is *ordinary* and the lemma applies verbatim. `vell.gp` confirms it: *54 of 173* and
+*102 of 2245* dual images escape $3E(QQ_3)$, so both $ker alpha_i$ are non-zero, each therefore has
+dimension 1, and $L_3$ is $phi_*$-stable.
+
+The fourth row is the one that took work, and getting it wrong twice is worth recording.
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   *A criterion that is sufficient but not necessary.* $L_3$ is $phi_*$-stable iff
-  $L_3 = (L_3 inter H_1) xor (L_3 inter H_2)$. If both intersections are non-zero then, $L_3$ being
-  2-dimensional, each has dimension 1 and the sum is direct --- so *both non-zero* implies stable.
-  The converse fails: if $L_3$ happens to lie inside a single $H_i$ then that intersection has
-  dimension 2, the other is zero, and $L_3$ is a direct sum trivially, hence still stable. So a
-  computation showing one intersection zero and the other non-zero decides nothing until the
-  *dimension* of the non-zero one is known. `vell.gp` tested only non-vanishing, so its negative
-  verdicts have been withdrawn; its positive ones --- rows three above, and `11a1` --- are
-  unaffected.
+  $L_3 = (L_3 inter H_1) xor (L_3 inter H_2)$, and the two intersections have dimensions
+  $dim ker alpha_2$ and $dim ker alpha_1$. If both are non-zero then, $L_3$ being 2-dimensional,
+  each has dimension 1 and the sum is direct --- so *both non-zero* implies stable. The converse
+  fails: if $L_3$ lies inside a single $H_i$ then that intersection has dimension 2, the other is
+  zero, and $L_3$ is a direct sum trivially, hence still stable. A computation showing one
+  intersection zero and the other non-zero therefore decides *nothing* until the dimension of the
+  non-zero one is known. `vell.gp` tested only non-vanishing; an earlier version of this section
+  read its output as a negative verdict, and that was wrong.
 ]
 
-There is positive evidence that the fourth row is fine too, and it comes from a rational point
-rather than from a local computation. Take $d = 51 = 3 dot 17$, which lies in the class ($51$ is a
-square in $QQ_7$) and in the fourth row ($17 equiv 2$ mod 3). It has rank 2, with saturated
-generators, and the image of $E_51 (QQ)$ has dimension *2* in $W_3$ and dimension *1* in $W_7$.
-Since $beta$ is alternating and $v = 3$ and $v = 7$ are the only places that can contribute, the
-1-dimensional image at 7 makes $beta_7$ vanish on rational pairs, so reciprocity makes $beta_3$
-vanish on rational pairs too --- and those fill all of $W_3$. So $beta_3 equiv 0$ on $W_3$, and the
-fourth row behaves like the other three. The same holds for $d = 267$.
+Since $ker alpha_1 inter ker alpha_2 = ker delta_3 = 0$, the two dimensions sum to at most
+$dim W_3 = 2$, with equality exactly when $L_3$ is $phi_*$-stable. So it is enough to measure one
+of them, and `alpha3.gp` does it without any $p$-adic arithmetic on isogeny images. In the fourth
+row the line $C_2^((d))$ *is* $QQ_3$-rational --- that is what $-3d$ being a square says --- so it
+is generated by a point $S$ with $y(S) in QQ_3$, and by @sec-brauer-twofns the corresponding
+component of the Kummer map is evaluation of the function with divisor $3(S) - 3(O)$, which for a
+point of order 3 is the tangent:
+$ alpha(P) = y(P) - y_S - m (x(P) - x_S) quad (mod "cubes"), quad m = g'(x_S) slash 2 y_S . $
+Its values lie in $QQ_3^times slash (QQ_3^times)^3$, of order 9, and a class there is fixed by
+$v_3$ modulo 3 together with the unit part *modulo 9* --- since $1 + 9 ZZ_3$ consists of cubes and
+$-1$ is a cube. So no precision is lost, and the answer is exact.
 
-That is an argument from one twist, not a proof for the class; what would settle it is the
-dimension of $ker alpha_1$ at 3 in the fourth-row local class, which needs more 3-adic precision
-than the dual-image computation here achieves --- its class counts come out as $5$ of $9$, and a
-subgroup of $(ZZ slash 3)^2$ cannot have order 5.
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  In the class $[3u]$ the image of $alpha$ is *trivial*: every sampled value is a cube, over six
+  representatives $d = -3, 33, 51, 267, -66, 87$. So $ker alpha = W_3$, $L_3$ lies inside a single
+  $H_i$, and $L_3$ is $phi_*$-stable --- hence $beta_3 = 0$ there too.
+]
 
-If the fourth row does come out with $beta_3 = 0$, the theorem below covers the whole class and
-the conclusion about $X$ follows. As it stands the theorem covers *932* of the 1062 squarefree $d$
-with $|d| <= 2000$ --- $87.7%$, against 533 before the third row was added.
+The check is not vacuous: `alpha3.gp` also verifies that the sampled points *generate*
+$E_d (QQ_3) slash E_2$ --- 18 of 18 in every case --- and $alpha$ is a homomorphism with
+$3 E supset.eq E_2$, so a trivial image on a generating set is a trivial image. For contrast, the
+same computation in the third row returns *three* classes, i.e. $dim ker alpha = 1$, matching
+`vell.gp` there.
+
+*So $beta_3 = 0$ for every squarefree $d$*, and $v = 3$ imposes no condition at all.
 
 === The theorem <sec-14a1-thm>
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *Theorem.* Let $d$ be squarefree in the class $[1]$ of $QQ_7^times$, and suppose $d$ is *not* of
-  the form $3m$ with $m equiv 2$ $(mod 3)$. Then $E_d (QQ)$ is not dense in $E_d (QQ_7)$.
+  *Theorem.* Let $d$ be squarefree in the class $[1]$ of $QQ_7^times$ --- *any* such $d$, with no
+  further condition. Then $E_d (QQ)$ is not dense in $E_d (QQ_7)$. Since that holds for every $d$
+  in the class, $X(QQ)$ is not dense in $X(QQ_7)$ for $X : y^2 = f(x) f(t)$,
+  $f = x^3 + 10x^2 + 105x - 116$.
 
   #v(2mm)
-  *This does not yet say anything about $X$.* By @sec-class-warning the surface-level conclusion
-  needs every $d$ in the class, and $12.3%$ are excluded. Two ways out were suggested and both are
-  *closed*, which is worth recording:
-
-  #v(1.5mm)
-  --- *another square class at 7 will not do.* The argument needs $dim W_7 = 2$, i.e. both
-  $C_1^((d))$ and $C_2^((d))$ rational over $QQ_7$; the first asks that $d$ be a square in $QQ_7$
-  and the second that $-3d$ be one, and $-3 equiv 4$ is already a square there. So the two
-  conditions coincide and *only* the class $[1]$ has $dim W_7 = 2$.
-
-  #v(1.5mm)
-  --- *another $phi$ will not do either.* $E[3]$ is decomposable, so
-  $"End"_G (E[3]) = bb(F)_3 times bb(F)_3$, and by @sec-brauer-rank1 the rank-one elements are the
-  ordered pairs of stable lines with an equivariant isomorphism $E[3] slash K -> I$. The pairs
-  $(C_1, C_1)$ and $(C_2, C_2)$ need $mu_3 tilde.equiv ZZ slash 3$ over $QQ$, which is false; so
-  only the two projections survive, and $pi_1 + pi_2 = "id"$ with $beta_"id" = 0$ on every $W_v$
-  makes $beta_(pi_2) = -beta_(pi_1)$. They stand or fall together.
-
-  #v(1.5mm)
-  What is left is the fourth row itself, and @sec-14a1-places gives evidence that it is not an
-  obstacle at all.
+  The hypothesis is vacuous on the class, which is what @sec-class-warning demands; it took two
+  corrections to get there, both recorded in @sec-14a1-places.
 
   #v(2mm)
   _Proof._ $beta$ is alternating at every place, so $beta_v = 0$ wherever
-  $dim W_v <= 1$; that is every $v != 3, 7$, and $v = 3$ as well by the first three rows of
-  @sec-14a1-places's second table. Reciprocity
+  $dim W_v <= 1$; that is every $v != 3, 7$, and $v = 3$ as well by the four-class table of
+  @sec-14a1-places. Reciprocity
   $sum_v "inv"_v beta_v = 0$ then gives $beta_7 (P,Q) = 0$ for all
   $P, Q in E_d (QQ)$. On $W_7$, $beta_7$ is the tame cubic symbol transported by
   $c_1$, non-zero and alternating on a 2-dimensional $bb(F)_3$-space, hence
@@ -1463,8 +1459,8 @@ $phi_*$-stability check of @sec-14a1-places.
 remaining twists needed the wild cubic norm-residue symbol at 3, the thing §5.1.5 also lacked.
 Both halves of that have changed. The symbol is no longer missing --- @sec-brauer-3-wild computes
 it --- and it is no longer what stands in the way: for $d equiv 1$ $(mod 3)$ the place is settled
-structurally, and for $3 divides d$ with $d slash 3 equiv 2$ the open question is whether $beta_3$
-vanishes, which is a question about the *dimension* of an intersection and not about any symbol.
+structurally, and for $3 divides d$ with $d slash 3 equiv 2$ what was needed was the *dimension* of an
+intersection, not any symbol.
 
 #align(center, table(
   columns: 5, align: (left, center, center, center, left),
@@ -1475,8 +1471,7 @@ vanishes, which is a question about the *dimension* of an intersection and not a
   [$x^3 + x$ (@sec-thm2)], [2], [2], [*indecomposable*], [complete],
   [`15a1` (@sec-15a1)], [2], [5], [split over $QQ$],
     [local vanishing verified],
-  [`14a1` (@sec-14a1)], [3], [7 --- *tame*], [decomposable],
-    [$87.7%$ of the class; the rest open, not excluded],
+  [`14a1` (@sec-14a1)], [3], [7 --- *tame*], [decomposable], [complete],
 ))
 
 
@@ -1919,15 +1914,14 @@ cases: `14a2` and `19a1`; `11a1` also belongs here and @sec-11a1 has since
 carried it out.* Here $beta$ is alternating at every place for free --- §5.1.5's
 argument needs only decomposability and $2$ invertible mod $ell$ --- so the whole
 analysis reduces to $dim W_v$, and by the triage the only place left is the wild
-$v = ell$. There the lemma of @sec-11a1-five is the thing to try first: when
-$dim W_ell = 2$ forces $ell divides.not d$, the twist has good reduction at $ell$, and if that
-reduction is ordinary then $beta_ell = 0$ outright and the class is covered with no exclusion ---
-which is what happened for `11a1`, and for the good-reduction half of `14a1`. When $dim W_ell = 2$
-is instead reached through additive reduction, as in `14a1`'s remaining twists, $beta_ell$ can be
-non-zero and the argument stops. Whether `14a2` and `19a1` fall on the good side is the first thing
-to check, and @sec-class-warning is why it matters: a theorem covering part of a class says nothing
-about $X$. The worry that `11a1` would need a *quintic* residue symbol turned out to be unfounded
---- see @sec-11a1.
+$v = ell$. Both worked cases came out with $beta_ell = 0$ there, by two different mechanisms, and
+both are worth trying on `14a2` and `19a1`: the lemma of @sec-11a1-five when $dim W_ell = 2$ forces
+good ordinary reduction at $ell$, and the descent-image computation of @sec-14a1-places when it
+does not --- there $L_ell$ turned out to lie inside a single $H_i$, which is the other way a
+$phi_*$-stable image can arise. Since $E_d$ over $QQ_ell$ depends only on the class of $d$ modulo
+squares, four local computations settle a whole family. And @sec-class-warning is why it matters
+that they cover all four: a theorem covering part of a class says nothing about $X$. The worry
+that `11a1` would need a *quintic* residue symbol turned out to be unfounded --- see @sec-11a1.
 
 *The $x^3 + x$ template --- $ell = 2$, $E[2]$ indecomposable (@sec-thm2). Open
 case: `17a1`; `15a4` also belongs here and @sec-15a4 has since carried it out.*

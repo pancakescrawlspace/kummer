@@ -39,14 +39,16 @@ inEn(P, p, n)      = (P == [0]) || (valuation(P[1], p) <= -2*n);
 sameE2(Ep, P, Q, p) = inEn(elladd(Ep, P, ellneg(Ep, Q)), p, 2);
 m5(C)              = [C.a1, C.a2, C.a3, C.a4, C.a6];
 
-/* representatives of E(Q_p)/E_2 and of p E(Q_p)/E_2 */
-grp(Em, p, prec, XMAX) = {
+/* representatives of E(Q_p)/E_2 and of ell E(Q_p)/E_2.  ell is passed
+   separately from the place p even though this script only ever runs at
+   p = ell: using the place as the exponent is an easy and silent mistake. */
+grp(Em, p, ell, prec, XMAX) = {
   my(Ep = padiccurve(Em, p), pts = ppointsE(Em, p, prec, XMAX),
      G = List([[0]]), L = List([[0]]), nw);
   for(i = 1, #pts, nw = 1;
     for(j = 1, #G, if(sameE2(Ep, pts[i], G[j], p), nw = 0; break));
     if(nw, listput(G, pts[i])));
-  for(i = 1, #G, my(R = ellmul(Ep, G[i], p)); nw = 1;
+  for(i = 1, #G, my(R = ellmul(Ep, G[i], ell)); nw = 1;
     for(j = 1, #L, if(sameE2(Ep, R, L[j], p), nw = 0; break));
     if(nw, listput(L, R)));
   [Ep, #G, Vec(L)];
@@ -93,7 +95,7 @@ run(name, ev, p, kers, prec, XMAX) = {
   td = torsdim(E, p, kers, prec);   /* kers are for the given model E, not Em */
   dW = 1 + td;
   ap = if(lr[2] == 1, ellap(Em, p), "-");
-  gg = grp(Em, p, prec, XMAX); Ep = gg[1]; nG = gg[2]; L = gg[3];
+  gg = grp(Em, p, p, prec, XMAX);   /* here the place IS the level */ Ep = gg[1]; nG = gg[2]; L = gg[3];
   print(name, "   Kodaira ", lr[2], " (1 = good)  c = ", lr[4], "  a_", p, " = ", ap,
         "   dim E[", p, "](Q_", p, ") = ", td, "   dim W_", p, " = ", dW);
   if(dW <= 1,

@@ -34,4 +34,3 @@ is covered by the claim above.
       dim W_3 <= 1, so beta_3 = 0 because beta is alternating.
 
 ### vell finished
-gp -q -s 4000000000 < vell.gp  0.31s user 0.00s system 98% cpu 0.319 total
