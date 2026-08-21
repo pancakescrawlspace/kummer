@@ -1083,6 +1083,30 @@ in the three classes still untouched.
   $beta_v$ is *trivial* or *non-trivial* rather than naming a value.
 ]
 
+== A condition on $d$ is not free <sec-class-warning>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  Each theorem below proves something about $E_d (QQ)$ for $d$ in a square class, and then draws a
+  conclusion about the *surface*. The second step needs the first to hold for *every* $d$ in the
+  class, and it is easy to get this wrong.
+
+  #v(1.5mm)
+  The reason is the decomposition. $X(QQ_p) = union.sq_delta (E_delta times E_delta)(QQ_p) slash
+  plus.minus$ over the four square classes $delta$ of $QQ_p^times$, while
+  $X(QQ) = union.sq_d (E_d times E_d)(QQ) slash plus.minus$ over the *global* squarefree $d$. The
+  part of $X(QQ)$ sitting over one local class $delta$ is therefore the union of the
+  $(E_d times E_d)(QQ)$ for *all* $d$ mapping to $delta$ --- a countable union. If each of those is
+  a proper closed subgroup of $(E_delta times E_delta)(QQ_p)$ then, being a countable union of
+  closed nowhere-dense sets, it is not dense (Baire), and $X(QQ)$ is not dense in $X(QQ_p)$. But if
+  the theorem only covers *some* of the $d$ in the class, the remaining ones are unconstrained and
+  may well fill the local class up: nothing about the surface follows.
+
+  #v(1.5mm)
+  So a theorem of the shape "for $d$ in the class *and* satisfying $C$, $E_d (QQ)$ is not dense"
+  supports a statement about $X$ only when $C$ is vacuous on the class. @sec-15a1, @sec-15a4 and
+  @sec-11a1 clear this bar; @sec-14a1 does not, and says so.
+]
+
 == `15a1` at $p = 5$: level 2, $f$ split <sec-15a1>
 
 Take `15a1`, $p = 5$, class $[1]$. Here
@@ -1327,26 +1351,57 @@ so *both* hold only if $-3$ is a square in $QQ_v$. That is false at $2$
 
 #v(2mm)
 
-Only $v = 3$ imposes a condition, and it is explicit: $E_d [3](QQ_3) = 0$ exactly
-when
-$ 3 divides.not d "and" d equiv 2 (mod 3), quad "or" quad
-  3 divides d "and" d slash 3 equiv 1 (mod 3), $
-since $d$ is a square in $QQ_3$ iff $d equiv 1$ $(mod 3)$, and $-3d$ is a square
-iff $3 divides d$ with $-d slash 3 equiv 1$. Of the 1062 squarefree $d$ in the
-class with $|d| <= 2000$, *533* satisfy it --- exactly half.
+Only $v = 3$ can impose a condition, and $dim W_3 = 2$ happens in exactly two ways: $E_d [3](QQ_3)$
+is non-zero iff $d$ is a square in $QQ_3$ (i.e. $3 divides.not d$ and $d equiv 1$ mod 3), or
+$-3d$ is a square in $QQ_3$ (i.e. $3 divides d$ and $d slash 3 equiv 2$ mod 3). The two behave
+completely differently, and only one of them is a real obstacle.
+
+#align(center, table(
+  columns: 4, align: (left, center, left, center),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([$d$ at 3], [$dim W_3$], [reduction of $E_d$ at 3], [$beta_3$]),
+  [$3 divides.not d$, $d equiv 2$], [1], [good], [$0$, alternating],
+  [$3 divides d$, $d slash 3 equiv 1$], [1], [additive $"I"_0^*$], [$0$, alternating],
+  [$3 divides.not d$, $d equiv 1$], [2], [good, and *ordinary* ($a_3 = -2$)],
+    [$0$, by the lemma of @sec-11a1-five],
+  [$3 divides d$, $d slash 3 equiv 2$], [2], [additive $"I"_0^*$, $c_3 = 2$], [$!= 0$],
+))
+
+#v(2mm)
+
+The third row is new and removes half of what used to be excluded: $d$ a square in $QQ_3$ forces
+$3 divides.not d$, so $E_d tilde.equiv E_0$ over $QQ_3$ with good reduction, and $a_3 = -2$ is not
+divisible by 3, so the reduction is ordinary and @sec-11a1-five's lemma applies verbatim.
+`vell.gp` confirms it: *54 of 173* and *102 of 2245* dual images escape $3E(QQ_3)$, so both
+$ker alpha_i$ are non-zero and $L_3$ is $phi_*$-stable.
+
+The fourth row is not a gap in the argument but a genuine failure of it. There $E_d$ has *additive*
+reduction, the lemma has nothing to say, and `vell.gp` finds that exactly *one* of the two
+$ker alpha_i$ is non-zero ($d = -3$: $64$ of $146$ against $0$ of $2190$; $d = 33$: the mirror
+image). One is not enough --- stability needs both --- so $L_3$ is not $phi_*$-stable and
+$beta_3 != 0$. Reciprocity then has a second place to balance against and says nothing about
+$beta_7$.
+
+Of the 1062 squarefree $d$ in the class with $|d| <= 2000$, *932* --- $87.7%$ --- avoid the fourth
+row. The previous version of this section excluded the third row as well and reached only 533.
 
 === The theorem <sec-14a1-thm>
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *Theorem.* Let $d$ be squarefree in the class $[1]$ of $QQ_7^times$ and suppose
-  $E_d [3](QQ_3) = 0$, i.e. $d equiv 2$ $(mod 3)$, or $3 divides d$ with
-  $d slash 3 equiv 1$ $(mod 3)$. Then $E_d (QQ)$ is not dense in $E_d (QQ_7)$;
-  hence $X(QQ)$ is not dense in $X(QQ_7)$ for $X : y^2 = f(x) f(t)$,
-  $f = x^3 + 10x^2 + 105x - 116$.
+  *Theorem.* Let $d$ be squarefree in the class $[1]$ of $QQ_7^times$, and suppose $d$ is *not* of
+  the form $3m$ with $m equiv 2$ $(mod 3)$. Then $E_d (QQ)$ is not dense in $E_d (QQ_7)$.
+
+  #v(2mm)
+  *This does not yet say anything about $X$.* By @sec-class-warning the surface-level conclusion
+  needs every $d$ in the class, and the excluded $d$ --- $12.3%$ of them --- are exactly the ones
+  where $beta_3 != 0$, so they are not covered by any variant of this argument with this $phi$.
+  What would close it is a second class in $QQ_7^times slash 2$ for which the argument runs without
+  exclusion, or a different $phi$ for the excluded $d$; neither is done here.
 
   #v(2mm)
   _Proof._ $beta$ is alternating at every place, so $beta_v = 0$ wherever
-  $dim W_v <= 1$; by the table that is every $v != 7$. Reciprocity
+  $dim W_v <= 1$; that is every $v != 3, 7$, and $v = 3$ as well by the first three rows of
+  @sec-14a1-places's second table. Reciprocity
   $sum_v "inv"_v beta_v = 0$ then gives $beta_7 (P,Q) = 0$ for all
   $P, Q in E_d (QQ)$. On $W_7$, $beta_7$ is the tame cubic symbol transported by
   $c_1$, non-zero and alternating on a 2-dimensional $bb(F)_3$-space, hence
@@ -1357,17 +1412,20 @@ class with $|d| <= 2000$, *533* satisfy it --- exactly half.
 
 Two things distinguish this from @sec-15a1.
 
-*Nothing was verified numerically.* At level 2 the alternating property had to be
+*Almost nothing was verified numerically.* At level 2 the alternating property had to be
 proved by hand (`x^3 + x`) or the local vanishing checked by machine (`15a1`).
 Here decomposability hands over the alternating property, and the places then
 fall out of a single fact --- $-3$ is a square in $QQ_7$ and in neither $QQ_2$
-nor $QQ_3$. The only computation is the symbol table at 7.
+nor $QQ_3$. The computations are the symbol table at 7 and, at the wild place, the
+$phi_*$-stability check of @sec-14a1-places.
 
-*The remaining half needs exactly what §5.1.5 needs.* For $d equiv 1$ $(mod 3)$,
-$dim W_3 = 2$ and $beta_3$ has to be evaluated at the wild place --- the cubic
-norm-residue symbol at $3$ that neither PARI nor Sage provides. The difference is
-that here it is an *auxiliary* place: the obstruction lives at 7 and is tame,
-while §5.1.5's lives at 3 and is not. Closing it would finish the other half.
+*What is missing is not a symbol but a mechanism.* An earlier version of this section said the
+remaining twists needed the wild cubic norm-residue symbol at 3, the thing §5.1.5 also lacked.
+Both halves of that have changed. The symbol is no longer missing --- @sec-brauer-3-wild computes
+it --- and it is no longer what stands in the way: for $d equiv 1$ $(mod 3)$ the place is settled
+structurally, and for $3 divides d$ with $d slash 3 equiv 2$ the trouble is that $beta_3$ is
+genuinely non-zero, so reciprocity has two live places and localises nothing. No symbol
+computation repairs that; a different $phi$, or a different square class, would have to.
 
 #align(center, table(
   columns: 5, align: (left, center, center, center, left),
@@ -1379,7 +1437,7 @@ while §5.1.5's lives at 3 and is not. Closing it would finish the other half.
   [`15a1` (@sec-15a1)], [2], [5], [split over $QQ$],
     [local vanishing verified],
   [`14a1` (@sec-14a1)], [3], [7 --- *tame*], [decomposable],
-    [complete for half the class],
+    [$87.7%$ of the class; no conclusion about $X$ yet],
 ))
 
 
@@ -1562,27 +1620,62 @@ With $C_1^((d)) tilde.equiv chi_d$ and $C_2^((d)) tilde.equiv mu_5 times.o chi_d
   [$v = 5$], [the cyclotomic character mod 5 has order 4 on $G_5$ ($QQ_5 (zeta_5) slash QQ_5$ is
     totally ramified of degree 4) while $chi_d$ has order $<= 2$, so
     $C_2^((d))(QQ_5) = 0$ always and $dim W_5 = 1 + [d "square in" QQ_5]$],
-    [$0$ iff $d$ is not a square in $QQ_5$],
+    [$0$ --- see @sec-11a1-five],
   [$v = 11$], [$dim W_11 = 2$, $beta_11$ non-degenerate], [$!= 0$],
 )
 
 #v(2mm)
 
-Note $11 divides.not d$ throughout, since the class is $[1]$ at 11. The condition
-at 5 is cleaner than `14a1`'s: it asks only that $d$ fail to be a square in
-$QQ_5$, i.e. $5 divides d$ or $d equiv plus.minus 2$ $(mod 5)$.
+Note $11 divides.not d$ throughout, since the class is $[1]$ at 11.
+
+=== The wild place $v = ell = 5$ <sec-11a1-five>
+
+The row above is the only one that is not immediate, and an earlier version of this section left it
+as a *condition* on $d$ --- which, as @sec-class-warning explains, would have been fatal. It is not
+a condition: $beta_5$ vanishes for every $d$ in the class.
+
+If $d$ is not a square in $QQ_5$ then $dim W_5 = 1$ and $beta_5 = 0$ because $beta$ is alternating.
+So suppose $d$ *is* a square in $QQ_5$. Since $d$ is squarefree that forces $5 divides.not d$, so
+$E_d tilde.equiv E_0$ over $QQ_5$ and $E_d$ has *good* reduction at 5 --- one curve to check, not a
+family. And $a_5 (E_0) = 1$, not divisible by 5, so the reduction is *ordinary*.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma.* Let $v = ell$ and suppose $E$ has good *ordinary* reduction at $ell$, with
+  $E[ell] = C_1 xor C_2$ where $C_1 tilde.equiv ZZ slash ell$ is generated by a $QQ_ell$-rational
+  point and $C_2 tilde.equiv mu_ell$. Then $L_ell = delta_ell (W_ell)$ is $phi_*$-stable, so
+  $beta_ell equiv 0$.
+
+  #v(2mm)
+  _Proof._ Over $ZZ_ell$ the closure of $C_1$ is the constant, hence *étale*, group scheme
+  $ZZ slash ell$, and the closure of $C_2$ is $mu_ell$, which is *connected* at residue
+  characteristic $ell$. Ordinary reduction means the connected--étale sequence
+  $0 -> cal(E)[ell]^0 -> cal(E)[ell] -> cal(E)[ell]^"ét" -> 0$ has both ends of order $ell$; so
+  $cal(C)_2 = cal(E)[ell]^0$, and $cal(C)_1$ splits the sequence:
+  $cal(E)[ell] = cal(C)_1 xor cal(C)_2$ as finite flat group schemes. At a place of good reduction
+  the Kummer image is the flat subgroup $H^1_f$, which is functorial in the group scheme, so
+  $L_ell$ splits along that decomposition. A split $L_ell$ is $phi_*$-stable, and Step 1 of §5.1.5
+  gives $beta_ell equiv 0$. $qed$
+]
+
+`vell.gp` checks the conclusion directly, without the lemma, in the form Steps 4 and 5 of §5.1.5
+give it: $L_ell$ is $phi_*$-stable iff *both* $ker alpha_1$ and $ker alpha_2$ are non-zero, i.e.
+iff each dual isogeny image escapes $ell E(QQ_ell)$. That is decidable because
+$ell E supset.eq ell E_1 = E_2$, so $ell E$ is a union of $E_2$-cosets. For `11a1` at 5, with
+$dim W_5 = 2$: *2576 of 2704* sampled points of $B_1 (QQ_5)$ and *109 of 2511* of $B_2 (QQ_5)$ have
+dual image outside $5 E(QQ_5)$. Both kernels non-zero, so $beta_5 = 0$.
 
 === The theorem <sec-11a1-thm>
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *Theorem.* Let $d$ be squarefree, a square in $QQ_11^times$ (the class $[1]$),
-  and *not* a square in $QQ_5^times$. Then $E_0^((d))(QQ)$ is not dense in
-  $E_0^((d))(QQ_11)$; hence $X(QQ)$ is not dense in $X(QQ_11)$ for the surface
-  `11a1`.
+  *Theorem.* Let $d$ be squarefree and a square in $QQ_11^times$ --- that is, *any* $d$ in the
+  class $[1]$, with no further condition. Then $E_0^((d))(QQ)$ is not dense in
+  $E_0^((d))(QQ_11)$. Since that holds for *every* $d$ in the class, $X(QQ)$ is not dense in
+  $X(QQ_11)$ for the surface `11a1`.
 
   #v(2mm)
   _Proof._ $beta$ is alternating at every place, so $beta_v = 0$ wherever
-  $dim W_v <= 1$; by the table that is every $v != 11$. Reciprocity
+  $dim W_v <= 1$; that is every $v != 5, 11$ by the table, and $v = 5$ as well by
+  @sec-11a1-five. Reciprocity
   $sum_v "inv"_v beta_v = 0$ gives $beta_11 (P,Q) = 0$ for all
   $P, Q in E_0^((d))(QQ)$. But $beta_11$ is non-degenerate on the 2-dimensional
   $W_11$, so the image of the rational points is a proper subspace, of dimension
@@ -1590,8 +1683,7 @@ $QQ_5$, i.e. $5 divides d$ or $d equiv plus.minus 2$ $(mod 5)$.
   rational points are not dense. $qed$
 ]
 
-Of the 1115 squarefree $d$ in the class with $|d| <= 2000$, *652* --- $58.5%$ ---
-satisfy the condition at 5. @sec-ledger-odd's measurement agrees with the
+@sec-ledger-odd's measurement agrees with the
 conclusion: none of the 584 twists it examined reached the full
 $(ZZ slash 5)^2$, and the six lines came up $92 slash 97 slash 97 slash 103 slash 77 slash 95$
 times, which is what an alternating form on $(ZZ slash 5)^2$ forces --- *every*
@@ -1788,10 +1880,15 @@ cases: `14a2` and `19a1`; `11a1` also belongs here and @sec-11a1 has since
 carried it out.* Here $beta$ is alternating at every place for free --- §5.1.5's
 argument needs only decomposability and $2$ invertible mod $ell$ --- so the whole
 analysis reduces to $dim W_v$, and by the triage the only place left is the wild
-$v = ell$. These should go through exactly as `14a1` did, giving a theorem on the
-half of each class where $E_d [ell](QQ_ell) = 0$, with the other half waiting on
-the wild symbol. The worry that `11a1` would need a *quintic* residue symbol
-turned out to be unfounded --- see @sec-11a1.
+$v = ell$. There the lemma of @sec-11a1-five is the thing to try first: when
+$dim W_ell = 2$ forces $ell divides.not d$, the twist has good reduction at $ell$, and if that
+reduction is ordinary then $beta_ell = 0$ outright and the class is covered with no exclusion ---
+which is what happened for `11a1`, and for the good-reduction half of `14a1`. When $dim W_ell = 2$
+is instead reached through additive reduction, as in `14a1`'s remaining twists, $beta_ell$ can be
+non-zero and the argument stops. Whether `14a2` and `19a1` fall on the good side is the first thing
+to check, and @sec-class-warning is why it matters: a theorem covering part of a class says nothing
+about $X$. The worry that `11a1` would need a *quintic* residue symbol turned out to be unfounded
+--- see @sec-11a1.
 
 *The $x^3 + x$ template --- $ell = 2$, $E[2]$ indecomposable (@sec-thm2). Open
 case: `17a1`; `15a4` also belongs here and @sec-15a4 has since carried it out.*

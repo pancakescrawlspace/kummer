@@ -1,0 +1,37 @@
+=== 11a1 at v = ell = 5 ===
+Every d in the class [1] at 11 with dim W_5 = 2 has d a square in Q_5,
+hence 5 does not divide d, hence GOOD reduction at 5. One check suffices.
+
+11a1, d = 1     Kodaira 1 (1 = good)  c = 1  a_5 = 1   dim E[5](Q_5) = 1   dim W_5 = 2
+      ker(alpha_2) non-zero: 1     (2576 of 2704 dual images escape 5E)
+      ker(alpha_1) non-zero: 1     (109 of 2511 dual images escape 5E)
+      => L_5 is phi-stable, i.e. beta_5 = 0 :  1
+
+=== 14a1 at v = ell = 3 ===
+Here dim W_3 = 2 happens in two ways: d a square in Q_3 (good reduction
+at 3), and 3 | d with -3d a square (ADDITIVE reduction). Only the first
+is covered by the claim above.
+
+14a1, d = 1           Kodaira 1 (1 = good)  c = 1  a_3 = -2   dim E[3](Q_3) = 1   dim W_3 = 2
+      ker(alpha_2) non-zero: 1     (54 of 173 dual images escape 3E)
+      ker(alpha_1) non-zero: 1     (102 of 2245 dual images escape 3E)
+      => L_3 is phi-stable, i.e. beta_3 = 0 :  1
+
+14a1, d = -3  (3 | d)   Kodaira -1 (1 = good)  c = 2  a_3 = -   dim E[3](Q_3) = 1   dim W_3 = 2
+      ker(alpha_2) non-zero: 1     (64 of 146 dual images escape 3E)
+      ker(alpha_1) non-zero: 0     (0 of 2190 dual images escape 3E)
+      => L_3 is phi-stable, i.e. beta_3 = 0 :  0
+
+14a1, d = 33  (3 | d)   Kodaira -1 (1 = good)  c = 2  a_3 = -   dim E[3](Q_3) = 1   dim W_3 = 2
+      ker(alpha_2) non-zero: 0     (0 of 145 dual images escape 3E)
+      ker(alpha_1) non-zero: 1     (64 of 146 dual images escape 3E)
+      => L_3 is phi-stable, i.e. beta_3 = 0 :  0
+
+14a1, d = -15  (3 | d)   Kodaira -1 (1 = good)  c = 2  a_3 = -   dim E[3](Q_3) = 0   dim W_3 = 1
+      dim W_3 <= 1, so beta_3 = 0 because beta is alternating.
+
+14a1, d = 21  (3 | d)   Kodaira -1 (1 = good)  c = 2  a_3 = -   dim E[3](Q_3) = 0   dim W_3 = 1
+      dim W_3 <= 1, so beta_3 = 0 because beta is alternating.
+
+### vell finished
+gp -q -s 4000000000 < vell.gp  0.31s user 0.00s system 99% cpu 0.318 total
