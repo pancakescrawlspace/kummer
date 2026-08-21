@@ -4280,6 +4280,96 @@ obstruction at $ell = 2$ --- Theorem 8 has no analogue there.
   at which $W_v$ sees the formal group at all, and no argument in this chapter reaches it.
 ]
 
+== Corollary 6 in the field: six new surfaces <sec-dep-new>
+
+Theorem 8 makes the search for obstructed surfaces mechanical. To get a *single* critical prime,
+add one condition to Corollary 6:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  Let $ell$ be odd, $phi$ non-scalar, and suppose
+  #v(1mm)
+  (i) $E[ell]$ is *decomposable*, so a rank-one $phi$ exists. With exactly two rational
+  $ell$-lines both are $phi$-stable, so condition (c) says *no rational line is canonical* at $v$;
+  #v(1mm)
+  (ii) $ell divides.not N_E$, so $E$ has good reduction at $ell$ and Lemma 1(b) kills the wild
+  place --- the one place Theorem 8 does not reach;
+  #v(1mm)
+  (iii) exactly one bad prime $p$ passes (a), (b), (c) of Theorem 8.
+  #v(1.5mm)
+  Then $Sigma_phi (d) = {p}$ for every squarefree $d$ in the class that (a) selects, and *for every
+  $d$ whatever in that class*, since a place is live only in its split class and the others fail
+  (b) or (c) there. Reciprocity gives $beta_p equiv 0$ on rational pairs, and @sec-class-warning
+  gives that $X(QQ)$ is not dense in $X(QQ_p)$.
+]
+
+`corollary6.gp` runs this. Since $E[3]$ decomposable is rare in a naive box --- twelve curves in
+$|A|, |B| <= 60$ --- the scan runs over the universal curve with a rational 3-torsion point,
+$y^2 + a x y + b y = x^3$, with $|a|, |b| <= 40$. It finds *eight* curves satisfying (i) and (ii),
+and *all eight* satisfy (iii). Two of them are already in this document, `14a1` and `19a1`; the
+other six are new. At $ell = 5$ the same search over the Tate normal form carrying a point of order
+5 returns exactly one curve --- conductor 11, that is `11a1`, the case of @sec-11a1, rediscovered
+and alone in its range.
+
+#align(center, table(
+  columns: 4, align: (center, left, center, center),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([$N_E$], [$f$, for $X : y^2 = f(x) f(t)$], [critical $p$], [class]),
+  [26],  [$x^3 + x^2 - 72x - 496$],     [13], [$[1]$],
+  [35],  [$x^3 + 4x^2 + 144x + 80$],    [7],  [$[1]$],
+  [37],  [$x^3 + 4x^2 - 368x - 3184$],  [37], [$[1]$],
+  [38],  [$x^3 + x^2 + 152x + 5776$],   [19], [$[1]$],
+  [91],  [$x^3 + 4x^2 + 208x + 2704$],  [13], [$[1]$],
+  [370], [$x^3 + x^2 - 296x + 21904$],  [37], [$[1]$],
+))
+
+#v(2mm)
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem 10.* For each surface in the table, at level $ell = 3$, and for *every* squarefree $d$
+  in the class $[1]$ of $QQ_p^times$, the pairing $beta_p$ vanishes on
+  $E_d (QQ) times E_d (QQ)$. Hence $X(QQ)$ is not dense in $X(QQ_p)$.
+
+  #v(2mm)
+  _Proof._ Theorem 8 at every $v divides.not 3$, Lemma 1(b) at $v = 3$ (good reduction, since
+  $3 divides.not N_E$), Lemma 2 at $infinity$ and the $q divides d$. So $Sigma(d) = {p}$,
+  reciprocity forces $beta_p equiv 0$ on rational pairs, and $beta_p$ is non-degenerate on $W_p$ by
+  Theorem 5. Apply @sec-class-warning. $qed$
+]
+
+=== The experiment <sec-dep-newcheck>
+
+Nothing above involved a rational point. The prediction is therefore a genuine one, and
+@sec-result's search is the way to test it: run it on the six surfaces over all 45 odd primes
+$p <= 200$ and the eight square classes at 2, with the parameters of @sec-summary, and see whether
+the witnesses fail exactly where they are predicted to.
+
+#align(center, table(
+  columns: 5, align: (center, center, center, center, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([$N_E$], [predicted], [odd primes full], [prime that falls short], [classes there]),
+  [26],  [13 in $[1]$], [44 of 45], [*13*], [3 of 4 --- $[1]$ missing],
+  [35],  [7 in $[1]$],  [44 of 45], [*7*],  [3 of 4 --- $[1]$ missing],
+  [37],  [37 in $[1]$], [44 of 45], [*37*], [3 of 4 --- $[1]$ missing],
+  [38],  [19 in $[1]$], [44 of 45], [*19*], [3 of 4 --- $[1]$ missing],
+  [91],  [13 in $[1]$], [44 of 45], [*13*], [3 of 4 --- $[1]$ missing],
+  [370], [37 in $[1]$], [44 of 45], [*37*], [3 of 4 --- $[1]$ missing],
+))
+
+#v(2mm)
+
+Six predictions, six confirmations: in each case the search witnesses all four square classes at
+every odd prime up to 200 *except* the predicted one, where it witnesses three and misses exactly
+the class $[1]$. The critical prime and the class were read off the conductor, the discriminant and
+the isogeny class before any point was looked for.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  One row needed a second look. At $p = 2$ five of the six surfaces cover all eight classes at
+  once, but $N_E = 38$ reported $6 slash 8$. Theorem 8 says $p = 2$ *cannot* be critical at
+  $ell = 3$, since full rationality of $E_d [3]$ over $QQ_2$ would need $zeta_3 in QQ_2$; so this
+  had to be search depth rather than an obstruction. Raising the bound from $300$ to $4000$ returns
+  $8 slash 8$. The theory said where to look, and what to expect to find.
+]
+
 == What is proved, and what is not <sec-dep-gaps>
 
 *Proved.* The criterion of @sec-dep-crit; Lemmas 1, 2 and 3; the square-class corollary of

@@ -1,0 +1,30 @@
+=== Corollary 6: curves with exactly one critical prime ===
+
+=== ell = 3: scanning y^2 + a x y + b y = x^3, |a| <= 40, 1 <= |b| <= 40
+   a=-10 b=-37   N = 37   SINGLE critical prime p = 37   class d = 1   f = x^3 + (4)x^2 + (-368)x + (-3184)
+   a=-8 b=-19   N = 19   SINGLE critical prime p = 19   class d = 1   f = x^3 + (4)x^2 + (-144)x + (-944)
+   a=-7 b=-13   N = 26   SINGLE critical prime p = 13   class d = 1   f = x^3 + (1)x^2 + (-72)x + (-496)
+   a=-5 b=-7   N = 14   SINGLE critical prime p = 7   class d = 1   f = x^3 + (1)x^2 + (72)x + (-368)
+   a=-4 b=-7   N = 35   SINGLE critical prime p = 7   class d = 1   f = x^3 + (4)x^2 + (144)x + (80)
+   a=-2 b=-13   N = 91   SINGLE critical prime p = 13   class d = 1   f = x^3 + (4)x^2 + (208)x + (2704)
+   a=-1 b=-19   N = 38   SINGLE critical prime p = 19   class d = 1   f = x^3 + (1)x^2 + (152)x + (5776)
+   a=-1 b=37   N = 370   SINGLE critical prime p = 37   class d = 1   f = x^3 + (1)x^2 + (-296)x + (21904)
+   a=1 b=-37   N = 370   SINGLE critical prime p = 37   class d = 1   f = x^3 + (1)x^2 + (-296)x + (21904)
+   a=1 b=19   N = 38   SINGLE critical prime p = 19   class d = 1   f = x^3 + (1)x^2 + (152)x + (5776)
+   a=2 b=13   N = 91   SINGLE critical prime p = 13   class d = 1   f = x^3 + (4)x^2 + (208)x + (2704)
+   a=4 b=7   N = 35   SINGLE critical prime p = 7   class d = 1   f = x^3 + (4)x^2 + (144)x + (80)
+   a=5 b=7   N = 14   SINGLE critical prime p = 7   class d = 1   f = x^3 + (1)x^2 + (72)x + (-368)
+   a=7 b=13   N = 26   SINGLE critical prime p = 13   class d = 1   f = x^3 + (1)x^2 + (-72)x + (-496)
+   a=8 b=19   N = 19   SINGLE critical prime p = 19   class d = 1   f = x^3 + (4)x^2 + (-144)x + (-944)
+   a=10 b=37   N = 37   SINGLE critical prime p = 37   class d = 1   f = x^3 + (4)x^2 + (-368)x + (-3184)
+   [16 curves with E[3] decomposable and good reduction at 3]
+
+total hits at ell = 3: 16
+
+=== ell = 5: scanning the 5-torsion family y^2 + (1-c)xy - cy = x^3 - cx^2
+   c = 11   N = 11   SINGLE critical prime p = 11   class d = 1   f = x^3 + (-4)x^2 + (-160)x + (-1264)
+   [1 curves with E[5] decomposable and good reduction at 5]
+
+total hits at ell = 5: 1
+
+### corollary6 finished

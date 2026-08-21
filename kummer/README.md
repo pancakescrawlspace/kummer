@@ -28,6 +28,8 @@ aborts the rest of the file. Use the `-s` flag as above.
 | `sadic.gp` | `S`-adic density (document §2.2): `Mstar`, `coprimeS`, `densefactorwise`, `denseS`, `reportS`; the level-2 product test `inE2p`, `Border`, `denseprod`, `reportSprod`, and the per-tuple search `tuplepart`, `tuplename`, `reportSprodk`, `reportSprodtuples`; and the rank dichotomy `torsdim`, `torsdimloc`, `gexactS` (exact) against `torsdimUB`, `gtop`, `triage` (bounds). |
 | `ledger.gp` | the ledger and star test at level 1 (document §2.3.1): `arenainit`, `reachmap`, `signact`, `ledgeradd`, `maskvec`, `startest`, `runledger`, `rungraded`. Reduction-agnostic arena (§2.3.4): `shortmodel`, `shortdata`, `cosetreps1`, `cosetclose`, `cosetidx`. Sweeps over all tuples (§2.3.6): `sweepgraded`, and the per-tuple search `rungradedk`, `sweeptuples` (on `tuplepart`/`tuplename` from `sadic.gp`); `showcert` for the certificate. |
 | `depends.gp` | **the obstructed set S read off (E, ell, phi) directly** (survey document §10). No local points, no descent images, no symbols: only reduction data. Five steps -- (1) bad primes only, since at good `v != ell` the local condition is `H^1_ur` and at good `v = ell` it is `H^1_f`, both functorial hence phi-stable for EVERY phi; (2) discard `v != 1 mod ell`, since a non-zero alternating `beta_v` needs all of `E_d[ell]` rational over `Q_v`; (3) keep multiplicative `v` with `ell | v(Delta_min)`; (4) the live square class is the unique unramified one making `E_d` SPLIT; (5) phi decides -- live iff the canonical line `C_can = mu_ell` is not phi-stable, detected by which `ell`-isogeny MULTIPLIES `v(Delta)` by `ell`. `sqreps`, `tw`, `ratroots`, `ntorsx`, `redtype`, `canline`, `splitclass`, `run`. Output: `results/survey-depends.txt`. |
+| `corollary6.gp` | **search for surfaces with exactly one critical prime** (survey document §10.9). Uses Corollary 6 plus Theorem 8: `ell` odd, `E[ell]` decomposable, `ell` NOT dividing `N_E` (so Lemma 1(b) kills the wild place), and exactly one bad prime passing (a) split multiplicative, (b) full local `ell`-torsion, (c) no rational line canonical. Scans the universal 3-torsion curve `y^2+axy+by=x^3` at `ell=3` and the Tate 5-torsion form at `ell=5`, since decomposable `E[ell]` is rare in a naive box. `monicF`, `nisog`, `canrational`, `splitclass`, `fulltors`, `sigma1`, `scan`, `scan5`. Output: `results/survey-corollary6.txt`. |
+| `corollary6-check.gp` | **the §3 density check on those predictions** (survey document §10.9.1). Runs `runsurface` with the survey's own parameters over all 45 odd primes `<= 200` plus the eight classes at 2. Output: `results/survey-corollary6-check.txt`. |
 | `additive.gp` | **the additive places** (survey document §10.8). Three computations: (1) the split-multiplicative square class can be RAMIFIED -- 11a1 twisted by 11 is `I5*` at 11, and it is `d = 11` that returns split multiplicative reduction, so Step 4 must scan all four classes and potentially multiplicative additive places are covered by Theorem 5 after all; (2) Lemma 7, `W_v = Phi_v/ell` at additive `v` not dividing `ell`, verified by measuring `|W_v|` against `|Phi/2|` (note `Phi = (Z/2)^2` for `I_n*` with `n` EVEN, not `Z/4`); (3) at `I0*` with `c_v = 4` the pairing is a Hilbert symbol of ROOT DIFFERENCES, checked against a direct search for all three phi on four curves -- exact agreement, and these places are LIVE. `kodname`, `splitscan`, `phimod2`, `wsize`, `lemma7`, `ci`, `imgs`, `predict`, `direct`, `census`, `run`. Output: `results/survey-additive.txt`. |
 | `depends-15a1-sigma.gp` | **the full `Sigma(d)` for both phi on 15a1**, `d = -1` (survey document §10.5.1). Prompted by an apparent conflict: §3 witnesses every class of 15a1 at `p = 3`, while §10's recipe reports 3 as critical for the phi pairing `c_2, c_3`. No conflict: `phi_A = (c_1,c_3)` has `Sigma = {5}` (the §7.1 theorem), while `phi_B = (c_2,c_3)` has `Sigma = {infinity, 2, 3}` -- a three-place correlation with no constraint at 3 alone. Also shows `beta_oo =/= 0` on the ONE-dimensional `W_oo`, so beta is not alternating for `phi_B`: the norm lemma is about a pair of descent maps, not about the curve. `realchk`, `fin`. Output: `results/survey-15a1-sigma.txt`. |
 | `depends-check.gp` | **out-of-sample test of the sufficiency theorem** (survey document §10.7.1). For curves appearing nowhere else, and each of the three rank-one phi on a curve with full rational 2-torsion, predicts the verdict at every odd bad place from reduction data alone and then computes the symbol table. Theorem 5 predicts non-degeneracy at a live place -- both images all four classes, 6 of 16 ordered pairs with a non-trivial symbol -- and a COLLAPSE of the canonical line's descent map at a dead one. 13 predictions, 13 agreements. CAVEAT: the sampler uses `x = +- m p^k` with `m <= 40`, so an image can be reported as 3 (impossible for a subgroup) -- a live verdict is still a proof, a dead one is evidence. `symtab`, `canroot`, `splitclass`, `oos`. Output: `results/survey-depends-check.txt`. |
@@ -1440,6 +1442,48 @@ identification of `C_can` by the `j`-valuations of the `ell`-isogenous curves.
 formal group is pro-`ell` and contributes EVERYTHING -- which is why `x^3-2` is
 live at `v = 3` on a type II fibre with `c_v = 1`, where `Phi/3 = 0`. Its `W_3`
 is entirely formal group. That is the one place no argument in §10 reaches.
+
+## Six new obstructed surfaces, predicted then verified (document §10.9)
+
+Theorem 8 makes the search mechanical. For a SINGLE critical prime, add
+`ell` not dividing `N_E` to Corollary 6, so that Lemma 1(b) kills the wild place
+-- the one place Theorem 8 does not reach. Then `Sigma(d) = {p}` for every `d`
+in the class that (a) selects, reciprocity forces `beta_p = 0` on rational
+pairs, and §6.8 gives non-density in `X(Q_p)`.
+
+`corollary6.gp` scans the universal curve with a rational 3-torsion point,
+`y^2 + axy + by = x^3`, since decomposable `E[3]` is rare in a naive box. Eight
+curves in `|a|,|b| <= 40` satisfy the hypotheses, and ALL EIGHT have exactly one
+critical prime. Two are already in the document (14a1, 19a1); six are new. At
+`ell = 5` the Tate 5-torsion family returns exactly one curve -- conductor 11,
+i.e. 11a1, the known case, rediscovered and alone in its range.
+
+| `N_E` | `f` | critical `p` | class |
+|---|---|---|---|
+| 26 | `x^3 + x^2 - 72x - 496` | 13 | `[1]` |
+| 35 | `x^3 + 4x^2 + 144x + 80` | 7 | `[1]` |
+| 37 | `x^3 + 4x^2 - 368x - 3184` | 37 | `[1]` |
+| 38 | `x^3 + x^2 + 152x + 5776` | 19 | `[1]` |
+| 91 | `x^3 + 4x^2 + 208x + 2704` | 13 | `[1]` |
+| 370 | `x^3 + x^2 - 296x + 21904` | 37 | `[1]` |
+
+**Theorem 10**: for each of these, at `ell = 3` and for every squarefree `d` in
+the class `[1]` of `Q_p`, `beta_p` vanishes on rational pairs; hence `X(Q)` is
+not dense in `X(Q_p)`.
+
+**The experiment.** Nothing in the prediction used a rational point, so the §3
+search is a genuine test. `corollary6-check.gp` runs it on all six over the 45
+odd primes `<= 200` and the eight classes at 2:
+
+    all six:  44 of 45 odd primes full, and the prime that falls short is
+              EXACTLY the predicted one, missing EXACTLY the class [1].
+
+Six predictions, six confirmations, with the critical prime and class read off
+the conductor, the discriminant and the isogeny class beforehand. One row needed
+a second look: at `p = 2` the surface `N_E = 38` first reported 6/8. Theorem 8
+says 2 cannot be critical at `ell = 3` (full rationality of `E_d[3]` over `Q_2`
+would need `zeta_3` in `Q_2`), so that had to be search depth -- raising the
+bound from 300 to 4000 gives 8/8.
 
 ## beta_3 =/= 0 is now proved (document §5.1.5)
 
