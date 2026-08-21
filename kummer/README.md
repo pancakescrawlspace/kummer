@@ -504,6 +504,12 @@ tested in the failing class without a witness, over a range then extended
 class fails; the common signature is multiplicative reduction with
 `gcd(c_p, p-a_p) > 1`, making `E_delta(Q_p)/E_1` have `(Z/l)^2` as a quotient.
 
+**All eight are now proved non-dense**, not merely unwitnessed: seven by a
+twisted pairing plus reciprocity (see *Twisted pairings at non-CM surfaces*
+below, and document §7) and the eighth -- `x^3-2` at `p = 3` -- by the argument
+of §5.1.5, which was what put it on the list. So the failure of the search to
+find a witness was not a limit of the search.
+
 ```
 deephunt([-11,-1,-83], 11, 1, 1, 20000);       /* 11a1, p=11, class [u] */
 gloc([10,105,-116], 1, 7);                     /* 2 -- rank 1 is useless */
@@ -741,6 +747,30 @@ norm-residue symbol is *quadratic*, while at level 3 it is cubic.
 
 ## Twisted pairings at non-CM surfaces (document §7; the local technique is collected in §6)
 
+**All eight classes of §3.3 are now settled** -- seven by a twisted pairing plus
+reciprocity, and the eighth by the direct non-density proof that put it on the
+list in the first place. Each theorem covers its whole square class with no
+extra condition, which is what the surface-level conclusion needs (document
+§6.8), and no step rests on a sample: what is computed is computed over a
+complete set of square classes, with the sampled points shown to generate the
+relevant quotient.
+
+| case | l | critical p | E[l] | wild place v = l | status |
+|---|---|---|---|---|---|
+| `x^3-2` (§5.1.5) | 3 | 3 -- **wild** | decomposable | *is* the critical place | complete |
+| `x^3+x` (§5.5.4) | 2 | 2 -- **wild** | **indecomposable** | *is* the critical place | complete |
+| `15a1` (§7.1) | 2 | 5 | split over Q | 8 square classes at 2 | complete |
+| `14a1` (§7.2) | 3 | 7 -- tame | decomposable | good ordinary, and collapse | complete |
+| `15a4` (§7.3) | 2 | 5 | **indecomposable** | 8 square classes at 2 | complete |
+| `11a1` (§7.4) | 5 | 11 | decomposable | good ordinary | complete |
+| `14a2`, `19a1` (§7.5) | 3 | 7, 19 -- tame | decomposable | good ordinary, and collapse | complete |
+| `17a1` (§7.6) | 2 | 17 -- tame | **indecomposable** | 8 square classes at 2 | complete |
+
+The local technique they share is collected in document §6: the criterion at a
+place and its indecomposable variant, which places cannot contribute, the two
+mechanisms at the wild place `v = l`, and the reduction of "all twists" to a
+bounded number of square classes.
+
 ### 15a1 at p = 5: level 2, f split (document §7.1)
 
 §3.3.1 found all seven open classes carry the pairing signature; this constructs
@@ -785,13 +815,35 @@ and its valuation is even -- both arguments are units and the symbol is 1. *That
 the root differences 16, 25, 9 are perfect squares is what confines the rest to
 2, 3, 5 and `q | d`; 5 survives because `e1 - e3 = 25`.*
 
-The places 2, 3 and `q | d` are **verified, not proved**: over all 202 squarefree
-`d` in the class with `|d| <= 400`, `beta_q` vanishes on the whole *local* group
-at 640 of 640 such places, and `beta_5 != 0` on `W_5` for all 202.
+The places 2, 3 and `q | d` were long **verified rather than proved** -- 640 of
+640 such places over 202 twists. They are now proved, and split into a finite
+part and a lemma. `E_d/Q_v` depends on `d` only through its class in `Q_v^x`
+modulo squares, and the class at 5 constrains neither the class at 2 (eight) nor
+at 3 (four), so `localimg.gp` runs all twelve, checks in each that the sampled
+points **generate** the relevant quotient, and evaluates every Hilbert symbol
+between the image of `c_1` and that of `c_3`. All trivial. The same runs give the
+critical place: at `v = 5` the image of `c_1` is all four classes.
 
-> *Theorem* (modulo that verification): for every squarefree `d` in the class
-> `[1]` of `Q_5`, `E_d(Q)` is not dense in `E_d(Q_5)`; hence `X(Q)` is not dense
-> in `X(Q_5)`.
+For `q | d` with `q` odd, infinitely many primes occur and no finite check
+reaches them. **Lemma C**: writing `d = q d'`,
+
+    c_1(E_d(Q_q)) in {1, -q d'},   c_3(E_d(Q_q)) in {1, q d'}   mod squares,
+
+so the four resulting symbols are trivial -- the last by Steinberg, `(a,-a)_q =
+1`. The proof runs on the valuation `k` of `x(P)`: `k <= 0` makes every `c_i` a
+square; `k = 1` gives exactly one `lambda_i` of odd valuation and three cases,
+where *the root differences 16, 25, 9 being squares* is what makes the classes
+come out as `d'` up to sign; `k >= 2` is empty because `prod c_i = 136 d` has odd
+valuation when `q` does not divide 136. `q = 17` is left over -- `17 = e_1` makes
+that last case non-vacuous -- but `17 | d` forces `v_17(d)` odd, so only two
+classes occur and both are run.
+
+That is the third job the squareness of the root differences does, after
+confining the bad places and making `A` unramified on the Kummer surface
+(document §8.4.2).
+
+> *Theorem.* For every squarefree `d` in the class `[1]` of `Q_5`, `E_d(Q)` is
+> not dense in `E_d(Q_5)`; hence `X(Q)` is not dense in `X(Q_5)`.
 
 It also explains the §3.3.1 measurement -- the reaches spread over all three
 lines 180/129/170 -- since an isotropic line of a symplectic form is exactly a
@@ -840,25 +892,22 @@ valuation), true at 7 (`-3 = 4`). Hence `W_inf = 0` (3-divisible), good `v != 3`
 by unramified isotropy, `dim W_2 <= 1`, `W_q = 0` for `q | d` (both `d` and
 `-3d` have odd valuation), and only `v = 3` imposes a condition.
 
-> *Theorem.* For squarefree `d` in the class `[1]` of `Q_7` with
-> `E_d[3](Q_3) = 0` -- that is `d = 2 mod 3`, or `3 | d` with `d/3 = 1 mod 3` --
-> `E_d(Q)` is not dense in `E_d(Q_7)`, hence `X(Q)` is not dense in `X(Q_7)`.
+> *Theorem.* For **every** squarefree `d` in the class `[1]` of `Q_7`, `E_d(Q)`
+> is not dense in `E_d(Q_7)`, hence `X(Q)` is not dense in `X(Q_7)`.
 
-533 of the 1062 squarefree `d` in the class with `|d| <= 2000` satisfy it,
-exactly half. **Nothing was verified numerically** here except the symbol table
-at 7 -- decomposability hands over the alternating property and the places fall
-out of one fact about `-3`. The other half needs `beta_3` at the *wild* place,
-i.e. the cubic symbol §5.1.5 also lacks -- but here it is an auxiliary place,
-not the critical one.
+The hypothesis is vacuous on the class, and getting there took two corrections.
+An earlier version carried the condition `E_d[3](Q_3) = 0`, covering 533 of the
+1062 squarefree `d` with `|d| <= 2000`, and then drew a conclusion about `X`
+anyway -- which document §6.8 explains is invalid. The condition then went in two
+stages. `d` a square in `Q_3` forces `3` not to divide `d`, so `E_d = E_0` over
+`Q_3` with good reduction, and `a_3 = -2` is prime to 3, so the reduction is
+**ordinary** and document §6.5.1 applies. The remaining class, `3 | d` with
+`d/3 = 2 mod 3`, is additive at 3, where instead the descent image *collapses*:
+`alpha` is identically trivial, so `ker alpha` is all of `W_3`, `L_3` lies inside
+a single `H_i`, and stability is trivial. Since `E_d/Q_3` depends only on the
+class of `d` modulo squares, four local computations settle every twist.
 
-| case | level | critical place | E[l] | status |
-|---|---|---|---|---|
-| `x^3-2` (§5.1.5) | 3 | 3 -- **wild** | decomposable | `beta_3 != 0` unverified |
-| `x^3+x` (§5.5.4) | 2 | 2 | **indecomposable** | complete |
-| `15a1` (§7.1) | 2 | 5 | split over Q | complete |
-| `14a1` (§6.2) | 3 | 7 -- **tame** | decomposable | complete for half the class |
-
-### 15a4 at p = 5: the x^3+x template, verbatim (document §6.3)
+### 15a4 at p = 5: the x^3+x template, verbatim (document §7.3)
 
 The triage predicted this would follow §5.5.4, and it does -- shifting by the
 rational root makes it literally the same shape.
@@ -899,17 +948,28 @@ nzbeta(cimagep([14,625,0], 11, 5, 40, 6, 50), 5);   /* 1 */
 nzbeta(cimagep([14,625,0], 11, 2, 40, 8, 50), 2);   /* 0 */
 ```
 
-> *Theorem* (modulo the local vanishing at 2): for `f = x(x^2+14x+625)` and
-> every squarefree `d` in the class `[1]` of `Q_5`, `E_d(Q)` is not dense in
-> `E_d(Q_5)`; hence `X(Q)` is not dense in `X(Q_5)`.
+> *Theorem.* For `f = x(x^2+14x+625)` and every squarefree `d` in the class `[1]`
+> of `Q_5`, `E_d(Q)` is not dense in `E_d(Q_5)`; hence `X(Q)` is not dense in
+> `X(Q_5)`.
 
 Across 231 twists, all **1079** rational pairs give `(c(P),c(Q))_5 = +1`, as the
 theorem requires; and §3.3.1's reaches for 15a4, spread 82/138/104 over the three
-lines, are the isotropic lines of this symplectic form. **One** step is verified
-rather than proved here, against three for 15a1 -- indecomposable `E[2]` makes
-phi essentially unique, so no search was needed at all.
+lines, are the isotropic lines of this symplectic form.
 
-### 11a1 at p = 11, level 5 -- and no quintic symbol needed (document §6.4)
+The theorem once said "modulo the local vanishing at 2". That step is now
+exhaustive: the class of `d` at 2 is unconstrained by its class at 5, so all
+**eight** square classes of `Q_2^x` are needed, and all eight give an image of
+`c` of order at most 2 -- enough, beta being alternating. Generation is checked
+modulo `E_3`, which works because `2E` contains `2E_2 = E_3`. One small
+correction fell out: the earlier pass over 202 twists listed the possible images
+as `{1}, {1,5}, {1,10}`; there is a fourth, `{1,2}`, occurring for `d` in the
+class of 2 -- e.g. `d = 34`, which is a square in `Q_5` and so lies in the class
+the theorem is about.
+
+Indecomposable `E[2]` makes phi essentially unique (document §6.2), so no search
+was needed at all -- against nine candidates for 15a1.
+
+### 11a1 at p = 11, level 5 -- and no quintic symbol needed (document §7.4)
 
 The triage flagged this as needing the **quintic** residue symbol at 11. It does
 not: the proof needs `beta_11` to be *non-degenerate*, not to be *evaluated*, and
@@ -955,19 +1015,108 @@ while `chi_d` has order <= 2, so `C_2^(d)(Q_5) = 0` always and
 > a square in `Q_5`. Then `E_0^(d)(Q)` is not dense in `E_0^(d)(Q_11)`; hence
 > `X(Q)` is not dense in `X(Q_11)`.
 
-652 of the 1115 squarefree `d` in the class with `|d| <= 2000` -- 58.5%. §3.3.1
-agrees: none of 584 twists reached the full `(Z/5)^2`, and the six lines came up
+An earlier version of this theorem also asked `d` not to be a square in `Q_5`,
+covering 652 of 1115 twists; that condition is gone. At `v = 5` -- the wild place
+here, since `l = 5` -- either `dim W_5 <= 1` and beta is alternating, or `d` is a
+square in `Q_5`, which forces `5` not to divide `d`, so `E_d = E_0` over `Q_5`
+with good reduction, and `a_5 = 1` is prime to 5: **ordinary**, so document
+§6.5.1 gives `beta_5 = 0`. §3.3.1 agrees: none of 584 twists reached the full `(Z/5)^2`, and the six lines came up
 92/97/97/103/77/95 -- which is all an alternating form on `(Z/5)^2` can say,
 since *every* line there is isotropic.
 
 **Lesson for the triage.** A non-scalar `phi` is necessary but not sufficient:
-one also needs `W_p` not to be `phi`-stable, a further *local* condition -- and
-it is exactly the input §5.1.5 leaves unverified. At a place of multiplicative
+one also needs `L_p` not to be `phi`-stable, a further *local* condition -- and
+it is exactly the input §5.1.5 long left open (now proved, and independently
+evaluated: see below and document §8.3.4). At a place of multiplicative
 reduction it is free, since `W_p` is then forced to be `H^1` of the Tate `mu_l`:
 the mechanism fires iff the Tate `mu_l` is neither `C_1` nor `C_2`, i.e. iff
 neither global subgroup meets `E^0`.
 
-### §5.1.5's input, checked in Magma and then proved (document §6.4.1)
+### 14a2 and 19a1: the 14a1 template, twice more (document §7.5)
+
+The two remaining odd-level classes, done together because they are the same
+argument. Both are level 3 with `E[3]` decomposable and `p = 1 mod 3`, so the
+critical symbol is tame.
+
+`14a2` needs no reindexing: `y^2 = f(x)` with `f = x^3-11x^2-528x-2240` **is**
+14a2, conductor 14, torsion `Z/6`. `19a1` does: `f = x^3-10x^2-4x-6` gives
+conductor `2^6 * 19`, so `y^2 = f(x)` is `E_0^(2)` for `E_0 = 19a1`, and since
+**2 is a non-residue mod 19** the surface's failing class `[u]` at 19 becomes the
+class `[1]` for the reindexed parameter. That is the caveat of §7.8.1 biting: the
+reduced cubic is a model of the *surface* and can twist the curve.
+
+At the critical place both lines of `E[3]` are `Q_p`-rational, so `dim W_p = 2`
+(`M_p = 36` and `54`), and the image of `(c_1,c_2)` on `W_p` has **9 elements**,
+so `c_1` alone identifies `W_p` with `Q_p^x` modulo cubes. Written additively on
+classes `[al, j]` -- valuation mod 3, cubic character of the unit -- the tame
+symbol is
+
+    (a,b)_p = j_a be - j_b al   in Z/3
+
+(the sign `(-1)^(al be)` drops because `p = 1 mod 6` makes `(p-1)/3` even), which
+is the standard symplectic form: 48 of 81 non-zero, diagonal zero, at 7 and at 19
+alike.
+
+At the wild place `v = 3`, four square classes settle every twist and both curves
+reproduce the 14a1 table exactly, exhibiting **both** mechanisms of §6.5: classes
+`[u]` and `[3]` have `dim W_3 = 1`; class `[1]` is good ordinary (`a_3 = -2` for
+both) and falls to §6.5.1; class `[3u]` is additive `I*0` with the descent image
+trivial, so `L_3` collapses into one `H_i`. Everything else is structural --
+§6.4.1 at `q | d`, unramified isotropy at good `v != 3`, and for `14a2` the one
+extra bad prime `v = 2`, where `mu_3` is not in `Q_2` so `dim W_2 <= 1`. For
+`19a1` the conductor is 19, so there is no such place at all.
+
+> *Theorem.* (a) For `f = x^3-11x^2-528x-2240` and every squarefree `d` in the
+> class `[1]` of `Q_7`, `X(Q)` is not dense in `X(Q_7)`.
+> (b) For `f = x^3-10x^2-4x-6` and every squarefree `d` in the class `[u]` of
+> `Q_19`, `X(Q)` is not dense in `X(Q_19)`.
+
+`template3.gp` does the computations. Two things it forced: the image must be the
+**subgroup generated** by the values on a generating set, not the set of values
+-- taking the latter gave 19a1 sizes 5, 6, 7, which are not subgroup orders and
+differed between twists that are `Q_19`-isomorphic; and the tame symbol is much
+cleaner in the additive encoding than as a product in `F_p`.
+
+### 17a1 at p = 17: the last class (document §7.6)
+
+The eighth class, and the only one at `l = 2` with `E[2]` **indecomposable** --
+so the toolkit's decomposable framing does not apply and document §6.2 is what is
+needed. It is the shortest of the six, because it has exactly the 15a4 shape.
+
+`f = x^3-6x^2+x-876 = (x-12)(x^2+6x+73)` **is** 17a1 (conductor 17, torsion
+`Z/4`), and shifting by the rational root -- with `c = 1`, so the same surface --
+gives
+
+    f = x(x^2 + 30x + 289),   289 = 17^2,   x^2+30x+289 = (x+15)^2 + 8^2
+
+Two features of that quadratic do all the work. It is a **sum of two squares**,
+so the 2-torsion field is `Q(i)`, `c(P)` is a norm from `Q(i)`, and beta is
+alternating at every place (Lemma 2). And `b = 289` is a **perfect square**,
+which is the hypothesis under which Lemmas A and B transfer (document §6.2.2):
+at every odd `q | d` the image of `c` has order at most 2, and an alternating
+form vanishes there.
+
+`E[2]` has the unique stable line `C = <T>`, `T = (0,0)`, so by §6.2 the twisting
+endomorphism is the nilpotent `N` and is essentially unique, `c(P) = x(P)` modulo
+squares, and `beta_v(P,Q) = (c(P), c(Q))_v` -- the **same** map in both slots, so
+triviality at `v` means the image of `c` is *isotropic* rather than that `L_v`
+splits. The remaining places: `v = infinity` because the quadratic is positive so
+`x >= 0` on real points; `q` not dividing `2*17*d` by coprimality, the bad places
+being only 2, 17 and the divisors of `d`; `q = 2` over all **eight** square
+classes, image of order at most 2 every time; and `q = 17`, where the image is
+**all four** classes so the symbol is non-degenerate, and `-1` is a square there
+since `17 = 1 mod 4`, so `beta_17` is symplectic on the 2-dimensional `W_17`.
+
+> *Theorem.* For `f = x(x^2+30x+289)` -- that is, 17a1 -- and every squarefree
+> `d` in the class `[1]` of `Q_17`, `E_d(Q)` is not dense in `E_d(Q_17)`, hence
+> `X(Q)` is not dense in `X(Q_17)`.
+
+The four surfaces at `l = 2` split two ways: `15a1`, where `f` splits over `Q`
+and three stable lines force a search among nine candidate `phi`; against
+`x^3+x`, `15a4`, `17a1`, all indecomposable, all with `q` a sum of two squares
+and `b` a perfect square, all following §5.5.4 with nothing to choose.
+
+### §5.1.5's input, checked in Magma and then proved (document §7.7)
 
 `beta_3 != 0` for `x^3-2` -- i.e. that both dual 3-isogeny images lie in
 `E_1(Q_3)` -- confirmed a third time, in Magma, by a different route: the PARI
@@ -1049,7 +1198,7 @@ firstout(...); isogapply(...)     /* see results/survey-beta3-exhaustive.txt */
 The only thing still taken on trust is the standard fact that an isogeny carries
 `E'_1` into `E_1`; everything else is a finite computation.
 
-### The remaining three: what the module structure permits (document §6.5)
+### The triage, in hindsight (document §7.8)
 
 Before constructing anything, ask whether the mechanism is *available*: it is
 not automatic. `beta_v(P,Q) = <delta_v P, phi delta_v Q>` is useful only when
@@ -1107,10 +1256,11 @@ such extra bad primes for the three odd-`l` cases.
 
 * *Template C (§6.2), l odd and E[l] decomposable*: `14a2`, `19a1`, and `11a1`
   which §6.4 has since carried out. beta is alternating for free, so only the
-  wild `v = l` is left; these should go through exactly as 14a1 did. (The worry
-  that `11a1` would need a quintic symbol was unfounded -- see §6.4.)
-* *Template A (§5.5.4), l = 2 with E[2] indecomposable*: `17a1`, and `15a4`
-  which §6.3 has since carried out. Here
+  wild `v = l` is left; these went through exactly as 14a1 did -- see §7.5, where
+  both mechanisms of §6.5 appear, one in each of two square classes. (The worry
+  that `11a1` would need a quintic symbol was unfounded -- see §7.4.)
+* *Template A (§5.5.4), l = 2 with E[2] indecomposable*: `15a4` and `17a1`,
+  carried out in §7.3 and §7.6. Here
   the alternating step is not free (2 is not invertible mod 2). But the norm
   lemma applies: **both have 2-torsion field `Q(i)`**, so `(c(P),-1)_v = 1` and
   beta is alternating for the same reason as `x^3+x`.
