@@ -1,0 +1,56 @@
+=== 14a2 at p = 7, level 3 ===
+y^2 = f(x) with f = x^3 - 11x^2 - 528x - 2240 IS 14a2 (conductor 14),
+so no twist relates the surface model to E_0. Failing class: [1] at 7.
+
+   the tame cubic symbol on Q_7^x modulo cubes: 48 of 81 non-zero, diagonal non-zero 0   => alternating and non-degenerate, hence symplectic on W_p
+   critical place, representatives of the class [1] of Q_7^x:
+   14a2  d = 1   lines x = [10, -19/3]   both rational over Q_7: 1   dim W_7 = 2   M = 36
+      generates E(Q_7)/E_1: 36 of 36 yes   image of (c_1,c_2): 9 elements, diagonal   => c_1 alone identifies W_p
+   14a2  d = 2   lines x = [80, -152/3]   both rational over Q_7: 1   dim W_7 = 2   M = 36
+      generates E(Q_7)/E_1: 36 of 36 yes   image of (c_1,c_2): 9 elements, diagonal   => c_1 alone identifies W_p
+   14a2  d = 11   lines x = [440, -836/3]   both rational over Q_7: 1   dim W_7 = 2   M = 36
+      generates E(Q_7)/E_1: 36 of 36 yes   image of (c_1,c_2): 9 elements, diagonal   => c_1 alone identifies W_p
+   14a2  d = 15   lines x = [600, -380]   both rational over Q_7: 1   dim W_7 = 2   M = 36
+      generates E(Q_7)/E_1: 36 of 36 yes   image of (c_1,c_2): 9 elements, diagonal   => c_1 alone identifies W_p
+   14a2  d = 23   lines x = [920, -1748/3]   both rational over Q_7: 1   dim W_7 = 2   M = 36
+      generates E(Q_7)/E_1: 36 of 36 yes   image of (c_1,c_2): 9 elements, diagonal   => c_1 alone identifies W_p
+   wild place v = 3, all four square classes of Q_3^x:
+   14a2  d = 1   Q_3-rational 3-torsion points: 1   dim W_3 = 2   Kodaira 1  a_3 = -2
+      generates E(Q_3)/E_2: 18 of 18 yes   image of alpha: 3 elements   => dim ker alpha = 1   => stable iff the other kernel is non-zero (good ordinary lemma 6.4.1)
+   14a2  d = -1   Q_3-rational 3-torsion points: 0   dim W_3 = 1   Kodaira 1  a_3 = 2
+      dim W_3 = 1, so beta_3 is trivial (beta is alternating)
+   14a2  d = 3   Q_3-rational 3-torsion points: 0   dim W_3 = 1   Kodaira -1
+      dim W_3 = 1, so beta_3 is trivial (beta is alternating)
+   14a2  d = -3   Q_3-rational 3-torsion points: 1   dim W_3 = 2   Kodaira -1
+      generates E(Q_3)/E_2: 18 of 18 yes   image of alpha: 1 elements   => dim ker alpha = 2   => L_3 lies in one H_i: phi-stable
+
+=== 19a1 at p = 19, level 3 ===
+y^2 = f(x) with f = x^3 - 10x^2 - 4x - 6 has conductor 1216 = 2^6 * 19:
+it is the twist of E_0 = 19a1 by m = 2. So E_d = E_0^(2d), and since 2
+is a NON-residue mod 19, the surface's failing class [u] at 19 becomes
+the class [1] for the parameter d' = 2d.
+
+   the tame cubic symbol on Q_19^x modulo cubes: 48 of 81 non-zero, diagonal non-zero 0   => alternating and non-degenerate, hence symplectic on W_p
+   critical place, representatives of the class [1] of Q_19^x:
+   19a1  d = 1   lines x = [5, -4/3]   both rational over Q_19: 1   dim W_19 = 2   M = 54
+      generates E(Q_19)/E_1: 54 of 54 yes   image of (c_1,c_2): 9 elements, antidiagonal   => c_1 alone identifies W_p
+   19a1  d = 5   lines x = [25, -20/3]   both rational over Q_19: 1   dim W_19 = 2   M = 54
+      generates E(Q_19)/E_1: 54 of 54 yes   image of (c_1,c_2): 9 elements, diagonal   => c_1 alone identifies W_p
+   19a1  d = 6   lines x = [120, -32]   both rational over Q_19: 1   dim W_19 = 2   M = 54
+      generates E(Q_19)/E_1: 54 of 54 yes   image of (c_1,c_2): 9 elements, diagonal   => c_1 alone identifies W_p
+   19a1  d = 7   lines x = [140, -112/3]   both rational over Q_19: 1   dim W_19 = 2   M = 54
+      generates E(Q_19)/E_1: 54 of 54 yes   image of (c_1,c_2): 9 elements, antidiagonal   => c_1 alone identifies W_p
+   19a1  d = 11   lines x = [220, -176/3]   both rational over Q_19: 1   dim W_19 = 2   M = 54
+      generates E(Q_19)/E_1: 54 of 54 yes   image of (c_1,c_2): 9 elements, antidiagonal   => c_1 alone identifies W_p
+   wild place v = 3, all four square classes of Q_3^x:
+   19a1  d = 1   Q_3-rational 3-torsion points: 1   dim W_3 = 2   Kodaira 1  a_3 = -2
+      generates E(Q_3)/E_2: 18 of 18 yes   image of alpha: 3 elements   => dim ker alpha = 1   => stable iff the other kernel is non-zero (good ordinary lemma 6.4.1)
+   19a1  d = -1   Q_3-rational 3-torsion points: 0   dim W_3 = 1   Kodaira 1  a_3 = 2
+      dim W_3 = 1, so beta_3 is trivial (beta is alternating)
+   19a1  d = 3   Q_3-rational 3-torsion points: 0   dim W_3 = 1   Kodaira -1
+      dim W_3 = 1, so beta_3 is trivial (beta is alternating)
+   19a1  d = -3   Q_3-rational 3-torsion points: 1   dim W_3 = 2   Kodaira -1
+      generates E(Q_3)/E_2: 18 of 18 yes   image of alpha: 1 elements   => dim ker alpha = 2   => L_3 lies in one H_i: phi-stable
+
+### template3 finished
+gp -q -s 4000000000 < template3.gp  2.06s user 0.01s system 99% cpu 2.097 total
