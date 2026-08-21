@@ -3712,7 +3712,8 @@ the quadratic character $chi_d$, so $"End"_G (E_d [ell]) = "End"_G (E[ell])$ and
   supersingular case is covered too.
 ]
 
-Two more places die for $ell$ odd, and here the twist is what kills them.
+Two more *kinds* of place die for $ell$ odd --- the archimedean one, and every prime dividing $d$,
+of which there may of course be many --- and here the twist is what kills them.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *Lemma 2.* Let $ell$ be odd. Then $W_infinity = 0$, and $W_q = 0$ for every prime $q divides d$,
@@ -3779,7 +3780,7 @@ document satisfies it, and every place that the cruder tests wrongly flag fails 
 == Step 3: which reduction types can carry it <sec-dep-red>
 
 At a multiplicative $v != ell$ the Tate parametrisation gives $E_d (overline(QQ)_v) = overline(QQ)_v^times slash q^ZZ$
-with $E_d [ell] = ⟨zeta_ell, q^(1 slash ell)⟩$. Full rationality of $E_d[ell]$ therefore asks for
+with $E_d [ell] = ⟨zeta_ell, q^(1 slash ell)⟩$. Full rationality of $E_d [ell]$ therefore asks for
 two things: $zeta_ell in QQ_v$, which is Lemma 3 again, and $q in (QQ_v^times)^ell$ --- which in
 particular forces
 $ ell divides v(q) = v(Delta_min). $
