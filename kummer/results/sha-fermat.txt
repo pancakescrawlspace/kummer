@@ -1,0 +1,10 @@
+=== all rank-0 primes p = 1 mod 8 below 3000 ===
+   64 primes;  0 with c or |T| not 2;  0 with L(1)/Omega not twice a square
+
+=== the Fermat primes ===
+   p = 5   analytic rank 1
+   p = 17   a = 1  b = 4   c = 2  |T| = 2   L(1)/Om = 2   m = 1   #Sha = 4   = (2m)^2
+   p = 257   a = 1  b = 16   c = 2  |T| = 2   L(1)/Om = 8   m = 2   #Sha = 16   = (2m)^2
+   p = 65537   a = 1  b = 256   c = 2  |T| = 2   L(1)/Om = 32   m = 4   #Sha = 64   = (2m)^2
+
+### sha-fermat finished
