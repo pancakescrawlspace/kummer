@@ -1,0 +1,261 @@
+=========================================================================
+ Elliptic curves E/Q and primes p with E(Q) non-dense in E(Q_p)
+=========================================================================
+
+(1) The filtration, and where density can fail.
+    E(Q_p) > E_0(Q_p) > E_1(Q_p) > E_2(Q_p) > ...
+    E/E_0 = Phi(F_p), order c_p ;  E_0/E_1 = smooth special fibre ;
+    E_1 = formal group = Z_p for p >= 3, with E_n <-> p^(n-1) Z_p.
+    The closure of E(Q) is a CLOSED SUBGROUP; if rank >= 1 it is open,
+    so 'dense' is the statement that a computable finite index is 1.
+
+-------------------------------------------------------------------------
+(2) GOOD reduction, reduction map not surjective:  conductor 37, p = 23
+
+  E : y^2 + 0xy + 1y = x^3 + 0x^2 + -1x + 0      (conductor 37, min disc 37)
+      rank 1, torsion 1, generator P = [0, -1] (saturated: 1)
+      p = 23 : GOOD reduction,  a_p = 2,  E(F_p) = [22] of order 22
+      order of Pbar in E(Q_p)/E_1(Q_p) : m = 11      [E(Q_p)/E_1 : <Pbar>] = 2
+      11P = [116/529, -8555/12167]
+      c = 23 = Mat([23, 1]),   v_p(c) = 1   so 11P lies in E_1(Q_23)
+      ==> [E(Q_p) : closure of E(Q)] = 2 * 23^0 = 2        NOT DENSE
+
+(3) GOOD reduction, E(F_p) NOT CYCLIC:  conductor 37, p = 67
+    A rank-1 curve with trivial torsion has cyclic image in E(F_p), so a
+    non-cyclic E(F_p) makes surjectivity impossible for structural reasons.
+
+  E : y^2 + 0xy + 1y = x^3 + 0x^2 + -1x + 0      (conductor 37, min disc 37)
+      rank 1, torsion 1, generator P = [0, -1] (saturated: 1)
+      p = 67 : GOOD reduction,  a_p = 8,  E(F_p) = [30, 2] of order 60
+      order of Pbar in E(Q_p)/E_1(Q_p) : m = 30      [E(Q_p)/E_1 : <Pbar>] = 2
+      30P = [79799551268268089761/62586636021357187216, 259255210055384395482322830865/495133617181351428873673516736]
+      c = 7911171596 = [2, 2; 67, 1; 157, 1; 188021, 1],   v_p(c) = 1   so 30P lies in E_1(Q_67)
+      ==> [E(Q_p) : closure of E(Q)] = 2 * 67^0 = 2        NOT DENSE
+
+    all good p < 400 with E(F_p) non-cyclic:
+        p = 67   E(F_p) = [30, 2]
+        p = 107   E(F_p) = [60, 2]
+        p = 137   E(F_p) = [72, 2]
+        p = 139   E(F_p) = [68, 2]
+        p = 151   E(F_p) = [68, 2]
+        p = 233   E(F_p) = [114, 2]
+        p = 269   E(F_p) = [138, 2]
+        p = 293   E(F_p) = [148, 2]
+        p = 317   E(F_p) = [148, 2]
+        p = 349   E(F_p) = [172, 2]
+        p = 367   E(F_p) = [180, 2]
+
+    the index of the closure for every good p < 150 (conductor 37):
+
+        p   |E(F_p)|   ord(Pbar)  [E(F_p):<Pbar>]   v   INDEX
+      3      7        7         1            1     1
+      5      8        8         1            1     1
+      7      9        9         1            1     1
+      11      17        17         1            1     1
+      13      16        16         1            1     1
+      17      18        18         1            1     1
+      19      20        20         1            1     1
+      23      22        11         2            1     2   <= non-dense
+      29      24        12         2            1     2   <= non-dense
+      31      36        18         2            1     2   <= non-dense
+      41      51        51         1            1     1
+      43      42        14         3            1     3   <= non-dense
+      47      57        57         1            1     1
+      53      53        53         1            1     1
+      59      52        13         4            1     4   <= non-dense
+      61      70        35         2            1     2   <= non-dense
+      67      60        30         2            1     2   <= non-dense
+      71      63        63         1            1     1
+      73      75        75         1            1     1
+      79      76        76         1            1     1
+      83      99        33         3            1     3   <= non-dense
+      89      86        86         1            1     1
+      97      94        47         2            1     2   <= non-dense
+      101      99        33         3            1     3   <= non-dense
+      103      86        86         1            1     1
+      107      120        20         6            1     6   <= non-dense
+      109      126        126         1            1     1
+      113      132        33         4            1     4   <= non-dense
+      127      127        127         1            1     1
+      131      144        144         1            1     1
+      137      144        72         2            1     2   <= non-dense
+      139      136        17         8            1     8   <= non-dense
+      149      155        155         1            1     1
+
+-------------------------------------------------------------------------
+(4) The point the naive criterion misses:  conductor 89, p = 11 and p = 13
+    Here E(Q) -> E(F_p) IS SURJECTIVE and the image is still not dense.
+    The failure is one layer deeper: mP lands in E_2, not just E_1, so the
+    closure meets the formal group in E_2(Q_p) = p Z_p, of index p in E_1.
+
+  E : y^2 + 1xy + 1y = x^3 + 1x^2 + -1x + 0      (conductor 89, min disc -89)
+      rank 1, torsion 1, generator P = [0, 0] (saturated: 1)
+      p = 11 : GOOD reduction,  a_p = -2,  E(F_p) = [14] of order 14
+      order of Pbar in E(Q_p)/E_1(Q_p) : m = 14      [E(Q_p)/E_1 : <Pbar>] = 1
+      14P = [2541600351/1274133025, 90518784046991/45480178327375]
+      c = 35695 = [5, 1; 11, 2; 59, 1],   v_p(c) = 2   so 14P lies in E_2(Q_11)
+      ==> [E(Q_p) : closure of E(Q)] = 1 * 11^1 = 11        NOT DENSE
+
+  E : y^2 + 1xy + 1y = x^3 + 1x^2 + -1x + 0      (conductor 89, min disc -89)
+      rank 1, torsion 1, generator P = [0, 0] (saturated: 1)
+      p = 13 : GOOD reduction,  a_p = 2,  E(F_p) = [12] of order 12
+      order of Pbar in E(Q_p)/E_1(Q_p) : m = 12      [E(Q_p)/E_1 : <Pbar>] = 1
+      12P = [-8703421/5597956, -3467599409/13244763896]
+      c = 2366 = [2, 1; 7, 1; 13, 2],   v_p(c) = 2   so 12P lies in E_2(Q_13)
+      ==> [E(Q_p) : closure of E(Q)] = 1 * 13^1 = 13        NOT DENSE
+
+    for this curve, all good p < 150:
+
+        p   |E(F_p)|  ord(Pbar)  onto E(F_p)?   v   INDEX
+      3      5       5        yes          1     1
+      5      7       7        yes          1     1
+      7      12       6        no           1     2   <= non-dense
+      11      14       14        yes          2     11   <= non-dense
+      13      12       12        yes          2     13   <= non-dense
+      17      15       15        yes          1     1
+      19      25       25        yes          1     1
+      23      17       17        yes          1     1
+      29      30       10        no           1     3   <= non-dense
+      31      41       41        yes          1     1
+      37      40       20        no           1     2   <= non-dense
+      41      42       42        yes          1     1
+      43      51       51        yes          1     1
+      47      60       60        yes          1     1
+      53      57       19        no           1     3   <= non-dense
+      59      56       14        no           1     4   <= non-dense
+      61      56       56        yes          1     1
+      67      56       56        yes          1     1
+      71      82       41        no           1     2   <= non-dense
+      73      67       67        yes          1     1
+      79      86       43        no           1     2   <= non-dense
+      83      72       9        no           1     8   <= non-dense
+      97      89       89        yes          1     1
+      101      102       34        no           1     3   <= non-dense
+      103      113       113        yes          1     1
+      107      118       59        no           1     2   <= non-dense
+      109      129       129        yes          1     1
+      113      112       16        no           1     7   <= non-dense
+      127      125       125        yes          1     1
+      131      116       116        yes          1     1
+      137      160       40        no           1     4   <= non-dense
+      139      148       37        no           1     4   <= non-dense
+      149      146       73        no           1     2   <= non-dense
+
+-------------------------------------------------------------------------
+(5) BAD reduction, the TORUS layer:  conductor 43, p = 43
+    Non-split multiplicative reduction: E_0/E_1 is the norm-one torus of
+    F_{p^2}/F_p, cyclic of order p+1 = 44, and Pbar generates only half.
+
+  E : y^2 + 0xy + 1y = x^3 + 1x^2 + 0x + 0      (conductor 43, min disc -43)
+      rank 1, torsion 1, generator P = [0, 0] (saturated: 1)
+      p = 43 : BAD reduction, Kodaira code 5 (4+n means I_n),  c_p = 1,  a_p = -1 (non-split mult.)
+      |E_0/E_1| = p - a_p = 44,   |E(Q_p)/E_1| = c_p (p - a_p) = 44
+      singular point mod p = [28, 21],   P in E_0(Q_p) : 1
+      order of Pbar in E(Q_p)/E_1(Q_p) : m = 22      [E(Q_p)/E_1 : <Pbar>] = 2
+      22P = [8985658531079/9202249657441, 26826505806361752519/27915217583090079761]
+      c = 3033521 = [19, 1; 43, 1; 47, 1; 79, 1],   v_p(c) = 1   so 22P lies in E_1(Q_43)
+      ==> [E(Q_p) : closure of E(Q)] = 2 * 43^0 = 2        NOT DENSE
+
+(6) BAD reduction, the FORMAL layer:  conductor 77, p = 11
+    Pbar generates ALL of E(Q_p)/E_1(Q_p), but 12P lies in E_2.
+
+  E : y^2 + 0xy + 1y = x^3 + 0x^2 + 2x + 0      (conductor 77, min disc -539)
+      rank 1, torsion 1, generator P = [2, -4] (saturated: 1)
+      p = 11 : BAD reduction, Kodaira code 5 (4+n means I_n),  c_p = 1,  a_p = -1 (non-split mult.)
+      |E_0/E_1| = p - a_p = 12,   |E(Q_p)/E_1| = c_p (p - a_p) = 12
+      singular point mod p = [6, 5],   P in E_0(Q_p) : 1
+      order of Pbar in E(Q_p)/E_1(Q_p) : m = 12      [E(Q_p)/E_1 : <Pbar>] = 1
+      12P = [-89535/937024, -235033185/907039232]
+      c = 968 = [2, 3; 11, 2],   v_p(c) = 2   so 12P lies in E_2(Q_11)
+      ==> [E(Q_p) : closure of E(Q)] = 1 * 11^1 = 11        NOT DENSE
+
+(7) BAD reduction, the COMPONENT layer:  conductor 11289, p = 3
+    c_3 = 2, and the generator reduces to a NON-singular point, so all of
+    E(Q) lies in the identity component E_0(Q_3) and the closure misses the
+    other component entirely.  (The extra factor 3 is the formal layer.)
+
+  E : y^2 + 1xy + 0y = x^3 + 1x^2 + 0x + -9      (conductor 11289, min disc -33867)
+      rank 1, torsion 1, generator P = [2, 1] (saturated: 1)
+      p = 3 : BAD reduction, Kodaira code 6 (4+n means I_n),  c_p = 2,  a_p = -1 (non-split mult.)
+      |E_0/E_1| = p - a_p = 4,   |E(Q_p)/E_1| = c_p (p - a_p) = 8
+      singular point mod p = [0, 0],   P in E_0(Q_p) : 1
+      order of Pbar in E(Q_p)/E_1(Q_p) : m = 4      [E(Q_p)/E_1 : <Pbar>] = 2
+      4P = [1829506705/602800704, -104154930581237/14799962884608]
+      c = 24552 = [2, 3; 3, 2; 11, 1; 31, 1],   v_p(c) = 2   so 4P lies in E_2(Q_3)
+      ==> [E(Q_p) : closure of E(Q)] = 2 * 3^1 = 6        NOT DENSE
+
+-------------------------------------------------------------------------
+(8) The criterion in its clean form.  For p >= 3, the closure of E(Q) is
+    all of E(Q_p) IF AND ONLY IF  E(Q) -> E(Q_p)/E_2(Q_p)  is surjective,
+    a finite check on a group of order p * |E(Q_p)/E_1(Q_p)|.
+    Reduction mod p is NOT enough; one needs mod p^2.
+
+      curve            p   |E(Q_p)/E_1|  |E(Q_p)/E_2|  |image in E/E_2|  dense?
+      [0, 0, 1, -1, 0]  23      22           506           253            NO
+      [0, 0, 1, -1, 0]  67      60           4020           2010            NO
+      [0, 0, 1, -1, 0]  11      17           187           187            yes
+      [1, 1, 1, -1, 0]  11      14           154           14            NO
+      [1, 1, 1, -1, 0]  13      12           156           12            NO
+      [1, 1, 1, -1, 0]  7      12           84           42            NO
+      [0, 1, 1, 0, 0]  43      44           1892           946            NO
+      [0, 0, 1, 2, 0]  11      12           132           12            NO
+      [1, 1, 0, 0, -9]  3      8           24           4            NO
+
+-------------------------------------------------------------------------
+(9) How often does this happen?  Conductor 37, generator P = (0,0).
+    The reduction layer alone is cheap to sweep, since it only needs the
+    order of Pbar in the finite group E(F_p).
+
+      good p < 5000 : 667
+      of these, E(Q) -> E(F_p) NOT surjective : 357   (53.5 %)
+      of these, E(F_p) non-cyclic (surjectivity impossible) : 113   (16.9 %)
+
+      So non-density is not exotic: it happens for a large positive
+      proportion of p.  The density of p for which a fixed point of
+      infinite order generates E(F_p) is the elliptic analogue of Artin's
+      primitive-root problem (Lang-Trotter); the observed 46.5 % here is
+      the complementary proportion.
+
+-------------------------------------------------------------------------
+(10) The degenerate case: rank 0.  Then E(Q) is finite while E(Q_p) is
+     infinite (it contains E_1(Q_p) = Z_p), so the image is never dense,
+     at EVERY prime, for trivial reasons.
+
+      E : y^2 + y = x^3 - x^2 - 10x - 20   (conductor 11)
+      rank = 0,  E(Q) = 5 points (torsion Z/5)
+      E(Q_7) contains E_1(Q_7) = Z_7, uncountable; the image of the 5
+      rational points is finite, hence nowhere dense.  Interesting examples
+      need rank >= 1, which is why every curve above has rank exactly 1.
+
+-------------------------------------------------------------------------
+(11) How common is the component-group mechanism?  An earlier draft of the
+     notes called it rare; that was an artefact of a truncated listing and
+     of sweeping only odd p.  Two smallest-conductor examples, both at p=2,
+     where the component argument still applies (E_0 is open AND closed, so
+     no formal-group caveat is needed).
+
+  E = [1, 1, 0, -65, -231]   conductor 438   min disc 63948
+      rank 1 (certified: 1),  torsion 2,  generators [[-5, 3], [-21/4, 21/8]]
+      p = 2 : Kodaira 6 (4+n = I_n),  c_p = 2,  a_p = -1 (non-split)
+      singular point mod p = [0, 1]
+      kP lies in E_0 exactly for k in [1, 2] (k <= 2)
+      |image of E(Q) in Phi(F_p)| = 1 out of c_p = 2,   [Phi : image] = 2
+      ==> E(Q) misses 1 of the 2 components; the closure is NOT dense.
+
+  E = [1, 1, 1, -39, -35]   conductor 446   min disc 3653632
+      rank 1 (certified: 1),  torsion 1,  generators [[-5, 10]]
+      p = 2 : Kodaira 18 (4+n = I_n),  c_p = 14,  a_p = 1 (split)
+      singular point mod p = [1, 0]
+      kP lies in E_0 exactly for k in [7, 14] (k <= 14)
+      |image of E(Q) in Phi(F_p)| = 7 out of c_p = 14,   [Phi : image] = 2
+      ==> E(Q) misses 7 of the 14 components; the closure is NOT dense.
+
+     Census over 156450 curves in reduced minimal form (a1,a3 in {0,1},
+     a2 in {-1,0,1}, |a4| <= 40, |a6| <= 80), p <= 200 including p = 2:
+        (curve,p) pairs with c_p >= 2 ................ 60022
+        of these, confirmed rank >= 1 with PROPER image  5249
+        of those 5249, sitting at p = 2 ............... 3060
+     (the 60022 counts rank-0 curves too, which the 5249 excludes, so the
+      rate among rank >= 1 curves is higher than the 8.7% ratio suggests.)
+
+done.
