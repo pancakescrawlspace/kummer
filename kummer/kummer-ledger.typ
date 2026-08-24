@@ -164,7 +164,7 @@ to watch, and @sec-term is about its behaviour.
 
 = The driver <sec-driver>
 
-`runledger` sweeps squarefree $d$ in the square-class tuple of $d_0$, computes each reach, adds it,
+`runtally` sweeps squarefree $d$ in the square-class tuple of $d_0$, computes each reach, adds it,
 and reports:
 
 ```gp
@@ -306,7 +306,7 @@ granularity needed.
 
 Writing @sec-ledger exposed a real defect. `ledgeradd` takes the twist $d$ as its fourth argument
 precisely so that a closed ledger carries its provenance --- the list of explicit twists whose
-reaches cover. But `runledger` called it with three arguments, and PARI silently supplies $0$ for
+reaches cover. But `runtally` called it with three arguments, and PARI silently supplies $0$ for
 the missing one, so every entry recorded $d = 0$ and `certtwists` returned `[0]`: the certificate
 named no twists at all. The graded drivers `rungraded` and `sweepgraded` passed $d$ correctly, so
 only the flat driver was affected --- and only its provenance, never its arithmetic, since $d$ is

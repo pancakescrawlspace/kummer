@@ -1,3 +1,13 @@
+/* ledger.gp -- arena, tally, ledger, star test.
+   VOCABULARY (document section 2.3).  A TALLY is a record of level-n images
+   with no granularity attached; its entries are over-approximations of the
+   reaches, so a closed tally is a NECESSARY condition and nothing more.  A
+   LEDGER attaches to each entry a granularity n_d certifying R(d) contains
+   ker_{n_d}, which makes the finite datum determine R(d) exactly; a closed
+   ledger is a PROOF, by the termination theorem.  runtally builds a tally.
+   rungraded, sweepgraded and rungradedk build ledgers, admitting an entry
+   only when gran1 passes.  The word "ledger" is not used for anything else.
+*/
 read("sadic.gp");
 
 /* =====================================================================
@@ -205,12 +215,18 @@ startest(L, N) = {
   [bad == 0, #ks, bad];
 }
 
-/* ---------- driver ----------------------------------------------------
-   Accumulate reaches from every twist in the square-class tuple of d0 and
-   watch the star test.  Reports, after each addition: ledger size, the
+/* ---------- driver: the TALLY, which proves nothing ---------------------
+   Accumulate level-1 images from every twist in the square-class tuple of d0
+   and watch the star test.  Reports, after each addition: tally size, the
    largest reach so far, the number of distinct membership masks, and the
-   deficiency (ordered pairs of arena elements not covered by any reach).  */
-runledger(A, B, d0, S, DMAX, verbose) = {
+   deficiency (ordered pairs of arena elements not covered by any reach).
+
+   This is a TALLY, not a ledger: no entry carries a granularity, so its
+   images are over-approximations of the reaches and closure is a necessary
+   condition only -- a sanity check.  For a certificate use rungraded /
+   sweepgraded / rungradedk below, which admit an entry only when gran1
+   verifies R(d) contains ker_1.  The name is runtally for that reason.     */
+runtally(A, B, d0, S, DMAX, verbose) = {
   my(ar = arenainit(A, B, d0, S), N, L = List(), d, n, sg, td, bm, st, k0, cnt = 0);
   N = arenasize(ar);
   k0 = sqclassS(d0, S);

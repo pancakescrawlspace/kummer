@@ -430,8 +430,13 @@ fixes vocabulary for that. The one picture to hold on to is:
 
 #align(center)[
   _for each tuple of square classes there is one fixed arena; every twist paints a subgroup into
-  it; you win when the painted subgroups cover the arena pairwise._
+  it; you win when the painted subgroups cover the arena pairwise --- but only if each subgroup
+  was painted at a level fine enough to be exact._
 ]
+
+That last clause is the whole difficulty, and it is stated before the vocabulary rather than after
+it, because everything computable here lives in *finite quotients* of the arena and finite
+quotients cannot certify density.
 
 *The arena.* For $arrow(delta) in Delta_S := product_(p in S) QQ_p^times slash (QQ_p^times)^2$
 write
@@ -448,6 +453,21 @@ is the *reach* of $d$: how far the global points of that twist reach into the ar
 closed subgroup. Call $d$ *full* if $R(d) = cal(G)_(arrow(delta))$ and *partial* otherwise;
 @sec-sadic-level detects fullness at level 2.
 
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *A finite quotient can only ever disprove.* Write $ker_n := product_p E_n (QQ_p)$. What is
+  computable is the image $overline(R)_n (d)$ of a reach in $cal(G)(n)$, and that image pins down
+  only the *preimage*
+  $ R(d) subset.eq hat(R)_n (d) := "preimage of " overline(R)_n (d) "in" cal(G) , $
+  an over-approximation, with equality exactly when $R(d) supset.eq ker_n$. Coverage computed from
+  over-approximations is therefore a *necessary* condition and nothing more: refining to level
+  $n+1$ can always destroy what level $n$ certified, so *no amount of computing at a fixed level,
+  or at every level in turn, is a proof of density.* A negative verdict at one level is decisive;
+  a positive verdict at every level checked is a sanity check.
+
+  The repair is to make the level part of the datum, one level *per entry*. That is the *ledger*
+  defined below, and it is the only object in this section that certifies anything.
+]
+
 *The patch.* A point of $X(QQ_S)$ over $arrow(delta)$ is a pair in $cal(G)^2$ modulo the *sign
 group* $Sigma := {plus.minus 1}^S$, acting diagonally, $epsilon dot (a,b) = (epsilon a, epsilon b)$.
 The twist $d$ contributes the *patch*
@@ -455,16 +475,30 @@ $ P(d) := "image of " R(d) times R(d) " in " X(QQ_S) . $
 Since $epsilon$ acts on subgroups by $R |-> epsilon R$ and the global $-1$ fixes every reach, the
 sign group acts through $Sigma slash {plus.minus 1}$, of order $2^(|S| - 1)$.
 
-*The ledger.* Fix $arrow(delta)$ and a level $n$. As twists are examined, record their reaches:
-$ cal(L) := {epsilon R_n (d) : d "examined", epsilon in Sigma}, $
+*The tally.* Fix $arrow(delta)$ and a level $n$. As twists are examined, record their level-$n$
+images:
+$ cal(T) := {epsilon overline(R)_n (d) : d "examined", epsilon in Sigma}, $
 closed under the sign group and pruned to its maximal members --- an antichain of subgroups of
 the finite group $cal(G)(n)$. Closing under $Sigma$ is exactly what lets one forget the sign
-ambiguity afterwards, since $epsilon a, epsilon b in R$ iff $a, b in epsilon^(-1) R$.
+ambiguity afterwards, since $epsilon a, epsilon b in R$ iff $a, b in epsilon^(-1) R$. A tally is
+the bookkeeping and, by the box above, only ever a sanity check.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *The ledger.* An entry is a triple $(d, n_d, overline(R))$ with
+  $ R(d) supset.eq ker_(n_d), quad quad overline(R) = "image of " R(d) " in " cal(G)(n_d) . $
+  The first condition is the *certificate of exactness*: once the reach contains $ker_(n_d)$ it
+  *equals* $hat(R)_(n_d)(d)$, so the finite datum determines $R(d)$ outright. Call $n_d$ the
+  *granularity* of the entry. A *ledger* $cal(L)$ is a tally every one of whose entries carries
+  such a granularity.
+]
+
+Throughout, *ledger* means this and only this. A record of level-$n$ images with no granularity
+attached is a tally, and is never called a ledger.
 
 *Covered.* A pair $(a,b) in cal(G)(n)^2$ is *covered* by $cal(L)$ if some single $R in cal(L)$
 contains both --- equivalently if $⟨a, b⟩ subset.eq R$ for some $R$. Then
 $ X(QQ) " is dense in " X(QQ_S) quad <==> quad
-  forall arrow(delta), forall n : "the full ledger covers every pair in " cal(G)_(arrow(delta))(n)^2 . $
+  forall arrow(delta), forall n : "the full tally covers every pair in " cal(G)_(arrow(delta))(n)^2 . $
 
 Three things make this workable.
 
@@ -512,7 +546,7 @@ reaches, so coverage at level $n+1$ implies coverage at level $n$. Deficiency is
 monotone in $n$: work at the lowest level, refine only after it closes. A full twist is full at
 every level, so once one is found the class is finished for good.
 
-=== A worked ledger: $S = {11, 13, 17}$ <sec-ledger-worked>
+=== A worked tally: $S = {11, 13, 17}$ <sec-tally-worked>
 
 At level 1 the arena is $cal(G)(1) = product_(p in S) E_(d_0)(QQ_p) slash E_1 (QQ_p)$, a finite
 group of order $N = product_p M_p$. At a place of *good* reduction this is just
@@ -529,8 +563,8 @@ reduction. It is, by exhibiting explicit $QQ_p$-points and deduping them by $E_1
   [arena element], [an integer in $[0, N)$, $N = product_p M_p$, by mixed-radix packing of one
                     point-index per place],
   [reach], [a $0 slash 1$ vector of length $N$ --- the subgroup as a bitmap],
-  [ledger], [a list of such bitmaps, closed under the sign group and pruned to an antichain],
-  [membership mask], [for each arena element, the set of ledger indices containing it, packed as
+  [tally], [a list of such bitmaps, closed under the sign group and pruned to an antichain],
+  [membership mask], [for each arena element, the set of tally indices containing it, packed as
                       one integer bitmask],
   [coverage], [the distinct masks pairwise AND to something non-zero],
 )
@@ -538,13 +572,13 @@ reduction. It is, by exhibiting explicit $QQ_p$-points and deduping them by $E_1
 Twists in one tuple give $QQ_p$-isomorphic curves, so the arena is fixed; a twist is transported
 to the chosen representative by $(x,y) |-> (lambda^2 x, lambda^3 y)$ with
 $lambda^2 = d_0 slash d$, which lies in $QQ_p$ *exactly because* $d$ and $d_0$ share the tuple.
-Either square root serves --- the two differ by the sign action, which the ledger quotients by
+Either square root serves --- the two differ by the sign action, which the tally quotients by
 anyway --- but the same one must be used for every point of a given twist, or the image is not a
 subgroup. Running this for $f = x^3+x+1$, $d_0 = 1$, $S = {11,13,17}$:
 
 #table(
   columns: 5, align: (right, right, right, right, right), stroke: 0.4pt + luma(150),
-  table.header([twists used], [last reach], [ledger], [masks], [deficiency]),
+  table.header([twists used], [last reach], [tally], [masks], [deficiency]),
   [5],   [2268], [4], [10], [74.8%],
   [30],  [9],    [9], [28], [55.9%],
   [40],  [126],  [4], [8],  [28.1%],
@@ -555,46 +589,39 @@ subgroup. Running this for $f = x^3+x+1$, $d_0 = 1$, $S = {11,13,17}$:
 The arena has order $14 dot 18 dot 18 = 4536$ and $g = 3$: every $M_p$ is even, so its 2-part is
 $(ZZ slash 2)^3$. *No twist encountered is full* --- the reaches are cyclic of order dividing
 $"lcm"(14,18,18) = 126$ when the twist has rank 1, and of index 2 when it has rank 2 --- and yet
-the ledger closes. It stabilises at exactly *seven* maximal reaches, each of index 2, which is
+the tally closes. It stabilises at exactly *seven* maximal reaches, each of index 2, which is
 exactly the number of index-2 subgroups of $(ZZ slash 2)^3$.
 
 That is the whole mechanism in miniature: a pair of arena elements generates a subgroup of
 2-rank at most 2, hence lies in some hyperplane of the 2-part; so once all seven hyperplanes are
 realised as reaches, every pair is covered. Partial patches do together what no single twist can,
-which is exactly the regime the ledger was introduced for. Note also that the ledger *shrinks* at
+which is exactly the regime the ledger was introduced for. Note also that the tally *shrinks* at
 several points (9 members down to 3) as a large new reach absorbs smaller ones --- pruning to the
 antichain is doing real work --- and that the deficiency sits at $28.125% = 9 slash 32$ for
 seventy twists before the last missing hyperplanes appear.
 
-=== Grading the ledger, and why the flat one cannot prove anything <sec-ledger-graded>
-
-#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *The key point.* A flat ledger stores, for each twist, the image $overline(R)_n (d)$ at one fixed
-  level. Its preimage $hat(R)_n (d)$ is an *over*-approximation of the reach, with
-  $R(d) subset.eq hat(R)_n (d)$ and equality only when $R(d)$ happens to contain
-  $ker_n := product_p E_n (QQ_p)$. Coverage computed from over-approximations is therefore only
-  ever a *necessary* condition. That is why the refinement never terminates: passing to level
-  $n+1$ can always destroy what level $n$ certified. *No amount of computing at a fixed level, or
-  at every level in turn, can produce a proof.*
+#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
+  *What this does and does not show --- it is a tally, so: nothing yet.* Coverage here is at
+  *level 1 only*, with no granularity attached to any entry, so this is precisely the situation
+  the box in @sec-ledger warned about. By monotonicity it is a necessary condition, so it is a
+  real check and the failure of any level would have been decisive --- but it is not sufficient
+  for density, and on its own it proves nothing at all. @sec-layers upgrades exactly this
+  computation to a ledger by admitting only twists of granularity $1$, and *that* closes the
+  argument.
 ]
 
-The repair is to make the level part of the datum, one level *per entry*.
+=== Granularity, and the termination theorem <sec-ledger-graded>
 
-#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *Graded ledger.* An entry is a triple $(d, n_d, overline(R))$ with
-  $ R(d) supset.eq ker_(n_d), quad quad overline(R) = "image of " R(d) " in " cal(G)(n_d) . $
-  The first condition is the *certificate of exactness*: once the reach contains $ker_(n_d)$ it
-  *equals* the preimage of $overline(R)$, so the finite datum determines $R(d)$ outright. Call
-  $n_d$ the *granularity* of the entry.
-]
+A ledger is only worth defining if its extra datum can be computed and if it buys a proof. Both
+hold, and this section settles them in that order.
 
-Granularity is detectable: the index $[cal(G)(n) : overline(R)_n]$ is non-decreasing in $n$ and
+*Granularity is detectable:* the index $[cal(G)(n) : overline(R)_n]$ is non-decreasing in $n$ and
 equals $[cal(G) : R(d)]$ from the first $n$ with $R(d) supset.eq ker_n$ onwards. So compute indices
 at successive levels and stop when the index repeats; that repetition *is* the certificate. A reach
 of infinite index never stabilises and has no finite granularity; such entries are inadmissible.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *Termination theorem.* Let $cal(L)$ be a *finite* graded ledger and $N = max_d n_d$. If
+  *Termination theorem.* Let $cal(L)$ be a *finite* ledger and $N = max_d n_d$. If
   $ union.big_((d, n_d, overline(R)) in cal(L)) overline(R)^((N)) times overline(R)^((N))
     = cal(G)(N)^2 , $
   then $union_d R(d) times R(d) = cal(G)^2$ exactly, and $X(QQ)$ is dense in $X(QQ_S)$.
@@ -606,13 +633,14 @@ $overline(R)^((N)) times overline(R)^((N))$. A union of full preimages is the fu
 union, so covering at level $N$ pulls back on the nose. $qed$
 
 So a *successful* search now stops, with a finite certificate: the twists, their granularities, and
-their level-$N$ images. Failure still says nothing, exactly as before.
+their level-$N$ images. This is the payoff of the granularity datum, and the exact point at which
+a ledger does what a tally cannot. Failure still says nothing, exactly as before.
 
 *Pruning across grades.* Inclusion is tested by inflating both entries to the finer level. Note the
 direction: a *coarser* entry is a *larger* subgroup, since $hat(R)_m supset.eq hat(R)_n$ for
 $m <= n$. So coarse entries absorb fine ones and never the reverse, and the antichain genuinely
-improves as coarse twists are found. The pruning seen in @sec-ledger-worked, nine members falling
-to three, is the flat shadow of this.
+improves as coarse twists are found. The pruning seen in @sec-tally-worked, nine members falling
+to three, is the shadow this casts on a tally.
 
 === Places and layers: the $ell$-primary rewrite <sec-layers>
 
@@ -641,10 +669,11 @@ collapses to $cal(G)_(p,p) = E_1 (QQ_p)$, and "$n_p = 1$" becomes exactly *condi
 $S = {11,13,17}$ the hypothesis holds --- $M = (14, 18, 18)$ and none of $11, 13, 17$ divides any
 of these --- so granularity 1 is testable directly.
 
-*And it closes.* Re-running the ledger of @sec-ledger-worked while admitting *only* granularity-1
-twists: of 119 twists inspected, 102 are admitted, and the ledger again stabilises at seven
-maximal reaches of index 2 with deficiency $0$. Every admitted reach contains $ker_1$, so the
-termination theorem applies with $N = 1$:
+*And it closes.* This is where the tally of @sec-tally-worked becomes a ledger. Re-running it
+while admitting *only* granularity-1 twists --- so that every entry carries the exactness
+certificate $R(d) supset.eq ker_1$ --- of 119 twists inspected, 102 are admitted, and it again
+stabilises at seven maximal reaches of index 2 with deficiency $0$. The termination theorem
+therefore applies with $N = 1$, and this time the closure is a proof:
 
 #block(fill: rgb("#eef4ff"), inset: 9pt, radius: 3pt, width: 100%)[
   For $f = x^3+x+1$, $S = {11,13,17}$ and the square-class tuple of $d_0 = 1$, the rational points
@@ -655,7 +684,7 @@ termination theorem applies with $N = 1$:
 Only $d = 1$ itself failed the granularity test among those checked; the rank-2 twists supplying
 the seven hyperplanes all pass. The remaining 63 tuples for this $S$ are untouched, so density in
 all of $X(QQ_S)$ is not claimed --- but the method now terminates when it succeeds, which is what
-the flat ledger could never do.
+a tally could never do.
 
 *Representation.* Bitmaps over the arena die at once: at level 2 the arena for $S = {11,13,17}$
 already has $11 dot 13 dot 17 dot 4536 approx 1.1 dot 10^7$ elements, at level 3 about
@@ -666,21 +695,16 @@ subgroups of the small $ell$-primary pieces*, with granularity recorded per plac
 masks intersected prime by prime. The star test is unchanged; only the data type for a reach is.
 
 #block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
-  *Status.* The graded ledger is specified here, not implemented. The obstacle is not the
-  bookkeeping but the index computation: the triangular method used throughout costs $O(N)$ in the
-  size of the level-$n$ arena, already impractical at level 2 for three places and hopeless at
-  level 3 --- a direct attempt timed out. Determining granularities needs the $ell$-primary
-  rewrite first.
-]
-
-#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
-  *What this does and does not show.* Coverage here is at *level 1 only*. By monotonicity that is
-  a necessary condition, so it is a real check, and the failure of any level would be decisive ---
-  but it is not sufficient for density. Level 2 multiplies the arena by
-  $11 dot 13 dot 17 = 2431$, to about $1.1 dot 10^7$ elements, well past bitmap range; there one
-  must switch to the $ell$-primary representation, storing each reach as a tuple of subgroups of
-  the small groups $cal(G)(2)_ell$ and intersecting membership masks prime by prime. The
-  bookkeeping is identical; only the data type for a reach changes.
+  *Status --- what is implemented is granularity $1$.* That case is exactly condition (ii) of
+  @sec-local, it is tested directly by `gran1`/`hitsE1` in `ledger.gp`, and *every* ledger run
+  reported in this document admits on that test; nothing below is a bare tally. What is specified
+  and *not* implemented is the general case, granularity vectors with some $n_p >= 2$. The
+  obstacle is not the bookkeeping but the index computation: the triangular method used throughout
+  costs $O(N)$ in the size of the level-$n$ arena, already impractical at level 2 for three places
+  and hopeless at level 3 --- a direct attempt timed out. Determining granularities above 1 needs
+  the $ell$-primary rewrite first. The practical consequence is a limit on *reach*, not on
+  soundness: a twist whose granularity exceeds 1 is simply refused admission, which can only lose
+  coverage, never fake it.
 ]
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
@@ -744,10 +768,12 @@ is all of $E_1$. No hypothesis on $M_p$ enters. The layer hypothesis governs how
 
 === Provenance, and the certificate <sec-cert>
 
-A ledger entry is not just a reach but a triple $(overline(R), d, epsilon)$, recording which twist
-$d$ and which sign $epsilon in Sigma = {plus.minus 1}^S$ produced it. The reason is that a closed
+A ledger entry as actually stored is a quadruple $(overline(R), n_d, d, epsilon)$: the level-$n_d$
+image, the granularity that makes it exact, and the twist $d$ and sign
+$epsilon in Sigma = {plus.minus 1}^S$ that produced it. Everything below has $n_d = 1$. The reason is that a closed
 ledger is supposed to be a *finite certificate*, and a bitmap over the arena is not one: it asserts
-coverage without saying what is covering. With provenance, a tuple that closes yields a short
+coverage without saying what is covering. The granularity is what makes the entry a statement about
+$R(d)$ rather than about one of its over-approximations; the provenance is what makes it checkable. With provenance, a tuple that closes yields a short
 explicit list --- for $d_0 = 1$, the seven hyperplanes come from the seven twists
 
 $ d in {-1590, -519, -127, 53, 586, 1730, 1923}, $
@@ -759,8 +785,10 @@ search that produced it.
 === The sweep over all 64 tuples <sec-sweep64>
 
 With the arena valid everywhere, the ledger can be run on every square class tuple at once. Each
-twist is dispatched to the ledger of its own tuple; a tuple whose ledger closes is proved dense by
-the termination theorem at $N = 1$. Sweeping squarefree $|d| <= 5000$ for $f = x^3+x+1$,
+twist is dispatched to the ledger of its own tuple, and admitted only if it has granularity 1 at
+every place; a tuple whose ledger closes is therefore proved dense by the termination theorem at
+$N = 1$ --- these are ledgers throughout, not tallies, which is what makes the word *covered*
+below mean *proved*. Sweeping squarefree $|d| <= 5000$ for $f = x^3+x+1$,
 $S = {11,13,17}$:
 
 #table(
@@ -906,6 +934,23 @@ $E^d (QQ_p)$ is stated once per tuple rather than once per line.
 *The column a ledger line needs and a single-place line does not* is the *index of the reach* in
 the arena $cal(G)(1)$ of order $N = product_p M_p$. Index $1$ is a full twist; index $2$ is one of
 the hyperplanes the ledger stacks up. It is computed here rather than quoted from @sec-sweep64.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *And the column that makes it a ledger certificate at all: the granularity.* An index and a
+  level-1 image, on their own, are a *tally* line --- the image over-approximates the reach and
+  certifies nothing, exactly as @sec-ledger says. An earlier version of `cert-ledger.gp` printed
+  precisely that and called it a ledger certificate. Each twist now carries its granularity
+  verdict, $n_p$ at each place, computed by the same `gran1`/`hitsE1` that `sweepgraded` and
+  `rungradedk` use for admission --- so the certificate and the sweeps agree by construction
+  rather than by inspection. All $33$ twists in the tables below are admitted with $n_p = 1$
+  at all three places, so every line is a genuine ledger entry and the termination theorem
+  applies at $N = 1$.
+
+  Note that admission is a property of the *twist*, not of a line: `hitsE1` asks whether the reach
+  meets $E_1 without E_2$ at $p$, which may require a *combination* of generators that no single
+  one achieves. So the verdict is printed once per twist even though the images are one per
+  (twist, generator).
+]
 
 #block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
   *A trap worth recording, since it produced a wrong answer first.* The natural way to get the
@@ -1337,7 +1382,7 @@ along. The exposed lines are the rest.
 `cert-ptors.gp` settles all of them, sampling $Q$ deterministically ($x_0 = 0, 1, 2, dots$, keeping
 those with $x_0^3 + d^2 x_0 + d^3$ a square in $QQ_p$, so there is no seed to reproduce). Every one
 of the $92$ places of @tab-primes-extended returns $k = 0$, as does the single exposed place of the
-ledger of @sec-ledger ($d = 4279$ at $p = 11$, additive, $M = 22$). $p = 2$ is not exposed at all:
+ledger of @sec-cert-ledger ($d = 4279$ at $p = 11$, additive, $M = 22$). $p = 2$ is not exposed at all:
 $Delta(E_d) = -16 dot 31 dot d^6$, so $v_2 (Delta) >= 4$ for every $d$ and $2$ is never a place of
 good reduction, hence never anomalous.
 

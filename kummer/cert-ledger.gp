@@ -5,6 +5,17 @@
 \\ Section 3.4 extends the single-place certificate of section 3.3.  This does the
 \\ same for the S-adic ledger of section 2.5, S = {11,13,17}, f = x^3+x+1.
 \\
+\\ LEDGER, NOT TALLY.  A record of level-1 images alone is a TALLY: those images
+\\ are over-approximations of the reaches, so closure is a necessary condition
+\\ and nothing more (document section 2.3).  What makes an entry a LEDGER entry
+\\ is a GRANULARITY n_d certifying R(d) contains ker_{n_d}, which pins the finite
+\\ datum to R(d) exactly and lets the termination theorem apply.  An earlier
+\\ version of this file printed level-1 images and the reach index and called the
+\\ result a ledger certificate; it was a tally certificate.  Every twist is now
+\\ put through gran1 from ledger.gp -- the same admission test sweepgraded and
+\\ rungradedk use, so this certificate and the sweeps agree by construction --
+\\ and the verdict is printed per twist and per place.
+\\
 \\ What changes.  There the certificate had one line per (p, square class): one
 \\ twist sufficed a priori.  Here a tuple of square classes is covered by SEVERAL
 \\ twists -- seven index-2 reaches, in three of the five covered tuples -- so a
@@ -22,6 +33,11 @@
 \\ good places, the images are read off by discrete logarithm, and the index is
 \\ the determinant of the Hermite form of the lattice they span together with the
 \\ relations M_p e_p.
+
+\\ gran1 / hitsE1 / shortdata come from ledger.gp, so the admission test here is
+\\ literally the one the sweeps run.  Loading it first lets the definitions below
+\\ win on the few shared names; they agree with ledger.gp's (Mval in particular).
+read("ledger.gp");
 
 cden(Q) = if (Q == [0], 0, sqrtint(denominator(Q[1])));
 Ed(d)   = ellinit([d^2, d^3]);
@@ -153,6 +169,19 @@ entry(tname, d, Ms) =
       Eps[j] = CB[1]; bases[j] = CB[2]; ords[j] = CB[3];
       bstr[j] = Str("(", lift(CB[2][1]), ",", lift(CB[2][2]), ")")));
   print("      canonical bases of E^d(F_p), p = 11, 13, 17 : ", bstr);
+  \\ GRANULARITY.  Admission is per twist, not per generator: hitsE1 asks whether
+  \\ the whole reach meets E_1 \\ E_2 at p, which may need a COMBINATION of
+  \\ generators that no single one achieves.  n_p = 1 at every place is the
+  \\ exactness certificate R(d) contains ker_1, and only then is the line a
+  \\ ledger entry rather than a tally entry.
+  my(sd = shortdata(1, 1, d), gr = vector(3), adm = 1);
+  for (j = 1, 3,
+    gr[j] = if (#sd[2] == 0, 0, hitsE1(sd[1], sd[2], S[j]));
+    if (!gr[j], adm = 0));
+  print("      granularity n_p at p = 11, 13, 17 : ",
+        vector(3, j, if (gr[j], 1, ">1")),
+        if (adm, "   ADMITTED: reach contains ker_1, so this is a LEDGER entry",
+                 "   NOT ADMITTED: tally entry only, no exactness certificate"));
   foreach (gens, P,
     my(row = List());
     for (j = 1, 3,
@@ -191,6 +220,11 @@ print(" Extended certificate for the ledger of section 2.5:  S = {11,13,17}");
 print("=========================================================================");
 print("");
 print("E : v^2 = u^3 + u + 1 (496a).   E_d : Y^2 = X^3 + d^2 X + d^3.");
+print("Each twist carries a GRANULARITY verdict: n_p = 1 at every place is the");
+print("exactness certificate R(d) contains ker_1, and only an admitted twist is a");
+print("ledger entry.  Without it the line would be a TALLY entry, whose level-1");
+print("image over-approximates the reach and certifies nothing (section 2.3).");
+print("");
 print("One line per (twist, generator); the image is a TRIPLE, one entry per");
 print("place of S, in the conventions of section 3.4.1.");
 print("");
