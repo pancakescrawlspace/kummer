@@ -301,3 +301,62 @@
        1/2        45/4        [5, 17]
        -1        60        [3, 5]
 
+(10) WHICH Q(cos(2 pi/m)) LIE IN A, AND WHETHER ANY SUBFIELD IS NON-REAL
+
+   deg A = 3 is prime, so a subfield is Q or a cubic maximal subfield.
+   [Q(zeta_m)^+ : Q] = phi(m)/2 for m > 2, so a cubic needs phi(m) = 6.
+     phi(m) = 6  ->  m in [7, 9, 14, 18]
+     degree 1    ->  m in [1, 2, 3, 4, 6] (the field is Q, trivially in A)
+   phi(m) = 6 has no further solutions: phi(m) >= sqrt(m/2) bounds m <= 72.
+
+     m    Q(zeta_m)^+              disc   signature   #(2)  #(7)   embeds
+    7   x^3 - x^2 - 2*x + 1   49    [3, 0]      1     1      YES
+    9   x^3 - 3*x - 1   81    [3, 0]      1     1      YES
+    14   x^3 - x^2 - 2*x + 1   49    [3, 0]      1     1      YES
+    18   x^3 - 3*x - 1   81    [3, 0]      1     1      YES
+
+   Q(zeta_14) = Q(zeta_7) and Q(zeta_18) = Q(zeta_9), so m = 14, 18 give
+   nothing new.  The two fields already named are ALL of them.
+
+   Does A contain a NON-totally-real subfield?  Yes -- two of them are
+   already in section 7 of the document:
+
+     field              disc     signature        embeds
+     x^3 - x^2 - 2*x + 1     49     [3, 0]  totally real  yes
+     x^3 - 3*x - 1     81     [3, 0]  totally real  yes
+     x^3 - 2     -108     [1, 1]  NOT tot. real yes
+     x^3 - 14     -5292     [1, 1]  NOT tot. real yes
+
+   Q(cbrt 2) and Q(cbrt 14) each have one real and one complex place.
+   The reason nothing forbids them: deg A = 3 is ODD and Br(R) has
+   exponent 2, so inv_oo(A) = 0 necessarily -- A is SPLIT at the real
+   place, and the criterion there reads [L_w : R] * 0 = 0, vacuous.
+   Only 2 and 7 constrain.  Contrast Hamilton's quaternions of section
+   7.1: there inv_oo = 1/2 is non-zero, every quadratic subfield must be
+   non-split at infinity, and that is exactly why they are all IMAGINARY.
+   Ramification at infinity is impossible in odd degree, so the analogous
+   constraint simply evaporates here.
+
+   Census over a box of cubic polynomials:
+     distinct cubic fields examined : 2877
+     of these, embedding in A       : 421
+        totally real,  signature [3,0] : 187
+        one complex place, sig [1,1]   : 234
+
+     smallest |disc| of each kind:
+       totally real:
+         disc 49   x^3 - x^2 - 2*x + 1
+         disc 81   x^3 - 3*x - 1
+         disc 148   x^3 - x^2 - 3*x + 1
+         disc 169   x^3 - x^2 - 4*x - 1
+       one complex place:
+         disc -31   x^3 + x - 1
+         disc -76   x^3 - 2*x - 2
+         disc -87   x^3 - x^2 + 2*x + 1
+         disc -108   x^3 - 2
+
+   So both signatures occur, and the complex ones are if anything the
+   more common.  The smallest subfield of A of either kind is
+   Q[x]/(x^3+x-1), of discriminant -31 -- non-real, and smaller than the
+   totally real record holder Q(zeta_7)^+ of discriminant 49.
+

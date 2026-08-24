@@ -1036,6 +1036,82 @@ index $3$.
   [Brauer--Manin obstruction], [reciprocity applied to the evaluation pairing],
 ))
 
+= Two questions about the subfields of $A$ <sec-subfields>
+
+Both are settled by the one criterion of @sec-cyclic: since $"inv"_2 (A) = 1 slash 3$ and
+$"inv"_7 (A) = 2 slash 3$ both have order $3$, a cubic field $L$ splits $A$ iff every completion
+of $L$ above $2$ and above $7$ has local degree $3$ --- that is, iff *$2$ and $7$ are each
+non-split in $L$*, with a single prime above each. And $deg A = 3$ is prime, so a subfield of $A$
+is either $QQ$ or a cubic maximal subfield.
+
+== Which $QQ(cos(2 pi slash m))$ occur <sec-cyclosub>
+
+$[QQ(zeta_m)^+ : QQ] = phi(m) slash 2$ for $m > 2$, so a *cubic* one needs $phi(m) = 6$:
+$ phi(m) = 6 quad <==> quad m in {7, 9, 14, 18} , $
+and there are no others --- $phi(m) >= sqrt(m slash 2)$ bounds the search at $m <= 72$. But
+$QQ(zeta_14) = QQ(zeta_7)$ and $QQ(zeta_18) = QQ(zeta_9)$, so $m = 14$ and $m = 18$ give nothing
+new. Both surviving fields do embed:
+
+#align(center)[
+#table(columns: 6, align: (center, left, center, center, center, center), stroke: 0.4pt,
+  inset: 5pt,
+  [$m$], [$QQ(zeta_m)^+$], [disc], [signature], [$\#{frak(p) | 2}$], [$\#{frak(p) | 7}$],
+  [$7, 14$], [$x^3 - x^2 - 2x + 1$], [$49$], [$(3,0)$], [$1$], [$1$],
+  [$9, 18$], [$x^3 - 3x - 1$], [$81$], [$(3,0)$], [$1$], [$1$],
+)]
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  So the answer is: *there are no others.* The two fields already named exhaust the real
+  cyclotomic subfields of $A$, for the trivial reason that $phi(m) = 6$ has only four solutions
+  and they collapse in pairs. (Degenerately, $QQ(cos(2 pi slash m)) = QQ$ for
+  $m in {1,2,3,4,6\}$, and $QQ$ sits in $A$ for free.)
+]
+
+== Non-real subfields: yes, and two are already above <sec-realsub>
+
+The guess that $A$ has none is false, and the counterexamples are in @sec-cub's own list:
+
+#align(center)[
+#table(columns: 4, align: (left, center, center, left), stroke: 0.4pt, inset: 5pt,
+  [field], [disc], [signature], [],
+  [$QQ(zeta_7)^+$], [$49$], [$(3,0)$], [totally real],
+  [$QQ(zeta_9)^+$], [$81$], [$(3,0)$], [totally real],
+  [$QQ(root(3,2))$], [$-108$], [$(1,1)$], [*not* totally real],
+  [$QQ(root(3,14))$], [$-5292$], [$(1,1)$], [*not* totally real],
+)]
+
+$QQ(root(3,2))$ and $QQ(root(3,14))$ each have one real place and one complex place. Nothing
+forbids them, and the reason is worth isolating:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *The archimedean place imposes no condition at all.* $"Br"(RR) = 1/2 ZZ slash ZZ$ has exponent
+  $2$, while $A$ has order $3$ in the Brauer group. So $"inv"_infinity (A) = 0$ *necessarily* ---
+  an algebra of odd degree cannot ramify at a real place --- and the splitting criterion there
+  reads $[L_w : RR] dot 0 = 0$, which every $L$ satisfies. Only $2$ and $7$ constrain.
+]
+
+The contrast with @sec-ham is exact and is probably the source of the intuition. Hamilton's
+$(-1,-1)$ has $"inv"_infinity = 1 slash 2 != 0$, so *every* quadratic subfield must be non-split
+at infinity --- which is precisely why they are all *imaginary*, and why the three-square theorem
+turned up there. Ramification at infinity is impossible in odd degree, so in $A$ that constraint
+simply evaporates.
+
+Empirically the non-real subfields are, if anything, the more common. Over a box of $2877$
+distinct cubic fields, $421$ embed in $A$: $187$ totally real and $234$ with a complex place. The
+smallest by $|"disc"|$ of each kind:
+
+#align(center)[
+#table(columns: 2, align: (left, left), stroke: 0.4pt, inset: 5pt,
+  [totally real], [one complex place],
+  [$49$: $x^3 - x^2 - 2x + 1$], [$-31$: $x^3 + x - 1$],
+  [$81$: $x^3 - 3x - 1$], [$-76$: $x^3 - 2x - 2$],
+  [$148$: $x^3 - x^2 - 3x + 1$], [$-87$: $x^3 - x^2 + 2x + 1$],
+  [$169$: $x^3 - x^2 - 4x - 1$], [$-108$: $x^3 - 2$],
+)]
+
+The smallest maximal subfield of $A$ of *either* kind is $QQ[x] slash (x^3 + x - 1)$ of
+discriminant $-31$ --- non-real, and smaller than the totally real record holder $QQ(zeta_7)^+$.
+
 = Where this appears in these notes <sec-uses>
 
 The survey's chapters 7--10 are an extended computation in this language, and it may help to see

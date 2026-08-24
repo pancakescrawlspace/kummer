@@ -525,8 +525,106 @@ hassenorm();
 wang();
 divalg();
 cocycle();
+
+\\ ------------------------------- (10) which cyclotomic and which real subfields
+
+\\ A = (Q(zeta_7)^+/Q, sigma, 2) has invariants 1/3 at 2 and 2/3 at 7, both of
+\\ order 3, so a cubic L splits A iff every completion of L at 2 and at 7 has
+\\ local degree 3 -- i.e. iff 2 and 7 are each NON-SPLIT in L (one prime above).
+\\ The archimedean place imposes nothing: deg A = 3 is odd and Br(R) has
+\\ exponent 2, so inv_oo(A) = 0 forcibly.
+
+embedsinA(g) =
+{ my(nf = nfinit(g));
+  #idealprimedec(nf,2) == 1 && #idealprimedec(nf,7) == 1;
+}
+
+cyclosubfields() =
+{ my(deg3 = List(), deg1 = List());
+  print("(10) WHICH Q(cos(2 pi/m)) LIE IN A, AND WHETHER ANY SUBFIELD IS NON-REAL");
+  print("");
+  print("   deg A = 3 is prime, so a subfield is Q or a cubic maximal subfield.");
+  print("   [Q(zeta_m)^+ : Q] = phi(m)/2 for m > 2, so a cubic needs phi(m) = 6.");
+  for (m = 1, 500,
+    my(d = if (m <= 2, 1, eulerphi(m)/2));
+    if (d == 3, listput(deg3, m));
+    if (d == 1, listput(deg1, m)));
+  print("     phi(m) = 6  ->  m in ", Vec(deg3));
+  print("     degree 1    ->  m in ", Vec(deg1), " (the field is Q, trivially in A)");
+  print("   phi(m) = 6 has no further solutions: phi(m) >= sqrt(m/2) bounds m <= 72.");
+  print("");
+  print("     m    Q(zeta_m)^+              disc   signature   #(2)  #(7)   embeds");
+  foreach (Vec(deg3), m,
+    my(g = polredabs(polsubcyclo(m,3)), nf = nfinit(g));
+    print("    ", m, "   ", g, "   ", nf.disc, "    ", nf.sign, "      ",
+          #idealprimedec(nf,2), "     ", #idealprimedec(nf,7), "      ",
+          if (embedsinA(g), "YES", "no")));
+  print("");
+  print("   Q(zeta_14) = Q(zeta_7) and Q(zeta_18) = Q(zeta_9), so m = 14, 18 give");
+  print("   nothing new.  The two fields already named are ALL of them.");
+  print("");
+}
+
+realsubfields() =
+{ my(seen = List(), rec = List(), tr = 0, cx = 0);
+  print("   Does A contain a NON-totally-real subfield?  Yes -- two of them are");
+  print("   already in section 7 of the document:");
+  print("");
+  print("     field              disc     signature        embeds");
+  foreach ([x^3-x^2-2*x+1, x^3-3*x-1, x^3-2, x^3-14], f,
+    my(nf = nfinit(polredabs(f)));
+    print("     ", f, "     ", nf.disc, "     ", nf.sign, "  ",
+          if (nf.sign[2] == 0, "totally real  ", "NOT tot. real "),
+          if (embedsinA(polredabs(f)), "yes", "no")));
+  print("");
+  print("   Q(cbrt 2) and Q(cbrt 14) each have one real and one complex place.");
+  print("   The reason nothing forbids them: deg A = 3 is ODD and Br(R) has");
+  print("   exponent 2, so inv_oo(A) = 0 necessarily -- A is SPLIT at the real");
+  print("   place, and the criterion there reads [L_w : R] * 0 = 0, vacuous.");
+  print("   Only 2 and 7 constrain.  Contrast Hamilton's quaternions of section");
+  print("   7.1: there inv_oo = 1/2 is non-zero, every quadratic subfield must be");
+  print("   non-split at infinity, and that is exactly why they are all IMAGINARY.");
+  print("   Ramification at infinity is impossible in odd degree, so the analogous");
+  print("   constraint simply evaporates here.");
+  print("");
+  print("   Census over a box of cubic polynomials:");
+  for (a = -12, 12, for (b = -12, 12, for (c = -12, 12,
+    my(f = x^3 + a*x^2 + b*x + c);
+    if (!polisirreducible(f), next);
+    my(g = polredabs(f));
+    if (setsearch(Set(Vec(seen)), g), next);
+    listput(seen, g);
+    my(nf = nfinit(g));
+    if (#idealprimedec(nf,2) != 1 || #idealprimedec(nf,7) != 1, next);
+    listput(rec, [abs(nf.disc), nf.disc, g, nf.sign]);
+    if (nf.sign[2] == 0, tr++, cx++))));
+  print("     distinct cubic fields examined : ", #seen);
+  print("     of these, embedding in A       : ", tr + cx);
+  print("        totally real,  signature [3,0] : ", tr);
+  print("        one complex place, sig [1,1]   : ", cx);
+  print("");
+  rec = vecsort(Vec(rec), 1);
+  print("     smallest |disc| of each kind:");
+  my(n = 0);
+  print("       totally real:");
+  foreach (rec, t, if (t[4][2] == 0 && n < 4, n++;
+    print("         disc ", t[2], "   ", t[3])));
+  n = 0;
+  print("       one complex place:");
+  foreach (rec, t, if (t[4][2] == 1 && n < 4, n++;
+    print("         disc ", t[2], "   ", t[3])));
+  print("");
+  print("   So both signatures occur, and the complex ones are if anything the");
+  print("   more common.  The smallest subfield of A of either kind is");
+  print("   Q[x]/(x^3+x-1), of discriminant -31 -- non-real, and smaller than the");
+  print("   totally real record holder Q(zeta_7)^+ of discriminant 49.");
+  print("");
+}
+
 crossed();
 hamilton();
 cubicexample();
 azumaya();
+cyclosubfields();
+realsubfields();
 quit;
