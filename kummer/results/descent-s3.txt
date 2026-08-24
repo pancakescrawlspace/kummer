@@ -1,0 +1,120 @@
+======================================================================
+37a1   -- rank 1, Sha[2] = 0   [0, 0, 1, -1, 0]   conductor 37
+
+(1) y^2 = f(x),  f = x^3 - 16*x + 16
+    disc f  = [2, 8; 37, 1]
+    Galois  : S_3 (generic)
+
+(2) E(Q)_tors        = 1   (so E(Q)[2] = 0)
+    isogeny degrees  = Mat(1)   (no 2 among them: no partial descent over Q)
+
+(3) K = Q[x]/f : disc 148   signature [3, 0]   Cl(K) = []   unit rank 2
+
+(4) S = [2, 37]
+      2 -> 1 prime(s) of K,  e = [3]  f = [1]
+      37 -> 2 prime(s) of K,  e = [2, 1]  f = [1, 1]
+    #S_f = 3     dim K(S,2) = (r1+r2) + #S_f + dim Cl_S[2] = 3 + 3 + 0 = 6
+
+(5) norms of the 6 S-unit generators, modulo squares:
+      g1  N = -1   core -1   coords [1, 0, 0]
+      g2  N = -1   core -1   coords [1, 0, 0]
+      g3  N = 1   core 1   coords [0, 0, 0]
+      g4  N = -2   core -2   coords [1, 1, 0]
+      g5  N = 37   core 37   coords [0, 0, 1]
+      g6  N = -37   core -37   coords [1, 0, 1]
+    on the S-unit part the norm map has rank 3, so its kernel has dim 3
+    Cl_S[2] = 0, so this IS the norm kernel on K(S,2)
+    ==> dim Sel_2 <= 3   (before ANY local condition)
+
+(6) local conditions:
+      v = 2   dim E[2](Q_v) = 0   dim L_v = 1
+      v = 37   dim E[2](Q_v) = 1   dim L_v = 1
+      v = oo  dim E[2](R)   = 2   dim L_oo = 1
+
+(7) ellrank : rank in [1, 1],  dim Sha[2] = 0
+    dim Sel_2 = rank + dim Sha[2] + dim E(Q)[2] = 1 + 0 + 0 = 1
+    the local conditions cut 3 down to 1
+
+======================================================================
+571a1  -- rank 0, Sha[2] = (Z/2)^2   [0, -1, 1, -929, -10595]   conductor 571
+
+(1) y^2 = f(x),  f = x^3 - 4*x^2 - 14864*x - 678064
+    disc f  = [-1, 1; 2, 8; 571, 1]
+    Galois  : S_3 (generic)
+
+(2) E(Q)_tors        = 1   (so E(Q)[2] = 0)
+    isogeny degrees  = Mat(1)   (no 2 among them: no partial descent over Q)
+
+(3) K = Q[x]/f : disc -2284   signature [1, 1]   Cl(K) = [2]   unit rank 1
+
+(4) S = [2, 571]
+      2 -> 1 prime(s) of K,  e = [3]  f = [1]
+      571 -> 2 prime(s) of K,  e = [1, 2]  f = [1, 1]
+    #S_f = 3     dim K(S,2) = (r1+r2) + #S_f + dim Cl_S[2] = 2 + 3 + 1 = 6
+
+(5) norms of the 5 S-unit generators, modulo squares:
+      g1  N = -1   core -1   coords [1, 0, 0]
+      g2  N = 1   core 1   coords [0, 0, 0]
+      g3  N = 2   core 2   coords [0, 1, 0]
+      g4  N = -571   core -571   coords [1, 0, 1]
+      g5  N = -571   core -571   coords [1, 0, 1]
+    on the S-unit part the norm map has rank 3, so its kernel has dim 2
+    dim Cl_S[2] = 1, so the norm kernel on K(S,2) has dim <= 3
+    ==> dim Sel_2 <= 3   (before ANY local condition)
+
+(6) local conditions:
+      v = 2   dim E[2](Q_v) = 0   dim L_v = 1
+      v = 571   dim E[2](Q_v) = 1   dim L_v = 1
+      v = oo  dim E[2](R)   = 1   dim L_oo = 0
+
+(7) ellrank : rank in [0, 0],  dim Sha[2] = 2
+    dim Sel_2 = rank + dim Sha[2] + dim E(Q)[2] = 0 + 2 + 0 = 2
+    the local conditions cut 3 down to 2
+
+======================================================================
+389a1  -- rank 2, Sha[2] = 0   [0, 1, 1, -2, 0]   conductor 389
+
+(1) y^2 = f(x),  f = x^3 + 4*x^2 - 32*x + 16
+    disc f  = [2, 8; 389, 1]
+    Galois  : S_3 (generic)
+
+(2) E(Q)_tors        = 1   (so E(Q)[2] = 0)
+    isogeny degrees  = Mat(1)   (no 2 among them: no partial descent over Q)
+
+(3) K = Q[x]/f : disc 1556   signature [3, 0]   Cl(K) = []   unit rank 2
+
+(4) S = [2, 389]
+      2 -> 1 prime(s) of K,  e = [3]  f = [1]
+      389 -> 2 prime(s) of K,  e = [1, 2]  f = [1, 1]
+    #S_f = 3     dim K(S,2) = (r1+r2) + #S_f + dim Cl_S[2] = 3 + 3 + 0 = 6
+
+(5) norms of the 6 S-unit generators, modulo squares:
+      g1  N = -1   core -1   coords [1, 0, 0]
+      g2  N = -1   core -1   coords [1, 0, 0]
+      g3  N = 1   core 1   coords [0, 0, 0]
+      g4  N = 2   core 2   coords [0, 1, 0]
+      g5  N = -389   core -389   coords [1, 0, 1]
+      g6  N = 389   core 389   coords [0, 0, 1]
+    on the S-unit part the norm map has rank 3, so its kernel has dim 3
+    Cl_S[2] = 0, so this IS the norm kernel on K(S,2)
+    ==> dim Sel_2 <= 3   (before ANY local condition)
+
+(6) local conditions:
+      v = 2   dim E[2](Q_v) = 0   dim L_v = 1
+      v = 389   dim E[2](Q_v) = 1   dim L_v = 1
+      v = oo  dim E[2](R)   = 2   dim L_oo = 1
+
+(7) ellrank : rank in [2, 2],  dim Sha[2] = 0
+    dim Sel_2 = rank + dim Sha[2] + dim E(Q)[2] = 2 + 0 + 0 = 2
+    the local conditions cut 3 down to 2
+
+======================================================================
+the descent map on 37a1, by hand
+
+  P = (0,0) on y^2 + y = x^3 - x   maps to   (X,Y) = (0,4) on Y^2 = x^3 - 16*x + 16
+  delta(P) = X - theta = -theta
+  N(-theta) = 16   a square in Q? 1     (it must be: N(x - theta) = f(x) = Y^2)
+  is -theta a square in K?  roots of X^2 + theta : []~   (empty = not a square, so delta(P) != 1)
+  (theta) is supported above 2 since N(theta) = -16, so -theta lies in K(S,2)
+  hence Sel_2(37a1) = <-theta>, of dimension 1, and rank = 1, Sha[2] = 0
+

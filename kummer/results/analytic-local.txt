@@ -1,0 +1,20 @@
+(1) the exact relation w = z^3 + a z w^2 + b w^3 at Q = 8*P0:
+      w - (z^3 + a z w^2 + b w^3) = 0   (0 means it holds identically)
+
+(2) the formal expansion of w = -1/y in the local coordinate z = -x/y:
+      w(z) = x^3 - 16*x^7 + 16*x^9 + 512*x^11 - 1280*x^13 - 19712*x^15 + 86016*x^17 + O(x^19)     (PARI names the series variable x; it is our z)
+    predicted leading terms  z^3 + a z^7 + b z^9  with a = -16, b = 16
+    coefficients are integral, as Proposition 7.2 predicts for v = 5
+
+(3) convergence at Q, v = 5:
+      z = 105/13     v_5(z) = 1
+      w = 125/52     v_5(w) = 3
+    truncating the series at order N and evaluating at z:
+      N = 10    v_5(w - w_N(z)) = 14
+      N = 20    v_5(w - w_N(z)) = 23
+      N = 30    v_5(w - w_N(z)) = 33
+      N = 40    v_5(w - w_N(z)) = 43
+
+    the error valuation grows linearly in N -- the signature of
+    convergence at a point with v(z) = 1.
+
