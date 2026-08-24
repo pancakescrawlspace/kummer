@@ -189,15 +189,16 @@ twists.
 = Grading, and what is actually proved <sec-grade>
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
-  *A flat ledger proves nothing.* Storing a reach by its image at one fixed level $n$ records an
+  *A tally proves nothing.* Storing a reach by its image at one fixed level $n$ --- a *tally*
+  entry, as opposed to a ledger entry --- records an
   *over*-approximation: the preimage of the image can be strictly larger than the reach. Coverage
   computed from over-approximations is a necessary condition only, and level $n+1$ can destroy what
   level $n$ certified. No amount of computing at a fixed level, or at every level in turn, is a
   proof.
 ]
 
-The fix is to make the level part of the datum. A *graded* entry is $(d, n_d, overline(R))$ subject
-to
+The fix is to make the level part of the datum, which is what turns a tally into a *ledger*.
+A ledger entry is $(d, n_d, overline(R))$ subject to
 $ R(d) supset.eq ker_(n_d) , $
 a *certificate of exactness*: the reach is then exactly the preimage of its image, and the finite
 datum is exact rather than approximate. If a finite graded ledger covers at $N = max_d n_d$, the

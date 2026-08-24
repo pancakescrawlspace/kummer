@@ -397,16 +397,16 @@ maximal reaches, each of index 2, which is the number of index-2 subgroups of
 some hyperplane -- partial patches doing together what no single twist can.
 Deficiency falls 74.8% -> 28.1% -> 0 at 115 twists (`|d|` about 1900).
 
-### Why that is not a proof, and how to grade the ledger
+### Why that is not a proof: it is a tally, not a ledger
 
-The point is worth stating plainly. A flat ledger stores each reach as its
+The point is worth stating plainly. A tally stores each reach as its
 image at one fixed level `n`, and the preimage of that image is an
 **over**-approximation of the reach. Coverage computed from
 over-approximations is only ever a *necessary* condition, and level `n+1` can
 always destroy what level `n` certified. So no amount of computing at a fixed
 level, or at every level in turn, yields a proof.
 
-The fix is to grade the ledger: make the level part of each entry. An entry is
+The fix is what turns a tally into a ledger: make the level part of each entry. A ledger entry is
 `(d, n_d, Rbar)` subject to `R(d)` containing `ker_{n_d}`, which is a
 *certificate of exactness* -- the reach then equals the preimage of `Rbar`, so
 the finite datum is exact rather than approximate. Granularity is detected by
