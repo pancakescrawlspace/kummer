@@ -1285,9 +1285,9 @@ $E(QQ_p) tilde.equiv ZZ_p times T$ with $T$ the torsion subgroup:
   and the $T$-coordinate of a point is *literally its reduction mod $p$*. It is recorded as a
   discrete logarithm $[e]$ or $[e, f]$ against the generators PARI returns.
 - *The classes $[p]$ and $[u p]$.* Here $v_p (d)$ is odd, the reduction is additive with
-  $a_p = 0$, and $M = c_p dot p$. The prime-to-$p$ part of $T$ is $Phi(FF_p)$, of order $c_p$; the
-  $p$-part is trivial, because a single point topologically generates and
-  $ZZ_p times ZZ slash p$ is not procyclic. The type is $I_0^*$ for all but one line: at $p = 31$,
+  $a_p = 0$, and $M = c_p dot p$. The prime-to-$p$ part of $T$ is $Phi(FF_p)$, of order $c_p$. The
+  $p$-part is trivial, but that is a computation and not a convention --- see
+  @sec-cert-ppart. The type is $I_0^*$ for all but one line: at $p = 31$,
   the bad prime of $E$ itself, $v_31 (Delta) = 7$ rather than $6$ and the type is $I_1^*$.
 
   *$T$ is not automatically cyclic here*, and an earlier version of this table wrongly assumed it
@@ -1297,6 +1297,51 @@ $E(QQ_p) tilde.equiv ZZ_p times T$ with $T$ the torsion subgroup:
   $E[2](QQ_p)$ injects into $Phi$ --- hence $T tilde.equiv (ZZ slash 2)^2$ exactly when the cubic
   splits completely over $QQ_p$. It does on those ten lines and not on the eleventh ($p = 31$,
   $d = -62$, the $I_1^*$ one), which is genuinely $C_4$.
+
+- *Good reduction with $p divides M$.* This is the *anomalous* case, $a_p = 1$ and
+  $\#tilde(E)(FF_p) = p$, and it happens twice in the table: $p = 19$ with $d = -1$, and
+  $p = 97$ with $d = 1$. It is not a harmless variant of the first case. Here $T$ may contain a
+  point of order $p$, and if it does then $E^d (QQ_p) tilde.equiv ZZ_p times ZZ slash p$ needs
+  *two* topological generators --- so a rank-$1$ twist could not certify the line at all, however
+  unit its $ZZ_p$-coordinate looked. Both of ours have $T$ trivial, again by @sec-cert-ppart.
+
+=== The $p$-part of $T$ <sec-cert-ppart>
+
+The last two cases share a gap. `cert-extended.gp` reads $T$ off the prime-to-$p$ part of $M$ and
+*asserts* that nothing of order $p$ survives; nothing in it computes the $p$-part. Whenever
+$p divides M$ --- at all $90$ additive lines and the $2$ anomalous ones, so $92$ of the $180$ ---
+that assertion is doing real work, and on $10$ of them nothing supports it, since those are the
+lines where no single generator carries the class.
+
+The criterion is exact. Write $E(QQ_p) tilde.equiv ZZ_p times C_n times C_(p^k)$ with
+$p divides.not n$. Since $E_1$ is torsion-free the finite part injects into $E(QQ_p) slash E_1$,
+so $n p^k divides M$, and $M Q$ lies in $E_1$ for every $Q$. Realise $E_1$ as the closure of
+$ZZ_p dot (b, c, e)$ --- it need *not* be $b ZZ_p times 0 times 0$, the complement can be skew,
+which is why $E_1$ has to be handled and not assumed split off --- and compare indices:
+$v_p (b) = v_p (M) - k$. Writing $Q = (alpha, beta, gamma)$, the element $M Q = (M alpha, 0, 0)$
+has parameter $lambda = M alpha slash b$, whence
+
+$ "depth" (M Q) = v_p (lambda) + 1 = k + v_p (alpha) + 1 . $
+
+So $"depth"(M Q) >= k+1$ for every $Q$, with equality exactly when $alpha$ is a unit:
+
+$ k = min_(Q in E(QQ_p)) "depth" (M Q) - 1 . $
+
+Two things follow. First, *a single point of depth $1$ proves $k = 0$* --- no search has to be
+exhausted, which is what makes this checkable at all. Second, the condition the table already
+records for a lone generator, "ord in $E slash E_1 = M$ and depth $1$", *is* the $k = 0$
+criterion; equivalently such a $P$ generates topologically and $ZZ_p times ZZ slash p$ is not
+procyclic. On every line carried by one generator the assertion was therefore a theorem all
+along. The exposed lines are the rest.
+
+`cert-ptors.gp` settles all of them, sampling $Q$ deterministically ($x_0 = 0, 1, 2, dots$, keeping
+those with $x_0^3 + d^2 x_0 + d^3$ a square in $QQ_p$, so there is no seed to reproduce). Every one
+of the $92$ places of @tab-primes-extended returns $k = 0$, as does the single exposed place of the
+ledger of @sec-ledger ($d = 4279$ at $p = 11$, additive, $M = 22$). $p = 2$ is not exposed at all:
+$Delta(E_d) = -16 dot 31 dot d^6$, so $v_2 (Delta) >= 4$ for every $d$ and $2$ is never a place of
+good reduction, hence never anomalous.
+
+The fourth column stands as printed. What changed is that it is now computed.
 
 The $ZZ_p$-coordinate is only defined up to a unit --- choosing a topological generator of $ZZ_p$
 is a choice --- so what is canonical is its *valuation*. It is written $u$ for a unit and $p^k u$

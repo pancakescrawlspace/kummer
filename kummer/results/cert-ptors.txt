@@ -1,0 +1,130 @@
+  ***   unexpected character: \----table6.3:the45primesandtheirfourwitnesstw
+  ***                          ^---------------------------------------------
+... skipping file 'cert-ptors.gp'
+  ***   unexpected character: \----thetwistsoccurringinresults/cert-ledger.t
+  ***                          ^---------------------------------------------
+=========================================================================
+ The p-part of E^d(Q_p)_tors, for both certificates
+=========================================================================
+
+k = min over Q in E^d(Q_p) of depth(M Q), minus 1.   k = 0 <=> no
+p-torsion <=> E^d(Q_p) is procyclic <=> one generator can carry the line.
+Only the places with p | M are at issue; elsewhere the finite part
+injects into Etilde(F_p), of order M prime to p, so k = 0 for free.
+
+-------------------------------------------------------------------------
+ Table 6.3.  Places with p | M, listed in full.
+-------------------------------------------------------------------------
+  p = 3  class [p]  d = 3   M = 6   min depth = 1 (at x_0 = 1)   k = 0
+  p = 3  class [up]  d = 6   M = 6   min depth = 1 (at x_0 = 1)   k = 0
+  p = 5  class [p]  d = 5   M = 5   min depth = 1 (at x_0 = 1)   k = 0
+  p = 5  class [up]  d = -35   M = 5   min depth = 1 (at x_0 = 1)   k = 0
+  p = 7  class [p]  d = 7   M = 7   min depth = 1 (at x_0 = 1)   k = 0
+  p = 7  class [up]  d = -7   M = 7   min depth = 1 (at x_0 = 1)   k = 0
+  p = 11  class [p]  d = 11   M = 22   min depth = 1 (at x_0 = 1)   k = 0
+  p = 11  class [up]  d = -11   M = 22   min depth = 1 (at x_0 = 1)   k = 0
+  p = 13  class [p]  d = -13   M = 26   min depth = 1 (at x_0 = 1)   k = 0
+  p = 13  class [up]  d = 26   M = 26   min depth = 1 (at x_0 = 1)   k = 0
+  p = 17  class [p]  d = 34   M = 34   min depth = 1 (at x_0 = 1)   k = 0
+  p = 17  class [up]  d = 51   M = 34   min depth = 1 (at x_0 = 1)   k = 0
+  p = 19  class [u]  d = -1   M = 19   min depth = 1 (at x_0 = 1)   k = 0   <-- ANOMALOUS (a_p = 1)
+  p = 19  class [p]  d = 95   M = 19   min depth = 1 (at x_0 = 1)   k = 0
+  p = 19  class [up]  d = -95   M = 19   min depth = 1 (at x_0 = 1)   k = 0
+  p = 23  class [p]  d = 46   M = 46   min depth = 1 (at x_0 = 1)   k = 0
+  p = 23  class [up]  d = 115   M = 46   min depth = 1 (at x_0 = 1)   k = 0
+  p = 29  class [p]  d = -29   M = 58   min depth = 1 (at x_0 = 1)   k = 0
+  p = 29  class [up]  d = 58   M = 58   min depth = 1 (at x_0 = 1)   k = 0
+  p = 31  class [p]  d = 31   M = 62   min depth = 1 (at x_0 = 1)   k = 0
+  p = 31  class [up]  d = -62   M = 124   min depth = 1 (at x_0 = 1)   k = 0
+  p = 37  class [p]  d = -37   M = 74   min depth = 1 (at x_0 = 1)   k = 0
+  p = 37  class [up]  d = 74   M = 74   min depth = 1 (at x_0 = 1)   k = 0
+  p = 41  class [p]  d = 41   M = 41   min depth = 1 (at x_0 = 1)   k = 0
+  p = 41  class [up]  d = 123   M = 41   min depth = 1 (at x_0 = 1)   k = 0
+  p = 43  class [p]  d = -86   M = 86   min depth = 1 (at x_0 = 1)   k = 0
+  p = 43  class [up]  d = 86   M = 86   min depth = 1 (at x_0 = 1)   k = 0
+  p = 47  class [p]  d = 94   M = 188   min depth = 1 (at x_0 = 1)   k = 0
+  p = 47  class [up]  d = 705   M = 188   min depth = 1 (at x_0 = 1)   k = 0
+  p = 53  class [p]  d = 53   M = 106   min depth = 1 (at x_0 = 1)   k = 0
+  p = 53  class [up]  d = 106   M = 106   min depth = 1 (at x_0 = 1)   k = 0
+  p = 59  class [p]  d = 295   M = 59   min depth = 1 (at x_0 = 1)   k = 0
+  p = 59  class [up]  d = -59   M = 59   min depth = 1 (at x_0 = 1)   k = 0
+  p = 61  class [p]  d = -61   M = 122   min depth = 1 (at x_0 = 1)   k = 0
+  p = 61  class [up]  d = 122   M = 122   min depth = 1 (at x_0 = 1)   k = 0
+  p = 67  class [p]  d = 2211   M = 268   min depth = 1 (at x_0 = 1)   k = 0
+  p = 67  class [up]  d = 134   M = 268   min depth = 1 (at x_0 = 1)   k = 0
+  p = 71  class [p]  d = 71   M = 71   min depth = 1 (at x_0 = 1)   k = 0
+  p = 71  class [up]  d = -71   M = 71   min depth = 1 (at x_0 = 1)   k = 0
+  p = 73  class [p]  d = 146   M = 146   min depth = 1 (at x_0 = 1)   k = 0
+  p = 73  class [up]  d = -365   M = 146   min depth = 1 (at x_0 = 1)   k = 0
+  p = 79  class [p]  d = 158   M = 158   min depth = 1 (at x_0 = 1)   k = 0
+  p = 79  class [up]  d = -158   M = 158   min depth = 1 (at x_0 = 1)   k = 0
+  p = 83  class [p]  d = 83   M = 166   min depth = 1 (at x_0 = 1)   k = 0
+  p = 83  class [up]  d = 166   M = 166   min depth = 1 (at x_0 = 1)   k = 0
+  p = 89  class [p]  d = 178   M = 178   min depth = 1 (at x_0 = 1)   k = 0
+  p = 89  class [up]  d = -267   M = 178   min depth = 1 (at x_0 = 1)   k = 0
+  p = 97  class [1]  d = 1   M = 97   min depth = 1 (at x_0 = 0)   k = 0   <-- ANOMALOUS (a_p = 1)
+  p = 97  class [p]  d = 97   M = 97   min depth = 1 (at x_0 = 1)   k = 0
+  p = 97  class [up]  d = 485   M = 97   min depth = 1 (at x_0 = 1)   k = 0
+  p = 101  class [p]  d = 101   M = 101   min depth = 1 (at x_0 = 1)   k = 0
+  p = 101  class [up]  d = -2626   M = 101   min depth = 1 (at x_0 = 1)   k = 0
+  p = 103  class [p]  d = 103   M = 103   min depth = 1 (at x_0 = 1)   k = 0
+  p = 103  class [up]  d = 2266   M = 103   min depth = 1 (at x_0 = 1)   k = 0
+  p = 107  class [p]  d = -1605   M = 107   min depth = 1 (at x_0 = 1)   k = 0
+  p = 107  class [up]  d = -107   M = 107   min depth = 1 (at x_0 = 1)   k = 0
+  p = 109  class [p]  d = 109   M = 109   min depth = 1 (at x_0 = 1)   k = 0
+  p = 109  class [up]  d = 654   M = 109   min depth = 1 (at x_0 = 1)   k = 0
+  p = 113  class [p]  d = 113   M = 113   min depth = 1 (at x_0 = 1)   k = 0
+  p = 113  class [up]  d = 339   M = 113   min depth = 1 (at x_0 = 1)   k = 0
+  p = 127  class [p]  d = 254   M = 254   min depth = 1 (at x_0 = 1)   k = 0
+  p = 127  class [up]  d = -127   M = 254   min depth = 1 (at x_0 = 1)   k = 0
+  p = 131  class [p]  d = 131   M = 524   min depth = 1 (at x_0 = 1)   k = 0
+  p = 131  class [up]  d = 8646   M = 524   min depth = 1 (at x_0 = 1)   k = 0
+  p = 137  class [p]  d = 274   M = 274   min depth = 1 (at x_0 = 1)   k = 0
+  p = 137  class [up]  d = -411   M = 274   min depth = 1 (at x_0 = 1)   k = 0
+  p = 139  class [p]  d = 139   M = 278   min depth = 1 (at x_0 = 1)   k = 0
+  p = 139  class [up]  d = -139   M = 278   min depth = 1 (at x_0 = 1)   k = 0
+  p = 149  class [p]  d = -149   M = 596   min depth = 1 (at x_0 = 1)   k = 0
+  p = 149  class [up]  d = 13559   M = 596   min depth = 1 (at x_0 = 1)   k = 0
+  p = 151  class [p]  d = 755   M = 302   min depth = 1 (at x_0 = 1)   k = 0
+  p = 151  class [up]  d = 453   M = 302   min depth = 1 (at x_0 = 1)   k = 0
+  p = 157  class [p]  d = 157   M = 157   min depth = 1 (at x_0 = 1)   k = 0
+  p = 157  class [up]  d = 2355   M = 157   min depth = 1 (at x_0 = 1)   k = 0
+  p = 163  class [p]  d = 978   M = 163   min depth = 1 (at x_0 = 1)   k = 0
+  p = 163  class [up]  d = 815   M = 163   min depth = 1 (at x_0 = 1)   k = 0
+  p = 167  class [p]  d = 334   M = 334   min depth = 1 (at x_0 = 1)   k = 0
+  p = 167  class [up]  d = -334   M = 334   min depth = 1 (at x_0 = 1)   k = 0
+  p = 173  class [p]  d = -173   M = 692   min depth = 1 (at x_0 = 1)   k = 0
+  p = 173  class [up]  d = 519   M = 692   min depth = 1 (at x_0 = 1)   k = 0
+  p = 179  class [p]  d = 179   M = 358   min depth = 1 (at x_0 = 1)   k = 0
+  p = 179  class [up]  d = -537   M = 358   min depth = 1 (at x_0 = 1)   k = 0
+  p = 181  class [p]  d = -181   M = 362   min depth = 1 (at x_0 = 1)   k = 0
+  p = 181  class [up]  d = -1086   M = 362   min depth = 1 (at x_0 = 1)   k = 0
+  p = 191  class [p]  d = 191   M = 191   min depth = 1 (at x_0 = 1)   k = 0
+  p = 191  class [up]  d = -191   M = 191   min depth = 1 (at x_0 = 1)   k = 0
+  p = 193  class [p]  d = -193   M = 193   min depth = 1 (at x_0 = 1)   k = 0
+  p = 193  class [up]  d = 965   M = 193   min depth = 1 (at x_0 = 1)   k = 0
+  p = 197  class [p]  d = 197   M = 394   min depth = 1 (at x_0 = 1)   k = 0
+  p = 197  class [up]  d = 394   M = 394   min depth = 1 (at x_0 = 1)   k = 0
+  p = 199  class [p]  d = 199   M = 398   min depth = 1 (at x_0 = 1)   k = 0
+  p = 199  class [up]  d = -199   M = 398   min depth = 1 (at x_0 = 1)   k = 0
+
+  lines in table            : 180
+  lines with p | M          : 92  (of which good, i.e. ANOMALOUS: 2)
+  lines with p-torsion      : 0
+
+-------------------------------------------------------------------------
+ The ledger of section 2.5, S = {11,13,17}.  Places with p | M.
+-------------------------------------------------------------------------
+  d = 4279   p = 11   M = 22   min depth = 1 (at x_0 = 1)   k = 0
+
+  (twist, place) pairs      : 99
+  pairs with p | M          : 1  (of which good, i.e. ANOMALOUS: 0)
+  pairs with p-torsion      : 0
+
+-------------------------------------------------------------------------
+ p = 2 (section 3.2) is not exposed: Disc(E_d) = -16 * 31 * d^6, so
+ v_2(Disc) >= 4 for every d and 2 is never a place of good reduction,
+ hence never anomalous.  Its additive place is treated in cert-p2.gp.
+-------------------------------------------------------------------------
+
+done.
