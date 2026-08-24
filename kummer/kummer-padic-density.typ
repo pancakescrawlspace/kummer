@@ -1134,6 +1134,64 @@ All eight classes of $QQ_2^times slash (QQ_2^times)^2$ are covered by small twis
   [$d$], [$1$], [$3$], [$5$], [$-1$], [$-30$], [$6$], [$-6$], [$30$],
 )
 
+=== An extended certificate at $2$ <sec-cert-p2>
+
+The conventions of @sec-cert-conv do not apply verbatim here, and it is worth saying exactly what
+shifts. For $p >= 3$ the formal group is $E_1 (QQ_p) tilde.equiv ZZ_p$. At $p = 2$ that fails ---
+$E_1 (QQ_2)$ can carry $2$-torsion --- and one goes a step down, as in @sec-local:
+$ E_2 (QQ_2) tilde.equiv hat(E)(4 ZZ_2) tilde.equiv ZZ_2 , quad E_n <-> 2^(n-2) ZZ_2 . $
+So the finite quotient to surject onto is $E(QQ_2) slash E_2$, of order
+$ Q_2 := 2 M_2 , quad M_2 = c_2 dot \#tilde(E)^"ns" (FF_2) = c_2 (2 - a_2) , $
+the extra factor $2$ being $\#(E_1 slash E_2)$. A point generates $E(QQ_2)$ topologically iff its
+order $m$ in $E(QQ_2) slash E_2$ is $Q_2$ *and* its depth $v = v_2 (c(m P))$ is exactly $2$ --- the
+shifted form of "depth $1$". In general the closure has index $(Q_2 slash m) dot 2^(v-2)$.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *The torsion vanishes here, so $E^d (QQ_2) tilde.equiv ZZ_2$ with no $C_a times C_b$ at all.*
+  Two halves, neither using the certificate:
+
+  - *No odd torsion.* The odd part of $T$ injects into $E(QQ_2) slash E_1$, of order $M_2$ --- and
+    $M_2 in {2, 4}$ is a power of $2$ on every one of the eight lines.
+  - *No $2$-torsion.* $E_2$ is torsion-free, so $2$-torsion injects into $E(QQ_2) slash E_2$; but
+    $E[2](QQ_2) = 0$, because $x^3 + d^2 x + d^3$ is *irreducible over $QQ_2$*. Its roots are $d$
+    times those of $x^3 + x + 1$, so this is one statement for all eight twists at once. A point of
+    order $4$ would give one of order $2$, so the whole $2$-part goes with it.
+
+  So the base and $T$-coordinate columns are empty throughout, and the entire content of a line is
+  the pair $(m, v)$. This is also precisely the hypothesis @sec-sadic needs: $E^d (QQ_2)$ is
+  *procyclic*, so one generator can suffice and the surface's supply of *pairs* of points is
+  enough. Had $f$ split completely over $QQ_2$ the group would be $ZZ_2 times (ZZ slash 2)^2$,
+  three generators would be needed, and the argument would break.
+]
+
+The model $Y^2 = X^3 + d^2 X + d^3$ is minimal at $2$ for all eight ($v_2 (c_4) = 4$, $v_2(Delta) = 4$
+for $d$ odd; $6$ and $10$ for $d$ even --- never $v_2(c_4) >= 4$ together with $v_2(Delta) >= 12$),
+so the denominator test is the right one.
+
+#align(center)[
+#set text(size: 8.5pt)
+#table(columns: 9, align: (center, right, center, center, right, left, center, center, center),
+  stroke: 0.4pt + luma(170), inset: (x: 5pt, y: 3pt),
+  table.header([class], [$d$], [type], [$c_2$], [$Q_2$], [$x(P)$], [$(alpha; t)$], [$(m, v)$],
+               [index]),
+  [$[1]$],  [$1$],   [$I I$],    [$1$], [$4$], [$0$],                [$u$; ---], [$(4,2)$], [$1$],
+  [$[3]$],  [$3$],   [$I I I$],  [$2$], [$8$], [$3$],                [$u$; ---], [$(8,2)$], [$1$],
+  [$[5]$],  [$5$],   [$I I$],    [$1$], [$4$], [$4$],                [$u$; ---], [$(4,2)$], [$1$],
+  [$[7]$],  [$-1$],  [$I I I$],  [$2$], [$8$], [$1$],                [$u$; ---], [$(8,2)$], [$1$],
+  [$[2]$],  [$-30$], [$I_0^*$],  [$1$], [$4$], [$69$],               [$u$; ---], [$(4,2)$], [$1$],
+  [$[6]$],  [$6$],   [$I_0^*$],  [$1$], [$4$], [$-3$],               [$u$; ---], [$(4,2)$], [$1$],
+  [$[10]$], [$-6$],  [$I_0^*$],  [$1$], [$4$], [$21$],               [$u$; ---], [$(4,2)$], [$1$],
+  [$[14]$], [$30$],  [$I_0^*$],  [$1$], [$4$], [$-339 slash 49$],    [$u$; ---], [$(4,2)$], [$1$],
+)
+#set text(size: 10.5pt)]
+
+Every twist has rank $1$ with trivial torsion, so each occupies a single line; every line has
+$m = Q_2$ and $v = 2$, hence *index $1$*. So each class is covered by a single *full* twist ---
+there is no hyperplane mechanism here and nothing to stack, unlike @tab-primes-extended's
+additive classes or the ledger of @sec-cert-ledger. Note also that all eight reductions are
+additive ($a_2 = 0$): $2$ divides $Delta = -2^4 dot 31 dot d^6$ for every twist, since $2$ is a
+bad prime of $E$ itself.
+
 == All primes $p < 200$ <tab-primes>
 
 Witnesses from the pure-descent run with $|d| <= 3000$; the two marked $dagger$ lie beyond that
