@@ -1408,6 +1408,36 @@ together, the $ZZ_p$-coordinates include a unit and the $T$-coordinates generate
 
 === The table <tab-primes-extended>
 
+*How to read the fifth column, the base $g$.* It names the base of $T$ against which the last
+column's classes are discrete logarithms, and *two different kinds of entry share it*, exactly as
+they do in the last column:
+
+#align(center)[
+#table(columns: 2, align: (left, left), stroke: 0.4pt, inset: 6pt,
+  [entry], [meaning],
+  [$(4,30),(13,0)$],
+    [*good reduction.* Two honest points of $tilde(E)(FF_p)$, each written as its pair of
+     coordinates $(x, y)$ --- the canonical base of @sec-cert-conv],
+  [$3 p, 21 p$],
+    [*additive reduction with $T tilde.equiv (ZZ slash 2)^2$.* Two $2$-torsion points, named by
+     their $x$-coordinate alone. A $2$-torsion point is $(r, 0)$ with $r$ a root of
+     $x^3 + d^2 x + d^3$, so the $y$ is $0$ and carries no information; and over $QQ_p$ all three
+     roots have $v_p (r) = 1$, so $r = u p$ with $u$ a unit. The label records $u$: "$3 p$" means
+     $r equiv 3 p space (mod p^2)$],
+  [---],
+    [no base: either $|T| <= 2$, where the order already determines the element, or $T$ cyclic of
+     order $4$, where the order pins it down to inversion],
+)]
+
+The roots are genuine elements of $ZZ_p without ZZ$, with infinite expansions, so they cannot be
+printed in full; the leading digit is quoted because it is already *enough to tell them apart* ---
+after dividing by $p$ they are the three distinct roots of the good-reduction cubic mod $p$. At
+$p = 47$ with $d = 94$, for instance, the three roots are $141$, $987$, $1081$ modulo $47^2$, that
+is $3p$, $21p$, $23p$; the first two are the printed base and the third is recorded alongside it in
+`results/cert-extended.txt`. Ordering them by that leading digit, rather than by the integer lift
+of the root, is what makes the column independent of the working precision --- see the note at the
+end of @sec-cert-conv.
+
 *How to read the last column.* It is the image of the point in
 $E^d (QQ_p) tilde.equiv ZZ_p times T$, written as a pair $(alpha; t)$ --- first the
 $ZZ_p$-coordinate, then the $T$-coordinate, separated by a semicolon. Reading the four shapes
