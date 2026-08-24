@@ -887,6 +887,200 @@ uniform sweep, now draws 22 twists with points and reaches a ledger of 5.
 ]
 
 
+=== An extended certificate for the ledger <sec-cert-ledger>
+
+@sec-cert-extended does for the single-place table of @tab-primes what this section now does for
+the ledger: repeat the witnesses with the local half written out. Two things change.
+
++ *Several lines per class.* At a single place one twist sufficed a priori, so a class got one
+  line. Here a tuple is covered by several twists --- seven, in three of the five covered tuples
+  --- so a tuple gets several lines.
++ *The image is a triple.* A line records where one generator sits in
+  $ E^d (QQ_S) = product_(p in S) E^d (QQ_p) = product_p (ZZ_p times T_p) , $
+  one coordinate $(alpha_p ; t_p)$ per place, in the conventions of @sec-cert-conv. So there is
+  *one line per (twist, generator)*: a rank-$2$ twist occupies two lines.
+
+The arena $cal(G)_(arrow(delta))$ depends only on the tuple, not on the twist, so the group
+$E^d (QQ_p)$ is stated once per tuple rather than once per line.
+
+*The column a ledger line needs and a single-place line does not* is the *index of the reach* in
+the arena $cal(G)(1)$ of order $N = product_p M_p$. Index $1$ is a full twist; index $2$ is one of
+the hyperplanes the ledger stacks up. It is computed here rather than quoted from @sec-sweep64.
+
+#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
+  *A trap worth recording, since it produced a wrong answer first.* The natural way to get the
+  index is to write each generator's image as a discrete logarithm in $E^d (FF_p)$ and take the
+  determinant of the Hermite form of the resulting lattice. But `ellgroup(E,p,1)` returns a
+  generator chosen *at random on each call* --- five successive calls at $p = 11$ for $d = 3714$
+  return $(5,3)$, $(2,8)$, $(2,8)$, $(5,3)$, $(2,8)$. Computing the base inside the discrete-log
+  routine therefore expresses different generators of the same twist against *different* bases,
+  and the lattice they span is meaningless. It reported index $6$ for $d = 3714$, which would have
+  broken the covering at $(u,1,1)$ and looked exactly like an error in @sec-sweep64.
+
+  The fix is to fix one base per (curve, prime); the guard is to compute the index a second way,
+  directly on points of $product_p E^d (FF_p)$ with no discrete logarithms at all, and compare.
+  `cert-ledger.gp` does both on every line: *$32$ comparisons, $0$ disagreements*, and the indices
+  reproduce @sec-sweep64 exactly.
+]
+
+=== The tables <tab-ledger-extended>
+
+Only $x(P)$ is listed, for the reason of @tab-primes-extended. Unlike there, the $ZZ_p$-coordinate
+is *not* always a unit: a partial reach may fail the formal-group condition at a place, and
+$11^1 u$ in the $(1,1,1)$ block is such a line. That column carries information here.
+
+#block(breakable: true)[
+  *Tuple (1,1,1)*, $d_0 = 1$, arena of order $4536$ --- $E^d (QQ_p) = $ $ZZ_11 times C_14$, $ZZ_13 times C_18$, $ZZ_17 times C_18$ for $p = 11, 13, 17$.
+
+  #set text(size: 7.6pt)
+  #table(columns: 6, align: (right, center, left, left, left, left),
+    stroke: 0.35pt + luma(175), inset: (x: 4pt, y: 2.5pt),
+    table.header([$d$], [index], [$x(P)$], [at $11$], [at $13$], [at $17$]),
+    [$-1590$], [$2$], [$1749$], [$u$; $6$], [$u$; $2$], [$u$; $3$],
+    [], [], [$68125642147396531461 slash 58280778783859129$], [$u$; $5$], [$u$; $1$], [$u$; $4$],
+    [$-519$], [$2$], [$4152$], [$11^1 u$; $10$], [$u$; $17$], [$u$; $10$],
+    [], [], [$6050848 slash 16641$], [$u$; $10$], [$u$; $10$], [$u$; $15$],
+    [$-127$], [$2$], [$88$], [$u$; $6$], [$u$; $11$], [$u$; $5$],
+    [], [], [$3122041 slash 25600$], [$11^1 u$; $3$], [$u$; $15$], [$u$; $8$],
+    [$53$], [$2$], [$148$], [$u$; $10$], [$u$; $5$], [$u$; $7$],
+    [], [], [$-10388 slash 289$], [$11^1 u$; $1$], [$u$; $10$], [$u$; $0$],
+    [$586$], [$2$], [$-879 slash 4$], [$u$; $1$], [$13^1 u$; $10$], [$u$; $11$],
+    [], [], [$21150205 slash 4761$], [$u$; $7$], [$u$; $14$], [$u$; $6$],
+    [$1730$], [$2$], [$13321 slash 4$], [$u$; $10$], [$u$; $17$], [$u$; $12$],
+    [], [], [$1987150919816948629 slash 5510562785917225$], [$u$; $7$], [$u$; $1$], [$u$; $17$],
+    [$1923$], [$2$], [$18439647 slash 529$], [$u$; $11$], [$u$; $4$], [$u$; $16$],
+    [], [], [$33387 slash 49$], [$u$; $7$], [$u$; $1$], [$u$; $8$],
+  )
+  #set text(size: 10.5pt)
+]
+
+#block(breakable: true)[
+  *Tuple (1,1,u)*, $d_0 = 3$, arena of order $4536$ --- $E^d (QQ_p) = $ $ZZ_11 times C_14$, $ZZ_13 times C_18$, $ZZ_17 times C_18$ for $p = 11, 13, 17$.
+
+  #set text(size: 7.6pt)
+  #table(columns: 6, align: (right, center, left, left, left, left),
+    stroke: 0.35pt + luma(175), inset: (x: 4pt, y: 2.5pt),
+    table.header([$d$], [index], [$x(P)$], [at $11$], [at $13$], [at $17$]),
+    [$335$], [$1$], [$-134$], [$u$; $13$], [$u$; $12$], [$u$; $3$],
+    [], [], [$1474$], [$u$; $4$], [$u$; $9$], [$u$; $2$],
+    [], [], [$31289$], [$u$; $3$], [$u$; $7$], [$u$; $4$],
+  )
+  #set text(size: 10.5pt)
+]
+
+#block(breakable: true)[
+  *Tuple (u,1,1)*, $d_0 = -1$, arena of order $3240$ --- $E^d (QQ_p) = $ $ZZ_11 times C_10$, $ZZ_13 times C_18$, $ZZ_17 times C_18$ for $p = 11, 13, 17$.
+
+  #set text(size: 7.6pt)
+  #table(columns: 6, align: (right, center, left, left, left, left),
+    stroke: 0.35pt + luma(175), inset: (x: 4pt, y: 2.5pt),
+    table.header([$d$], [index], [$x(P)$], [at $11$], [at $13$], [at $17$]),
+    [$-511$], [$2$], [$1072$], [$11^1 u$; $8$], [$u$; $11$], [$17^1 u$; $7$],
+    [], [], [$90605848 slash 53361$], [$u$; $0$], [$u$; $9$], [$u$; $4$],
+    [$94$], [$2$], [$141$], [$u$; $3$], [$u$; $2$], [$u$; $6$],
+    [], [], [$1833 slash 16$], [$u$; $1$], [$u$; $15$], [$u$; $17$],
+    [$134$], [$2$], [$-335 slash 4$], [$u$; $6$], [$u$; $5$], [$u$; $6$],
+    [], [], [$94537 slash 196$], [$u$; $5$], [$13^2 u$; $12$], [$u$; $5$],
+    [$1154$], [$2$], [$577 slash 4$], [$u$; $3$], [$u$; $17$], [$u$; $4$],
+    [], [], [$162802870117 slash 95277121$], [$u$; $9$], [$13^1 u$; $2$], [$u$; $17$],
+    [$1821$], [$2$], [$-457071 slash 676$], [$u$; $1$], [$u$; $0$], [$u$; $5$],
+    [], [], [$21215257 slash 1444$], [$u$; $4$], [$u$; $2$], [$17^1 u$; $11$],
+    [$2994$], [$2$], [$-531435 slash 289$], [$u$; $7$], [$13^1 u$; $4$], [$u$; $0$],
+    [], [], [$10850708593 slash 784$], [$u$; $4$], [$u$; $5$], [$u$; $4$],
+    [$3714$], [$2$], [$-3564026823 slash 1643524$], [$u$; $7$], [$u$; $7$], [$u$; $1$],
+    [], [], [$-6284235 slash 113569$], [$u$; $3$], [$u$; $1$], [$u$; $2$],
+  )
+  #set text(size: 10.5pt)
+]
+
+#block(breakable: true)[
+  *Tuple (u,1,u)*, $d_0 = 74$, arena of order $3240$ --- $E^d (QQ_p) = $ $ZZ_11 times C_10$, $ZZ_13 times C_18$, $ZZ_17 times C_18$ for $p = 11, 13, 17$.
+
+  #set text(size: 7.6pt)
+  #table(columns: 6, align: (right, center, left, left, left, left),
+    stroke: 0.35pt + luma(175), inset: (x: 4pt, y: 2.5pt),
+    table.header([$d$], [index], [$x(P)$], [at $11$], [at $13$], [at $17$]),
+    [$-3441$], [$2$], [$223665 slash 64$], [$u$; $1$], [$13^1 u$; $3$], [$u$; $5$],
+    [], [], [$23901$], [$u$; $4$], [$u$; $17$], [$u$; $10$],
+    [$-1213$], [$2$], [$27899 slash 25$], [$u$; $1$], [$u$; $6$], [$u$; $7$],
+    [], [], [$30514235278 slash 16056049$], [$u$; $4$], [$u$; $2$], [$u$; $1$],
+    [$-641$], [$2$], [$36537$], [$u$; $4$], [$u$; $16$], [$u$; $9$],
+    [], [], [$55185 slash 121$], [$u$; $0$], [$u$; $15$], [$u$; $5$],
+    [$-367$], [$2$], [$263104 slash 625$], [$u$; $2$], [$u$; $1$], [$u$; $17$],
+    [], [], [$1825513417 slash 2762244$], [$u$; $9$], [$u$; $3$], [$u$; $1$],
+    [$-199$], [$2$], [$6169 slash 16$], [$u$; $9$], [$u$; $9$], [$u$; $16$],
+    [], [], [$18144424 slash 109561$], [$u$; $8$], [$u$; $13$], [$u$; $9$],
+    [$131$], [$2$], [$655$], [$u$; $9$], [$u$; $11$], [$u$; $4$],
+    [], [], [$5371 slash 25$], [$u$; $6$], [$u$; $2$], [$u$; $3$],
+    [$2859$], [$2$], [$411$], [$u$; $3$], [$u$; $17$], [$u$; $10$],
+    [], [], [$16100935 slash 121$], [$u$; $0$], [$u$; $17$], [$u$; $6$],
+  )
+  #set text(size: 10.5pt)
+]
+
+#block(breakable: true)[
+  *Tuple (11,u,u)*, $d_0 = 11$, arena of order $3960$ --- $E^d (QQ_p) = $ $ZZ_11 times C_2$, $ZZ_13 times C_10$, $ZZ_17 times C_18$ for $p = 11, 13, 17$.
+
+  #set text(size: 7.6pt)
+  #table(columns: 6, align: (right, center, left, left, left, left),
+    stroke: 0.35pt + luma(175), inset: (x: 4pt, y: 2.5pt),
+    table.header([$d$], [index], [$x(P)$], [at $11$], [at $13$], [at $17$]),
+    [$4279$], [$---$], [$-2334$], [$u$; ord $11$], [$u$; $3$], [$u$; $2$],
+    [], [], [$110961$], [$u$; ord $11$], [$u$; $3$], [$u$; $15$],
+    [], [], [$-196222103 slash 88804$], [$u$; ord $22$], [$u$; $5$], [$u$; $17$],
+  )
+  #set text(size: 10.5pt)
+]
+
+#block(breakable: true)[
+  *Tuple (u,u,u)*, $d_0 = 6$, arena of order $1800$ --- $E^d (QQ_p) = $ $ZZ_11 times C_10$, $ZZ_13 times C_10$, $ZZ_17 times C_18$ for $p = 11, 13, 17$.
+
+  #set text(size: 7.6pt)
+  #table(columns: 6, align: (right, center, left, left, left, left),
+    stroke: 0.35pt + luma(175), inset: (x: 4pt, y: 2.5pt),
+    table.header([$d$], [index], [$x(P)$], [at $11$], [at $13$], [at $17$]),
+    [$241$], [$2$], [$9640 slash 529$], [$u$; $3$], [$u$; $7$], [$u$; $3$],
+    [], [], [$1464$], [$u$; $6$], [$13^1 u$; $7$], [$u$; $17$],
+    [$-889$], [$2$], [$5461 slash 9$], [$u$; $9$], [$u$; $2$], [$u$; $1$],
+    [], [], [$584335165465 slash 248882176$], [$u$; $3$], [$u$; $7$], [$u$; $0$],
+    [$-938$], [$2$], [$7499913 slash 1024$], [$u$; $4$], [$u$; $7$], [$u$; $6$],
+    [], [], [$115842421857 slash 10407076$], [$11^1 u$; $1$], [$u$; $2$], [$u$; $13$],
+    [$1047$], [$2$], [$597837 slash 121$], [$u$; $0$], [$u$; $3$], [$u$; $2$],
+    [], [], [$1922641 slash 400$], [$11^1 u$; $2$], [$u$; $2$], [$u$; $17$],
+    [$4886$], [$2$], [$60148405 slash 3481$], [$u$; $5$], [$13^1 u$; $1$], [$u$; $17$],
+    [], [], [$27778442265305 slash 3528597604$], [$u$; $6$], [$u$; $2$], [$u$; $11$],
+  )
+  #set text(size: 10.5pt)
+]
+
+#block(breakable: true)[
+  *Tuple (1,u,1)*, $d_0 = -19$, arena of order $2520$ --- $E^d (QQ_p) = $ $ZZ_11 times C_14$, $ZZ_13 times C_10$, $ZZ_17 times C_18$ for $p = 11, 13, 17$.
+
+  #set text(size: 7.6pt)
+  #table(columns: 6, align: (right, center, left, left, left, left),
+    stroke: 0.35pt + luma(175), inset: (x: 4pt, y: 2.5pt),
+    table.header([$d$], [index], [$x(P)$], [at $11$], [at $13$], [at $17$]),
+    [$-149$], [$2$], [$1639$], [$u$; $6$], [$u$; $8$], [$u$; $11$],
+    [], [], [$8791 slash 25$], [$11^1 u$; $4$], [$u$; $5$], [$u$; $5$],
+    [$-349$], [$2$], [$2443$], [$u$; $13$], [$u$; $9$], [$u$; $12$],
+    [], [], [$2582892113 slash 456976$], [$u$; $12$], [$13^1 u$; $0$], [$u$; $13$],
+    [$-1086$], [$2$], [$113125 slash 121$], [$u$; $0$], [$u$; $5$], [$u$; $5$],
+    [], [], [$1072425 slash 1024$], [$u$; $3$], [$u$; $4$], [$u$; $13$],
+    [$2546$], [$2$], [$-6767 slash 4$], [$u$; $5$], [$u$; $8$], [$u$; $1$],
+    [], [], [$55650401 slash 1444$], [$u$; $9$], [$u$; $9$], [$u$; $7$],
+    [$3391$], [$2$], [$50865$], [$11^1 u$; $5$], [$u$; $8$], [$u$; $14$],
+    [], [], [$81416056988410093681 slash 3930431307695104$], [$u$; $3$], [$u$; $7$], [$u$; $3$],
+  )
+  #set text(size: 10.5pt)
+]
+
+
+The star test on each sign-closed ledger confirms the outcome of @sec-sweep64 line for line:
+$(1,1,1)$, $(1,1,u)$, $(u,1,1)$ and $(u,1,u)$ *cover*; $(u,u,u)$ and $(1,u,1)$ do *not*. The
+reach index is omitted for $(11,u,u)$, where $11 divides d_0$ makes the reduction additive and
+$tilde(E)(FF_11)$ does not exist --- the per-place data is still listed, and the $T$-coordinate is
+given by its order.
+
 = Result
 
 #block(fill: rgb("#eef4ff"), inset: 9pt, radius: 3pt, width: 100%)[
