@@ -1,0 +1,65 @@
+=========================================================================
+ The l-primary rewrite: what admission discards, and what layers cost
+=========================================================================
+
+-------------------------------------------------------------------------
+ (1) The twists that gran1 refuses, and their granularity
+-------------------------------------------------------------------------
+  twists with points 119,  admitted 102,  refused 17
+  depth-derived n_p vs hitsE1, disagreements : 0
+
+   refused: d = 1   n = [1, 1, 2]
+   refused: d = -183   n = [1, 2, 1]
+   refused: d = 251   n = [2, 1, 1]
+   refused: d = 287   n = [2, 2, 1]
+   refused: d = 543   n = [1, 1, 2]
+   refused: d = 807   n = [1, 1, 2]
+   refused: d = -854   n = [2, 1, 1]
+   refused: d = 1039   n = [2, 1, 1]
+   refused: d = -1262   n = [1, 2, 1]
+   refused: d = -1327   n = [1, 2, 1]
+   refused: d = 1362   n = [1, 2, 1]
+   refused: d = -1381   n = [2, 1, 1]
+   refused: d = -1517   n = [2, 1, 1]
+   refused: d = 1522   n = [1, 2, 1]
+   refused: d = 1769   n = [1, 2, 1]
+   refused: d = 1973   n = [1, 1, 2]
+   refused: d = -1993   n = [1, 1, 2]
+
+  largest granularity seen anywhere : 2
+  every refusal has FINITE granularity, so none is inadmissible: all 17
+  would enter a level-2 ledger, and the termination theorem would apply
+  at N = 2.  They are discarded for want of machinery, not on principle.
+
+-------------------------------------------------------------------------
+ (2) The layers, and the star test run layer by layer
+-------------------------------------------------------------------------
+  arena order N = 4536 = [2, 3, 7; 3, 4, 1]
+  the seven reaches have sizes [2268, 2268, 2268, 2268, 2268, 2268, 2268], index 2 each
+
+   layer l = 2 : G_l has order 8,  <=2-generated subgroups 15,  distinct masks 15
+   layer l = 3 : G_l has order 81,  <=2-generated subgroups 23,  distinct masks 1
+   layer l = 7 : G_l has order 7,  <=2-generated subgroups 2,  distinct masks 1
+
+  mask triples tested 15,  with empty intersection 0
+  layer-wise verdict : COVERED   (section 2.3.1, by bitmap over all 4536^2 pairs: COVERED)
+
+  Only the layer l = 2 carries information: at l = 3 and l = 7 every
+  <=2-generated subgroup lies in all seven reaches, so those layers
+  produce one mask apiece and cannot obstruct.  The whole covering
+  question is 15 subgroup tests inside a group of order 8, against
+  the 20575296 ordered pairs the flat bitmap enumerates.
+
+-------------------------------------------------------------------------
+ (3) Level 2, which is where the flat representation dies
+-------------------------------------------------------------------------
+  ker_1/ker_2 = prod_p E_1/E_2 has order 2431 = [11, 13, 17]
+  gcd with |G(1)| = 4536 : 1   -- coprime, so G(2) = G(1) (+) prod_p Z/p SPLITS,
+  and the level-2 arena of order 11027016 adds no complexity to the
+  layers l = 2, 3, 7 at all: it adds three NEW layers, each CYCLIC OF
+  PRIME ORDER 11, 13, 17.  A subgroup of C_p is 0 or everything, so a
+  reach's datum in each new layer is ONE BIT -- and that bit is exactly
+  'granularity 1 at p'.  Level 2 costs 3 bits per entry, not a factor
+  2431 on a bitmap.
+
+done.
