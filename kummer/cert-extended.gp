@@ -63,9 +63,42 @@ gensalone(E, P, p, M) =
   r[1] == M && r[2] == 1;
 }
 
-\\ discrete log of Pbar in E(F_p), against the generators returned by ellgroup
+
+\\ A CANONICAL base for E(F_p), so that the class column is reproducible.
+\\ ellgroup(E,p,1) returns a generator chosen AT RANDOM on each call -- five
+\\ successive calls at p = 23 for d = 1 return (18,20), (9,7), (9,7), (1,7),
+\\ (19,5) -- so a class computed against it is neither reproducible nor
+\\ checkable by a reader, and two generators of the same twist dlogged against
+\\ separate calls are not even mutually consistent.  Instead: order the affine
+\\ points of E(F_p) lexicographically by (x,y) and take the FIRST point of
+\\ maximal order; in the non-cyclic case take the first g_2 of order n_2 that is
+\\ independent of g_1.  Deterministic, and statable in one line.
+canonbase(E, p) =
+{ my(Ep = ellinit(E, p), G = ellgroup(E, p), pts = List(), n1, n2, g1 = 0, g2 = 0);
+  for (x = 0, p-1,
+    my(r = x^3 + E.a4*x + E.a6);
+    for (y = 0, p-1, if (Mod(y^2 - r, p) == 0, listput(pts, [Mod(x,p), Mod(y,p)]))));
+  pts = Vec(pts);
+  n1 = G[1];
+  foreach (pts, P, if (g1 == 0 && ellorder(Ep, P) == n1, g1 = P));
+  if (#G == 1, return([Ep, [g1], G]));
+  n2 = G[2];
+  foreach (pts, P,
+    if (g2 == 0 && ellorder(Ep, P) == n2,
+      \\ independent of g1 iff <g1,P> has order n1*n2
+      my(ok = 1, k);
+      for (k = 1, n2-1, if (ellmul(Ep, P, k) == [0], break);
+        my(inside = 0, e);
+        for (e = 0, n1-1, if (ellmul(Ep, g1, e) == ellmul(Ep, P, k), inside = 1; break));
+        if (inside, ok = 0; break));
+      if (ok, g2 = P)));
+  [Ep, [g1, g2], G];
+}
+
+\\ discrete log of Pbar in E(F_p), against the CANONICAL base above
 dlog(Ep, P, gens, cyc) =
 { my(g1 = gens[1], n1 = cyc[1]);
+  if (P == [0], return(if (#cyc == 1, [0], [0,0])));
   if (#cyc == 1,
     for (e = 0, n1-1, if (ellmul(Ep,g1,e) == P, return([e]))); return([-1]));
   my(g2 = gens[2], n2 = cyc[2]);
@@ -134,12 +167,15 @@ entry(p, cls, d) =
         ",   E_d(Q_p) = ", Tstr);
   print("      generators used : ", used,
         if (#used < #gens, Str("   (of ", #gens, "; the rest are not needed)"), ""));
+  \\ ONE canonical base for this (curve, prime), reused for every generator
+  my(CB = if (good && M % p != 0, canonbase(E, p), 0));
+  if (type(CB) == "t_VEC",
+    print("      canonical base of E_d(F_p) : ", CB[2]));
   foreach (used, P,
     my(r = ordv(E,P,p,M), coord);
     if (good && M % p != 0,
-      my(Ep = ellinit(E,p), G = ellgroup(E,p,1));
-      my(Pp = [Mod(P[1],p), Mod(P[2],p)]);
-      coord = dlog(Ep, Pp, G[3], G[2]),
+      my(Pp = if (Mod(cden(P),p) == 0, [0], [Mod(P[1],p), Mod(P[2],p)]));
+      coord = dlog(CB[1], Pp, CB[2], CB[3]),
       coord = [r[1] / p^valuation(r[1], p)]);
     my(Tord = if (#T == 0, 1, if (#T == 1, T[1], T[1]*T[2])));
     print("        ", P, "  ->  ( ",
