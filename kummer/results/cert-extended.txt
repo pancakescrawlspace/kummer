@@ -415,18 +415,20 @@ the Z_p factor iff that coordinate is a unit, iff formal depth = 1.
   p = 47  class [p]  d = 94
       E_d : y^2 = x^3 + 8836x + 830584
       reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 188
-      rank 2, torsion 1,   E_d(Q_p) = Z_p x C4
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
       generators used : [[141, 2209], [1833/16, 117077/64]]
-        [141, 2209]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 94, formal depth 1]
-        [1833/16, 117077/64]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 94, formal depth 1]
+      canonical base of T = Phi : the 2-torsion at x = ["3p", "21p"]   (third root x = 23p)
+        [141, 2209]  ->  ( u ; class [1, 0] )     [ord in E/E_1 = 94, formal depth 1]
+        [1833/16, 117077/64]  ->  ( u ; class [1, 1] )     [ord in E/E_1 = 94, formal depth 1]
 
   p = 47  class [up]  d = 705
       E_d : y^2 = x^3 + 497025x + 350402625
       reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 188
-      rank 2, torsion 1,   E_d(Q_p) = Z_p x C4
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
       generators used : [[376, 24299], [-2439159/6400, 5261884389/512000]]
-        [376, 24299]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 94, formal depth 1]
-        [-2439159/6400, 5261884389/512000]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 94, formal depth 1]
+      canonical base of T = Phi : the 2-torsion at x = ["8p", "40p"]   (third root x = 46p)
+        [376, 24299]  ->  ( u ; class [1, 0] )     [ord in E/E_1 = 94, formal depth 1]
+        [-2439159/6400, 5261884389/512000]  ->  ( u ; class [0, 1] )     [ord in E/E_1 = 94, formal depth 1]
 
   p = 53  class [1]  d = 11
       E_d : y^2 = x^3 + 121x + 1331
@@ -539,18 +541,20 @@ the Z_p factor iff that coordinate is a unit, iff formal depth = 1.
   p = 67  class [p]  d = 2211
       E_d : y^2 = x^3 + 4888521x + 10808519931
       reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 268
-      rank 2, torsion 1,   E_d(Q_p) = Z_p x C4
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
       generators used : [[28743, 4888521], [4623, -363609]]
-        [28743, 4888521]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 134, formal depth 1]
-        [4623, -363609]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 134, formal depth 1]
+      canonical base of T = Phi : the 2-torsion at x = ["2p", "27p"]   (third root x = 38p)
+        [28743, 4888521]  ->  ( u ; class [0, 1] )     [ord in E/E_1 = 134, formal depth 1]
+        [4623, -363609]  ->  ( u ; class [1, 0] )     [ord in E/E_1 = 134, formal depth 1]
 
   p = 67  class [up]  d = 134
       E_d : y^2 = x^3 + 17956x + 2406104
       reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 268
-      rank 2, torsion 1,   E_d(Q_p) = Z_p x C4
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
       generators used : [[-335/4, 4489/8], [94537/196, 30466843/2744]]
-        [-335/4, 4489/8]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 134, formal depth 1]
-        [94537/196, 30466843/2744]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 134, formal depth 1]
+      canonical base of T = Phi : the 2-torsion at x = ["26p", "49p"]   (third root x = 59p)
+        [-335/4, 4489/8]  ->  ( u ; class [0, 1] )     [ord in E/E_1 = 134, formal depth 1]
+        [94537/196, 30466843/2744]  ->  ( u ; class [1, 0] )     [ord in E/E_1 = 134, formal depth 1]
 
   p = 71  class [1]  d = 1
       E_d : y^2 = x^3 + 1x + 1
@@ -933,18 +937,20 @@ the Z_p factor iff that coordinate is a unit, iff formal depth = 1.
   p = 131  class [p]  d = 131
       E_d : y^2 = x^3 + 17161x + 2248091
       reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 524
-      rank 2, torsion 1,   E_d(Q_p) = Z_p x C4
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
       generators used : [[655, 17161], [5371/25, 497669/125]]
-        [655, 17161]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 262, formal depth 1]
-        [5371/25, 497669/125]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 262, formal depth 1]
+      canonical base of T = Phi : the 2-torsion at x = ["5p", "51p"]   (third root x = 75p)
+        [655, 17161]  ->  ( u ; class [1, 0] )     [ord in E/E_1 = 262, formal depth 1]
+        [5371/25, 497669/125]  ->  ( u ; class [1, 1] )     [ord in E/E_1 = 262, formal depth 1]
 
   p = 131  class [up]  d = 8646
       E_d : y^2 = x^3 + 74753316x + 646317170136
       reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 524
-      rank 2, torsion 1,   E_d(Q_p) = Z_p x C4
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
       generators used : [[80565, 23012901], [-29168680211/7425625, 10935550731379087/20234828125]]
-        [80565, 23012901]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 262, formal depth 1]
-        [-29168680211/7425625, 10935550731379087/20234828125]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 262, formal depth 1]
+      canonical base of T = Phi : the 2-torsion at x = ["68p", "91p"]   (third root x = 103p)
+        [80565, 23012901]  ->  ( u ; class [0, 1] )     [ord in E/E_1 = 262, formal depth 1]
+        [-29168680211/7425625, 10935550731379087/20234828125]  ->  ( u ; class [1, 1] )     [ord in E/E_1 = 262, formal depth 1]
 
   p = 137  class [1]  d = 7
       E_d : y^2 = x^3 + 49x + 343
@@ -1028,18 +1034,20 @@ the Z_p factor iff that coordinate is a unit, iff formal depth = 1.
   p = 149  class [p]  d = -149
       E_d : y^2 = x^3 + 22201x + -3307949
       reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 596
-      rank 2, torsion 1,   E_d(Q_p) = Z_p x C4
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
       generators used : [[1639, 66603], [8791/25, 865839/125]]
-        [1639, 66603]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 298, formal depth 1]
-        [8791/25, 865839/125]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 298, formal depth 1]
+      canonical base of T = Phi : the 2-torsion at x = ["11p", "56p"]   (third root x = 82p)
+        [1639, 66603]  ->  ( u ; class [1, 0] )     [ord in E/E_1 = 298, formal depth 1]
+        [8791/25, 865839/125]  ->  ( u ; class [0, 1] )     [ord in E/E_1 = 298, formal depth 1]
 
   p = 149  class [up]  d = 13559
       E_d : y^2 = x^3 + 183846481x + 2492774435879
       reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 596
-      rank 2, torsion 1,   E_d(Q_p) = Z_p x C4
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
       generators used : [[20413, 3840773], [712634381069/37982569, 829166901850307943/234086572747]]
-        [20413, 3840773]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 298, formal depth 1]
-        [712634381069/37982569, 829166901850307943/234086572747]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 298, formal depth 1]
+      canonical base of T = Phi : the 2-torsion at x = ["42p", "119p"]   (third root x = 137p)
+        [20413, 3840773]  ->  ( u ; class [1, 1] )     [ord in E/E_1 = 298, formal depth 1]
+        [712634381069/37982569, 829166901850307943/234086572747]  ->  ( u ; class [0, 1] )     [ord in E/E_1 = 298, formal depth 1]
 
   p = 151  class [1]  d = 1
       E_d : y^2 = x^3 + 1x + 1
@@ -1182,18 +1190,20 @@ the Z_p factor iff that coordinate is a unit, iff formal depth = 1.
   p = 173  class [p]  d = -173
       E_d : y^2 = x^3 + 29929x + -5177717
       reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 692
-      rank 2, torsion 1,   E_d(Q_p) = Z_p x C4
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
       generators used : [[4671/25, 329219/125], [84078/289, 26068159/4913]]
-        [4671/25, 329219/125]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 346, formal depth 1]
-        [84078/289, 26068159/4913]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 346, formal depth 1]
+      canonical base of T = Phi : the 2-torsion at x = ["8p", "37p"]   (third root x = 128p)
+        [4671/25, 329219/125]  ->  ( u ; class [1, 0] )     [ord in E/E_1 = 346, formal depth 1]
+        [84078/289, 26068159/4913]  ->  ( u ; class [0, 1] )     [ord in E/E_1 = 346, formal depth 1]
 
   p = 173  class [up]  d = 519
       E_d : y^2 = x^3 + 269361x + 139798359
       reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 692
-      rank 2, torsion 1,   E_d(Q_p) = Z_p x C4
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
       generators used : [[3633/4, 269361/8], [-1211/25, -1406663/125]]
-        [3633/4, 269361/8]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 346, formal depth 1]
-        [-1211/25, -1406663/125]  ->  ( u ; order 2 in C4 )     [ord in E/E_1 = 346, formal depth 1]
+      canonical base of T = Phi : the 2-torsion at x = ["62p", "135p"]   (third root x = 149p)
+        [3633/4, 269361/8]  ->  ( u ; class [0, 1] )     [ord in E/E_1 = 346, formal depth 1]
+        [-1211/25, -1406663/125]  ->  ( u ; class [1, 0] )     [ord in E/E_1 = 346, formal depth 1]
 
   p = 179  class [1]  d = 1
       E_d : y^2 = x^3 + 1x + 1

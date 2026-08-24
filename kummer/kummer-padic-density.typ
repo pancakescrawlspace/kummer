@@ -1226,11 +1226,19 @@ $E(QQ_p) tilde.equiv ZZ_p times T$ with $T$ the torsion subgroup:
 - *Good reduction with $p divides.not M$.* Then $T tilde.equiv E(FF_p)$, read off by `ellgroup`,
   and the $T$-coordinate of a point is *literally its reduction mod $p$*. It is recorded as a
   discrete logarithm $[e]$ or $[e, f]$ against the generators PARI returns.
-- *The classes $[p]$ and $[u p]$.* Here $v_p (d)$ is odd, so $v_p (c_4) = 2$ and $v_p (Delta) = 6$:
-  the reduction is additive of type $I_0^*$, $a_p = 0$, and $M = c_p dot p$. The prime-to-$p$ part
-  of $T$ is $Phi(FF_p)$, of order $c_p$; the $p$-part is trivial, because a single point
-  topologically generates and $ZZ_p times ZZ slash p$ is not procyclic. The $T$-coordinate is
-  recorded by its order in $C_(c_p)$.
+- *The classes $[p]$ and $[u p]$.* Here $v_p (d)$ is odd, the reduction is additive with
+  $a_p = 0$, and $M = c_p dot p$. The prime-to-$p$ part of $T$ is $Phi(FF_p)$, of order $c_p$; the
+  $p$-part is trivial, because a single point topologically generates and
+  $ZZ_p times ZZ slash p$ is not procyclic. The type is $I_0^*$ for all but one line: at $p = 31$,
+  the bad prime of $E$ itself, $v_31 (Delta) = 7$ rather than $6$ and the type is $I_1^*$.
+
+  *$T$ is not automatically cyclic here*, and an earlier version of this table wrongly assumed it
+  was, reporting $C_4$ on ten lines where the truth is $C_2 times C_2$. Which one it is can be
+  settled without any Kodaira table: $E_0 (QQ_p)$ is torsion-free for $p > 2$, since
+  $E_1 tilde.equiv ZZ_p$ is and $E_0 slash E_1 tilde.equiv ZZ slash p$ has odd order, so
+  $E[2](QQ_p)$ injects into $Phi$ --- hence $T tilde.equiv (ZZ slash 2)^2$ exactly when the cubic
+  splits completely over $QQ_p$. It does on those ten lines and not on the eleventh ($p = 31$,
+  $d = -62$, the $I_1^*$ one), which is genuinely $C_4$.
 
 The $ZZ_p$-coordinate is only defined up to a unit --- choosing a topological generator of $ZZ_p$
 is a choice --- so what is canonical is its *valuation*. It is written $u$ for a unit and $p^k u$
@@ -1278,10 +1286,21 @@ defined up to a unit. So $u$ means valuation $0$, and $p^k u$ would mean valuati
   The fix is a canonical base, stated once: *order the affine points of $E^d (FF_p)$
   lexicographically by $(x,y)$ and take the first of maximal order; in the non-cyclic case take
   the first $g_2$ of order $n_2$ independent of $g_1$.* It is deterministic, and it is printed in
-  the *base $g$* column so that each line can be checked on its own. The class values below
-  therefore differ from the earlier version of this table; the group structures, orders, depths
-  and the choice of which generators are needed are unaffected, since none of them uses a
-  discrete logarithm.
+  the *base $g$* column so that each line can be checked on its own. The class values therefore
+  differ from the earlier version of this table; the group structures, orders, depths and the
+  choice of which generators are needed are unaffected, since none of them uses a discrete
+  logarithm.
+
+  *On the additive lines the base column was left empty*, because `ellgroup` needs good reduction
+  and $tilde(E)(FF_p)$ is singular there. For $|T| <= 2$ nothing is lost: the order already
+  determines the element. But on the ten lines with $T tilde.equiv (ZZ slash 2)^2$ it is not ---
+  there are three elements of order $2$ --- so those now carry a base too, namely *the $2$-torsion
+  points*, which map isomorphically onto $Phi$ by the argument above. Their $x$-coordinates lie in
+  $ZZ_p$ and not in $ZZ$, so the class has to be computed by $p$-adic arithmetic: $P$ sits on the
+  component of the unique $T_i$ with $P - T_i in E_0 (QQ_p)$. They are listed as $u p$, ordered by
+  the leading digit $u$ --- ordering by the integer lift instead would depend on the working
+  precision, which is the same irreproducibility in another guise. The one line with
+  $T tilde.equiv C_4$ keeps the order, which pins its element down to inversion.
 ]
 
 *Why every line begins with $u$.* Because it does --- in all $180$ of them --- and that is not
@@ -1356,8 +1375,8 @@ generated, hence not the certificate.
   [$43$], [$[u p]$], [$86$], [$ZZ_p times C_2$], [---], [$-169979 slash 47089$], [$u$; $2$ in $C_2$#super[\*]],
   [$47$], [$[1]$], [$-11$], [$ZZ_p times C_30 times C_2$], [$(12,4),(2,0)$], [$33 slash 4$ #linebreak() $220$], [$u$; $(1, 1)$ #linebreak() $u$; $(28, 1)$],
   [$47$], [$[u]$], [$-149$], [$ZZ_p times C_18 times C_2$], [$(3,6),(2,0)$], [$1639$ #linebreak() $8791 slash 25$], [$u$; $(12, 1)$ #linebreak() $u$; $(11, 1)$],
-  [$47$], [$[p]$], [$94$], [$ZZ_p times C_4$], [---], [$141$ #linebreak() $1833 slash 16$], [$u$; $2$ in $C_4$ #linebreak() $u$; $2$ in $C_4$],
-  [$47$], [$[u p]$], [$705$], [$ZZ_p times C_4$], [---], [$376$ #linebreak() $-2439159 slash 6400$], [$u$; $2$ in $C_4$ #linebreak() $u$; $2$ in $C_4$],
+  [$47$], [$[p]$], [$94$], [$ZZ_p times C_2 times C_2$], [$3 p, 21 p$], [$141$ #linebreak() $1833 slash 16$], [$u$; $(1, 0)$ #linebreak() $u$; $(1, 1)$],
+  [$47$], [$[u p]$], [$705$], [$ZZ_p times C_2 times C_2$], [$8 p, 40 p$], [$376$ #linebreak() $-2439159 slash 6400$], [$u$; $(1, 0)$ #linebreak() $u$; $(0, 1)$],
   [$53$], [$[1]$], [$11$], [$ZZ_p times C_58$], [$(2,16)$], [$22$], [$u$; $(33)$],
   [$53$], [$[u]$], [$22$], [$ZZ_p times C_50$], [$(2,21)$], [$2937 slash 196$], [$u$; $(3)$],
   [$53$], [$[p]$], [$53$], [$ZZ_p times C_2$], [---], [$-10388 slash 289$], [$u$; $2$ in $C_2$#super[\*]],
@@ -1372,8 +1391,8 @@ generated, hence not the certificate.
   [$61$], [$[u p]$], [$122$], [$ZZ_p times C_2$], [---], [$2358325453 slash 110889$], [$u$; $2$ in $C_2$#super[\*]],
   [$67$], [$[1]$], [$-221$], [$ZZ_p times C_28 times C_2$], [$(4,30),(13,0)$], [$1326$ #linebreak() $1819 slash 9$], [$u$; $(20, 1)$ #linebreak() $u$; $(25, 0)$],
   [$67$], [$[u]$], [$51$], [$ZZ_p times C_40 times C_2$], [$(1,28),(10,0)$], [$-17$ #linebreak() $-714 slash 25$], [$u$; $(9, 1)$ #linebreak() $u$; $(8, 1)$],
-  [$67$], [$[p]$], [$2211$], [$ZZ_p times C_4$], [---], [$28743$ #linebreak() $4623$], [$u$; $2$ in $C_4$ #linebreak() $u$; $2$ in $C_4$],
-  [$67$], [$[u p]$], [$134$], [$ZZ_p times C_4$], [---], [$-335 slash 4$ #linebreak() $94537 slash 196$], [$u$; $2$ in $C_4$ #linebreak() $u$; $2$ in $C_4$],
+  [$67$], [$[p]$], [$2211$], [$ZZ_p times C_2 times C_2$], [$2 p, 27 p$], [$28743$ #linebreak() $4623$], [$u$; $(0, 1)$ #linebreak() $u$; $(1, 0)$],
+  [$67$], [$[u p]$], [$134$], [$ZZ_p times C_2 times C_2$], [$26 p, 49 p$], [$-335 slash 4$ #linebreak() $94537 slash 196$], [$u$; $(0, 1)$ #linebreak() $u$; $(1, 0)$],
   [$71$], [$[1]$], [$1$], [$ZZ_p times C_59$], [$(0,1)$], [$0$], [$u$; $(1)$],
   [$71$], [$[u]$], [$-1$], [$ZZ_p times C_85$], [$(1,1)$], [$1$], [$u$; $(1)$],
   [$71$], [$[p]$], [$71$], [$ZZ_p$], [---], [$-47$], [$u$; ---],
@@ -1424,8 +1443,8 @@ generated, hence not the certificate.
   [$127$], [$[u p]$], [$-127$], [$ZZ_p times C_2$], [---], [$3122041 slash 25600$], [$u$; $2$ in $C_2$#super[\*]],
   [$131$], [$[1]$], [$53$], [$ZZ_p times C_64 times C_2$], [$(0,42),(3,0)$], [$148$ #linebreak() $-10388 slash 289$], [$u$; $(3, 0)$ #linebreak() $u$; $(49, 1)$],
   [$131$], [$[u]$], [$-11$], [$ZZ_p times C_68 times C_2$], [$(3,32),(76,0)$], [$33 slash 4$ #linebreak() $220$], [$u$; $(41, 1)$ #linebreak() $u$; $(25, 0)$],
-  [$131$], [$[p]$], [$131$], [$ZZ_p times C_4$], [---], [$655$ #linebreak() $5371 slash 25$], [$u$; $2$ in $C_4$ #linebreak() $u$; $2$ in $C_4$],
-  [$131$], [$[u p]$], [$8646$], [$ZZ_p times C_4$], [---], [$80565$ #linebreak() $-29168680211 slash 7425625$], [$u$; $2$ in $C_4$ #linebreak() $u$; $2$ in $C_4$],
+  [$131$], [$[p]$], [$131$], [$ZZ_p times C_2 times C_2$], [$5 p, 51 p$], [$655$ #linebreak() $5371 slash 25$], [$u$; $(1, 0)$ #linebreak() $u$; $(1, 1)$],
+  [$131$], [$[u p]$], [$8646$], [$ZZ_p times C_2 times C_2$], [$68 p, 91 p$], [$80565$ #linebreak() $-29168680211 slash 7425625$], [$u$; $(0, 1)$ #linebreak() $u$; $(1, 1)$],
   [$137$], [$[1]$], [$7$], [$ZZ_p times C_126$], [$(5,24)$], [$-3$], [$u$; $(97)$],
   [$137$], [$[u]$], [$3$], [$ZZ_p times C_150$], [$(3,9)$], [$3$], [$u$; $(1)$],
   [$137$], [$[p]$], [$274$], [$ZZ_p times C_2$], [---], [$331123731117 slash 5803544761$], [$u$; $2$ in $C_2$#super[\*]],
@@ -1436,8 +1455,8 @@ generated, hence not the certificate.
   [$139$], [$[u p]$], [$-139$], [$ZZ_p times C_2$], [---], [$3892 slash 9$], [$u$; $2$ in $C_2$#super[\*]],
   [$149$], [$[1]$], [$53$], [$ZZ_p times C_68 times C_2$], [$(0,18),(13,0)$], [$148$ #linebreak() $-10388 slash 289$], [$u$; $(47, 0)$ #linebreak() $u$; $(38, 1)$],
   [$149$], [$[u]$], [$94$], [$ZZ_p times C_82 times C_2$], [$(1,36),(40,0)$], [$141$ #linebreak() $1833 slash 16$], [$u$; $(50, 1)$ #linebreak() $u$; $(5, 0)$],
-  [$149$], [$[p]$], [$-149$], [$ZZ_p times C_4$], [---], [$1639$ #linebreak() $8791 slash 25$], [$u$; $2$ in $C_4$ #linebreak() $u$; $2$ in $C_4$],
-  [$149$], [$[u p]$], [$13559$], [$ZZ_p times C_4$], [---], [$20413$ #linebreak() $712634381069 slash 37982569$], [$u$; $2$ in $C_4$ #linebreak() $u$; $2$ in $C_4$],
+  [$149$], [$[p]$], [$-149$], [$ZZ_p times C_2 times C_2$], [$11 p, 56 p$], [$1639$ #linebreak() $8791 slash 25$], [$u$; $(1, 0)$ #linebreak() $u$; $(0, 1)$],
+  [$149$], [$[u p]$], [$13559$], [$ZZ_p times C_2 times C_2$], [$42 p, 119 p$], [$20413$ #linebreak() $712634381069 slash 37982569$], [$u$; $(1, 1)$ #linebreak() $u$; $(0, 1)$],
   [$151$], [$[1]$], [$1$], [$ZZ_p times C_154$], [$(0,1)$], [$0$], [$u$; $(1)$],
   [$151$], [$[u]$], [$-1$], [$ZZ_p times C_150$], [$(1,1)$], [$1$], [$u$; $(1)$],
   [$151$], [$[p]$], [$755$], [$ZZ_p times C_2$], [---], [$151$], [$u$; $2$ in $C_2$#super[\*]],
@@ -1456,8 +1475,8 @@ generated, hence not the certificate.
   [$167$], [$[u p]$], [$-334$], [$ZZ_p times C_2$], [---], [$743828521 slash 1444804$], [$u$; $2$ in $C_2$#super[\*]],
   [$173$], [$[1]$], [$51$], [$ZZ_p times C_86 times C_2$], [$(0,47),(16,0)$], [$-17$ #linebreak() $-714 slash 25$], [$u$; $(41, 0)$ #linebreak() $u$; $(16, 1)$],
   [$173$], [$[u]$], [$53$], [$ZZ_p times C_88 times C_2$], [$(2,35),(95,0)$], [$148$ #linebreak() $-10388 slash 289$], [$u$; $(39, 0)$ #linebreak() $u$; $(64, 1)$],
-  [$173$], [$[p]$], [$-173$], [$ZZ_p times C_4$], [---], [$4671 slash 25$ #linebreak() $84078 slash 289$], [$u$; $2$ in $C_4$ #linebreak() $u$; $2$ in $C_4$],
-  [$173$], [$[u p]$], [$519$], [$ZZ_p times C_4$], [---], [$3633 slash 4$ #linebreak() $-1211 slash 25$], [$u$; $2$ in $C_4$ #linebreak() $u$; $2$ in $C_4$],
+  [$173$], [$[p]$], [$-173$], [$ZZ_p times C_2 times C_2$], [$8 p, 37 p$], [$4671 slash 25$ #linebreak() $84078 slash 289$], [$u$; $(1, 0)$ #linebreak() $u$; $(0, 1)$],
+  [$173$], [$[u p]$], [$519$], [$ZZ_p times C_2 times C_2$], [$62 p, 135 p$], [$3633 slash 4$ #linebreak() $-1211 slash 25$], [$u$; $(0, 1)$ #linebreak() $u$; $(1, 0)$],
   [$179$], [$[1]$], [$1$], [$ZZ_p times C_180$], [$(0,1)$], [$0$], [$u$; $(1)$],
   [$179$], [$[u]$], [$-19$], [$ZZ_p times C_180$], [$(6,78)$], [$9772 slash 361$], [$u$; $(161)$],
   [$179$], [$[p]$], [$179$], [$ZZ_p times C_2$], [---], [$21659 slash 169$], [$u$; $2$ in $C_2$#super[\*]],

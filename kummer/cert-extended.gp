@@ -64,6 +64,67 @@ gensalone(E, P, p, M) =
 }
 
 
+
+\\ ---- the additive lines: T = Phi(F_p), and it need not be cyclic.
+\\ For these d the reduction is additive, E_0/E_1 = G_a(F_p) of order p, and
+\\ M = c_p * p, so |T| = c_p.  T is NOT automatically cyclic: for I_0^* with
+\\ c_p = 4 the component group is (Z/2)^2, and only for I_1^* is it Z/4.  Which
+\\ one it is can be decided without any Kodaira table: E_0(Q_p) is torsion-free
+\\ for p > 2 (E_1 = Z_p is, and E_0/E_1 = Z/p is odd), so E[2](Q_p) injects into
+\\ Phi -- hence T = (Z/2)^2 exactly when the cubic splits completely over Q_p.
+prootsQp(E, p, prec) =
+{ my(f = x^3 + E.a4*x + E.a6, fp = factorpadic(f, p, prec), L = List());
+  for (j = 1, #fp~,
+    if (poldegree(fp[j,1]) == 1,
+      for (k = 1, fp[j,2],
+        listput(L, -polcoeff(fp[j,1],0) / polcoeff(fp[j,1],1)))));
+  \\ Canonical order: by the p-adic expansion read from the BOTTOM, i.e. by the
+  \\ leading digit u = (r/p^v) mod p.  Sorting by lift(r) instead orders by the
+  \\ HIGH-order digits and therefore depends on the working precision -- the same
+  \\ kind of irreproducibility as a randomly chosen base.  Here the three roots
+  \\ have valuation 1 with distinct leading digits (they are the roots of the
+  \\ good-reduction cubic modulo p, which are distinct for I_0^*), so the leading
+  \\ digit already separates them; the full lift is kept only as a tiebreak.
+  my(V = Vec(L));
+  vecsort(V, r -> [lift(r / p^valuation(r,p)) % p, lift(r)]);
+}
+\\ a short label for a root: these all have valuation 1, so u p with u mod p
+rootlabel(r, p) =
+{ my(v = valuation(r, p));
+  if (v == 1, Str(lift(r / p) % p, "p"), Str(lift(r)));
+}
+singptp(E, p) =
+{ my(a1 = E.a1, a2 = E.a2, a3 = E.a3, a4 = E.a4, a6 = E.a6);
+  for (x = 0, p-1, for (y = 0, p-1,
+    if (Mod(y^2 + a1*x*y + a3*y - x^3 - a2*x^2 - a4*x - a6, p) == 0 &&
+        Mod(a1*y - 3*x^2 - 2*a2*x - a4, p) == 0 &&
+        Mod(2*y + a1*x + a3, p) == 0, return([x,y]))));
+  [];
+}
+\\ Is a p-ADIC point in E_0(Q_p)?  Negative valuation means it reduces to O,
+\\ hence lies in E_1 and so in E_0; otherwise compare the reduction with the
+\\ singular point.
+inE0pad(Q, p, sp) =
+{ if (Q == [0], return(1));
+  if (valuation(Q[1], p) < 0, return(1));
+  if (#sp == 0, return(1));
+  !(valuation(Q[1] - sp[1], p) > 0 && valuation(Q[2] - sp[2], p) > 0);
+}
+\\ The class of P in Phi = (Z/2)^2, against the basis given by the first two
+\\ 2-torsion points.  The 2-torsion is NOT rational -- its x-coordinates lie in
+\\ Z_p and not in Z -- so this has to be done with p-adic arithmetic; treating
+\\ the roots as exact rational points is what made an earlier version return no
+\\ answer at all.
+phiclass(E, P, p, rts, sp, prec) =
+{ my(Pp = [P[1] + O(p^prec), P[2] + O(p^prec)]);
+  if (inE0pad(Pp, p, sp), return([0,0]));
+  my(idx = [[1,0],[0,1],[1,1]]);
+  for (j = 1, 3,
+    my(T2 = [rts[j], O(p^prec)]);
+    if (inE0pad(ellsub(E, Pp, T2), p, sp), return(idx[j])));
+  [-1,-1];
+}
+
 \\ A CANONICAL base for E(F_p), so that the class column is reproducible.
 \\ ellgroup(E,p,1) returns a generator chosen AT RANDOM on each call -- five
 \\ successive calls at p = 23 for d = 1 return (18,20), (9,7), (9,7), (1,7),
@@ -151,8 +212,9 @@ entry(p, cls, d) =
     my(G = ellgroup(E,p));
     T = G,
     \\ else: additive class, or anomalous
-    my(Mp = M / p^valuation(M,p));
-    T = if (Mp == 1, [], [Mp]));
+    my(Mp = M / p^valuation(M,p), nr = #prootsQp(E, p, 60));
+    T = if (Mp == 1, [],
+          if (Mp == 4 && nr == 3, [2,2], [Mp])));
   Tstr = if (#T == 0, "Z_p",
           if (#T == 1, Str("Z_p x C", T[1]),
               Str("Z_p x C", T[1], " x C", T[2])));
@@ -167,8 +229,20 @@ entry(p, cls, d) =
         ",   E_d(Q_p) = ", Tstr);
   print("      generators used : ", used,
         if (#used < #gens, Str("   (of ", #gens, "; the rest are not needed)"), ""));
-  \\ ONE canonical base for this (curve, prime), reused for every generator
+  \\ ONE canonical base for this (curve, prime), reused for every generator.
+  \\ Good reduction: the lexicographic base in E_d(F_p).  Additive with
+  \\ T = (Z/2)^2: the 2-torsion points, which map isomorphically onto Phi, taken
+  \\ in the canonical order of prootsQp.  Additive with T cyclic: no base is
+  \\ needed, since the order already determines the element (up to inversion
+  \\ when |T| = 4).
   my(CB = if (good && M % p != 0, canonbase(E, p), 0));
+  my(twotors = 0, sp = 0);
+  if (#T == 2 && !good,
+    my(rts = prootsQp(E, p, 60));
+    twotors = rts; sp = singptp(E, p);
+    print("      canonical base of T = Phi : the 2-torsion at x = ",
+          [rootlabel(rts[1],p), rootlabel(rts[2],p)],
+          "   (third root x = ", rootlabel(rts[3],p), ")"));
   if (type(CB) == "t_VEC",
     print("      canonical base of E_d(F_p) : ", CB[2]));
   foreach (used, P,
@@ -176,15 +250,18 @@ entry(p, cls, d) =
     if (good && M % p != 0,
       my(Pp = if (Mod(cden(P),p) == 0, [0], [Mod(P[1],p), Mod(P[2],p)]));
       coord = dlog(CB[1], Pp, CB[2], CB[3]),
-      coord = [r[1] / p^valuation(r[1], p)]);
+      if (type(twotors) == "t_VEC",
+        coord = phiclass(E, P, p, twotors, sp, 40),
+        coord = [r[1] / p^valuation(r[1], p)]));
     my(Tord = if (#T == 0, 1, if (#T == 1, T[1], T[1]*T[2])));
     print("        ", P, "  ->  ( ",
           if (r[2] == 1, "u", Str(p, "^", r[2]-1, " u")), " ; ",
           if (good && M % p != 0,
               Str("class ", coord),
-              if (Tord == 1, "-",
-                  Str("order ", coord[1], " in C", Tord,
-                      if (coord[1] == Tord, " (a generator)", "")))),
+              if (#T == 2, Str("class ", coord),
+                  if (Tord == 1, "-",
+                      Str("order ", coord[1], " in C", Tord,
+                          if (coord[1] == Tord, " (a generator)", ""))))),
           " )",
           "     [ord in E/E_1 = ", r[1], ", formal depth ", r[2], "]"));
   print("");
