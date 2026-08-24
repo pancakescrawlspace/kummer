@@ -156,4 +156,51 @@ print(" v_2(Disc) >= 4 for every d and 2 is never a place of good reduction,");
 print(" hence never anomalous.  Its additive place is treated in cert-p2.gp.");
 print("-------------------------------------------------------------------------");
 print("");
+print("-------------------------------------------------------------------------");
+print(" A place where k = 1: the CM curve of section 5.1, f = x^3 - 2, at p = 61.");
+print("-------------------------------------------------------------------------");
+print(" k = 0 above is a fact about 496a, not a general fact.  E_d : Y^2 = X^3 - 2d^3");
+print(" is anomalous at 61 (a_61 = 1, #Etilde(F_61) = 61), and there E_d(Q_61) really");
+print(" is Z_61 x Z/61 -- for EVERY twist, so no rank-1 twist can carry that place.");
+print(" CM forces it: 61 = 1 mod 3 splits in Z[zeta_3], so the CM is defined over");
+print(" Q_61 and E[61] = E[p] + E[pbar] Galois-compatibly; one summand is the");
+print(" connected part, the other is etale with Frobenius = unit root = a_61 = 1 mod");
+print(" 61, hence rational.  The splitting is insensitive to d, which is why it is");
+print(" uniform.  496a has j = 6912/31, not an algebraic integer, so no CM and no");
+print(" such splitting -- and its two anomalous places came back k = 0 above.");
+print("");
+Ecm(d)  = ellinit([0, 0, 0, 0, -2*d^3]);
+kcm(d, p, ntry, prec) =
+{ my(E = Ecm(d), M = Mval(E,p), best = 10^6, cnt = 0, f, y0, R, dep);
+  for (t = 0, 100000,
+    if (cnt >= ntry, break);
+    my(x0 = t + O(p^prec));
+    f = x0^3 - 2*d^3;
+    if (f == 0 || !issquare(f, &y0), next);
+    cnt++;
+    R = ellmul(E, [x0, y0], M);
+    if (R == [0] || valuation(R[1], p) >= 0, next);
+    dep = -valuation(R[1], p) / 2;
+    if (dep < best, best = dep));
+  [M, best - 1];
+}
+{
+my(n = 0, k1 = 0, k0 = 0, shown = 0);
+for (d = 1, 400,
+  if (d % 61 == 0, next);
+  my(E = Ecm(d));
+  if (Mod(E.disc, 61) == 0, next);
+  my(r = kcm(d, 61, 6, 60));
+  if (r[1] != 61, next);
+  n++;
+  if (r[2] == 1, k1++, k0++);
+  if (shown < 8, shown++;
+    print("  d = ", d, "   M = ", r[1], "   k = ", r[2],
+          "   E_d(Q_61) = Z_61 x Z/61")));
+print("  ...");
+print("");
+print("  anomalous twists d <= 400 : ", n, "    with k = 1 : ", k1, "    with k = 0 : ", k0);
+print("  the rank-2 witness d = 2931 of section 5.1 : [M, k] = ", kcm(2931, 61, 6, 60));
+}
+print("");
 print("done.");

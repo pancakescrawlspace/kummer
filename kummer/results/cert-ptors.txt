@@ -127,4 +127,30 @@ injects into Etilde(F_p), of order M prime to p, so k = 0 for free.
  hence never anomalous.  Its additive place is treated in cert-p2.gp.
 -------------------------------------------------------------------------
 
+-------------------------------------------------------------------------
+ A place where k = 1: the CM curve of section 5.1, f = x^3 - 2, at p = 61.
+-------------------------------------------------------------------------
+ k = 0 above is a fact about 496a, not a general fact.  E_d : Y^2 = X^3 - 2d^3
+ is anomalous at 61 (a_61 = 1, #Etilde(F_61) = 61), and there E_d(Q_61) really
+ is Z_61 x Z/61 -- for EVERY twist, so no rank-1 twist can carry that place.
+ CM forces it: 61 = 1 mod 3 splits in Z[zeta_3], so the CM is defined over
+ Q_61 and E[61] = E[p] + E[pbar] Galois-compatibly; one summand is the
+ connected part, the other is etale with Frobenius = unit root = a_61 = 1 mod
+ 61, hence rational.  The splitting is insensitive to d, which is why it is
+ uniform.  496a has j = 6912/31, not an algebraic integer, so no CM and no
+ such splitting -- and its two anomalous places came back k = 0 above.
+
+  d = 1   M = 61   k = 1   E_d(Q_61) = Z_61 x Z/61
+  d = 3   M = 61   k = 1   E_d(Q_61) = Z_61 x Z/61
+  d = 4   M = 61   k = 1   E_d(Q_61) = Z_61 x Z/61
+  d = 5   M = 61   k = 1   E_d(Q_61) = Z_61 x Z/61
+  d = 9   M = 61   k = 1   E_d(Q_61) = Z_61 x Z/61
+  d = 12   M = 61   k = 1   E_d(Q_61) = Z_61 x Z/61
+  d = 13   M = 61   k = 1   E_d(Q_61) = Z_61 x Z/61
+  d = 14   M = 61   k = 1   E_d(Q_61) = Z_61 x Z/61
+  ...
+
+  anomalous twists d <= 400 : 196    with k = 1 : 196    with k = 0 : 0
+  the rank-2 witness d = 2931 of section 5.1 : [M, k] = [61, 1]
+
 done.

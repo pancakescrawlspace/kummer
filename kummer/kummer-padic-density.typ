@@ -1341,6 +1341,15 @@ ledger of @sec-ledger ($d = 4279$ at $p = 11$, additive, $M = 22$). $p = 2$ is n
 $Delta(E_d) = -16 dot 31 dot d^6$, so $v_2 (Delta) >= 4$ for every $d$ and $2$ is never a place of
 good reduction, hence never anomalous.
 
+That the answer is $k = 0$ every time is luck of a specific kind, not a general fact, and
+@sec-cm has the counterexample: the CM curve $f = x^3 - 2$ is anomalous at $p = 61$, and there
+$E^d (QQ_61) tilde.equiv ZZ_61 times ZZ slash 61$ for *every* one of the $196$ twists $d <= 400$
+that are anomalous at $61$. A rank-1 twist cannot certify that place, whatever it does locally.
+CM is what forces it --- $61$ splits in $ZZ[zeta_3]$, so $E[61]$ splits Galois-compatibly and its
+étale summand is rational exactly because $a_61 = 1$ --- and $496 a$, with $j = 6912 slash 31$, has
+no CM to force anything. Which is to say the assertion happened to be true here, and would have
+been false one section later.
+
 The fourth column stands as printed. What changed is that it is now computed.
 
 The $ZZ_p$-coordinate is only defined up to a unit --- choosing a topological generator of $ZZ_p$
@@ -1710,7 +1719,22 @@ $tilde(E)(bb(F)_p)$ frequently non-cyclic there (e.g. $tilde(E)(bb(F)_7)$-twist
 $tilde.equiv (ZZ slash 3)^2$, $tilde(E)(bb(F)_19) tilde.equiv ZZ slash 9 times ZZ slash 3$,
 $tilde(E)(bb(F)_73) tilde.equiv (ZZ slash 9)^2$). Witnesses: $p = 7, 19, 43, 67, 73$ take
 $d = -41, -29, -29, -41, -41$. The anomalous prime $p = 61$ (where
-$\#tilde(E)(bb(F)_61) = 61 = p$) likewise needs a rank-2 twist, $d = 2931$.
+$\#tilde(E)(bb(F)_61) = 61 = p$) also needs a rank-2 twist, $d = 2931$ --- but *not* for the
+reason just given, and the difference is worth stating. $tilde(E)(bb(F)_61) tilde.equiv ZZ slash 61$
+is perfectly cyclic. What fails is one level up: here
+$E^d (QQ_61) tilde.equiv ZZ_61 times ZZ slash 61$, which is not procyclic, so rank $2$ is
+*mandatory* rather than merely how the search happened to turn out. This is the anomalous case of
+@sec-cert-ppart, and on this curve it is systematic: of the $196$ twists $d <= 400$ that are
+anomalous at $61$, *all $196$* have $k = 1$, the rank-2 witness $d = 2931$ among them.
+
+The reason is CM, and it is exactly why the phenomenon does not touch $496 a$. Since
+$61 equiv 1 space (mod 3)$, the prime splits in $ZZ[zeta_3]$, so the CM is defined over $QQ_61$ and
+$E[61]$ splits as $E[frak(p)] ⊕ E[overline(frak(p))]$ compatibly with Galois. One summand
+is the connected part $hat(E)[61]$; the other is étale, with Frobenius acting by the unit root
+$alpha equiv a_61 = 1 space (mod 61)$ --- rational, precisely because $p$ is anomalous. So the
+connected-étale sequence splits and the $61$-torsion is rational, for every twist at once, the
+argument being insensitive to $d$. Without CM there is no such splitting: $j(496a) = 6912 slash 31$
+is not an algebraic integer, and its two anomalous places both come back $k = 0$.
 
 *The prime 2 is fine.* All eight classes of $QQ_2^times slash (QQ_2^times)^2$ are covered by
 small twists, each of rank 1:
