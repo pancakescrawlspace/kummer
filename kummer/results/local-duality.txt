@@ -1,0 +1,152 @@
+=========================================================================
+ Local Tate duality: the statement, and the instances used elsewhere
+=========================================================================
+
+(1) THE STATEMENT AND ITS INPUTS.
+    For K/Q_p finite and M finite over G_K, with M^D = Hom(M, Kbar^*),
+        H^i(K,M) x H^{2-i}(K,M^D) --> Br(K) = Q/Z
+    is perfect for i = 0,1,2.  The engine is inv : Br(K) -> Q/Z, itself
+    proved in two moves: every Brauer class over a local field is split by
+    an UNRAMIFIED extension (a division algebra contains an unramified
+    maximal subfield, because the valuation extends uniquely), and for
+    L/K unramified cyclic of degree n, Br(L/K) = K^*/N L^* = Z/n because
+    units are norms (Hensel), so N L^* = {x : n | v(x)} and inv sends the
+    class to v(x)/n.
+
+    Note what the theorem CONTAINS.  Take M = Z/n trivial, so M^D = mu_n,
+    and i = 1:
+        Hom(G_K, Z/n) x K^*/(K^*)^n -> (1/n)Z/Z,   (chi, a) -> chi(rec a).
+    Perfectness here IS local class field theory.  So there is no proof of
+    the 'purely local fact' that avoids LCFT -- they are the same depth.
+
+-------------------------------------------------------------------------
+(2) THE CASE M = Z/2 IS NON-DEGENERACY OF THE HILBERT SYMBOL.
+    mu_2 = Z/2 already lies in Q_p, so H^1(Q_p, Z/2) = H^1(Q_p, mu_2) =
+    Q_p^*/(Q_p^*)^2, the duality pairing is (a,b) -> (a,b)_p, and
+    perfectness is exactly non-degeneracy of the Gram matrix over F_2.
+
+    p = 2 : 8 classes [1, -1, 2, -2, 5, -5, 10, -10]
+            Gram rank over F_2 = 3 of 3,  radical = [1]   NON-DEGENERATE
+    p = 3 : 4 classes [1, 2, 3, 6]
+            Gram rank over F_2 = 2 of 2,  radical = [1]   NON-DEGENERATE
+    p = 5 : 4 classes [1, 2, 5, 10]
+            Gram rank over F_2 = 2 of 2,  radical = [1]   NON-DEGENERATE
+    p = 7 : 4 classes [1, 3, 7, 21]
+            Gram rank over F_2 = 2 of 2,  radical = [1]   NON-DEGENERATE
+    p = 11 : 4 classes [1, 2, 11, 22]
+            Gram rank over F_2 = 2 of 2,  radical = [1]   NON-DEGENERATE
+    p = 13 : 4 classes [1, 2, 13, 26]
+            Gram rank over F_2 = 2 of 2,  radical = [1]   NON-DEGENERATE
+
+    The only class pairing trivially with everything is the trivial one,
+    at every p including 2.  That is local duality for Z/2, exhaustively.
+
+-------------------------------------------------------------------------
+(3) UNRAMIFIED CLASSES, AND WHERE THE SOFT PROOF STOPS.
+    For ell != p the module is unramified and H^1_ur(K,M), H^1_ur(K,M^D)
+    are exact annihilators, each of order |H^0|.  That alone gives duality
+    in the tame range, with no fundamental class -- and it is precisely the
+    'unramified isotropy' that kills beta_v at good places in the survey.
+
+    p = 3 : unramified classes [1, 2],  order 2 = half of 4,  isotropic: yes
+    p = 5 : unramified classes [1, 2],  order 2 = half of 4,  isotropic: yes
+    p = 7 : unramified classes [1, 3],  order 2 = half of 4,  isotropic: yes
+    p = 11 : unramified classes [1, 2],  order 2 = half of 4,  isotropic: yes
+    p = 13 : unramified classes [1, 2],  order 2 = half of 4,  isotropic: yes
+    p = 2 : unramified classes [1, 5], order 2 -- but |H^1| = 8, so NOT
+            half.  (5,5)_2 = 1, isotropic but too small.
+            At ell = p the module is no longer unramified (the formal group
+            is in the way) and the soft argument collapses; one is thrown
+            back on inv and LCFT in full.  Same tame/wild line as the
+            symbols of wild-symbols.typ.
+
+-------------------------------------------------------------------------
+(4) THE EULER CHARACTERISTIC, AND WHY W_v IS LAGRANGIAN.
+    Tate's formula:  |H^0| |H^2| / |H^1| = ||#M||_K .  With M = E[n],
+    self-dual under the Weil pairing, |H^2| = |H^0| = |E[n](K)|, so
+        |H^1(K,E[n])| = |E[n](K)|^2 |n|_K^{-2} ,
+    while  |E(K)/n| = |E[n](K)| |n|_K^{-1} .  Hence |W|^2 = |H^1| : the
+    local Kummer image is exactly half-dimensional, i.e. LAGRANGIAN.
+    The |n|_K factor is trivial away from n and is the whole subtlety at
+    v | n.  Checked for n = 2 at v = 2, where it is live:
+
+      curve                 roots of psi_2 in Q_2   dim E[2](Q_2)  dim W_2  dim H^1
+      [0, 0, 1, -1, 0]         0               0            1        2
+      [1, 1, 1, -1, 0]         1               1            2        4
+      [0, 1, 1, 0, 0]         0               0            1        2
+      [0, 0, 0, -2, 0]         1               1            2        4
+      [0, 0, 0, -1, 0]         3               2            3        6
+
+      dim W_2 = dim E[2](Q_2) + 1,  dim H^1 = 2 dim E[2](Q_2) + 2 : half.
+      The +1 and +2 are the |2|_2^{-1} correction, absent at odd places.
+
+-------------------------------------------------------------------------
+(5) SYMMETRIC VERSUS ALTERNATING SELF-DUALITY -- an easy thing to conflate.
+    Z/2 is self-dual over Q_p SYMMETRICALLY: the Hilbert form on
+    Q_2^*/(Q_2^*)^2 is a non-degenerate symmetric form on F_2^3, an ODD-
+    dimensional space, so it has no Lagrangian at all -- maximal isotropic
+    subspaces have dimension 1, not 3/2.
+
+    all 8 classes: [1, -1, 2, -2, 5, -5, 10, -10]
+    diagonal (a,a)_2 : [1, -1, 1, -1, 1, -1, 1, -1]
+    largest totally isotropic subspace: dimension 1,  spanned by [2]
+    3 is odd, so a Lagrangian would need dimension 3/2 -- there is none,
+    and the maximum is 1.
+
+    E[n] is self-dual ALTERNATINGLY, via the Weil pairing, on an EVEN-
+    dimensional space -- and there Lagrangians exist.  W_v is one of them.
+    That is the whole reason the untwisted pairing gives 0 = 0 on the
+    Kummer surface (density-bridge.typ section 2) while the Z/2 pairing of
+    integral-bm.typ has no such collapse.
+
+-------------------------------------------------------------------------
+(6) THE ENGINE (section 2) IN THE CASE n = 2, WHERE THE HILBERT SYMBOL
+    COMPUTES IT.  Let u be a non-residue unit, so L = Q_p(sqrt u) is the
+    UNRAMIFIED quadratic extension of Q_p.  Then x is a norm from L iff
+    (u,x)_p = 1, so the norm group is visible directly.
+
+      p    u    units w with (u,w)_p = -1     (u,p)_p    N(L^*) = ?
+     3     2          []                  -1       {v even}
+     5     2          []                  -1       {v even}
+     7     3          []                  -1       {v even}
+     11     2          []                  -1       {v even}
+     13     2          []                  -1       {v even}
+     17     3          []                  -1       {v even}
+     19     2          []                  -1       {v even}
+     23     5          []                  -1       {v even}
+     29     2          []                  -1       {v even}
+     31     3          []                  -1       {v even}
+     37     2          []                  -1       {v even}
+
+    Units are ALL norms and a uniformiser is NOT, at every p checked.  So
+    N(L^*) = {x : 2 | v_p(x)}, the index is 2, and inv(x) = v(x)/2 -- the
+    n = 2 case of inv(x) = v(x)/n.
+
+    Also the n = 2 case of 'a maximal subfield is unramified and splits':
+    (u,p) is a DIVISION algebra exactly because (u,p)_p = -1, and u becomes
+    a square in Q_p(sqrt u), which therefore splits it.
+
+    And the residue-field input of Step 2 -- surjectivity of the norm
+    N : F_{q^f}^* -> F_q^*, which starts the unit-norm climb.  N is
+    x -> x^{(q^f-1)/(q-1)}, so its image is the subgroup of order q-1 in a
+    cyclic group of order q^f-1, i.e. all of F_q^*:
+
+       q    f    |image of N|    q-1    surjective?
+      2    2       1            1      yes
+      2    3       1            1      yes
+      2    4       1            1      yes
+      3    2       2            2      yes
+      3    3       2            2      yes
+      3    4       2            2      yes
+      5    2       4            4      yes
+      5    3       4            4      yes
+      5    4       4            4      yes
+      7    2       6            6      yes
+      11    2       10            10      yes
+      13    2       12            12      yes
+      17    2       16            16      yes
+      19    2       18            18      yes
+
+       (all q <= 19, f <= 4 checked; failures: 0)
+
+done.
