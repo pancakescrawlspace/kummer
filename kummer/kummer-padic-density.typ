@@ -1043,9 +1043,38 @@ together, the $ZZ_p$-coordinates include a unit and the $T$-coordinates generate
 
 === The table <tab-primes-extended>
 
+*How to read the last column.* It is the image of the point in
+$E^d (QQ_p) tilde.equiv ZZ_p times T$, written as a pair $(alpha; t)$ --- first the
+$ZZ_p$-coordinate, then the $T$-coordinate, separated by a semicolon. Reading the four shapes
+that occur:
+
+#align(center)[
+#table(columns: 2, align: (left, left), stroke: 0.4pt, inset: 6pt,
+  [entry], [meaning],
+  [$u$; $(1)$],
+    [$ZZ_p$-coordinate a *unit*; $T$-coordinate the class $1 dot g_1$, a discrete logarithm
+     against PARI's generators of $T = E(FF_p)$],
+  [$u$; $(6, 1)$],
+    [same, with $T$ non-cyclic: the class $6 g_1 + g_2$],
+  [$u$; $2$ in $C_2$#super[\*]],
+    [an additive line, where $T$ is cyclic and the coordinate is given by its *order*; the
+     asterisk marks one that generates its factor],
+  [$u$; ---], [$T$ is trivial, so there is no second coordinate],
+)]
+
+Only the *valuation* of the $ZZ_p$-coordinate is recorded, for the reason given in
+@sec-cert-conv: a topological generator of $ZZ_p$ has to be chosen, and the coordinate is only
+defined up to a unit. So $u$ means valuation $0$, and $p^k u$ would mean valuation $k$.
+
+*Why every line begins with $u$.* Because it does --- in all $180$ of them --- and that is not
+padding but half of what each line asserts. A point generates the $ZZ_p$ factor exactly when its
+$ZZ_p$-coordinate is a unit, equivalently when $v_p (c(m P)) = 1$; a witness failing this would
+close up on $E_k$ for some $k >= 2$ and certify nothing. The column being constant in its first
+component is therefore the statement that *every witness clears the formal-group condition*, and
+all the information that varies from line to line sits in the second component.
+
 Only $x(P)$ is listed: $y$ is determined up to sign, and the sign does not change the subgroup
-generated, hence not the certificate. An asterisk marks a $T$-coordinate generating its cyclic
-factor; a dash means $T$ is trivial.
+generated, hence not the certificate.
 
 #set text(size: 7.2pt)
 #table(
