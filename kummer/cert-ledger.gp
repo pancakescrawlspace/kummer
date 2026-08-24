@@ -37,6 +37,23 @@ ordv(E, P, p, M) =
   [0, 0];
 }
 \\ discrete log of Pbar in a CYCLIC E(F_p), against ellgroup's generator
+
+\\ The CANONICAL base of E(F_p), identical to the convention of cert-extended.gp:
+\\ order the affine points lexicographically by (x,y) and take the first of
+\\ maximal order.  ellgroup's own generator is chosen at random on each call, so
+\\ a class computed against it is not reproducible and cannot be checked by a
+\\ reader; fixing one per run removes the inconsistency between generators but
+\\ not the irreproducibility.  This removes both, and the base is printed.
+canonbase(E, p) =
+{ my(Ep = ellinit(E, p), G = ellgroup(E, p), pts = List(), n1, g1 = 0);
+  for (x = 0, p-1,
+    my(r = x^3 + E.a4*x + E.a6);
+    for (y = 0, p-1, if (Mod(y^2 - r, p) == 0, listput(pts, [Mod(x,p), Mod(y,p)]))));
+  n1 = G[1];
+  foreach (Vec(pts), P, if (g1 == 0 && ellorder(Ep, P) == n1, g1 = P));
+  [Ep, g1, n1];
+}
+
 \\ Discrete log against a base that must be supplied by the caller.  ellgroup's
 \\ generator is chosen at RANDOM on each call, so computing it inside this routine
 \\ would express different points against different bases and make the resulting
@@ -129,11 +146,13 @@ entry(tname, d, Ms) =
   print("      E^d(Q_p) = ", [Str("Z_", S[j], " x ", strs[j]) | j <- [1,2,3]]);
   \\ per generator: the triple of coordinates
   \\ ONE base per prime, reused for every generator
-  my(Eps = vector(3), bases = vector(3), ords = vector(3));
+  my(Eps = vector(3), bases = vector(3), ords = vector(3), bstr = vector(3, j, "-"));
   for (j = 1, 3,
     if (Mod(E.disc, S[j]) != 0 && cyc,
-      my(G = ellgroup(E, S[j], 1));
-      Eps[j] = ellinit(E, S[j]); bases[j] = G[3][1]; ords[j] = G[1]));
+      my(CB = canonbase(E, S[j]));
+      Eps[j] = CB[1]; bases[j] = CB[2]; ords[j] = CB[3];
+      bstr[j] = Str("(", lift(CB[2][1]), ",", lift(CB[2][2]), ")")));
+  print("      canonical bases of E^d(F_p), p = 11, 13, 17 : ", bstr);
   foreach (gens, P,
     my(row = List());
     for (j = 1, 3,
