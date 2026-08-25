@@ -224,3 +224,71 @@ $p$-part of $T$ to be *cyclic* ($section 2$ of the main notes), so the failure m
   + $A$ dense $=>$ $A^+ = G times G'$. *Proved* when $p divides.not |T| |T'|$, which includes the
     procyclic case. *Open* in general; false for unions of open subgroups that are not products.
 ]
+
+= The cost of substituting a sufficient condition <sec-sound>
+
+Something happens the moment one stops testing density $P$ itself and starts testing a sufficient
+condition $Q$ instead --- here, "a finite set of twists covers", or in the main notes "a single
+twist is full". It is worth stating in general, because it is automatic and it recurs.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *The principle.* Let $Q ==> P$ and search for a witness of $Q$. Then the search
+  - *is sound and complete for $Q$*: it halts exactly when $Q$ holds --- a perfect recogniser,
+    a genuine semi-decision procedure for $Q$;
+  - *is sound but incomplete for $P$*: $P$ may hold while $Q$ fails, and then it runs forever.
+
+  The relativity is the whole point. On an instance where $P$ is true and $Q$ false the search
+  never halts --- and is *right* not to, since $Q$ really is false. So incompleteness is not a
+  defect of the algorithm, which is doing its job exactly; it is a property of the *substitution*
+  $P |-> Q$, and it is invisible from inside a run, because "no witness yet" and "no witness
+  exists" are the same observed behaviour. A failed search therefore never licenses "$P$ is
+  false" --- nor even "$Q$ is false", until one waits forever.
+]
+
+The only escape is to prove $Q <==> P$. Then the search becomes a semi-decision procedure for $P$
+itself, still non-terminating on the no-instances, but now a failed search is at least *evidence*
+of non-density rather than no information at all. That is the whole value of the equivalence in
+$section 2$ of the main notes, and the reason the residual failure at $p = 3$ in $section 5.1.2$
+could be pursued as a real obstruction rather than dismissed as a search that had not run long
+enough.
+
+Within this note the split is clean: @sec-compact is $Q$, @sec-gap is the gap $P without Q$.
+
+#v(2mm)
+
+Three places in these notes currently sit on the wrong side of it, and all for one reason. The
+Kummer construction returns a fixed number of points per twist, and $Q <==> P$ survives exactly
+while the local group needs no more topological generators than that:
+
+#align(center)[
+#table(columns: (auto, auto, auto, 1fr), align: (left, center, center, left),
+  stroke: 0.4pt + luma(160), inset: (x: 6pt, y: 4pt),
+  table.header([case], [budget], [needs], [status]),
+  [diagonal, $p > 2$], [$2$], [$r(G) <= 2$ always],
+    [$Q <==> P$ --- $section 2$],
+  [diagonal, $p = 2$, full $2$-torsion], [$2$], [$r(G) = 3$],
+    [$Q ==> P$ only; occurs iff $f$ splits completely over $QQ_2$],
+  [non-diagonal $E times E'$], [$1$ per curve], [$r(G) = r(G') = 1$],
+    [$Q ==> P$ only unless both procyclic --- $section 2.1.1$],
+  [$S$-adic, generic], [$2$], [$r(G_S) <= 2$],
+    [$Q ==> P$ only when $G_S$ is not $2$-generated --- $section 2.3$],
+)]
+
+#v(2mm)
+
+In the diagonal case both coordinates of a rational point of $X$ land in the *same* group, so one
+twist yields a pair, hence two generators; at $p = 2$ with full $2$-torsion
+$G tilde.equiv ZZ_2 times (ZZ slash 2)^2$ needs three and the pair falls short. For $E != E'$ the
+coordinates land in *different* groups and the budget is one generator per curve. For $S$-adic
+density the budget is two again, but $G_S = product_(p in S) E_d (QQ_p)$ can need more, and the
+two-generator lemma of $section 2.3$ says exactly when.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *What is and is not claimed.* In each of the three cases what is established is that the
+  *necessity argument* fails --- the generator count runs out --- which is enough to lose completeness
+  *for $P$*, since one can no longer certify $Q <==> P$. Whether $Q$ is genuinely strictly
+  weaker is a further question; only for the $S$-adic case do the notes assert an outright
+  equivalence with $2$-generation ($section 2.3$). For $p = 2$ with full $2$-torsion and for the
+  non-diagonal surface no counterexample is exhibited, here or there; @sec-gap gives the
+  group-theoretic configuration that would produce one. Soundness is unconditional throughout.
+]
