@@ -1,7 +1,10 @@
 \\ cert-lprimary.gp -- the l-primary certificate for the single-place sweep of
-\\ sections 3.3 and 3.4.  cert-extended.gp is left exactly as it was; this runs
-\\ beside it and must reproduce its verdicts.  Run from this directory:
-\\     gp -q -s 8000000000 cert-lprimary.gp < /dev/null > results/cert-lprimary.txt
+\\ sections 3.3 and 3.4.  This runs beside cert-extended.gp and must reproduce
+\\ its verdicts; the two share the canonical base and the p-adic component map
+\\ verbatim, and ordv there and ordE1 here are the same function.  Run from
+\\ this directory:
+\\     gp -q cert-lprimary.gp < /dev/null > results/cert-lprimary.txt
+\\ No -s is needed; see WHERE THE TIME GOES below for why it once was.
 \\
 \\ WHAT THE l-PRIMARY APPROACH IS, WHICH THE FIRST VERSION OF THIS FILE LEFT
 \\ IMPLICIT.  G := E^d(Q_p) is profinite abelian and topologically finitely
@@ -65,7 +68,9 @@
 \\ multiple is 1 197 893 digits and 5.4 seconds; ordE1 wanted one per
 \\ divisor of M.  Both now work on padiccurve modulo p^PRECL2, where the
 \\ cost of an ellmul is flat in e and in h(P).  The output is unchanged to
-\\ the byte and the run went from 18.3 seconds to 1.7.
+\\ the byte and the run went from 18.3 seconds to 1.7.  The stack went with it:
+\\ this file used to ask for 8 Gbytes and now runs in the default 8 Mbytes,
+\\ high-water mark between 2 and 4.
 
 read("ledger.gp");
 PRECL2 = 80;

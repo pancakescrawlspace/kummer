@@ -1,8 +1,12 @@
 \\ cert-extended.gp -- the extended density certificate for kummer-padic-density.typ.
 \\ Run from this directory:
-\\     gp -q -s 12000000000 cert-extended.gp < /dev/null > results/cert-extended.txt
-\\ The run is a second and a half.  It was fifty until ordv stopped taking its
-\\ multiples on the rational curve; see the note there.
+\\     gp -q cert-extended.gp < /dev/null > results/cert-extended.txt
+\\ No -s is needed: the run is a second and a half in the default 8 Mbyte
+\\ stack, with the high-water mark measured between 2 and 4.  It used to ask
+\\ for twelve GIGABYTES, and needed them, because ordv took its multiples on
+\\ the rational curve -- the exact x(M P) reaches three million digits at
+\\ p = 149, and a single one of those multiples overflows the default stack.
+\\ See the note at ordv.
 \\
 \\ For each prime p <= 200 and each square class of Q_p^*/(Q_p^*)^2, the witness
 \\ twist d of the table in section 6.3 is extended with

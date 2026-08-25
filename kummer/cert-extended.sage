@@ -2,8 +2,8 @@
 # cert-extended.sage -- the extended density certificate of
 # kummer-padic-density.typ section 3.4, rewritten in Sage.
 #
-# This is a port of cert-extended.gp, which is left untouched.  The two
-# are meant to be run against each other:
+# This is a port of cert-extended.gp.  The two are meant to be run
+# against each other:
 #
 #     sage cert-extended.sage > results/cert-extended-sage.txt
 #     diff results/cert-extended.txt results/cert-extended-sage.txt
