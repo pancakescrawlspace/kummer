@@ -1,2 +1,3 @@
 *.o
 hello
+**/.DS_Store
