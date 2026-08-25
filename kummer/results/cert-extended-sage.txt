@@ -1,0 +1,1388 @@
+=========================================================================
+ Extended density certificate for kummer-padic-density.typ, table 6.3
+=========================================================================
+
+E : v^2 = u^3 + u + 1 (496a, rank 1, trivial torsion).
+E_d : Y^2 = X^3 + d^2 X + d^3.   E_d(Q_p) = Z_p x T, T = E_d(Q_p)_tors.
+Z_p-coordinate recorded by valuation only (u = unit); a point generates
+the Z_p factor iff that coordinate is a unit, iff formal depth = 1.
+
+  p = 3  class [1]  d = 7
+      E_d : y^2 = x^3 + 49x + 343
+      reduction at p : good, a_p = 0,   M = 4
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C4
+      generators used : [[-3, 13]]
+      canonical base of E_d(F_p) : [[Mod(0, 3), Mod(1, 3)]]
+        [-3, 13]  ->  ( u ; class [1] )     [ord in E/E_1 = 4, formal depth 1]
+
+  p = 3  class [u]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : good, a_p = 0,   M = 4
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C4
+      generators used : [[1, 1]]
+      canonical base of E_d(F_p) : [[Mod(1, 3), Mod(1, 3)]]
+        [1, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 4, formal depth 1]
+
+  p = 3  class [p]  d = 3
+      E_d : y^2 = x^3 + 9x + 27
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 6
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[3, 9]]
+        [3, 9]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 6, formal depth 1]
+
+  p = 3  class [up]  d = 6
+      E_d : y^2 = x^3 + 36x + 216
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 6
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[-3, 9]]
+        [-3, 9]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 6, formal depth 1]
+
+  p = 5  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = -3,   M = 9
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C9
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 5), Mod(1, 5)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 9, formal depth 1]
+
+  p = 5  class [u]  d = 3
+      E_d : y^2 = x^3 + 9x + 27
+      reduction at p : good, a_p = 3,   M = 3
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C3
+      generators used : [[3, 9]]
+      canonical base of E_d(F_p) : [[Mod(3, 5), Mod(1, 5)]]
+        [3, 9]  ->  ( u ; class [2] )     [ord in E/E_1 = 3, formal depth 1]
+
+  p = 5  class [p]  d = 5
+      E_d : y^2 = x^3 + 25x + 125
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 5
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[4, 17]]
+        [4, 17]  ->  ( u ; - )     [ord in E/E_1 = 5, formal depth 1]
+
+  p = 5  class [up]  d = -35
+      E_d : y^2 = x^3 + 1225x + -42875
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 5
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[59004/1369, 15194717/50653]]
+        [59004/1369, 15194717/50653]  ->  ( u ; - )     [ord in E/E_1 = 5, formal depth 1]
+
+  p = 7  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = 3,   M = 5
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C5
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 7), Mod(1, 7)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 5, formal depth 1]
+
+  p = 7  class [u]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : good, a_p = -3,   M = 11
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C11
+      generators used : [[1, 1]]
+      canonical base of E_d(F_p) : [[Mod(1, 7), Mod(1, 7)]]
+        [1, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 11, formal depth 1]
+
+  p = 7  class [p]  d = 7
+      E_d : y^2 = x^3 + 49x + 343
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 7
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[-3, 13]]
+        [-3, 13]  ->  ( u ; - )     [ord in E/E_1 = 7, formal depth 1]
+
+  p = 7  class [up]  d = -7
+      E_d : y^2 = x^3 + 49x + -343
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 7
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[424/25, 9157/125]]
+        [424/25, 9157/125]  ->  ( u ; - )     [ord in E/E_1 = 7, formal depth 1]
+
+  p = 11  class [1]  d = 3
+      E_d : y^2 = x^3 + 9x + 27
+      reduction at p : good, a_p = -2,   M = 14
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C14
+      generators used : [[3, 9]]
+      canonical base of E_d(F_p) : [[Mod(1, 11), Mod(2, 11)]]
+        [3, 9]  ->  ( u ; class [3] )     [ord in E/E_1 = 14, formal depth 1]
+
+  p = 11  class [u]  d = 6
+      E_d : y^2 = x^3 + 36x + 216
+      reduction at p : good, a_p = 2,   M = 10
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C10
+      generators used : [[-3, 9]]
+      canonical base of E_d(F_p) : [[Mod(8, 11), Mod(2, 11)]]
+        [-3, 9]  ->  ( u ; class [9] )     [ord in E/E_1 = 10, formal depth 1]
+
+  p = 11  class [p]  d = 11
+      E_d : y^2 = x^3 + 121x + 1331
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 22
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[22, 121]]
+        [22, 121]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 22, formal depth 1]
+
+  p = 11  class [up]  d = -11
+      E_d : y^2 = x^3 + 121x + -1331
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 22
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[33/4, 121/8]]   (of 2; the rest are not needed)
+        [33/4, 121/8]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 22, formal depth 1]
+
+  p = 13  class [1]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : good, a_p = -4,   M = 18
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C18
+      generators used : [[1, 1]]
+      canonical base of E_d(F_p) : [[Mod(1, 13), Mod(1, 13)]]
+        [1, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 18, formal depth 1]
+
+  p = 13  class [u]  d = 5
+      E_d : y^2 = x^3 + 25x + 125
+      reduction at p : good, a_p = 4,   M = 10
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C10
+      generators used : [[4, 17]]
+      canonical base of E_d(F_p) : [[Mod(2, 13), Mod(1, 13)]]
+        [4, 17]  ->  ( u ; class [3] )     [ord in E/E_1 = 10, formal depth 1]
+
+  p = 13  class [p]  d = -13
+      E_d : y^2 = x^3 + 169x + -2197
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 26
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[247, 3887]]
+        [247, 3887]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 26, formal depth 1]
+
+  p = 13  class [up]  d = 26
+      E_d : y^2 = x^3 + 676x + 17576
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 26
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[13, 169]]
+        [13, 169]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 26, formal depth 1]
+
+  p = 17  class [1]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : good, a_p = 0,   M = 18
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C18
+      generators used : [[1, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 17), Mod(4, 17)]]
+        [1, 1]  ->  ( u ; class [13] )     [ord in E/E_1 = 18, formal depth 1]
+
+  p = 17  class [u]  d = 7
+      E_d : y^2 = x^3 + 49x + 343
+      reduction at p : good, a_p = 0,   M = 18
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C18
+      generators used : [[-3, 13]]
+      canonical base of E_d(F_p) : [[Mod(14, 17), Mod(4, 17)]]
+        [-3, 13]  ->  ( u ; class [17] )     [ord in E/E_1 = 18, formal depth 1]
+
+  p = 17  class [p]  d = 34
+      E_d : y^2 = x^3 + 1156x + 39304
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 34
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[85, 867]]
+        [85, 867]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 34, formal depth 1]
+
+  p = 17  class [up]  d = 51
+      E_d : y^2 = x^3 + 2601x + 132651
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 34
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[-714/25, 23409/125]]   (of 2; the rest are not needed)
+        [-714/25, 23409/125]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 34, formal depth 1]
+
+  p = 19  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = -1,   M = 21
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C21
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 19), Mod(1, 19)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 21, formal depth 1]
+
+  p = 19  class [u]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : good, a_p = 1,   M = 19
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[1, 1]]
+        [1, 1]  ->  ( u ; - )     [ord in E/E_1 = 19, formal depth 1]
+
+  p = 19  class [p]  d = 95
+      E_d : y^2 = x^3 + 9025x + 857375
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 19
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[59101/121, 14688899/1331]]
+        [59101/121, 14688899/1331]  ->  ( u ; - )     [ord in E/E_1 = 19, formal depth 1]
+
+  p = 19  class [up]  d = -95
+      E_d : y^2 = x^3 + 9025x + -857375
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 19
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[3723268224/6105841, 229504303529593/15087533111]]
+        [3723268224/6105841, 229504303529593/15087533111]  ->  ( u ; - )     [ord in E/E_1 = 19, formal depth 1]
+
+  p = 23  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = -4,   M = 28
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C28
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 23), Mod(1, 23)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 28, formal depth 1]
+
+  p = 23  class [u]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : good, a_p = 4,   M = 20
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C20
+      generators used : [[1, 1]]
+      canonical base of E_d(F_p) : [[Mod(1, 23), Mod(1, 23)]]
+        [1, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 20, formal depth 1]
+
+  p = 23  class [p]  d = 46
+      E_d : y^2 = x^3 + 2116x + 97336
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 46
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[3381/625, 5157221/15625]]
+        [3381/625, 5157221/15625]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 46, formal depth 1]
+
+  p = 23  class [up]  d = 115
+      E_d : y^2 = x^3 + 13225x + 1520875
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 46
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[-69, 529]]
+        [-69, 529]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 46, formal depth 1]
+
+  p = 29  class [1]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : good, a_p = -6,   M = 36
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C36
+      generators used : [[1, 1]]
+      canonical base of E_d(F_p) : [[Mod(1, 29), Mod(1, 29)]]
+        [1, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 36, formal depth 1]
+
+  p = 29  class [u]  d = 11
+      E_d : y^2 = x^3 + 121x + 1331
+      reduction at p : good, a_p = 6,   M = 24
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C24
+      generators used : [[22, 121]]
+      canonical base of E_d(F_p) : [[Mod(4, 29), Mod(9, 29)]]
+        [22, 121]  ->  ( u ; class [5] )     [ord in E/E_1 = 24, formal depth 1]
+
+  p = 29  class [p]  d = -29
+      E_d : y^2 = x^3 + 841x + -24389
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 58
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[87, 841]]
+        [87, 841]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 58, formal depth 1]
+
+  p = 29  class [up]  d = 58
+      E_d : y^2 = x^3 + 3364x + 195112
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 58
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[-72682323/1885129, 232895924057/2588282117]]
+        [-72682323/1885129, 232895924057/2588282117]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 58, formal depth 1]
+
+  p = 31  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : 5 (code), c_p = 1, a_p = -1,   M = 32
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C32
+      generators used : [[0, 1]]
+        [0, 1]  ->  ( u ; order 32 in C32 (a generator) )     [ord in E/E_1 = 32, formal depth 1]
+
+  p = 31  class [u]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : 5 (code), c_p = 1, a_p = 1,   M = 30
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C30
+      generators used : [[1, 1]]
+        [1, 1]  ->  ( u ; order 30 in C30 (a generator) )     [ord in E/E_1 = 30, formal depth 1]
+
+  p = 31  class [p]  d = 31
+      E_d : y^2 = x^3 + 961x + 29791
+      reduction at p : -5 (code), c_p = 2, a_p = 0,   M = 62
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[93, 961]]
+        [93, 961]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 62, formal depth 1]
+
+  p = 31  class [up]  d = -62
+      E_d : y^2 = x^3 + 3844x + -238328
+      reduction at p : -5 (code), c_p = 4, a_p = 0,   M = 124
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C4
+      generators used : [[93, 961]]
+        [93, 961]  ->  ( u ; order 4 in C4 (a generator) )     [ord in E/E_1 = 124, formal depth 1]
+
+  p = 37  class [1]  d = -11
+      E_d : y^2 = x^3 + 121x + -1331
+      reduction at p : good, a_p = -10,   M = 48
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C48
+      generators used : [[220, 3267]]   (of 2; the rest are not needed)
+      canonical base of E_d(F_p) : [[Mod(1, 37), Mod(7, 37)]]
+        [220, 3267]  ->  ( u ; class [29] )     [ord in E/E_1 = 48, formal depth 1]
+
+  p = 37  class [u]  d = 6
+      E_d : y^2 = x^3 + 36x + 216
+      reduction at p : good, a_p = 10,   M = 28
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C28
+      generators used : [[-3, 9]]
+      canonical base of E_d(F_p) : [[Mod(7, 37), Mod(16, 37)]]
+        [-3, 9]  ->  ( u ; class [5] )     [ord in E/E_1 = 28, formal depth 1]
+
+  p = 37  class [p]  d = -37
+      E_d : y^2 = x^3 + 1369x + -50653
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 74
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[8473/16, 781699/64]]
+        [8473/16, 781699/64]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 74, formal depth 1]
+
+  p = 37  class [up]  d = 74
+      E_d : y^2 = x^3 + 5476x + 405224
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 74
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[91945/1156, 45564427/39304]]
+        [91945/1156, 45564427/39304]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 74, formal depth 1]
+
+  p = 41  class [1]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : good, a_p = 7,   M = 35
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C35
+      generators used : [[1, 1]]
+      canonical base of E_d(F_p) : [[Mod(1, 41), Mod(1, 41)]]
+        [1, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 35, formal depth 1]
+
+  p = 41  class [u]  d = 3
+      E_d : y^2 = x^3 + 9x + 27
+      reduction at p : good, a_p = -7,   M = 49
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C49
+      generators used : [[3, 9]]
+      canonical base of E_d(F_p) : [[Mod(1, 41), Mod(18, 41)]]
+        [3, 9]  ->  ( u ; class [27] )     [ord in E/E_1 = 49, formal depth 1]
+
+  p = 41  class [p]  d = 41
+      E_d : y^2 = x^3 + 1681x + 68921
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 41
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[-1328/121, 295079/1331]]
+        [-1328/121, 295079/1331]  ->  ( u ; - )     [ord in E/E_1 = 41, formal depth 1]
+
+  p = 41  class [up]  d = 123
+      E_d : y^2 = x^3 + 15129x + 1860867
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 41
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[9146571/625, 27663232869/15625]]
+        [9146571/625, 27663232869/15625]  ->  ( u ; - )     [ord in E/E_1 = 41, formal depth 1]
+
+  p = 43  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = 10,   M = 34
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C34
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 43), Mod(1, 43)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 34, formal depth 1]
+
+  p = 43  class [u]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : good, a_p = -10,   M = 54
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C54
+      generators used : [[1, 1]]
+      canonical base of E_d(F_p) : [[Mod(1, 43), Mod(1, 43)]]
+        [1, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 54, formal depth 1]
+
+  p = 43  class [p]  d = -86
+      E_d : y^2 = x^3 + 7396x + -636056
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 86
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[26445/169, 4583671/2197]]
+        [26445/169, 4583671/2197]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 86, formal depth 1]
+
+  p = 43  class [up]  d = 86
+      E_d : y^2 = x^3 + 7396x + 636056
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 86
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[-169979/47089, 7976251331/10218313]]
+        [-169979/47089, 7976251331/10218313]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 86, formal depth 1]
+
+  p = 47  class [1]  d = -11
+      E_d : y^2 = x^3 + 121x + -1331
+      reduction at p : good, a_p = -12,   M = 60
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C30 x C2
+      generators used : [[33/4, 121/8], [220, 3267]]
+      canonical base of E_d(F_p) : [[Mod(12, 47), Mod(4, 47)], [Mod(2, 47), Mod(0, 47)]]
+        [33/4, 121/8]  ->  ( u ; class [1, 1] )     [ord in E/E_1 = 30, formal depth 1]
+        [220, 3267]  ->  ( u ; class [2, 1] )     [ord in E/E_1 = 30, formal depth 1]
+
+  p = 47  class [u]  d = -149
+      E_d : y^2 = x^3 + 22201x + -3307949
+      reduction at p : good, a_p = 12,   M = 36
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C18 x C2
+      generators used : [[8791/25, 865839/125], [1639, 66603]]
+      canonical base of E_d(F_p) : [[Mod(3, 47), Mod(6, 47)], [Mod(2, 47), Mod(0, 47)]]
+        [8791/25, 865839/125]  ->  ( u ; class [11, 1] )     [ord in E/E_1 = 18, formal depth 1]
+        [1639, 66603]  ->  ( u ; class [12, 1] )     [ord in E/E_1 = 6, formal depth 1]
+
+  p = 47  class [p]  d = 94
+      E_d : y^2 = x^3 + 8836x + 830584
+      reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 188
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
+      generators used : [[1833/16, 117077/64], [141, 2209]]
+      canonical base of T = Phi : the 2-torsion at x = ["3p", "21p"]   (third root x = 23p)
+        [1833/16, 117077/64]  ->  ( u ; class [1, 1] )     [ord in E/E_1 = 94, formal depth 1]
+        [141, 2209]  ->  ( u ; class [1, 0] )     [ord in E/E_1 = 94, formal depth 1]
+
+  p = 47  class [up]  d = 705
+      E_d : y^2 = x^3 + 497025x + 350402625
+      reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 188
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
+      generators used : [[-2439159/6400, 5261884389/512000], [376, 24299]]
+      canonical base of T = Phi : the 2-torsion at x = ["8p", "40p"]   (third root x = 46p)
+        [-2439159/6400, 5261884389/512000]  ->  ( u ; class [0, 1] )     [ord in E/E_1 = 94, formal depth 1]
+        [376, 24299]  ->  ( u ; class [1, 0] )     [ord in E/E_1 = 94, formal depth 1]
+
+  p = 53  class [1]  d = 11
+      E_d : y^2 = x^3 + 121x + 1331
+      reduction at p : good, a_p = -4,   M = 58
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C58
+      generators used : [[22, 121]]
+      canonical base of E_d(F_p) : [[Mod(2, 53), Mod(16, 53)]]
+        [22, 121]  ->  ( u ; class [33] )     [ord in E/E_1 = 58, formal depth 1]
+
+  p = 53  class [u]  d = 22
+      E_d : y^2 = x^3 + 484x + 10648
+      reduction at p : good, a_p = 4,   M = 50
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C50
+      generators used : [[2937/196, 400147/2744]]
+      canonical base of E_d(F_p) : [[Mod(2, 53), Mod(21, 53)]]
+        [2937/196, 400147/2744]  ->  ( u ; class [3] )     [ord in E/E_1 = 50, formal depth 1]
+
+  p = 53  class [p]  d = 53
+      E_d : y^2 = x^3 + 2809x + 148877
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 106
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[-10388/289, 188203/4913]]   (of 2; the rest are not needed)
+        [-10388/289, 188203/4913]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 106, formal depth 1]
+
+  p = 53  class [up]  d = 106
+      E_d : y^2 = x^3 + 11236x + 1191016
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 106
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[25798969/7396, 131102218227/636056]]
+        [25798969/7396, 131102218227/636056]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 106, formal depth 1]
+
+  p = 59  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = -3,   M = 63
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C63
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 59), Mod(1, 59)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 63, formal depth 1]
+
+  p = 59  class [u]  d = 6
+      E_d : y^2 = x^3 + 36x + 216
+      reduction at p : good, a_p = 3,   M = 57
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C57
+      generators used : [[-3, 9]]
+      canonical base of E_d(F_p) : [[Mod(1, 59), Mod(28, 59)]]
+        [-3, 9]  ->  ( u ; class [46] )     [ord in E/E_1 = 57, formal depth 1]
+
+  p = 59  class [p]  d = 295
+      E_d : y^2 = x^3 + 87025x + 25672375
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 59
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[8251821/49, 23704203419/343]]
+        [8251821/49, 23704203419/343]  ->  ( u ; - )     [ord in E/E_1 = 59, formal depth 1]
+
+  p = 59  class [up]  d = -59
+      E_d : y^2 = x^3 + 3481x + -205379
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 59
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[217697199204/5358093601, 21916389965331247/392207093499599]]
+        [217697199204/5358093601, 21916389965331247/392207093499599]  ->  ( u ; - )     [ord in E/E_1 = 59, formal depth 1]
+
+  p = 61  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = 12,   M = 50
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C50
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 61), Mod(1, 61)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 50, formal depth 1]
+
+  p = 61  class [u]  d = 7
+      E_d : y^2 = x^3 + 49x + 343
+      reduction at p : good, a_p = -12,   M = 74
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C74
+      generators used : [[-3, 13]]
+      canonical base of E_d(F_p) : [[Mod(5, 61), Mod(15, 61)]]
+        [-3, 13]  ->  ( u ; class [59] )     [ord in E/E_1 = 74, formal depth 1]
+
+  p = 61  class [p]  d = -61
+      E_d : y^2 = x^3 + 3721x + -226981
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 122
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[10675/81, 1164673/729]]
+        [10675/81, 1164673/729]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 122, formal depth 1]
+
+  p = 61  class [up]  d = 122
+      E_d : y^2 = x^3 + 14884x + 1815848
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 122
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[2358325453/110889, 114528294635959/36926037]]
+        [2358325453/110889, 114528294635959/36926037]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 122, formal depth 1]
+
+  p = 67  class [1]  d = -221
+      E_d : y^2 = x^3 + 48841x + -10793861
+      reduction at p : good, a_p = 12,   M = 56
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C28 x C2
+      generators used : [[1819/9, 73117/27], [1326, 48841]]
+      canonical base of E_d(F_p) : [[Mod(4, 67), Mod(30, 67)], [Mod(13, 67), Mod(0, 67)]]
+        [1819/9, 73117/27]  ->  ( u ; class [25, 0] )     [ord in E/E_1 = 28, formal depth 1]
+        [1326, 48841]  ->  ( u ; class [20, 1] )     [ord in E/E_1 = 14, formal depth 1]
+
+  p = 67  class [u]  d = 51
+      E_d : y^2 = x^3 + 2601x + 132651
+      reduction at p : good, a_p = -12,   M = 80
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C40 x C2
+      generators used : [[-714/25, 23409/125], [-17, 289]]
+      canonical base of E_d(F_p) : [[Mod(1, 67), Mod(28, 67)], [Mod(10, 67), Mod(0, 67)]]
+        [-714/25, 23409/125]  ->  ( u ; class [8, 1] )     [ord in E/E_1 = 10, formal depth 1]
+        [-17, 289]  ->  ( u ; class [9, 1] )     [ord in E/E_1 = 40, formal depth 1]
+
+  p = 67  class [p]  d = 2211
+      E_d : y^2 = x^3 + 4888521x + 10808519931
+      reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 268
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
+      generators used : [[4623, 363609], [28743, 4888521]]
+      canonical base of T = Phi : the 2-torsion at x = ["2p", "27p"]   (third root x = 38p)
+        [4623, 363609]  ->  ( u ; class [1, 0] )     [ord in E/E_1 = 134, formal depth 1]
+        [28743, 4888521]  ->  ( u ; class [0, 1] )     [ord in E/E_1 = 134, formal depth 1]
+
+  p = 67  class [up]  d = 134
+      E_d : y^2 = x^3 + 17956x + 2406104
+      reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 268
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
+      generators used : [[-335/4, 4489/8], [94537/196, 30466843/2744]]
+      canonical base of T = Phi : the 2-torsion at x = ["26p", "49p"]   (third root x = 59p)
+        [-335/4, 4489/8]  ->  ( u ; class [0, 1] )     [ord in E/E_1 = 134, formal depth 1]
+        [94537/196, 30466843/2744]  ->  ( u ; class [1, 0] )     [ord in E/E_1 = 134, formal depth 1]
+
+  p = 71  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = 13,   M = 59
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C59
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 71), Mod(1, 71)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 59, formal depth 1]
+
+  p = 71  class [u]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : good, a_p = -13,   M = 85
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C85
+      generators used : [[1, 1]]
+      canonical base of E_d(F_p) : [[Mod(1, 71), Mod(1, 71)]]
+        [1, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 85, formal depth 1]
+
+  p = 71  class [p]  d = 71
+      E_d : y^2 = x^3 + 5041x + 357911
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 71
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[-47, 131]]
+        [-47, 131]  ->  ( u ; - )     [ord in E/E_1 = 71, formal depth 1]
+
+  p = 71  class [up]  d = -71
+      E_d : y^2 = x^3 + 5041x + -357911
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 71
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[334272/6889, 17481841/571787]]
+        [334272/6889, 17481841/571787]  ->  ( u ; - )     [ord in E/E_1 = 71, formal depth 1]
+
+  p = 73  class [1]  d = 3
+      E_d : y^2 = x^3 + 9x + 27
+      reduction at p : good, a_p = 2,   M = 72
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C72
+      generators used : [[3, 9]]
+      canonical base of E_d(F_p) : [[Mod(3, 73), Mod(9, 73)]]
+        [3, 9]  ->  ( u ; class [1] )     [ord in E/E_1 = 72, formal depth 1]
+
+  p = 73  class [u]  d = -21
+      E_d : y^2 = x^3 + 441x + -9261
+      reduction at p : good, a_p = -2,   M = 76
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C76
+      generators used : [[15, 27]]
+      canonical base of E_d(F_p) : [[Mod(6, 73), Mod(5, 73)]]
+        [15, 27]  ->  ( u ; class [31] )     [ord in E/E_1 = 76, formal depth 1]
+
+  p = 73  class [p]  d = 146
+      E_d : y^2 = x^3 + 21316x + 3112136
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 146
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[7081/64, 1337579/512]]
+        [7081/64, 1337579/512]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 146, formal depth 1]
+
+  p = 73  class [up]  d = -365
+      E_d : y^2 = x^3 + 133225x + -48627125
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 146
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[121326/169, 44864851/2197]]
+        [121326/169, 44864851/2197]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 146, formal depth 1]
+
+  p = 79  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = -6,   M = 86
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C86
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 79), Mod(1, 79)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 86, formal depth 1]
+
+  p = 79  class [u]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : good, a_p = 6,   M = 74
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C74
+      generators used : [[1, 1]]
+      canonical base of E_d(F_p) : [[Mod(1, 79), Mod(1, 79)]]
+        [1, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 74, formal depth 1]
+
+  p = 79  class [p]  d = 158
+      E_d : y^2 = x^3 + 24964x + 3944312
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 158
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[5004161712613/72071308521, 47442453127262561971/19348335556856181]]
+        [5004161712613/72071308521, 47442453127262561971/19348335556856181]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 158, formal depth 1]
+
+  p = 79  class [up]  d = -158
+      E_d : y^2 = x^3 + 24964x + -3944312
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 158
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[7760048840149/57386598025, 18969543186975148893/13747246489878875]]
+        [7760048840149/57386598025, 18969543186975148893/13747246489878875]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 158, formal depth 1]
+
+  p = 83  class [1]  d = -22
+      E_d : y^2 = x^3 + 484x + -10648
+      reduction at p : good, a_p = -6,   M = 90
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C90
+      generators used : [[1177/64, 34243/512]]
+      canonical base of E_d(F_p) : [[Mod(9, 83), Mod(9, 83)]]
+        [1177/64, 34243/512]  ->  ( u ; class [13] )     [ord in E/E_1 = 90, formal depth 1]
+
+  p = 83  class [u]  d = -11
+      E_d : y^2 = x^3 + 121x + -1331
+      reduction at p : good, a_p = 6,   M = 78
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C78
+      generators used : [[33/4, 121/8], [220, 3267]]
+      canonical base of E_d(F_p) : [[Mod(2, 83), Mod(9, 83)]]
+        [33/4, 121/8]  ->  ( u ; class [51] )     [ord in E/E_1 = 26, formal depth 1]
+        [220, 3267]  ->  ( u ; class [65] )     [ord in E/E_1 = 6, formal depth 1]
+
+  p = 83  class [p]  d = 83
+      E_d : y^2 = x^3 + 6889x + 571787
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 166
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[115702/9, 39356857/27]]
+        [115702/9, 39356857/27]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 166, formal depth 1]
+
+  p = 83  class [up]  d = 166
+      E_d : y^2 = x^3 + 27556x + 4574296
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 166
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[-7055/64, 227337/512]]
+        [-7055/64, 227337/512]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 166, formal depth 1]
+
+  p = 89  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = -10,   M = 100
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C100
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 89), Mod(1, 89)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 100, formal depth 1]
+
+  p = 89  class [u]  d = -7
+      E_d : y^2 = x^3 + 49x + -343
+      reduction at p : good, a_p = 10,   M = 80
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C80
+      generators used : [[424/25, 9157/125]]
+      canonical base of E_d(F_p) : [[Mod(3, 89), Mod(3, 89)]]
+        [424/25, 9157/125]  ->  ( u ; class [57] )     [ord in E/E_1 = 80, formal depth 1]
+
+  p = 89  class [p]  d = 178
+      E_d : y^2 = x^3 + 31684x + 5639752
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 178
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[50010613/58081, 362670502029/13997521]]
+        [50010613/58081, 362670502029/13997521]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 178, formal depth 1]
+
+  p = 89  class [up]  d = -267
+      E_d : y^2 = x^3 + 71289x + -19034163
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 178
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[13439267253561/39505537600, 52430934400275980691/7852120653376000]]
+        [13439267253561/39505537600, 52430934400275980691/7852120653376000]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 178, formal depth 1]
+
+  p = 97  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = 1,   M = 97
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[0, 1]]
+        [0, 1]  ->  ( u ; - )     [ord in E/E_1 = 97, formal depth 1]
+
+  p = 97  class [u]  d = 7
+      E_d : y^2 = x^3 + 49x + 343
+      reduction at p : good, a_p = -1,   M = 99
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C99
+      generators used : [[-3, 13]]
+      canonical base of E_d(F_p) : [[Mod(2, 97), Mod(35, 97)]]
+        [-3, 13]  ->  ( u ; class [20] )     [ord in E/E_1 = 99, formal depth 1]
+
+  p = 97  class [p]  d = 97
+      E_d : y^2 = x^3 + 9409x + 912673
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 97
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[-3020977264272/60834742609, 8527318496237271359/15004706760282023]]
+        [-3020977264272/60834742609, 8527318496237271359/15004706760282023]  ->  ( u ; - )     [ord in E/E_1 = 97, formal depth 1]
+
+  p = 97  class [up]  d = 485
+      E_d : y^2 = x^3 + 235225x + 114084125
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 97
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[607367181296288749204/261353291940472081, 15357406677464614401618319505633/133610922364995078207158521]]
+        [607367181296288749204/261353291940472081, 15357406677464614401618319505633/133610922364995078207158521]  ->  ( u ; - )     [ord in E/E_1 = 97, formal depth 1]
+
+  p = 101  class [1]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : good, a_p = -3,   M = 105
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C105
+      generators used : [[1, 1]]
+      canonical base of E_d(F_p) : [[Mod(1, 101), Mod(1, 101)]]
+        [1, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 105, formal depth 1]
+
+  p = 101  class [u]  d = 3
+      E_d : y^2 = x^3 + 9x + 27
+      reduction at p : good, a_p = 3,   M = 99
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C99
+      generators used : [[3, 9]]
+      canonical base of E_d(F_p) : [[Mod(3, 101), Mod(9, 101)]]
+        [3, 9]  ->  ( u ; class [1] )     [ord in E/E_1 = 99, formal depth 1]
+
+  p = 101  class [p]  d = 101
+      E_d : y^2 = x^3 + 10201x + 1030301
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 101
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[-68, 149]]
+        [-68, 149]  ->  ( u ; - )     [ord in E/E_1 = 101, formal depth 1]
+
+  p = 101  class [up]  d = -2626
+      E_d : y^2 = x^3 + 6895876x + -18108570376
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 101
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[80987149350133/43587835729, 304339974276810840901/9100137579993433]]
+        [80987149350133/43587835729, 304339974276810840901/9100137579993433]  ->  ( u ; - )     [ord in E/E_1 = 101, formal depth 1]
+
+  p = 103  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = 17,   M = 87
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C87
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 103), Mod(1, 103)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 87, formal depth 1]
+
+  p = 103  class [u]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : good, a_p = -17,   M = 121
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C121
+      generators used : [[1, 1]]
+      canonical base of E_d(F_p) : [[Mod(1, 103), Mod(1, 103)]]
+        [1, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 121, formal depth 1]
+
+  p = 103  class [p]  d = 103
+      E_d : y^2 = x^3 + 10609x + 1092727
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 103
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[1433661/625, 1718409659/15625]]
+        [1433661/625, 1718409659/15625]  ->  ( u ; - )     [ord in E/E_1 = 103, formal depth 1]
+
+  p = 103  class [up]  d = 2266
+      E_d : y^2 = x^3 + 5134756x + 11635357096
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 103
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[-811896233775/535089424, 231945853965266023/12377688555968]]
+        [-811896233775/535089424, 231945853965266023/12377688555968]  ->  ( u ; - )     [ord in E/E_1 = 103, formal depth 1]
+
+  p = 107  class [1]  d = -7
+      E_d : y^2 = x^3 + 49x + -343
+      reduction at p : good, a_p = 3,   M = 105
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C105
+      generators used : [[424/25, 9157/125]]
+      canonical base of E_d(F_p) : [[Mod(13, 107), Mod(43, 107)]]
+        [424/25, 9157/125]  ->  ( u ; class [46] )     [ord in E/E_1 = 105, formal depth 1]
+
+  p = 107  class [u]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : good, a_p = -3,   M = 111
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C111
+      generators used : [[1, 1]]
+      canonical base of E_d(F_p) : [[Mod(1, 107), Mod(1, 107)]]
+        [1, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 111, formal depth 1]
+
+  p = 107  class [p]  d = -1605
+      E_d : y^2 = x^3 + 2576025x + -4134520125
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 107
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[2571, 139581]]
+        [2571, 139581]  ->  ( u ; - )     [ord in E/E_1 = 107, formal depth 1]
+
+  p = 107  class [up]  d = -107
+      E_d : y^2 = x^3 + 11449x + -1225043
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 107
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[348, 6701]]
+        [348, 6701]  ->  ( u ; - )     [ord in E/E_1 = 107, formal depth 1]
+
+  p = 109  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = -13,   M = 123
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C123
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 109), Mod(1, 109)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 123, formal depth 1]
+
+  p = 109  class [u]  d = 6
+      E_d : y^2 = x^3 + 36x + 216
+      reduction at p : good, a_p = 13,   M = 97
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C97
+      generators used : [[-3, 9]]
+      canonical base of E_d(F_p) : [[Mod(1, 109), Mod(12, 109)]]
+        [-3, 9]  ->  ( u ; class [63] )     [ord in E/E_1 = 97, formal depth 1]
+
+  p = 109  class [p]  d = 109
+      E_d : y^2 = x^3 + 11881x + 1295029
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 109
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[33919060748052/93717413689, 208876500065824300519/28689993004854637]]
+        [33919060748052/93717413689, 208876500065824300519/28689993004854637]  ->  ( u ; - )     [ord in E/E_1 = 109, formal depth 1]
+
+  p = 109  class [up]  d = 654
+      E_d : y^2 = x^3 + 427716x + 279726264
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 109
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[15870885/6889, 66417238701/571787]]
+        [15870885/6889, 66417238701/571787]  ->  ( u ; - )     [ord in E/E_1 = 109, formal depth 1]
+
+  p = 113  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = -11,   M = 125
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C125
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 113), Mod(1, 113)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 125, formal depth 1]
+
+  p = 113  class [u]  d = 3
+      E_d : y^2 = x^3 + 9x + 27
+      reduction at p : good, a_p = 11,   M = 103
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C103
+      generators used : [[3, 9]]
+      canonical base of E_d(F_p) : [[Mod(2, 113), Mod(36, 113)]]
+        [3, 9]  ->  ( u ; class [13] )     [ord in E/E_1 = 103, formal depth 1]
+
+  p = 113  class [p]  d = 113
+      E_d : y^2 = x^3 + 12769x + 1442897
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 113
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[-160779984385773438752/2170759046766859201, 963909231244807348734778795801/3198286975421092343816528801]]
+        [-160779984385773438752/2170759046766859201, 963909231244807348734778795801/3198286975421092343816528801]  ->  ( u ; - )     [ord in E/E_1 = 113, formal depth 1]
+
+  p = 113  class [up]  d = 339
+      E_d : y^2 = x^3 + 114921x + 38958219
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 113
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[-129, 4689]]
+        [-129, 4689]  ->  ( u ; - )     [ord in E/E_1 = 113, formal depth 1]
+
+  p = 127  class [1]  d = -6
+      E_d : y^2 = x^3 + 36x + -216
+      reduction at p : good, a_p = 2,   M = 126
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C126
+      generators used : [[21, 99]]
+      canonical base of E_d(F_p) : [[Mod(15, 127), Mod(4, 127)]]
+        [21, 99]  ->  ( u ; class [121] )     [ord in E/E_1 = 126, formal depth 1]
+
+  p = 127  class [u]  d = 3
+      E_d : y^2 = x^3 + 9x + 27
+      reduction at p : good, a_p = -2,   M = 130
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C130
+      generators used : [[3, 9]]
+      canonical base of E_d(F_p) : [[Mod(3, 127), Mod(9, 127)]]
+        [3, 9]  ->  ( u ; class [1] )     [ord in E/E_1 = 130, formal depth 1]
+
+  p = 127  class [p]  d = 254
+      E_d : y^2 = x^3 + 64516x + 16387064
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 254
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[39963217/20164, 254963215879/2863288]]
+        [39963217/20164, 254963215879/2863288]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 254, formal depth 1]
+
+  p = 127  class [up]  d = -127
+      E_d : y^2 = x^3 + 16129x + -2048383
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 254
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[3122041/25600, 5391263411/4096000]]   (of 2; the rest are not needed)
+        [3122041/25600, 5391263411/4096000]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 254, formal depth 1]
+
+  p = 131  class [1]  d = 53
+      E_d : y^2 = x^3 + 2809x + 148877
+      reduction at p : good, a_p = 4,   M = 128
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C64 x C2
+      generators used : [[-10388/289, 188203/4913], [148, 1951]]
+      canonical base of E_d(F_p) : [[Mod(0, 131), Mod(42, 131)], [Mod(3, 131), Mod(0, 131)]]
+        [-10388/289, 188203/4913]  ->  ( u ; class [49, 1] )     [ord in E/E_1 = 64, formal depth 1]
+        [148, 1951]  ->  ( u ; class [3, 0] )     [ord in E/E_1 = 64, formal depth 1]
+
+  p = 131  class [u]  d = -11
+      E_d : y^2 = x^3 + 121x + -1331
+      reduction at p : good, a_p = -4,   M = 136
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C68 x C2
+      generators used : [[33/4, 121/8], [220, 3267]]
+      canonical base of E_d(F_p) : [[Mod(3, 131), Mod(32, 131)], [Mod(76, 131), Mod(0, 131)]]
+        [33/4, 121/8]  ->  ( u ; class [41, 1] )     [ord in E/E_1 = 68, formal depth 1]
+        [220, 3267]  ->  ( u ; class [43, 0] )     [ord in E/E_1 = 68, formal depth 1]
+
+  p = 131  class [p]  d = 131
+      E_d : y^2 = x^3 + 17161x + 2248091
+      reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 524
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
+      generators used : [[5371/25, 497669/125], [655, 17161]]
+      canonical base of T = Phi : the 2-torsion at x = ["5p", "51p"]   (third root x = 75p)
+        [5371/25, 497669/125]  ->  ( u ; class [1, 1] )     [ord in E/E_1 = 262, formal depth 1]
+        [655, 17161]  ->  ( u ; class [1, 0] )     [ord in E/E_1 = 262, formal depth 1]
+
+  p = 131  class [up]  d = 8646
+      E_d : y^2 = x^3 + 74753316x + 646317170136
+      reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 524
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
+      generators used : [[-29168680211/7425625, 10935550731379087/20234828125], [80565, 23012901]]
+      canonical base of T = Phi : the 2-torsion at x = ["68p", "91p"]   (third root x = 103p)
+        [-29168680211/7425625, 10935550731379087/20234828125]  ->  ( u ; class [1, 1] )     [ord in E/E_1 = 262, formal depth 1]
+        [80565, 23012901]  ->  ( u ; class [0, 1] )     [ord in E/E_1 = 262, formal depth 1]
+
+  p = 137  class [1]  d = 7
+      E_d : y^2 = x^3 + 49x + 343
+      reduction at p : good, a_p = 12,   M = 126
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C126
+      generators used : [[-3, 13]]
+      canonical base of E_d(F_p) : [[Mod(5, 137), Mod(24, 137)]]
+        [-3, 13]  ->  ( u ; class [97] )     [ord in E/E_1 = 126, formal depth 1]
+
+  p = 137  class [u]  d = 3
+      E_d : y^2 = x^3 + 9x + 27
+      reduction at p : good, a_p = -12,   M = 150
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C150
+      generators used : [[3, 9]]
+      canonical base of E_d(F_p) : [[Mod(3, 137), Mod(9, 137)]]
+        [3, 9]  ->  ( u ; class [1] )     [ord in E/E_1 = 150, formal depth 1]
+
+  p = 137  class [p]  d = 274
+      E_d : y^2 = x^3 + 75076x + 20570824
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 274
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[331123731117/5803544761, 2212369247487137017/442119843437741]]
+        [331123731117/5803544761, 2212369247487137017/442119843437741]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 274, formal depth 1]
+
+  p = 137  class [up]  d = -411
+      E_d : y^2 = x^3 + 168921x + -69426531
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 274
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[1101728244/3508129, 25104204043497/6570725617]]
+        [1101728244/3508129, 25104204043497/6570725617]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 274, formal depth 1]
+
+  p = 139  class [1]  d = 51
+      E_d : y^2 = x^3 + 2601x + 132651
+      reduction at p : good, a_p = 14,   M = 126
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C42 x C3
+      generators used : [[-714/25, 23409/125], [-17, 289]]
+      canonical base of E_d(F_p) : [[Mod(2, 139), Mod(23, 139)], [Mod(93, 139), Mod(43, 139)]]
+        [-714/25, 23409/125]  ->  ( u ; class [19, 2] )     [ord in E/E_1 = 42, formal depth 1]
+        [-17, 289]  ->  ( u ; class [34, 1] )     [ord in E/E_1 = 21, formal depth 1]
+
+  p = 139  class [u]  d = 3
+      E_d : y^2 = x^3 + 9x + 27
+      reduction at p : good, a_p = -14,   M = 154
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C154
+      generators used : [[3, 9]]
+      canonical base of E_d(F_p) : [[Mod(1, 139), Mod(68, 139)]]
+        [3, 9]  ->  ( u ; class [71] )     [ord in E/E_1 = 154, formal depth 1]
+
+  p = 139  class [p]  d = 139
+      E_d : y^2 = x^3 + 19321x + 2685619
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 278
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[417/4, 19321/8]]
+        [417/4, 19321/8]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 278, formal depth 1]
+
+  p = 139  class [up]  d = -139
+      E_d : y^2 = x^3 + 19321x + -2685619
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 278
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[3892/9, 251173/27]]   (of 2; the rest are not needed)
+        [3892/9, 251173/27]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 278, formal depth 1]
+
+  p = 149  class [1]  d = 53
+      E_d : y^2 = x^3 + 2809x + 148877
+      reduction at p : good, a_p = 14,   M = 136
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C68 x C2
+      generators used : [[-10388/289, 188203/4913], [148, 1951]]
+      canonical base of E_d(F_p) : [[Mod(0, 149), Mod(18, 149)], [Mod(13, 149), Mod(0, 149)]]
+        [-10388/289, 188203/4913]  ->  ( u ; class [38, 1] )     [ord in E/E_1 = 34, formal depth 1]
+        [148, 1951]  ->  ( u ; class [47, 0] )     [ord in E/E_1 = 68, formal depth 1]
+
+  p = 149  class [u]  d = 94
+      E_d : y^2 = x^3 + 8836x + 830584
+      reduction at p : good, a_p = -14,   M = 164
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C82 x C2
+      generators used : [[1833/16, 117077/64], [141, 2209]]
+      canonical base of E_d(F_p) : [[Mod(1, 149), Mod(36, 149)], [Mod(40, 149), Mod(0, 149)]]
+        [1833/16, 117077/64]  ->  ( u ; class [5, 0] )     [ord in E/E_1 = 82, formal depth 1]
+        [141, 2209]  ->  ( u ; class [50, 1] )     [ord in E/E_1 = 82, formal depth 1]
+
+  p = 149  class [p]  d = -149
+      E_d : y^2 = x^3 + 22201x + -3307949
+      reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 596
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
+      generators used : [[8791/25, 865839/125], [1639, 66603]]
+      canonical base of T = Phi : the 2-torsion at x = ["11p", "56p"]   (third root x = 82p)
+        [8791/25, 865839/125]  ->  ( u ; class [0, 1] )     [ord in E/E_1 = 298, formal depth 1]
+        [1639, 66603]  ->  ( u ; class [1, 0] )     [ord in E/E_1 = 298, formal depth 1]
+
+  p = 149  class [up]  d = 13559
+      E_d : y^2 = x^3 + 183846481x + 2492774435879
+      reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 596
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
+      generators used : [[712634381069/37982569, 829166901850307943/234086572747], [20413, 3840773]]
+      canonical base of T = Phi : the 2-torsion at x = ["42p", "119p"]   (third root x = 137p)
+        [712634381069/37982569, 829166901850307943/234086572747]  ->  ( u ; class [0, 1] )     [ord in E/E_1 = 298, formal depth 1]
+        [20413, 3840773]  ->  ( u ; class [1, 1] )     [ord in E/E_1 = 298, formal depth 1]
+
+  p = 151  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = -2,   M = 154
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C154
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 151), Mod(1, 151)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 154, formal depth 1]
+
+  p = 151  class [u]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : good, a_p = 2,   M = 150
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C150
+      generators used : [[1, 1]]
+      canonical base of E_d(F_p) : [[Mod(1, 151), Mod(1, 151)]]
+        [1, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 150, formal depth 1]
+
+  p = 151  class [p]  d = 755
+      E_d : y^2 = x^3 + 570025x + 430368875
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 302
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[151, 22801]]
+        [151, 22801]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 302, formal depth 1]
+
+  p = 151  class [up]  d = 453
+      E_d : y^2 = x^3 + 205209x + 92959677
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 302
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[3366104446853292/32473665853489, 1987447792215770228854917/185053360601719250263]]
+        [3366104446853292/32473665853489, 1987447792215770228854917/185053360601719250263]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 302, formal depth 1]
+
+  p = 157  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = -13,   M = 171
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C171
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 157), Mod(1, 157)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 171, formal depth 1]
+
+  p = 157  class [u]  d = 5
+      E_d : y^2 = x^3 + 25x + 125
+      reduction at p : good, a_p = 13,   M = 145
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C145
+      generators used : [[4, 17]]
+      canonical base of E_d(F_p) : [[Mod(4, 157), Mod(17, 157)]]
+        [4, 17]  ->  ( u ; class [1] )     [ord in E/E_1 = 145, formal depth 1]
+
+  p = 157  class [p]  d = 157
+      E_d : y^2 = x^3 + 24649x + 3869893
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 157
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[4195788/2809, 8646799829/148877]]
+        [4195788/2809, 8646799829/148877]  ->  ( u ; - )     [ord in E/E_1 = 157, formal depth 1]
+
+  p = 157  class [up]  d = 2355
+      E_d : y^2 = x^3 + 5546025x + 13060888875
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 157
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[22623639965396331/4382453351761, 3884397846999324684396471/9174363702630381991]]
+        [22623639965396331/4382453351761, 3884397846999324684396471/9174363702630381991]  ->  ( u ; - )     [ord in E/E_1 = 157, formal depth 1]
+
+  p = 163  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = -25,   M = 189
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C189
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 163), Mod(1, 163)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 189, formal depth 1]
+
+  p = 163  class [u]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : good, a_p = 25,   M = 139
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C139
+      generators used : [[1, 1]]
+      canonical base of E_d(F_p) : [[Mod(1, 163), Mod(1, 163)]]
+        [1, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 139, formal depth 1]
+
+  p = 163  class [p]  d = 978
+      E_d : y^2 = x^3 + 956484x + 935441352
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 163
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[933, 51381]]
+        [933, 51381]  ->  ( u ; - )     [ord in E/E_1 = 163, formal depth 1]
+
+  p = 163  class [up]  d = 815
+      E_d : y^2 = x^3 + 664225x + 541343375
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 163
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[-2464911059/18309841, 1661055177802561/78347809639]]
+        [-2464911059/18309841, 1661055177802561/78347809639]  ->  ( u ; - )     [ord in E/E_1 = 163, formal depth 1]
+
+  p = 167  class [1]  d = -13
+      E_d : y^2 = x^3 + 169x + -2197
+      reduction at p : good, a_p = 24,   M = 144
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C144
+      generators used : [[247, 3887]]
+      canonical base of E_d(F_p) : [[Mod(3, 167), Mod(72, 167)]]
+        [247, 3887]  ->  ( u ; class [119] )     [ord in E/E_1 = 144, formal depth 1]
+
+  p = 167  class [u]  d = -6
+      E_d : y^2 = x^3 + 36x + -216
+      reduction at p : good, a_p = -24,   M = 192
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C192
+      generators used : [[21, 99]]
+      canonical base of E_d(F_p) : [[Mod(2, 167), Mod(71, 167)]]
+        [21, 99]  ->  ( u ; class [161] )     [ord in E/E_1 = 192, formal depth 1]
+
+  p = 167  class [p]  d = 334
+      E_d : y^2 = x^3 + 111556x + 37259704
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 334
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[58617/4, 14195501/8]]
+        [58617/4, 14195501/8]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 334, formal depth 1]
+
+  p = 167  class [up]  d = -334
+      E_d : y^2 = x^3 + 111556x + -37259704
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 334
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[743828521/1444804, 21734448479861/1736654408]]
+        [743828521/1444804, 21734448479861/1736654408]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 334, formal depth 1]
+
+  p = 173  class [1]  d = 51
+      E_d : y^2 = x^3 + 2601x + 132651
+      reduction at p : good, a_p = 2,   M = 172
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C86 x C2
+      generators used : [[-714/25, 23409/125], [-17, 289]]
+      canonical base of E_d(F_p) : [[Mod(0, 173), Mod(47, 173)], [Mod(16, 173), Mod(0, 173)]]
+        [-714/25, 23409/125]  ->  ( u ; class [16, 1] )     [ord in E/E_1 = 86, formal depth 1]
+        [-17, 289]  ->  ( u ; class [41, 0] )     [ord in E/E_1 = 86, formal depth 1]
+
+  p = 173  class [u]  d = 53
+      E_d : y^2 = x^3 + 2809x + 148877
+      reduction at p : good, a_p = -2,   M = 176
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C88 x C2
+      generators used : [[-10388/289, 188203/4913], [148, 1951]]
+      canonical base of E_d(F_p) : [[Mod(2, 173), Mod(35, 173)], [Mod(95, 173), Mod(0, 173)]]
+        [-10388/289, 188203/4913]  ->  ( u ; class [64, 1] )     [ord in E/E_1 = 22, formal depth 1]
+        [148, 1951]  ->  ( u ; class [39, 0] )     [ord in E/E_1 = 88, formal depth 1]
+
+  p = 173  class [p]  d = -173
+      E_d : y^2 = x^3 + 29929x + -5177717
+      reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 692
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
+      generators used : [[4671/25, 329219/125], [84078/289, 26068159/4913]]
+      canonical base of T = Phi : the 2-torsion at x = ["8p", "37p"]   (third root x = 128p)
+        [4671/25, 329219/125]  ->  ( u ; class [1, 0] )     [ord in E/E_1 = 346, formal depth 1]
+        [84078/289, 26068159/4913]  ->  ( u ; class [0, 1] )     [ord in E/E_1 = 346, formal depth 1]
+
+  p = 173  class [up]  d = 519
+      E_d : y^2 = x^3 + 269361x + 139798359
+      reduction at p : -1 (code), c_p = 4, a_p = 0,   M = 692
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2 x C2
+      generators used : [[-1211/25, 1406663/125], [3633/4, 269361/8]]
+      canonical base of T = Phi : the 2-torsion at x = ["62p", "135p"]   (third root x = 149p)
+        [-1211/25, 1406663/125]  ->  ( u ; class [1, 0] )     [ord in E/E_1 = 346, formal depth 1]
+        [3633/4, 269361/8]  ->  ( u ; class [0, 1] )     [ord in E/E_1 = 346, formal depth 1]
+
+  p = 179  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = 0,   M = 180
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C180
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 179), Mod(1, 179)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 180, formal depth 1]
+
+  p = 179  class [u]  d = -19
+      E_d : y^2 = x^3 + 361x + -6859
+      reduction at p : good, a_p = 0,   M = 180
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C180
+      generators used : [[9772/361, 1034501/6859]]
+      canonical base of E_d(F_p) : [[Mod(6, 179), Mod(78, 179)]]
+        [9772/361, 1034501/6859]  ->  ( u ; class [161] )     [ord in E/E_1 = 180, formal depth 1]
+
+  p = 179  class [p]  d = 179
+      E_d : y^2 = x^3 + 32041x + 5735339
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 358
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[21659/169, 7593717/2197]]
+        [21659/169, 7593717/2197]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 358, formal depth 1]
+
+  p = 179  class [up]  d = -537
+      E_d : y^2 = x^3 + 288369x + -154854153
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 358
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[1428490275232098/2937758292121, 50437267563431630176101/5035285397354180669]]
+        [1428490275232098/2937758292121, 50437267563431630176101/5035285397354180669]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 358, formal depth 1]
+
+  p = 181  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = -8,   M = 190
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C190
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 181), Mod(1, 181)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 190, formal depth 1]
+
+  p = 181  class [u]  d = 7
+      E_d : y^2 = x^3 + 49x + 343
+      reduction at p : good, a_p = 8,   M = 174
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C174
+      generators used : [[-3, 13]]
+      canonical base of E_d(F_p) : [[Mod(4, 181), Mod(28, 181)]]
+        [-3, 13]  ->  ( u ; class [73] )     [ord in E/E_1 = 174, formal depth 1]
+
+  p = 181  class [p]  d = -181
+      E_d : y^2 = x^3 + 32761x + -5929741
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 362
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[1267/9, 32761/27]]
+        [1267/9, 32761/27]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 362, formal depth 1]
+
+  p = 181  class [up]  d = -1086
+      E_d : y^2 = x^3 + 1179396x + -1280824056
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 362
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[113125/121, 33645547/1331]]   (of 2; the rest are not needed)
+        [113125/121, 33645547/1331]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 362, formal depth 1]
+
+  p = 191  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = -25,   M = 217
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C217
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 191), Mod(1, 191)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 217, formal depth 1]
+
+  p = 191  class [u]  d = -1
+      E_d : y^2 = x^3 + 1x + -1
+      reduction at p : good, a_p = 25,   M = 167
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C167
+      generators used : [[1, 1]]
+      canonical base of E_d(F_p) : [[Mod(1, 191), Mod(1, 191)]]
+        [1, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 167, formal depth 1]
+
+  p = 191  class [p]  d = 191
+      E_d : y^2 = x^3 + 36481x + 6967871
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 191
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[147421/49, 56724121/343]]
+        [147421/49, 56724121/343]  ->  ( u ; - )     [ord in E/E_1 = 191, formal depth 1]
+
+  p = 191  class [up]  d = -191
+      E_d : y^2 = x^3 + 36481x + -6967871
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 191
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[32463476400/184334929, 5550715392397391/2502715331033]]
+        [32463476400/184334929, 5550715392397391/2502715331033]  ->  ( u ; - )     [ord in E/E_1 = 191, formal depth 1]
+
+  p = 193  class [1]  d = 1
+      E_d : y^2 = x^3 + 1x + 1
+      reduction at p : good, a_p = -7,   M = 201
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C201
+      generators used : [[0, 1]]
+      canonical base of E_d(F_p) : [[Mod(0, 193), Mod(1, 193)]]
+        [0, 1]  ->  ( u ; class [1] )     [ord in E/E_1 = 201, formal depth 1]
+
+  p = 193  class [u]  d = 5
+      E_d : y^2 = x^3 + 25x + 125
+      reduction at p : good, a_p = 7,   M = 187
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C187
+      generators used : [[4, 17]]
+      canonical base of E_d(F_p) : [[Mod(4, 193), Mod(17, 193)]]
+        [4, 17]  ->  ( u ; class [1] )     [ord in E/E_1 = 187, formal depth 1]
+
+  p = 193  class [p]  d = -193
+      E_d : y^2 = x^3 + 37249x + -7189057
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 193
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[9866360014417/20332193281, 32433687343173364417/2899187772131071]]
+        [9866360014417/20332193281, 32433687343173364417/2899187772131071]  ->  ( u ; - )     [ord in E/E_1 = 193, formal depth 1]
+
+  p = 193  class [up]  d = 965
+      E_d : y^2 = x^3 + 931225x + 898632125
+      reduction at p : -1 (code), c_p = 1, a_p = 0,   M = 193
+      rank 1, torsion 1,   E_d(Q_p) = Z_p
+      generators used : [[99428383084/1100401, 31353829793809723/1154320649]]
+        [99428383084/1100401, 31353829793809723/1154320649]  ->  ( u ; - )     [ord in E/E_1 = 193, formal depth 1]
+
+  p = 197  class [1]  d = -6
+      E_d : y^2 = x^3 + 36x + -216
+      reduction at p : good, a_p = -24,   M = 222
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C222
+      generators used : [[21, 99]]
+      canonical base of E_d(F_p) : [[Mod(2, 197), Mod(88, 197)]]
+        [21, 99]  ->  ( u ; class [85] )     [ord in E/E_1 = 222, formal depth 1]
+
+  p = 197  class [u]  d = 3
+      E_d : y^2 = x^3 + 9x + 27
+      reduction at p : good, a_p = 24,   M = 174
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C174
+      generators used : [[3, 9]]
+      canonical base of E_d(F_p) : [[Mod(2, 197), Mod(29, 197)]]
+        [3, 9]  ->  ( u ; class [91] )     [ord in E/E_1 = 174, formal depth 1]
+
+  p = 197  class [p]  d = 197
+      E_d : y^2 = x^3 + 38809x + 7645373
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 394
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[237188/289, 119570529/4913]]   (of 2; the rest are not needed)
+        [237188/289, 119570529/4913]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 394, formal depth 1]
+
+  p = 197  class [up]  d = 394
+      E_d : y^2 = x^3 + 155236x + 61162984
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 394
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[55718377785/34175716, 13620706725663757/199791235736]]
+        [55718377785/34175716, 13620706725663757/199791235736]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 394, formal depth 1]
+
+  p = 199  class [1]  d = -6
+      E_d : y^2 = x^3 + 36x + -216
+      reduction at p : good, a_p = -18,   M = 218
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C218
+      generators used : [[21, 99]]
+      canonical base of E_d(F_p) : [[Mod(5, 199), Mod(41, 199)]]
+        [21, 99]  ->  ( u ; class [123] )     [ord in E/E_1 = 218, formal depth 1]
+
+  p = 199  class [u]  d = 3
+      E_d : y^2 = x^3 + 9x + 27
+      reduction at p : good, a_p = 18,   M = 182
+      rank 1, torsion 1,   E_d(Q_p) = Z_p x C182
+      generators used : [[3, 9]]
+      canonical base of E_d(F_p) : [[Mod(3, 199), Mod(9, 199)]]
+        [3, 9]  ->  ( u ; class [1] )     [ord in E/E_1 = 182, formal depth 1]
+
+  p = 199  class [p]  d = 199
+      E_d : y^2 = x^3 + 39601x + 7880599
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 398
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[-995/9, 39601/27]]   (of 2; the rest are not needed)
+        [-995/9, 39601/27]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 398, formal depth 1]
+
+  p = 199  class [up]  d = -199
+      E_d : y^2 = x^3 + 39601x + -7880599
+      reduction at p : -1 (code), c_p = 2, a_p = 0,   M = 398
+      rank 2, torsion 1,   E_d(Q_p) = Z_p x C2
+      generators used : [[6169/16, 514813/64]]   (of 2; the rest are not needed)
+        [6169/16, 514813/64]  ->  ( u ; order 2 in C2 (a generator) )     [ord in E/E_1 = 398, formal depth 1]
+
+done.
