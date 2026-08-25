@@ -146,6 +146,18 @@ dlog(Ep, P, gens, cyc) =
   [-1,-1];
 }
 
+\\ PARI's Kodaira code as the usual symbol.  Calibrated against this table:
+\\ 1 = I_0 (good, v_p(Delta) = 0); 4+n = I_n (multiplicative); -1 = I_0^*;
+\\ -4-n = I_n^*; 2,3,4 = II,III,IV and -2,-3,-4 = II^*,III^*,IV^*.
+kodsym(k) =
+{ if (k == 1, return("I_0"));
+  if (k == 2, return("II"));  if (k == 3, return("III")); if (k == 4, return("IV"));
+  if (k > 4, return(Str("I_", k-4)));
+  if (k == -1, return("I_0*"));
+  if (k == -2, return("II*")); if (k == -3, return("III*")); if (k == -4, return("IV*"));
+  Str("I_", -k-4, "*");
+}
+
 \\ ---- the diagonal layer l = p.  v_p(alpha_P), from depth(M P) = v_p(alpha)+1.
 \\ Returns -1 when M P is numerically O, i.e. alpha = 0 (P locally torsion at p).
 valalpha(E, P, p, M) =
@@ -189,10 +201,9 @@ entry(p, cls, d) =
   Tord = if (#Tstruct == 0, 1, if (#Tstruct == 1, Tstruct[1], Tstruct[1]*Tstruct[2]));
   print("  p = ", p, "  class ", cls, "  d = ", d,
         "    E_d : y^2 = x^3 + ", d^2, "x + ", d^3);
-  print("      reduction ", if (good, Str("good, a_p = ", ellap(E,p)),
-          Str(if (ellap(E,p) == 0, "additive", "multiplicative"),
-              " (Kodaira ", elllocalred(E,p)[2], ", c_p = ", elllocalred(E,p)[4],
-              ", a_p = ", ellap(E,p), ")")),
+  my(lr = elllocalred(E,p));
+  print("      reduction ", if (good, "good", if (ellap(E,p) == 0, "additive", "multiplicative")),
+        ",  Kodaira ", kodsym(lr[2]), ",  c_p = ", lr[4], ",  a_p = ", ellap(E,p),
         ",  M = ", M, ",  T = ",
         if (#Tstruct == 0, "trivial",
           if (#Tstruct == 1, Str("C", Tstruct[1]), Str("C2 x C2"))),
