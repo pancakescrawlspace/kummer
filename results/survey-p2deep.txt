@@ -1,0 +1,16 @@
+DIM 14a1 rootsQ2=3 rootsQ=1 dimE2Q2=2 dimE2Q=1
+DEEP2 14a1 [-231, -29, -1595, 1199, -814, 22, -182, -1218] cover=8/8  m<=4000 time=3223
+DIM 14a3 rootsQ2=3 rootsQ=1 dimE2Q2=2 dimE2Q=1
+DEEP2 14a3 [-231, -29, -1595, 1199, -814, 22, -182, -1218] cover=8/8  m<=4000 time=3457
+DIM 14a4 rootsQ2=3 rootsQ=1 dimE2Q2=2 dimE2Q=1
+DEEP2 14a4 [-231, -29, 469, 1199, -814, 22, -182, -1218] cover=8/8  m<=4000 time=2332
+DIM 15a3 rootsQ2=3 rootsQ=3 dimE2Q2=2 dimE2Q=2
+DEEP2 15a3 [-95, 3, 13, 0, 34, 22, 10, 30] cover=7/8  m<=4000 time=9227
+DIM 15a8 rootsQ2=3 rootsQ=1 dimE2Q2=2 dimE2Q=1
+DEEP2 15a8 [1785, -285, 0, 0, -3390, 0, 2490, -690] cover=5/8  m<=4000 time=31287
+DIM 17a3 rootsQ2=3 rootsQ=1 dimE2Q2=2 dimE2Q=1
+DEEP2 17a3 [-39, 19, 157, 0, -14, 86, 26, -114] cover=7/8  m<=4000 time=12001
+DIM 17a4 rootsQ2=3 rootsQ=1 dimE2Q2=2 dimE2Q=1
+DEEP2 17a4 [-2279, 19, 157, 0, 1378, 86, 26, 1742] cover=7/8  m<=4000 time=13243
+### two finished
+gp -q -s 4000000000  < /dev/null  74.48s user 0.23s system 99% cpu 1:14.79 total

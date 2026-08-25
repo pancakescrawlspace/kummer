@@ -1,0 +1,5 @@
+DEEP2 rigid:-7 rootsQ2=3 g2=3 [201, 11, 53, 319, 66, 134, 10, 1518] cover=8/8  m<=4000 time=1269
+DEEP2 j1728:1 rootsQ2=1 g2=2 [-15, 3, -3, 15, 0, -10, 10, 0] cover=6/8  m<=4000 time=8376
+DEEP2 j1728:7 rootsQ2=3 g2=3 [129, 3, -3, -129, -670, 22, -22, 670] cover=8/8  m<=4000 time=837
+### cm2 finished
+gp -q -s 4000000000  < /dev/null  10.40s user 0.05s system 99% cpu 10.500 total

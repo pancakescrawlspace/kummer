@@ -1,0 +1,22 @@
+== Lemma A: v_l(x) != v_l(d) implies x is a square in Q_l ==
+  d=10 : 240 sampled points, 0 with x not a square
+  d=26 : 270 sampled points, 0 with x not a square
+  d=34 : 290 sampled points, 0 with x not a square
+  d=66 : 475 sampled points, 0 with x not a square
+  d=82 : 290 sampled points, 0 with x not a square
+  d=130 : 510 sampled points, 0 with x not a square
+  d=210 : 700 sampled points, 0 with x not a square
+  d=58 : 290 sampled points, 0 with x not a square
+  d=74 : 280 sampled points, 0 with x not a square
+
+== Lemma B: size of c(E_d(Q_l)) at every bad odd l ==
+ class [2]:
+  418 bad odd places, sizes of c(E_d(Q_l)): ["1", 300; "2", 118]   with more than 2 elements: 0   time=228
+ class [14]:
+  418 bad odd places, sizes of c(E_d(Q_l)): ["1", 300; "2", 118]   with more than 2 elements: 0   time=217
+ class [6]:
+  597 bad odd places, sizes of c(E_d(Q_l)): ["1", 424; "2", 173]   with more than 2 elements: 0   time=290
+ class [1]:
+  418 bad odd places, sizes of c(E_d(Q_l)): ["1", 311; "2", 107]   with more than 2 elements: 0   time=218
+### cyc finished
+gp -q -s 4000000000  < /dev/null  0.97s user 0.01s system 99% cpu 0.986 total

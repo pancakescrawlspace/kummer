@@ -1,0 +1,3072 @@
+=========================================================================
+ l-primary certificate for the single-place sweep, sections 3.3 and 3.4
+=========================================================================
+
+E : v^2 = u^3 + u + 1 (496a).   E_d : Y^2 = X^3 + d^2 X + d^3.
+
+G := E^d(Q_p) is profinite abelian and topologically finitely generated,
+so a closed subgroup R equals G as soon as R.Phi(G) = G, and for abelian
+G,  G/Phi(G) = prod_l G/lG.  With G = Z_p x T only l = p and the primes
+dividing #T contribute, and those factors have coprime orders.  Hence
+
+   E^d(Q) dense in E^d(Q_p)  <=>  E^d(Q) --> E^d(Q_p)/l onto for each l,
+
+checked one l at a time.  Each E^d(Q_p)/l is an F_l-space of dimension
+<= 2, so a line is: a basis, the images of the generators of E^d(Q) in
+it, and the rank of that matrix.  Generators are listed ONCE per (p,d).
+
+  p = 3  class [1]  d = 7    E_d : y^2 = x^3 + 49x + 343
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 0,  M = 4,  T = C4,   E^d(Q_p) = Z_3 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-3, 13]
+      relevant l (p, and the primes dividing #T) : [3, 2]
+      l = 3  (= p)   dim E^d(Q_p)/3 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_3(alpha) = 0)
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(0, 3), Mod(1, 3)]] in Etilde(F_3)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 3  class [u]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 0,  M = 4,  T = C4,   E^d(Q_p) = Z_3 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [3, 2]
+      l = 3  (= p)   dim E^d(Q_p)/3 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_3(alpha) = 0)
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(1, 3), Mod(1, 3)]] in Etilde(F_3)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 3  class [p]  d = 3    E_d : y^2 = x^3 + 9x + 27
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 6,  T = C2,   E^d(Q_p) = Z_3 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [3, 9]
+      relevant l (p, and the primes dividing #T) : [3, 2]
+      l = 3  (= p)   dim E^d(Q_p)/3 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_3(alpha) = 0)
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 3  class [up]  d = 6    E_d : y^2 = x^3 + 36x + 216
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 6,  T = C2,   E^d(Q_p) = Z_3 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-3, 9]
+      relevant l (p, and the primes dividing #T) : [3, 2]
+      l = 3  (= p)   dim E^d(Q_p)/3 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_3(alpha) = 0)
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 5  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -3,  M = 9,  T = C9,   E^d(Q_p) = Z_5 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [5, 3]
+      l = 5  (= p)   dim E^d(Q_p)/5 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_5(alpha) = 0)
+            rank over F_5 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(0, 5), Mod(1, 5)]] in Etilde(F_5)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 5  class [u]  d = 3    E_d : y^2 = x^3 + 9x + 27
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 3,  M = 3,  T = C3,   E^d(Q_p) = Z_5 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [3, 9]
+      relevant l (p, and the primes dividing #T) : [5, 3]
+      l = 5  (= p)   dim E^d(Q_p)/5 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_5(alpha) = 0)
+            rank over F_5 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(3, 5), Mod(1, 5)]] in Etilde(F_5)
+            P_1 |-> [2]
+            rank over F_3 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 5  class [p]  d = 5    E_d : y^2 = x^3 + 25x + 125
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 5,  T = trivial,   E^d(Q_p) = Z_5
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [4, 17]
+      relevant l (p, and the primes dividing #T) : [5]
+      l = 5  (= p)   dim E^d(Q_p)/5 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_5(alpha) = 0)
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 5  class [up]  d = -35    E_d : y^2 = x^3 + 1225x + -42875
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 5,  T = trivial,   E^d(Q_p) = Z_5
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [59004/1369, 15194717/50653]
+      relevant l (p, and the primes dividing #T) : [5]
+      l = 5  (= p)   dim E^d(Q_p)/5 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_5(alpha) = 0)
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 7  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 3,  M = 5,  T = C5,   E^d(Q_p) = Z_7 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [7, 5]
+      l = 7  (= p)   dim E^d(Q_p)/7 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_7(alpha) = 0)
+            rank over F_7 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(0, 7), Mod(1, 7)]] in Etilde(F_7)
+            P_1 |-> [1]
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 7  class [u]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -3,  M = 11,  T = C11,   E^d(Q_p) = Z_7 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [7, 11]
+      l = 7  (= p)   dim E^d(Q_p)/7 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_7(alpha) = 0)
+            rank over F_7 = 1 of 1   ==> ONTO
+      l = 11        dim E^d(Q_p)/11 = 1
+            basis  : images of [[Mod(1, 7), Mod(1, 7)]] in Etilde(F_7)
+            P_1 |-> [1]
+            rank over F_11 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 7  class [p]  d = 7    E_d : y^2 = x^3 + 49x + 343
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 7,  T = trivial,   E^d(Q_p) = Z_7
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-3, 13]
+      relevant l (p, and the primes dividing #T) : [7]
+      l = 7  (= p)   dim E^d(Q_p)/7 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_7(alpha) = 0)
+            rank over F_7 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 7  class [up]  d = -7    E_d : y^2 = x^3 + 49x + -343
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 7,  T = trivial,   E^d(Q_p) = Z_7
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [424/25, 9157/125]
+      relevant l (p, and the primes dividing #T) : [7]
+      l = 7  (= p)   dim E^d(Q_p)/7 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_7(alpha) = 0)
+            rank over F_7 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 11  class [1]  d = 3    E_d : y^2 = x^3 + 9x + 27
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -2,  M = 14,  T = C14,   E^d(Q_p) = Z_11 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [3, 9]
+      relevant l (p, and the primes dividing #T) : [11, 2, 7]
+      l = 11  (= p)   dim E^d(Q_p)/11 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_11(alpha) = 0)
+            rank over F_11 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(1, 11), Mod(2, 11)]] in Etilde(F_11)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(1, 11), Mod(2, 11)]] in Etilde(F_11)
+            P_1 |-> [3]
+            rank over F_7 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 11  class [u]  d = 6    E_d : y^2 = x^3 + 36x + 216
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 2,  M = 10,  T = C10,   E^d(Q_p) = Z_11 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-3, 9]
+      relevant l (p, and the primes dividing #T) : [11, 2, 5]
+      l = 11  (= p)   dim E^d(Q_p)/11 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_11(alpha) = 0)
+            rank over F_11 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(8, 11), Mod(2, 11)]] in Etilde(F_11)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(8, 11), Mod(2, 11)]] in Etilde(F_11)
+            P_1 |-> [4]
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 11  class [p]  d = 11    E_d : y^2 = x^3 + 121x + 1331
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 22,  T = C2,   E^d(Q_p) = Z_11 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [22, 121]
+      relevant l (p, and the primes dividing #T) : [11, 2]
+      l = 11  (= p)   dim E^d(Q_p)/11 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_11(alpha) = 0)
+            rank over F_11 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 11  class [up]  d = -11    E_d : y^2 = x^3 + 121x + -1331
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 22,  T = C2,   E^d(Q_p) = Z_11 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [33/4, 121/8]
+        P_2 = [220, 3267]
+      relevant l (p, and the primes dividing #T) : [11, 2]
+      l = 11  (= p)   dim E^d(Q_p)/11 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_11(alpha) = 0)
+            P_2 |-> nonzero      (v_11(alpha) = 0)
+            rank over F_11 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            P_2 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 13  class [1]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -4,  M = 18,  T = C18,   E^d(Q_p) = Z_13 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [13, 2, 3]
+      l = 13  (= p)   dim E^d(Q_p)/13 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_13(alpha) = 0)
+            rank over F_13 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(1, 13), Mod(1, 13)]] in Etilde(F_13)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(1, 13), Mod(1, 13)]] in Etilde(F_13)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 13  class [u]  d = 5    E_d : y^2 = x^3 + 25x + 125
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 4,  M = 10,  T = C10,   E^d(Q_p) = Z_13 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [4, 17]
+      relevant l (p, and the primes dividing #T) : [13, 2, 5]
+      l = 13  (= p)   dim E^d(Q_p)/13 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_13(alpha) = 0)
+            rank over F_13 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(2, 13), Mod(1, 13)]] in Etilde(F_13)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(2, 13), Mod(1, 13)]] in Etilde(F_13)
+            P_1 |-> [3]
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 13  class [p]  d = -13    E_d : y^2 = x^3 + 169x + -2197
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 26,  T = C2,   E^d(Q_p) = Z_13 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [247, 3887]
+      relevant l (p, and the primes dividing #T) : [13, 2]
+      l = 13  (= p)   dim E^d(Q_p)/13 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_13(alpha) = 0)
+            rank over F_13 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 13  class [up]  d = 26    E_d : y^2 = x^3 + 676x + 17576
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 26,  T = C2,   E^d(Q_p) = Z_13 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [13, 169]
+      relevant l (p, and the primes dividing #T) : [13, 2]
+      l = 13  (= p)   dim E^d(Q_p)/13 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_13(alpha) = 0)
+            rank over F_13 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 17  class [1]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 0,  M = 18,  T = C18,   E^d(Q_p) = Z_17 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [17, 2, 3]
+      l = 17  (= p)   dim E^d(Q_p)/17 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_17(alpha) = 0)
+            rank over F_17 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(0, 17), Mod(4, 17)]] in Etilde(F_17)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(0, 17), Mod(4, 17)]] in Etilde(F_17)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 17  class [u]  d = 7    E_d : y^2 = x^3 + 49x + 343
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 0,  M = 18,  T = C18,   E^d(Q_p) = Z_17 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-3, 13]
+      relevant l (p, and the primes dividing #T) : [17, 2, 3]
+      l = 17  (= p)   dim E^d(Q_p)/17 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_17(alpha) = 0)
+            rank over F_17 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(14, 17), Mod(4, 17)]] in Etilde(F_17)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(14, 17), Mod(4, 17)]] in Etilde(F_17)
+            P_1 |-> [2]
+            rank over F_3 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 17  class [p]  d = 34    E_d : y^2 = x^3 + 1156x + 39304
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 34,  T = C2,   E^d(Q_p) = Z_17 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [85, 867]
+      relevant l (p, and the primes dividing #T) : [17, 2]
+      l = 17  (= p)   dim E^d(Q_p)/17 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_17(alpha) = 0)
+            rank over F_17 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 17  class [up]  d = 51    E_d : y^2 = x^3 + 2601x + 132651
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 34,  T = C2,   E^d(Q_p) = Z_17 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [-714/25, 23409/125]
+        P_2 = [-17, 289]
+      relevant l (p, and the primes dividing #T) : [17, 2]
+      l = 17  (= p)   dim E^d(Q_p)/17 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_17(alpha) = 0)
+            P_2 |-> nonzero      (v_17(alpha) = 0)
+            rank over F_17 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            P_2 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 19  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -1,  M = 21,  T = C21,   E^d(Q_p) = Z_19 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [19, 3, 7]
+      l = 19  (= p)   dim E^d(Q_p)/19 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_19(alpha) = 0)
+            rank over F_19 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(0, 19), Mod(1, 19)]] in Etilde(F_19)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(0, 19), Mod(1, 19)]] in Etilde(F_19)
+            P_1 |-> [1]
+            rank over F_7 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 19  class [u]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 1,  M = 19,  T = trivial,   E^d(Q_p) = Z_19
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [19]
+      l = 19  (= p)   dim E^d(Q_p)/19 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_19(alpha) = 0)
+            rank over F_19 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 19  class [p]  d = 95    E_d : y^2 = x^3 + 9025x + 857375
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 19,  T = trivial,   E^d(Q_p) = Z_19
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [59101/121, 14688899/1331]
+      relevant l (p, and the primes dividing #T) : [19]
+      l = 19  (= p)   dim E^d(Q_p)/19 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_19(alpha) = 0)
+            rank over F_19 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 19  class [up]  d = -95    E_d : y^2 = x^3 + 9025x + -857375
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 19,  T = trivial,   E^d(Q_p) = Z_19
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [3723268224/6105841, 229504303529593/15087533111]
+      relevant l (p, and the primes dividing #T) : [19]
+      l = 19  (= p)   dim E^d(Q_p)/19 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_19(alpha) = 0)
+            rank over F_19 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 23  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -4,  M = 28,  T = C28,   E^d(Q_p) = Z_23 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [23, 2, 7]
+      l = 23  (= p)   dim E^d(Q_p)/23 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_23(alpha) = 0)
+            rank over F_23 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(0, 23), Mod(1, 23)]] in Etilde(F_23)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(0, 23), Mod(1, 23)]] in Etilde(F_23)
+            P_1 |-> [1]
+            rank over F_7 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 23  class [u]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 4,  M = 20,  T = C20,   E^d(Q_p) = Z_23 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [23, 2, 5]
+      l = 23  (= p)   dim E^d(Q_p)/23 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_23(alpha) = 0)
+            rank over F_23 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(1, 23), Mod(1, 23)]] in Etilde(F_23)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(1, 23), Mod(1, 23)]] in Etilde(F_23)
+            P_1 |-> [1]
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 23  class [p]  d = 46    E_d : y^2 = x^3 + 2116x + 97336
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 46,  T = C2,   E^d(Q_p) = Z_23 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [3381/625, 5157221/15625]
+      relevant l (p, and the primes dividing #T) : [23, 2]
+      l = 23  (= p)   dim E^d(Q_p)/23 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_23(alpha) = 0)
+            rank over F_23 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 23  class [up]  d = 115    E_d : y^2 = x^3 + 13225x + 1520875
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 46,  T = C2,   E^d(Q_p) = Z_23 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-69, 529]
+      relevant l (p, and the primes dividing #T) : [23, 2]
+      l = 23  (= p)   dim E^d(Q_p)/23 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_23(alpha) = 0)
+            rank over F_23 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 29  class [1]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -6,  M = 36,  T = C36,   E^d(Q_p) = Z_29 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [29, 2, 3]
+      l = 29  (= p)   dim E^d(Q_p)/29 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_29(alpha) = 0)
+            rank over F_29 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(1, 29), Mod(1, 29)]] in Etilde(F_29)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(1, 29), Mod(1, 29)]] in Etilde(F_29)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 29  class [u]  d = 11    E_d : y^2 = x^3 + 121x + 1331
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 6,  M = 24,  T = C24,   E^d(Q_p) = Z_29 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [22, 121]
+      relevant l (p, and the primes dividing #T) : [29, 2, 3]
+      l = 29  (= p)   dim E^d(Q_p)/29 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_29(alpha) = 0)
+            rank over F_29 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(4, 29), Mod(9, 29)]] in Etilde(F_29)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(4, 29), Mod(9, 29)]] in Etilde(F_29)
+            P_1 |-> [2]
+            rank over F_3 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 29  class [p]  d = -29    E_d : y^2 = x^3 + 841x + -24389
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 58,  T = C2,   E^d(Q_p) = Z_29 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [87, 841]
+      relevant l (p, and the primes dividing #T) : [29, 2]
+      l = 29  (= p)   dim E^d(Q_p)/29 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_29(alpha) = 0)
+            rank over F_29 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 29  class [up]  d = 58    E_d : y^2 = x^3 + 3364x + 195112
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 58,  T = C2,   E^d(Q_p) = Z_29 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-72682323/1885129, 232895924057/2588282117]
+      relevant l (p, and the primes dividing #T) : [29, 2]
+      l = 29  (= p)   dim E^d(Q_p)/29 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_29(alpha) = 0)
+            rank over F_29 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 31  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction multiplicative,  Kodaira I_1,  c_p = 1,  a_p = -1,  M = 32,  T = C32,   E^d(Q_p) = Z_31 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [31, 2]
+      l = 31  (= p)   dim E^d(Q_p)/31 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_31(alpha) = 0)
+            rank over F_31 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C32
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 31  class [u]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction multiplicative,  Kodaira I_1,  c_p = 1,  a_p = 1,  M = 30,  T = C30,   E^d(Q_p) = Z_31 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [31, 2, 3, 5]
+      l = 31  (= p)   dim E^d(Q_p)/31 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_31(alpha) = 0)
+            rank over F_31 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C30
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : a generator of the cyclic T = C30
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : a generator of the cyclic T = C30
+            P_1 |-> [1]
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 31  class [p]  d = 31    E_d : y^2 = x^3 + 961x + 29791
+      reduction additive,  Kodaira I_1*,  c_p = 2,  a_p = 0,  M = 62,  T = C2,   E^d(Q_p) = Z_31 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [93, 961]
+      relevant l (p, and the primes dividing #T) : [31, 2]
+      l = 31  (= p)   dim E^d(Q_p)/31 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_31(alpha) = 0)
+            rank over F_31 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 31  class [up]  d = -62    E_d : y^2 = x^3 + 3844x + -238328
+      reduction additive,  Kodaira I_1*,  c_p = 4,  a_p = 0,  M = 124,  T = C4,   E^d(Q_p) = Z_31 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [93, 961]
+      relevant l (p, and the primes dividing #T) : [31, 2]
+      l = 31  (= p)   dim E^d(Q_p)/31 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_31(alpha) = 0)
+            rank over F_31 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C4
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 37  class [1]  d = -11    E_d : y^2 = x^3 + 121x + -1331
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -10,  M = 48,  T = C48,   E^d(Q_p) = Z_37 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [33/4, 121/8]
+        P_2 = [220, 3267]
+      relevant l (p, and the primes dividing #T) : [37, 2, 3]
+      l = 37  (= p)   dim E^d(Q_p)/37 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_37(alpha) = 0)
+            P_2 |-> nonzero      (v_37(alpha) = 0)
+            rank over F_37 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(1, 37), Mod(7, 37)]] in Etilde(F_37)
+            P_1 |-> [1]
+            P_2 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(1, 37), Mod(7, 37)]] in Etilde(F_37)
+            P_1 |-> [0]
+            P_2 |-> [2]
+            rank over F_3 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 37  class [u]  d = 6    E_d : y^2 = x^3 + 36x + 216
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 10,  M = 28,  T = C28,   E^d(Q_p) = Z_37 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-3, 9]
+      relevant l (p, and the primes dividing #T) : [37, 2, 7]
+      l = 37  (= p)   dim E^d(Q_p)/37 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_37(alpha) = 0)
+            rank over F_37 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(7, 37), Mod(16, 37)]] in Etilde(F_37)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(7, 37), Mod(16, 37)]] in Etilde(F_37)
+            P_1 |-> [5]
+            rank over F_7 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 37  class [p]  d = -37    E_d : y^2 = x^3 + 1369x + -50653
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 74,  T = C2,   E^d(Q_p) = Z_37 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [8473/16, 781699/64]
+      relevant l (p, and the primes dividing #T) : [37, 2]
+      l = 37  (= p)   dim E^d(Q_p)/37 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_37(alpha) = 0)
+            rank over F_37 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 37  class [up]  d = 74    E_d : y^2 = x^3 + 5476x + 405224
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 74,  T = C2,   E^d(Q_p) = Z_37 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [91945/1156, 45564427/39304]
+      relevant l (p, and the primes dividing #T) : [37, 2]
+      l = 37  (= p)   dim E^d(Q_p)/37 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_37(alpha) = 0)
+            rank over F_37 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 41  class [1]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 7,  M = 35,  T = C35,   E^d(Q_p) = Z_41 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [41, 5, 7]
+      l = 41  (= p)   dim E^d(Q_p)/41 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_41(alpha) = 0)
+            rank over F_41 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(1, 41), Mod(1, 41)]] in Etilde(F_41)
+            P_1 |-> [1]
+            rank over F_5 = 1 of 1   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(1, 41), Mod(1, 41)]] in Etilde(F_41)
+            P_1 |-> [1]
+            rank over F_7 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 41  class [u]  d = 3    E_d : y^2 = x^3 + 9x + 27
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -7,  M = 49,  T = C49,   E^d(Q_p) = Z_41 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [3, 9]
+      relevant l (p, and the primes dividing #T) : [41, 7]
+      l = 41  (= p)   dim E^d(Q_p)/41 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_41(alpha) = 0)
+            rank over F_41 = 1 of 1   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(1, 41), Mod(18, 41)]] in Etilde(F_41)
+            P_1 |-> [6]
+            rank over F_7 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 41  class [p]  d = 41    E_d : y^2 = x^3 + 1681x + 68921
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 41,  T = trivial,   E^d(Q_p) = Z_41
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-1328/121, 295079/1331]
+      relevant l (p, and the primes dividing #T) : [41]
+      l = 41  (= p)   dim E^d(Q_p)/41 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_41(alpha) = 0)
+            rank over F_41 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 41  class [up]  d = 123    E_d : y^2 = x^3 + 15129x + 1860867
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 41,  T = trivial,   E^d(Q_p) = Z_41
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [9146571/625, 27663232869/15625]
+      relevant l (p, and the primes dividing #T) : [41]
+      l = 41  (= p)   dim E^d(Q_p)/41 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_41(alpha) = 0)
+            rank over F_41 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 43  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 10,  M = 34,  T = C34,   E^d(Q_p) = Z_43 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [43, 2, 17]
+      l = 43  (= p)   dim E^d(Q_p)/43 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_43(alpha) = 0)
+            rank over F_43 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(0, 43), Mod(1, 43)]] in Etilde(F_43)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 17        dim E^d(Q_p)/17 = 1
+            basis  : images of [[Mod(0, 43), Mod(1, 43)]] in Etilde(F_43)
+            P_1 |-> [1]
+            rank over F_17 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 43  class [u]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -10,  M = 54,  T = C54,   E^d(Q_p) = Z_43 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [43, 2, 3]
+      l = 43  (= p)   dim E^d(Q_p)/43 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_43(alpha) = 0)
+            rank over F_43 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(1, 43), Mod(1, 43)]] in Etilde(F_43)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(1, 43), Mod(1, 43)]] in Etilde(F_43)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 43  class [p]  d = -86    E_d : y^2 = x^3 + 7396x + -636056
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 86,  T = C2,   E^d(Q_p) = Z_43 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [26445/169, 4583671/2197]
+      relevant l (p, and the primes dividing #T) : [43, 2]
+      l = 43  (= p)   dim E^d(Q_p)/43 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_43(alpha) = 0)
+            rank over F_43 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 43  class [up]  d = 86    E_d : y^2 = x^3 + 7396x + 636056
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 86,  T = C2,   E^d(Q_p) = Z_43 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-169979/47089, 7976251331/10218313]
+      relevant l (p, and the primes dividing #T) : [43, 2]
+      l = 43  (= p)   dim E^d(Q_p)/43 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_43(alpha) = 0)
+            rank over F_43 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 47  class [1]  d = -11    E_d : y^2 = x^3 + 121x + -1331
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -12,  M = 60,  T = C2 x C2,   E^d(Q_p) = Z_47 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [33/4, 121/8]
+        P_2 = [220, 3267]
+      relevant l (p, and the primes dividing #T) : [47, 2, 3, 5]
+      l = 47  (= p)   dim E^d(Q_p)/47 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_47(alpha) = 0)
+            P_2 |-> nonzero      (v_47(alpha) = 0)
+            rank over F_47 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : images of [[Mod(12, 47), Mod(4, 47)], [Mod(2, 47), Mod(0, 47)]] in Etilde(F_47)
+            P_1 |-> [1, 1]
+            P_2 |-> [0, 1]
+            rank over F_2 = 2 of 2   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(12, 47), Mod(4, 47)]] in Etilde(F_47)
+            P_1 |-> [1]
+            P_2 |-> [2]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(12, 47), Mod(4, 47)]] in Etilde(F_47)
+            P_1 |-> [1]
+            P_2 |-> [2]
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 47  class [u]  d = -149    E_d : y^2 = x^3 + 22201x + -3307949
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 12,  M = 36,  T = C2 x C2,   E^d(Q_p) = Z_47 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [8791/25, 865839/125]
+        P_2 = [1639, 66603]
+      relevant l (p, and the primes dividing #T) : [47, 2, 3]
+      l = 47  (= p)   dim E^d(Q_p)/47 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_47(alpha) = 0)
+            P_2 |-> nonzero      (v_47(alpha) = 0)
+            rank over F_47 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : images of [[Mod(3, 47), Mod(6, 47)], [Mod(2, 47), Mod(0, 47)]] in Etilde(F_47)
+            P_1 |-> [1, 1]
+            P_2 |-> [0, 1]
+            rank over F_2 = 2 of 2   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(3, 47), Mod(6, 47)]] in Etilde(F_47)
+            P_1 |-> [2]
+            P_2 |-> [0]
+            rank over F_3 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 47  class [p]  d = 94    E_d : y^2 = x^3 + 8836x + 830584
+      reduction additive,  Kodaira I_0*,  c_p = 4,  a_p = 0,  M = 188,  T = C2 x C2,   E^d(Q_p) = Z_47 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [1833/16, 117077/64]
+        P_2 = [141, 2209]
+      relevant l (p, and the primes dividing #T) : [47, 2]
+      l = 47  (= p)   dim E^d(Q_p)/47 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_47(alpha) = 0)
+            P_2 |-> nonzero      (v_47(alpha) = 0)
+            rank over F_47 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : the 2-torsion at x = ["3p", "21p"]
+            P_1 |-> [1, 1]
+            P_2 |-> [1, 0]
+            rank over F_2 = 2 of 2   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 47  class [up]  d = 705    E_d : y^2 = x^3 + 497025x + 350402625
+      reduction additive,  Kodaira I_0*,  c_p = 4,  a_p = 0,  M = 188,  T = C2 x C2,   E^d(Q_p) = Z_47 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [-2439159/6400, 5261884389/512000]
+        P_2 = [376, 24299]
+      relevant l (p, and the primes dividing #T) : [47, 2]
+      l = 47  (= p)   dim E^d(Q_p)/47 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_47(alpha) = 0)
+            P_2 |-> nonzero      (v_47(alpha) = 0)
+            rank over F_47 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : the 2-torsion at x = ["8p", "40p"]
+            P_1 |-> [0, 1]
+            P_2 |-> [1, 0]
+            rank over F_2 = 2 of 2   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 53  class [1]  d = 11    E_d : y^2 = x^3 + 121x + 1331
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -4,  M = 58,  T = C58,   E^d(Q_p) = Z_53 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [22, 121]
+      relevant l (p, and the primes dividing #T) : [53, 2, 29]
+      l = 53  (= p)   dim E^d(Q_p)/53 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_53(alpha) = 0)
+            rank over F_53 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(2, 53), Mod(16, 53)]] in Etilde(F_53)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 29        dim E^d(Q_p)/29 = 1
+            basis  : images of [[Mod(2, 53), Mod(16, 53)]] in Etilde(F_53)
+            P_1 |-> [4]
+            rank over F_29 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 53  class [u]  d = 22    E_d : y^2 = x^3 + 484x + 10648
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 4,  M = 50,  T = C50,   E^d(Q_p) = Z_53 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [2937/196, 400147/2744]
+      relevant l (p, and the primes dividing #T) : [53, 2, 5]
+      l = 53  (= p)   dim E^d(Q_p)/53 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_53(alpha) = 0)
+            rank over F_53 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(2, 53), Mod(21, 53)]] in Etilde(F_53)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(2, 53), Mod(21, 53)]] in Etilde(F_53)
+            P_1 |-> [3]
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 53  class [p]  d = 53    E_d : y^2 = x^3 + 2809x + 148877
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 106,  T = C2,   E^d(Q_p) = Z_53 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [-10388/289, 188203/4913]
+        P_2 = [148, 1951]
+      relevant l (p, and the primes dividing #T) : [53, 2]
+      l = 53  (= p)   dim E^d(Q_p)/53 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_53(alpha) = 0)
+            P_2 |-> nonzero      (v_53(alpha) = 0)
+            rank over F_53 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            P_2 |-> [0]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 53  class [up]  d = 106    E_d : y^2 = x^3 + 11236x + 1191016
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 106,  T = C2,   E^d(Q_p) = Z_53 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [25798969/7396, 131102218227/636056]
+      relevant l (p, and the primes dividing #T) : [53, 2]
+      l = 53  (= p)   dim E^d(Q_p)/53 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_53(alpha) = 0)
+            rank over F_53 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 59  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -3,  M = 63,  T = C63,   E^d(Q_p) = Z_59 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [59, 3, 7]
+      l = 59  (= p)   dim E^d(Q_p)/59 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_59(alpha) = 0)
+            rank over F_59 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(0, 59), Mod(1, 59)]] in Etilde(F_59)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(0, 59), Mod(1, 59)]] in Etilde(F_59)
+            P_1 |-> [1]
+            rank over F_7 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 59  class [u]  d = 6    E_d : y^2 = x^3 + 36x + 216
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 3,  M = 57,  T = C57,   E^d(Q_p) = Z_59 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-3, 9]
+      relevant l (p, and the primes dividing #T) : [59, 3, 19]
+      l = 59  (= p)   dim E^d(Q_p)/59 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_59(alpha) = 0)
+            rank over F_59 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(1, 59), Mod(28, 59)]] in Etilde(F_59)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 19        dim E^d(Q_p)/19 = 1
+            basis  : images of [[Mod(1, 59), Mod(28, 59)]] in Etilde(F_59)
+            P_1 |-> [8]
+            rank over F_19 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 59  class [p]  d = 295    E_d : y^2 = x^3 + 87025x + 25672375
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 59,  T = trivial,   E^d(Q_p) = Z_59
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [8251821/49, 23704203419/343]
+      relevant l (p, and the primes dividing #T) : [59]
+      l = 59  (= p)   dim E^d(Q_p)/59 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_59(alpha) = 0)
+            rank over F_59 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 59  class [up]  d = -59    E_d : y^2 = x^3 + 3481x + -205379
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 59,  T = trivial,   E^d(Q_p) = Z_59
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [217697199204/5358093601, 21916389965331247/392207093499599]
+      relevant l (p, and the primes dividing #T) : [59]
+      l = 59  (= p)   dim E^d(Q_p)/59 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_59(alpha) = 0)
+            rank over F_59 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 61  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 12,  M = 50,  T = C50,   E^d(Q_p) = Z_61 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [61, 2, 5]
+      l = 61  (= p)   dim E^d(Q_p)/61 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_61(alpha) = 0)
+            rank over F_61 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(0, 61), Mod(1, 61)]] in Etilde(F_61)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(0, 61), Mod(1, 61)]] in Etilde(F_61)
+            P_1 |-> [1]
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 61  class [u]  d = 7    E_d : y^2 = x^3 + 49x + 343
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -12,  M = 74,  T = C74,   E^d(Q_p) = Z_61 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-3, 13]
+      relevant l (p, and the primes dividing #T) : [61, 2, 37]
+      l = 61  (= p)   dim E^d(Q_p)/61 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_61(alpha) = 0)
+            rank over F_61 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(5, 61), Mod(15, 61)]] in Etilde(F_61)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 37        dim E^d(Q_p)/37 = 1
+            basis  : images of [[Mod(5, 61), Mod(15, 61)]] in Etilde(F_61)
+            P_1 |-> [22]
+            rank over F_37 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 61  class [p]  d = -61    E_d : y^2 = x^3 + 3721x + -226981
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 122,  T = C2,   E^d(Q_p) = Z_61 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [10675/81, 1164673/729]
+      relevant l (p, and the primes dividing #T) : [61, 2]
+      l = 61  (= p)   dim E^d(Q_p)/61 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_61(alpha) = 0)
+            rank over F_61 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 61  class [up]  d = 122    E_d : y^2 = x^3 + 14884x + 1815848
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 122,  T = C2,   E^d(Q_p) = Z_61 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [2358325453/110889, 114528294635959/36926037]
+      relevant l (p, and the primes dividing #T) : [61, 2]
+      l = 61  (= p)   dim E^d(Q_p)/61 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_61(alpha) = 0)
+            rank over F_61 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 67  class [1]  d = -221    E_d : y^2 = x^3 + 48841x + -10793861
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 12,  M = 56,  T = C2 x C2,   E^d(Q_p) = Z_67 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [1819/9, 73117/27]
+        P_2 = [1326, 48841]
+      relevant l (p, and the primes dividing #T) : [67, 2, 7]
+      l = 67  (= p)   dim E^d(Q_p)/67 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_67(alpha) = 0)
+            P_2 |-> nonzero      (v_67(alpha) = 0)
+            rank over F_67 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : images of [[Mod(4, 67), Mod(30, 67)], [Mod(13, 67), Mod(0, 67)]] in Etilde(F_67)
+            P_1 |-> [1, 0]
+            P_2 |-> [0, 1]
+            rank over F_2 = 2 of 2   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(4, 67), Mod(30, 67)]] in Etilde(F_67)
+            P_1 |-> [4]
+            P_2 |-> [6]
+            rank over F_7 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 67  class [u]  d = 51    E_d : y^2 = x^3 + 2601x + 132651
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -12,  M = 80,  T = C2 x C2,   E^d(Q_p) = Z_67 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [-714/25, 23409/125]
+        P_2 = [-17, 289]
+      relevant l (p, and the primes dividing #T) : [67, 2, 5]
+      l = 67  (= p)   dim E^d(Q_p)/67 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_67(alpha) = 0)
+            P_2 |-> nonzero      (v_67(alpha) = 0)
+            rank over F_67 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : images of [[Mod(1, 67), Mod(28, 67)], [Mod(10, 67), Mod(0, 67)]] in Etilde(F_67)
+            P_1 |-> [0, 1]
+            P_2 |-> [1, 1]
+            rank over F_2 = 2 of 2   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(1, 67), Mod(28, 67)]] in Etilde(F_67)
+            P_1 |-> [3]
+            P_2 |-> [4]
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 67  class [p]  d = 2211    E_d : y^2 = x^3 + 4888521x + 10808519931
+      reduction additive,  Kodaira I_0*,  c_p = 4,  a_p = 0,  M = 268,  T = C2 x C2,   E^d(Q_p) = Z_67 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [4623, 363609]
+        P_2 = [28743, 4888521]
+      relevant l (p, and the primes dividing #T) : [67, 2]
+      l = 67  (= p)   dim E^d(Q_p)/67 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_67(alpha) = 0)
+            P_2 |-> nonzero      (v_67(alpha) = 0)
+            rank over F_67 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : the 2-torsion at x = ["2p", "27p"]
+            P_1 |-> [1, 0]
+            P_2 |-> [0, 1]
+            rank over F_2 = 2 of 2   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 67  class [up]  d = 134    E_d : y^2 = x^3 + 17956x + 2406104
+      reduction additive,  Kodaira I_0*,  c_p = 4,  a_p = 0,  M = 268,  T = C2 x C2,   E^d(Q_p) = Z_67 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [-335/4, 4489/8]
+        P_2 = [94537/196, 30466843/2744]
+      relevant l (p, and the primes dividing #T) : [67, 2]
+      l = 67  (= p)   dim E^d(Q_p)/67 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_67(alpha) = 0)
+            P_2 |-> nonzero      (v_67(alpha) = 0)
+            rank over F_67 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : the 2-torsion at x = ["26p", "49p"]
+            P_1 |-> [0, 1]
+            P_2 |-> [1, 0]
+            rank over F_2 = 2 of 2   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 71  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 13,  M = 59,  T = C59,   E^d(Q_p) = Z_71 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [71, 59]
+      l = 71  (= p)   dim E^d(Q_p)/71 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_71(alpha) = 0)
+            rank over F_71 = 1 of 1   ==> ONTO
+      l = 59        dim E^d(Q_p)/59 = 1
+            basis  : images of [[Mod(0, 71), Mod(1, 71)]] in Etilde(F_71)
+            P_1 |-> [1]
+            rank over F_59 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 71  class [u]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -13,  M = 85,  T = C85,   E^d(Q_p) = Z_71 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [71, 5, 17]
+      l = 71  (= p)   dim E^d(Q_p)/71 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_71(alpha) = 0)
+            rank over F_71 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(1, 71), Mod(1, 71)]] in Etilde(F_71)
+            P_1 |-> [1]
+            rank over F_5 = 1 of 1   ==> ONTO
+      l = 17        dim E^d(Q_p)/17 = 1
+            basis  : images of [[Mod(1, 71), Mod(1, 71)]] in Etilde(F_71)
+            P_1 |-> [1]
+            rank over F_17 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 71  class [p]  d = 71    E_d : y^2 = x^3 + 5041x + 357911
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 71,  T = trivial,   E^d(Q_p) = Z_71
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-47, 131]
+      relevant l (p, and the primes dividing #T) : [71]
+      l = 71  (= p)   dim E^d(Q_p)/71 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_71(alpha) = 0)
+            rank over F_71 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 71  class [up]  d = -71    E_d : y^2 = x^3 + 5041x + -357911
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 71,  T = trivial,   E^d(Q_p) = Z_71
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [334272/6889, 17481841/571787]
+      relevant l (p, and the primes dividing #T) : [71]
+      l = 71  (= p)   dim E^d(Q_p)/71 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_71(alpha) = 0)
+            rank over F_71 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 73  class [1]  d = 3    E_d : y^2 = x^3 + 9x + 27
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 2,  M = 72,  T = C72,   E^d(Q_p) = Z_73 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [3, 9]
+      relevant l (p, and the primes dividing #T) : [73, 2, 3]
+      l = 73  (= p)   dim E^d(Q_p)/73 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_73(alpha) = 0)
+            rank over F_73 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(3, 73), Mod(9, 73)]] in Etilde(F_73)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(3, 73), Mod(9, 73)]] in Etilde(F_73)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 73  class [u]  d = -21    E_d : y^2 = x^3 + 441x + -9261
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -2,  M = 76,  T = C76,   E^d(Q_p) = Z_73 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [15, 27]
+      relevant l (p, and the primes dividing #T) : [73, 2, 19]
+      l = 73  (= p)   dim E^d(Q_p)/73 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_73(alpha) = 0)
+            rank over F_73 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(6, 73), Mod(5, 73)]] in Etilde(F_73)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 19        dim E^d(Q_p)/19 = 1
+            basis  : images of [[Mod(6, 73), Mod(5, 73)]] in Etilde(F_73)
+            P_1 |-> [12]
+            rank over F_19 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 73  class [p]  d = 146    E_d : y^2 = x^3 + 21316x + 3112136
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 146,  T = C2,   E^d(Q_p) = Z_73 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [7081/64, 1337579/512]
+      relevant l (p, and the primes dividing #T) : [73, 2]
+      l = 73  (= p)   dim E^d(Q_p)/73 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_73(alpha) = 0)
+            rank over F_73 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 73  class [up]  d = -365    E_d : y^2 = x^3 + 133225x + -48627125
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 146,  T = C2,   E^d(Q_p) = Z_73 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [121326/169, 44864851/2197]
+      relevant l (p, and the primes dividing #T) : [73, 2]
+      l = 73  (= p)   dim E^d(Q_p)/73 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_73(alpha) = 0)
+            rank over F_73 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 79  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -6,  M = 86,  T = C86,   E^d(Q_p) = Z_79 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [79, 2, 43]
+      l = 79  (= p)   dim E^d(Q_p)/79 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_79(alpha) = 0)
+            rank over F_79 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(0, 79), Mod(1, 79)]] in Etilde(F_79)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 43        dim E^d(Q_p)/43 = 1
+            basis  : images of [[Mod(0, 79), Mod(1, 79)]] in Etilde(F_79)
+            P_1 |-> [1]
+            rank over F_43 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 79  class [u]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 6,  M = 74,  T = C74,   E^d(Q_p) = Z_79 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [79, 2, 37]
+      l = 79  (= p)   dim E^d(Q_p)/79 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_79(alpha) = 0)
+            rank over F_79 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(1, 79), Mod(1, 79)]] in Etilde(F_79)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 37        dim E^d(Q_p)/37 = 1
+            basis  : images of [[Mod(1, 79), Mod(1, 79)]] in Etilde(F_79)
+            P_1 |-> [1]
+            rank over F_37 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 79  class [p]  d = 158    E_d : y^2 = x^3 + 24964x + 3944312
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 158,  T = C2,   E^d(Q_p) = Z_79 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [5004161712613/72071308521, 47442453127262561971/19348335556856181]
+      relevant l (p, and the primes dividing #T) : [79, 2]
+      l = 79  (= p)   dim E^d(Q_p)/79 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_79(alpha) = 0)
+            rank over F_79 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 79  class [up]  d = -158    E_d : y^2 = x^3 + 24964x + -3944312
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 158,  T = C2,   E^d(Q_p) = Z_79 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [7760048840149/57386598025, 18969543186975148893/13747246489878875]
+      relevant l (p, and the primes dividing #T) : [79, 2]
+      l = 79  (= p)   dim E^d(Q_p)/79 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_79(alpha) = 0)
+            rank over F_79 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 83  class [1]  d = -22    E_d : y^2 = x^3 + 484x + -10648
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -6,  M = 90,  T = C90,   E^d(Q_p) = Z_83 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1177/64, 34243/512]
+      relevant l (p, and the primes dividing #T) : [83, 2, 3, 5]
+      l = 83  (= p)   dim E^d(Q_p)/83 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_83(alpha) = 0)
+            rank over F_83 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(9, 83), Mod(9, 83)]] in Etilde(F_83)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(9, 83), Mod(9, 83)]] in Etilde(F_83)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(9, 83), Mod(9, 83)]] in Etilde(F_83)
+            P_1 |-> [3]
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 83  class [u]  d = -11    E_d : y^2 = x^3 + 121x + -1331
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 6,  M = 78,  T = C78,   E^d(Q_p) = Z_83 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [33/4, 121/8]
+        P_2 = [220, 3267]
+      relevant l (p, and the primes dividing #T) : [83, 2, 3, 13]
+      l = 83  (= p)   dim E^d(Q_p)/83 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_83(alpha) = 0)
+            P_2 |-> nonzero      (v_83(alpha) = 0)
+            rank over F_83 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(2, 83), Mod(9, 83)]] in Etilde(F_83)
+            P_1 |-> [1]
+            P_2 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(2, 83), Mod(9, 83)]] in Etilde(F_83)
+            P_1 |-> [0]
+            P_2 |-> [2]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 13        dim E^d(Q_p)/13 = 1
+            basis  : images of [[Mod(2, 83), Mod(9, 83)]] in Etilde(F_83)
+            P_1 |-> [12]
+            P_2 |-> [0]
+            rank over F_13 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 83  class [p]  d = 83    E_d : y^2 = x^3 + 6889x + 571787
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 166,  T = C2,   E^d(Q_p) = Z_83 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [115702/9, 39356857/27]
+      relevant l (p, and the primes dividing #T) : [83, 2]
+      l = 83  (= p)   dim E^d(Q_p)/83 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_83(alpha) = 0)
+            rank over F_83 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 83  class [up]  d = 166    E_d : y^2 = x^3 + 27556x + 4574296
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 166,  T = C2,   E^d(Q_p) = Z_83 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-7055/64, 227337/512]
+      relevant l (p, and the primes dividing #T) : [83, 2]
+      l = 83  (= p)   dim E^d(Q_p)/83 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_83(alpha) = 0)
+            rank over F_83 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 89  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -10,  M = 100,  T = C100,   E^d(Q_p) = Z_89 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [89, 2, 5]
+      l = 89  (= p)   dim E^d(Q_p)/89 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_89(alpha) = 0)
+            rank over F_89 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(0, 89), Mod(1, 89)]] in Etilde(F_89)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(0, 89), Mod(1, 89)]] in Etilde(F_89)
+            P_1 |-> [1]
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 89  class [u]  d = -7    E_d : y^2 = x^3 + 49x + -343
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 10,  M = 80,  T = C80,   E^d(Q_p) = Z_89 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [424/25, 9157/125]
+      relevant l (p, and the primes dividing #T) : [89, 2, 5]
+      l = 89  (= p)   dim E^d(Q_p)/89 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_89(alpha) = 0)
+            rank over F_89 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(3, 89), Mod(3, 89)]] in Etilde(F_89)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(3, 89), Mod(3, 89)]] in Etilde(F_89)
+            P_1 |-> [2]
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 89  class [p]  d = 178    E_d : y^2 = x^3 + 31684x + 5639752
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 178,  T = C2,   E^d(Q_p) = Z_89 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [50010613/58081, 362670502029/13997521]
+      relevant l (p, and the primes dividing #T) : [89, 2]
+      l = 89  (= p)   dim E^d(Q_p)/89 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_89(alpha) = 0)
+            rank over F_89 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 89  class [up]  d = -267    E_d : y^2 = x^3 + 71289x + -19034163
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 178,  T = C2,   E^d(Q_p) = Z_89 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [13439267253561/39505537600, 52430934400275980691/7852120653376000]
+      relevant l (p, and the primes dividing #T) : [89, 2]
+      l = 89  (= p)   dim E^d(Q_p)/89 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_89(alpha) = 0)
+            rank over F_89 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 97  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 1,  M = 97,  T = trivial,   E^d(Q_p) = Z_97
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [97]
+      l = 97  (= p)   dim E^d(Q_p)/97 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_97(alpha) = 0)
+            rank over F_97 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 97  class [u]  d = 7    E_d : y^2 = x^3 + 49x + 343
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -1,  M = 99,  T = C99,   E^d(Q_p) = Z_97 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-3, 13]
+      relevant l (p, and the primes dividing #T) : [97, 3, 11]
+      l = 97  (= p)   dim E^d(Q_p)/97 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_97(alpha) = 0)
+            rank over F_97 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(2, 97), Mod(35, 97)]] in Etilde(F_97)
+            P_1 |-> [2]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 11        dim E^d(Q_p)/11 = 1
+            basis  : images of [[Mod(2, 97), Mod(35, 97)]] in Etilde(F_97)
+            P_1 |-> [9]
+            rank over F_11 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 97  class [p]  d = 97    E_d : y^2 = x^3 + 9409x + 912673
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 97,  T = trivial,   E^d(Q_p) = Z_97
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-3020977264272/60834742609, 8527318496237271359/15004706760282023]
+      relevant l (p, and the primes dividing #T) : [97]
+      l = 97  (= p)   dim E^d(Q_p)/97 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_97(alpha) = 0)
+            rank over F_97 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 97  class [up]  d = 485    E_d : y^2 = x^3 + 235225x + 114084125
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 97,  T = trivial,   E^d(Q_p) = Z_97
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [607367181296288749204/261353291940472081, 15357406677464614401618319505633/133610922364995078207158521]
+      relevant l (p, and the primes dividing #T) : [97]
+      l = 97  (= p)   dim E^d(Q_p)/97 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_97(alpha) = 0)
+            rank over F_97 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 101  class [1]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -3,  M = 105,  T = C105,   E^d(Q_p) = Z_101 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [101, 3, 5, 7]
+      l = 101  (= p)   dim E^d(Q_p)/101 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_101(alpha) = 0)
+            rank over F_101 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(1, 101), Mod(1, 101)]] in Etilde(F_101)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(1, 101), Mod(1, 101)]] in Etilde(F_101)
+            P_1 |-> [1]
+            rank over F_5 = 1 of 1   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(1, 101), Mod(1, 101)]] in Etilde(F_101)
+            P_1 |-> [1]
+            rank over F_7 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 101  class [u]  d = 3    E_d : y^2 = x^3 + 9x + 27
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 3,  M = 99,  T = C99,   E^d(Q_p) = Z_101 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [3, 9]
+      relevant l (p, and the primes dividing #T) : [101, 3, 11]
+      l = 101  (= p)   dim E^d(Q_p)/101 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_101(alpha) = 0)
+            rank over F_101 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(3, 101), Mod(9, 101)]] in Etilde(F_101)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 11        dim E^d(Q_p)/11 = 1
+            basis  : images of [[Mod(3, 101), Mod(9, 101)]] in Etilde(F_101)
+            P_1 |-> [1]
+            rank over F_11 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 101  class [p]  d = 101    E_d : y^2 = x^3 + 10201x + 1030301
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 101,  T = trivial,   E^d(Q_p) = Z_101
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-68, 149]
+      relevant l (p, and the primes dividing #T) : [101]
+      l = 101  (= p)   dim E^d(Q_p)/101 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_101(alpha) = 0)
+            rank over F_101 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 101  class [up]  d = -2626    E_d : y^2 = x^3 + 6895876x + -18108570376
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 101,  T = trivial,   E^d(Q_p) = Z_101
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [80987149350133/43587835729, 304339974276810840901/9100137579993433]
+      relevant l (p, and the primes dividing #T) : [101]
+      l = 101  (= p)   dim E^d(Q_p)/101 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_101(alpha) = 0)
+            rank over F_101 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 103  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 17,  M = 87,  T = C87,   E^d(Q_p) = Z_103 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [103, 3, 29]
+      l = 103  (= p)   dim E^d(Q_p)/103 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_103(alpha) = 0)
+            rank over F_103 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(0, 103), Mod(1, 103)]] in Etilde(F_103)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 29        dim E^d(Q_p)/29 = 1
+            basis  : images of [[Mod(0, 103), Mod(1, 103)]] in Etilde(F_103)
+            P_1 |-> [1]
+            rank over F_29 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 103  class [u]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -17,  M = 121,  T = C121,   E^d(Q_p) = Z_103 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [103, 11]
+      l = 103  (= p)   dim E^d(Q_p)/103 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_103(alpha) = 0)
+            rank over F_103 = 1 of 1   ==> ONTO
+      l = 11        dim E^d(Q_p)/11 = 1
+            basis  : images of [[Mod(1, 103), Mod(1, 103)]] in Etilde(F_103)
+            P_1 |-> [1]
+            rank over F_11 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 103  class [p]  d = 103    E_d : y^2 = x^3 + 10609x + 1092727
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 103,  T = trivial,   E^d(Q_p) = Z_103
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1433661/625, 1718409659/15625]
+      relevant l (p, and the primes dividing #T) : [103]
+      l = 103  (= p)   dim E^d(Q_p)/103 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_103(alpha) = 0)
+            rank over F_103 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 103  class [up]  d = 2266    E_d : y^2 = x^3 + 5134756x + 11635357096
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 103,  T = trivial,   E^d(Q_p) = Z_103
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-811896233775/535089424, 231945853965266023/12377688555968]
+      relevant l (p, and the primes dividing #T) : [103]
+      l = 103  (= p)   dim E^d(Q_p)/103 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_103(alpha) = 0)
+            rank over F_103 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 107  class [1]  d = -7    E_d : y^2 = x^3 + 49x + -343
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 3,  M = 105,  T = C105,   E^d(Q_p) = Z_107 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [424/25, 9157/125]
+      relevant l (p, and the primes dividing #T) : [107, 3, 5, 7]
+      l = 107  (= p)   dim E^d(Q_p)/107 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_107(alpha) = 0)
+            rank over F_107 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(13, 107), Mod(43, 107)]] in Etilde(F_107)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(13, 107), Mod(43, 107)]] in Etilde(F_107)
+            P_1 |-> [1]
+            rank over F_5 = 1 of 1   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(13, 107), Mod(43, 107)]] in Etilde(F_107)
+            P_1 |-> [4]
+            rank over F_7 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 107  class [u]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -3,  M = 111,  T = C111,   E^d(Q_p) = Z_107 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [107, 3, 37]
+      l = 107  (= p)   dim E^d(Q_p)/107 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_107(alpha) = 0)
+            rank over F_107 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(1, 107), Mod(1, 107)]] in Etilde(F_107)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 37        dim E^d(Q_p)/37 = 1
+            basis  : images of [[Mod(1, 107), Mod(1, 107)]] in Etilde(F_107)
+            P_1 |-> [1]
+            rank over F_37 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 107  class [p]  d = -1605    E_d : y^2 = x^3 + 2576025x + -4134520125
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 107,  T = trivial,   E^d(Q_p) = Z_107
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [2571, 139581]
+      relevant l (p, and the primes dividing #T) : [107]
+      l = 107  (= p)   dim E^d(Q_p)/107 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_107(alpha) = 0)
+            rank over F_107 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 107  class [up]  d = -107    E_d : y^2 = x^3 + 11449x + -1225043
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 107,  T = trivial,   E^d(Q_p) = Z_107
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [348, 6701]
+      relevant l (p, and the primes dividing #T) : [107]
+      l = 107  (= p)   dim E^d(Q_p)/107 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_107(alpha) = 0)
+            rank over F_107 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 109  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -13,  M = 123,  T = C123,   E^d(Q_p) = Z_109 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [109, 3, 41]
+      l = 109  (= p)   dim E^d(Q_p)/109 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_109(alpha) = 0)
+            rank over F_109 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(0, 109), Mod(1, 109)]] in Etilde(F_109)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 41        dim E^d(Q_p)/41 = 1
+            basis  : images of [[Mod(0, 109), Mod(1, 109)]] in Etilde(F_109)
+            P_1 |-> [1]
+            rank over F_41 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 109  class [u]  d = 6    E_d : y^2 = x^3 + 36x + 216
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 13,  M = 97,  T = C97,   E^d(Q_p) = Z_109 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-3, 9]
+      relevant l (p, and the primes dividing #T) : [109, 97]
+      l = 109  (= p)   dim E^d(Q_p)/109 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_109(alpha) = 0)
+            rank over F_109 = 1 of 1   ==> ONTO
+      l = 97        dim E^d(Q_p)/97 = 1
+            basis  : images of [[Mod(1, 109), Mod(12, 109)]] in Etilde(F_109)
+            P_1 |-> [63]
+            rank over F_97 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 109  class [p]  d = 109    E_d : y^2 = x^3 + 11881x + 1295029
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 109,  T = trivial,   E^d(Q_p) = Z_109
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [33919060748052/93717413689, 208876500065824300519/28689993004854637]
+      relevant l (p, and the primes dividing #T) : [109]
+      l = 109  (= p)   dim E^d(Q_p)/109 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_109(alpha) = 0)
+            rank over F_109 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 109  class [up]  d = 654    E_d : y^2 = x^3 + 427716x + 279726264
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 109,  T = trivial,   E^d(Q_p) = Z_109
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [15870885/6889, 66417238701/571787]
+      relevant l (p, and the primes dividing #T) : [109]
+      l = 109  (= p)   dim E^d(Q_p)/109 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_109(alpha) = 0)
+            rank over F_109 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 113  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -11,  M = 125,  T = C125,   E^d(Q_p) = Z_113 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [113, 5]
+      l = 113  (= p)   dim E^d(Q_p)/113 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_113(alpha) = 0)
+            rank over F_113 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(0, 113), Mod(1, 113)]] in Etilde(F_113)
+            P_1 |-> [1]
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 113  class [u]  d = 3    E_d : y^2 = x^3 + 9x + 27
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 11,  M = 103,  T = C103,   E^d(Q_p) = Z_113 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [3, 9]
+      relevant l (p, and the primes dividing #T) : [113, 103]
+      l = 113  (= p)   dim E^d(Q_p)/113 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_113(alpha) = 0)
+            rank over F_113 = 1 of 1   ==> ONTO
+      l = 103        dim E^d(Q_p)/103 = 1
+            basis  : images of [[Mod(2, 113), Mod(36, 113)]] in Etilde(F_113)
+            P_1 |-> [13]
+            rank over F_103 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 113  class [p]  d = 113    E_d : y^2 = x^3 + 12769x + 1442897
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 113,  T = trivial,   E^d(Q_p) = Z_113
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-160779984385773438752/2170759046766859201, 963909231244807348734778795801/3198286975421092343816528801]
+      relevant l (p, and the primes dividing #T) : [113]
+      l = 113  (= p)   dim E^d(Q_p)/113 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_113(alpha) = 0)
+            rank over F_113 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 113  class [up]  d = 339    E_d : y^2 = x^3 + 114921x + 38958219
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 113,  T = trivial,   E^d(Q_p) = Z_113
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-129, 4689]
+      relevant l (p, and the primes dividing #T) : [113]
+      l = 113  (= p)   dim E^d(Q_p)/113 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_113(alpha) = 0)
+            rank over F_113 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 127  class [1]  d = -6    E_d : y^2 = x^3 + 36x + -216
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 2,  M = 126,  T = C126,   E^d(Q_p) = Z_127 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [21, 99]
+      relevant l (p, and the primes dividing #T) : [127, 2, 3, 7]
+      l = 127  (= p)   dim E^d(Q_p)/127 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_127(alpha) = 0)
+            rank over F_127 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(15, 127), Mod(4, 127)]] in Etilde(F_127)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(15, 127), Mod(4, 127)]] in Etilde(F_127)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(15, 127), Mod(4, 127)]] in Etilde(F_127)
+            P_1 |-> [2]
+            rank over F_7 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 127  class [u]  d = 3    E_d : y^2 = x^3 + 9x + 27
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -2,  M = 130,  T = C130,   E^d(Q_p) = Z_127 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [3, 9]
+      relevant l (p, and the primes dividing #T) : [127, 2, 5, 13]
+      l = 127  (= p)   dim E^d(Q_p)/127 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_127(alpha) = 0)
+            rank over F_127 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(3, 127), Mod(9, 127)]] in Etilde(F_127)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(3, 127), Mod(9, 127)]] in Etilde(F_127)
+            P_1 |-> [1]
+            rank over F_5 = 1 of 1   ==> ONTO
+      l = 13        dim E^d(Q_p)/13 = 1
+            basis  : images of [[Mod(3, 127), Mod(9, 127)]] in Etilde(F_127)
+            P_1 |-> [1]
+            rank over F_13 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 127  class [p]  d = 254    E_d : y^2 = x^3 + 64516x + 16387064
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 254,  T = C2,   E^d(Q_p) = Z_127 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [39963217/20164, 254963215879/2863288]
+      relevant l (p, and the primes dividing #T) : [127, 2]
+      l = 127  (= p)   dim E^d(Q_p)/127 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_127(alpha) = 0)
+            rank over F_127 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 127  class [up]  d = -127    E_d : y^2 = x^3 + 16129x + -2048383
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 254,  T = C2,   E^d(Q_p) = Z_127 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [88, 229]
+        P_2 = [3122041/25600, 5391263411/4096000]
+      relevant l (p, and the primes dividing #T) : [127, 2]
+      l = 127  (= p)   dim E^d(Q_p)/127 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_127(alpha) = 0)
+            P_2 |-> nonzero      (v_127(alpha) = 0)
+            rank over F_127 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [0]
+            P_2 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 131  class [1]  d = 53    E_d : y^2 = x^3 + 2809x + 148877
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 4,  M = 128,  T = C2 x C2,   E^d(Q_p) = Z_131 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [-10388/289, 188203/4913]
+        P_2 = [148, 1951]
+      relevant l (p, and the primes dividing #T) : [131, 2]
+      l = 131  (= p)   dim E^d(Q_p)/131 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_131(alpha) = 0)
+            P_2 |-> nonzero      (v_131(alpha) = 0)
+            rank over F_131 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : images of [[Mod(0, 131), Mod(42, 131)], [Mod(3, 131), Mod(0, 131)]] in Etilde(F_131)
+            P_1 |-> [1, 1]
+            P_2 |-> [1, 0]
+            rank over F_2 = 2 of 2   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 131  class [u]  d = -11    E_d : y^2 = x^3 + 121x + -1331
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -4,  M = 136,  T = C2 x C2,   E^d(Q_p) = Z_131 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [33/4, 121/8]
+        P_2 = [220, 3267]
+      relevant l (p, and the primes dividing #T) : [131, 2, 17]
+      l = 131  (= p)   dim E^d(Q_p)/131 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_131(alpha) = 0)
+            P_2 |-> nonzero      (v_131(alpha) = 0)
+            rank over F_131 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : images of [[Mod(3, 131), Mod(32, 131)], [Mod(76, 131), Mod(0, 131)]] in Etilde(F_131)
+            P_1 |-> [1, 1]
+            P_2 |-> [1, 0]
+            rank over F_2 = 2 of 2   ==> ONTO
+      l = 17        dim E^d(Q_p)/17 = 1
+            basis  : images of [[Mod(3, 131), Mod(32, 131)]] in Etilde(F_131)
+            P_1 |-> [7]
+            P_2 |-> [9]
+            rank over F_17 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 131  class [p]  d = 131    E_d : y^2 = x^3 + 17161x + 2248091
+      reduction additive,  Kodaira I_0*,  c_p = 4,  a_p = 0,  M = 524,  T = C2 x C2,   E^d(Q_p) = Z_131 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [5371/25, 497669/125]
+        P_2 = [655, 17161]
+      relevant l (p, and the primes dividing #T) : [131, 2]
+      l = 131  (= p)   dim E^d(Q_p)/131 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_131(alpha) = 0)
+            P_2 |-> nonzero      (v_131(alpha) = 0)
+            rank over F_131 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : the 2-torsion at x = ["5p", "51p"]
+            P_1 |-> [1, 1]
+            P_2 |-> [1, 0]
+            rank over F_2 = 2 of 2   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 131  class [up]  d = 8646    E_d : y^2 = x^3 + 74753316x + 646317170136
+      reduction additive,  Kodaira I_0*,  c_p = 4,  a_p = 0,  M = 524,  T = C2 x C2,   E^d(Q_p) = Z_131 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [-29168680211/7425625, 10935550731379087/20234828125]
+        P_2 = [80565, 23012901]
+      relevant l (p, and the primes dividing #T) : [131, 2]
+      l = 131  (= p)   dim E^d(Q_p)/131 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_131(alpha) = 0)
+            P_2 |-> nonzero      (v_131(alpha) = 0)
+            rank over F_131 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : the 2-torsion at x = ["68p", "91p"]
+            P_1 |-> [1, 1]
+            P_2 |-> [0, 1]
+            rank over F_2 = 2 of 2   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 137  class [1]  d = 7    E_d : y^2 = x^3 + 49x + 343
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 12,  M = 126,  T = C126,   E^d(Q_p) = Z_137 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-3, 13]
+      relevant l (p, and the primes dividing #T) : [137, 2, 3, 7]
+      l = 137  (= p)   dim E^d(Q_p)/137 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_137(alpha) = 0)
+            rank over F_137 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(5, 137), Mod(24, 137)]] in Etilde(F_137)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(5, 137), Mod(24, 137)]] in Etilde(F_137)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(5, 137), Mod(24, 137)]] in Etilde(F_137)
+            P_1 |-> [6]
+            rank over F_7 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 137  class [u]  d = 3    E_d : y^2 = x^3 + 9x + 27
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -12,  M = 150,  T = C150,   E^d(Q_p) = Z_137 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [3, 9]
+      relevant l (p, and the primes dividing #T) : [137, 2, 3, 5]
+      l = 137  (= p)   dim E^d(Q_p)/137 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_137(alpha) = 0)
+            rank over F_137 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(3, 137), Mod(9, 137)]] in Etilde(F_137)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(3, 137), Mod(9, 137)]] in Etilde(F_137)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(3, 137), Mod(9, 137)]] in Etilde(F_137)
+            P_1 |-> [1]
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 137  class [p]  d = 274    E_d : y^2 = x^3 + 75076x + 20570824
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 274,  T = C2,   E^d(Q_p) = Z_137 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [331123731117/5803544761, 2212369247487137017/442119843437741]
+      relevant l (p, and the primes dividing #T) : [137, 2]
+      l = 137  (= p)   dim E^d(Q_p)/137 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_137(alpha) = 0)
+            rank over F_137 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 137  class [up]  d = -411    E_d : y^2 = x^3 + 168921x + -69426531
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 274,  T = C2,   E^d(Q_p) = Z_137 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1101728244/3508129, 25104204043497/6570725617]
+      relevant l (p, and the primes dividing #T) : [137, 2]
+      l = 137  (= p)   dim E^d(Q_p)/137 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_137(alpha) = 0)
+            rank over F_137 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 139  class [1]  d = 51    E_d : y^2 = x^3 + 2601x + 132651
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 14,  M = 126,  T = C2 x C2,   E^d(Q_p) = Z_139 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [-714/25, 23409/125]
+        P_2 = [-17, 289]
+      relevant l (p, and the primes dividing #T) : [139, 2, 3, 7]
+      l = 139  (= p)   dim E^d(Q_p)/139 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_139(alpha) = 0)
+            P_2 |-> nonzero      (v_139(alpha) = 0)
+            rank over F_139 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(2, 139), Mod(23, 139)]] in Etilde(F_139)
+            P_1 |-> [1]
+            P_2 |-> [0]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 2
+            basis  : images of [[Mod(2, 139), Mod(23, 139)], [Mod(93, 139), Mod(43, 139)]] in Etilde(F_139)
+            P_1 |-> [1, 2]
+            P_2 |-> [1, 1]
+            rank over F_3 = 2 of 2   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(2, 139), Mod(23, 139)]] in Etilde(F_139)
+            P_1 |-> [5]
+            P_2 |-> [6]
+            rank over F_7 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 139  class [u]  d = 3    E_d : y^2 = x^3 + 9x + 27
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -14,  M = 154,  T = C154,   E^d(Q_p) = Z_139 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [3, 9]
+      relevant l (p, and the primes dividing #T) : [139, 2, 7, 11]
+      l = 139  (= p)   dim E^d(Q_p)/139 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_139(alpha) = 0)
+            rank over F_139 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(1, 139), Mod(68, 139)]] in Etilde(F_139)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(1, 139), Mod(68, 139)]] in Etilde(F_139)
+            P_1 |-> [1]
+            rank over F_7 = 1 of 1   ==> ONTO
+      l = 11        dim E^d(Q_p)/11 = 1
+            basis  : images of [[Mod(1, 139), Mod(68, 139)]] in Etilde(F_139)
+            P_1 |-> [5]
+            rank over F_11 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 139  class [p]  d = 139    E_d : y^2 = x^3 + 19321x + 2685619
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 278,  T = C2,   E^d(Q_p) = Z_139 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [417/4, 19321/8]
+      relevant l (p, and the primes dividing #T) : [139, 2]
+      l = 139  (= p)   dim E^d(Q_p)/139 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_139(alpha) = 0)
+            rank over F_139 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 139  class [up]  d = -139    E_d : y^2 = x^3 + 19321x + -2685619
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 278,  T = C2,   E^d(Q_p) = Z_139 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [3892/9, 251173/27]
+        P_2 = [148204, 57054523]
+      relevant l (p, and the primes dividing #T) : [139, 2]
+      l = 139  (= p)   dim E^d(Q_p)/139 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_139(alpha) = 0)
+            P_2 |-> nonzero      (v_139(alpha) = 0)
+            rank over F_139 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            P_2 |-> [0]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 149  class [1]  d = 53    E_d : y^2 = x^3 + 2809x + 148877
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 14,  M = 136,  T = C2 x C2,   E^d(Q_p) = Z_149 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [-10388/289, 188203/4913]
+        P_2 = [148, 1951]
+      relevant l (p, and the primes dividing #T) : [149, 2, 17]
+      l = 149  (= p)   dim E^d(Q_p)/149 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_149(alpha) = 0)
+            P_2 |-> nonzero      (v_149(alpha) = 0)
+            rank over F_149 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : images of [[Mod(0, 149), Mod(18, 149)], [Mod(13, 149), Mod(0, 149)]] in Etilde(F_149)
+            P_1 |-> [0, 1]
+            P_2 |-> [1, 0]
+            rank over F_2 = 2 of 2   ==> ONTO
+      l = 17        dim E^d(Q_p)/17 = 1
+            basis  : images of [[Mod(0, 149), Mod(18, 149)]] in Etilde(F_149)
+            P_1 |-> [4]
+            P_2 |-> [13]
+            rank over F_17 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 149  class [u]  d = 94    E_d : y^2 = x^3 + 8836x + 830584
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -14,  M = 164,  T = C2 x C2,   E^d(Q_p) = Z_149 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [1833/16, 117077/64]
+        P_2 = [141, 2209]
+      relevant l (p, and the primes dividing #T) : [149, 2, 41]
+      l = 149  (= p)   dim E^d(Q_p)/149 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_149(alpha) = 0)
+            P_2 |-> nonzero      (v_149(alpha) = 0)
+            rank over F_149 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : images of [[Mod(1, 149), Mod(36, 149)], [Mod(40, 149), Mod(0, 149)]] in Etilde(F_149)
+            P_1 |-> [1, 0]
+            P_2 |-> [0, 1]
+            rank over F_2 = 2 of 2   ==> ONTO
+      l = 41        dim E^d(Q_p)/41 = 1
+            basis  : images of [[Mod(1, 149), Mod(36, 149)]] in Etilde(F_149)
+            P_1 |-> [5]
+            P_2 |-> [9]
+            rank over F_41 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 149  class [p]  d = -149    E_d : y^2 = x^3 + 22201x + -3307949
+      reduction additive,  Kodaira I_0*,  c_p = 4,  a_p = 0,  M = 596,  T = C2 x C2,   E^d(Q_p) = Z_149 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [8791/25, 865839/125]
+        P_2 = [1639, 66603]
+      relevant l (p, and the primes dividing #T) : [149, 2]
+      l = 149  (= p)   dim E^d(Q_p)/149 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_149(alpha) = 0)
+            P_2 |-> nonzero      (v_149(alpha) = 0)
+            rank over F_149 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : the 2-torsion at x = ["11p", "56p"]
+            P_1 |-> [0, 1]
+            P_2 |-> [1, 0]
+            rank over F_2 = 2 of 2   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 149  class [up]  d = 13559    E_d : y^2 = x^3 + 183846481x + 2492774435879
+      reduction additive,  Kodaira I_0*,  c_p = 4,  a_p = 0,  M = 596,  T = C2 x C2,   E^d(Q_p) = Z_149 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [712634381069/37982569, 829166901850307943/234086572747]
+        P_2 = [20413, 3840773]
+      relevant l (p, and the primes dividing #T) : [149, 2]
+      l = 149  (= p)   dim E^d(Q_p)/149 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_149(alpha) = 0)
+            P_2 |-> nonzero      (v_149(alpha) = 0)
+            rank over F_149 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : the 2-torsion at x = ["42p", "119p"]
+            P_1 |-> [0, 1]
+            P_2 |-> [1, 1]
+            rank over F_2 = 2 of 2   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 151  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -2,  M = 154,  T = C154,   E^d(Q_p) = Z_151 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [151, 2, 7, 11]
+      l = 151  (= p)   dim E^d(Q_p)/151 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_151(alpha) = 0)
+            rank over F_151 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(0, 151), Mod(1, 151)]] in Etilde(F_151)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(0, 151), Mod(1, 151)]] in Etilde(F_151)
+            P_1 |-> [1]
+            rank over F_7 = 1 of 1   ==> ONTO
+      l = 11        dim E^d(Q_p)/11 = 1
+            basis  : images of [[Mod(0, 151), Mod(1, 151)]] in Etilde(F_151)
+            P_1 |-> [1]
+            rank over F_11 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 151  class [u]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 2,  M = 150,  T = C150,   E^d(Q_p) = Z_151 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [151, 2, 3, 5]
+      l = 151  (= p)   dim E^d(Q_p)/151 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_151(alpha) = 0)
+            rank over F_151 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(1, 151), Mod(1, 151)]] in Etilde(F_151)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(1, 151), Mod(1, 151)]] in Etilde(F_151)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(1, 151), Mod(1, 151)]] in Etilde(F_151)
+            P_1 |-> [1]
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 151  class [p]  d = 755    E_d : y^2 = x^3 + 570025x + 430368875
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 302,  T = C2,   E^d(Q_p) = Z_151 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [151, 22801]
+      relevant l (p, and the primes dividing #T) : [151, 2]
+      l = 151  (= p)   dim E^d(Q_p)/151 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_151(alpha) = 0)
+            rank over F_151 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 151  class [up]  d = 453    E_d : y^2 = x^3 + 205209x + 92959677
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 302,  T = C2,   E^d(Q_p) = Z_151 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [3366104446853292/32473665853489, 1987447792215770228854917/185053360601719250263]
+      relevant l (p, and the primes dividing #T) : [151, 2]
+      l = 151  (= p)   dim E^d(Q_p)/151 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_151(alpha) = 0)
+            rank over F_151 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 157  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -13,  M = 171,  T = C171,   E^d(Q_p) = Z_157 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [157, 3, 19]
+      l = 157  (= p)   dim E^d(Q_p)/157 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_157(alpha) = 0)
+            rank over F_157 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(0, 157), Mod(1, 157)]] in Etilde(F_157)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 19        dim E^d(Q_p)/19 = 1
+            basis  : images of [[Mod(0, 157), Mod(1, 157)]] in Etilde(F_157)
+            P_1 |-> [1]
+            rank over F_19 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 157  class [u]  d = 5    E_d : y^2 = x^3 + 25x + 125
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 13,  M = 145,  T = C145,   E^d(Q_p) = Z_157 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [4, 17]
+      relevant l (p, and the primes dividing #T) : [157, 5, 29]
+      l = 157  (= p)   dim E^d(Q_p)/157 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_157(alpha) = 0)
+            rank over F_157 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(4, 157), Mod(17, 157)]] in Etilde(F_157)
+            P_1 |-> [1]
+            rank over F_5 = 1 of 1   ==> ONTO
+      l = 29        dim E^d(Q_p)/29 = 1
+            basis  : images of [[Mod(4, 157), Mod(17, 157)]] in Etilde(F_157)
+            P_1 |-> [1]
+            rank over F_29 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 157  class [p]  d = 157    E_d : y^2 = x^3 + 24649x + 3869893
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 157,  T = trivial,   E^d(Q_p) = Z_157
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [4195788/2809, 8646799829/148877]
+      relevant l (p, and the primes dividing #T) : [157]
+      l = 157  (= p)   dim E^d(Q_p)/157 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_157(alpha) = 0)
+            rank over F_157 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 157  class [up]  d = 2355    E_d : y^2 = x^3 + 5546025x + 13060888875
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 157,  T = trivial,   E^d(Q_p) = Z_157
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [22623639965396331/4382453351761, 3884397846999324684396471/9174363702630381991]
+      relevant l (p, and the primes dividing #T) : [157]
+      l = 157  (= p)   dim E^d(Q_p)/157 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_157(alpha) = 0)
+            rank over F_157 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 163  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -25,  M = 189,  T = C189,   E^d(Q_p) = Z_163 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [163, 3, 7]
+      l = 163  (= p)   dim E^d(Q_p)/163 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_163(alpha) = 0)
+            rank over F_163 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(0, 163), Mod(1, 163)]] in Etilde(F_163)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(0, 163), Mod(1, 163)]] in Etilde(F_163)
+            P_1 |-> [1]
+            rank over F_7 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 163  class [u]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 25,  M = 139,  T = C139,   E^d(Q_p) = Z_163 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [163, 139]
+      l = 163  (= p)   dim E^d(Q_p)/163 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_163(alpha) = 0)
+            rank over F_163 = 1 of 1   ==> ONTO
+      l = 139        dim E^d(Q_p)/139 = 1
+            basis  : images of [[Mod(1, 163), Mod(1, 163)]] in Etilde(F_163)
+            P_1 |-> [1]
+            rank over F_139 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 163  class [p]  d = 978    E_d : y^2 = x^3 + 956484x + 935441352
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 163,  T = trivial,   E^d(Q_p) = Z_163
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [933, 51381]
+      relevant l (p, and the primes dividing #T) : [163]
+      l = 163  (= p)   dim E^d(Q_p)/163 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_163(alpha) = 0)
+            rank over F_163 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 163  class [up]  d = 815    E_d : y^2 = x^3 + 664225x + 541343375
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 163,  T = trivial,   E^d(Q_p) = Z_163
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-2464911059/18309841, 1661055177802561/78347809639]
+      relevant l (p, and the primes dividing #T) : [163]
+      l = 163  (= p)   dim E^d(Q_p)/163 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_163(alpha) = 0)
+            rank over F_163 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 167  class [1]  d = -13    E_d : y^2 = x^3 + 169x + -2197
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 24,  M = 144,  T = C144,   E^d(Q_p) = Z_167 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [247, 3887]
+      relevant l (p, and the primes dividing #T) : [167, 2, 3]
+      l = 167  (= p)   dim E^d(Q_p)/167 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_167(alpha) = 0)
+            rank over F_167 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(3, 167), Mod(72, 167)]] in Etilde(F_167)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(3, 167), Mod(72, 167)]] in Etilde(F_167)
+            P_1 |-> [2]
+            rank over F_3 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 167  class [u]  d = -6    E_d : y^2 = x^3 + 36x + -216
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -24,  M = 192,  T = C192,   E^d(Q_p) = Z_167 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [21, 99]
+      relevant l (p, and the primes dividing #T) : [167, 2, 3]
+      l = 167  (= p)   dim E^d(Q_p)/167 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_167(alpha) = 0)
+            rank over F_167 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(2, 167), Mod(71, 167)]] in Etilde(F_167)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(2, 167), Mod(71, 167)]] in Etilde(F_167)
+            P_1 |-> [2]
+            rank over F_3 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 167  class [p]  d = 334    E_d : y^2 = x^3 + 111556x + 37259704
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 334,  T = C2,   E^d(Q_p) = Z_167 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [58617/4, 14195501/8]
+      relevant l (p, and the primes dividing #T) : [167, 2]
+      l = 167  (= p)   dim E^d(Q_p)/167 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_167(alpha) = 0)
+            rank over F_167 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 167  class [up]  d = -334    E_d : y^2 = x^3 + 111556x + -37259704
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 334,  T = C2,   E^d(Q_p) = Z_167 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [743828521/1444804, 21734448479861/1736654408]
+      relevant l (p, and the primes dividing #T) : [167, 2]
+      l = 167  (= p)   dim E^d(Q_p)/167 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_167(alpha) = 0)
+            rank over F_167 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 173  class [1]  d = 51    E_d : y^2 = x^3 + 2601x + 132651
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 2,  M = 172,  T = C2 x C2,   E^d(Q_p) = Z_173 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [-714/25, 23409/125]
+        P_2 = [-17, 289]
+      relevant l (p, and the primes dividing #T) : [173, 2, 43]
+      l = 173  (= p)   dim E^d(Q_p)/173 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_173(alpha) = 0)
+            P_2 |-> nonzero      (v_173(alpha) = 0)
+            rank over F_173 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : images of [[Mod(0, 173), Mod(47, 173)], [Mod(16, 173), Mod(0, 173)]] in Etilde(F_173)
+            P_1 |-> [0, 1]
+            P_2 |-> [1, 0]
+            rank over F_2 = 2 of 2   ==> ONTO
+      l = 43        dim E^d(Q_p)/43 = 1
+            basis  : images of [[Mod(0, 173), Mod(47, 173)]] in Etilde(F_173)
+            P_1 |-> [16]
+            P_2 |-> [41]
+            rank over F_43 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 173  class [u]  d = 53    E_d : y^2 = x^3 + 2809x + 148877
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -2,  M = 176,  T = C2 x C2,   E^d(Q_p) = Z_173 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [-10388/289, 188203/4913]
+        P_2 = [148, 1951]
+      relevant l (p, and the primes dividing #T) : [173, 2, 11]
+      l = 173  (= p)   dim E^d(Q_p)/173 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_173(alpha) = 0)
+            P_2 |-> nonzero      (v_173(alpha) = 0)
+            rank over F_173 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : images of [[Mod(2, 173), Mod(35, 173)], [Mod(95, 173), Mod(0, 173)]] in Etilde(F_173)
+            P_1 |-> [0, 1]
+            P_2 |-> [1, 0]
+            rank over F_2 = 2 of 2   ==> ONTO
+      l = 11        dim E^d(Q_p)/11 = 1
+            basis  : images of [[Mod(2, 173), Mod(35, 173)]] in Etilde(F_173)
+            P_1 |-> [9]
+            P_2 |-> [6]
+            rank over F_11 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 173  class [p]  d = -173    E_d : y^2 = x^3 + 29929x + -5177717
+      reduction additive,  Kodaira I_0*,  c_p = 4,  a_p = 0,  M = 692,  T = C2 x C2,   E^d(Q_p) = Z_173 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [4671/25, 329219/125]
+        P_2 = [84078/289, 26068159/4913]
+      relevant l (p, and the primes dividing #T) : [173, 2]
+      l = 173  (= p)   dim E^d(Q_p)/173 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_173(alpha) = 0)
+            P_2 |-> nonzero      (v_173(alpha) = 0)
+            rank over F_173 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : the 2-torsion at x = ["8p", "37p"]
+            P_1 |-> [1, 0]
+            P_2 |-> [0, 1]
+            rank over F_2 = 2 of 2   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 173  class [up]  d = 519    E_d : y^2 = x^3 + 269361x + 139798359
+      reduction additive,  Kodaira I_0*,  c_p = 4,  a_p = 0,  M = 692,  T = C2 x C2,   E^d(Q_p) = Z_173 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [-1211/25, 1406663/125]
+        P_2 = [3633/4, 269361/8]
+      relevant l (p, and the primes dividing #T) : [173, 2]
+      l = 173  (= p)   dim E^d(Q_p)/173 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_173(alpha) = 0)
+            P_2 |-> nonzero      (v_173(alpha) = 0)
+            rank over F_173 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 2
+            basis  : the 2-torsion at x = ["62p", "135p"]
+            P_1 |-> [1, 0]
+            P_2 |-> [0, 1]
+            rank over F_2 = 2 of 2   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 179  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 0,  M = 180,  T = C180,   E^d(Q_p) = Z_179 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [179, 2, 3, 5]
+      l = 179  (= p)   dim E^d(Q_p)/179 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_179(alpha) = 0)
+            rank over F_179 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(0, 179), Mod(1, 179)]] in Etilde(F_179)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(0, 179), Mod(1, 179)]] in Etilde(F_179)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(0, 179), Mod(1, 179)]] in Etilde(F_179)
+            P_1 |-> [1]
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 179  class [u]  d = -19    E_d : y^2 = x^3 + 361x + -6859
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 0,  M = 180,  T = C180,   E^d(Q_p) = Z_179 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [9772/361, 1034501/6859]
+      relevant l (p, and the primes dividing #T) : [179, 2, 3, 5]
+      l = 179  (= p)   dim E^d(Q_p)/179 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_179(alpha) = 0)
+            rank over F_179 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(6, 179), Mod(78, 179)]] in Etilde(F_179)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(6, 179), Mod(78, 179)]] in Etilde(F_179)
+            P_1 |-> [2]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(6, 179), Mod(78, 179)]] in Etilde(F_179)
+            P_1 |-> [1]
+            rank over F_5 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 179  class [p]  d = 179    E_d : y^2 = x^3 + 32041x + 5735339
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 358,  T = C2,   E^d(Q_p) = Z_179 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [21659/169, 7593717/2197]
+      relevant l (p, and the primes dividing #T) : [179, 2]
+      l = 179  (= p)   dim E^d(Q_p)/179 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_179(alpha) = 0)
+            rank over F_179 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 179  class [up]  d = -537    E_d : y^2 = x^3 + 288369x + -154854153
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 358,  T = C2,   E^d(Q_p) = Z_179 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1428490275232098/2937758292121, 50437267563431630176101/5035285397354180669]
+      relevant l (p, and the primes dividing #T) : [179, 2]
+      l = 179  (= p)   dim E^d(Q_p)/179 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_179(alpha) = 0)
+            rank over F_179 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 181  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -8,  M = 190,  T = C190,   E^d(Q_p) = Z_181 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [181, 2, 5, 19]
+      l = 181  (= p)   dim E^d(Q_p)/181 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_181(alpha) = 0)
+            rank over F_181 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(0, 181), Mod(1, 181)]] in Etilde(F_181)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 5        dim E^d(Q_p)/5 = 1
+            basis  : images of [[Mod(0, 181), Mod(1, 181)]] in Etilde(F_181)
+            P_1 |-> [1]
+            rank over F_5 = 1 of 1   ==> ONTO
+      l = 19        dim E^d(Q_p)/19 = 1
+            basis  : images of [[Mod(0, 181), Mod(1, 181)]] in Etilde(F_181)
+            P_1 |-> [1]
+            rank over F_19 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 181  class [u]  d = 7    E_d : y^2 = x^3 + 49x + 343
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 8,  M = 174,  T = C174,   E^d(Q_p) = Z_181 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [-3, 13]
+      relevant l (p, and the primes dividing #T) : [181, 2, 3, 29]
+      l = 181  (= p)   dim E^d(Q_p)/181 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_181(alpha) = 0)
+            rank over F_181 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(4, 181), Mod(28, 181)]] in Etilde(F_181)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(4, 181), Mod(28, 181)]] in Etilde(F_181)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 29        dim E^d(Q_p)/29 = 1
+            basis  : images of [[Mod(4, 181), Mod(28, 181)]] in Etilde(F_181)
+            P_1 |-> [15]
+            rank over F_29 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 181  class [p]  d = -181    E_d : y^2 = x^3 + 32761x + -5929741
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 362,  T = C2,   E^d(Q_p) = Z_181 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1267/9, 32761/27]
+      relevant l (p, and the primes dividing #T) : [181, 2]
+      l = 181  (= p)   dim E^d(Q_p)/181 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_181(alpha) = 0)
+            rank over F_181 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 181  class [up]  d = -1086    E_d : y^2 = x^3 + 1179396x + -1280824056
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 362,  T = C2,   E^d(Q_p) = Z_181 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [113125/121, 33645547/1331]
+        P_2 = [1072425/1024, 1088287659/32768]
+      relevant l (p, and the primes dividing #T) : [181, 2]
+      l = 181  (= p)   dim E^d(Q_p)/181 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_181(alpha) = 0)
+            P_2 |-> nonzero      (v_181(alpha) = 0)
+            rank over F_181 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            P_2 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 191  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -25,  M = 217,  T = C217,   E^d(Q_p) = Z_191 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [191, 7, 31]
+      l = 191  (= p)   dim E^d(Q_p)/191 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_191(alpha) = 0)
+            rank over F_191 = 1 of 1   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(0, 191), Mod(1, 191)]] in Etilde(F_191)
+            P_1 |-> [1]
+            rank over F_7 = 1 of 1   ==> ONTO
+      l = 31        dim E^d(Q_p)/31 = 1
+            basis  : images of [[Mod(0, 191), Mod(1, 191)]] in Etilde(F_191)
+            P_1 |-> [1]
+            rank over F_31 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 191  class [u]  d = -1    E_d : y^2 = x^3 + 1x + -1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 25,  M = 167,  T = C167,   E^d(Q_p) = Z_191 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [1, 1]
+      relevant l (p, and the primes dividing #T) : [191, 167]
+      l = 191  (= p)   dim E^d(Q_p)/191 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_191(alpha) = 0)
+            rank over F_191 = 1 of 1   ==> ONTO
+      l = 167        dim E^d(Q_p)/167 = 1
+            basis  : images of [[Mod(1, 191), Mod(1, 191)]] in Etilde(F_191)
+            P_1 |-> [1]
+            rank over F_167 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 191  class [p]  d = 191    E_d : y^2 = x^3 + 36481x + 6967871
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 191,  T = trivial,   E^d(Q_p) = Z_191
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [147421/49, 56724121/343]
+      relevant l (p, and the primes dividing #T) : [191]
+      l = 191  (= p)   dim E^d(Q_p)/191 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_191(alpha) = 0)
+            rank over F_191 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 191  class [up]  d = -191    E_d : y^2 = x^3 + 36481x + -6967871
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 191,  T = trivial,   E^d(Q_p) = Z_191
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [32463476400/184334929, 5550715392397391/2502715331033]
+      relevant l (p, and the primes dividing #T) : [191]
+      l = 191  (= p)   dim E^d(Q_p)/191 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_191(alpha) = 0)
+            rank over F_191 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 193  class [1]  d = 1    E_d : y^2 = x^3 + 1x + 1
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -7,  M = 201,  T = C201,   E^d(Q_p) = Z_193 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [0, 1]
+      relevant l (p, and the primes dividing #T) : [193, 3, 67]
+      l = 193  (= p)   dim E^d(Q_p)/193 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_193(alpha) = 0)
+            rank over F_193 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(0, 193), Mod(1, 193)]] in Etilde(F_193)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 67        dim E^d(Q_p)/67 = 1
+            basis  : images of [[Mod(0, 193), Mod(1, 193)]] in Etilde(F_193)
+            P_1 |-> [1]
+            rank over F_67 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 193  class [u]  d = 5    E_d : y^2 = x^3 + 25x + 125
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 7,  M = 187,  T = C187,   E^d(Q_p) = Z_193 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [4, 17]
+      relevant l (p, and the primes dividing #T) : [193, 11, 17]
+      l = 193  (= p)   dim E^d(Q_p)/193 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_193(alpha) = 0)
+            rank over F_193 = 1 of 1   ==> ONTO
+      l = 11        dim E^d(Q_p)/11 = 1
+            basis  : images of [[Mod(4, 193), Mod(17, 193)]] in Etilde(F_193)
+            P_1 |-> [1]
+            rank over F_11 = 1 of 1   ==> ONTO
+      l = 17        dim E^d(Q_p)/17 = 1
+            basis  : images of [[Mod(4, 193), Mod(17, 193)]] in Etilde(F_193)
+            P_1 |-> [1]
+            rank over F_17 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 193  class [p]  d = -193    E_d : y^2 = x^3 + 37249x + -7189057
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 193,  T = trivial,   E^d(Q_p) = Z_193
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [9866360014417/20332193281, 32433687343173364417/2899187772131071]
+      relevant l (p, and the primes dividing #T) : [193]
+      l = 193  (= p)   dim E^d(Q_p)/193 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_193(alpha) = 0)
+            rank over F_193 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 193  class [up]  d = 965    E_d : y^2 = x^3 + 931225x + 898632125
+      reduction additive,  Kodaira I_0*,  c_p = 1,  a_p = 0,  M = 193,  T = trivial,   E^d(Q_p) = Z_193
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [99428383084/1100401, 31353829793809723/1154320649]
+      relevant l (p, and the primes dividing #T) : [193]
+      l = 193  (= p)   dim E^d(Q_p)/193 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_193(alpha) = 0)
+            rank over F_193 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 197  class [1]  d = -6    E_d : y^2 = x^3 + 36x + -216
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -24,  M = 222,  T = C222,   E^d(Q_p) = Z_197 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [21, 99]
+      relevant l (p, and the primes dividing #T) : [197, 2, 3, 37]
+      l = 197  (= p)   dim E^d(Q_p)/197 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_197(alpha) = 0)
+            rank over F_197 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(2, 197), Mod(88, 197)]] in Etilde(F_197)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(2, 197), Mod(88, 197)]] in Etilde(F_197)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 37        dim E^d(Q_p)/37 = 1
+            basis  : images of [[Mod(2, 197), Mod(88, 197)]] in Etilde(F_197)
+            P_1 |-> [11]
+            rank over F_37 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 197  class [u]  d = 3    E_d : y^2 = x^3 + 9x + 27
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 24,  M = 174,  T = C174,   E^d(Q_p) = Z_197 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [3, 9]
+      relevant l (p, and the primes dividing #T) : [197, 2, 3, 29]
+      l = 197  (= p)   dim E^d(Q_p)/197 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_197(alpha) = 0)
+            rank over F_197 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(2, 197), Mod(29, 197)]] in Etilde(F_197)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 3        dim E^d(Q_p)/3 = 1
+            basis  : images of [[Mod(2, 197), Mod(29, 197)]] in Etilde(F_197)
+            P_1 |-> [1]
+            rank over F_3 = 1 of 1   ==> ONTO
+      l = 29        dim E^d(Q_p)/29 = 1
+            basis  : images of [[Mod(2, 197), Mod(29, 197)]] in Etilde(F_197)
+            P_1 |-> [4]
+            rank over F_29 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 197  class [p]  d = 197    E_d : y^2 = x^3 + 38809x + 7645373
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 394,  T = C2,   E^d(Q_p) = Z_197 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [-398636/3025, 81945487/166375]
+        P_2 = [237188/289, 119570529/4913]
+      relevant l (p, and the primes dividing #T) : [197, 2]
+      l = 197  (= p)   dim E^d(Q_p)/197 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_197(alpha) = 0)
+            P_2 |-> nonzero      (v_197(alpha) = 0)
+            rank over F_197 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [0]
+            P_2 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 197  class [up]  d = 394    E_d : y^2 = x^3 + 155236x + 61162984
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 394,  T = C2,   E^d(Q_p) = Z_197 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [55718377785/34175716, 13620706725663757/199791235736]
+      relevant l (p, and the primes dividing #T) : [197, 2]
+      l = 197  (= p)   dim E^d(Q_p)/197 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_197(alpha) = 0)
+            rank over F_197 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 199  class [1]  d = -6    E_d : y^2 = x^3 + 36x + -216
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = -18,  M = 218,  T = C218,   E^d(Q_p) = Z_199 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [21, 99]
+      relevant l (p, and the primes dividing #T) : [199, 2, 109]
+      l = 199  (= p)   dim E^d(Q_p)/199 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_199(alpha) = 0)
+            rank over F_199 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(5, 199), Mod(41, 199)]] in Etilde(F_199)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 109        dim E^d(Q_p)/109 = 1
+            basis  : images of [[Mod(5, 199), Mod(41, 199)]] in Etilde(F_199)
+            P_1 |-> [14]
+            rank over F_109 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 199  class [u]  d = 3    E_d : y^2 = x^3 + 9x + 27
+      reduction good,  Kodaira I_0,  c_p = 1,  a_p = 18,  M = 182,  T = C182,   E^d(Q_p) = Z_199 x T
+      E^d(Q) : rank 1, torsion 1;  generators
+        P_1 = [3, 9]
+      relevant l (p, and the primes dividing #T) : [199, 2, 7, 13]
+      l = 199  (= p)   dim E^d(Q_p)/199 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_199(alpha) = 0)
+            rank over F_199 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : images of [[Mod(3, 199), Mod(9, 199)]] in Etilde(F_199)
+            P_1 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      l = 7        dim E^d(Q_p)/7 = 1
+            basis  : images of [[Mod(3, 199), Mod(9, 199)]] in Etilde(F_199)
+            P_1 |-> [1]
+            rank over F_7 = 1 of 1   ==> ONTO
+      l = 13        dim E^d(Q_p)/13 = 1
+            basis  : images of [[Mod(3, 199), Mod(9, 199)]] in Etilde(F_199)
+            P_1 |-> [1]
+            rank over F_13 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 199  class [p]  d = 199    E_d : y^2 = x^3 + 39601x + 7880599
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 398,  T = C2,   E^d(Q_p) = Z_199 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [-995/9, 39601/27]
+        P_2 = [33, 3037]
+      relevant l (p, and the primes dividing #T) : [199, 2]
+      l = 199  (= p)   dim E^d(Q_p)/199 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_199(alpha) = 0)
+            P_2 |-> nonzero      (v_199(alpha) = 0)
+            rank over F_199 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [1]
+            P_2 |-> [0]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+  p = 199  class [up]  d = -199    E_d : y^2 = x^3 + 39601x + -7880599
+      reduction additive,  Kodaira I_0*,  c_p = 2,  a_p = 0,  M = 398,  T = C2,   E^d(Q_p) = Z_199 x T
+      E^d(Q) : rank 2, torsion 1;  generators
+        P_1 = [18144424/109561, 65073485003/36264691]
+        P_2 = [6169/16, 514813/64]
+      relevant l (p, and the primes dividing #T) : [199, 2]
+      l = 199  (= p)   dim E^d(Q_p)/199 = 1
+            basis  : -- (dim 1; the identification with F_p is only up to F_p^*)
+            P_1 |-> nonzero      (v_199(alpha) = 0)
+            P_2 |-> nonzero      (v_199(alpha) = 0)
+            rank over F_199 = 1 of 1   ==> ONTO
+      l = 2        dim E^d(Q_p)/2 = 1
+            basis  : a generator of the cyclic T = C2
+            P_1 |-> [0]
+            P_2 |-> [1]
+            rank over F_2 = 1 of 1   ==> ONTO
+      dense at p : YES (onto for every l)
+
+-------------------------------------------------------------------------
+  blocks (p, class, d)          : 180
+  layer lines (p, d, l)         : 419
+  dense at p (onto for every l) : 180
+  disagreements with section 3.3: 0
+-------------------------------------------------------------------------
+
+done.

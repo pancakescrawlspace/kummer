@@ -1,0 +1,10 @@
+=== Observation 1: m even <=> 2 a quartic residue mod p <=> 8 | b ===
+   82 rank-0 primes p = 1 mod 8 below 4000;  0 exceptions
+
+=== Observation 2: does '4 | m' match '2 is an octic residue'? ===
+   101 primes with m even below 20000;  48 DISAGREEMENTS
+   counterexample pair, same b and both x^2 + 256 y^2 with y = 4:
+      p = 4177 = 9^2 + 256*16,   m = 2
+      p = 4937 = 29^2 + 256*16,  m = 4
+
+### sha-tunnell finished

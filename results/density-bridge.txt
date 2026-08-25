@@ -1,0 +1,229 @@
+=========================================================================
+ Bridge: single curve vs. twist family
+=========================================================================
+
+(1) SAME CRITERION.  kummer-padic-density.typ section 2.1 states:
+      closure(Gamma) = E_d(Q_p)  <=>  Gamma onto E(Q_p)/E_1 (index M),
+                                      and Gamma inter E_1 not inside E_2,
+      with M = c_p * #Etilde^ns(F_p).  That is exactly the N_p and the
+      v_p(c(mP)) = 1 test of ec-padic-closure.typ -- the same criterion,
+      re-derived.  Its second clause is also precisely the clause that the
+      naive 'reduction map is surjective' phrasing drops.
+
+    Reproducing the CM table row at p = 3 (class [u.3], d = 6):
+      E_6 : y^2 = x^3 - 432   (the twist d v^2 = x^3 - 2)
+      conductor 27,  Kodaira code -4 (-4 = IV*),  c_3 = 3,  a_3 = 0
+      M = c_3 * (3 - a_3) = 9   -- the doubling to 9 that forces rank >= 2.
+      and in class [3] (d = 3): c_3 = 1,  M = 3  -- procyclic, rank 1 suffices.
+
+(2) THE UNTWISTED ARGUMENT IS VACUOUS ON THE SURFACE.
+    In ec-density-bm.typ the obstruction pairs a point against a class:
+    inv_v A_beta(Q) = <Q_v, beta_v>_v, with beta ranging over H^1(Q,E).
+    On the Kummer surface the two arguments are BOTH points -- the surface
+    supplies pairs (P,Q) of points on the same twist -- so the pairing is
+    <delta_v P, delta_v Q>_v with both entries in the local Kummer image
+    W_v.  And W_v is MAXIMAL ISOTROPIC:
+
+      v      dim H^1(Q_v, E[2])   dim W_v = dim E(Q_v)/2   isotropic?
+      3            0                     0                  yes (W^perp = W)
+      5            2                     1                  yes (W^perp = W)
+      7            0                     0                  yes (W^perp = W)
+      11            0                     0                  yes (W^perp = W)
+      23            2                     1                  yes (W^perp = W)
+      37            0                     0                  yes (W^perp = W)
+
+    dim W_v is always half of dim H^1(Q_v,E[2]) -- that is the standard
+    fact used in ec-density-bm.typ section 7 to say W_v^perp = W_v.  So
+    <delta_v P, delta_v Q>_v = 0 identically, at every place, and
+    reciprocity gives 0 = 0.  The single-curve argument SAYS NOTHING here.
+
+    kummer-padic-density.typ section 5.1.5 fixes this by TWISTING the
+    pairing by a non-scalar phi in End_G(E[n]):
+        beta_v(P,Q) = <delta_v P, phi delta_v Q>_v ,
+    which needs E[n] DECOMPOSABLE (otherwise End_G(E[n]) = F_n, phi is
+    scalar, and beta collapses back to the vanishing pairing).  Since phi
+    is Galois-equivariant, reciprocity still gives sum_v beta_v = 0.
+    That extra ingredient is the whole difference between the two settings.
+
+(3) WHAT wild-symbols.typ CONTRIBUTES: the sharpness of level3.gp's lemma.
+    level3.gp evaluates the WILD cubic symbol at 3 by the product formula,
+    and needs every class of K^*/(K^*)^3, K = Q_3(zeta_3), to have a global
+    representative.  Its stated reason: U^(4) is inside (K^*)^3, so a class
+    is fixed by its valuation and its unit part mod 9.  Brute force over
+    O/pi^12 = O/3^6 confirms it -- AND shows 4 cannot be lowered to 3.
+
+       m    units = 1 mod pi^m    all cubes?
+       2        59049             no (52488 of them fail)
+       3        19683             no (13122 of them fail)
+       4        6561             YES
+       5        2187             YES
+
+    At m = 3 exactly one third of the units are cubes, so mod pi^3 would
+    lose a full layer.  level3.gp's mod-9 precision is exactly right and
+    cannot be reduced.
+
+(4) A CORRECTION TO ec-density-bm.typ SECTION 6.
+    That section called the index-11 case 'blocked by an unimplemented wild
+    symbol'.  Too pessimistic: this repository already contains TWO ways
+    round, and both have their inputs at 11.
+
+    (a) level3.gp's product-formula evasion needs (i) a single prime above
+        ell in Q(zeta_ell), and (ii) a depth bound giving every local class
+        a global representative.  Both hold at 11:
+          Q(zeta_3) : h = 1,  primes above 3 = 1,  e = 2,  f = 1,  depth pe/(p-1) = 3
+          Q(zeta_11) : h = 1,  primes above 11 = 1,  e = 10,  f = 1,  depth pe/(p-1) = 11
+        ell is totally ramified in Q(zeta_ell) for every ell, so (i) is
+        automatic; (ii) is the depth bound of wild-symbols.typ.  At 11 the
+        depth is 11, so U^(12) consists of 11th powers, and since
+        v(11^2) = 20 >= 12 a class is pinned down modulo 121.
+
+    (b) kummer-survey.typ section on 11a1 at p = 11 does not evaluate the
+        symbol at all: the proof needs beta_11 to be NON-DEGENERATE, not to
+        be computed, and split multiplicative reduction (Tate curve)
+        settles that structurally -- the Tate mu_5 is a third line, distinct
+        from both global subgroups, so phi restricts to an isomorphism and
+        the Weil pairing of two distinct lines is perfect.
+
+    So 'no explicit class' and 'no proof' are different things, and the
+    survey has already separated them.
+
+(5) IS THE FAILURE FOR ell > 5 A BRAUER-GROUP FACT?
+
+    The literal claim -- 'the geometric Brauer group of a K3 has no
+    ell-torsion for ell > 5' -- is FALSE.  For a K3 surface over an
+    algebraically closed field of characteristic 0,
+        Br(Xbar) = (Q/Z)^(22 - rho),   rho = rank NS(Xbar) <= 20,
+    so Br(Xbar)[ell] = (Z/ell)^(22-rho) is non-zero for EVERY ell.
+
+    But there is an exact true statement next to it, and it IS the reason.
+    For A = E_1 x E_2 the Kunneth decomposition of H^2 gives
+        Br(Abar)[ell] = Hom(E_1[ell], E_2[ell]) / (Hom(E_1,E_2) tensor F_ell),
+    the quotient being the algebraic (Neron-Severi) part.  For E_1 = E_2 = E
+    without CM, Hom(E,E) = Z, so
+        Br(Abar)[ell] = End(E[ell]) / F_ell = M_2(F_ell) / scalars,
+    and Br(Kum(A)bar) = Br(Abar) away from 2 (Skorobogatov-Zarhin).  Taking
+    Galois invariants:
+        Br(Xbar)^{G_Q}[ell]  =  End_G(E[ell]) / F_ell .
+    So 'the twisting endomorphism phi exists' -- the survey's criterion
+    End_G(E[ell]) != F_ell -- is LITERALLY 'the Kummer surface has a
+    Galois-invariant transcendental Brauer class of order ell'.  The search
+    for phi and the search for ell-torsion are the same search, and the
+    scalars are quotiented out precisely because they are the algebraic part.
+
+    What bounds ell is then a modular-curve theorem, not a K3 fact.
+    End_G(E[ell]) != F_ell needs the mod-ell image to be small.  Over Q, for
+    ODD ell, only one of the survey's four structural cases can occur:
+
+      * two stable lines (split Cartan)  <=>  a non-cuspidal rational point
+        of X_split(ell) = X_0(ell^2).  By Mazur-Kenku the cyclic isogeny
+        degrees over Q are N <= 19 and N in {21,25,27,37,43,67,163}, so
+        N = ell^2 forces ell^2 in {4,9,25}: ell in {2,3,5}.  ell^2 = 49 is
+        NOT on the list.
+      * one stable line with equal characters: chi_1 = chi_2 and
+        chi_1 chi_2 = cyclotomic force chi_1^2 = chi_cyc mod ell; with a
+        rational ell-torsion point (chi_1 = 1) this needs ell = 2.
+      * image inside a NONSPLIT Cartan: IMPOSSIBLE over Q for odd ell.
+        Complex conjugation c lies in the image, with det c = chi_cyc(c) = -1
+        and c^2 = 1, so its eigenvalues are 1 and -1, distinct for odd ell.
+        An element of a nonsplit Cartan acts with eigenvalues alpha,
+        alpha^ell for alpha in F_{ell^2}: equal when alpha is in F_ell, and
+        conjugate-not-in-F_ell otherwise -- never {1,-1}.
+      * larger irreducible image: End_G = F_ell, scalar.
+
+      So over Q the decomposable case is ell in {2,3,5} exactly.
+
+    A caveat on the brute force below: ellisomat records isogeny targets up
+    to ISOMORPHISM, so two distinct stable lines with isomorphic quotients
+    register once -- 14a1 has isogeny degrees {1,2,3,6} yet psi_3 has TWO
+    rational roots, hence two stable 3-lines.  The census therefore UNDER-
+    counts, and the exact statement rests on Mazur-Kenku, not on it.
+    Brute-force census (a lower bound on which ell occur):
+      44741 curves examined;  ell with E[ell] decomposable: [2, 3, 5]
+
+    And ell = 7 really does not occur, even on the CM curve of conductor 49:
+      [1, -1, 0, -2, -1]  N = 49, j = -3375 (CM by sqrt(-7)), isogeny degrees [1, 2, 7, 14]
+      -- a single 7-isogeny, not two, so E[7] is reducible but NOT
+      decomposable, and End_G(E[7]) is scalar.
+
+    Conclusion: the intuition is right, the statement needs repair.  The
+    obstruction to going past ell = 5 is not that a K3 has no ell-torsion in
+    its geometric Brauer group -- it always does -- but that the
+    GALOIS-INVARIANT part vanishes, and that vanishing is Mazur-Kenku.
+
+(6) DOES beta_p DEPEND ON THE TWIST d, OR ONLY ON ITS CLASS AT p?
+
+    Only on the class -- and the reason is a triviality once stated.  If
+    d/d' is a square in Q_p then
+        psi : E_d -> E_d',   (x,y) -> (c^2 x, c^3 y),  c^2 = d/d' ,
+    is an ISOMORPHISM DEFINED OVER Q_p.  It carries E_d[ell] to E_d'[ell],
+    each Galois-stable line to the corresponding one (so it commutes with
+    phi), and preserves the Weil pairing.  Hence it identifies W_p with W_p'
+    and beta_p with beta_p'.  Same form, on the nose.  ONE CHECK PER SQUARE
+    CLASS suffices -- four at odd p, eight at 2 -- not one per twist.
+
+    E = 14a1 (E[3] decomposable: psi_3 has two rational roots), ell = 3,
+    critical place p = 7.  Class [1] = the 7-adic units d = 1,2,4 mod 7:
+
+       d      Kodaira@7   c_7   a_7   M = c_7(7-a_7)
+     1          7        3     1        18
+     2          7        3     1        18
+     4          7        3     1        18
+     8          7        3     1        18
+     9          7        3     1        18
+     11          7        3     1        18
+     15          7        3     1        18
+     22          7        3     1        18
+     23          7        3     1        18
+     37          7        3     1        18
+     247          7        3     1        18
+     -6          7        3     1        18
+     -5          7        3     1        18
+
+    and a NON-square class at 7 (d = 3,5,6 mod 7), for contrast:
+       d      Kodaira@7   c_7   a_7   M
+     3          7        1     -1        8
+     5          7        1     -1        8
+     6          7        1     -1        8
+     10          7        1     -1        8
+     13          7        1     -1        8
+
+    Identical within a class, different across classes.
+
+    What DOES move with d is the vanishing AWAY from p.  beta_v can be
+    non-zero only where dim W_v = 2, which needs mu_ell in Q_v, i.e.
+    v = 1 mod ell.  The set of such bad places is exactly the d-dependent
+    part of the argument:
+
+       d        bad primes of E_d          of those, = 1 mod 3
+     1      [2, 3, 7]       []
+     2      [2, 3, 7]       []
+     4      [2, 3, 7]       []
+     11      [2, 3, 7, 11]       []
+     15      [2, 3, 5, 7]       []
+     23      [2, 3, 7, 23]       []
+     37      [2, 3, 7, 37]       [37]
+     247      [2, 3, 7, 13, 19]       [13, 19]
+     -5      [2, 3, 5, 7]       []
+
+    d = 37 and d = 247 each bring in a new place where beta could survive.
+    THAT is the family-uniform obligation, and it is why the CM table lists
+    'few bad primes necessary': each extra place with beta_v non-zero lets
+    the reciprocity sum be balanced away from the critical place.
+
+    BUT THE PROPOSED SHORTCUT DOES NOT WORK, and the reason is logical, not
+    computational.  beta_p != 0 is a LOCAL fact about the form on W_p;
+    'E_d(Q) fails to surject onto W_p' is a GLOBAL fact about one twist.
+    The implication runs one way:
+        beta_p != 0  AND  beta_v = 0 for v != p   ==>   image is isotropic
+                                                   ==>   dim <= 1, no surjection.
+    It cannot be inverted: a twist can fail to surject simply because its
+    rank is too small, which says nothing about beta_p.  The 708 rank->=2
+    twists of the CM search are evidence, not proof, and the document says
+    so.
+
+    The valid converse use is a REFUTATION: if a single twist in the class
+    DOES span W_p (and has beta_v = 0 away from p), then beta_p vanishes on
+    W_p and the mechanism is dead for that class.  So one twist can kill the
+    obstruction; no number of twists can establish it.
+
+done.

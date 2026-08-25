@@ -1,0 +1,199 @@
+=========================================================================
+ Tame and wild norm residue symbols: what actually changes
+=========================================================================
+
+(1) At an odd place units are INVISIBLE to the symbol; at 2 they are not.
+
+    odd p < 200 : 556656 pairs of units (u,w), non-trivial symbols = 0
+    reason: for v not dividing n, U^(1) is a pro-p group and n is prime to
+    p, so U^(1) is uniquely n-divisible -- it lies inside (K^*)^n and dies.
+
+    at v = 2 the four unit classes pair as:
+           1    3    5    7
+      1    1   1   1   1
+      3    1   -1   1   -1
+      5    1   1   1   1
+      7    1   -1   1   -1
+    (3,3)_2 = -1 : two principal units pairing non-trivially.  At an odd
+    place that cannot happen, whatever the units.
+
+(2) How much of a and b does the symbol see?
+
+    odd p < 100: changing a or b by p never changes the symbol.
+    violations = 0   -> the symbol sees a, b only MOD p.
+
+    v = 2 : 1 and 5 agree mod 4, but
+      (1,2)_2 = 1     (5,2)_2 = -1
+    so mod 4 is not enough.  Mod 8 is:
+      over 10000 odd pairs a,b <= 200, mod-8 violations = 0
+
+(3) THE DEPTH.  For which m is every unit = 1 mod m^th power an n-th power?
+    Prediction: U^(m) is inside (K^*)^n exactly when m > pe/(p-1),
+    where e = v_K(p) and p is the residue characteristic.
+
+    (a) squares in Q_p, p odd  (TAME: p does not divide n = 2).  Here the
+        depth formula does not apply; U^(1) is already n-divisible, so the
+        answer is simply m = 1.
+        p = 3 : U^(m) consists of squares from m = 1   (depth 1: U^(1) is n-divisible)
+        p = 5 : U^(m) consists of squares from m = 1   (depth 1: U^(1) is n-divisible)
+        p = 7 : U^(m) consists of squares from m = 1   (depth 1: U^(1) is n-divisible)
+        p = 11 : U^(m) consists of squares from m = 1   (depth 1: U^(1) is n-divisible)
+        p = 13 : U^(m) consists of squares from m = 1   (depth 1: U^(1) is n-divisible)
+        p = 17 : U^(m) consists of squares from m = 1   (depth 1: U^(1) is n-divisible)
+        p = 19 : U^(m) consists of squares from m = 1   (depth 1: U^(1) is n-divisible)
+
+    (b) squares in Q_2  (WILD):  p = 2, e = 1, pe/(p-1) = 2, so m >= 3
+        m = 1 : 512 units, all squares? no
+        m = 2 : 256 units, all squares? no
+        m = 3 : 128 units, all squares? YES
+        m = 4 : 64 units, all squares? YES
+        m = 5 : 32 units, all squares? YES
+
+    (c) CUBES in K = Q_3(zeta_3)  (WILD): p = 3, e = v_pi(3) = 2,
+        pe/(p-1) = 3, so the prediction is m >= 4.
+        O = Z[omega], omega^2 = -1-omega, pi = omega-1, pi^2 = -3 omega.
+        Brute force over O/pi^12 = O/3^6 (past the Hensel bound 2e+1 = 5).
+        cubes in O/pi^12 : 13629 of 531441
+
+           m    units = 1 mod pi^m    all cubes?
+           0        354294             no (341172 fail)
+           1        177147             no (170586 fail)
+           2        59049             no (52488 fail)
+           3        19683             no (13122 fail)
+           4        6561             YES
+           5        2187             YES
+           6        729             YES
+
+        So U^(m) consists of cubes exactly for m >= 4 = pe/(p-1) + 1.
+        At m = 3 exactly one third of the units are cubes -- the symbol
+        still has one layer of the filtration left to see.
+
+(4) THE SIZE OF K^*/(K^*)^n = n^2 / |n|_K.
+
+    n = 2 :   Q_p (p odd) : 2^2 / 1 = 4 classes;   Q_2 : 2^2 * 2 = 8 classes.
+    the eight classes of Q_2^* mod squares are the familiar {+-1,+-2,+-5,+-10}.
+
+    n = p, over K = Q_p(zeta_p) (which is where the symbol is defined):
+      [K:Q_p] = p-1, totally ramified, e = p-1, residue field F_p, so
+      |p|_K^{-1} = p^(p-1)  and  |K^*/(K^*)^p| = p^2 * p^(p-1) = p^(p+1).
+
+        p     tame answer p^2     wild answer p^(p+1)      depth pe/(p-1) = p
+       3         9                81        3
+       5         25                15625        5
+       7         49                5764801        7
+       11         121                3138428376721        11
+       13         169                3937376385699289        13
+
+    For p = 11 that is 3138428376721 classes instead of 121.
+    Any 'formula' for the symbol has to be a function on that group.
+
+(5) THE PAIRING FILTRATION at v = 2: which U^(i) x U^(j) is non-trivial?
+    Prediction: non-trivial only when i + j <= pe/(p-1) = 2.
+
+        i   j    is ( , )_2 non-trivial on U^(i) x U^(j) ?
+        1   1         YES        (i+j = 2)
+        1   2         no        (i+j = 3)
+        1   3         no        (i+j = 4)
+        1   4         no        (i+j = 5)
+        2   2         no        (i+j = 4)
+        2   3         no        (i+j = 5)
+        2   4         no        (i+j = 6)
+        3   3         no        (i+j = 6)
+        3   4         no        (i+j = 7)
+        4   4         no        (i+j = 8)
+
+    Exactly the pairs with i + j <= 2.  The tame symbol has no such
+    filtration at all: it is trivial on U x U outright.
+
+(6) THE TAME FORMULA, checked.  For odd p and n = 2, writing
+    a = p^alpha u, b = p^beta w with u,w units,
+      (a,b)_p = (-1/p)^(alpha beta) (u/p)^beta (w/p)^alpha .
+    One Legendre symbol each: a residue-field computation, nothing more.
+
+    195792 cases, disagreements with PARI's hilbert() = 0
+
+(7) AND YOU HAVE TO GET mu_n FIRST.
+    The symbol ( , )_n needs mu_n in K.  Over Q_p with n = p (p odd),
+    mu_p is not in Q_p, so one must pass to Q_p(zeta_p) -- and that
+    extension is TOTALLY RAMIFIED of degree p-1.  So acquiring the roots
+    of unity makes the wild place worse, not better:
+
+        field        e = v(p)     depth pe/(p-1)     [K:Q_p]
+        Q_p              1            p/(p-1) < 2         1     (but no mu_p)
+        Q_3(zeta_3)        2            3               2
+        Q_5(zeta_5)        4            5               4
+        Q_7(zeta_7)        6            7               6
+        Q_11(zeta_11)        10            11               10
+
+    For n = 2 this costs nothing: mu_2 = {+-1} is already in Q_2, e = 1,
+    depth 2, and the answer fits in the mod-8 formula everyone knows.
+    That is why the quadratic symbol at 2 is the one wild symbol with a
+    closed form -- and the only one in PARI (nfhilbert) or Sage.
+
+(8) LUBIN-TATE, AND WHERE pe/(p-1) COMES FROM.
+    Lubin-Tate theory constructs the maximal totally ramified abelian
+    extension of K from a formal group F_pi over O_K with [pi](x) = pi x +
+    ... + x^q, and makes the local Artin map EXPLICIT: a uniformiser acts
+    trivially on K(F_pi[pi^n]) and by Frobenius on K^ur, and a unit u acts
+    on F_pi[pi^n] by [u^{-1}].  So the norm residue symbol is in principle a
+    formal-group computation.  For K = Q_p and pi = p the Lubin-Tate group
+    is the MULTIPLICATIVE one, Ghat_m, and K_pi = Q_p(mu_{p^oo}) -- so
+    Lubin-Tate simply recovers the cyclotomic theory and the Artin-Hasse
+    formulas of section 6.  Wiles' explicit reciprocity law is the
+    Lubin-Tate generalisation of Artin-Hasse, and Coleman power series are
+    the tool that makes it work.
+
+    What the formal group explains outright is the DEPTH.  On Ghat_m,
+      [p](x) = (1+x)^p - 1 = p x + ... + x^p ,
+    so with j = v(x) and e = v_K(p):
+
+      Q_2 :  e = 1,  e/(p-1) = 1,  pe/(p-1) = 2
+         j :   v(p x) = e+j    v(x^p) = p j     v([p]x)     regime
+         1  :      2              2           2        tie
+         2  :      3              4           3        linear: shift by e
+         3  :      4              6           4        linear: shift by e
+         4  :      5              8           5        linear: shift by e
+         => [p] carries m^j onto m^(j+e) once j > e/(p-1), so U^(m) lies
+            in (K^*)^p for m >= 3, i.e. m > pe/(p-1) = 2.
+
+      Q_3(zeta_3) :  e = 2,  e/(p-1) = 1,  pe/(p-1) = 3
+         j :   v(p x) = e+j    v(x^p) = p j     v([p]x)     regime
+         1  :      3              3           3        tie
+         2  :      4              6           4        linear: shift by e
+         3  :      5              9           5        linear: shift by e
+         4  :      6              12           6        linear: shift by e
+         => [p] carries m^j onto m^(j+e) once j > e/(p-1), so U^(m) lies
+            in (K^*)^p for m >= 4, i.e. m > pe/(p-1) = 3.
+
+      Q_5(zeta_5) :  e = 4,  e/(p-1) = 1,  pe/(p-1) = 5
+         j :   v(p x) = e+j    v(x^p) = p j     v([p]x)     regime
+         1  :      5              5           5        tie
+         2  :      6              10           6        linear: shift by e
+         3  :      7              15           7        linear: shift by e
+         4  :      8              20           8        linear: shift by e
+         => [p] carries m^j onto m^(j+e) once j > e/(p-1), so U^(m) lies
+            in (K^*)^p for m >= 6, i.e. m > pe/(p-1) = 5.
+
+      Q_11(zeta_11) :  e = 10,  e/(p-1) = 1,  pe/(p-1) = 11
+         j :   v(p x) = e+j    v(x^p) = p j     v([p]x)     regime
+         1  :      11              11           11        tie
+         2  :      12              22           12        linear: shift by e
+         3  :      13              33           13        linear: shift by e
+         4  :      14              44           14        linear: shift by e
+         => [p] carries m^j onto m^(j+e) once j > e/(p-1), so U^(m) lies
+            in (K^*)^p for m >= 12, i.e. m > pe/(p-1) = 11.
+
+    Every one of those thresholds is the one measured by brute force in
+    section 3: m >= 3 for squares in Q_2, m >= 4 for cubes in Q_3(zeta_3).
+
+    So 'wild' has a one-line formal-group meaning.  Below j = e/(p-1) the
+    map [p] behaves like FROBENIUS, x -> x^p, multiplying the valuation by
+    p; above it like MULTIPLICATION BY p, shifting the valuation by e.  The
+    crossover is exactly where log_F converges and becomes an isomorphism
+    F(m^j) -> m^j, which is why the symbol turns analytic there and why the
+    explicit formulas are all logarithms.  In the tame case there is no
+    crossover to cross: n is prime to p, [n] is invertible on the formal
+    group, and the whole filtration is n-divisible -- the formal group never
+    enters the computation at all.
+
+done.

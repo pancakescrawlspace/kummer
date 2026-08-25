@@ -1,0 +1,128 @@
+=========================================================================
+ A Brauer-Manin obstruction to integral points:  x^2 - 34 y^2 = -1
+=========================================================================
+
+(1) X(Z) = 0/  for  x^2 - 34 y^2 = -1
+    fundamental unit of Z[sqrt 34] : 35 + 6*w   norm = 1
+    negative Pell is soluble iff that norm is -1, so: soluble = 0
+    brute force 0 <= y <= 200000 : solutions found = 0
+
+(2) X(Z_v) != 0/  for every v
+    real: x^2 = 34 y^2 - 1 has real solutions, e.g. y = 1, x = sqrt 33.
+    p = 2: take y = 1, x^2 = 33.  33 mod 8 = 1, so 33 is a square in Z_2  ->  point exists.
+    odd p < 2000 with no point mod p : []
+    X is smooth over Z[1/2]: the gradient (2x, -68y) vanishes mod p
+    only if x = 0 and 34y = 0 mod p, which contradicts x^2 - 34y^2 = -1.
+    So Hensel lifts every F_p-point, and X(Z_p) != 0/ for all odd p.
+
+(3) the class  A = (2, x + 4)  is unramified on X_Q
+    zeros of x + 4 on X:  x = -4,  34 y^2 = 17,  so y^2 = 1/2
+    residue field  Q(sqrt(34*(4^2+1))) = Q(sqrt 578)  and 578 = [2, 1; 17, 2]
+    squarefree part = 2, so the residue field is Q(sqrt 2)
+    is 2 a square there?  1   -> residue at the zeros is trivial
+    (this is why C = 4 was chosen:  17*(4^2+1) = 289 = 17^2, a perfect square)
+    poles: the single closed point at infinity, residue field Q(sqrt 34).
+    is 2 a square in Q(sqrt 34)?  0   -> A is NON-CONSTANT, ramified only at the removed point.
+
+(4) inv_oo A = 0 at every real point
+    (a,b)_oo = -1 needs a < 0 AND b < 0, and here a = 2 > 0.
+    sample: hilbert(2, -1000, 0) = 1,  hilbert(2, 1000, 0) = 1
+
+(5) inv_2 A = 1/2 at EVERY Z_2-point
+    exhaustive over Z/2^10:  2048 solutions
+    values of x mod 8 that occur      : [1, 7]
+    values of hilbert(2, x+4, 2)   : [-1]
+    proof: x^2+1 = 2*17*y^2 forces x odd and y a unit; then
+      (x^2+1)/2 = 17 y^2 = 1 mod 8, and (x^2+1)/2 = 5 mod 8 when x = +-3 mod 8,
+      so x = +-1 mod 8, x+4 = +-3 mod 8, and (2, +-3 mod 8)_2 = -1.
+
+(6) inv_p A = 0 at every Z_p-point, p odd
+    (2, x+4)_p = (2/p)^v_p(x+4), so it is trivial unless
+    2 is a non-residue mod p AND v_p(x+4) is odd.
+    but x = -4 mod p forces 34y^2 = 17 mod p, i.e. 2y^2 = 1: 2 must be a square.
+    p < 5000 where 'p | x+4 is possible' differs from '2 is a QR mod p': []
+    so v_p(x+4) >= 1 only when (2/p) = +1, where the symbol is +1 anyway.
+
+(7) sum_v inv_v A  =  0 (oo)  +  1/2 (at 2)  +  0 (odd p)  =  1/2
+    X(A_Z) != 0/  but  X(A_Z)^Br = 0/,  hence X(Z) = 0/.
+    This is a Brauer-Manin obstruction to an INTEGRAL point,
+    on a variety whose rational points are Zariski dense.
+
+(8) rational points: reciprocity holds, and they escape via a denominator
+    all (x,y) in X(Q) with denominator <= 60:
+
+        x          y        denom   places with inv = 1/2
+      5/3   1/3   3      [2, 3]   #odd = 0
+      29/3   5/3   3      [2, 3]   #odd = 0
+      3/5   1/5   5      [2, 5]   #odd = 0
+      99/5   17/5   5      [2, 5]   #odd = 0
+      27/11   5/11   11      [2, 11]   #odd = 0
+      75/11   13/11   11      [2, 11]   #odd = 0
+      11/27   5/27   27      [2, 3]   #odd = 0
+      635/27   109/27   27      [2, 3]   #odd = 0
+      3/29   5/29   29      [2, 29]   #odd = 0
+      915/29   157/29   29      [2, 29]   #odd = 0
+      1125/29   193/29   29      [2, 29]   #odd = 0
+      141/37   25/37   37      [2, 37]   #odd = 0
+      165/37   29/37   37      [2, 37]   #odd = 0
+      61/45   13/45   45      [2, 5]   #odd = 0
+      163/45   29/45   45      [2, 5]   #odd = 0
+      211/45   37/45   45      [2, 5]   #odd = 0
+      517/45   89/45   45      [2, 5]   #odd = 0
+
+    every list has even length: that is Hilbert reciprocity.
+    every list contains 2 (the point is 2-integral) and one odd p;
+    that p is = +-3 mod 8 and divides the denominator -- the point is
+    NOT p-integral, which is exactly how it dodges (6).
+
+    the orbit of (3/5, 1/5) under the fundamental unit (35 + 6 sqrt 34):
+      x = 3/5   y = 1/5   x^2-34y^2 = -1   inv=1/2 at [2, 5]
+      x = 309/5   y = 53/5   x^2-34y^2 = -1   inv=1/2 at [2, 5]
+      x = 21627/5   y = 3709/5   x^2-34y^2 = -1   inv=1/2 at [2, 5]
+      x = 1513581/5   y = 259577/5   x^2-34y^2 = -1   inv=1/2 at [2, 5]
+      x = 105929043/5   y = 18166681/5   x^2-34y^2 = -1   inv=1/2 at [2, 5]
+    the denominator 5 never goes away, and 5 = 5 mod 8.
+
+    the two representatives of the class agree, as they must:
+      (2, x+4) * (2, x-4) = (2, 34y^2 - 17) = (2, 17) * (2, 2y^2-1),
+      and (2,17) is split (17 = 1 mod 8) while 2y^2-1 = -N(1+y sqrt 2),
+      so (2, 2y^2-1) = (2,-1) = 1.  Check at (3/5,1/5) and (5/3,1/3):
+        x = 3/5 : [1, 1, 1, 1, 1, 1]
+        x = 5/3 : [1, 1, 1, 1, 1, 1]
+        x = 27/11 : [1, 1, 1, 1, 1, 1]
+
+(9) the residue of A is the genus character of K = Q(sqrt 34)
+    class number h(K) = 2,  class group = [2]
+    K has 2 ramified primes, so genus theory gives a 2-rank of 1 in the narrow class group,
+    and the genus field is K(sqrt 2) = Q(sqrt 2, sqrt 17), unramified over K.
+    residue of A at the point at infinity = class of 2 in K*/K*^2:
+      is 2 a square in K?  0  -> the residue is exactly the genus character.
+    So this Brauer-Manin obstruction IS the classical genus-theory
+    obstruction to x^2 - 34 y^2 = -1, in Brauer clothing.
+
+(10) the same recipe for other d: squarefree d = 2q, q = 1 mod 8 prime
+
+      d     q    neg Pell?   c with q(c^2+1) a square   residue field
+     34   17     INSOLUBLE        c = 4                Q(sqrt 2)
+     82   41     soluble         c = 32                Q(sqrt 2)
+     146   73     INSOLUBLE        c = 1068                Q(sqrt 2)
+     178   89     INSOLUBLE        c = 500                Q(sqrt 2)
+     194   97     INSOLUBLE        c = 5604                Q(sqrt 2)
+     226   113     soluble         c = 776                Q(sqrt 2)
+     274   137     soluble         c = 1744                Q(sqrt 2)
+
+    q(c^2+1) = square has the solution c with c^2+1 = q k^2, i.e. a point on
+    another Pell conic; when it exists, (2, x+c) is unramified on x^2-2q y^2 = -1
+    by the same computation.  Whenever negative Pell is INSOLUBLE there, the
+    obstruction below reproduces it.  d = 34 is the first such d.
+
+    the 2-adic step in full, for the soluble d as well as the insoluble:
+      d = 34  c = 4  x mod 8 in [1, 7]  inv_2 values [-1]   obstruction   neg Pell insoluble   consistent
+      d = 82  c = 32  x mod 8 in [1, 7]  inv_2 values [1]   no obstruction   neg Pell SOLUBLE   consistent
+      d = 146  c = 1068  x mod 8 in [1, 7]  inv_2 values [-1]   obstruction   neg Pell insoluble   consistent
+      d = 178  c = 500  x mod 8 in [1, 7]  inv_2 values [-1]   obstruction   neg Pell insoluble   consistent
+      d = 194  c = 5604  x mod 8 in [1, 7]  inv_2 values [-1]   obstruction   neg Pell insoluble   consistent
+      d = 226  c = 776  x mod 8 in [1, 7]  inv_2 values [1]   no obstruction   neg Pell SOLUBLE   consistent
+      d = 274  c = 1744  x mod 8 in [1, 7]  inv_2 values [1]   no obstruction   neg Pell SOLUBLE   consistent
+
+done.

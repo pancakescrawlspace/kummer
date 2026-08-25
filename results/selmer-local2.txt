@@ -1,0 +1,12 @@
+=== L_2(E_a) versus L_2(E_{-1/a}), compared in ONE algebra ===
+    identification theta' = -1/theta, as in Theorem A
+   a = 1   |L_2(E)| = 4   |L_2(E')| = 4   EQUAL
+   a = 3   |L_2(E)| = 4   |L_2(E')| = 4   EQUAL
+   a = 5   |L_2(E)| = 4   |L_2(E')| = 4   EQUAL
+   a = 7   |L_2(E)| = 4   |L_2(E')| = 4   EQUAL
+   a = -1   |L_2(E)| = 4   |L_2(E')| = 4   EQUAL
+   a = -3   |L_2(E)| = 4   |L_2(E')| = 4   EQUAL
+   a = 9   |L_2(E)| = 4   |L_2(E')| = 4   EQUAL
+   a = 11   |L_2(E)| = 4   |L_2(E')| = 4   EQUAL
+
+   ==> L_2 AGREES: the local conditions at 2 coincide

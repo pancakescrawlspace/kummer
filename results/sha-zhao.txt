@@ -1,0 +1,24 @@
+=== Nomoto's r(D) for D = p a rational prime ===
+   p splits in Z[i] as pi*pibar, so r(D) = 2 and the bound
+   v_2 >= (r(D)-2)/2 = 0 is VACUOUS.  Zhao's D in K^*2 bound gives 1/2.
+
+=== the quartic symbol (i/p)_4 = i^((p-1)/2) on our family ===
+   p = 17   p mod 8 = 1   (i/p)_4 = 1   good reduction at (1+i)? NO
+   p = 41   p mod 8 = 1   (i/p)_4 = 1   good reduction at (1+i)? NO
+   p = 97   p mod 8 = 1   (i/p)_4 = 1   good reduction at (1+i)? NO
+   p = 137   p mod 8 = 1   (i/p)_4 = 1   good reduction at (1+i)? NO
+   p = 193   p mod 8 = 1   (i/p)_4 = 1   good reduction at (1+i)? NO
+   p = 257   p mod 8 = 1   (i/p)_4 = 1   good reduction at (1+i)? NO
+   p = 577   p mod 8 = 1   (i/p)_4 = 1   good reduction at (1+i)? NO
+   p = 65537   p mod 8 = 1   (i/p)_4 = 1   good reduction at (1+i)? NO
+   -> constant on the whole family, so it cannot explain any growth.
+
+=== does v_2(p-1) determine v_2(L(1)/Omega)? ===
+   p = 17   v_2(p-1) = 4   b = 4   m = 1   v_2(L/Om) = 1
+   p = 41   v_2(p-1) = 3   b = 4   m = 1   v_2(L/Om) = 1
+   p = 97   v_2(p-1) = 5   b = 4   m = 1   v_2(L/Om) = 1
+   p = 193   v_2(p-1) = 6   b = 12   m = 1   v_2(L/Om) = 1
+   p = 257   v_2(p-1) = 8   b = 16   m = 2   v_2(L/Om) = 3
+   p = 577   v_2(p-1) = 6   b = 24   m = 2   v_2(L/Om) = 3
+   p = 65537   v_2(p-1) = 16   b = 256   m = 4   v_2(L/Om) = 5
+   -> 193 and 577 both have v_2(p-1) = 6 but different m.  So no.

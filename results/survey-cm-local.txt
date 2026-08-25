@@ -1,0 +1,7 @@
+x^3+x   N=64 kodaira=2 c_2=1 M2=4 g2=2 rootsQ2=1 tors=2 j=1728
+x^3-x   N=32 kodaira=3 c_2=2 M2=8 g2=3 rootsQ2=3 tors=4 j=1728
+x^3+2   N=1728 kodaira=2 c_2=1 M2=4 g2=1 rootsQ2=0 tors=1 j=0
+x^3+4   N=108 kodaira=-4 c_2=3 M2=12 g2=1 rootsQ2=0 tors=3 j=0
+class of 2   = 4 (2)
+class of -2  = 7 (14)
+### q2 finished

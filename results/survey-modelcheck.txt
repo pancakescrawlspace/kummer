@@ -1,0 +1,9 @@
+kronecker(3,7) = -1
+=== 14a1 monic     x^3+10x^2+105x-116
+  p=7  witnesses [0, 3, 7, -203]  paths ["-", "s", "d", "s"]
+=== 14a1 depressed x^3+645x-10582
+  p=7  witnesses [1, 0, 77, 21]  paths ["s", "-", "s", "d"]
+=== 14a1 depressed x^3+645x+10582
+  p=7  witnesses [0, -1, -21, -77]  paths ["-", "s", "d", "s"]
+### mi finished
+gp -q -s 4000000000  < /dev/null  31.75s user 0.09s system 99% cpu 31.870 total

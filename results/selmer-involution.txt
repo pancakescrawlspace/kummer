@@ -1,0 +1,42 @@
+=== Theorem A: the two curves share their mod-2 Galois module ===
+   a = 3   factorisation types agree at 60 of 60 good primes   2-division fields ISOMORPHIC
+   a = 5   factorisation types agree at 59 of 59 good primes   2-division fields ISOMORPHIC
+   a = 7   factorisation types agree at 59 of 59 good primes   2-division fields ISOMORPHIC
+   a = 9   factorisation types agree at 60 of 60 good primes   2-division fields ISOMORPHIC
+   a = 11   factorisation types agree at 59 of 59 good primes   2-division fields ISOMORPHIC
+   a = 13   factorisation types agree at 59 of 59 good primes   2-division fields ISOMORPHIC
+   a = 15   factorisation types agree at 59 of 59 good primes   2-division fields ISOMORPHIC
+   a = 25   factorisation types agree at 59 of 59 good primes   2-division fields ISOMORPHIC
+   a = 27   factorisation types agree at 60 of 60 good primes   2-division fields ISOMORPHIC
+   a = -5   factorisation types agree at 59 of 59 good primes   2-division fields ISOMORPHIC
+   a = -7   factorisation types agree at 59 of 59 good primes   2-division fields ISOMORPHIC
+   a = 49   factorisation types agree at 59 of 59 good primes   2-division fields ISOMORPHIC
+   a = 121   factorisation types agree at 59 of 59 good primes   2-division fields ISOMORPHIC
+
+=== odd a, |a| <= 25 ===
+   --- 26 agree, 0 disagree ---
+
+=== odd a, prime powers and composites ===
+   --- 19 agree, 0 disagree ---
+
+=== odd a < 0 ===
+   --- 12 agree, 0 disagree ---
+
+=== EVEN a -- the hypothesis is needed ===
+   a = 2   Sel2(x^3+a) = 1   Sel2(x^3-a^5) = 0   *** DISAGREE by 1 ***
+   a = 6   Sel2(x^3+a) = 0   Sel2(x^3-a^5) = 1   *** DISAGREE by 1 ***
+   a = 8   Sel2(x^3+a) = 2   Sel2(x^3-a^5) = 1   *** DISAGREE by 1 ***
+   a = 10   Sel2(x^3+a) = 1   Sel2(x^3-a^5) = 0   *** DISAGREE by 1 ***
+   a = 12   Sel2(x^3+a) = 1   Sel2(x^3-a^5) = 0   *** DISAGREE by 1 ***
+   a = 14   Sel2(x^3+a) = 0   Sel2(x^3-a^5) = 1   *** DISAGREE by 1 ***
+   a = 16   Sel2(x^3+a) = 0   Sel2(x^3-a^5) = 1   *** DISAGREE by 1 ***
+   a = 18   Sel2(x^3+a) = 1   Sel2(x^3-a^5) = 0   *** DISAGREE by 1 ***
+   a = 22   Sel2(x^3+a) = 1   Sel2(x^3-a^5) = 0   *** DISAGREE by 1 ***
+   a = 24   Sel2(x^3+a) = 2   Sel2(x^3-a^5) = 1   *** DISAGREE by 1 ***
+   a = 26   Sel2(x^3+a) = 1   Sel2(x^3-a^5) = 0   *** DISAGREE by 1 ***
+   a = 28   Sel2(x^3+a) = 1   Sel2(x^3-a^5) = 0   *** DISAGREE by 1 ***
+   a = 30   Sel2(x^3+a) = 1   Sel2(x^3-a^5) = 0   *** DISAGREE by 1 ***
+   a = 32   Sel2(x^3+a) = 0   Sel2(x^3-a^5) = 1   *** DISAGREE by 1 ***
+   --- 2 agree, 14 disagree ---
+
+### selmer finished

@@ -1,0 +1,23 @@
+=== 15a4 at p = 5: the twisted pairing ===
+
+f = x(x^2 + 14x + 625)  (15a4 shifted by its rational root)
+E_d : y^2 = x(x^2 + 14d x + 625 d^2),  T = (0,0),  c(P) = x(P), c(T) = 625d^2
+x^2 + 14dx + 625d^2 = (x+7d)^2 + (24d)^2   -- a sum of two squares,
+so a^2-4b = -2304d^2 = -1 mod squares: the 2-torsion field is Q(i)
+and Lemma 2 gives (c(P), -1)_v = 1, i.e. beta is ALTERNATING everywhere.
+
+--- Lemmas 1 and 2, and the alternating property ---
+  Lemma 1 (Vieta):        2444 triples, 0 failures
+  Lemma 2 (norm lemma):   10036 evaluations, 0 non-trivial
+  beta_v(P,P) = 0:        10036 evaluations, 0 non-zero
+
+--- the local images: beta_v on the whole local group ---
+  202 twists in class [1] at 5
+  beta_5 non-zero on W_5:            202 of 202
+  beta_2 non-zero on the local group: 0 of 202
+  beta_q non-zero at odd q | d:       0 of 288
+
+--- the punchline: (c(P), c(Q))_5 on RATIONAL pairs ---
+  231 twists, 1079 rational pairs, 0 with non-trivial symbol at 5
+### s4 finished
+gp -q -s 4000000000  < /dev/null  2.57s user 0.01s system 99% cpu 2.591 total

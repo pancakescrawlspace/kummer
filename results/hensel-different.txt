@@ -1,0 +1,43 @@
+(1) square classes: f = x^2 - u,  Kaehler different = (2x),  e = v(2)
+
+    p = 2   e = v(2) = 1   Hensel threshold 2e+1 = 3
+      units u < p^5 where 'square mod p^3' disagrees with 'square in Z_p' : 0
+      same test one step short, at p^2 : 4 disagreements, first at u = 5
+      (nonzero = the threshold 2e+1 is sharp)
+    p = 3   e = v(2) = 0   Hensel threshold 2e+1 = 1
+      units u < p^3 where 'square mod p^1' disagrees with 'square in Z_p' : 0
+    p = 5   e = v(2) = 0   Hensel threshold 2e+1 = 1
+      units u < p^3 where 'square mod p^1' disagrees with 'square in Z_p' : 0
+    p = 7   e = v(2) = 0   Hensel threshold 2e+1 = 1
+      units u < p^3 where 'square mod p^1' disagrees with 'square in Z_p' : 0
+
+    #Q_p^*/(Q_p^*)^2 = 2 * #(units mod squares) = 4 for odd p, 8 for p = 2,
+    which is 2e+1 read off as a number of digits.
+
+(2) sharpness at p = 2, on u = 5:
+      5 mod 4 = 1   a square mod 4?  1     (precision 2e = 2)
+      5 mod 8 = 5   a square mod 8?  0     (precision 2e+1 = 3)
+      is 5 a square in Z_2?  0
+      so precision 2e is not enough and 2e+1 is: the bound is attained.
+
+(3) v(f'(theta)) against the different exponent, for B = Z[x]/(f):
+
+       f                N(different of O_K)   N(f'(theta))   equal?
+       x^2 - 2        8                  8          yes
+       x^2 + 1        4                  4          yes
+       x^3 - 2        108                  108          yes
+       x^2 - 5        5                  20          NO
+
+    The last row is the instructive failure: Z[sqrt 5] is not the
+    maximal order (O_K = Z[(1+sqrt5)/2]), and Fitt_0(Omega) is an
+    invariant of the algebra PRESENTED, not of its normalisation.
+    Index [O_K : Z[sqrt5]] = 2, and 20 = 5 * 2^2 accordingly.
+
+(4) presentation independence, on B = Z[x]/(f) presented two ways:
+      one variable   : F = x^3 - 2        det J = 3*x^2
+      two variables  : F1 = x^3 - 2, F2 = y - (x^2 + 3*x)
+        J = [[dF1/dx, dF1/dy], [dF2/dx, dF2/dy]] = [[3*x^2, 0], [-2*x - 3, 1]]
+        det J = 3*x^2     equal to the one-variable answer?  yes
+      Adding a redundant variable and the equation that eliminates it
+      changes the matrix and not the determinant -- as Fitt_0 must.
+

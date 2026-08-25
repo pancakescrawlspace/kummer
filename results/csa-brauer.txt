@@ -1,0 +1,362 @@
+(1) Hilbert reciprocity:  prod_v (a,b)_v = 1
+    (a,b)_v = +1 iff the quaternion algebra (a,b) splits over Q_v)
+
+    (-1,-1)   oo:-1  2:-1      product = 1
+    (2,3)   oo:1  2:-1  3:-1      product = 1
+    (6,-5)   oo:1  2:1  3:1  5:1      product = 1
+    (13,17)   oo:1  2:1  13:1  17:1      product = 1
+    (-3,7)   oo:1  2:1  3:1  7:1      product = 1
+    (15,-14)   oo:1  2:1  3:1  5:1  7:1      product = 1
+    (5,-11)   oo:1  2:1  5:1  11:1      product = 1
+
+(2) quadratic reciprocity, read off from Hilbert reciprocity
+
+      p    q   (p,q)_p  (q/p)   (p,q)_q  (p/q)   (p,q)_2  (-1)^ee   Gauss?
+     3    5     -1      -1      -1      -1      1      1       ok
+     3    7     1      1      -1      -1      -1      -1       ok
+     5    7     -1      -1      -1      -1      1      1       ok
+     7    11     1      1      -1      -1      -1      -1       ok
+     11    13     -1      -1      -1      -1      1      1       ok
+     13    17     1      1      1      1      1      1       ok
+     19    23     1      1      -1      -1      -1      -1       ok
+     3    43     1      1      -1      -1      -1      -1       ok
+
+    checked 8 pairs, 0 discrepancies.
+    The product formula (1) with only 2, p, q contributing IS Gauss:
+        (q/p)(p/q) = (p,q)_2^(-1) = (-1)^((p-1)/2 (q-1)/2).
+
+(3) conics: a x^2 + b y^2 = z^2  has a rational point iff (a,b) splits
+    everywhere -- Legendre's theorem, i.e. Albert-Brauer-Hasse-Noether
+    for quaternion algebras.
+
+    (a,b) = (2,3)   splits everywhere: no     point found (height<=40): none
+    (a,b) = (3,5)   splits everywhere: no     point found (height<=40): none
+    (a,b) = (1,1)   splits everywhere: yes    point found (height<=40): [0, 1, 1]
+    (a,b) = (-1,-1)   splits everywhere: no     point found (height<=40): none
+    (a,b) = (2,7)   splits everywhere: yes    point found (height<=40): [1, 1, 3]
+    (a,b) = (6,10)   splits everywhere: yes    point found (height<=40): [1, 1, 4]
+
+    (a=-1,b=-1 is the Hamilton quaternions: ramified at oo and 2,
+     so the conic -x^2-y^2=z^2 has no rational point, as it must not.)
+
+(4) the Hasse norm theorem and its failure beyond cyclic extensions
+
+    Cyclic case (Hasse): x is a norm from L/K iff it is a local norm
+    everywhere.  Equivalently the cyclic algebra (L/K,sigma,x) splits.
+
+    L = Q(sqrt13, sqrt17),  poly x^4 - 60*x^2 + 16,  disc 48841 = 13^2*17^2,  signature [4, 0]
+    Galois group (Z/2)^2, so NOT cyclic.
+
+    Every decomposition group has order <= 2:
+      ramified primes divide disc = 13^2 * 17^2, so only 13 and 17;
+      13 splits in Q(sqrt17)?  kronecker(17,13) = 1
+      17 splits in Q(sqrt13)?  kronecker(13,17) = 1
+      2 is unramified (disc is odd); 13 mod 8 = 5, 17 mod 8 = 1
+      unramified primes have CYCLIC decomposition group, and (Z/2)^2
+      has no element of order 4 -- so |D_v| <= 2 for every v.
+
+    Hence every SQUARE is a local norm everywhere: at each v the local
+    extension is trivial or quadratic, and 25 = N(5) either way.
+
+      bnfisnorm(L, 25) = [Mod(-1/8*x^2 - 5/4*x - 3/2, x^4 - 60*x^2 + 16), -1]     NOT a global norm
+      bnfisnorm(L, 4) = [Mod(1/16*x^3 - 4*x - 3/2, x^4 - 60*x^2 + 16), 1]     IS a global norm
+      bnfisnorm(L, 9) = [Mod(1/16*x^3 - 7/2*x - 1/2, x^4 - 60*x^2 + 16), 1]     IS a global norm
+      bnfisnorm(L, -25) = [Mod(-1/8*x^2 - 5/4*x - 3/2, x^4 - 60*x^2 + 16), 1]     IS a global norm
+      bnfisnorm(L, -1) = [1, -1]     NOT a global norm
+
+    So 25 is a local norm everywhere and not a global norm:
+    the Hasse norm principle FAILS.
+
+    PROOF that 25 is not a global norm (Proposition 5.1), step by step.
+    Put k = Q(sqrt13), L = k(sqrt17), y = N_{L/k}(x).
+
+      k = Q(sqrt13):  h = 1   fundamental unit Mod(1/2*x - 3/2, x^2 - 13)   of norm -1   (so norm-1 units are +-squares)
+      13 mod 5 = 3 a square mod 5? 0   =>  5 is INERT in k:  [[1, 2]]
+        hence (y) = (5), so y = +-5 times a square.
+      13 a square mod 17? 1   =>  17 SPLITS in k:  [[1, 1], [1, 1]]
+        hence k_w = Q_17 at w | 17, where 17 is a uniformiser.
+      Legendre:  (5/17) = -1   (-5/17) = -1   (2/17) = 1
+
+      local Hilbert symbols over k, showing 17 is the ONLY obstruction:
+        w | 17 :  (17, 5)_w = -1    (17,-5)_w = -1    (17, 2)_w = 1
+        w |  5 :  (17, 5)_w = 1    (17,-5)_w = 1
+        w |  2 :  (17, 5)_w = 1    (17,-5)_w = 1     (17 = 1 mod 8 is a square in Q_2)
+
+      global:  (17, 5)_k = -1    (17,-5)_k = -1    (17, 2)_k = 1
+
+      Both +-5 fail at w | 17, so neither is a norm from k(sqrt17): 25 is
+      not a global norm.  And (17,2)_k = +1 is exactly why 4 IS one.
+
+    the explicit norm form, for x = a + b sqrt13 + c sqrt17 + d sqrt221:
+
+      N(x) = (a^2 + 13b^2 - 17c^2 - 221d^2)^2 -  52 (ab - 17cd)^2      [via Q(sqrt13)]
+           = (a^2 - 13b^2 + 17c^2 - 221d^2)^2 -  68 (ac - 13bd)^2      [via Q(sqrt17)]
+           = (a^2 - 13b^2 - 17c^2 + 221d^2)^2 - 884 (ad -   bc)^2      [via Q(sqrt221)]
+
+      spot checks:
+        (a,b,c,d) = [5, 0, 0, 0]   N = 625
+        (a,b,c,d) = [0, 1, 0, 0]   N = 169
+        (a,b,c,d) = [0, 0, 1, 0]   N = 289
+        (a,b,c,d) = [0, 0, 0, 1]   N = 48841
+        (a,b,c,d) = [1, 1, 0, 0]   N = 144
+      300 random quadruples against PARI's nfeltnorm: 0 mismatches
+
+    So Proposition 5.1 says: this quartic form represents 25 over every
+    Q_v and over no rational quadruple -- while it does represent 4 and 9.
+
+(5) Grunwald-Wang: the special case at 2
+
+    x^8 - 16 factors as [x^2 - 2*x + 2, 1; x^2 - 2, 1; x^2 + 2, 1; x^2 + 2*x + 2, 1]
+    so 16 is an 8th power in a field iff one of 2, -2, -1 is a square
+    there.  For odd p the three Legendre symbols multiply to +1, so at
+    least one is +1 -- 16 is an 8th power in every Q_p with p odd.
+
+      p = 3   (2/p)=-1 (-2/p)=1 (-1/p)=-1   8th power in Q_p? yes
+      p = 5   (2/p)=-1 (-2/p)=-1 (-1/p)=1   8th power in Q_p? yes
+      p = 7   (2/p)=1 (-2/p)=-1 (-1/p)=-1   8th power in Q_p? yes
+      p = 11   (2/p)=-1 (-2/p)=1 (-1/p)=-1   8th power in Q_p? yes
+      p = 13   (2/p)=-1 (-2/p)=-1 (-1/p)=1   8th power in Q_p? yes
+      p = 17   (2/p)=1 (-2/p)=1 (-1/p)=1   8th power in Q_p? yes
+      p = 19   (2/p)=-1 (-2/p)=1 (-1/p)=-1   8th power in Q_p? yes
+      p = 23   (2/p)=1 (-2/p)=-1 (-1/p)=-1   8th power in Q_p? yes
+      p = 29   (2/p)=-1 (-2/p)=-1 (-1/p)=1   8th power in Q_p? yes
+      p = 31   (2/p)=1 (-2/p)=-1 (-1/p)=-1   8th power in Q_p? yes
+      p = 37   (2/p)=-1 (-2/p)=-1 (-1/p)=1   8th power in Q_p? yes
+      p = 41   (2/p)=1 (-2/p)=1 (-1/p)=1   8th power in Q_p? yes
+      p = 2   2, -2, -1 are all non-squares in Q_2 (2,-2 have odd
+              valuation; -1 = 7 mod 8)          8th power in Q_2? NO
+      v = oo  16 = (2^(1/2))^8                  8th power in R?   yes
+      16 an 8th power in Q?  NO
+
+    So 16 is an 8th power everywhere locally except at 2, and Grunwald's
+    original (false) statement would have forced it to be one globally.
+
+(6) division algebras over Q with prescribed local invariants
+
+    Classification: a class in Br(Q) is exactly a family (inv_v) of
+    elements of Q/Z, almost all zero, summing to zero; and
+        index = exponent = lcm of the denominators.
+
+      invariants                       degree  index  lcm of denoms
+      1/3 at 7,  2/3 at 13              3      3      3
+      1/2 at 2,  1/2 at 3               2      2      2
+      1/2 at 2,3,5,7                    2      2      2
+      1/6 at 7,  5/6 at 13              6      6      6
+      1/2 at 7,  1/2 at 13 (in deg 6)   6      2      2
+
+    The last row is M_3(D) for D the quaternion algebra ramified at
+    7 and 13: degree 6, index 2.  Degree is a choice, index is not.
+
+(7a) the cyclic factor set really is a 2-cocycle
+
+     c(sigma^i, sigma^j) = b^e(i,j),  e(i,j) = 1 iff i+j >= n
+     identity checked: e(i,j) + e(i+j, k) = e(j,k) + e(i, j+k)   (indices mod n)
+
+     n = 2   triples checked 8   failures 0
+     n = 3   triples checked 27   failures 0
+     n = 4   triples checked 64   failures 0
+     n = 5   triples checked 125   failures 0
+     n = 6   triples checked 216   failures 0
+     n = 7   triples checked 343   failures 0
+     n = 8   triples checked 512   failures 0
+
+     total 1295 triples, 0 failures.
+     So (L/K, sigma, b) = (+) L u_i with u_i u_j = b^e(i,j) u_(i+j) is
+     associative -- the cocycle condition IS associativity.
+
+(7b) (L/K, sigma, b) splits  <=>  b is a norm from L      [L = Q(sqrt5)]
+
+        b     index    b a norm?
+      3        2        no
+      -3        2        no
+      11        1        yes
+      -1        1        yes
+      5        1        yes
+      2        2        no
+      4        1        yes
+      9        1        yes
+      19        1        yes
+      31        1        yes
+
+     0 mismatches: Proposition 1.2, verified.
+
+(7c) invariance under coboundaries.  Replacing u_sigma by x u_sigma
+     multiplies b by N(x), so b and b*N(x) must give the SAME algebra.
+     N(2 + sqrt5) = -1, so b and -b should agree:
+       index(3) = 2     index(-3) = 2
+       index(2) = 2     index(-2) = 2
+       index(7) = 2     index(-7) = 2
+
+(7d) multiplicativity: the class of (L/K,sigma,b) times that of
+     (L/K,sigma,b') is the class of (L/K,sigma,b b'), because the
+     factor sets multiply.  Hence the class of (sigma,3) squares to
+     (sigma,9), and 9 = N(3) is a norm:
+       index(3) = 2     index(9) = 1     so the class has exponent 2.
+
+(7e) Hamilton's quaternions as a crossed product:  H = (C/R, conj, -1).
+     Br(R) = R^*/N(C^*) = R^*/R_{>0} = {+-1}, of order 2 -- which is
+     the invariant 1/2 recorded in section 2.
+
+(8a) Hamilton's quaternions B = (-1,-1) over Q
+
+     basis 1,i,j,k;  i^2 = j^2 = k^2 = -1,  ij = k = -ji,  jk = i = -kj,  ki = j = -ik
+     ramified exactly at 2 and oo:  (-1,-1)_2 = -1   (-1,-1)_oo = -1
+
+     Q(sqrt(-m)) embeds  <=>  m = x^2+y^2+z^2  <=>  2 non-split in Q(sqrt(-m))
+
+       m   three squares    witness      -m mod 8   2 non-split   agree?
+       1      yes         0i+0j+1k      7          yes        ok
+       2      yes         0i+1j+1k      6          yes        ok
+       3      yes         1i+1j+1k      5          yes        ok
+       5      yes         0i+1j+2k      3          yes        ok
+       6      yes         1i+1j+2k      2          yes        ok
+       7      no            --         1          no         ok
+      10      yes         0i+1j+3k      6          yes        ok
+      11      yes         1i+1j+3k      5          yes        ok
+      13      yes         0i+2j+3k      3          yes        ok
+      14      yes         1i+2j+3k      2          yes        ok
+      15      no            --         1          no         ok
+      17      yes         0i+1j+4k      7          yes        ok
+      21      yes         1i+2j+4k      3          yes        ok
+      22      yes         2i+3j+3k      2          yes        ok
+      23      no            --         1          no         ok
+      26      yes         0i+1j+5k      6          yes        ok
+      30      yes         1i+2j+5k      2          yes        ok
+      31      no            --         1          no         ok
+
+     0 disagreements.  The first failure is m = 7: the quaternion
+     algebra criterion and the three-square theorem exclude Q(sqrt(-7))
+     together, because 7 = 1 mod 8 makes 2 SPLIT there.
+
+(8b) the degree-3 cyclic algebra A = (Q(zeta_7)^+/Q, sigma, 2)
+
+     L = Q(alpha),  f = x^3 + x^2 - 2*x - 1,  disc 49 = 7^2, so L/Q is CYCLIC
+     sigma(alpha) = alpha^2 - 2 is a root of f:  1
+     N(alpha) = 1    N(alpha+1) = -1    N(2-alpha) = 7 = f(2)
+
+     A: degree 3   index 3   (index 3 = division algebra)
+        ramified at p = 2   inv = 1/3
+        ramified at p = 7   inv = 2/3
+        invariants sum to 1/3 + 2/3 = 1 = 0 in Q/Z -- reciprocity.
+
+     (L/Q, sigma, b) is SPLIT exactly when b is a cube mod 7
+     (cubes mod 7 are {1,6}); for b = 7 it splits since 7 is a norm.
+
+        b    b mod 7   cube mod 7   index   division?
+        2       2         no          3       yes
+        3       3         no          3       yes
+        5       5         no          3       yes
+        7       0         no          1       no
+       11       4         no          3       yes
+       13       6         yes         1       no
+       29       1         yes         1       no
+       41       6         yes         1       no
+       43       1         yes         1       no
+
+     0 disagreements (b = 7 excluded: it is the ramified prime).
+
+     Cubic subfields: F embeds iff F splits A iff 2 AND 7 are each
+     NON-split in F (one prime above, local degree 3).
+
+        cubic field           disc      p=2 (e,f)      p=7 (e,f)     embeds?
+        Q(zeta_7)^+     49   [[1, 3]]   [[3, 1]]     YES
+        Q(zeta_9)^+     81   [[1, 3]]   [[1, 3]]     YES
+        Q(cbrt 2)       -108   [[3, 1]]   [[1, 3]]     YES
+        Q(cbrt 14)      -5292   [[3, 1]]   [[3, 1]]     YES
+        Q(cbrt 5)       -675   [[1, 1], [1, 2]]   [[1, 3]]     no
+
+     So L itself, Q(zeta_9)^+, Q(cbrt 2) and Q(cbrt 14) all embed -- four
+     pairwise non-isomorphic cubic fields (distinct discriminants), two
+     cyclic and two not.  Q(cbrt 5) does not: 2 splits there.
+     Explicit generators inside A:  alpha (in L);  u, with u^3 = 2;
+     and (2-alpha)u, whose cube is N(2-alpha)*2 = 7*2 = 14.
+
+(9) an Azumaya algebra registering the failure of the Hasse principle
+    for V : N_{L/Q}(x) = 25,  namely  A = (17, A-5)  with
+    A = a^2 + 13b^2 - 17c^2 - 221d^2  (the trace part of N_{L/k}(x)).
+
+    (17,2) = 0 over Q?  hilbert(17,2,2) = 1   hilbert(17,2,17) = 1   hilbert(17,2,0) = 1
+    (17,-5) ramifies exactly at [5, 17]   (0 would be the real place)
+      5 splits in Q(sqrt13)? 0      17 splits? 1
+
+    (a) at NON-SPLIT places the invariant does not depend on the point:
+        93 values of m over every non-split place up to 40: 2139 comparisons, 0 deviations from (17,-5).
+        (reason: 17 is a square in Q_v(sqrt13) whenever 13 is not a
+         square in Q_v, since then 13 = 17 mod squares, so 221 is a square)
+
+    (b) at SPLIT places local solubility forces the invariant to be 0.
+
+    Hence the sum runs over non-split places only:
+        non-split places with inv = 1/2 : [5]     sum = 1/2 = 1/2  =/= 0
+
+    So V(A_Q)^Br is EMPTY: the obstruction is Brauer-Manin, complete,
+    and carried by one quaternion algebra.  The class is not constant --
+    its ramification set moves with m, but always contains 5:
+
+        m        f(m)        ramified at
+       0        -5        [5, 17]
+       1        60        [3, 5]
+       2        255        [3, 5]
+       3        580        [5, 29]
+       1/2        45/4        [5, 17]
+       -1        60        [3, 5]
+
+(10) WHICH Q(cos(2 pi/m)) LIE IN A, AND WHETHER ANY SUBFIELD IS NON-REAL
+
+   deg A = 3 is prime, so a subfield is Q or a cubic maximal subfield.
+   [Q(zeta_m)^+ : Q] = phi(m)/2 for m > 2, so a cubic needs phi(m) = 6.
+     phi(m) = 6  ->  m in [7, 9, 14, 18]
+     degree 1    ->  m in [1, 2, 3, 4, 6] (the field is Q, trivially in A)
+   phi(m) = 6 has no further solutions: phi(m) >= sqrt(m/2) bounds m <= 72.
+
+     m    Q(zeta_m)^+              disc   signature   #(2)  #(7)   embeds
+    7   x^3 - x^2 - 2*x + 1   49    [3, 0]      1     1      YES
+    9   x^3 - 3*x - 1   81    [3, 0]      1     1      YES
+    14   x^3 - x^2 - 2*x + 1   49    [3, 0]      1     1      YES
+    18   x^3 - 3*x - 1   81    [3, 0]      1     1      YES
+
+   Q(zeta_14) = Q(zeta_7) and Q(zeta_18) = Q(zeta_9), so m = 14, 18 give
+   nothing new.  The two fields already named are ALL of them.
+
+   Does A contain a NON-totally-real subfield?  Yes -- two of them are
+   already in section 7 of the document:
+
+     field              disc     signature        embeds
+     x^3 - x^2 - 2*x + 1     49     [3, 0]  totally real  yes
+     x^3 - 3*x - 1     81     [3, 0]  totally real  yes
+     x^3 - 2     -108     [1, 1]  NOT tot. real yes
+     x^3 - 14     -5292     [1, 1]  NOT tot. real yes
+
+   Q(cbrt 2) and Q(cbrt 14) each have one real and one complex place.
+   The reason nothing forbids them: deg A = 3 is ODD and Br(R) has
+   exponent 2, so inv_oo(A) = 0 necessarily -- A is SPLIT at the real
+   place, and the criterion there reads [L_w : R] * 0 = 0, vacuous.
+   Only 2 and 7 constrain.  Contrast Hamilton's quaternions of section
+   7.1: there inv_oo = 1/2 is non-zero, every quadratic subfield must be
+   non-split at infinity, and that is exactly why they are all IMAGINARY.
+   Ramification at infinity is impossible in odd degree, so the analogous
+   constraint simply evaporates here.
+
+   Census over a box of cubic polynomials:
+     distinct cubic fields examined : 2877
+     of these, embedding in A       : 421
+        totally real,  signature [3,0] : 187
+        one complex place, sig [1,1]   : 234
+
+     smallest |disc| of each kind:
+       totally real:
+         disc 49   x^3 - x^2 - 2*x + 1
+         disc 81   x^3 - 3*x - 1
+         disc 148   x^3 - x^2 - 3*x + 1
+         disc 169   x^3 - x^2 - 4*x - 1
+       one complex place:
+         disc -31   x^3 + x - 1
+         disc -76   x^3 - 2*x - 2
+         disc -87   x^3 - x^2 + 2*x + 1
+         disc -108   x^3 - 2
+
+   So both signatures occur, and the complex ones are if anything the
+   more common.  The smallest subfield of A of either kind is
+   Q[x]/(x^3+x-1), of discriminant -31 -- non-real, and smaller than the
+   totally real record holder Q(zeta_7)^+ of discriminant 49.
+

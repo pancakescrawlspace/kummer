@@ -1,0 +1,36 @@
+=== the level-3 Brauer class for f = x^3 - 2 ===
+
+=== (A) the two twists that carry rational 3-torsion ===
+E_(6)  :  6w^2 = x^3-2  ~  Y^2 = X^3-432 (X=6x, Y=36w)   conductor 27  torsion [3]  rank 0   T = (2,1)
+E_(-2) : -2z^2 = t^3-2  ~  Y^2 = X^3+16  (X=-2t, Y=4z)   conductor 27  torsion [3]  rank 0   S = (0,1)
+tangent at T is w = x-1 :   (x^3-2) - 6(x-1)^2 - (x-2)^3 = 0   so div(w-x+1) = 3(T) - 3(O)
+tangent at S is z = 1   :   (t^3-2) - (-2)(1)^2 - t^3   = 0   so div(z-1)   = 3(S) - 3(O)
+norm relations, exact:
+   (w-x+1)(-w-x+1) = (x-1)^2 - (x^3-2)/6 = -(x-2)^3/6 :  residue 0
+   (z-1)(-z-1)     = 1 - z^2 = 1 + (t^3-2)/2 = t^3/2   :  residue 0
+normalised: G = 36(w-x+1) has G conj(G) = -216(x-2)^3 = (-6(x-2))^3;   H = (z-1)/2 has H conj(H) = (t/2)^3
+
+=== (B) beta_v at v != 3 on rational pairs, by the tame cubic symbol ===
+rational pairs: 26 over 7 twists;  tame place evaluations: 84;  non-zero: 0
+(so the sum over the primes above 3 vanishes too, by the product formula)
+
+=== (C) the wild cubic Hilbert symbol on K = Q_3(zeta_3) ===
+Q(zeta_3) has 1 prime above 3, so the wild symbol
+is minus the sum of the tame ones. Validation on <pi, zeta_3, 1+3zeta_3, 4>:
+   [0, 0, 0, 2]
+   [0, 0, 1, 1]
+   [0, 2, 0, 0]
+   [1, 2, 0, 0]
+   skew-symmetry failures: 0      rank over F_3: 4   (4 = non-degenerate, as local duality requires)
+   Steinberg  sum_{a=2}^{40} (a, 1-a)_wild = 0      sum (a,-a)_wild = 0
+
+=== (D) beta_3 evaluated directly, d = -3 (E_d : -3 v^2 = x^3-2) ===
+sampled Q_3-points, 3-torsion removed: 161
+  alternating:  beta_3(P,P) over 161 points; non-zero: 0
+  rational pairs of E_d(Q): 9 evaluations; non-zero: 0   (the global theorem, confirmed locally)
+  all pairs: 25921 evaluations; non-zero: 1854
+  a basis of W_3 = E_d(Q_3)/3 found; Gram matrix of beta_3 on it:  [0, 2] [1, 0]
+  => beta_3 is symplectic on W_3, and NOT identically zero.
+
+### level3 finished
+gp -q -s 4000000000 < level3.gp  0.70s user 0.01s system 98% cpu 0.711 total

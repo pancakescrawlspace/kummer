@@ -1,0 +1,20 @@
+AUDIT 11a1 p=11 class u  g=2  M=50  kodaira=9 c_p=5  procyclic=0
+      twists tried=1671  with points=824  by #generators: [722, 99, 3, 0, 0, 0]  time=5336
+AUDIT 14a1 p=7 class 1  g=2  M=18  kodaira=7 c_p=3  procyclic=0
+      twists tried=1597  with points=1597  by #generators: [804, 650, 137, 6, 0, 0]  time=9025
+AUDIT 14a2 p=7 class 1  g=2  M=36  kodaira=10 c_p=6  procyclic=0
+      twists tried=1597  with points=1597  by #generators: [755, 699, 137, 6, 0, 0]  time=7122
+AUDIT 15a1 p=5 class 1  g=2  M=16  kodaira=8 c_p=4  procyclic=0
+      twists tried=1522  with points=1522  by #generators: [0, 710, 667, 142, 3, 0]  time=10290
+AUDIT 15a4 p=5 class 1  g=2  M=32  kodaira=12 c_p=8  procyclic=0
+      twists tried=1522  with points=1522  by #generators: [723, 657, 139, 3, 0, 0]  time=7295
+AUDIT 17a1 p=17 class 1  g=2  M=64  kodaira=8 c_p=4  procyclic=0
+      twists tried=1718  with points=1718  by #generators: [867, 690, 151, 10, 0, 0]  time=10408
+AUDIT 19a1 p=19 class u  g=2  M=54  kodaira=7 c_p=3  procyclic=0
+      twists tried=1734  with points=781  by #generators: [691, 85, 5, 0, 0, 0]  time=5220
+AUDIT 19a3 p=3 class 3  g=2  M=6  kodaira=-1 c_p=2  procyclic=1
+      twists tried=1368  with points=366  by #generators: [302, 63, 1, 0, 0, 0]  time=4893
+AUDIT 27a1 p=3 class u*3  g=2  M=9  kodaira=-4 c_p=3  procyclic=0
+      twists tried=1368  with points=605  by #generators: [520, 82, 3, 0, 0, 0]  time=5259
+### audit finished
+gp -q -s 4000000000  < /dev/null  64.61s user 0.19s system 99% cpu 1:04.87 total

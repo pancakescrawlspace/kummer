@@ -1,0 +1,8 @@
+HUNT2 15a3 class [7]: d=4807 rank in [3,3] time=11425
+HUNT2 17a3 class [7]: d=-10481 rank in [3,3] time=34445
+HUNT2 17a4 class [7]: NOT FOUND m<=20000 time=49399
+HUNT2 15a8 class [5]: d=-6315 rank in [2,2] time=10568
+HUNT2 15a8 class [7]: d=10695 rank in [3,3] time=24144
+HUNT2 15a8 class [6]: d=-9690 rank in [2,2] time=11108
+### h2 finished
+gp -q -s 4000000000  < /dev/null  140.47s user 0.48s system 99% cpu 2:21.10 total

@@ -1,0 +1,13 @@
+== c is a homomorphism (x(P)x(Q)x(P+Q) a square) ==
+  7780 triples tested, 0 where the product is not a square
+
+== the image of c on E_d(Q_2), by v_2(d) and d/2^v mod 8 ==
+["v2=0 m mod 8 = 1 -> [1]", 40; "v2=0 m mod 8 = 3 -> [1]", 41; "v2=0 m mod 8 = 5 -> [1]", 41; "v2=0 m mod 8 = 7 -> [1]", 40; "v2=1 m mod 8 = 1 -> [1, 5, 2, 10]", 40; "v2=1 m mod 8 = 3 -> [1, 5]", 41; "v2=1 m mod 8 = 5 -> [1, 5]", 41; "v2=1 m mod 8 = 7 -> [1, 5, 2, 10]", 40]
+
+== the Hilbert symbol on {1,5,2,10} at v = 2 ==
+   [1, 1, 1, 1]
+   [1, 1, -1, -1]
+   [1, -1, 1, -1]
+   [1, -1, -1, 1]
+### el1 finished
+gp -q -s 4000000000  < /dev/null  1.94s user 0.02s system 99% cpu 1.979 total

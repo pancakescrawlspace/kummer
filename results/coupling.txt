@@ -1,0 +1,69 @@
+=========================================================================
+ Does the l-primary reduction survive a UNION of reaches?
+=========================================================================
+
+-------------------------------------------------------------------------
+ Failure 1.  MEMBERSHIP is not a mod-l condition.
+-------------------------------------------------------------------------
+ Frattini decides whether a subgroup is EVERYTHING.  Coverage asks
+ whether particular ELEMENTS lie in it, and mod l one sees only R + lG:
+        abar in Rbar  in G/lG   <=>   a in R + lG,
+ which is in general strictly bigger than R.  Take G = Z/4, R = 0, a = 2.
+   a in R ?                      0
+   a mod l                       0
+   image of R in G/lG            [0]
+   R + lG                        [0, 2]
+   => the mod-l test PASSES on an a that is not in R.
+
+ This one already rules out transplanting section 3.5.1 verbatim: there
+ the mod-l quotient was enough because the question was 'is R all of G',
+ and Frattini answers exactly that.  Coverage is a different question.
+
+-------------------------------------------------------------------------
+ Failure 2.  The EXISTENTIAL does not commute with the layers.
+-------------------------------------------------------------------------
+ Coverage is    for all (a,b),  EXISTS R,  for all l : <a_l,b_l> in R_l.
+ Checking layer by layer proves the weaker
+                for all (a,b),  for all l,  EXISTS R : <a_l,b_l> in R_l,
+ and the entry that works may DIFFER from layer to layer.  Smallest
+ instance: G = Z/6 with the two entries <3> and <2>.
+   R_1 = [0, 3]   R_2 = [0, 2, 4]
+   ordered pairs covered by no single entry : 24 of 36,  e.g. [0, 1] and [0, 5]
+   layer l = 2 : G_l = [0, 3]   covered layerwise: 1   (always by R_1)
+   layer l = 3 : G_l = [0, 2, 4]   covered layerwise: 1   (always by R_2)
+   => EVERY layer is covered and the group is NOT.  Layer 2 is covered
+      only by R_1 and layer 3 only by R_2, so no single entry does both.
+
+-------------------------------------------------------------------------
+ What survives, and what the ledger actually does
+-------------------------------------------------------------------------
+ The repair is not to drop the decomposition but to stop quantifying
+ inside it.  For each layer l and each subgroup H of G_l on at most two
+ generators put the MASK  m_l(H) = { R in L : H subset R_l }, a subset of
+ the ledger.  Then, by the exactness of the primary decomposition,
+        (a,b) is covered  <=>  intersection over l of m_l(<a_l,b_l>) is
+                                nonempty,
+ so coverage holds iff no choice of one mask per layer has empty
+ intersection.  The layers are still used -- containment is tested in
+ them -- but the existential is resolved once, at the end, over the small
+ finite set L.  That is the star test of section 2.3.4.
+
+ On Failure 2 the mask test gives the right answer:
+   masks at l = 2 : [[1], [1, 2]]
+   masks at l = 3 : [[2], [1, 2]]
+   mask pairs with empty intersection : 1   => NOT covered, correctly
+
+-------------------------------------------------------------------------
+ Why the coupling has never yet bitten, which is data and not a theorem
+-------------------------------------------------------------------------
+ Every reach in every ledger computed in this document has index 1 or 2
+ in its arena (66 of index 2, 14 of index 1, none other).  An index-2
+ reach is full at every layer except l = 2, so all layers l != 2 return
+ the single full mask and cannot constrain the intersection: the whole
+ question collapses onto l = 2 and the coupling is vacuous.  That is why
+ the prototype in section 2.3.4 reproduced the flat verdict exactly.
+ It would stop being vacuous the moment one tuple carried, say, an
+ index-2 reach alongside an index-3 one -- precisely the shape of
+ Failure 2.  Nothing forbids that; it just has not occurred yet.
+
+done.

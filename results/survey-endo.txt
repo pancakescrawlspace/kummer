@@ -1,0 +1,55 @@
+=== rank-one phi in End_G(E[2]), and the algebras they give ===
+
+15a1  (x-17)(x-1)(x+8)    roots [17, 1, -8]    3 stable lines, so 3 x 3 = 9 rank-one phi
+   im phi = C_1,  ker phi = C_1   ->   A = (c_1, c_1)   ramified
+   im phi = C_1,  ker phi = C_2   ->   A = (c_1, c_2)   ramified
+   im phi = C_1,  ker phi = C_3   ->   A = (c_1, c_3)   in Br(X)
+   im phi = C_2,  ker phi = C_1   ->   A = (c_2, c_1)   ramified
+   im phi = C_2,  ker phi = C_2   ->   A = (c_2, c_2)   ramified
+   im phi = C_2,  ker phi = C_3   ->   A = (c_2, c_3)   ramified
+   im phi = C_3,  ker phi = C_1   ->   A = (c_3, c_1)   in Br(X)
+   im phi = C_3,  ker phi = C_2   ->   A = (c_3, c_2)   ramified
+   im phi = C_3,  ker phi = C_3   ->   A = (c_3, c_3)   ramified
+   2 of 9 lie in Br(X):  ["(c_1, c_3)", "(c_3, c_1)"]
+
+x(x-1)(x-4)               roots [0, 1, 4]    3 stable lines, so 3 x 3 = 9 rank-one phi
+   im phi = C_1,  ker phi = C_1   ->   A = (c_1, c_1)   ramified
+   im phi = C_1,  ker phi = C_2   ->   A = (c_1, c_2)   ramified
+   im phi = C_1,  ker phi = C_3   ->   A = (c_1, c_3)   ramified
+   im phi = C_2,  ker phi = C_1   ->   A = (c_2, c_1)   ramified
+   im phi = C_2,  ker phi = C_2   ->   A = (c_2, c_2)   ramified
+   im phi = C_2,  ker phi = C_3   ->   A = (c_2, c_3)   ramified
+   im phi = C_3,  ker phi = C_1   ->   A = (c_3, c_1)   ramified
+   im phi = C_3,  ker phi = C_2   ->   A = (c_3, c_2)   ramified
+   im phi = C_3,  ker phi = C_3   ->   A = (c_3, c_3)   ramified
+   0 of 9 lie in Br(X)
+
+x(x-9)(x-25)              roots [0, 9, 25]    3 stable lines, so 3 x 3 = 9 rank-one phi
+   im phi = C_1,  ker phi = C_1   ->   A = (c_1, c_1)   ramified
+   im phi = C_1,  ker phi = C_2   ->   A = (c_1, c_2)   ramified
+   im phi = C_1,  ker phi = C_3   ->   A = (c_1, c_3)   in Br(X)
+   im phi = C_2,  ker phi = C_1   ->   A = (c_2, c_1)   ramified
+   im phi = C_2,  ker phi = C_2   ->   A = (c_2, c_2)   ramified
+   im phi = C_2,  ker phi = C_3   ->   A = (c_2, c_3)   ramified
+   im phi = C_3,  ker phi = C_1   ->   A = (c_3, c_1)   in Br(X)
+   im phi = C_3,  ker phi = C_2   ->   A = (c_3, c_2)   ramified
+   im phi = C_3,  ker phi = C_3   ->   A = (c_3, c_3)   ramified
+   2 of 9 lie in Br(X):  ["(c_1, c_3)", "(c_3, c_1)"]
+
+=== f with one rational root: the endomorphism is forced ===
+
+x^3 + x        e_1 = 0,  q = u^2 + 0u + 1,  disc -4    1 stable line, so exactly 1 rank-one phi
+   im phi = ker phi = C_1   ->   A = (c_1, c_1) = (q(x), q(t))   in Br(X)
+
+15a4           e_1 = 0,  q = u^2 + 14u + 625,  disc -2304    1 stable line, so exactly 1 rank-one phi
+   im phi = ker phi = C_1   ->   A = (c_1, c_1) = (q(x), q(t))   in Br(X)
+
+x^3 + 2x       e_1 = 0,  q = u^2 + 0u + 2,  disc -8    1 stable line, so exactly 1 rank-one phi
+   im phi = ker phi = C_1   ->   A = (c_1, c_1) = (q(x), q(t))   ramified
+
+The count matches section 6.5: E[2] indecomposable => one stable line
+=> one rank-one phi, which is why the twisting endomorphism is
+'essentially unique' there and had to be searched for at 15a1.
+For 15a1 the two survivors (c_1,c_3) and (c_3,c_1) are exactly the two
+rank-one candidates kept by the 16-candidate local search of section 6.1.
+gp -q < endo.gp  0.01s user 0.01s system 64% cpu 0.029 total

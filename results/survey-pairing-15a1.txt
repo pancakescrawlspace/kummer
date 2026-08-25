@@ -1,0 +1,24 @@
+=== 15a1 at p = 5: constructing the twisted pairing ===
+f = [x - 17, 1; x - 1, 1; x + 8, 1]
+roots e = [17, 1, -8]   differences [16, 25, 9] -- all squares
+
+--- the local image at 5, class [1] ---
+  d=1  c1: [1, 2, 5, 10]  c2: [1]  c3: [1, 2, 5, 10]
+  d=-1  c1: [1, 2, 5, 10]  c2: [1]  c3: [1, 2, 5, 10]
+  d=11  c1: [1, 2, 5, 10]  c2: [1]  c3: [1, 2, 5, 10]
+  d=19  c1: [1, 2, 5, 10]  c2: [1]  c3: [1, 2, 5, 10]
+  (c2 is always a square, so c3 = c1 c2 = c1 on W_5, and c1 is onto)
+
+--- the 16 candidates: which vanish away from 5 on rational pairs ---
+  150 twists, 7318 rational pairs
+  n = [00;00]   vanishes away from 5   (trivial on W_5)
+  n = [11;00]   vanishes away from 5   <-- and beta_5 =/= 0
+  n = [10;10]   vanishes away from 5   <-- and beta_5 =/= 0
+  n = [01;10]   vanishes away from 5   (trivial on W_5)
+
+--- the chosen pairing beta(P,Q) = (c1(P), c3(Q)) = (x_P - 17d, x_Q + 8d) ---
+  202 twists in class [1]
+  beta_v identically 1 on the LOCAL group at v != 5: 640 of 640 places checked (v = 2, 3 and q | d)
+  beta_5 non-zero on W_5: 202 of 202 twists
+### tw finished
+gp -q -s 4000000000  < /dev/null  1.92s user 0.02s system 99% cpu 1.945 total

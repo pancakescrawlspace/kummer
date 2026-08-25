@@ -1,0 +1,58 @@
+=========================================================================
+ Extended certificate at p = 2  (section 3.2)
+=========================================================================
+
+E : v^2 = u^3 + u + 1 (496a).   E_d : Y^2 = X^3 + d^2 X + d^3.
+At p = 2 the formal group is E_2(Q_2) = Z_2, so the finite quotient is
+E(Q_2)/E_2 of order Q_2 = 2 M_2, and a point generates iff m = Q_2 and
+the depth v is exactly 2.  Closure index = (Q_2/m) 2^(v-2).
+
+(1) The model is minimal at 2 for every twist, so the denominator test is
+    the right one:
+
+      d       v_2(c_4)  v_2(Delta)   minimal at 2 ?
+     1         4         4          yes
+     3         4         4          yes
+     5         4         4          yes
+     -1         4         4          yes
+     -30         6         10          yes
+     6         6         10          yes
+     -6         6         10          yes
+     30         6         10          yes
+
+(2) Local data at 2, and the vanishing of the torsion:
+
+      class   d      type   c_2  a_2   M_2   Q_2   cubic over Q_2   T
+       1      1     II     1    0    2     4    [3] irreducible   trivial
+       3      3     III     2    0    4     8    [3] irreducible   trivial
+       5      5     II     1    0    2     4    [3] irreducible   trivial
+       7      -1     III     2    0    4     8    [3] irreducible   trivial
+       2      -30     I_0*     1    0    2     4    [3] irreducible   trivial
+       6      6     I_0*     1    0    2     4    [3] irreducible   trivial
+       10      -6     I_0*     1    0    2     4    [3] irreducible   trivial
+       14      30     I_0*     1    0    2     4    [3] irreducible   trivial
+
+    M_2 is a power of 2 in every line, so no odd torsion; the cubic is
+    irreducible over Q_2 in every line, so no 2-torsion.  Hence T = 1 and
+    E^d(Q_2) = Z_2 throughout -- no base, and no T-coordinate to record.
+
+(3) The certificate.  One line per (twist, generator); every twist here has
+    rank 1 and trivial torsion, so one line each.
+
+      class   d      E^d(Q_2)   x(P)                    (alpha; t)   m    v   index
+       1      1      Z_2       [0, 1]        ( u ; - )    4    2    1   generates
+       3      3      Z_2       [3, 9]        ( u ; - )    8    2    1   generates
+       5      5      Z_2       [4, 17]        ( u ; - )    4    2    1   generates
+       7      -1      Z_2       [1, 1]        ( u ; - )    8    2    1   generates
+       2      -30      Z_2       [69, 603]        ( u ; - )    4    2    1   generates
+       6      6      Z_2       [-3, 9]        ( u ; - )    4    2    1   generates
+       10      -6      Z_2       [21, 99]        ( u ; - )    4    2    1   generates
+       14      30      Z_2       [-339/49, 49041/343]        ( u ; - )    4    2    1   generates
+
+    Every line has m = Q_2 and v = 2, hence index 1: each class of
+    Q_2^*/(Q_2^*)^2 is covered by a single FULL twist, which is what
+    section 3.2 asserts.  Note that unlike the odd-p table there is no
+    hyperplane mechanism here and nothing to stack: one twist per class,
+    outright.
+
+done.
