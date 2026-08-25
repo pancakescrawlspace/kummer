@@ -1,0 +1,1218 @@
+=========================================================================
+ l-primary certificate for the single-place sweep, sections 3.3 and 3.4
+=========================================================================
+
+E : v^2 = u^3 + u + 1 (496a).   E_d : Y^2 = X^3 + d^2 X + d^3, minimal
+model at p.   E^d(Q_p) = G_p (+) (+)_{l != p} G_l, with G_p = Z_p (the
+p-torsion vanishes on every line, cert-ptors.gp) and G_l = T[l^oo] of
+order l^v_l(M).   A closed subgroup decomposes the same way, so
+     [G : R] = prod_l [G_l : R_l],
+and density at p is R_l = G_l for EVERY layer -- independent conditions,
+one per layer.  (For the LEDGER of section 2.3 coverage does NOT split
+like this: a pair must lie in one and the same entry, so the choice is
+coupled across layers.  A single reach has no such coupling.)
+
+One line per (p, d, l).  No discrete logarithms anywhere: a layer index
+is an order, not a coordinate, so it needs no base -- which is also why
+the ellgroup randomness trap of sections 2.5 and 3.4 cannot arise here.
+
+  p = 3  class [1]  d = 7   M = 4   rank 1   generators 1
+      l = 3  (diagonal)  G_l = Z_3        R_l = 3^0 Z_3     index 1   FULL
+      l = 2              G_l order 4 (rank 1)   R_l order 4   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 3  class [u]  d = -1   M = 4   rank 1   generators 1
+      l = 3  (diagonal)  G_l = Z_3        R_l = 3^0 Z_3     index 1   FULL
+      l = 2              G_l order 4 (rank 1)   R_l order 4   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 3  class [p]  d = 3   M = 6   rank 1   generators 1
+      l = 3  (diagonal)  G_l = Z_3        R_l = 3^0 Z_3     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 3  class [up]  d = 6   M = 6   rank 1   generators 1
+      l = 3  (diagonal)  G_l = Z_3        R_l = 3^0 Z_3     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 5  class [1]  d = 1   M = 9   rank 1   generators 1
+      l = 5  (diagonal)  G_l = Z_5        R_l = 5^0 Z_5     index 1   FULL
+      l = 3              G_l order 9 (rank 1)   R_l order 9   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 5  class [u]  d = 3   M = 3   rank 1   generators 1
+      l = 5  (diagonal)  G_l = Z_5        R_l = 5^0 Z_5     index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 5  class [p]  d = 5   M = 5   rank 1   generators 1
+      l = 5  (diagonal)  G_l = Z_5        R_l = 5^0 Z_5     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 5  class [up]  d = -35   M = 5   rank 1   generators 1
+      l = 5  (diagonal)  G_l = Z_5        R_l = 5^0 Z_5     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 7  class [1]  d = 1   M = 5   rank 1   generators 1
+      l = 7  (diagonal)  G_l = Z_7        R_l = 7^0 Z_7     index 1   FULL
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 7  class [u]  d = -1   M = 11   rank 1   generators 1
+      l = 7  (diagonal)  G_l = Z_7        R_l = 7^0 Z_7     index 1   FULL
+      l = 11              G_l order 11 (rank 1)   R_l order 11   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 7  class [p]  d = 7   M = 7   rank 1   generators 1
+      l = 7  (diagonal)  G_l = Z_7        R_l = 7^0 Z_7     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 7  class [up]  d = -7   M = 7   rank 1   generators 1
+      l = 7  (diagonal)  G_l = Z_7        R_l = 7^0 Z_7     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 11  class [1]  d = 3   M = 14   rank 1   generators 1
+      l = 11  (diagonal)  G_l = Z_11        R_l = 11^0 Z_11     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 7              G_l order 7 (rank 1)   R_l order 7   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 11  class [u]  d = 6   M = 10   rank 1   generators 1
+      l = 11  (diagonal)  G_l = Z_11        R_l = 11^0 Z_11     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 11  class [p]  d = 11   M = 22   rank 1   generators 1
+      l = 11  (diagonal)  G_l = Z_11        R_l = 11^0 Z_11     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 11  class [up]  d = -11   M = 22   rank 2   generators 2
+      l = 11  (diagonal)  G_l = Z_11        R_l = 11^0 Z_11     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 13  class [1]  d = -1   M = 18   rank 1   generators 1
+      l = 13  (diagonal)  G_l = Z_13        R_l = 13^0 Z_13     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 3              G_l order 9 (rank 1)   R_l order 9   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 13  class [u]  d = 5   M = 10   rank 1   generators 1
+      l = 13  (diagonal)  G_l = Z_13        R_l = 13^0 Z_13     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 13  class [p]  d = -13   M = 26   rank 1   generators 1
+      l = 13  (diagonal)  G_l = Z_13        R_l = 13^0 Z_13     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 13  class [up]  d = 26   M = 26   rank 1   generators 1
+      l = 13  (diagonal)  G_l = Z_13        R_l = 13^0 Z_13     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 17  class [1]  d = -1   M = 18   rank 1   generators 1
+      l = 17  (diagonal)  G_l = Z_17        R_l = 17^0 Z_17     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 3              G_l order 9 (rank 1)   R_l order 9   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 17  class [u]  d = 7   M = 18   rank 1   generators 1
+      l = 17  (diagonal)  G_l = Z_17        R_l = 17^0 Z_17     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 3              G_l order 9 (rank 1)   R_l order 9   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 17  class [p]  d = 34   M = 34   rank 1   generators 1
+      l = 17  (diagonal)  G_l = Z_17        R_l = 17^0 Z_17     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 17  class [up]  d = 51   M = 34   rank 2   generators 2
+      l = 17  (diagonal)  G_l = Z_17        R_l = 17^0 Z_17     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 19  class [1]  d = 1   M = 21   rank 1   generators 1
+      l = 19  (diagonal)  G_l = Z_19        R_l = 19^0 Z_19     index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      l = 7              G_l order 7 (rank 1)   R_l order 7   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 19  class [u]  d = -1   M = 19   rank 1   generators 1
+      l = 19  (diagonal)  G_l = Z_19        R_l = 19^0 Z_19     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 19  class [p]  d = 95   M = 19   rank 1   generators 1
+      l = 19  (diagonal)  G_l = Z_19        R_l = 19^0 Z_19     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 19  class [up]  d = -95   M = 19   rank 1   generators 1
+      l = 19  (diagonal)  G_l = Z_19        R_l = 19^0 Z_19     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 23  class [1]  d = 1   M = 28   rank 1   generators 1
+      l = 23  (diagonal)  G_l = Z_23        R_l = 23^0 Z_23     index 1   FULL
+      l = 2              G_l order 4 (rank 1)   R_l order 4   index 1   FULL
+      l = 7              G_l order 7 (rank 1)   R_l order 7   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 23  class [u]  d = -1   M = 20   rank 1   generators 1
+      l = 23  (diagonal)  G_l = Z_23        R_l = 23^0 Z_23     index 1   FULL
+      l = 2              G_l order 4 (rank 1)   R_l order 4   index 1   FULL
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 23  class [p]  d = 46   M = 46   rank 1   generators 1
+      l = 23  (diagonal)  G_l = Z_23        R_l = 23^0 Z_23     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 23  class [up]  d = 115   M = 46   rank 1   generators 1
+      l = 23  (diagonal)  G_l = Z_23        R_l = 23^0 Z_23     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 29  class [1]  d = -1   M = 36   rank 1   generators 1
+      l = 29  (diagonal)  G_l = Z_29        R_l = 29^0 Z_29     index 1   FULL
+      l = 2              G_l order 4 (rank 1)   R_l order 4   index 1   FULL
+      l = 3              G_l order 9 (rank 1)   R_l order 9   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 29  class [u]  d = 11   M = 24   rank 1   generators 1
+      l = 29  (diagonal)  G_l = Z_29        R_l = 29^0 Z_29     index 1   FULL
+      l = 2              G_l order 8 (rank 1)   R_l order 8   index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 29  class [p]  d = -29   M = 58   rank 1   generators 1
+      l = 29  (diagonal)  G_l = Z_29        R_l = 29^0 Z_29     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 29  class [up]  d = 58   M = 58   rank 1   generators 1
+      l = 29  (diagonal)  G_l = Z_29        R_l = 29^0 Z_29     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 31  class [1]  d = 1   M = 32   rank 1   generators 1
+      l = 31  (diagonal)  G_l = Z_31        R_l = 31^0 Z_31     index 1   FULL
+      l = 2              G_l order 32 (rank 1)   R_l order 32   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 31  class [u]  d = -1   M = 30   rank 1   generators 1
+      l = 31  (diagonal)  G_l = Z_31        R_l = 31^0 Z_31     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 31  class [p]  d = 31   M = 62   rank 1   generators 1
+      l = 31  (diagonal)  G_l = Z_31        R_l = 31^0 Z_31     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 31  class [up]  d = -62   M = 124   rank 1   generators 1
+      l = 31  (diagonal)  G_l = Z_31        R_l = 31^0 Z_31     index 1   FULL
+      l = 2              G_l order 4 (rank 1)   R_l order 4   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 37  class [1]  d = -11   M = 48   rank 2   generators 2
+      l = 37  (diagonal)  G_l = Z_37        R_l = 37^0 Z_37     index 1   FULL
+      l = 2              G_l order 16 (rank 1)   R_l order 16   index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 37  class [u]  d = 6   M = 28   rank 1   generators 1
+      l = 37  (diagonal)  G_l = Z_37        R_l = 37^0 Z_37     index 1   FULL
+      l = 2              G_l order 4 (rank 1)   R_l order 4   index 1   FULL
+      l = 7              G_l order 7 (rank 1)   R_l order 7   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 37  class [p]  d = -37   M = 74   rank 1   generators 1
+      l = 37  (diagonal)  G_l = Z_37        R_l = 37^0 Z_37     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 37  class [up]  d = 74   M = 74   rank 1   generators 1
+      l = 37  (diagonal)  G_l = Z_37        R_l = 37^0 Z_37     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 41  class [1]  d = -1   M = 35   rank 1   generators 1
+      l = 41  (diagonal)  G_l = Z_41        R_l = 41^0 Z_41     index 1   FULL
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      l = 7              G_l order 7 (rank 1)   R_l order 7   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 41  class [u]  d = 3   M = 49   rank 1   generators 1
+      l = 41  (diagonal)  G_l = Z_41        R_l = 41^0 Z_41     index 1   FULL
+      l = 7              G_l order 49 (rank 1)   R_l order 49   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 41  class [p]  d = 41   M = 41   rank 1   generators 1
+      l = 41  (diagonal)  G_l = Z_41        R_l = 41^0 Z_41     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 41  class [up]  d = 123   M = 41   rank 1   generators 1
+      l = 41  (diagonal)  G_l = Z_41        R_l = 41^0 Z_41     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 43  class [1]  d = 1   M = 34   rank 1   generators 1
+      l = 43  (diagonal)  G_l = Z_43        R_l = 43^0 Z_43     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 17              G_l order 17 (rank 1)   R_l order 17   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 43  class [u]  d = -1   M = 54   rank 1   generators 1
+      l = 43  (diagonal)  G_l = Z_43        R_l = 43^0 Z_43     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 3              G_l order 27 (rank 1)   R_l order 27   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 43  class [p]  d = -86   M = 86   rank 1   generators 1
+      l = 43  (diagonal)  G_l = Z_43        R_l = 43^0 Z_43     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 43  class [up]  d = 86   M = 86   rank 1   generators 1
+      l = 43  (diagonal)  G_l = Z_43        R_l = 43^0 Z_43     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 47  class [1]  d = -11   M = 60   rank 2   generators 2
+      l = 47  (diagonal)  G_l = Z_47        R_l = 47^0 Z_47     index 1   FULL
+      l = 2              G_l order 4 (rank 2)   R_l order 4   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 47  class [u]  d = -149   M = 36   rank 2   generators 2
+      l = 47  (diagonal)  G_l = Z_47        R_l = 47^0 Z_47     index 1   FULL
+      l = 2              G_l order 4 (rank 2)   R_l order 4   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      l = 3              G_l order 9 (rank 1)   R_l order 9   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 47  class [p]  d = 94   M = 188   rank 2   generators 2
+      l = 47  (diagonal)  G_l = Z_47        R_l = 47^0 Z_47     index 1   FULL
+      l = 2              G_l order 4 (rank 2)   R_l order 4   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 47  class [up]  d = 705   M = 188   rank 2   generators 2
+      l = 47  (diagonal)  G_l = Z_47        R_l = 47^0 Z_47     index 1   FULL
+      l = 2              G_l order 4 (rank 2)   R_l order 4   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 53  class [1]  d = 11   M = 58   rank 1   generators 1
+      l = 53  (diagonal)  G_l = Z_53        R_l = 53^0 Z_53     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 29              G_l order 29 (rank 1)   R_l order 29   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 53  class [u]  d = 22   M = 50   rank 1   generators 1
+      l = 53  (diagonal)  G_l = Z_53        R_l = 53^0 Z_53     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 5              G_l order 25 (rank 1)   R_l order 25   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 53  class [p]  d = 53   M = 106   rank 2   generators 2
+      l = 53  (diagonal)  G_l = Z_53        R_l = 53^0 Z_53     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 53  class [up]  d = 106   M = 106   rank 1   generators 1
+      l = 53  (diagonal)  G_l = Z_53        R_l = 53^0 Z_53     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 59  class [1]  d = 1   M = 63   rank 1   generators 1
+      l = 59  (diagonal)  G_l = Z_59        R_l = 59^0 Z_59     index 1   FULL
+      l = 3              G_l order 9 (rank 1)   R_l order 9   index 1   FULL
+      l = 7              G_l order 7 (rank 1)   R_l order 7   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 59  class [u]  d = 6   M = 57   rank 1   generators 1
+      l = 59  (diagonal)  G_l = Z_59        R_l = 59^0 Z_59     index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      l = 19              G_l order 19 (rank 1)   R_l order 19   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 59  class [p]  d = 295   M = 59   rank 1   generators 1
+      l = 59  (diagonal)  G_l = Z_59        R_l = 59^0 Z_59     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 59  class [up]  d = -59   M = 59   rank 1   generators 1
+      l = 59  (diagonal)  G_l = Z_59        R_l = 59^0 Z_59     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 61  class [1]  d = 1   M = 50   rank 1   generators 1
+      l = 61  (diagonal)  G_l = Z_61        R_l = 61^0 Z_61     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 5              G_l order 25 (rank 1)   R_l order 25   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 61  class [u]  d = 7   M = 74   rank 1   generators 1
+      l = 61  (diagonal)  G_l = Z_61        R_l = 61^0 Z_61     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 37              G_l order 37 (rank 1)   R_l order 37   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 61  class [p]  d = -61   M = 122   rank 1   generators 1
+      l = 61  (diagonal)  G_l = Z_61        R_l = 61^0 Z_61     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 61  class [up]  d = 122   M = 122   rank 1   generators 1
+      l = 61  (diagonal)  G_l = Z_61        R_l = 61^0 Z_61     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 67  class [1]  d = -221   M = 56   rank 2   generators 2
+      l = 67  (diagonal)  G_l = Z_67        R_l = 67^0 Z_67     index 1   FULL
+      l = 2              G_l order 8 (rank 2)   R_l order 8   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      l = 7              G_l order 7 (rank 1)   R_l order 7   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 67  class [u]  d = 51   M = 80   rank 2   generators 2
+      l = 67  (diagonal)  G_l = Z_67        R_l = 67^0 Z_67     index 1   FULL
+      l = 2              G_l order 16 (rank 2)   R_l order 16   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 67  class [p]  d = 2211   M = 268   rank 2   generators 2
+      l = 67  (diagonal)  G_l = Z_67        R_l = 67^0 Z_67     index 1   FULL
+      l = 2              G_l order 4 (rank 2)   R_l order 4   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 67  class [up]  d = 134   M = 268   rank 2   generators 2
+      l = 67  (diagonal)  G_l = Z_67        R_l = 67^0 Z_67     index 1   FULL
+      l = 2              G_l order 4 (rank 2)   R_l order 4   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 71  class [1]  d = 1   M = 59   rank 1   generators 1
+      l = 71  (diagonal)  G_l = Z_71        R_l = 71^0 Z_71     index 1   FULL
+      l = 59              G_l order 59 (rank 1)   R_l order 59   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 71  class [u]  d = -1   M = 85   rank 1   generators 1
+      l = 71  (diagonal)  G_l = Z_71        R_l = 71^0 Z_71     index 1   FULL
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      l = 17              G_l order 17 (rank 1)   R_l order 17   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 71  class [p]  d = 71   M = 71   rank 1   generators 1
+      l = 71  (diagonal)  G_l = Z_71        R_l = 71^0 Z_71     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 71  class [up]  d = -71   M = 71   rank 1   generators 1
+      l = 71  (diagonal)  G_l = Z_71        R_l = 71^0 Z_71     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 73  class [1]  d = 3   M = 72   rank 1   generators 1
+      l = 73  (diagonal)  G_l = Z_73        R_l = 73^0 Z_73     index 1   FULL
+      l = 2              G_l order 8 (rank 1)   R_l order 8   index 1   FULL
+      l = 3              G_l order 9 (rank 1)   R_l order 9   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 73  class [u]  d = -21   M = 76   rank 1   generators 1
+      l = 73  (diagonal)  G_l = Z_73        R_l = 73^0 Z_73     index 1   FULL
+      l = 2              G_l order 4 (rank 1)   R_l order 4   index 1   FULL
+      l = 19              G_l order 19 (rank 1)   R_l order 19   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 73  class [p]  d = 146   M = 146   rank 1   generators 1
+      l = 73  (diagonal)  G_l = Z_73        R_l = 73^0 Z_73     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 73  class [up]  d = -365   M = 146   rank 1   generators 1
+      l = 73  (diagonal)  G_l = Z_73        R_l = 73^0 Z_73     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 79  class [1]  d = 1   M = 86   rank 1   generators 1
+      l = 79  (diagonal)  G_l = Z_79        R_l = 79^0 Z_79     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 43              G_l order 43 (rank 1)   R_l order 43   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 79  class [u]  d = -1   M = 74   rank 1   generators 1
+      l = 79  (diagonal)  G_l = Z_79        R_l = 79^0 Z_79     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 37              G_l order 37 (rank 1)   R_l order 37   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 79  class [p]  d = 158   M = 158   rank 1   generators 1
+      l = 79  (diagonal)  G_l = Z_79        R_l = 79^0 Z_79     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 79  class [up]  d = -158   M = 158   rank 1   generators 1
+      l = 79  (diagonal)  G_l = Z_79        R_l = 79^0 Z_79     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 83  class [1]  d = -22   M = 90   rank 1   generators 1
+      l = 83  (diagonal)  G_l = Z_83        R_l = 83^0 Z_83     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 3              G_l order 9 (rank 1)   R_l order 9   index 1   FULL
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 83  class [u]  d = -11   M = 78   rank 2   generators 2
+      l = 83  (diagonal)  G_l = Z_83        R_l = 83^0 Z_83     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      l = 13              G_l order 13 (rank 1)   R_l order 13   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 83  class [p]  d = 83   M = 166   rank 1   generators 1
+      l = 83  (diagonal)  G_l = Z_83        R_l = 83^0 Z_83     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 83  class [up]  d = 166   M = 166   rank 1   generators 1
+      l = 83  (diagonal)  G_l = Z_83        R_l = 83^0 Z_83     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 89  class [1]  d = 1   M = 100   rank 1   generators 1
+      l = 89  (diagonal)  G_l = Z_89        R_l = 89^0 Z_89     index 1   FULL
+      l = 2              G_l order 4 (rank 1)   R_l order 4   index 1   FULL
+      l = 5              G_l order 25 (rank 1)   R_l order 25   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 89  class [u]  d = -7   M = 80   rank 1   generators 1
+      l = 89  (diagonal)  G_l = Z_89        R_l = 89^0 Z_89     index 1   FULL
+      l = 2              G_l order 16 (rank 1)   R_l order 16   index 1   FULL
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 89  class [p]  d = 178   M = 178   rank 1   generators 1
+      l = 89  (diagonal)  G_l = Z_89        R_l = 89^0 Z_89     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 89  class [up]  d = -267   M = 178   rank 1   generators 1
+      l = 89  (diagonal)  G_l = Z_89        R_l = 89^0 Z_89     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 97  class [1]  d = 1   M = 97   rank 1   generators 1
+      l = 97  (diagonal)  G_l = Z_97        R_l = 97^0 Z_97     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 97  class [u]  d = 7   M = 99   rank 1   generators 1
+      l = 97  (diagonal)  G_l = Z_97        R_l = 97^0 Z_97     index 1   FULL
+      l = 3              G_l order 9 (rank 1)   R_l order 9   index 1   FULL
+      l = 11              G_l order 11 (rank 1)   R_l order 11   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 97  class [p]  d = 97   M = 97   rank 1   generators 1
+      l = 97  (diagonal)  G_l = Z_97        R_l = 97^0 Z_97     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 97  class [up]  d = 485   M = 97   rank 1   generators 1
+      l = 97  (diagonal)  G_l = Z_97        R_l = 97^0 Z_97     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 101  class [1]  d = -1   M = 105   rank 1   generators 1
+      l = 101  (diagonal)  G_l = Z_101        R_l = 101^0 Z_101     index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      l = 7              G_l order 7 (rank 1)   R_l order 7   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 101  class [u]  d = 3   M = 99   rank 1   generators 1
+      l = 101  (diagonal)  G_l = Z_101        R_l = 101^0 Z_101     index 1   FULL
+      l = 3              G_l order 9 (rank 1)   R_l order 9   index 1   FULL
+      l = 11              G_l order 11 (rank 1)   R_l order 11   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 101  class [p]  d = 101   M = 101   rank 1   generators 1
+      l = 101  (diagonal)  G_l = Z_101        R_l = 101^0 Z_101     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 101  class [up]  d = -2626   M = 101   rank 1   generators 1
+      l = 101  (diagonal)  G_l = Z_101        R_l = 101^0 Z_101     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 103  class [1]  d = 1   M = 87   rank 1   generators 1
+      l = 103  (diagonal)  G_l = Z_103        R_l = 103^0 Z_103     index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      l = 29              G_l order 29 (rank 1)   R_l order 29   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 103  class [u]  d = -1   M = 121   rank 1   generators 1
+      l = 103  (diagonal)  G_l = Z_103        R_l = 103^0 Z_103     index 1   FULL
+      l = 11              G_l order 121 (rank 1)   R_l order 121   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 103  class [p]  d = 103   M = 103   rank 1   generators 1
+      l = 103  (diagonal)  G_l = Z_103        R_l = 103^0 Z_103     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 103  class [up]  d = 2266   M = 103   rank 1   generators 1
+      l = 103  (diagonal)  G_l = Z_103        R_l = 103^0 Z_103     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 107  class [1]  d = -7   M = 105   rank 1   generators 1
+      l = 107  (diagonal)  G_l = Z_107        R_l = 107^0 Z_107     index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      l = 7              G_l order 7 (rank 1)   R_l order 7   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 107  class [u]  d = -1   M = 111   rank 1   generators 1
+      l = 107  (diagonal)  G_l = Z_107        R_l = 107^0 Z_107     index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      l = 37              G_l order 37 (rank 1)   R_l order 37   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 107  class [p]  d = -1605   M = 107   rank 1   generators 1
+      l = 107  (diagonal)  G_l = Z_107        R_l = 107^0 Z_107     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 107  class [up]  d = -107   M = 107   rank 1   generators 1
+      l = 107  (diagonal)  G_l = Z_107        R_l = 107^0 Z_107     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 109  class [1]  d = 1   M = 123   rank 1   generators 1
+      l = 109  (diagonal)  G_l = Z_109        R_l = 109^0 Z_109     index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      l = 41              G_l order 41 (rank 1)   R_l order 41   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 109  class [u]  d = 6   M = 97   rank 1   generators 1
+      l = 109  (diagonal)  G_l = Z_109        R_l = 109^0 Z_109     index 1   FULL
+      l = 97              G_l order 97 (rank 1)   R_l order 97   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 109  class [p]  d = 109   M = 109   rank 1   generators 1
+      l = 109  (diagonal)  G_l = Z_109        R_l = 109^0 Z_109     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 109  class [up]  d = 654   M = 109   rank 1   generators 1
+      l = 109  (diagonal)  G_l = Z_109        R_l = 109^0 Z_109     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 113  class [1]  d = 1   M = 125   rank 1   generators 1
+      l = 113  (diagonal)  G_l = Z_113        R_l = 113^0 Z_113     index 1   FULL
+      l = 5              G_l order 125 (rank 1)   R_l order 125   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 113  class [u]  d = 3   M = 103   rank 1   generators 1
+      l = 113  (diagonal)  G_l = Z_113        R_l = 113^0 Z_113     index 1   FULL
+      l = 103              G_l order 103 (rank 1)   R_l order 103   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 113  class [p]  d = 113   M = 113   rank 1   generators 1
+      l = 113  (diagonal)  G_l = Z_113        R_l = 113^0 Z_113     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 113  class [up]  d = 339   M = 113   rank 1   generators 1
+      l = 113  (diagonal)  G_l = Z_113        R_l = 113^0 Z_113     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 127  class [1]  d = -6   M = 126   rank 1   generators 1
+      l = 127  (diagonal)  G_l = Z_127        R_l = 127^0 Z_127     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 3              G_l order 9 (rank 1)   R_l order 9   index 1   FULL
+      l = 7              G_l order 7 (rank 1)   R_l order 7   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 127  class [u]  d = 3   M = 130   rank 1   generators 1
+      l = 127  (diagonal)  G_l = Z_127        R_l = 127^0 Z_127     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      l = 13              G_l order 13 (rank 1)   R_l order 13   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 127  class [p]  d = 254   M = 254   rank 1   generators 1
+      l = 127  (diagonal)  G_l = Z_127        R_l = 127^0 Z_127     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 127  class [up]  d = -127   M = 254   rank 2   generators 2
+      l = 127  (diagonal)  G_l = Z_127        R_l = 127^0 Z_127     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 131  class [1]  d = 53   M = 128   rank 2   generators 2
+      l = 131  (diagonal)  G_l = Z_131        R_l = 131^0 Z_131     index 1   FULL
+      l = 2              G_l order 128 (rank 2)   R_l order 128   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 131  class [u]  d = -11   M = 136   rank 2   generators 2
+      l = 131  (diagonal)  G_l = Z_131        R_l = 131^0 Z_131     index 1   FULL
+      l = 2              G_l order 8 (rank 2)   R_l order 8   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      l = 17              G_l order 17 (rank 1)   R_l order 17   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 131  class [p]  d = 131   M = 524   rank 2   generators 2
+      l = 131  (diagonal)  G_l = Z_131        R_l = 131^0 Z_131     index 1   FULL
+      l = 2              G_l order 4 (rank 2)   R_l order 4   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 131  class [up]  d = 8646   M = 524   rank 2   generators 2
+      l = 131  (diagonal)  G_l = Z_131        R_l = 131^0 Z_131     index 1   FULL
+      l = 2              G_l order 4 (rank 2)   R_l order 4   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 137  class [1]  d = 7   M = 126   rank 1   generators 1
+      l = 137  (diagonal)  G_l = Z_137        R_l = 137^0 Z_137     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 3              G_l order 9 (rank 1)   R_l order 9   index 1   FULL
+      l = 7              G_l order 7 (rank 1)   R_l order 7   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 137  class [u]  d = 3   M = 150   rank 1   generators 1
+      l = 137  (diagonal)  G_l = Z_137        R_l = 137^0 Z_137     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      l = 5              G_l order 25 (rank 1)   R_l order 25   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 137  class [p]  d = 274   M = 274   rank 1   generators 1
+      l = 137  (diagonal)  G_l = Z_137        R_l = 137^0 Z_137     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 137  class [up]  d = -411   M = 274   rank 1   generators 1
+      l = 137  (diagonal)  G_l = Z_137        R_l = 137^0 Z_137     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 139  class [1]  d = 51   M = 126   rank 2   generators 2
+      l = 139  (diagonal)  G_l = Z_139        R_l = 139^0 Z_139     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 3              G_l order 9 (rank 2)   R_l order 9   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      l = 7              G_l order 7 (rank 1)   R_l order 7   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 139  class [u]  d = 3   M = 154   rank 1   generators 1
+      l = 139  (diagonal)  G_l = Z_139        R_l = 139^0 Z_139     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 7              G_l order 7 (rank 1)   R_l order 7   index 1   FULL
+      l = 11              G_l order 11 (rank 1)   R_l order 11   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 139  class [p]  d = 139   M = 278   rank 1   generators 1
+      l = 139  (diagonal)  G_l = Z_139        R_l = 139^0 Z_139     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 139  class [up]  d = -139   M = 278   rank 2   generators 2
+      l = 139  (diagonal)  G_l = Z_139        R_l = 139^0 Z_139     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 149  class [1]  d = 53   M = 136   rank 2   generators 2
+      l = 149  (diagonal)  G_l = Z_149        R_l = 149^0 Z_149     index 1   FULL
+      l = 2              G_l order 8 (rank 2)   R_l order 8   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      l = 17              G_l order 17 (rank 1)   R_l order 17   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 149  class [u]  d = 94   M = 164   rank 2   generators 2
+      l = 149  (diagonal)  G_l = Z_149        R_l = 149^0 Z_149     index 1   FULL
+      l = 2              G_l order 4 (rank 2)   R_l order 4   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      l = 41              G_l order 41 (rank 1)   R_l order 41   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 149  class [p]  d = -149   M = 596   rank 2   generators 2
+      l = 149  (diagonal)  G_l = Z_149        R_l = 149^0 Z_149     index 1   FULL
+      l = 2              G_l order 4 (rank 2)   R_l order 4   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 149  class [up]  d = 13559   M = 596   rank 2   generators 2
+      l = 149  (diagonal)  G_l = Z_149        R_l = 149^0 Z_149     index 1   FULL
+      l = 2              G_l order 4 (rank 2)   R_l order 4   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 151  class [1]  d = 1   M = 154   rank 1   generators 1
+      l = 151  (diagonal)  G_l = Z_151        R_l = 151^0 Z_151     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 7              G_l order 7 (rank 1)   R_l order 7   index 1   FULL
+      l = 11              G_l order 11 (rank 1)   R_l order 11   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 151  class [u]  d = -1   M = 150   rank 1   generators 1
+      l = 151  (diagonal)  G_l = Z_151        R_l = 151^0 Z_151     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      l = 5              G_l order 25 (rank 1)   R_l order 25   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 151  class [p]  d = 755   M = 302   rank 1   generators 1
+      l = 151  (diagonal)  G_l = Z_151        R_l = 151^0 Z_151     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 151  class [up]  d = 453   M = 302   rank 1   generators 1
+      l = 151  (diagonal)  G_l = Z_151        R_l = 151^0 Z_151     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 157  class [1]  d = 1   M = 171   rank 1   generators 1
+      l = 157  (diagonal)  G_l = Z_157        R_l = 157^0 Z_157     index 1   FULL
+      l = 3              G_l order 9 (rank 1)   R_l order 9   index 1   FULL
+      l = 19              G_l order 19 (rank 1)   R_l order 19   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 157  class [u]  d = 5   M = 145   rank 1   generators 1
+      l = 157  (diagonal)  G_l = Z_157        R_l = 157^0 Z_157     index 1   FULL
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      l = 29              G_l order 29 (rank 1)   R_l order 29   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 157  class [p]  d = 157   M = 157   rank 1   generators 1
+      l = 157  (diagonal)  G_l = Z_157        R_l = 157^0 Z_157     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 157  class [up]  d = 2355   M = 157   rank 1   generators 1
+      l = 157  (diagonal)  G_l = Z_157        R_l = 157^0 Z_157     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 163  class [1]  d = 1   M = 189   rank 1   generators 1
+      l = 163  (diagonal)  G_l = Z_163        R_l = 163^0 Z_163     index 1   FULL
+      l = 3              G_l order 27 (rank 1)   R_l order 27   index 1   FULL
+      l = 7              G_l order 7 (rank 1)   R_l order 7   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 163  class [u]  d = -1   M = 139   rank 1   generators 1
+      l = 163  (diagonal)  G_l = Z_163        R_l = 163^0 Z_163     index 1   FULL
+      l = 139              G_l order 139 (rank 1)   R_l order 139   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 163  class [p]  d = 978   M = 163   rank 1   generators 1
+      l = 163  (diagonal)  G_l = Z_163        R_l = 163^0 Z_163     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 163  class [up]  d = 815   M = 163   rank 1   generators 1
+      l = 163  (diagonal)  G_l = Z_163        R_l = 163^0 Z_163     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 167  class [1]  d = -13   M = 144   rank 1   generators 1
+      l = 167  (diagonal)  G_l = Z_167        R_l = 167^0 Z_167     index 1   FULL
+      l = 2              G_l order 16 (rank 1)   R_l order 16   index 1   FULL
+      l = 3              G_l order 9 (rank 1)   R_l order 9   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 167  class [u]  d = -6   M = 192   rank 1   generators 1
+      l = 167  (diagonal)  G_l = Z_167        R_l = 167^0 Z_167     index 1   FULL
+      l = 2              G_l order 64 (rank 1)   R_l order 64   index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 167  class [p]  d = 334   M = 334   rank 1   generators 1
+      l = 167  (diagonal)  G_l = Z_167        R_l = 167^0 Z_167     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 167  class [up]  d = -334   M = 334   rank 1   generators 1
+      l = 167  (diagonal)  G_l = Z_167        R_l = 167^0 Z_167     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 173  class [1]  d = 51   M = 172   rank 2   generators 2
+      l = 173  (diagonal)  G_l = Z_173        R_l = 173^0 Z_173     index 1   FULL
+      l = 2              G_l order 4 (rank 2)   R_l order 4   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      l = 43              G_l order 43 (rank 1)   R_l order 43   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 173  class [u]  d = 53   M = 176   rank 2   generators 2
+      l = 173  (diagonal)  G_l = Z_173        R_l = 173^0 Z_173     index 1   FULL
+      l = 2              G_l order 16 (rank 2)   R_l order 16   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      l = 11              G_l order 11 (rank 1)   R_l order 11   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 173  class [p]  d = -173   M = 692   rank 2   generators 2
+      l = 173  (diagonal)  G_l = Z_173        R_l = 173^0 Z_173     index 1   FULL
+      l = 2              G_l order 4 (rank 2)   R_l order 4   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 173  class [up]  d = 519   M = 692   rank 2   generators 2
+      l = 173  (diagonal)  G_l = Z_173        R_l = 173^0 Z_173     index 1   FULL
+      l = 2              G_l order 4 (rank 2)   R_l order 4   index 1   FULL   <-- NON-CYCLIC LAYER: forces rank >= 2
+      total index = product over layers = 1   DENSE
+      generators needed : 2   (no single one is dense)
+
+  p = 179  class [1]  d = 1   M = 180   rank 1   generators 1
+      l = 179  (diagonal)  G_l = Z_179        R_l = 179^0 Z_179     index 1   FULL
+      l = 2              G_l order 4 (rank 1)   R_l order 4   index 1   FULL
+      l = 3              G_l order 9 (rank 1)   R_l order 9   index 1   FULL
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 179  class [u]  d = -19   M = 180   rank 1   generators 1
+      l = 179  (diagonal)  G_l = Z_179        R_l = 179^0 Z_179     index 1   FULL
+      l = 2              G_l order 4 (rank 1)   R_l order 4   index 1   FULL
+      l = 3              G_l order 9 (rank 1)   R_l order 9   index 1   FULL
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 179  class [p]  d = 179   M = 358   rank 1   generators 1
+      l = 179  (diagonal)  G_l = Z_179        R_l = 179^0 Z_179     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 179  class [up]  d = -537   M = 358   rank 1   generators 1
+      l = 179  (diagonal)  G_l = Z_179        R_l = 179^0 Z_179     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 181  class [1]  d = 1   M = 190   rank 1   generators 1
+      l = 181  (diagonal)  G_l = Z_181        R_l = 181^0 Z_181     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 5              G_l order 5 (rank 1)   R_l order 5   index 1   FULL
+      l = 19              G_l order 19 (rank 1)   R_l order 19   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 181  class [u]  d = 7   M = 174   rank 1   generators 1
+      l = 181  (diagonal)  G_l = Z_181        R_l = 181^0 Z_181     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      l = 29              G_l order 29 (rank 1)   R_l order 29   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 181  class [p]  d = -181   M = 362   rank 1   generators 1
+      l = 181  (diagonal)  G_l = Z_181        R_l = 181^0 Z_181     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 181  class [up]  d = -1086   M = 362   rank 2   generators 2
+      l = 181  (diagonal)  G_l = Z_181        R_l = 181^0 Z_181     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 191  class [1]  d = 1   M = 217   rank 1   generators 1
+      l = 191  (diagonal)  G_l = Z_191        R_l = 191^0 Z_191     index 1   FULL
+      l = 7              G_l order 7 (rank 1)   R_l order 7   index 1   FULL
+      l = 31              G_l order 31 (rank 1)   R_l order 31   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 191  class [u]  d = -1   M = 167   rank 1   generators 1
+      l = 191  (diagonal)  G_l = Z_191        R_l = 191^0 Z_191     index 1   FULL
+      l = 167              G_l order 167 (rank 1)   R_l order 167   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 191  class [p]  d = 191   M = 191   rank 1   generators 1
+      l = 191  (diagonal)  G_l = Z_191        R_l = 191^0 Z_191     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 191  class [up]  d = -191   M = 191   rank 1   generators 1
+      l = 191  (diagonal)  G_l = Z_191        R_l = 191^0 Z_191     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 193  class [1]  d = 1   M = 201   rank 1   generators 1
+      l = 193  (diagonal)  G_l = Z_193        R_l = 193^0 Z_193     index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      l = 67              G_l order 67 (rank 1)   R_l order 67   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 193  class [u]  d = 5   M = 187   rank 1   generators 1
+      l = 193  (diagonal)  G_l = Z_193        R_l = 193^0 Z_193     index 1   FULL
+      l = 11              G_l order 11 (rank 1)   R_l order 11   index 1   FULL
+      l = 17              G_l order 17 (rank 1)   R_l order 17   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 193  class [p]  d = -193   M = 193   rank 1   generators 1
+      l = 193  (diagonal)  G_l = Z_193        R_l = 193^0 Z_193     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 193  class [up]  d = 965   M = 193   rank 1   generators 1
+      l = 193  (diagonal)  G_l = Z_193        R_l = 193^0 Z_193     index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 197  class [1]  d = -6   M = 222   rank 1   generators 1
+      l = 197  (diagonal)  G_l = Z_197        R_l = 197^0 Z_197     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      l = 37              G_l order 37 (rank 1)   R_l order 37   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 197  class [u]  d = 3   M = 174   rank 1   generators 1
+      l = 197  (diagonal)  G_l = Z_197        R_l = 197^0 Z_197     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 3              G_l order 3 (rank 1)   R_l order 3   index 1   FULL
+      l = 29              G_l order 29 (rank 1)   R_l order 29   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 197  class [p]  d = 197   M = 394   rank 2   generators 2
+      l = 197  (diagonal)  G_l = Z_197        R_l = 197^0 Z_197     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 197  class [up]  d = 394   M = 394   rank 1   generators 1
+      l = 197  (diagonal)  G_l = Z_197        R_l = 197^0 Z_197     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 199  class [1]  d = -6   M = 218   rank 1   generators 1
+      l = 199  (diagonal)  G_l = Z_199        R_l = 199^0 Z_199     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 109              G_l order 109 (rank 1)   R_l order 109   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 199  class [u]  d = 3   M = 182   rank 1   generators 1
+      l = 199  (diagonal)  G_l = Z_199        R_l = 199^0 Z_199     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      l = 7              G_l order 7 (rank 1)   R_l order 7   index 1   FULL
+      l = 13              G_l order 13 (rank 1)   R_l order 13   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 199  class [p]  d = 199   M = 398   rank 2   generators 2
+      l = 199  (diagonal)  G_l = Z_199        R_l = 199^0 Z_199     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+  p = 199  class [up]  d = -199   M = 398   rank 2   generators 2
+      l = 199  (diagonal)  G_l = Z_199        R_l = 199^0 Z_199     index 1   FULL
+      l = 2              G_l order 2 (rank 1)   R_l order 2   index 1   FULL
+      total index = product over layers = 1   DENSE
+      generators needed : 1
+
+-------------------------------------------------------------------------
+  blocks (p, class, d)      : 180
+  layer lines (p, d, l)     : 419
+  total index 1             : 180
+  disagreements with 3.3    : 0
+
+  lines NEEDING two generators  : 22   (section 3.4 reports 22)
+  of which G is NOT procyclic   : 21   -- rank >= 2 genuinely FORCED
+  of which G IS procyclic       : 1   -- an artefact of the BASIS
+
+  Those are different statements and the flat index cannot separate them.
+  A non-cyclic layer means no single point of E^d(Q_p) generates, so no
+  rank-1 twist could ever have worked.  A procyclic G with two generators
+  needed means only that neither point ellsaturation returned is dense --
+  some other point of the SAME group is.  Section 3.4 reported 22 in one
+  bucket and called them all non-procyclic; 1 of them is not.
+
+  lines where rank >= 2 is forced (non-cyclic layer, now NAMED):
+    p = 47  [1]  d = -11   generators needed 2
+    p = 47  [u]  d = -149   generators needed 2
+    p = 47  [p]  d = 94   generators needed 2
+    p = 47  [up]  d = 705   generators needed 2
+    p = 67  [1]  d = -221   generators needed 2
+    p = 67  [u]  d = 51   generators needed 2
+    p = 67  [p]  d = 2211   generators needed 2
+    p = 67  [up]  d = 134   generators needed 2
+    p = 131  [1]  d = 53   generators needed 2
+    p = 131  [u]  d = -11   generators needed 2
+    p = 131  [p]  d = 131   generators needed 2
+    p = 131  [up]  d = 8646   generators needed 2
+    p = 139  [1]  d = 51   generators needed 2
+    p = 149  [1]  d = 53   generators needed 2
+    p = 149  [u]  d = 94   generators needed 2
+    p = 149  [p]  d = -149   generators needed 2
+    p = 149  [up]  d = 13559   generators needed 2
+    p = 173  [1]  d = 51   generators needed 2
+    p = 173  [u]  d = 53   generators needed 2
+    p = 173  [p]  d = -173   generators needed 2
+    p = 173  [up]  d = 519   generators needed 2
+
+  lines where G is procyclic but the basis is unlucky:
+    p = 83  [u]  d = -11
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+ The one procyclic exception, worked out: p = 83, class [u], d = -11
+-------------------------------------------------------------------------
+  Etilde(F_83) = [78] -- CYCLIC, so E^d(Q_83) = Z_83 x C_78 is procyclic
+  layer ranks : [[2, 1], [3, 1], [13, 1]]   (all 1: no layer forces two generators)
+  P_1 alone : total index 3    -- fails at the layer l = 3
+  P_2 alone : total index 13   -- fails at the layer l = 13
+  together  : total index 1
+  They fail at DIFFERENT layers, which is exactly what the decomposition
+  shows and the flat index hides.  So a combination should fix it:
+    -3 P_1 + -2 P_2   is a SINGLE point of index 1
+    -3 P_1 + 2 P_2   is a SINGLE point of index 1
+    -2 P_1 + -1 P_2   is a SINGLE point of index 1
+    -2 P_1 + 1 P_2   is a SINGLE point of index 1
+  So one generator does suffice here; section 3.4's basis simply missed it.
+
+done.
