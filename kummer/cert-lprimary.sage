@@ -2,8 +2,8 @@
 # cert-lprimary.sage -- the l-primary certificate for the single-place
 # sweep of kummer-padic-density.typ sections 3.3 and 3.4, in Sage.
 #
-# A port of cert-lprimary.gp, which is left untouched.  As with
-# cert-extended.sage, the two are meant to be run against each other:
+# A port of cert-lprimary.gp.  As with cert-extended.sage, the two are
+# meant to be run against each other:
 #
 #     sage cert-lprimary.sage > results/cert-lprimary-sage.txt
 #     diff results/cert-lprimary.txt results/cert-lprimary-sage.txt
@@ -74,6 +74,16 @@
 # Exactly, M*P.is_zero() would decide that outright -- that much of the
 # exact route really is cleaner, and it is the only part of it that is.
 #
+# THE SAME LESSON APPLIES TWICE.  ordE1 also multiplies a rational point
+# by divisors of M, and it too was doing it over Q, in both this file and
+# the GP one.  It is the more expensive of the two, because valalpha
+# takes one multiple and ordE1 takes one per divisor of M up to the
+# answer -- and the answer is usually M itself.  The cyclic-T lines it
+# serves reach M = 398 at p = 199, where a single exact multiple is
+# 1 197 893 digits and 5.4 seconds.  Moving both to Q_p, with the output
+# unchanged to the byte, took the GP file from 18.3s to 1.7s and this one
+# from 33.4s to 6.6s.
+#
 # The rest of the file's p-adic arithmetic is in phiclass, and there it
 # is unavoidable for a mathematical rather than a numerical reason: at
 # additive reduction with Phi = (Z/2)^2 the basis is the 2-torsion, whose
@@ -92,14 +102,15 @@
 #   ellsub with p-adic coords->  arithmetic on E over Qp(p, prec)
 #   matrank over Mod(-, l)   ->  matrix(GF(l), rows).rank()
 #   padiccurve               ->  EllipticCurve(Qp(p, PRECL2), ...), inlined
+#   ellorder over Q          ->  P.has_finite_order() / P.order()
 #
 # and every convention the GP file had to state by hand -- the canonical
 # base, the ordering of the p-adic roots, the divisors-only search for
 # the order in E/E_1 -- is restated here in a different language, so a
 # transcription error in either version shows up as a diff.
 #
-# WHAT THE DIFF SAYS (run of 2026-08-25, 33s against the GP file's own
-# run).  Both files report 180 blocks, 419 layer lines, 180 dense and 0
+# WHAT THE DIFF SAYS (run of 2026-08-25: 6.6s here, 1.7s for the GP
+# file).  Both report 180 blocks, 419 layer lines, 180 dense and 0
 # disagreements with section 3.3.  The diff is not empty; it is 224
 # lines, and every one of them is either a `P_i = ` generator listing
 # (98) or a `P_i |-> ` image row (126).  No block header, reduction line,
@@ -428,13 +439,32 @@ def valalpha(E, P, p, M):
 def ordE1(E, P, p, M):
     """Order of Pbar in E(Q_p)/E_1: the least divisor e of M with eP in E_1.
 
-    Testing the divisors of M by scalar multiplication, rather than M
-    repeated additions, is the difference between minutes and milliseconds
-    once the generators have large height.
+    Two things keep this cheap.  Only the DIVISORS of M are tested, each
+    reached by one scalar multiplication rather than by e repeated
+    additions.  And the multiples are taken over Q_p, for the reason
+    valalpha gives: e P has canonical height e^2 h(P), so the exact
+    x(e P) grows past a million digits once e approaches M and the
+    generator has any height, while modulo p^PRECL2 the cost is flat in
+    e and in h(P).  E_1 membership is then v_p(x) < 0, the p-adic reading
+    of the rational test p | cden.
+
+    One thing does not survive the move: p-adically the point at infinity
+    is not distinguishable from a very deep point of E_1, so the case
+    e P = O -- which the rational version excluded with an explicit
+    is_zero test -- is excluded here from the order of P in E(Q), taken
+    once.  On this sweep every E^d(Q) has trivial torsion so nothing is
+    ever skipped, but the function should not depend on the witness table
+    for its correctness.
     """
+    EK = padiccurve(E, p)
+    K = EK.base_ring()
+    n = ZZ(P.order()) if P.has_finite_order() else ZZ(0)
+    Pp = EK.point([K(P[0]), K(P[1]), K(1)], check=False)
     for e in divisors(M):
-        Q = e * P
-        if not Q.is_zero() and cden(Q) % p == 0:
+        if n and e % n == 0:
+            continue
+        Q = e * Pp
+        if not Q.is_zero() and Q[0].valuation() < 0:
             return ZZ(e)
     return ZZ(M)
 

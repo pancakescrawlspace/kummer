@@ -57,6 +57,16 @@
 \\    order m, T/2T is one-dimensional and the image of P is its class in C_m
 \\    reduced mod 2 -- nonzero exactly when that class has order m.
 
+\\ WHERE THE TIME GOES.  Both valalpha and ordE1 want multiples of a
+\\ RATIONAL point, and both used to take them on the rational curve, which
+\\ is the obvious thing and the wrong one: e P has canonical height
+\\ e^2 h(P), and this sweep pairs M up to 596 with generators of height 20,
+\\ so x(e P) reaches millions of digits.  At p = 199 a single exact
+\\ multiple is 1 197 893 digits and 5.4 seconds; ordE1 wanted one per
+\\ divisor of M.  Both now work on padiccurve modulo p^PRECL2, where the
+\\ cost of an ellmul is flat in e and in h(P).  The output is unchanged to
+\\ the byte and the run went from 18.3 seconds to 1.7.
+
 read("ledger.gp");
 PRECL2 = 80;
 
@@ -167,13 +177,32 @@ valalpha(E, P, p, M) =
   my(k = -valuation(Q[1], p)/2 - 1);
   if (k > PRECL2 \ 4, -1, k);
 }
-\\ order of Pbar in E(Q_p)/E_1: the least divisor e of M with eP in E_1, found
-\\ by testing divisors via ellmul rather than by M repeated additions.
+\\ order of Pbar in E(Q_p)/E_1: the least divisor e of M with eP in E_1.
+\\ Two things keep this cheap, and the second was missing until now.
+\\   * Only the DIVISORS of M are tested, each reached by one ellmul rather
+\\     than by e repeated additions.
+\\   * The multiples are taken over Q_p and not over Q.  This is the same
+\\     point valalpha makes just above: e P has canonical height e^2 h(P),
+\\     so the exact x(e P) runs to millions of digits once e is of the size
+\\     of M and the generator has any height, while modulo p^PRECL2 the
+\\     cost of an ellmul is flat in e and in h(P).  The earlier version
+\\     multiplied on the RATIONAL curve and paid that price on every
+\\     divisor of M, not just the last one.
+\\ E_1 membership is then v_p(x) < 0, which is the p-adic reading of the old
+\\ test p | cden.  One thing does not survive the move: p-adically the point
+\\ at infinity is not distinguishable from a very deep point of E_1, so the
+\\ case e P = O, which the rational version excluded by hand with Q != [0],
+\\ is excluded here from the order of P in E(Q) instead -- computed once, by
+\\ ellorder, which returns 0 for a point of infinite order.  On this sweep
+\\ every E^d(Q) has trivial torsion so the exclusion never fires, but the
+\\ function should not depend on the witness table for its correctness.
 ordE1(E, P, p, M) =
-{ my(D = divisors(M));
-  foreach (D, e,
-    my(Q = ellmul(E, P, e));
-    if (Q != [0] && Mod(cden(Q), p) == 0, return(e)));
+{ my(Ep = padiccurve(E, p), n = ellorder(E, P),
+     Pp = [P[1] + O(p^PRECL2), P[2] + O(p^PRECL2)]);
+  foreach (divisors(M), e,
+    if (n && e % n == 0, next);
+    my(Q = ellmul(Ep, Pp, e));
+    if (Q != [0] && valuation(Q[1], p) < 0, return(e)));
   M;
 }
 
