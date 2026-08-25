@@ -30,7 +30,8 @@
 # different language, so a transcription error in either version shows up
 # as a diff rather than as agreement.
 #
-# WHAT THE DIFF SAYS (run of 2026-08-25, ~80s).  All 180 blocks agree on
+# WHAT THE DIFF SAYS (run of 2026-08-25: 7.2s here, 1.6s for the GP
+# file, since ordv moved to Q_p).  All 180 blocks agree on
 # every computed invariant: reduction type and code, c_p, a_p, M, rank,
 # torsion, the isomorphism type of E^d(Q_p), the canonical base, and --
 # as a multiset over the generators used -- the valuation of alpha, the
@@ -138,20 +139,64 @@ def Mval(E, p):
         return ZZ(p + 1 - a)
     return ZZ(E.tamagawa_number(p) * (p - a))
 
+PRECX = 80
+
+_qpcurves = {}
+
+def padiccurve(E, p, prec=PRECX):
+    """E over Q_p, memoised on (a4, a6, p, prec).
+
+    Every generator of a given block wants the same curve and building it
+    is not free.  The GP file does not need this: there, p-adic
+    coordinates can be handed straight to the rational ellinit, which is
+    what phiclass does.  Sage wants the curve itself over Q_p.
+    """
+    key = (E.a4(), E.a6(), p, prec)
+    EK = _qpcurves.get(key)
+    if EK is None:
+        K = Qp(p, prec)
+        EK = EllipticCurve(K, [K(E.a4()), K(E.a6())])
+        _qpcurves[key] = EK
+    return EK
+
 def ordv(E, P, p, M):
     """Order of Pbar in E(Q_p)/E_1, and the formal depth of that multiple.
 
-    The order of Pbar divides M, so only the divisors of M need testing --
-    and each is reached by a scalar multiplication (double-and-add) rather
-    than by M repeated additions.  That is the difference between minutes
-    and milliseconds once the generators have large height.
+    Two things keep this cheap.  The order of Pbar divides M, so only the
+    DIVISORS of M need testing, each reached by one scalar multiplication
+    (double-and-add) rather than by M repeated additions.  And the
+    multiples are taken over Q_p and not over Q: multiplying by e
+    multiplies the canonical height by e^2, so x(e P) has about
+    e^2 h(P) / log 10 digits, which at p = 149, d = 13559 is 3 071 818 of
+    them and 21.8 seconds for a single multiple.  Modulo p^PRECX the cost
+    is flat in e and in h(P), and the same multiple takes 0.010s.  The
+    price was paid on every divisor of M, and ordv is called once per
+    candidate generator by gensalone and again for printing.
+
+    E_1 membership is then v_p(x) < 0 rather than p | cden, and the depth
+    is -v_p(x)/2 rather than v_p(cden): for a point of E_1 the numerator
+    of x is prime to p, so the two agree.
+
+    One thing does not survive the move: p-adically the point at infinity
+    is not distinguishable from a very deep point of E_1, so the case
+    e P = O -- which the rational version excluded with an explicit
+    is_zero test -- is excluded here from the order of P in E(Q), taken
+    once.  Every E^d(Q) on this sweep has trivial torsion so nothing is
+    ever skipped, but the function should not depend on the witness table
+    for its correctness.
     """
+    EK = padiccurve(E, p)
+    K = EK.base_ring()
+    n = ZZ(P.order()) if P.has_finite_order() else ZZ(0)
+    Pp = EK.point([K(P[0]), K(P[1]), K(1)], check=False)
     for e in divisors(M):
-        Q = e * P
+        if n and e % n == 0:
+            continue
+        Q = e * Pp
         if not Q.is_zero():
-            c = cden(Q)
-            if c % p == 0:
-                return (ZZ(e), ZZ(c.valuation(p)))
+            w = Q[0].valuation()
+            if w < 0:
+                return (ZZ(e), ZZ(-w // 2))
     return (ZZ(0), ZZ(0))
 
 def gensalone(E, P, p, M):
