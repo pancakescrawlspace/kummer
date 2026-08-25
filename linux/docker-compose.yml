@@ -1,9 +1,0 @@
-services:
-  build:
-    build: .
-    volumes:
-      - .:/work
-    working_dir: /work
-    tty: true
-    stdin_open: true
-    command: bash
