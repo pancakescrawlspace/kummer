@@ -49,6 +49,76 @@ $ (x, t, y) = (u_1, u_2, d v_1 v_2) in X. $
   Nothing is lost by restricting to it.
 ]
 
+== Long Weierstrass models, and why one wants them <sec-longweier>
+
+The model $E : v^2 = f(u)$ above requires $a_1 = a_3 = 0$, so that inversion is $v |-> -v$. For a
+general
+$ E : y^2 + a_1 x y + a_3 y = x^3 + a_2 x^2 + a_4 x + a_6 $
+inversion is $-(x, y) = (x, thin -y - a_1 x - a_3)$, and one completes the square. Put
+$ eta = 2 y + a_1 x + a_3 , $
+which satisfies $eta |-> -eta$ under inversion. With the usual
+$b_2 = a_1^2 + 4 a_2$, $b_4 = 2 a_4 + a_1 a_3$, $b_6 = a_3^2 + 4 a_6$ and
+$ F(x) = 4 x^3 + b_2 x^2 + 2 b_4 x + b_6 , $
+the identity
+$ eta^2 - F(x) = 4 (y^2 + a_1 x y + a_3 y - x^3 - a_2 x^2 - a_4 x - a_6) $
+gives $eta^2 = F(x)$ on $E$. So the whole of @sec-setup applies with $f$ replaced by $F$:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *The Kummer surface in general form.* For $E$ in long Weierstrass form,
+  $ X : w^2 = F(x) thin F(t) , quad
+    w = eta_1 eta_2 = (2 y_1 + a_1 x_1 + a_3)(2 y_2 + a_1 x_2 + a_3) , $
+  and the twists are $E_d : d thin eta^2 = F(u)$, with explicit model
+  $ E_d tilde.equiv thin Y^2 = X^3 + d b_2 X^2 + 8 d^2 b_4 X + 16 d^3 b_6 , quad
+    X = 4 d u, quad Y = 4 d^2 eta . $
+]
+
+Three checks. First, $"disc"_x (F) = 16 Delta_E$, so $F$ is squarefree exactly when $E$ is
+non-singular and the hypothesis of @sec-setup is met. Second, the diagonal involution fixes
+$w = eta_1 eta_2$ while a *single* inversion negates it --- which is what makes this the diagonal
+quotient and not something else. Third, when $a_1 = a_3 = 0$ one has $F = 4 f$ and
+$w = 4 v_1 v_2$, so $w^2 = F(x) F(t)$ is the surface $y^2 = f(x) f(t)$ rescaled by $w = 4 y$:
+the two models agree.
+
+Nothing else in these notes changes. $F$ is not monic, but @sec-setup never used that: a twist
+$E_d$ has an affine rational point exactly when $d$ is the squarefree part of $F(u_0)$, and the
+$t_0$-family is unaffected.
+
+*Why bother: coefficient size.* The alternative is the depressed model
+$y^2 = x^3 - 27 c_4 x - 54 c_6$, whose coefficients are of degree $4$ and $6$ in the $a_i$. Since
+the search takes $d = "sqfreepart" F(t_0)$, the size of $F$ propagates directly into the size of
+the twists that must be descended. Minimal long Weierstrass models are three to four orders of
+magnitude better:
+
+#v(2mm)
+#align(center)[
+#table(columns: 5, align: (left, left, right, right, right), stroke: 0.4pt + luma(170),
+  inset: (x: 7pt, y: 3pt),
+  table.header([curve], [$F = 4 x^3 + b_2 x^2 + 2 b_4 x + b_6$],
+    [$||F||_infinity$], [depressed], [ratio]),
+  [11a1],   [$4x^3 - 4x^2 - 40x - 79$], [79], [1 080 432], [13 676],
+  [37a1],   [$4x^3 - 4x + 1$],          [4],  [11 664],    [2 916],
+  [389a1],  [$4x^3 + 4x^2 - 8x + 1$],   [8],  [46 224],    [5 778],
+  [433a1],  [$4x^3 + 4x^2 - 36x - 35$], [36], [264 816],   [7 356],
+  [5077a1], [$4x^3 - 28x + 25$],        [28], [291 600],   [10 414],
+  [1225h1], [$4x^3 + 5x^2 - 32x + 24$], [32], [442 206],   [13 819],
+)]
+
+#v(2mm)
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Caveat: $F$ is not a minimal model.* Completing the square is an isomorphism over any field of
+  characteristic $!= 2$ --- in particular over every $QQ_p$, including $p = 2$, since $QQ_2$ has
+  characteristic $0$. But it does not respect *integral* minimality at $2$. The local test of
+  @sec-local uses the filtration $E_n (QQ_p)$ and explicitly demands a minimal Weierstrass model,
+  so that computation must still be run on a minimal model of each twist $E_d$, not on
+  $d thin eta^2 = F(u)$ as written. The gain here is in the size of the $d$ that the search
+  produces, not in the local computation itself.
+]
+
+For the non-diagonal surface of @sec-nondiagonal the same substitution applies on each factor
+separately: with $G$ the corresponding cubic for $E'$,
+$ X : w^2 = F(x) thin G(t) . $
+
 = The density criterion <sec-criterion>
 
 Write $H_d = overline(E_d (QQ)) subset.eq E_delta (QQ_p)$ for the closure of the rational points,
@@ -107,6 +177,156 @@ Two consequences. Every positive result below is sharp --- exhibiting the four (
 does not merely suffice for density, it is what density means. And a *failure* to find one twist
 in some class is then evidence for genuine non-density, not merely a failure of the method; this
 is what @sec-cm-resid exploits at $p = 3$.
+
+== The Kummer surface of $E times E'$ <sec-nondiagonal>
+
+Nothing in @sec-setup forced the two factors to be the same curve. Let $g in QQ[x]$ be a second
+cubic with no repeated root, $E' : w^2 = g(s)$, and take the diagonal quotient of $E times E'$.
+The invariants of $-1$ are $x = u$, $t = s$, $y = v w$, so the surface is
+$ X : y^2 = f(x) thin g(t) , $
+the same shape with the second $f$ replaced by $g$. The resolution is unchanged: near a node
+$(e_i, e'_j, 0)$, with $f(e_i) = g(e'_j) = 0$, the equation is $y^2 = c thin xi tau$, an ordinary
+double point whose exceptional conic carries the rational point $(y, xi, tau) = (0, 1, 0)$ and is
+therefore a $PP^1$. So density on $X$ is again density on the K3, and $y |-> -y$ again reaches
+both sheets.
+
+The decomposition survives verbatim, and for the same reason. If $(x, t, y) in X(k)$ with
+$y != 0$ then $g(t) = y^2 slash f(x)$, so $f(x)$ and $g(t)$ lie in the *same* square class. Hence
+$ X(k) = union.sq.big_(d in k^times slash (k^times)^2) (E_d times E'_d)(k) slash plus.minus ,
+  quad E_d : d v^2 = f(u), quad E'_d : d w^2 = g(s) , $
+with $P = (u_1, v_1) in E_d$ and $Q = (u_2, v_2) in E'_d$ producing $(u_1, u_2, d v_1 v_2) in X$.
+
+Write $H_d = overline(E_d (QQ))$ and $H'_d = overline(E'_d (QQ))$, and abbreviate
+$G = E_delta (QQ_p)$, $G' = E'_delta (QQ_p)$.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Criterion.* $X(QQ)$ is dense in $X(QQ_p)$ if and only if for every
+  $delta in QQ_p^times slash (QQ_p^times)^2$ the set
+  $ union.big_(d |-> delta) H_d times H'_d $
+  is dense in $G times G'$.
+
+  #v(2mm)
+  *Single-twist form.* If for each $delta$ there is a *single* rational $d in delta$ with
+  $E_d (QQ)$ dense in $E_d (QQ_p)$ *and* $E'_d (QQ)$ dense in $E'_d (QQ_p)$, then $X(QQ)$ is
+  dense in $X(QQ_p)$. Unlike the case $E = E'$, this is *not* necessary in general --- not even
+  for $p > 2$. See @sec-nondiagonal-nec.
+]
+
+_Proof of the sufficient form._ Let $(x_1, t_1, y_1) in X(QQ_p)$ with $y_1 != 0$, let $delta$ be
+the class of $f(x_1)$, choose $d$ as in the statement and $c in QQ_p^times$ with $g(t_1) = d c^2$.
+Then
+$ B = (t_1, c) in E'_d (QQ_p), quad A = (x_1, thin y_1 slash (d c)) in E_d (QQ_p) , $
+since $d (y_1 slash d c)^2 = y_1^2 slash (d c^2) = f(x_1)$, and $d thin v(A) v(B) = y_1$.
+Approximate $A$ by $A' in E_d (QQ)$ and $B$ by $B' in E'_d (QQ)$, each on its own curve. $qed$
+
+The union form is an equivalence for the reason it was before: the $delta$-parts are open, they
+cover $\{y != 0\}$, the double cover is a local homeomorphism off the $2$-torsion, and
+$union.big_d H_d times H'_d$ is stable under $plus.minus$.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Remark (the usable twists are now an intersection).* The single-twist form needs $E_d (QQ)$ and
+  $E'_d (QQ)$ both non-trivial *for the same $d$*, so the usable classes are
+  $ cal(D)_f inter cal(D)_g , quad cal(D)_f = {"sqfreepart"(f(t_0)) : t_0 in QQ} . $
+  For $E = E'$ the two sets coincide and the remark of @sec-setup is vacuous. Here it is a real
+  constraint, and the first way a pair $(E, E')$ can fail for an uninteresting reason.
+]
+
+=== Necessity, and why it now fails <sec-nondiagonal-nec>
+
+Let $r(-)$ denote the minimal number of topological generators. The difference between the two
+cases is a *generator budget*, and it is the whole story.
+
+#align(center)[
+#table(columns: (auto, 1fr, 1fr), align: (left, left, left), stroke: 0.4pt, inset: 5pt,
+  [], [$E = E'$], [$E != E'$],
+  [one twist $d$ supplies], [a *pair* of points of the *same* group $E_d (QQ)$],
+    [*one* point of $E_d (QQ)$ and *one* of $E'_d (QQ)$],
+  [so one approximation forces], [$H_d supset.eq overline(⟨P', Q'⟩)$],
+    [$H_d supset.eq overline(⟨P'⟩)$ and $H'_d supset.eq overline(⟨Q'⟩)$],
+  [which is all of $G$ when], [$r(G) <= 2$: *always*, odd $p$], [$r(G) = 1$: $G$ *procyclic*],
+)]
+
+#v(2mm)
+
+So the budget drops from two to one, and the argument of @sec-criterion survives only where both
+local groups are procyclic.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Necessity (extended).* Fix $delta$ and suppose $G$ and $G'$ are *both procyclic*. If $X(QQ)$ is
+  dense in the $delta$-part of $X(QQ_p)$, then there is a single rational $d in delta$ with
+  $H_d = G$ and $H'_d = G'$.
+
+  #v(2mm)
+  _Proof._ $Phi(G)$ is open, since $G tilde.equiv ZZ_p times T$ is topologically finitely
+  generated. Choose topological generators $g$ of $G$ and $g'$ of $G'$; as $g$ has infinite order,
+  $(g, g') != -(g, g')$ and the covering is a local homeomorphism there. A rational point of $X$
+  close enough to the image of $(g, g')$ lies in the $delta$-part, hence lifts to
+  $(P', Q') in E_d (QQ) times E'_d (QQ)$ for some rational $d in delta$, with $P' equiv g$ modulo
+  $Phi(G)$ and $Q' equiv g' $ modulo $Phi(G')$. By the Frattini property
+  $overline(⟨P'⟩) = G$ and $overline(⟨Q'⟩) = G'$. $qed$
+]
+
+By @sec-local, $G tilde.equiv ZZ_p times T$ is procyclic exactly when $T$ is *cyclic of order
+prime to $p$* --- which is the condition already isolated there under the name "no single point
+can generate".
+
+*The failure is real, not an artefact of the proof.* Suppose $(ZZ slash 2)^2 subset.eq T$, so
+$G slash Phi(G)$ surjects onto $(ZZ slash 2)^2$, whose three index-$2$ subgroups
+$L_1, L_2, L_3$ satisfy $L_1 union L_2 union L_3 = (ZZ slash 2)^2$. Let $M_i subset.neq G$ be
+their preimages, so $M_1 union M_2 union M_3 = G$ while each $M_i$ is proper. If three twists
+$d_1, d_2, d_3 in delta$ have
+$ H_(d_i) = M_i quad ("index" 2), quad H'_(d_i) = G' , $
+then $union.big_i H_(d_i) times H'_(d_i) = G times G'$ *exactly* --- density holds --- yet no
+single twist has $H_d = G$. The same configuration in the diagonal case gives
+$union.big_i M_i times M_i != G times G$, since $(m_1, m_2)$ with $m_i in L_i$ distinct and
+non-zero is missed: which is precisely why necessity survives there.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Status of this counterexample.* The configuration is a theorem about the groups, but no actual
+  $(E, E', p, delta)$ realising it is exhibited here: that needs a search for three twists of
+  prescribed index-$2$ closure in one class, simultaneously with full closure on the $E'$ side.
+  So what is proved is that *the necessity proof cannot be repaired*, not yet that a
+  counterexample exists.
+]
+
+*Where it can bite.* The relevant primes are those where @sec-local's non-cyclicity already
+occurs. For $f = x^3 + x + 1$ and $p < 200$, computing $tilde(E)_delta (bb(F)_p)$ on
+$y^2 = x^3 + d^2 x + d^3$ for $d = 1$ and $d$ a non-residue gives the complete list --- only the
+unit classes appear, since $[p]$ and $[u p]$ have additive reduction:
+
+#v(2mm)
+#align(center)[
+#table(columns: 3, align: (right, center, center), stroke: 0.4pt + luma(170),
+  inset: (x: 7pt, y: 3pt),
+  table.header([$p$], [class $[1]$], [class $[u]$]),
+  [47],  [$ZZ slash 30 times ZZ slash 2$], [$ZZ slash 18 times ZZ slash 2$],
+  [67],  [$ZZ slash 28 times ZZ slash 2$], [$ZZ slash 40 times ZZ slash 2$],
+  [131], [$ZZ slash 64 times ZZ slash 2$], [$ZZ slash 68 times ZZ slash 2$],
+  [139], [$ZZ slash 42 times ZZ slash 3$], [cyclic],
+  [149], [$ZZ slash 68 times ZZ slash 2$], [$ZZ slash 82 times ZZ slash 2$],
+  [173], [$ZZ slash 86 times ZZ slash 2$], [$ZZ slash 88 times ZZ slash 2$],
+)]
+
+#v(2mm)
+
+At $p = 47$ one has $r(G) = 2$ with $(ZZ slash 2)^2$ present, so the configuration above is
+available; $p = 139$ is the $ell = 3$ analogue, where four index-$3$ subgroups cover. Note this
+list extends the remark of @sec-local, which cites only $p = 47, 67$.
+
+=== Two consequences for the rest of these notes <sec-nondiagonal-cons>
+
+*The $p = 2$ carve-out becomes moot.* The grey box of @sec-criterion explains the restriction
+$p > 2$ by "$G$ needs at most two topological generators", which fails at $2$ when $f$ splits
+completely. With $E != E'$ the threshold is $r = 1$ on *both* curves, and $p$ plays no
+distinguished role at all: $p = 2$ is no worse than $p = 47$. The dichotomy is uniformly
+*procyclic or not*, which is the cleaner statement of the two.
+
+*Sharpness weakens.* The two consequences drawn at the end of @sec-criterion --- that every
+positive result is sharp, and that a failure to find a twist is evidence of genuine non-density
+--- hold in the extended setting only at the *procyclic* $delta$. At the primes tabulated above a
+failed search is no longer evidence of non-density, since the union form may still be satisfied by
+several deficient twists. This matters for how the residual-failure argument of @sec-cm-resid
+would transpose.
 
 == Local structure: testing "$Gamma$ dense in $E_d (QQ_p)$" <sec-local>
 
