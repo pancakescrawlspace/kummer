@@ -70,7 +70,85 @@
        q, q, dimW(E,l,q,12), q, dimW(F,l,q,12),
        if(q==p, "   <- critical place", if(dimW(E,l,q,12)==0 || dimW(F,l,q,12)==0,
           "   beta_q = 0", "   NEEDS CHECKING"))));
-  print("\n(C) beta_p =/= 0 : NOT checked here -- a norm residue symbol at v = l.");}
+  print("\n(C) beta_p =/= 0 : see sweep5 below -- refuted on the ramified classes.");}
+
+
+\\ ============================================ (4) pursuing beta_5, section 9
+\\ Reciprocity runs backwards: a twist on which BOTH local images are full
+\\ proves beta_5 = 0 on that square class.  No psi is needed.
+\\
+\\ At 5 every twist of this pair is additive, so E_d(Q_5) = Z_5 x T with |T|
+\\ dividing c_5, and E_0 is torsion-free pro-5 (no 5-torsion over Q_5), so
+\\ E_1 = 5 E_0.  Hence the image of E_d(Q) in W_5 = E_d(Q_5)/5 is non-zero iff
+\\ v_5(x(c_5 * P)) >= 0 for some generator P.
+
+\\ saturated Mordell-Weil generators
+{gens(E) = my(r = ellrank(E), P = r[4]);
+  if(#P == 0 && r[1] == 1, P = [ellheegner(E)]);
+  if(#P == 0, [], ellsaturation(E,P,40));}
+
+Etw(d)  = ellinit([0,-5*d,0,5*d^2,0]);        \\ twist of E  by d
+Eptw(d) = ellinit([0,0,0,5*d^2,-10*d^3]);     \\ twist of E' by d
+
+{cls5(d) = if(d%5==0, if(kronecker(d/5,5)==1, "[5]", "[5u]"),
+                      if(kronecker(d,5)==1,   "[1]", "[u]"));}
+
+\\ is the image of E(Q) in W_5 non-zero?
+{nonzeroW5(E,g) = my(c = elllocalred(E,5)[4]);
+  for(i=1,#g, my(Q = ellmul(E,g[i],c));
+    if(Q != [0] && valuation(Q[1],5) >= 0, return(1)));
+  0;}
+
+\\ no twist of either curve is ever multiplicative (j is integral and
+\\ twist-invariant): the check behind section 9.2
+{nomult(ds) = my(n=0, bad=0);
+  foreach(ds, d, foreach([Etw(d), Eptw(d)], C,
+    foreach(factor(ellglobalred(C)[1])[,1]~, q,
+      n++; if(elllocalred(C,q)[2] > 4, bad++))));
+  printf("  %d local reductions inspected, %d multiplicative\n", n, bad);}
+
+\\ sweep the four square classes at 5
+{sweep5(B) =
+  my(names = ["[1]","[u]","[5]","[5u]"], cnt = matrix(4,4), wit = List());
+  for(a=1,B, foreach([a,-a], d,
+    if(core(abs(d)) != abs(d), next);
+    my(E = Etw(d), F = Eptw(d));
+    if(ellrank(E)[1] < 1, next);
+    if(ellrank(F)[1] < 1, next);
+    my(g1 = gens(E), g2 = gens(F));
+    if(#g1 == 0 || #g2 == 0, next);
+    my(c = cls5(d), k = if(c=="[1]",1, if(c=="[u]",2, if(c=="[5]",3,4))));
+    my(r1 = nonzeroW5(E,g1), r2 = nonzeroW5(F,g2));
+    cnt[k,1]++; if(r1, cnt[k,2]++); if(r2, cnt[k,3]++);
+    if(r1 && r2, cnt[k,4]++; listput(wit,[d,c]))));
+  printf("\n|d| <= %d, twists with both ranks positive:\n", B);
+  printf("%-5s %7s %10s %11s %7s %9s\n",
+     "class","twists","R_d != 0","R'_d != 0","both","neither");
+  for(k=1,4, printf("%-5s %7d %10d %11d %7d %9d\n", names[k],
+     cnt[k,1], cnt[k,2], cnt[k,3], cnt[k,4],
+     cnt[k,1]-cnt[k,2]-cnt[k,3]+cnt[k,4]));
+  printf("\nwitnesses with both non-zero (these PROVE beta_5 = 0 on their class):\n  %s\n",
+     Vec(wit));}
+
+
+\\ Independent check of the test above: instead of the valuation criterion, ask
+\\ directly whether P is 5-divisible in E_d(Q_5), by solving x([5]Q) = x(P) with
+\\ ellxn and testing for a Q_5-point.  The two must disagree (R != 0 iff NOT
+\\ 5-divisible).
+{div5(E,P,prec) = my(AB = ellxn(E,5), f = AB[1] - P[1]*AB[2]);
+  my(r = polrootspadic(f,5,prec));
+  for(i=1,#r, my(xq = r[i]);
+    if(issquare(xq^3 + E.a2*xq^2 + E.a4*xq + E.a6 + O(5^prec)), return(1)));
+  0;}
+
+{crosscheck(ds) = my(bad = 0, n = 0);
+  foreach(ds, d, foreach([Etw(d), Eptw(d)], E,
+    my(g = gens(E)); if(#g == 0, next);
+    my(c = elllocalred(E,5)[4], P = g[1]);
+    my(says = (valuation(ellmul(E,P,c)[1],5) >= 0), dv = div5(E,P,14));
+    n++; if(says != (1-dv), bad++)));
+  printf("  %d curve/twist pairs cross-checked against 5-divisibility, %d disagreements\n",
+     n, bad);}
 
 \\ ------------------------------------------------------------------- run
 {
@@ -80,5 +158,13 @@ printf("found %d pairs; first three:\n", #S);
 for(k=1, min(3,#S), print("   ", S[k][1], "  ~  ", S[k][2], "   (conductor ", S[k][3], ")"));
 print("\n=== (2),(3) the conductor 200 pair, ell = 5, p = 5 ===");
 report(ellinit([0,-5,0,5,0]), ellinit([0,0,0,5,-10]), 5, 5);
+
+print("\n=== (4) pursuing beta_5 : no twist of either curve is multiplicative ===");
+nomult([-10,15,-30,-35,55,22,23,-41,-42,43,58,59,-6,7,-11,13]);
+print("\n=== (4) the four square classes at 5 ===");
+print("(the document reports |d| <= 220; that takes a few minutes, so 60 here)");
+sweep5(60);
+print("\ncross-check of the W_5 test against direct 5-divisibility:");
+crosscheck([-10,-30,35,22,23]);
 }
 quit

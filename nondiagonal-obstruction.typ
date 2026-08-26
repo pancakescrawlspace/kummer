@@ -32,6 +32,10 @@
   of the criterion and not merely the single-twist form; and $ell$ is no longer capped at $5$ by
   Mazur--Kenku. What is *lost* is that $beta_v$ is no longer alternating, so places with
   $dim W_v = 1$ are no longer free.
+
+  #v(1.5mm)
+  For the worked pair (conductor $200$, $ell = 5$) the obstruction is *refuted* on the two
+  ramified square classes and survives every test on the two unit classes --- @sec-beta5.
 ]
 
 = What has to generalise <sec-what>
@@ -234,6 +238,123 @@ So with $p = ell = 5$ every place except $5$ is harmless, and the entire obstruc
 the single question of whether $beta_5$ --- a pairing of two one-dimensional $bb(F)_5$-spaces ---
 is non-zero.
 
+= Pursuing $beta_5$ <sec-beta5>
+
+Condition (C) can be attacked without ever constructing $psi$. The point is that reciprocity runs
+*backwards*: a twist on which both sides have full local image *proves* $beta_5 = 0$.
+
+== Refutation is decisive <sec-beta5-refute>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Test.* Fix a square class $c$ with $dim W_5 = dim W'_5 = 1$, and suppose $beta_v = 0$ at every
+  $v != 5$. If some $d in c$ has
+  $ R_d != 0 quad "and" quad R'_d != 0 , $
+  then $R_d = W_5$ and $R'_d = W'_5$ (both are non-zero subspaces of lines), and reciprocity gives
+  $beta_5 (W_5, W'_5) = 0$: that is, $beta_5 equiv 0$ on the class $c$, and the mechanism is dead
+  there.
+]
+
+Only the *negative* direction is decisive --- failing to find such a $d$ is evidence, not proof.
+This is the asymmetry of $section 7$ of `openness-covering.typ` again: substituting a sufficient
+condition buys a sound but incomplete search, and here the sound direction happens to point at
+refutation rather than at confirmation.
+
+The test itself is elementary. At $5$ every twist has additive reduction, so
+$E_d (QQ_5) tilde.equiv ZZ_5 times T$ with $|T|$ dividing $c_5$, and $E_0$ is torsion-free
+pro-$5$ (there is no $5$-torsion over $QQ_5$), whence $E_1 = 5 E_0$. Therefore
+
+$ R_d != 0 quad <==> quad P in.not 5 E_d (QQ_5) "for some generator" P
+  quad <==> quad v_5 (x(c_5 dot P)) >= 0 . $
+
+The right-hand test was checked against the left-hand one by a different route --- solving
+$x([5]Q) = x(P)$ over $QQ_5$ with `ellxn` and asking whether a $QQ_5$-point $Q$ exists --- on ten
+curve/twist pairs covering both outcomes: agreement in every case.
+
+== Every place but $5$ is free, for the entire family <sec-beta5-places>
+
+The certificate needs $beta_v = 0$ at all $v != 5$ *for the twists used*, not just for $d = 1$.
+This holds for the whole family at once:
+
+- $j_E = 2^11$ and $j_(E') = 2 dot 3^3 dot 5$ are *integral*, and $j$ is twist-invariant. So both
+  curves have potentially good reduction everywhere and *no quadratic twist of either is ever
+  multiplicative* --- condition (D) is vacuous for the family, not merely for $d = 1$.
+  (Checked: $96$ local reductions over $16$ twists, none multiplicative.)
+- At additive $v tilde.not 5$, including every $q divides d$, $dim W_v = 0$ by @sec-places.
+- At good $v tilde.not 5$, $L_v = H^1_"ur"$ annihilates itself.
+
+== The result <sec-beta5-result>
+
+Searching all squarefree $|d| <= 220$ with $E_d$ and $E'_d$ both of positive rank:
+
+#v(2mm)
+#align(center)[
+#table(columns: 6, align: (left, right, right, right, right, right),
+  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3pt),
+  table.header([class], [twists], [$R_d != 0$], [$R'_d != 0$], [*both*], [neither]),
+  [$[1]$],  [$16$], [$10$], [$6$],  [*$0$*],  [$0$],
+  [$[u]$],  [$19$], [$12$], [$7$],  [*$0$*],  [$0$],
+  [$[5]$],  [$12$], [$10$], [$10$], [$10$],   [$2$],
+  [$[5u]$], [$12$], [$11$], [$11$], [$11$],   [$1$],
+)]
+
+#v(2mm)
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem.* For this pair, $beta_5 equiv 0$ on the ramified square classes $[5]$ and $[5u]$. The
+  obstruction cannot operate there.
+
+  #v(2mm)
+  _Proof._ Two certificates suffice.
+
+  #v(1.5mm)
+  $d = -10$, class $[5u]$: $E_(-10) : y^2 = x^3 + 50x^2 + 500x$ has rank $1$ with generator
+  $(-36, 12)$, type $I I I^ast$ and $c_5 = 2$ at $5$; and
+  $2 dot (-36,12) = (39601 slash 36, thin -8059301 slash 216)$ has $v_5 (x) = 0$, so $R_d = W_5$.
+  $E'_(-10) : y^2 = x^3 + 500x + 10000$ has rank $1$ with generator $(50, -400)$, type $I V^ast$
+  and $c_5 = 3$; and $3 dot (50,-400) = (-14, 16)$ has $v_5 (x) = 0$, so $R'_d = W'_5$.
+
+  #v(1.5mm)
+  $d = -30$, class $[5]$: generators $(-81, 297)$ and $(-26, 368)$, with $c_5 = 2$ and $c_5 = 1$;
+  $2 dot (-81,297) = (52441 slash 4356, thin -80117711 slash 287496)$ and $(-26,368)$ itself both
+  have $v_5 (x) = 0$.
+
+  #v(1.5mm)
+  In each case neither curve has $5$-torsion over $QQ_5$, so $dim W_5 = dim W'_5 = 1$ and the two
+  images are everything. By @sec-beta5-places every place $v != 5$ is free, so reciprocity forces
+  $beta_5 (W_5, W'_5) = 0$. $qed$
+]
+
+== The unit classes, and why the table is better than a $p$-value <sec-beta5-unit>
+
+On $[1]$ and $[u]$ the search found *no* twist with both images non-zero, in $35$ attempts. The
+marginals make this sharp. In class $[1]$, $10$ of the $16$ twists have $R_d != 0$, leaving $6$
+with $R_d = 0$; and exactly $6$ have $R'_d != 0$. Zero overlap therefore means those $6$ coincide
+with those $6$ --- one arrangement out of $binom(16,6) = 8008$. In class $[u]$ it is $12$ and $7$
+out of $19$, one arrangement out of $binom(19,7) = 50388$. Under independence the joint
+probability is
+$ 1 slash 8008 dot 1 slash 50388 approx 2.5 dot 10^(-9) . $
+Note also that $10 + 6 = 16$ and $12 + 7 = 19$ *exactly*, so the perfect exclusive-or --- never
+both, never neither --- is not extra evidence: it is forced by the marginals together with the
+zero overlap. Only "never both" is what $beta_5 != 0$ predicts, since for a non-zero pairing of
+two lines $beta_5 (r,r') = 0$ forces $r = 0$ or $r' = 0$.
+
+The argument is that *the ramified classes are a control*. Same two curves, same generators, same
+saturation, same test, same search: if "both non-zero never happens" were an artefact of the
+method, it would show up in $[5]$ and $[5u]$ too. Instead those classes give both non-zero in
+$21$ of $24$ twists. The unit classes are not merely quiet; they behave in a way the ramified
+classes demonstrably do not.
+
+
+
+== What would settle it <sec-beta5-settle>
+
+Since $L_5$ is maximal isotropic in the $2$-dimensional $H^1 (QQ_5, E[5])$,
+$ beta_5 equiv 0 quad <==> quad psi_* L'_5 = L_5 $
+as lines in a plane. That is the whole question, and answering it directly needs an explicit
+Galois-equivariant $psi : E'[5] -> E[5]$ --- an intertwiner of two mod-$5$ representations, living
+over a division field of degree dividing $|"GL"_2 (bb(F)_5)| = 480$. That computation is not
+attempted here.
+
 = What is and is not established <sec-status>
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
@@ -244,10 +365,15 @@ is non-zero.
   $"End"$ replaced by $"Hom"$, and none of them used $E = E'$.
 
   #v(1.5mm)
-  *Not proved here.* Condition (C) --- $beta_5 equiv.not 0$ for the conductor-$200$ pair --- is
-  *not* verified. That is a norm-residue symbol computation at $v = ell = 5$ of the kind
-  `level3.gp` performs for $ell = 3$, and it has not been done. So the example establishes that
-  (A), (B), (D), (E) are simultaneously satisfiable, not that this pair obstructs anything.
+  *Settled by @sec-beta5.* Condition (C) *fails* on the ramified classes $[5]$ and $[5u]$:
+  $beta_5 equiv 0$ there, proved by exhibiting twists on which both local images are full. The
+  mechanism is dead on half the classes for this pair.
+
+  #v(1.5mm)
+  *Still open.* Whether $beta_5 equiv.not 0$ on the unit classes $[1]$ and $[u]$. The evidence is
+  strong --- $0$ of $35$ twists with both images non-zero, against $21$ of $24$ in the ramified
+  classes under the identical test --- but it is evidence. Settling it means deciding whether
+  $psi_* L'_5 = L_5$, which needs an explicit intertwiner of the two mod-$5$ representations.
 
   #v(1.5mm)
   *Not chased.* Whether $psi$ can be taken *symplectic* (Weil-pairing preserving) or only
