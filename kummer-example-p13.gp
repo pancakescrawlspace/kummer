@@ -77,6 +77,61 @@ Epd(d) = ellinit([0,-3*d,0,2*d^2,0]);
      L2[2], p, L2[4], #polrootspadic(elldivpol(F,p),p,8), g2,
      vecmin(apply(P->valuation(ellmul(F,P,4)[1],p),g2)));}
 
+
+\\ ================================================================ p = 2
+\\ Every twist is additive at 2 (type III for d odd, I_2* for d even), so
+\\ E_d(Q_2) is PRO-2 and Phi(G) = 2G.  Hence  H_d = G  <=>  E_d(Q) surjects
+\\ onto G/2G = (Z/2)^3, tested through the local 2-descent map
+\\    mu(P) = (x-e1, x-e2)  in  (Q_2*/sq)^2 = F_2^6.
+
+\\ class of a in Q_2^*/(Q_2^*)^2 as a vector in F_2^3
+{cl2(a) = my(v = valuation(a,2), u = lift(Mod(a/2^v,8)));
+  concat([v%2], if(u==1,[0,0], if(u==3,[1,0], if(u==5,[0,1],[1,1]))));}
+{issq2(a) = a != 0 && valuation(a,2)%2 == 0 && lift(Mod(a/2^valuation(a,2),8)) == 1;}
+{sqc2(d) = my(v = valuation(d,2), u = lift(Mod(d/2^v,8))); 2^(v%2)*u;}
+
+{mu(P,e) = my(e1 = e[1], e2 = e[2], e3 = e[3]);
+  if(P == [0], return([0,0,0,0,0,0]));
+  my(x = P[1]);
+  if(x == e1, return(concat(cl2((e1-e2)*(e1-e3)), cl2(e1-e2))));
+  if(x == e2, return(concat(cl2(e2-e1), cl2((e2-e1)*(e2-e3)))));
+  if(x == e3, return(concat(cl2(e3-e1), cl2(e3-e2))));
+  concat(cl2(x-e1), cl2(x-e2));}
+
+{dimsp(V) = if(#V == 0, 0, matrank(Mod(matrix(#V,6,i,j,V[i][j]),2)));}
+
+\\ local image of E(Q_2)/2, by sampling rational x with f(x) a square in Q_2
+{locim(e) = my(V = List());
+  for(i=1,3, listput(V, mu([e[i],0],e)));
+  for(n=-40,300, for(m=1,20, my(x = n/m);
+    if(x != e[1] && x != e[2] && x != e[3] && issq2((x-e[1])*(x-e[2])*(x-e[3])),
+       listput(V, mu([x,0],e)))));
+  Vec(V);}
+
+\\ image of the rational points: 2-torsion together with MW generators
+{ratim(e,g) = concat([mu([e[i],0],e) | i <- [1,2,3]], [mu(P,e) | P <- g]);}
+
+\\ certificate for one twist at p = 2
+{cert2(d) =
+  my(E = Ed(d), F = Epd(d), e = [0,5*d,7*d], ep = [0,d,2*d]);
+  my(L1 = elllocalred(E,2), L2 = elllocalred(F,2), g1 = gens(E), g2 = gens(F));
+  if(#g1 == 0 || #g2 == 0, return(0));
+  my(a = dimsp(ratim(e,g1)), la = dimsp(locim(e)));
+  my(b = dimsp(ratim(ep,g2)), lb = dimsp(locim(ep)));
+  printf("%5d [%2d] | %-5s c_2=%d rk %d %-30s %d/%d | %-5s c_2=%d rk %d %-26s %d/%d  %s\n",
+    d, sqc2(d), L1[2], L1[4], #g1, Str(g1), a, la,
+                L2[2], L2[4], #g2, Str(g2), b, lb,
+    if(a == la && b == lb, "CERTIFIES", ""));
+  (a == la && b == lb);}
+
+\\ sweep the eight classes
+{sweep2(L) =
+  foreach([1,3,5,7,2,6,10,14], c,
+    my(ds = select(d -> sqc2(d) == c, L), ok = 0);
+    printf("\n=== square class [%d] at p = 2\n", c);
+    foreach(ds, d, ok += cert2(d));
+    printf("  --> %d of %d twists certify\n", ok, #ds));}
+
 \\ ------------------------------------------------------------------- run
 {
 print("twists with both ranks positive, |d| <= 60:");
@@ -86,5 +141,8 @@ report(2,  [6]);             \\ class [2]  : single twist, via rank 2
 report(2,  [-31,-6,41]);     \\ class [2]  : the three-twist pencil
 reportram("[13]", 13);
 reportram("[26]", -78);
+
+print("\n\n========================= p = 2 =========================");
+sweep2(search(160));
 }
 quit

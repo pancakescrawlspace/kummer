@@ -9,11 +9,11 @@
 )
 
 #align(center)[
-  #text(size: 16pt, weight: "bold")[A worked non-diagonal example at $p = 13$]
+  #text(size: 16pt, weight: "bold")[A worked non-diagonal example at $p = 13$ and $p = 2$]
   #v(2mm)
   #text(size: 10pt)[The Kummer surface of $E times E'$ for
-  $y^2 = x(x-5)(x-7)$ and $v^2 = u(u-1)(u-2)$: covering certificates for all four
-  square classes, and one genuine three-twist pencil]
+  $y^2 = x(x-5)(x-7)$ and $v^2 = u(u-1)(u-2)$: covering certificates for every square class at a
+  prime of good reduction and at a prime of bad reduction, and one genuine three-twist pencil]
   #v(1mm)
   #text(size: 9pt, style: "italic")[worked from scratch in `kummer-example-p13.gp`;
   companion to `openness-covering.typ`]
@@ -30,6 +30,13 @@
   $T tilde.equiv (ZZ slash 4)^2$ and $T slash V tilde.equiv (ZZ slash 2)^2$: there a rank-$1$
   twist can only reach an index-$2$ subgroup, and three of them are needed --- the Bose--Burton
   pencil of $section 8.2$ of the companion, realised arithmetically.
+
+  #v(1.5mm)
+  At the bad prime $p = 2$ (@sec-p2) there are *eight* classes and every twist is additive, which
+  makes $G$ pro-$2$ and the test *exact*: $H_d = G$ if and only if $E_d (QQ)$ surjects onto
+  $G slash 2G tilde.equiv (ZZ slash 2)^3$. A single twist again suffices in every class ---
+  $d = -15, -21, 29, 39, -78, 6, -6, 30$ --- but only $25$ of the $64$ available twists certify,
+  against almost all of them at $13$.
 ]
 
 = The two curves <sec-curves>
@@ -242,12 +249,136 @@ escapes by supplying two generators at once.
   concrete instance.
 ]
 
+= Bad reduction: the same surfaces at $p = 2$ <sec-p2>
+
+$2$ is a bad prime for both curves ($N_E = 2^5 dot 5 dot 7$, $N_(E') = 2^5$), and there are now
+*eight* square classes, with representatives $1, 3, 5, 7, 2, 6, 10, 14$ --- a squarefree $d$ lies
+in the class of $2^(v_2 (d)) dot (d slash 2^(v_2 (d)) mod 8)$.
+
+== Every twist is additive, so $G$ is pro-$2$ <sec-p2-local>
+
+The computation is *easier* here than at $13$, for a reason worth isolating.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Local types.* For odd $d$ both $E_d$ and $E'_d$ have type $I I I$ with $c_2 = 2$; for even $d$
+  both have type $I_2^ast$ with $c_2 = 4$. Either way the reduction is *additive*, so
+  $tilde(E)^"ns" (bb(F)_2) tilde.equiv bb(F)_2^+$ has order $2$ and
+  $ |E_d (QQ_2) slash E_1 (QQ_2)| = c_2 dot 2 in \{4, 8\} , $
+  a $2$-group. Since $E_1 (QQ_2)$ is pro-$2$, *$G = E_delta (QQ_2)$ is a pro-$2$ group* --- there
+  is no prime-to-$2$ part at all.
+]
+
+At $p = 13$ what made the analysis tractable was the splitting $H_d = 13^a ZZ_13 times S_d$ into
+pro-$13$ and prime-to-$13$ parts. Here that splitting is vacuous, and something better takes its
+place: for an abelian pro-$2$ group $Phi(G) = 2 G$, so the Frattini property gives an *exact*
+criterion with no filtration levels to compute.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *The test at $2$.*
+  $ H_d = G quad <==> quad E_d (QQ) --> G slash 2 G "is surjective" . $
+  And $|G slash 2G| = |E_d [2](QQ_2)| dot |2|_2^(-1) = 4 dot 2 = 8$, so
+  $G slash 2G tilde.equiv (ZZ slash 2)^3$.
+]
+
+Note in passing what that says: $G$ needs *three* topological generators. This is exactly the
+configuration the grey box of $section 2$ of the main notes flags --- $f = x(x-5)(x-7)$ splits
+completely over $QQ_2$ --- so at $p = 2$ these groups are as far from procyclic as they get, and
+by $section 2.1.1$ necessity fails comprehensively. Only sufficiency is in question below.
+
+== The computable model <sec-p2-mu>
+
+$G slash 2G$ is computed by the local $2$-descent map. For $E_d : y^2 = (x-e_1)(x-e_2)(x-e_3)$
+with $e = (0, 5d, 7d)$ put
+$ mu(P) = (x - e_1, thin x - e_2) in (QQ_2^times slash (QQ_2^times)^2)^2 tilde.equiv bb(F)_2^6 , $
+with the usual convention at the $2$-torsion: the vanishing coordinate is replaced by the product
+of the other two differences, so
+$ mu(e_1,0) = ((e_1 - e_2)(e_1 - e_3), thin e_1 - e_2), quad
+  mu(e_2,0) = (e_2 - e_1, thin (e_2 - e_1)(e_2 - e_3)), $
+and similarly at $e_3$. This $mu$ is injective on $G slash 2 G$. Represent
+$QQ_2^times slash (QQ_2^times)^2 tilde.equiv (ZZ slash 2)^3$ by
+$a = 2^v u |-> (v mod 2, thin u mod 8)$.
+
+The rational image is then the span of $mu$ on the three $2$-torsion points together with
+saturated Mordell--Weil generators; the local image is obtained by sampling $x in QQ$ of small
+height with $(x-e_1)(x-e_2)(x-e_3)$ a square in $QQ_2$. Two checks: $mu$ is additive on the
+torsion (all nine pairs), and for $d = 1$ the sampled local image has dimension exactly $3$ over
+$873$ points --- the value the formula predicts.
+
+== The eight certificates <sec-p2-cert>
+
+In every class a single twist suffices. Here $"rk"$ is the Mordell--Weil rank and the last column
+is $dim$ (rational image) of $dim$ (local image) in $G slash 2G$.
+
+#v(2mm)
+#align(center)[
+#set text(size: 9pt)
+#table(columns: 8, align: (center, right, center, center, left, center, center, center),
+  stroke: 0.4pt + luma(170), inset: (x: 5pt, y: 3pt),
+  table.header([class], [$d$], [type], [$c_2$], [generators of $E_d (QQ)$], [$dim$],
+               [generators of $E'_d (QQ)$], [$dim$]),
+  [$[1]$],  [$-15$], [$I I I$],     [$2$], [$(-84,126), thin (21,504)$],  [$3 slash 3$],
+            [$(-24,36)$],           [$3 slash 3$],
+  [$[3]$],  [$-21$], [$I I I$],     [$2$], [$(15,540)$],                 [$3 slash 3$],
+            [$(-24,36)$],           [$3 slash 3$],
+  [$[5]$],  [$29$],  [$I I I$],     [$2$], [$(140,210)$],                [$3 slash 3$],
+            [$(1 slash 169, thin 6930 slash 2197)$], [$3 slash 3$],
+  [$[7]$],  [$39$],  [$I I I$],     [$2$], [$(105,1260), thin (315,1260)$], [$3 slash 3$],
+            [$(3,90)$],             [$3 slash 3$],
+  [$[2]$],  [$-78$], [$I_2^ast$],   [$4$], [$(-507,1521)$],              [$3 slash 3$],
+            [$(-81,135)$],          [$3 slash 3$],
+  [$[6]$],  [$6$],   [$I_2^ast$],   [$4$], [$(60,180), thin (6,-72)$],   [$3 slash 3$],
+            [$(3,9)$],              [$3 slash 3$],
+  [$[10]$], [$-6$],  [$I_2^ast$],   [$4$], [$(-36,36)$],                 [$3 slash 3$],
+            [$(-9,9)$],             [$3 slash 3$],
+  [$[14]$], [$30$],  [$I_2^ast$],   [$4$], [$(60,900)$],                 [$3 slash 3$],
+            [$(10,100)$],           [$3 slash 3$],
+)]
+
+#v(2mm)
+
+In each row both rational images fill $G slash 2G$ and $G' slash 2G'$, so $H_d = G$ and
+$H'_d = G'$ by Frattini, and $H_d times H'_d$ is the whole of $frak(g)$.
+
+== $p = 2$ is genuinely tighter <sec-p2-tight>
+
+The single-twist answer should not suggest the condition is cheap. Of the $64$ twists with both
+ranks positive, only *$25$* certify --- the other $39$ have a rational image of dimension $2$ out
+of $3$ on one side or the other. By class:
+
+#v(2mm)
+#align(center)[
+#table(columns: 9, align: center, stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3pt),
+  table.header([class], [$[1]$], [$[3]$], [$[5]$], [$[7]$], [$[2]$], [$[6]$], [$[10]$], [$[14]$]),
+  [twists available], [$12$], [$8$], [$10$], [$12$], [$8$], [$7$], [$4$], [$3$],
+  [of which certify], [$4$],  [$5$], [$5$],  [$4$],  [$1$], [$3$], [$2$],  [$1$],
+)]
+
+#v(2mm)
+
+Classes $[2]$ and $[14]$ come down to a single usable twist each out of eight and three. Compare
+$p = 13$, where the failures were rare and confined to the level test. Two effects compound: there
+are eight classes rather than four, and the target $G slash 2G$ is three-dimensional rather than
+--- as the prime-to-$p$ quotient at $13$ effectively was --- a group the rational $2$-torsion
+already fills most of.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *What is not done here.* The certificates above are exact: surjectivity onto $G slash Phi(G)$
+  plus Frattini gives $H_d = G$ outright. But the failing twists cannot be assembled into a
+  multi-twist cover on this data alone. Covering $frak(g)$ is decided in $frak(g) slash 2 frak(g)$
+  only when every $H_d$ has index $2$, and a twist whose image is a hyperplane of $G slash 2G$
+  need not itself have index $2$ in $G$ --- it need not contain $2G$. Establishing a genuine
+  pencil at $p = 2$, in the style of @sec-pencil, would need control of $H_d$ deeper than its
+  Frattini image.
+]
+
 = What is and is not proved <sec-rigour>
 
 The covering claims are *unconditional*. Actual rational points are exhibited, their images
 computed, and a subgroup of $H_d$ covering implies $H_d$ covers; failing to saturate could only
 make $S_d$ larger, never smaller. The ranks quoted are `ellrank` lower bounds, which is the
-direction that matters here.
+direction that matters here. At $p = 2$ the certificates are exact in a stronger sense: they
+establish $H_d = G$ outright, by surjectivity onto $G slash Phi(G)$ and the Frattini property, so
+no filtration level has to be measured at all.
 
 Two claims do depend on more. That the pencil twists have $[T : S_d] = 2$ *exactly* uses
 `ellsaturation` at primes $<= 40$; and the assertion in @sec-why that no rank-$1$ twist in class
