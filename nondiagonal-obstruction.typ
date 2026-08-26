@@ -102,7 +102,7 @@ usually *zero*:
 ]
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
-  *But CM twist pairs are excluded.* If $E'$ is a non-trivial sextic (or quartic) twist of $E$ ---
+  *CM twist pairs are pushed to $ell = 2$.* If $E'$ is a non-trivial sextic (or quartic) twist of $E$ ---
   in particular any pair of $j = 0$ or $j = 1728$ curves that are twists of one another --- then
   (A) fails at *every odd $ell$*. Twisting acts through $"Aut"(E) = mu_6$ or $mu_4$, and
   $zeta$ acts trivially on $E[ell]$ only when $ell$ divides $zeta - 1$ in $ZZ[zeta_6]$ or $ZZ[i]$;
@@ -110,8 +110,15 @@ usually *zero*:
   $3 divides.not zeta_3 - 1$, the only such $zeta$ is $-1$, at $ell = 2$. So the map to
   $"Aut"(E[ell])$ is injective for odd $ell$ and $E[ell] tilde.equiv.not E'[ell]$. The criterion
   wants curves congruent *without* being geometrically related --- different $j$, congruent by
-  accident of $X_E (ell)$, as in @sec-example. Worked out in
-  $section 7$ of `kummer-example-j0.typ`.
+  accident of $X_E (ell)$, as in @sec-example.
+
+  #v(1.5mm)
+  That does *not* rule such pairs out, because $ell = 2$ survives: $-1$ acts trivially on $E[2]$,
+  and a sextic twist whose quadratic part is the whole obstruction leaves $E[2]$ alone. At
+  $ell = 2$ the criterion loses the clean bookkeeping of @sec-places --- the places $q divides d$
+  are no longer forced free --- but $beta_q$ can be computed there instead of bounded, and in
+  $section 7$ of `kummer-example-j0.typ` it vanishes at every such $q$ while $beta_2 != 0$ on
+  half the square classes. So the $ell = 2$ case is *harder*, not closed.
 ]
 
 This is a genuinely weaker demand than decomposability. Decomposable $E[ell]$ forces the mod-$ell$

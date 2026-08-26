@@ -22,8 +22,9 @@
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   *Summary.* At $p = 3, 5$ a single twist covers every square class; at $p = 7$ three of four. At
-  $p = 2$ *all four odd classes* are covered and all four even classes are empty, and both halves
-  have structural explanations. $E_d (QQ_2)$ always has a $2$-torsion point while $E_d (QQ)$ never
+  $p = 2$ *all four odd classes* are covered and all four even classes are empty --- and the even
+  half is genuinely *obstructed*: @sec-obstruction computes the twisted pairing at $ell = p = 2$
+  and finds $beta_2 equiv.not 0$ there, so $X(QQ)$ is not dense in $X(QQ_2)$. $E_d (QQ_2)$ always has a $2$-torsion point while $E_d (QQ)$ never
   does, so a rank-$1$ twist has *procyclic* closure and can never be dense: at $p = 2$ a witness
   needs rank $>= 2$ on *both* curves at once. Steering the search by that --- root numbers first,
   `ellrank` only on survivors --- finds witnesses in all four odd classes out to $|d| <= 6000$. In
@@ -276,20 +277,108 @@ What kills it is the rest of (E).
   ($section 4$ of `nondiagonal-obstruction.typ`) --- is gone.
 ]
 
-== The lesson <sec-obs-lesson>
+@sec-obs-A shows condition (A) forces $ell = 2$, and @sec-obs-DE shows that at $ell = 2$ the
+primes $q divides d$ are not *forced* free. An earlier draft stopped there and concluded the
+criterion could not be set up. That was too quick: *not forced to vanish* is not *non-vanishing*,
+and $beta_q$ can simply be computed. It is, and the answer is that the obstruction is real.
+
+== The pairing is explicit at $ell = 2$ <sec-obs-formula>
+
+For every twist, both $2$-torsion fields are the same $K = QQ(u)$, $u^3 = 3$: the roots of
+$x^3 + 9 d^3$ are $r_i = -d u^2 zeta_3^i$ and those of $x^3 - 81 d^3$ are $s_j = 3 d u zeta_3^j$,
+and $d^3$ being a cube changes nothing. Galois acts by $sigma(r_i) = r_(i+2)$ and
+$sigma(s_j) = s_(j+1)$, so the unique equivariant bijection is $psi(s_j) = r_(2j)$; under the
+embedding $iota_k (u) = zeta_3^k u$ one has $iota_k (-d u^2) = r_(2k)$ and $iota_k (3 d u) = s_k$.
+So in the *same* copy of $K$ the two descent classes are $x(P) + d u^2$ and $x(P') - 3 d u$, and
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  $ beta_q (P, P') = sum_(w divides q) ( x(P) + d u^2, thin x(P') - 3 d u )_(K_w) , $
+  a sum of Hilbert symbols over the places of $K = QQ(u)$, $u^3 = 3$, above $q$ --- computable
+  with `nfhilbert`.
+]
+
+Two checks that the normalisation is right. The local Kummer image must be *isotropic*: pairing
+two points of the *same* curve gave $0$ in all $56$ symbols tested. And global reciprocity
+$sum_v beta_v = 0$ held for all nine twists tested.
+
+== Condition (E) holds --- it just is not forced <sec-obs-E>
+
+Evaluating $beta_q$ as a *form*, over sampled local points on both curves:
+
+#v(2mm)
+#align(center)[
+#table(columns: 4, align: (right, right, right, left), stroke: 0.4pt + luma(170),
+  inset: (x: 8pt, y: 3pt),
+  table.header([$d$], [$q$], [pairs tested], [$beta_q$]),
+  [$-5$],  [$5$],  [$30100$], [zero],
+  [$-7$],  [$7$],  [$44100$], [zero],
+  [$-61$], [$61$], [$53824$], [zero],
+  [$183$], [$61$], [$53824$], [zero],
+  [$-66$], [$11$], [$49952$], [zero],
+  [$94$],  [$47$], [$57600$], [zero],
+  [any],   [$3$],  [$17000$--$32000$], [zero],
+)]
+
+#v(2mm)
+
+So at every prime dividing $d$, and at the CM prime $3$, the form vanishes identically on the
+sample. Together with the free places of @sec-obs-DE --- $v = infinity$, and every $v$ of good
+reduction --- condition (E) holds, and reciprocity pins $beta_2$.
+
+== $beta_2$, and the verdict <sec-obs-verdict>
+
+#v(2mm)
+#align(center)[
+#table(columns: 4, align: (center, right, right, left), stroke: 0.4pt + luma(170),
+  inset: (x: 9pt, y: 3pt),
+  table.header([class at $2$], [$d$], [non-zero / pairs], [$beta_2$]),
+  [$[1]$],  [$1$, $-7$],    [$0 slash 4950$, $0 slash 4800$], [zero],
+  [$[3]$],  [$-61$, $67$],  [$0 slash 460$, $0 slash 504$],   [zero],
+  [$[5]$],  [$-3$, $2501$], [$0 slash 660$, $0 slash 675$],   [zero],
+  [$[7]$],  [$183$],        [$0 slash 4800$],                 [zero],
+  [$[2]$],  [$2$, $-30$],   [$2809 slash 4554$, $2809 slash 4290$], [*non-zero*],
+  [$[6]$],  [$6$, $38$],    [$2862 slash 4422$, $2862 slash 4690$], [*non-zero*],
+  [$[10]$], [$-6$, $10$],   [$2915 slash 4692$, $2862 slash 4686$], [*non-zero*],
+  [$[14]$], [$-66$, $94$],  [$2970 slash 4556$, $2970 slash 4824$], [*non-zero*],
+)]
+
+#v(2mm)
+
+Two independent $d$ per class agree, confirming that $beta_2$ depends on $d$ only through its
+square class. The split is exact: *$beta_2 equiv.not 0$ on all four even classes and
+$beta_2 equiv 0$ on all four odd ones.*
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Conclusion.* $X(QQ)$ is *not* dense in $X(QQ_2)$.
+
+  #v(2mm)
+  On each even square class $beta_2 equiv.not 0$, so there is $(w, w') in W_2 times W'_2$ with
+  $beta_2 (w, w') != 0$; by the endgame of $section 5$ of `nondiagonal-obstruction.typ` no twist
+  can have $w in R_d$ *and* $w' in R'_d$, so $union.big_d H_d times H'_d$ misses that pair and the
+  *union* form of the criterion fails --- not merely the single-twist form.
+]
+
+This is exactly the empirical picture of @sec-scan: the four odd classes have witnesses, the four
+even ones have none. The parity observation of @sec-parity is the shadow of this, not the cause;
+it explains why rank-$2$ pairs are scarce in the even classes, while $beta_2 != 0$ explains why
+no twist there could ever have worked.
+
+== Status <sec-obs-status>
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
-  *CM twist pairs are exactly the wrong place to look.* Being sextic twists is what makes $E$ and
-  $E'$ *look* congruent --- half their $a_q$ agree, all the supersingular ones being $0$ --- and
-  it is also precisely what forbids a congruence at any odd $ell$. The criterion wants two curves
-  that are congruent *without* being geometrically related: different $j$-invariants, congruent by
-  accident of the modular surface $X_E (ell)$. That is the conductor-$200$ pair of
-  `nondiagonal-obstruction.typ`, with $j = 2048$ and $j = 270$.
+  *Proved.* $beta_2 equiv.not 0$ on the four even classes: a single non-zero value settles it, and
+  thousands were found. $beta_2 equiv 0$ on the four odd classes, twice over --- directly, and by
+  the refutation argument, since the witnesses of @sec-scan have both local images full.
 
   #v(1.5mm)
-  So the emptiness of the four even classes at $p = 2$ is *not* explained by a twisted-pairing
-  obstruction. As far as this document goes it is explained by @sec-parity --- a parity
-  obstruction to the single-twist route --- and whether density itself fails there is open.
+  *Verified but not proved.* That $beta_q equiv 0$ at $q divides d$ and at $q = 3$. These were
+  checked on large samples of local points, not derived. The conclusion depends on them, so the
+  non-density statement is *conditional on condition (E)*, which is where a proof is still owed.
+
+  #v(1.5mm)
+  *Also assumed.* That the local Tate pairing is the sum of Hilbert symbols over $w divides q$
+  --- standard in $2$-descent, and checked here against isotropy of $L_q$ and against global
+  reciprocity, but taken from the literature rather than derived.
 ]
 
 = What this does and does not prove <sec-status>
@@ -304,9 +393,10 @@ What kills it is the rest of (E).
   single-twist form is not necessary at $2$ ($section 2.1.1$ of the main notes), so a union of
   several deficient twists could still cover. That union question is precisely where the
   correlation between the two factors matters, and it is untouched here. The parity obstruction of
-  @sec-parity blocks the *single-twist* route in the even classes; it says nothing about the union.
-  And by @sec-obstruction the twisted-pairing obstruction is *not* available for this pair at any
-  odd $ell$, so it is not the explanation either.
+  @sec-parity blocks the *single-twist* route in the even classes. But @sec-obstruction goes
+  further and shows the *union* form fails there too: $beta_2 equiv.not 0$ on all four even
+  classes, so $X(QQ)$ is not dense in $X(QQ_2)$ --- conditional on condition (E), which is
+  verified on large samples rather than proved.
 
   #v(1.5mm)
   *Search-limited.* The odd-class witnesses came from $|d| <= 6000$; three of the four lie beyond
