@@ -152,6 +152,40 @@ def _subspaces(d, l, dim):
         if len(S) == l ** dim: out.add(frozenset(S))
     return list(out)
 
+def _index_l_subgroups(mods, l):
+    V, out = elems(mods), set()
+    for r in (1, 2, 3):
+        for g in itertools.combinations(V, r):
+            S = gen(g, mods)
+            if len(V) // len(S) == l: out.add(S)
+    return sorted(out, key=sorted)
+
+def check_modl():
+    """The reduction of 8.2 for g not elementary abelian: every index-l subgroup
+    contains l*g, so the question descends to V = g/lg, and minimal covers are
+    still exactly the pencils."""
+    print("\nreduction mod l*g, for g not elementary abelian")
+    print(f"  {'g':<14}{'l':>2}{'|V|':>6}{'d':>3}{'#idx-l':>8}{'min':>5}{'l+1':>5}"
+          f"{'#minimal':>10}  pencils  A>=lg")
+    cases = [([4,2],2), ([12,2],2), ([27,3],3), ([8,4,2],2), ([9,3,3],3)]
+    for mods, l in cases:
+        G = frozenset(elems(mods)); N = len(G)
+        lg = frozenset(tuple((l*x[j]) % mods[j] for j in range(len(mods))) for x in elems(mods))
+        A = _index_l_subgroups(mods, l)
+        d = 0
+        while l ** d < N // len(lg): d += 1
+        mn, minimal = None, []
+        for k in range(1, len(A) + 1):
+            hit = [C for C in itertools.combinations(A, k) if frozenset().union(*C) == G]
+            if hit: mn, minimal = k, hit; break
+        idx2 = {C[0] & C[1] for C in itertools.combinations(A, 2)
+                if N // len(C[0] & C[1]) == l*l and lg <= (C[0] & C[1])}
+        pencils = [frozenset(S for S in A if U <= S) for U in idx2]
+        print(f"  {'x'.join(map(str,mods)):<14}{l:>2}{N//len(lg):>6}{d:>3}{len(A):>8}"
+              f"{mn:>5}{l+1:>5}{len(minimal):>10}"
+              f"{'  yes' if all(frozenset(C) in pencils for C in minimal) else '   NO':>9}"
+              f"{'    yes' if all(lg <= S for S in A) else '     NO'}")
+
 def check_blocking():
     """Minimum number of index-ell subgroups covering F_ell^d is ell+1, and every
     minimal cover is the pencil of hyperplanes through a codimension-2 subspace."""
@@ -216,5 +250,6 @@ if __name__ == "__main__":
     check_criteria()
     check_sigma()
     check_blocking()
+    check_modl()
     check_neumann()
     check_pool()

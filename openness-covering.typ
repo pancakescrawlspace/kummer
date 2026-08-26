@@ -340,10 +340,19 @@ exceeding $m$, they cannot cover, whatever else is true. (ii) gives the matching
 how many twists could ever be needed.
 
 When all the $A_i$ have the same prime index $ell$ there is a sharper statement, which
-classifies the minimal covers and not merely their size. Suppose $frak(g)$ is elementary abelian,
-$V = bb(F)_ell^d$, so that the subgroups of index $ell$ are exactly the linear hyperplanes
-$A_i = ker chi_i$ with $chi_i in V^* without \{0\}$. Each $chi_i$ is determined up to scalar, so
-it is a *point* $[chi_i]$ of the dual projective space $PP(V^*) = "PG"(d-1, ell)$.
+classifies the minimal covers and not merely their size. No hypothesis on $frak(g)$ is needed:
+the question descends to a vector space of its own accord. Every subgroup of index $ell$ contains
+$ell frak(g)$, so putting
+$ V := frak(g) slash ell frak(g) , quad d := dim_(bb(F)_ell) V $
+--- finite, since $frak(g)$ is topologically finitely generated --- the union covers $frak(g)$ if
+and only if the images cover $V$, and $A |-> A slash ell frak(g)$ is a bijection from the
+index-$ell$ subgroups of $frak(g)$ onto the hyperplanes of $V$. This is the mod-$ell$ Frattini
+quotient, and $d$ is the same invariant that governs fact (ii), where $sigma(frak(g)) = q + 1$
+for $q$ the least prime with $d_q >= 2$.
+
+So the subgroups in question are the $A_i = ker chi_i$ with $chi_i in V^* without \{0\}$. Each
+$chi_i$ is determined up to scalar, so it is a *point* $[chi_i]$ of the dual projective space
+$PP(V^*) = "PG"(d-1, ell)$.
 
 Now dualise the covering condition. For $x != 0$,
 $ x in A_i quad <==> quad chi_i (x) = 0 quad <==> quad [chi_i] in x^perp , $
@@ -363,8 +372,9 @@ necessarily the point set of a *line* of $PP(V^*)$.
 The line lives in the *dual* space, which is the point that needs saying: its points are not
 points of $V$, they *are* the subgroups. Unwinding, a line of $PP(V^*)$ is a $2$-dimensional
 $W subset.eq V^*$, and its $ell + 1$ points are exactly the hyperplanes of $V$ containing
-$U = W^perp$, a subgroup of *codimension $2$*. Such a family is a *pencil*, and it does cover,
-because $V slash U tilde.equiv bb(F)_ell^2$ is covered by its $ell + 1$ lines.
+$U = W^perp$, a subspace of *codimension $2$*. Such a family is a *pencil*, and it does cover,
+because $V slash U tilde.equiv bb(F)_ell^2$ is covered by its $ell + 1$ lines. Pulled back to
+$frak(g)$, this $U$ is an index-$ell^2$ subgroup containing $ell frak(g)$.
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   *So, concretely.* At least $ell + 1$ subgroups of index $ell$ are needed, and the covers using
@@ -377,7 +387,11 @@ because $V slash U tilde.equiv bb(F)_ell^2$ is covered by its $ell + 1$ lines.
   #v(1.5mm)
   Checked exhaustively for $ell = 2, 3$ and $d = 2, 3$: the minimum is $ell + 1$ in each case, and
   every minimal cover is a pencil --- there are $7$ of them for $ell = 2, d = 3$ and $13$ for
-  $ell = 3, d = 3$, one per codimension-$2$ subspace.
+  $ell = 3, d = 3$, one per codimension-$2$ subspace. The same holds verbatim when $frak(g)$ is
+  not elementary abelian, the reduction modulo $ell frak(g)$ doing the work: checked on
+  $ZZ slash 4 times ZZ slash 2$, $ZZ slash 12 times ZZ slash 2$, $ZZ slash 27 times ZZ slash 3$,
+  $ZZ slash 8 times ZZ slash 4 times ZZ slash 2$ and $ZZ slash 9 times (ZZ slash 3)^2$ --- every
+  index-$ell$ subgroup does contain $ell frak(g)$, and the counts match $"PG"(d-1, ell)$ exactly.
 ]
 
 == Two representations, and the check each affords <sec-check-rep>
