@@ -435,12 +435,67 @@ What the check did buy is a much smaller open set. Splitting the primes $q divid
 #v(2mm)
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
-  *What is actually left.* Only $q divides d$ with $q equiv 3 space (mod 4)$ *and*
-  $dim W_q = 1$. There $dim H^1 (QQ_q, E[2]) = 2 dim H^0 = 2$, so $L_q$ and $psi_* L'_q$ are two
+  *What is actually left.* Only $q divides d$ with $q equiv 11 space (mod 12)$
+  (@sec-obs-twelve). There $dim H^1 (QQ_q, E[2]) = 2 dim H^0 = 2$, so $L_q$ and $psi_* L'_q$ are two
   *Lagrangian lines in a plane*, and $beta_q = 0$ says they coincide --- a codimension-one
   coincidence, recurring every time it is tested. Something forces it; neither the local
   isomorphism of @sec-obs-owed nor unramifiedness is that something.
 ]
+
+
+=== The $2$-torsion, and the gap collapsing to $q equiv 11 space (mod 12)$ <sec-obs-twelve>
+
+The $2$-torsion is indeed independent of $d$ --- twisting does not move $E[2]$, and concretely
+$x^3 = -9 d^3$ has a root iff $x^3 = -9$ does, $d^3$ being a cube. One step needs correcting: $-9$
+is *not* a cube in $QQ_q$ for every $q != 3$. Cubing is bijective on $QQ_q^times$ only when
+$q equiv 2 space (mod 3)$; for $q equiv 1 space (mod 3)$ it is a genuine condition, and it fails
+at $q = 7, 13, 37, 43, 79, 97, 109, dots.h$
+
+Making that correction gives a clean rule --- and, better than hoped, the *same* rule for both
+curves.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Proposition.* For $q != 3$, independently of $d$,
+  $ dim_(bb(F)_2) E_d [2](QQ_q) = dim_(bb(F)_2) E'_d [2](QQ_q) =
+    cases(
+      1 & "if" q equiv 2 space (mod 3),
+      2 & "if" q equiv 1 space (mod 3) "and" 3 "is a cube mod" q,
+      0 & "if" q equiv 1 space (mod 3) "and" 3 "is not",
+    ) $
+
+  #v(2mm)
+  _Proof._ $E_d [2]$ needs a root of $x^3 = -9 d^3$, i.e. of $x^3 = -9$; $E'_d [2]$ needs
+  $x^3 = 81$. Since $-1 = (-1)^3$ and the cubic residue character $chi$ has order $3$,
+  $chi(-9) = chi(3)^2$ and $chi(81) = chi(3)^4 = chi(3)$, so *all three conditions are equivalent
+  to "$3$ is a cube"*. For $q equiv 2 space (mod 3)$ cubing is bijective, giving exactly one root
+  and no $zeta_3$, hence $dim = 1$; for $q equiv 1 space (mod 3)$ one has $zeta_3 in QQ_q$, so
+  there are three roots or none. $qed$
+]
+
+Checked against `polrootspadic` for every $q < 120$ and eight values of $d$: no mismatches, and
+$dim W_q = dim W'_q$ throughout --- which is the equality observed empirically all along.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *The gap collapses.* $dim W_q = 1$ happens exactly when $q equiv 2 space (mod 3)$. The open
+  cases of @sec-obs-unram were "$q equiv 3 space (mod 4)$ and $dim W_q = 1$", so what is left is
+  $ q equiv 3 space (mod 4) "and" q equiv 2 space (mod 3)
+    quad <==> quad q equiv 11 space (mod 12) . $
+  Both open primes fit: $11$ and $47$ are $11 space (mod 12)$.
+
+  #v(1.5mm)
+  Everything else is settled. $q equiv 1 space (mod 3)$ with $3$ not a cube gives $dim W_q = 0$
+  and $beta_q = 0$ trivially; $q equiv 1 space (mod 3)$ with $3$ a cube gives $q equiv 1$ or
+  $7 space (mod 12)$, and if also $q equiv 1 space (mod 4)$ the local isomorphism of
+  @sec-obs-owed applies.
+]
+
+And the remaining case has usable structure: for $q equiv 2 space (mod 3)$ the polynomial
+$x^3 - 3$ has exactly one root mod $q$, so $q$ splits in $K$ as (degree $1$)(degree $2$) and
+$ K times.o QQ_q tilde.equiv QQ_q times QQ_(q^2) , $
+with $QQ_(q^2)$ the *unramified* quadratic extension. So $L_q$ and $psi_* L'_q$ are two
+Lagrangian lines inside a group built from one split factor and one unramified quadratic factor
+--- a concrete enough setting that the coincidence ought to be provable there. It is not proved
+here.
 
 
 == $beta_2$, and the verdict <sec-obs-verdict>
@@ -491,8 +546,8 @@ no twist there could ever have worked.
   #v(1.5mm)
   *Partly discharged.* @sec-obs-owed proves $beta_q equiv 0$ at every $q divides d$ with
   $q equiv 1 space (mod 4)$ (and $-9$ a cube), via a local isomorphism. What remains verified but
-  not proved is $beta_q equiv 0$ at $q divides d$ with $q equiv 3 space (mod 4)$ *and*
-  $dim W_q = 1$ (@sec-obs-unram), and at $q = 3$.
+  not proved is $beta_q equiv 0$ at $q divides d$ with $q equiv 11 space (mod 12)$
+  (@sec-obs-twelve), and at $q = 3$.
   The non-density statement is *conditional on those*.
 
   #v(1.5mm)
