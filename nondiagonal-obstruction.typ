@@ -366,6 +366,55 @@ classes demonstrably do not.
 
 
 
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *The anti-correlation, and what is not explained.* In all $35$ unit-class twists
+  *exactly one* of $R_d$, $R'_d$ vanishes. The obstruction accounts for only half of that: for a
+  non-zero pairing of two lines $beta_5 (r, r') = 0$ forces $r = 0$ or $r' = 0$, so
+  $beta_5 != 0$ predicts *at most one* non-zero. That *at least one* is non-zero --- never
+  neither --- is not predicted by anything above.
+
+  #v(2mm)
+  *A lead: the root numbers are anti-correlated in exactly the same way.* Over squarefree
+  $|d| <= 300$:
+
+  #v(2mm)
+  #align(center)[
+  #table(columns: 5, align: (left, right, right, right, right), stroke: 0.4pt + luma(170),
+    inset: (x: 8pt, y: 3pt),
+    table.header([classes], [$(+,+)$], [$(+,-)$], [$(-,+)$], [$(-,-)$]),
+    [unit, $[1]$ and $[u]$],     [$0$],  [$152$], [$152$], [$0$],
+    [ramified, $[5]$, $[5 u]$],  [$31$], [$0$],   [$0$],   [$31$],
+  )]
+
+  #v(2mm)
+  So $w(E_d) w(E'_d) = -1$ on *every* unit-class twist and $+1$ on every ramified one --- one of
+  the two curves always has odd analytic rank in the unit classes, and never in the ramified ones.
+  That is the same shape as the identity $w(E_d) w(E'_d) = (-1)^(v_2 (d))$ observed for the
+  $j = 0$ pair in $section 6.1$ of `kummer-example-j0.typ`, and in *both* examples the sign lines
+  up with the pairing:
+  $ beta_p equiv.not 0 quad <==> quad w(E_d) w(E'_d) = -1 quad "(observed, both examples)" . $
+  Here that reads: $beta_5 equiv 0$ on the ramified classes, where the root numbers agree ---
+  which is *proved* in @sec-beta5-result --- and $beta_5 != 0$ conjecturally on the unit classes,
+  where they differ.
+
+  #v(2mm)
+  *To do.*
+  #set enum(numbering: "(1)")
+  + *Widen the experiment.* $35$ unit-class twists out of $|d| <= 220$ is thin for a claim this
+    sharp. Push the bound well past $10^3$, and record the marginals rather than only the joint
+    count, so that the exclusive-or can be distinguished from a chance run.
+  + *Try to prove the anti-correlation.* The root-number table is not conditional on anything and
+    should follow from a local computation --- $w = product_v w_v$, and the two curves differ at
+    only finitely many places --- so a derivation of
+    $w(E_d) w(E'_d) = -1$ on the unit classes looks within reach, and would supply the
+    "at least one" half by parity.
+  + *Then connect the two.* If $beta_p != 0 <==> w w' = -1$ can be proved rather than observed, it
+    would give a route to condition (C) that never evaluates a symbol --- root numbers are cheap,
+    and the equivalence would settle the unit classes at a stroke. Whether the implication is a
+    theorem or a coincidence of these two examples is open.
+]
+
 == What would settle it <sec-beta5-settle>
 
 Since $L_5$ is maximal isotropic in the $2$-dimensional $H^1 (QQ_5, E[5])$,
