@@ -339,10 +339,46 @@ having to hand.
 exceeding $m$, they cannot cover, whatever else is true. (ii) gives the matching lower bound on
 how many twists could ever be needed.
 
-For subgroups of index $ell$ the picture is projective: covering $bb(F)_ell^d$ by hyperplanes
-through the origin is the *blocking set* problem in $PP^(d-1) (bb(F)_ell)$, and Bose--Burton says
-the minimum is $ell + 1$, attained by a line --- which is the familiar "$ell + 1$ subgroups
-containing a fixed corank-$2$ subgroup".
+When all the $A_i$ have the same prime index $ell$ there is a sharper statement, which
+classifies the minimal covers and not merely their size. Suppose $frak(g)$ is elementary abelian,
+$V = bb(F)_ell^d$, so that the subgroups of index $ell$ are exactly the linear hyperplanes
+$A_i = ker chi_i$ with $chi_i in V^* without \{0\}$. Each $chi_i$ is determined up to scalar, so
+it is a *point* $[chi_i]$ of the dual projective space $PP(V^*) = "PG"(d-1, ell)$.
+
+Now dualise the covering condition. For $x != 0$,
+$ x in A_i quad <==> quad chi_i (x) = 0 quad <==> quad [chi_i] in x^perp , $
+where $x^perp subset PP(V^*)$ is the hyperplane dual to $[x]$; and as $[x]$ runs over $PP(V)$,
+$x^perp$ runs over *every* hyperplane of $PP(V^*)$. So
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  $ union.big_i A_i = V quad <==> quad
+    cal(B) = \{[chi_1], dots.h, [chi_m]\} "meets every hyperplane of" PP(V^*) , $
+  that is, $cal(B)$ is a *blocking set with respect to hyperplanes* in $"PG"(d-1, ell)$.
+]
+
+*Bose--Burton (1966)* then says: the minimum *cardinality* of such a $cal(B)$ --- equivalently the
+minimum *number of subgroups* $m$ --- is $ell + 1$, and a blocking set of that size is
+necessarily the point set of a *line* of $PP(V^*)$.
+
+The line lives in the *dual* space, which is the point that needs saying: its points are not
+points of $V$, they *are* the subgroups. Unwinding, a line of $PP(V^*)$ is a $2$-dimensional
+$W subset.eq V^*$, and its $ell + 1$ points are exactly the hyperplanes of $V$ containing
+$U = W^perp$, a subgroup of *codimension $2$*. Such a family is a *pencil*, and it does cover,
+because $V slash U tilde.equiv bb(F)_ell^2$ is covered by its $ell + 1$ lines.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *So, concretely.* At least $ell + 1$ subgroups of index $ell$ are needed, and the covers using
+  exactly $ell + 1$ are *precisely* the pencils: all the index-$ell$ subgroups containing one
+  fixed codimension-$2$ subgroup, one such cover for each choice of that subgroup. This is
+  strictly more than fact (ii), which counts but does not classify. It also says that a minimal
+  cover is *rigid* --- three index-$2$ twists that cover, as in $section 2.1.1$ of the main notes,
+  have no choice but to be the three subgroups containing a common index-$4$ one.
+
+  #v(1.5mm)
+  Checked exhaustively for $ell = 2, 3$ and $d = 2, 3$: the minimum is $ell + 1$ in each case, and
+  every minimal cover is a pencil --- there are $7$ of them for $ell = 2, d = 3$ and $13$ for
+  $ell = 3, d = 3$, one per codimension-$2$ subspace.
+]
 
 == Two representations, and the check each affords <sec-check-rep>
 
@@ -356,7 +392,8 @@ $ union.big_i A_i = frak(g) quad <==> quad
   sum_(nothing != S subset.eq [m]) (-1)^(|S|+1) / [frak(g) : inter.big_(i in S) A_i] = 1 . $
 
 This is purely index-theoretic: no quotient need ever be formed. The cost is $2^m$ subgroup
-intersections, negligible for the handful of twists at issue.
+intersections --- but $m$ here is the number of *distinct surviving* subgroups, which is far
+smaller than the number of twists and is bounded independently of it. That is @sec-check-pare.
 
 *(b) Per-prime types.* Write $frak(g) = product_ell frak(g)_ell$ for the primary decomposition.
 Every closed subgroup splits along it, $A = product_ell A_ell$ with $A_ell = A inter frak(g)_ell$,
@@ -394,6 +431,79 @@ the number of *bad* primes, not by $|frak(g) slash N|$.
   Reproduce with the companion script `cover-check.py`.
 ]
 
+== Paring the list: $m$ is not the parameter <sec-check-pare>
+
+In practice one does not meet a handful of twists. Every $d$ for which $E_d$ and $E'_d$ both have
+positive rank contributes an $A_i$, and there will be many such $d$. Left alone, $2^m$ is
+hopeless. Three paring steps fix this, and all three are canonical.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *1. Deduplicate.* Many $d$ give the *same* subgroup $H_d times H'_d$. The object of interest is
+  the *set* of distinct subgroups that occur, not the list of twists. Most of $m$ disappears here.
+
+  #v(1.5mm)
+  *2. Keep only the maximal elements.* If $A_i subset.eq A_j$ then $A_i$ can never be needed. An
+  $O(m^2)$ pass of containment tests, cheap in Hermite normal form.
+
+  #v(1.5mm)
+  *3. Filter by index (Neumann).* A minimum cover is irredundant, so by fact (iii) of
+  @sec-check-classical every member of a cover of size $k$ has $[frak(g) : A_i] <= k$. When
+  searching at size $k$, discard everything of larger index.
+]
+
+Step 3 is what makes the problem small, because $frak(g)$ has few open subgroups of small index:
+
+#v(2mm)
+#align(center)[
+#table(columns: 4, align: (left, right, right, right), stroke: 0.4pt + luma(170),
+  inset: (x: 8pt, y: 3pt),
+  table.header([open subgroups of index $<= k$], [$k = 3$], [$k = 5$], [$k = 50$]),
+  [$ZZ_2^2$],    [$4$], [$11$], [$120$],
+  [$ZZ_5^2$],    [$1$], [$7$],  [$38$],
+  [$ZZ_47^2$],   [$1$], [$1$],  [$49$],
+)]
+
+#v(2mm)
+
+So after steps 1--3 the candidate pool has size $nu(frak(g), k)$, *independent of the number of
+twists*: the only dependence on $m$ anywhere is one linear deduplication pass.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Algorithm.* Compute $sigma(frak(g)) = q + 1$. For $k = q+1, q+2, dots.h$: restrict to the pool
+  of index $<= k$ and test all $k$-subsets. The first success is a minimum cover.
+
+  #v(2mm)
+  Deciding whether a subcover of size $<= k$ exists is thus fixed-parameter tractable in $k$ ---
+  time $O(m) + f(frak(g), k)$ --- and for fixed $frak(g)$ it is of constant size after
+  preprocessing.
+]
+
+At the smallest possible $k$ this is nearly free. In the worst case $q = p$ one has $k = p + 1$,
+and index $<= p+1$ leaves only index $1$ and index $p$, since $p^2 > p + 1$; so the pool is
+$frak(g)$ together with the $p+1$ subgroups of index $p$, and choosing $p+1$ from $p+2$ is $p+2$
+trials. When $q < p$ --- as at $p = 47$ with $T_1 tilde.equiv ZZ slash 30 times ZZ slash 2$, where
+$q = 2$ and $k = 3$ --- it is smaller still.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Canonical paring, non-canonical result.* Steps 1--3 are intrinsic. The *answer* is not:
+  minimum covers are genuinely non-unique, and @sec-check-classical is the sharpest example ---
+  for $ell = 2$, $d = 3$ there are exactly seven minimum covers, one per codimension-$2$
+  subgroup, all of size $3$, with nothing to choose between them. What is canonical is the
+  minimum *size*, and the *set of all* minimum covers. Singling out one requires a tie-break,
+  which is a convention rather than mathematics.
+
+  #v(1.5mm)
+  *And a caveat on generality.* Stripped of its structure, "find a minimum subcover" is minimum
+  set cover, which is NP-hard; no hardness theorem for the subgroup-restricted case is claimed
+  here, and none is needed. What rescues the computation is not that the general problem is easy
+  but that Neumann's bound and the finiteness of the subgroup lattice of $frak(g)$ collapse the
+  instance before any search begins.
+
+  #v(1.5mm)
+  _Checked:_ the index bound of step 3 on 71 irredundant covers across nine abelian groups, no
+  violations; and the pool sizes above. Both in `cover-check.py`.
+]
+
 == The structure of $frak(g) = ZZ_p^2 times T_1 times T_2$ <sec-check-ours>
 
 Here $G tilde.equiv ZZ_p times T_1$ and $G' tilde.equiv ZZ_p times T_2$, so
@@ -420,7 +530,7 @@ so that intersections and indices are determinant arithmetic.
 
 == Two different incompletenesses <sec-check-proc>
 
-Enumerate finite lists of twists and run the check of @sec-check-rep on each. By Corollary 4 this
+Enumerate twists, pare the list as in @sec-check-pare, and run the check of @sec-check-rep. By Corollary 4 this
 halts if and only if $A^+ = G times G'$. So it is a genuine, *complete* semi-decision procedure
 for $Q$ --- the object @sec-sound said we were entitled to.
 

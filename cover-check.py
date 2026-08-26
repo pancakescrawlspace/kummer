@@ -11,7 +11,9 @@ random instances, the three facts the section rests on:
   (3) the per-prime type criterion of 8.3(b);
 
 and separately that sigma(g) = q+1, with q the least prime for which
-dim_{F_q} g/qg >= 2, against exhaustive search.
+dim_{F_q} g/qg >= 2, against exhaustive search; and the Bose-Burton statement
+of 8.2, that minimal covers by index-ell subgroups are exactly the pencils; and
+Neumann's index bound together with the candidate-pool sizes of 8.4.
 
     python3 cover-check.py
 """
@@ -128,6 +130,91 @@ def check_sigma():
         print(f"  {'x'.join(map(str, mods)):<14}{str(b):>12}{str(f):>8}   {flag}")
 
 
+# --- Bose-Burton: minimal covers by index-ell subgroups are pencils (section 8.2) ---
+
+def _vecs(d, l): return list(itertools.product(range(l), repeat=d))
+
+def _hyperplanes(d, l):
+    """Kernels of nonzero linear forms; one per form up to scalar."""
+    seen = {}
+    for chi in _vecs(d, l):
+        if any(chi):
+            seen[frozenset(x for x in _vecs(d, l)
+                           if sum(a * b for a, b in zip(chi, x)) % l == 0)] = chi
+    return list(seen)
+
+def _subspaces(d, l, dim):
+    V, out = _vecs(d, l), set()
+    for gens in itertools.combinations(V, dim):
+        S = {tuple([0] * d)}
+        for co in itertools.product(range(l), repeat=dim):
+            S.add(tuple(sum(c * g[j] for c, g in zip(co, gens)) % l for j in range(d)))
+        if len(S) == l ** dim: out.add(frozenset(S))
+    return list(out)
+
+def check_blocking():
+    """Minimum number of index-ell subgroups covering F_ell^d is ell+1, and every
+    minimal cover is the pencil of hyperplanes through a codimension-2 subspace."""
+    print("\nminimal covers by index-ell subgroups")
+    print(f"  {'l':>2} {'d':>2} {'#hyp':>6} {'min':>5} {'l+1':>5} {'#minimal':>9}  all pencils")
+    for l in (2, 3):
+        for d in (2, 3):
+            V = frozenset(_vecs(d, l)); H = _hyperplanes(d, l)
+            minimal, mn = [], None
+            for k in range(1, len(H) + 1):
+                hit = [C for C in itertools.combinations(range(len(H)), k)
+                       if frozenset().union(*[H[i] for i in C]) == V]
+                if hit: mn, minimal = k, hit; break
+            pencils = [frozenset(i for i, K in enumerate(H) if U <= K)
+                       for U in _subspaces(d, l, d - 2)]
+            ok = all(frozenset(C) in pencils for C in minimal)
+            print(f"  {l:>2} {d:>2} {len(H):>6} {mn:>5} {l+1:>5} {len(minimal):>9}  "
+                  f"{'yes' if ok else 'NO'}")
+
+
+# --- Neumann's index bound, and the size of the candidate pool (section 8.4) ---
+
+def _all_subgroups(mods):
+    V = elems(mods); out = set()
+    for r in (0, 1, 2, 3):
+        for g in itertools.combinations(V, r): out.add(gen(g, mods))
+    return sorted(out, key=len)
+
+def check_neumann():
+    """In an irredundant cover of size k, every member has index <= k."""
+    shapes = [[2,2],[4,2],[2,2,2],[3,3],[6,6],[4,4],[9,3],[2,4],[12,2]]
+    tested = viol = 0
+    for mods in shapes:
+        G = frozenset(elems(mods)); N = len(G)
+        subs = [S for S in _all_subgroups(mods) if S != G]
+        for k in range(2, 5):
+            for C in itertools.combinations(subs, k):
+                if frozenset().union(*C) != G: continue
+                if not all(frozenset().union(*[A for j, A in enumerate(C) if j != i]) != G
+                           for i in range(k)): continue          # keep only irredundant
+                tested += 1
+                if max(N // len(A) for A in C) > k: viol += 1
+    print(f"\nNeumann bound on {tested} irredundant covers")
+    print(f"  max index <= size of cover              {'OK' if viol == 0 else str(viol) + ' FAIL'}")
+
+def check_pool():
+    """Open subgroups of Z_p^2 of index <= k: the candidate pool of section 8.4."""
+    print("\ncandidate pool: open subgroups of Z_p^2 of index <= k")
+    ks = (3, 5, 50)
+    print("  " + "p".rjust(4) + "".join(f"k={k}".rjust(8) for k in ks))
+    for p in (2, 5, 47):
+        row = []
+        for k in ks:
+            j, tot = 0, 0
+            while p ** j <= k:
+                tot += sum(p ** i for i in range(j + 1)); j += 1
+            row.append(tot)
+        print("  " + str(p).rjust(4) + "".join(str(v).rjust(8) for v in row))
+
+
 if __name__ == "__main__":
     check_criteria()
     check_sigma()
+    check_blocking()
+    check_neumann()
+    check_pool()
