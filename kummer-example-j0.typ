@@ -325,6 +325,65 @@ So at every prime dividing $d$, and at the CM prime $3$, the form vanishes ident
 sample. Together with the free places of @sec-obs-DE --- $v = infinity$, and every $v$ of good
 reduction --- condition (E) holds, and reciprocity pins $beta_2$.
 
+== Paying part of the debt: $psi_* L'_q = L_q$ <sec-obs-owed>
+
+The right way to attack condition (E) is not to evaluate $beta_q$ but to identify the two local
+Kummer images, because the two are *equivalent*:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  $L_q$ is *maximal* isotropic, so $L_q^perp = L_q$, and therefore
+  $ beta_q equiv 0 quad <==> quad psi_* L'_q subset.eq L_q quad <==> quad psi_* L'_q = L_q , $
+  the last step because $dim L'_q = dim L_q$ (equal in every case tabulated).
+]
+
+So the numerics of @sec-obs-E are exactly the statement $psi_* L'_q = L_q$, and a proof of the
+latter is what is owed. In one regime it is available.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Proposition.* Let $q tilde.not 6$ and suppose $-9 in (QQ_q^times)^6$. Then
+  $psi_* L'_q = L_q$, hence $beta_q equiv 0$ --- unconditionally.
+
+  #v(2mm)
+  _Proof._ $E'_d$ is the sextic twist of $E_d$ by $-9$: with $c^6 = -9$ the map
+  $ lambda : E'_d --> E_d , wide (X, Y) |-> (X slash c^2, thin Y slash c^3) $
+  is an isomorphism, defined over $QQ_q$ as soon as $c in QQ_q$. On $2$-torsion it sends
+  $theta' |-> theta' slash c^2 = theta$, since $theta' = c^2 theta$ --- which is precisely $psi$.
+  Functoriality of the Kummer map then gives
+  $psi_* L'_q = lambda_* delta' (E'_d (QQ_q)) = delta(lambda E'_d (QQ_q)) = delta(E_d (QQ_q)) = L_q$.
+  $qed$
+]
+
+This is the *local* form of the collapse criterion of $section 3$ of
+`nondiagonal-obstruction.typ`: an isomorphism defined over $QQ_q$ kills $beta_q$ there, exactly as
+a global isogeny would kill it everywhere. And it is *not* vacuous, because $-9$ being a $6$th
+power locally does not make $E$ and $E'$ isomorphic globally.
+
+Since $9$ is always a square, $-9$ is a square in $QQ_q$ iff $q equiv 1 space (mod 4)$; so the
+hypothesis is "$q equiv 1 space (mod 4)$ and $-9$ a cube mod $q$". On the primes that actually
+arose as $q divides d$:
+
+#v(2mm)
+#align(center)[
+#table(columns: 5, align: (right, center, center, center, left), stroke: 0.4pt + luma(170),
+  inset: (x: 8pt, y: 3pt),
+  table.header([$q$], [$q mod 4$], [$-9$ square], [$-9$ cube], [$beta_q = 0$]),
+  [$5$],    [$1$], [yes], [yes], [*proved*],
+  [$41$],   [$1$], [yes], [yes], [*proved*],
+  [$61$],   [$1$], [yes], [yes], [*proved*],
+  [$1021$], [$1$], [yes], [yes], [*proved*],
+  [$7$],    [$3$], [no],  [no],  [verified, $44100$ pairs],
+  [$11$],   [$3$], [no],  [yes], [verified, $49952$ pairs],
+  [$47$],   [$3$], [no],  [yes], [verified, $57600$ pairs],
+)]
+
+#v(2mm)
+
+So the debt is not discharged, but it is *localised*: what remains open is exactly the primes
+$q divides d$ with $q equiv 3 space (mod 4)$, where $-9$ is not a square and the local
+isomorphism does not exist. There $E'_d$ is the unramified quadratic twist of $E_d$ up to a cube,
+and one wants the weaker statement that such a twist does not move the local Kummer image at a
+place of additive reduction. That is not proved here.
+
 == $beta_2$, and the verdict <sec-obs-verdict>
 
 #v(2mm)
@@ -371,9 +430,10 @@ no twist there could ever have worked.
   the refutation argument, since the witnesses of @sec-scan have both local images full.
 
   #v(1.5mm)
-  *Verified but not proved.* That $beta_q equiv 0$ at $q divides d$ and at $q = 3$. These were
-  checked on large samples of local points, not derived. The conclusion depends on them, so the
-  non-density statement is *conditional on condition (E)*, which is where a proof is still owed.
+  *Partly discharged.* @sec-obs-owed proves $beta_q equiv 0$ at every $q divides d$ with
+  $q equiv 1 space (mod 4)$ (and $-9$ a cube), via a local isomorphism. What remains verified but
+  not proved is $beta_q equiv 0$ at $q divides d$ with $q equiv 3 space (mod 4)$, and at $q = 3$.
+  The non-density statement is *conditional on those*.
 
   #v(1.5mm)
   *Also assumed.* That the local Tate pairing is the sum of Hilbert symbols over $w divides q$
