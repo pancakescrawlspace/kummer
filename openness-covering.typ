@@ -292,3 +292,148 @@ two-generator lemma of $section 2.3$ says exactly when.
   non-diagonal surface no counterexample is exhibited, here or there; @sec-gap gives the
   group-theoretic configuration that would produce one. Soundness is unconditional throughout.
 ]
+
+= The covering check itself <sec-check>
+
+Corollary 4 turns density into "some finite set of twists covers $G times G'$". This section asks
+what kind of problem that is. The answer is that it is entirely finite, classical, and cheap ---
+the difficulty in @sec-sound lies elsewhere.
+
+Throughout, $frak(g)$ is an abelian profinite group, topologically finitely generated, and
+$A_1, dots.h, A_m subset.eq frak(g)$ are closed subgroups of finite index. In the application
+$frak(g) = G times G'$ and $A_i = H_(d_i) times H'_(d_i)$, which are of finite index precisely by
+Corollary 2.
+
+== The profiniteness is illusory <sec-check-finite>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Reduction.* Put $N = inter.big_i A_i$, an open subgroup, and $pi : frak(g) --> frak(g) slash N$.
+  Every $A_i$ contains $N$, so $A_i = pi^(-1) (pi(A_i))$ and
+  $ union.big_i A_i = frak(g) quad <==> quad union.big_i pi(A_i) = frak(g) slash N . $
+]
+
+So the question is: *can a finite abelian group be covered by a given finite list of subgroups?*
+No topology survives the reduction. In particular the check is decidable outright, and everything
+below is about representation and cost rather than about computability.
+
+== What is known about covering a group by subgroups <sec-check-classical>
+
+This is a classical subject --- Scorza, B. H. Neumann, Cohn, Tomkinson. Three facts are worth
+having to hand.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *(i) Coverability.* $frak(g)$ is a union of *proper* subgroups if and only if it is not
+  procyclic.
+
+  #v(1.5mm)
+  *(ii) Covering number.* If coverable, the least number of proper subgroups needed is
+  $ sigma(frak(g)) = q + 1, quad
+    q = min \{ ell "prime" : dim_(bb(F)_ell) frak(g) slash ell frak(g) >= 2 \} . $
+
+  #v(1.5mm)
+  *(iii) Neumann's lemma.* In an *irredundant* cover by $m$ subgroups, every index satisfies
+  $[frak(g) : A_i] <= m$. Hence any $A_i$ of index $> m$ may be discarded, and the test iterated.
+]
+
+(iii) is the cheap pruning step and is often decisive on its own: if every $A_i$ has index
+exceeding $m$, they cannot cover, whatever else is true. (ii) gives the matching lower bound on
+how many twists could ever be needed.
+
+For subgroups of index $ell$ the picture is projective: covering $bb(F)_ell^d$ by hyperplanes
+through the origin is the *blocking set* problem in $PP^(d-1) (bb(F)_ell)$, and Bose--Burton says
+the minimum is $ell + 1$, attained by a line --- which is the familiar "$ell + 1$ subgroups
+containing a fixed corank-$2$ subgroup".
+
+== Two representations, and the check each affords <sec-check-rep>
+
+A union of subgroups is not a subgroup and has no canonical group-theoretic normal form. Two
+surrogates do the work.
+
+*(a) The index profile.* Store $S |-> [frak(g) : inter.big_(i in S) A_i]$ for $S subset.eq [m]$.
+Since $union.big_i A_i$ is closed and $frak(g)$ compact, full Haar measure forces equality, so
+
+$ union.big_i A_i = frak(g) quad <==> quad
+  sum_(nothing != S subset.eq [m]) (-1)^(|S|+1) / [frak(g) : inter.big_(i in S) A_i] = 1 . $
+
+This is purely index-theoretic: no quotient need ever be formed. The cost is $2^m$ subgroup
+intersections, negligible for the handful of twists at issue.
+
+*(b) Per-prime types.* Write $frak(g) = product_ell frak(g)_ell$ for the primary decomposition.
+Every closed subgroup splits along it, $A = product_ell A_ell$ with $A_ell = A inter frak(g)_ell$,
+so membership is a *conjunction over primes*: $x in A_i$ iff $x_ell in A_(i, ell)$ for every
+$ell$. Define the set of realisable types at $ell$,
+$ cal(T)_ell = \{ thin t_ell (y) = \{ i : y in A_(i, ell) \} thin : thin y in frak(g)_ell \}
+  subset.eq 2^([m]) . $
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Criterion.*
+  $ union.big_i A_i = frak(g) quad <==> quad
+    "for every" (t_ell) in product_ell cal(T)_ell : quad inter.big_ell t_ell != nothing . $
+
+  #v(2mm)
+  _Proof._ $x$ lies in $A_i$ iff $i in t_ell (x)$ for every $ell$, i.e. iff
+  $i in inter.big_ell t_ell (x)$. So $x$ is missed by the union exactly when
+  $inter.big_ell t_ell (x) = nothing$, and every type tuple is realised by some $x$. $qed$
+]
+
+This is the compact representation. One family of subsets per prime, and
+$cal(T)_ell = \{[m]\}$ --- contributing nothing --- at every $ell$ where all
+$A_(i,ell) = frak(g)_ell$, which is most of them. Read as logic, "is some element missed" is a
+CNF with one clause per $i$ and one variable per prime, so the size of the check is governed by
+the number of *bad* primes, not by $|frak(g) slash N|$.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Verified.* Over 300 random finite abelian groups with 2--4 random subgroups each: that every
+  subgroup equals the direct sum of its primary parts, that the inclusion--exclusion criterion of
+  (a) agrees with brute force, and that the type criterion of (b) does too --- no discrepancies.
+  Separately, $sigma(frak(g)) = q + 1$ was checked against exhaustive search on
+  $2 times 2$, $3 times 3$, $4 times 2$, $6 times 6$, $2 times 2 times 2$, $9 times 3$,
+  $5 times 5$, $12 times 2$, $4 times 4$, $10 times 10$ and the cyclic groups $6, 8, 15$.
+
+  #v(1.5mm)
+  Reproduce with the companion script `cover-check.py`.
+]
+
+== The structure of $frak(g) = ZZ_p^2 times T_1 times T_2$ <sec-check-ours>
+
+Here $G tilde.equiv ZZ_p times T_1$ and $G' tilde.equiv ZZ_p times T_2$, so
+$frak(g) = G times G' tilde.equiv ZZ_p^2 times T_1 times T_2$, and the structure helps twice.
+
+First, the bad primes of @sec-check-rep(b) lie in
+$\{p\} union \{ell : ell divides |T_1| |T_2|\}$ --- typically one to three of them, so the
+combinatorial join is tiny.
+
+Second, $dim_(bb(F)_p) frak(g) slash p frak(g) >= 2$ always, from the $ZZ_p^2$. So $frak(g)$ is
+never procyclic, a cover by proper subgroups always exists in principle, and
+
+$ sigma(frak(g)) = q + 1, quad
+  q = min ( p, thin min \{ ell : dim T_1 slash ell + dim T_2 slash ell >= 2 \} ) <= p . $
+
+The bound is sharp in the right place. At $p = 47$ with $T_1 tilde.equiv ZZ slash 30 times ZZ
+slash 2$, the prime $2$ already gives $dim T_1 slash 2 = 2$, so $q = 2$ and $sigma = 3$: *three*
+twists, not forty-eight. That is exactly the configuration of $section 2.1.1$ of the main notes,
+now derived rather than exhibited.
+
+For the $ZZ_p^2$ factor, represent open subgroups as lattices in Hermite normal form
+$ mat(p^a, c; 0, p^b), $
+so that intersections and indices are determinant arithmetic.
+
+== Two different incompletenesses <sec-check-proc>
+
+Enumerate finite lists of twists and run the check of @sec-check-rep on each. By Corollary 4 this
+halts if and only if $A^+ = G times G'$. So it is a genuine, *complete* semi-decision procedure
+for $Q$ --- the object @sec-sound said we were entitled to.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *But the completeness is relative.* To form $H_d$ at all one needs $overline(E_d (QQ))$, hence
+  the Mordell--Weil group, hence descent --- which is itself only sound and incomplete once Ш
+  intervenes. So the honest statement is: *a complete semi-decision procedure for $Q$, relative to
+  an oracle for Mordell--Weil groups.* The group theory of this section is fully effective; the
+  arithmetic input is the part that can hang.
+
+  #v(1.5mm)
+  These are two different failure modes and should not be conflated. @sec-sound is about the gap
+  $P without Q$ --- a cover may fail to exist although density holds. This one is about computing
+  the $A_i$ in the first place. Neither implies the other, and only the first is intrinsic to the
+  substitution.
+]
