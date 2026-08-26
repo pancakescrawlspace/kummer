@@ -101,6 +101,19 @@ usually *zero*:
   $"Br"(overline(X))^(G_QQ) [ell] != 0$.
 ]
 
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *But CM twist pairs are excluded.* If $E'$ is a non-trivial sextic (or quartic) twist of $E$ ---
+  in particular any pair of $j = 0$ or $j = 1728$ curves that are twists of one another --- then
+  (A) fails at *every odd $ell$*. Twisting acts through $"Aut"(E) = mu_6$ or $mu_4$, and
+  $zeta$ acts trivially on $E[ell]$ only when $ell$ divides $zeta - 1$ in $ZZ[zeta_6]$ or $ZZ[i]$;
+  since $N(zeta_6 - 1) = 1$, $N(i - 1) = 2$, and $3 = -zeta_3^2 (zeta_3-1)^2$ so
+  $3 divides.not zeta_3 - 1$, the only such $zeta$ is $-1$, at $ell = 2$. So the map to
+  $"Aut"(E[ell])$ is injective for odd $ell$ and $E[ell] tilde.equiv.not E'[ell]$. The criterion
+  wants curves congruent *without* being geometrically related --- different $j$, congruent by
+  accident of $X_E (ell)$, as in @sec-example. Worked out in
+  $section 7$ of `kummer-example-j0.typ`.
+]
+
 This is a genuinely weaker demand than decomposability. Decomposable $E[ell]$ forces the mod-$ell$
 image into a split Cartan, hence a rational point of $X_"split" (ell) = X_0 (ell^2)$, and
 Mazur--Kenku then caps $ell$ at $5$ ($section 5.2$ of the main notes). Congruence is governed

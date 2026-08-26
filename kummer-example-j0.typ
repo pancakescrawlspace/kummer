@@ -203,6 +203,95 @@ the even classes demand a rank-$3$ twist paired with a rank-$2$ twist in the sam
   conductors differ ($2^2$ against $2^4$), but that computation is not done. Citation from memory.
 ]
 
+= Is there a twisted-pairing obstruction here? <sec-obstruction>
+
+The natural suspicion, given how empty the even classes at $2$ are, is that the mechanism of
+`nondiagonal-obstruction.typ` is at work. It is not, and the reason is structural: for *this kind
+of pair* the criterion can never be set up.
+
+== Condition (A) forces $ell = 2$ <sec-obs-A>
+
+The criterion needs $"Hom"_(G_QQ) (E'[ell], E[ell]) != 0$, i.e. an $ell$-congruence. Here $E'$ is
+a *sextic twist* of $E$:
+$ E : y^2 = x^3 + 9 , wide E' : y^2 = x^3 - 81 , wide (-81) slash 9 = -9 = (-1)^3 dot 3^2 , $
+so $E'$ is the quadratic twist by $-1$ composed with the cubic twist by $3$. Twisting acts through
+$"Aut"(E) = mu_6 subset ZZ[zeta_6]$, and $zeta in mu_6$ acts trivially on $E[ell]$ exactly when
+$ell$ divides $zeta - 1$ in $ZZ[zeta_6]$.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *$mu_6 --> "Aut"(E[ell])$ is injective for every odd $ell$.* Indeed $N(zeta_6 - 1) = 1$, a unit;
+  $N(zeta_3 - 1) = 3$ but $3 = -zeta_3^2 (zeta_3 - 1)^2$, so $3$ does *not* divide $zeta_3 - 1$;
+  and the only $zeta in mu_6$ with $zeta - 1$ divisible by a prime is $zeta = -1$, where
+  $zeta - 1 = -2$. So the kernel is $\{plus.minus 1\}$ when $ell = 2$ and trivial otherwise.
+
+  #v(1.5mm)
+  *Consequence.* If $E'$ is a non-trivial sextic twist of $E$, then $E[ell] tilde.equiv.not
+  E'[ell]$ for *every odd $ell$*. The same argument with $mu_4 subset ZZ[i]$, $N(i-1) = 2$, rules
+  out $j = 1728$ twist pairs. So *no CM twist pair can satisfy (A) at an odd $ell$.*
+]
+
+Confirmed numerically: $a_q equiv a'_q$ fails mod $ell$ for every odd $ell <= 47$, over the $548$
+good primes $q < 4000$. At $ell = 2$ the congruence does hold, and genuinely so --- both
+$2$-division fields are $QQ(root(3,3), zeta_3)$ (`polredabs` gives $x^3 - 3$ for both $x^3 + 9$
+and $x^3 - 81$), so $E[2]$ and $E'[2]$ are the same standard $2$-dimensional
+$bb(F)_2 [S_3]$-module. Since $E$ and $E'$ are not isogenous, $"Hom"(E', E) = 0$ and every
+non-zero $psi$ is admissible. So (A) holds --- but only for $ell = 2$.
+
+== Two conditions are free, and one is not <sec-obs-DE>
+
+Encouragingly, the parts that were delicate for the conductor-$200$ pair are free here.
+
+- *(D) is vacuous.* $j = 0$ means potentially good reduction everywhere, so *no twist of either
+  curve is ever multiplicative* and there are no dangerous primes at all.
+- *$v = infinity$ is free even at $ell = 2$.* $"disc"(y^2 = x^3 + k) = -432 k^2 < 0$ always, so
+  $E_d (RR)$ is connected, $E_d (RR) slash 2 = 0$, and $W_infinity = 0$. (Checked on nine twists.)
+- *$v = 3$ is free.* At the CM prime, $dim W_3 = dim W'_3 = 0$ for every twist tested.
+
+What kills it is the rest of (E).
+
+#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
+  *At $ell = 2$ the primes dividing $d$ are never free.* For $ell >= 5$ a place $q divides d$ is
+  additive with $dim W_q = 0$, and *that* is what makes the criterion uniform in $d$. At
+  $ell = 2$, $dim W_q = dim E_d [2](QQ_q)$ instead, read off from the roots of $x^3 + 9 d^3$ in
+  $QQ_q$ --- and at *every* $q divides d$ inspected, both $dim W_q$ and $dim W'_q$ are non-zero:
+
+  #v(2mm)
+  #align(center)[
+  #table(columns: 5, align: (right, right, center, center, left), stroke: 0.4pt + luma(170),
+    inset: (x: 7pt, y: 3pt),
+    table.header([$d$], [$q$], [$dim W_q$], [$dim W'_q$], [$beta_q$ forced $0$?]),
+    [$-61$],  [$3$],    [$0$], [$0$], [yes],
+    [$-61$],  [$61$],   [$2$], [$2$], [*no*],
+    [$183$],  [$61$],   [$2$], [$2$], [*no*],
+    [$2501$], [$41$],   [$1$], [$1$], [*no*],
+    [$5105$], [$5$],    [$1$], [$1$], [*no*],
+    [$5105$], [$1021$], [$2$], [$2$], [*no*],
+    [$-66$],  [$11$],   [$1$], [$1$], [*no*],
+    [$94$],   [$47$],   [$1$], [$1$], [*no*],
+  )]
+
+  #v(2mm)
+  So $beta_q$ would have to be *evaluated* at every prime dividing $d$, afresh for each twist.
+  Twist-uniformity --- the property that lets the criterion beat a finite search
+  ($section 4$ of `nondiagonal-obstruction.typ`) --- is gone.
+]
+
+== The lesson <sec-obs-lesson>
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *CM twist pairs are exactly the wrong place to look.* Being sextic twists is what makes $E$ and
+  $E'$ *look* congruent --- half their $a_q$ agree, all the supersingular ones being $0$ --- and
+  it is also precisely what forbids a congruence at any odd $ell$. The criterion wants two curves
+  that are congruent *without* being geometrically related: different $j$-invariants, congruent by
+  accident of the modular surface $X_E (ell)$. That is the conductor-$200$ pair of
+  `nondiagonal-obstruction.typ`, with $j = 2048$ and $j = 270$.
+
+  #v(1.5mm)
+  So the emptiness of the four even classes at $p = 2$ is *not* explained by a twisted-pairing
+  obstruction. As far as this document goes it is explained by @sec-parity --- a parity
+  obstruction to the single-twist route --- and whether density itself fails there is open.
+]
+
 = What this does and does not prove <sec-status>
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
@@ -216,6 +305,8 @@ the even classes demand a rank-$3$ twist paired with a rank-$2$ twist in the sam
   several deficient twists could still cover. That union question is precisely where the
   correlation between the two factors matters, and it is untouched here. The parity obstruction of
   @sec-parity blocks the *single-twist* route in the even classes; it says nothing about the union.
+  And by @sec-obstruction the twisted-pairing obstruction is *not* available for this pair at any
+  odd $ell$, so it is not the explanation either.
 
   #v(1.5mm)
   *Search-limited.* The odd-class witnesses came from $|d| <= 6000$; three of the four lie beyond
