@@ -12,7 +12,7 @@
   #text(size: 16pt, weight: "bold")[A $j = 0$ non-diagonal example]
   #v(2mm)
   #text(size: 10pt)[$"Kum"(E times E')$ for $y^2 = x^3 + 9$ and $v^2 = u^3 - 81$:
-  the scan at $p = 2, 3, 5, 7$, and why $p = 2$ almost never works]
+  the scan at $p = 2, 3, 5, 7$, and the two things that make $p = 2$ hard]
   #v(1mm)
   #text(size: 9pt, style: "italic")[computed in `kummer-example-j0.gp`, on top of the repository's
   own `kummer2.gp` and `p2.gp`; companion to `kummer-example-p13.typ`]
@@ -21,13 +21,14 @@
 #v(4mm)
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
-  *Summary.* At $p = 3, 5$ a single twist covers every square class; at $p = 7$ three classes of
-  four. At $p = 2$ only *one* class of eight has a witness, and the reason is structural rather
-  than a shortage of search: $E_d (QQ_2)$ always has a $2$-torsion point while $E_d (QQ)$ never
-  does, so a rank-$1$ twist has *procyclic* closure and can never be dense. At $p = 2$ density
-  needs rank $>= 2$ *on both curves at once*, which happens for one $d$ in the range. That same
-  non-procyclicity means the single-twist criterion is not necessary at $2$, so the seven empty
-  classes are not proof of non-density.
+  *Summary.* At $p = 3, 5$ a single twist covers every square class; at $p = 7$ three of four. At
+  $p = 2$ *all four odd classes* are covered and all four even classes are empty, and both halves
+  have structural explanations. $E_d (QQ_2)$ always has a $2$-torsion point while $E_d (QQ)$ never
+  does, so a rank-$1$ twist has *procyclic* closure and can never be dense: at $p = 2$ a witness
+  needs rank $>= 2$ on *both* curves at once. Steering the search by that --- root numbers first,
+  `ellrank` only on survivors --- finds witnesses in all four odd classes out to $|d| <= 6000$. In
+  the even classes $w(E_d) w(E'_d) = -1$ always, so one curve has odd analytic rank and a witness
+  would need rank $>= 3$ on one side paired with rank $>= 2$ on the other.
 ]
 
 = The pair <sec-pair>
@@ -89,8 +90,8 @@ criterion --- several deficient twists conspiring --- but not for the single-twi
 
 = The scan <sec-scan>
 
-For each prime and each square class, the first $d$ found with $E_d (QQ)$ dense in $E_d (QQ_p)$
-*and* $E'_d (QQ)$ dense in $E'_d (QQ_p)$:
+For each prime and square class, a $d$ with $E_d (QQ)$ dense in $E_d (QQ_p)$ *and* $E'_d (QQ)$
+dense in $E'_d (QQ_p)$:
 
 #v(2mm)
 #align(center)[
@@ -104,33 +105,39 @@ For each prime and each square class, the first $d$ found with $E_d (QQ)$ dense 
 
 #v(2mm)
 
-So $p = 3$ and $p = 5$ are settled outright: one twist per class, hence $X(QQ)$ dense in
+So $p = 3$ and $p = 5$ are settled outright: one twist per class, hence $X(QQ)$ is dense in
 $X(QQ_p)$. At $p = 7$ the class $[7]$ found nothing in the range.
 
-$p = 2$ is the interesting case. Of the $77$ twists, spread over eight classes:
+At $p = 2$ the first pass ($|d| <= 150$) found a single witness in eight classes, which looked
+like an obstruction. It is not --- it is @sec-why2, which says a witness needs rank $>= 2$ on
+*both* curves, so the density of witnesses is far lower than one would guess. Using the rank-$2$
+requirement to steer the search (root numbers first, `ellrank` only on survivors) and going out to
+$|d| <= 6000$:
 
 #v(2mm)
 #align(center)[
-#table(columns: 5, align: (center, right, right, right, right), stroke: 0.4pt + luma(170),
-  inset: (x: 9pt, y: 3pt),
-  table.header([class], [twists], [$E_d$ dense], [$E'_d$ dense], [*both*]),
-  [$[1]$],  [$14$], [$0$], [$0$], [$0$],
-  [$[3]$],  [$18$], [$1$], [$1$], [*$1$*],
-  [$[5]$],  [$15$], [$0$], [$0$], [$0$],
-  [$[7]$],  [$16$], [$0$], [$0$], [$0$],
-  [$[2]$],  [$5$],  [$3$], [$2$], [$0$],
-  [$[6]$],  [$3$],  [$2$], [$1$], [$0$],
-  [$[10]$], [$3$],  [$2$], [$1$], [$0$],
-  [$[14]$], [$3$],  [$3$], [$0$], [$0$],
+#table(columns: 4, align: (center, left, center, left), stroke: 0.4pt + luma(170),
+  inset: (x: 9pt, y: 4pt),
+  table.header([class at $2$], [witness], [ranks], [status]),
+  [$[1]$],  [$d = 5105$], [$2, 2$], [dense],
+  [$[3]$],  [$d = -61$],  [$2, 2$], [dense],
+  [$[5]$],  [$d = 2501$], [$2, 2$], [dense],
+  [$[7]$],  [$d = 183$],  [$2, 2$], [dense],
+  [$[2]$],  [--], [--], [blocked by parity, @sec-parity],
+  [$[6]$],  [--], [--], [blocked by parity, @sec-parity],
+  [$[10]$], [--], [--], [blocked by parity, @sec-parity],
+  [$[14]$], [--], [--], [blocked by parity, @sec-parity],
 )]
 
 #v(2mm)
 
-One witness in eight classes: $d = -61$, in class $[3]$.
+*All four odd classes are settled.* Of $2432$ odd $d$ with $|d| <= 6000$ passing the root-number
+filter, $87$ had rank $>= 2$ on both curves, and four of those are witnesses. The four even
+classes remain empty, and @sec-parity explains why.
 
-= Why $p = 2$ is so hard here <sec-why2>
+= Why $p = 2$ is hard here <sec-why2>
 
-The emptiness is not a shortage of search. It has a proof.
+The first obstacle is not a shortage of search. It has a proof.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *At $p = 2$, no twist of rank $1$ can be dense.*
@@ -150,28 +157,68 @@ The emptiness is not a shortage of search. It has a proof.
   cannot be all of a non-procyclic $E_d (QQ_2)$. $qed$
 ]
 
-Checked on $30$ twisted curves: all have a $QQ_2$-rational $2$-torsion point. And across the
-twists inspected, *every* one that `densegroup2` reports dense has rank $>= 2$, with no
-exceptions --- exactly as the proposition requires.
+Checked on $48$ twisted curves: all have a $QQ_2$-rational $2$-torsion point. And of $32$ twists
+inspected, every one that `densegroup2` reports dense has rank $>= 2$ --- no exceptions.
 
-So at $p = 2$ the single-twist condition demands rank $>= 2$ on *both* curves in the same square
-class. In $|d| <= 150$ that happens once, at $d = -61$, where $E_(-61)$ and $E'_(-61)$ both have
-rank $2$.
+== The even classes are blocked by parity <sec-parity>
+
+The second obstacle is sharper, and it is what actually separates the two halves of the table.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Observed.* For every squarefree $d$ with $|d| <= 1200$ --- $1460$ twists ---
+  $ w(E_d) thin w(E'_d) = cases(+1 & "if" d "is odd", -1 & "if" d "is even") . $
+  Equivalently: for odd $d$ the pair $(w(E_d), w(E'_d))$ is $(+,+)$ or $(-,-)$ and never mixed;
+  for even $d$ it is $(+,-)$ or $(-,+)$ and never equal. Tabulated:
+]
+
+#v(2mm)
+#align(center)[
+#table(columns: 6, align: (center, right, right, right, right, right),
+  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3pt),
+  table.header([class], [twists], [$(+,+)$], [$(+,-)$], [$(-,+)$], [$(-,-)$]),
+  [$[1]$],  [$242$], [$125$], [$0$],  [$0$],  [$117$],
+  [$[3]$],  [$244$], [$120$], [$0$],  [$0$],  [$124$],
+  [$[5]$],  [$244$], [$124$], [$0$],  [$0$],  [$120$],
+  [$[7]$],  [$242$], [$117$], [$0$],  [$0$],  [$125$],
+  [$[2]$],  [$121$], [$0$],   [$64$], [$57$], [$0$],
+  [$[6]$],  [$123$], [$0$],   [$62$], [$61$], [$0$],
+  [$[10]$], [$123$], [$0$],   [$62$], [$61$], [$0$],
+  [$[14]$], [$121$], [$0$],   [$64$], [$57$], [$0$],
+)]
+
+#v(2mm)
+
+So in the four even classes *one of the two curves always has root number $-1$*, hence odd
+analytic rank. Combined with @sec-why2, a witness there would need rank $>= 2$ on both curves
+*and* odd rank on one of them --- that is, rank $>= 3$ on one side. That is why the even half of
+the table is empty while the odd half is not: it is not that the search was too short, it is that
+the even classes demand a rank-$3$ twist paired with a rank-$2$ twist in the same square class.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *How conditional is this?* Root number $-1$ forces odd *analytic* rank unconditionally. Passing
+  to the Mordell--Weil rank is the parity conjecture; the $p$-parity statement is a theorem for
+  elliptic curves over $QQ$ (Dokchitser--Dokchitser), and gives the Mordell--Weil parity when Ш
+  is finite. The identity $w(E_d) w(E'_d) = (-1)^(v_2 (d))$ is here an *observation* on $1460$
+  twists, not a derivation; it ought to come out of the local root number at $2$, where the two
+  conductors differ ($2^2$ against $2^4$), but that computation is not done. Citation from memory.
+]
 
 = What this does and does not prove <sec-status>
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   *Proved.* $X(QQ)$ is dense in $X(QQ_3)$ and in $X(QQ_5)$ --- a single twist in each of the four
-  classes. The class $[3]$ at $p = 2$ is likewise settled by $d = -61$.
+  classes. At $p = 2$ the four odd classes are settled, by $d = 5105, -61, 2501, 183$.
 
   #v(1.5mm)
-  *Not proved.* That the seven empty classes at $p = 2$, or $[7]$ at $p = 7$, fail. Because
+  *Not proved.* That the four even classes at $p = 2$, or $[7]$ at $p = 7$, fail. Because
   $E_delta (QQ_2)$ is *not procyclic* --- the very $2$-torsion that makes @sec-why2 work --- the
   single-twist form is not necessary at $2$ ($section 2.1.1$ of the main notes), so a union of
   several deficient twists could still cover. That union question is precisely where the
-  correlation between the two factors matters, and it is untouched here.
+  correlation between the two factors matters, and it is untouched here. The parity obstruction of
+  @sec-parity blocks the *single-twist* route in the even classes; it says nothing about the union.
 
   #v(1.5mm)
-  *Search-limited.* All statements are for squarefree $|d| <= 150$. A rank-$2$ pair in another
-  class may simply lie further out.
+  *Search-limited.* The odd-class witnesses came from $|d| <= 6000$; three of the four lie beyond
+  $|d| = 150$, which is why the first pass looked so empty. A rank-$3$ / rank-$2$ pair in an even
+  class may simply lie further out still.
 ]
