@@ -24,7 +24,8 @@
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   *Summary.* At $p = 13$ a *single* twist suffices in every square class:
   $d = 30, 6, 13, -78$ for the classes $[1], [2], [13], [26]$. The structural reason is that both
-  curves carry full rational $2$-torsion, so the image $S_d$ always contains $V = T[2]$, and
+  curves carry full rational $2$-torsion, so the image $S_d$ of $E_d (QQ)$ in the torsion $T$ of
+  $E_delta (QQ_13)$ always contains $V = T[2]$, and
   $T slash V$ is cyclic in every class but one. The exception is class $[2]$, where
   $T tilde.equiv (ZZ slash 4)^2$ and $T slash V tilde.equiv (ZZ slash 2)^2$: there a rank-$1$
   twist can only reach an index-$2$ subgroup, and three of them are needed --- the Bose--Burton
@@ -83,10 +84,32 @@ there is no $13$-torsion over $QQ_13$ (checked: the $13$-division polynomial has
 So $E_0$ is torsion-free pro-$13$, $T tilde.equiv Phi tilde.equiv (ZZ slash 2)^2$, and $T$ is
 exactly the image of the rational $2$-torsion.
 
-Since $13 divides.not |T|$ in every class, each closed subgroup splits,
-$ H_d = 13^a ZZ_13 times S_d , $
-and a cover needs $a = 0$ on both factors. Concretely, with $M = |T|$ and $P$ a free generator,
-$4 P$ kills the torsion component and
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Notation.* Write $T subset.eq G$ and $T' subset.eq G'$ for the torsion subgroups --- the finite
+  factors tabulated above --- and
+  $ H_d = overline(E_d (QQ)) subset.eq G , wide H'_d = overline(E'_d (QQ)) subset.eq G' $
+  for the closures of the rational points, transported to the reference twist by the isomorphism
+  recalled at the end of this section.
+
+  #v(1.5mm)
+  Since $13 divides.not |T|$ in every class, each of these closed subgroups splits into its
+  pro-$13$ and prime-to-$13$ parts,
+  $ H_d = 13^a ZZ_13 times S_d , wide S_d := H_d inter T , $
+  and $S_d$ is the *image of $E_d (QQ)$ in $T$* under the reduction map $G ->> G slash E_1
+  tilde.equiv T$ --- literally reduction modulo $13$ at the good places, and the component-group
+  map at the additive ones. (Passing to the closure does not change an image in a finite quotient,
+  so $H_d$ and $E_d (QQ)$ have the same image.) Since the $2$-torsion is rational for every twist,
+  $S_d$ always contains its image
+  $ V := T[2] , $
+  and likewise $S'_d supset.eq V' := T'[2]$ on the second factor.
+
+  #v(1.5mm)
+  A cover requires $a = 0$ on both factors; when that holds,
+  $H_d times H'_d = ZZ_13^2 times S_d times S'_d$, so what has to be checked is that the
+  $S_d times S'_d$ cover $T times T'$.
+]
+
+Concretely, with $M = |T|$ and $P$ a free generator, $4 P$ kills the torsion component and
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *The two tests.* The pro-$13$ part is full if and only if
