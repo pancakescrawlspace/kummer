@@ -384,6 +384,65 @@ isomorphism does not exist. There $E'_d$ is the unramified quadratic twist of $E
 and one wants the weaker statement that such a twist does not move the local Kummer image at a
 place of additive reduction. That is not proved here.
 
+=== Is $L_q$ unramified at $q divides d$?  No <sec-obs-unram>
+
+At $q tilde.not d$ of good reduction $L_q = H^1_"ur"$, which is *intrinsic to the Galois module*
+and therefore matched by $psi$ automatically --- that is why the good places are free. The obvious
+hope is that the same holds at $q divides d$. It does not: there the twist makes $q$ additive, and
+the local Kummer image escapes the unramified subgroup.
+
+#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
+  *Tested and refuted.* For $q tilde.not 3$ the prime $q$ is unramified in $K = QQ(u)$
+  ($"disc" K = -243$) and $v_w (u) = 0$, so $v_w (theta) = v_w (d) = 1$ at every $w divides q$ when
+  $q parallel d$ --- $theta$ itself is ramified. Sampling local points and recording the parity of
+  $v_w (x - theta)$:
+
+  #v(2mm)
+  #align(center)[
+  #table(columns: 4, align: (right, right, right, right), stroke: 0.4pt + luma(170),
+    inset: (x: 8pt, y: 3pt),
+    table.header([$d$], [$q$], [odd $v_w$ on $E_d$], [odd $v_w$ on $E'_d$]),
+    [$-5$],  [$5$],  [$6$ of $344$], [$9$ of $350$],
+    [$-7$],  [$7$],  [$0$ of $210$], [$0$ of $210$],
+    [$-66$], [$11$], [$1$ of $446$], [$2$ of $448$],
+    [$94$],  [$47$], [$0$ of $480$], [$0$ of $480$],
+    [$-61$], [$61$], [$0$ of $696$], [$0$ of $696$],
+  )]
+
+  #v(2mm)
+  So $L_q$ is *not* contained in the unramified classes at $q = 5$ or $q = 11$. The route closes.
+]
+
+What the check did buy is a much smaller open set. Splitting the primes $q divides d$ three ways:
+
+#v(2mm)
+#align(center)[
+#table(columns: 5, align: (right, right, center, center, left), stroke: 0.4pt + luma(170),
+  inset: (x: 8pt, y: 3pt),
+  table.header([$d$], [$q$], [$dim W_q$], [$dim W'_q$], [status]),
+  [$-7$],   [$7$],    [$0$], [$0$], [*trivial*: a factor vanishes],
+  [$130$],  [$13$],   [$0$], [$0$], [*trivial*],
+  [$-5$],   [$5$],    [$1$], [$1$], [*proved*, @sec-obs-owed],
+  [$10$],   [$5$],    [$1$], [$1$], [*proved*],
+  [$-30$],  [$5$],    [$1$], [$1$], [*proved*],
+  [$2501$], [$41$],   [$1$], [$1$], [*proved*],
+  [$-61$],  [$61$],   [$2$], [$2$], [*proved*],
+  [$5105$], [$1021$], [$2$], [$2$], [*proved*],
+  [$-66$],  [$11$],   [$1$], [$1$], [*open*],
+  [$94$],   [$47$],   [$1$], [$1$], [*open*],
+)]
+
+#v(2mm)
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *What is actually left.* Only $q divides d$ with $q equiv 3 space (mod 4)$ *and*
+  $dim W_q = 1$. There $dim H^1 (QQ_q, E[2]) = 2 dim H^0 = 2$, so $L_q$ and $psi_* L'_q$ are two
+  *Lagrangian lines in a plane*, and $beta_q = 0$ says they coincide --- a codimension-one
+  coincidence, recurring every time it is tested. Something forces it; neither the local
+  isomorphism of @sec-obs-owed nor unramifiedness is that something.
+]
+
+
 == $beta_2$, and the verdict <sec-obs-verdict>
 
 #v(2mm)
@@ -432,7 +491,8 @@ no twist there could ever have worked.
   #v(1.5mm)
   *Partly discharged.* @sec-obs-owed proves $beta_q equiv 0$ at every $q divides d$ with
   $q equiv 1 space (mod 4)$ (and $-9$ a cube), via a local isomorphism. What remains verified but
-  not proved is $beta_q equiv 0$ at $q divides d$ with $q equiv 3 space (mod 4)$, and at $q = 3$.
+  not proved is $beta_q equiv 0$ at $q divides d$ with $q equiv 3 space (mod 4)$ *and*
+  $dim W_q = 1$ (@sec-obs-unram), and at $q = 3$.
   The non-density statement is *conditional on those*.
 
   #v(1.5mm)
