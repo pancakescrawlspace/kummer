@@ -41,6 +41,31 @@ twists with both ranks positive, |d| <= 65 : 34
   class [7  ] : none found
   class [u*7] : d = -7
 
+=== L_2(E_d) versus psi_* L'_2, by square class of d  (section 6.8) ===
+    a = 9d^3;  E'_d = E_{-d} over Q_2;  identification theta' = -1/theta
+  class [1 ] d = 1   a = 9      v_2(a) = 0   #L_2 = 4  #psi_*L'_2 = 4   equal
+  class [3 ] d = 3   a = 243    v_2(a) = 0   #L_2 = 4  #psi_*L'_2 = 4   equal
+  class [5 ] d = 5   a = 1125   v_2(a) = 0   #L_2 = 4  #psi_*L'_2 = 4   equal
+  class [7 ] d = 7   a = 3087   v_2(a) = 0   #L_2 = 4  #psi_*L'_2 = 4   equal
+  class [2 ] d = 2   a = 72     v_2(a) = 3   #L_2 = 4  #psi_*L'_2 = 4   DIFFERENT -> beta_2 != 0
+  class [6 ] d = 6   a = 1944   v_2(a) = 3   #L_2 = 4  #psi_*L'_2 = 4   DIFFERENT -> beta_2 != 0
+  class [10] d = 10  a = 9000   v_2(a) = 3   #L_2 = 4  #psi_*L'_2 = 4   DIFFERENT -> beta_2 != 0
+  class [14] d = 14  a = 24696  v_2(a) = 3   #L_2 = 4  #psi_*L'_2 = 4   DIFFERENT -> beta_2 != 0
+  each group has order 4 = 2^dim L_2, so every row is a COMPLETE determination
+  odd classes equal, even classes different, as predicted : yes
+
+=== the F_2-rank of beta_2, sampled independently (section 6.8) ===
+  class [1 ] d = 1   :  65 x 5   matrix, F_2-rank = 0
+  class [3 ] d = 3   :   5 x 6   matrix, F_2-rank = 0
+  class [5 ] d = 5   :   4 x 5   matrix, F_2-rank = 0
+  class [7 ] d = 7   :   5 x 67  matrix, F_2-rank = 0
+  class [2 ] d = 2   :  20 x 20  matrix, F_2-rank = 1
+  class [6 ] d = 6   :  20 x 20  matrix, F_2-rank = 1
+  class [10] d = 10  :  22 x 19  matrix, F_2-rank = 1
+  class [14] d = 14  :  20 x 20  matrix, F_2-rank = 1
+  rank 0 on the odd classes, rank 1 on the even ones -- and never 2,
+  which is the rank <= 1 forced by delta_2(T) = psi_* delta'_2(T').
+
 === v = 3 : reduction type and dim W_3, by square class of d ===
   class [1  ] : E_d IV   f_3=5 c_3=3   E'_d IV*  f_3=5 c_3=1   (first d = 1)
   class [u  ] : E_d IV   f_3=5 c_3=1   E'_d IV*  f_3=5 c_3=3   (first d = -1)

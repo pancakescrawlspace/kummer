@@ -25,7 +25,9 @@
   $X(QQ_p)$ there. At
   $p = 2$ *all four odd classes* are covered and all four even classes are empty --- and the even
   half is genuinely *obstructed*: @sec-obstruction computes the twisted pairing at $ell = p = 2$
-  and finds $beta_2 equiv.not 0$ there, so $X(QQ)$ is not dense in $X(QQ_2)$. $E_d (QQ_2)$ always has a $2$-torsion point while $E_d (QQ)$ never
+  and finds $beta_2 equiv.not 0$ there --- for a reason, not just numerically: over $QQ_2$,
+  $E'_d$ is the quadratic twist of $E_d$ by $-1$, so the question has only eight instances and all
+  eight are settled (@sec-obs-nosample). Hence $X(QQ)$ is not dense in $X(QQ_2)$. $E_d (QQ_2)$ always has a $2$-torsion point while $E_d (QQ)$ never
   does, so a rank-$1$ twist has *procyclic* closure and can never be dense: at $p = 2$ a witness
   needs rank $>= 2$ on *both* curves at once. Steering the search by that --- root numbers first,
   `ellrank` only on survivors --- finds witnesses in all four odd classes out to $|d| <= 6000$. In
@@ -277,6 +279,57 @@ The first obstacle is not a shortage of search. It has a proof.
 
 Checked on $48$ twisted curves: all have a $QQ_2$-rational $2$-torsion point. And of $32$ twists
 inspected, every one that `densegroup2` reports dense has rank $>= 2$ --- no exceptions.
+
+== The local picture at $2$, in full <sec-two-data>
+
+The proof above gives *at least* one $2$-torsion point. There is never more than one:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Proposition.* For every $d$,
+  $ dim_(bb(F)_2) E_d [2](QQ_2) = dim_(bb(F)_2) E'_d [2](QQ_2) = 1 , quad "hence" quad
+    dim L_2 = dim L'_2 = 2 , quad dim H^1 (QQ_2, E_d [2]) = 4 . $
+
+  #v(2mm)
+  _Proof._ At least one root, by the computation above. At most one: a second root of
+  $x^3 = -9 d^3$ differs from the first by a primitive cube root of unity, and
+  $mu_3 (QQ_2) = 1$ --- the full $2$-torsion needs $zeta_3$, which $QQ_2$ does not have. Then
+  $dim L_2 = dim E_d [2](QQ_2) + 1 = 2$ by Lemma B$'$, and $dim H^1 = 2 dim L_2$. $qed$
+]
+
+By the Lemma of @sec-scan-seven the rest of the local data is a function of the square class of
+$d$ in $QQ_2^times$ --- eight classes, eight curves in each family:
+
+#v(2mm)
+#align(center)[
+#table(columns: 8, align: (center, center, center, center, center, center, center, center),
+  stroke: 0.4pt + luma(170), inset: (x: 6pt, y: 3.5pt),
+  table.header([class], [rep. $d$], [$v_2 (d)$], [$QQ_2 (sqrt(d))$],
+    [$E_d$], [$c_2$], [$E'_d$], [$c_2$]),
+  [$[1]$],  [$1$],  [$0$], [split],     [$I V$],     [$3$], [$I I$],     [$1$],
+  [$[3]$],  [$3$],  [$0$], [ramified],  [$I I$],     [$1$], [$I V$],     [$1$],
+  [$[5]$],  [$5$],  [$0$], [unramified],[$I V$],     [$1$], [$I I$],     [$1$],
+  [$[7]$],  [$7$],  [$0$], [ramified],  [$I I$],     [$1$], [$I V$],     [$3$],
+  [$[2]$],  [$2$],  [$1$], [ramified],  [$I_0^ast$], [$2$], [$I_0^ast$], [$2$],
+  [$[6]$],  [$6$],  [$1$], [ramified],  [$I_0^ast$], [$2$], [$I_0^ast$], [$2$],
+  [$[10]$], [$10$], [$1$], [ramified],  [$I_0^ast$], [$2$], [$I_0^ast$], [$2$],
+  [$[14]$], [$14$], [$1$], [ramified],  [$I_0^ast$], [$2$], [$I_0^ast$], [$2$],
+)]
+
+#v(2mm)
+
+The conductor exponent at $2$ is $2$ for type $I V$, $4$ for $I I$ and $6$ for $I_0^ast$,
+consistent with $N_E = 2^2 dot 3^5$ and $N_(E') = 2^4 dot 3^5$ of @sec-pair. Two remarks that
+matter later.
+
+*(i) The four/four split is by $v_2 (d)$, not by ramification.* Only $[1]$ (split) and $[5]$ (the
+unramified quadratic) give an unramified $QQ_2 (sqrt d)$; six of the eight are ramified. What
+divides the classes four and four --- and what @sec-parity and @sec-obstruction are about --- is
+the *parity of $v_2 (d)$*.
+
+*(ii) The four obstructed classes are the four that look alike at $2$.* Every even class has both
+curves of type $I_0^ast$ with $c_2 = 2$ and the same conductor exponent: the reduction data at $2$
+does not distinguish them at all. Whatever separates $L_2$ from $psi_* L'_2$ there is invisible to
+Kodaira type, which is why @sec-obstruction has to compute.
 
 == The even classes are blocked by parity <sec-parity>
 
@@ -884,8 +937,9 @@ see `results/kummer-example-j0.txt`.
   ($2 equiv 2$ mod $3$, and $3$ is a cube in $ZZ_2^times$), so
   $delta_2 (T) = psi_* delta'_2 (T')$ there too. But Step 2 fails at $q = 2$:
   $dim L_2 = dim E[2](QQ_2) + 1 = 2$, so $L_2$ is *not* the line spanned by $delta_2 (T)$ and the
-  argument gives only that the two lines inside $L_2$ and $psi_* L'_2$ agree. $beta_2$ stays with
-  @sec-obs-verdict.
+  argument gives only that the two lines inside $L_2$ and $psi_* L'_2$ agree --- which is exactly
+  the rank-$<= 1$ statement of @sec-obs-nosample(b). Supplying the *second* generator is what
+  @sec-obs-nosample does, by identifying $E'_d$ with $E_(-d)$ over $QQ_2$.
 ]
 
 === The same computation at every $q != 3$ <sec-obs-general>
@@ -965,6 +1019,110 @@ statement, and much cheaper.
 ]
 
 
+== $beta_2 != 0$ without sampling <sec-obs-nosample>
+
+@sec-obs-verdict establishes $beta_2 equiv.not 0$ by exhibiting non-zero values, thousands of them.
+A single non-zero value is already a proof, so nothing is wrong with that --- but it says nothing
+about *why*, and it has to be redone for each twist. Both defects go away once one notices what
+$E'_d$ is over $QQ_2$.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Proposition.* Over $QQ_2$, $ E'_d tilde.equiv E_(-d) , $
+  i.e. $E'_d$ is the *quadratic twist of $E_d$ by $-1$*.
+
+  #v(2mm)
+  _Proof._ Two ways to see the same thing. Directly: $E'_d$ and $E_(-d)$ are $y^2 = x^3 - 81 d^3$
+  and $y^2 = x^3 - 9 d^3$, so they are sextic twists of one another by $-81 d^3 slash -9 d^3 = 9$,
+  and $9 = (3^(1 slash 3))^6$ with $3^(1 slash 3) in ZZ_2^times$, cubing being bijective on
+  $ZZ_2^times$. A sextic twist by a $6$th power is an isomorphism.
+
+  #v(1.5mm)
+  Structurally: $E'_d$ is the sextic twist of $E_d$ by $-9$, and $-9 = gamma^3$ with
+  $gamma = (-9)^(1 slash 3) in ZZ_2^times$. A sextic twist by a *cube* is a quadratic twist, by
+  $gamma$; and cubing is the identity on $(ZZ slash 8)^times$, so
+  $gamma equiv -9 equiv -1$ (mod $8$). Thus the twisting parameter is $-1$ modulo squares. $qed$
+]
+
+So the pair $(E_d, E'_d)$ *is*, locally at $2$, the pair $(E_a, E_(-1 slash a))$ of
+`selmer-involution.typ` with $a = 9 d^3$: over $QQ_2$ the two involutions agree, since
+$(-1 slash a) slash (-a) = a^(-2)$ is a $6$th power whenever $3 divides v_2 (a)$, and
+$v_2 (9 d^3) = 3 v_2 (d)$. And by @sec-obs-owed, $beta_2 equiv 0$ iff $psi_* L'_2 = L_2$. So:
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  $ beta_2 equiv 0 quad <==> quad L_2 (E_d) = L_2 (E_(-d)) quad "inside" H^1 (QQ_2, E[2]) . $
+  *Does the quadratic twist by $-1$ move the local Kummer image at $2$?* --- which is exactly the
+  question `selmer-involution.typ` §11.3 answers, and the reason that note's hypothesis is
+  "$a$ odd".
+]
+
+Two things then finish it, and neither is a sample.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *(a) The question has only eight instances.* By the Lemma of @sec-scan-seven, $E_d$ over $QQ_2$
+  depends only on the class of $d$ in $QQ_2^times slash (QQ_2^times)^2$, and so therefore does
+  $L_2$; the same for $E_(-d)$ and hence for the answer. *Eight square classes, eight
+  computations, and every twist is covered.* Contrast the sampling of @sec-obs-verdict, which
+  re-does the work for each $d$.
+
+  #v(2mm)
+  *(b) $beta_2$ has rank at most $1$.* $delta_2 (T) = psi_* delta'_2 (T')$ --- the identity of
+  @sec-obs-deg2, which holds verbatim at $q = 2$ --- so the common class
+  $delta_2 (T) = (thin 3, thin d (1 - zeta_3) thin)$ lies in $L_2$ *and* in $psi_* L'_2$. Both are
+  isotropic and $psi_*$ is an isometry, so
+  $ beta_2 (T, P') = ⟨psi_* delta'(T'), psi_* delta'(P')⟩ = 0 , quad
+    beta_2 (P, T') = ⟨delta(P), delta(T)⟩ = 0 $
+  for every $P, P'$. The $2 times 2$ matrix of $beta_2$ therefore has its first row and column
+  zero: $beta_2 equiv.not 0$ *reduces to a single Hilbert symbol* $beta_2 (P, P')$, for one
+  non-torsion generator on each side.
+]
+
+Carrying out (a) --- with `LE`/`LEp` of `selmer-local2.gp`, which computes both images inside the
+one algebra $A_2 = QQ_2 times QQ_2 (zeta_3)$ under the identification $theta' = -1 slash theta$:
+
+#v(2mm)
+#align(center)[
+#table(columns: 6, align: (center, center, center, center, center, left),
+  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3.5pt),
+  table.header([class of $d$], [rep.], [$a = 9 d^3$], [$\#L_2$], [$\#psi_* L'_2$], [verdict]),
+  [$[1]$],  [$1$],  [$9$],     [$4$], [$4$], [equal],
+  [$[3]$],  [$3$],  [$243$],   [$4$], [$4$], [equal],
+  [$[5]$],  [$5$],  [$1125$],  [$4$], [$4$], [equal],
+  [$[7]$],  [$7$],  [$3087$],  [$4$], [$4$], [equal],
+  [$[2]$],  [$2$],  [$72$],    [$4$], [$4$], [*different*],
+  [$[6]$],  [$6$],  [$1944$],  [$4$], [$4$], [*different*],
+  [$[10]$], [$10$], [$9000$],  [$4$], [$4$], [*different*],
+  [$[14]$], [$14$], [$24696$], [$4$], [$4$], [*different*],
+)]
+
+#v(2mm)
+
+Each group has order $4 = 2^(dim L_2)$, so each row is a *complete* determination of both
+subgroups, not a partial one. The four odd rows are `selmer-involution.typ` §11.3 verbatim --- that
+note proves them, and that is where its "$a$ odd" hypothesis comes from. The four even rows are the
+new content:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem.* For every $d$ with $v_2 (d)$ odd, $psi_* L'_2 != L_2$, and hence
+  $beta_2 equiv.not 0$. For every $d$ with $v_2 (d)$ even, $psi_* L'_2 = L_2$ and
+  $beta_2 equiv 0$.
+
+  #v(1.5mm)
+  Together with (b), the failure in the even classes is *one* symbol: $L_2$ and $psi_* L'_2$ are
+  distinct Lagrangian planes meeting exactly in the line $⟨delta_2 (T)⟩$, and $beta_2$ has rank
+  exactly $1$.
+]
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Checked two ways.* The subgroup comparison above, and independently the rank of $beta_2$ as a
+  matrix over $bb(F)_2$: sampling points on both curves and computing
+  $beta_2 (P,P') = product_(w divides 2) (x(P) + d u^2, thin x(P') - 3 d u)_(K_w)$ gives an
+  $bb(F)_2$-rank of $0$ on each odd class and exactly $1$ on each even class. The two routes use
+  different identifications --- $theta' = -1 slash theta$ against $psi(s_j) = r_(2j)$ --- and agree
+  in all eight cases, which is the check `selmer-local2.gp` warns is needed: an identification off
+  by an automorphism of $E[2]$ compares subspaces of two different copies of $H^1$ and reports
+  nonsense.
+]
+
 == $beta_2$, and the verdict <sec-obs-verdict>
 
 #v(2mm)
@@ -1006,9 +1164,13 @@ no twist there could ever have worked.
 == Status <sec-obs-status>
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
-  *Proved.* $beta_2 equiv.not 0$ on the four even classes: a single non-zero value settles it, and
-  thousands were found. $beta_2 equiv 0$ on the four odd classes, twice over --- directly, and by
-  the refutation argument, since the witnesses of @sec-scan have both local images full.
+  *Proved.* $beta_2 equiv.not 0$ on the four even classes and $beta_2 equiv 0$ on the four odd
+  ones. Originally by exhibiting values --- a single non-zero one settles a class, and thousands
+  were found --- and now *structurally*: @sec-obs-nosample shows $E'_d tilde.equiv E_(-d)$ over
+  $QQ_2$, so the question is whether the quadratic twist by $-1$ moves $L_2$, which by the Lemma
+  of @sec-scan-seven has only *eight* instances. All eight are computed exhaustively (each
+  subgroup of order $4 = 2^(dim L_2)$, so complete), and $delta_2 (T) = psi_* delta'_2 (T')$
+  forces $beta_2$ to have rank $<= 1$, reducing each failure to a single symbol.
 
   #v(1.5mm)
   *Proved at $q divides d$, $q equiv 2 space (mod 3)$.* @sec-obs-deg2 computes $L_q$ in closed
@@ -1056,7 +1218,8 @@ no twist there could ever have worked.
   #v(1.5mm)
   *Also proved: $X(QQ)$ is not dense in $X(QQ_2)$.* The four even classes fail, and not for want
   of searching. Two steps, both now complete. $beta_2 equiv.not 0$ on each even class ---
-  a *single* non-zero symbol settles that, and thousands were found (@sec-obs-verdict). And
+  by @sec-obs-nosample, eight exhaustive local computations covering *every* twist, rather than
+  by sampling (@sec-obs-verdict gives the values as well). And
   condition (E), which the criterion needs, holds at every place other than $2$: at $infinity$
   because $"disc" < 0$ makes $E_d (RR)$ connected and $W_infinity = 0$; at $q = 3$ by
   @sec-obs-three; at $q divides d$ by @sec-obs-deg2 and @sec-obs-general; and at every good place
@@ -1064,6 +1227,11 @@ no twist there could ever have worked.
   all the places there are. The conclusion is therefore *unconditional*, and it is stronger than
   the parity obstruction of @sec-parity: parity blocks the single-twist route, while
   @sec-obstruction blocks the *union* form as well.
+
+  #v(1.5mm)
+  *Nothing empirical is left.* Both halves --- condition (E) and $beta_2 equiv.not 0$ --- are
+  finite exhaustive statements about the eight square classes at $2$ and about valuations
+  elsewhere. No sample is load-bearing anywhere in the obstruction.
 
   #v(1.5mm)
   *Imported rather than proved here.* The criterion itself --- that

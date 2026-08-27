@@ -92,5 +92,6 @@ main() = { my(ok = 1);
           "   ", if(same, "EQUAL", "*** DIFFERENT ***")));
   print("");
   print("   ==> ", if(ok, "L_2 AGREES: the local conditions at 2 coincide", "they differ")); }
-main();
-quit;
+\\ Run standalone.  A caller that only wants LE/LEp sets NOAUTORUN = 1 before
+\\ read()ing this file (an undefined NOAUTORUN is a t_POL, so != 1 is true).
+if(NOAUTORUN != 1, main(); quit);

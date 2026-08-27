@@ -215,6 +215,23 @@ conjecture at $v = 2$: *oddness of $a$ is what makes $L_2 (E_a) = L_2 (E_(-1 sla
 discrepancy of exactly 1 is what one expects from a single place where two maximal isotropic
 subspaces of a common $H^1 (QQ_2, M)$ meet in a hyperplane.
 
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *The even case is settled on a sub-family, elsewhere.* `kummer-example-j0.typ` §6.8 needs exactly
+  the complement of @sec-pf-2, and proves it for $a = 9 d^3$ with $d$ squarefree --- the twists of
+  $y^2 = x^3 + 9$. There the parameter enters as a *cube*, so $E_a$ over $QQ_2$ depends only on the
+  square class of $d$ and there are eight instances in all; the four with $d$ even are computed
+  with the `LE`/`LEp` of this file and come out *different*, both subgroups having the full order
+  $4 = 2^(dim L_2)$. So "$a$ odd" is not a convenience of the method --- on that family the
+  local conditions genuinely differ for even $d$, which is what the table above registers as a
+  discrepancy of exactly $1$.
+
+  #v(1.5mm)
+  For a *general* even $a$ the reduction to eight classes is not available: $E_a$ over $QQ_2$
+  depends on $a$ modulo *sixth* powers, and the cubic part of the twist is non-trivial as soon as
+  $3 divides.not v_2 (a)$. The two $a$ in the table that do *not* disagree are a reminder that the
+  general even case is not uniform.
+]
+
 = Numerical verification <sec-num>
 
 Sage's `selmer_rank` is $dim_(bb(F)_2) "Sel"_2$; in PARI, `ellrank` returns $[r_1, r_2, s, L]$ with

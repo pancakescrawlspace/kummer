@@ -152,6 +152,62 @@ Epd(d) = ellinit([0,0,0,0,-81*d^3]);
   printf("  %d twists in class [7] with |d| <= %d : %d with 7-torsion over Q_7\n", n, B, bad);
   printf("  (0 means E_d(Q_7) = Z_7 is procyclic throughout the class)\n");}
 
+\\ -------------------------- beta_2 != 0 without sampling (section 6.8)
+\\ Over Q_2, E'_d = E_{-d}: the two are sextic twists by 9 = (3^{1/3})^6 and
+\\ 3^{1/3} lies in Z_2^* because cubing is bijective there.  So beta_2 = 0 iff
+\\ the quadratic twist by -1 fixes the local Kummer image at 2 -- exactly the
+\\ question of selmer-involution.typ section 11.3, with a = 9d^3.  By the Lemma
+\\ of section 4.1 that depends only on the square class of d, so EIGHT
+\\ computations settle every twist.  LE/LEp do them inside one algebra.
+NOAUTORUN = 1;
+read("selmer-local2.gp");
+
+{cls2name(d) = if(d % 2, Str(d % 8), Str(2*((d/2) % 8)));}
+
+{betatwo() =
+  my(ok = 1);
+  print("=== L_2(E_d) versus psi_* L'_2, by square class of d  (section 6.8) ===");
+  print("    a = 9d^3;  E'_d = E_{-d} over Q_2;  identification theta' = -1/theta");
+  foreach([1,3,5,7,2,6,10,14], d,
+    my(a = 9*d^3, A = LE(a,5), B = LEp(a,5), same = 1);
+    if(#A != #B, same = 0);
+    for(i = 1, #A, my(f = 0);
+      for(j = 1, #B, if(samecl(A[i], B[j]), f = 1; break));
+      if(!f, same = 0));
+    if((d % 2 == 0) == same, ok = 0);
+    printf("  class [%-2s] d = %-3s a = %-6s v_2(a) = %d   #L_2 = %d  #psi_*L'_2 = %d   %s\n",
+      cls2name(d), d, a, valuation(a,2), #A, #B,
+      if(same, "equal", "DIFFERENT -> beta_2 != 0")));
+  printf("  each group has order 4 = 2^dim L_2, so every row is a COMPLETE determination\n");
+  printf("  odd classes equal, even classes different, as predicted : %s\n",
+         if(ok, "yes", "*** NO"));}
+
+\\ Independent route: the F_2-rank of beta_2 as a matrix, via the section 6.3
+\\ formula.  Rank <= 1 is forced (delta_2(T) = psi_* delta'_2(T') lies in both
+\\ Lagrangians and both are isotropic); rank 1 exactly on the even classes.
+{issqQ2(a) = if(a == 0, return(1);,
+  my(v = valuation(a,2), n); if(v % 2, return(0));
+  n = a/2^v; numerator(n)*denominator(n) % 8 == 1);}
+
+{beta2rank() =
+  my(Ku = nfinit(u^3 - 3), D);
+  D = idealprimedec(Ku, 2);
+  print("=== the F_2-rank of beta_2, sampled independently (section 6.8) ===");
+  foreach([1,3,5,7,2,6,10,14], d,
+    my(P = [], Q = [], M, r);
+    for(x = -60, 60, if(x^3 + 9*d^3 != 0 && issqQ2(x^3 + 9*d^3), P = concat(P,[x])));
+    for(x = -60, 60, if(x^3 - 81*d^3 != 0 && issqQ2(x^3 - 81*d^3), Q = concat(Q,[x])));
+    M = matrix(#P, #Q, i, j,
+      my(s = 1);
+      for(k = 1, #D, s *= nfhilbert(Ku, Mod(P[i] + d*u^2, u^3-3),
+                                        Mod(Q[j] - 3*d*u, u^3-3), D[k]));
+      Mod(if(s == 1, 0, 1), 2));
+    r = if(#P == 0 || #Q == 0, -1, matrank(M));
+    printf("  class [%-2s] d = %-3s : %3d x %-3d matrix, F_2-rank = %d\n",
+           cls2name(d), d, #P, #Q, r));
+  print("  rank 0 on the odd classes, rank 1 on the even ones -- and never 2,");
+  print("  which is the rank <= 1 forced by delta_2(T) = psi_* delta'_2(T').");}
+
 \\ ------------------------------ v = 3 is free, for every twist (section 6.2.1)
 \\ E_d[2](Q_3) needs a cube root of -9d^3 in Q_3, i.e. 3 | v_3(9d^3) = 2 + 3v_3(d)
 \\ -- never.  E'_d[2](Q_3) needs one of 81d^3, with v_3 = 4 + 3v_3(d).  So
@@ -274,6 +330,10 @@ print("\n=== at p = 2, dense implies rank >= 2 ===");
 rank2([-61,2,-6,10,-30,-66,94,130,-3,-5,1,13,22,23,35,-33]);
 print("\n=== the scan (B = 65 here; the document uses B = 150) ===");
 scan(65, [2,3,5,7]);
+print("");
+betatwo();
+print("");
+beta2rank();
 print("");
 three(120);
 print("");
