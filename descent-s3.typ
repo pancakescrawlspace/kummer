@@ -443,6 +443,9 @@ read it:
   inputs to the proof of Theorem 6: that Shapiro's isomorphism is compatible with cup products, and
   that the trace map of an induced module induces corestriction. Local duality and
   $"inv" compose "cor" = "inv"$ are in Ch. VII; see also `local-duality.typ`.
++ `corestriction.typ`, in this repository. The construction of $"cor"$ from scratch, the four
+  properties the proof of Theorem 6 uses, a cochain proof of the Shapiro--cup-product
+  compatibility, and Theorem 6 itself re-derived in that language.
 ]
 
 The elliptic-curve case with $A$ a *cubic* algebra is the $g = 1$ instance of [1]--[4] throughout;

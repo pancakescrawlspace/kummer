@@ -1,0 +1,18 @@
+======================================================================
+corestriction.gp -- checks for corestriction.typ
+
+A = Q[y]/(y^3 - 16y + 16), the cubic field of 37a1; disc 148
+places tested: [2, 3, 5, 7, 11, 13, 37, 101] and oo
+
+test classes: 10
+
+  (P1) prod_w (a,b)_{A_w} = (a,b)_v^3 for rational a,b : 0 discrepancies in 900 symbols
+  (P2) <alpha,b> = (N alpha, b) for rational b : 0 discrepancies in 450 symbols
+  reciprocity  prod_v prod_{w|v} (a,b)_w = 1 : 0 failures in 100 pairs
+  (P2) over B = Q x Q(i) : 0 discrepancies in 640 symbols
+  degree 1: cor(alpha) recovered from its symbols = N(alpha) : 0 wrong, 0 ambiguous, of 10
+
+All four are statements about cor: (P1) is cor . res = deg, (P2) is the
+projection formula together with 'cor in degree 1 is the norm', reciprocity
+is inv . cor = inv summed over all places, and the last recovers cor in
+degree 1 from the pairing alone and finds the norm, as section 3 says.

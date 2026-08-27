@@ -983,7 +983,8 @@ no twist there could ever have worked.
   #v(1.5mm)
   *No longer assumed.* That the local Tate pairing is the sum of Hilbert symbols over
   $w divides q$: this is Theorem 6 of `descent-s3.typ`, proved there and referenced there
-  (§4.7). The self-pairing formula used in @sec-obs-lag2 is its Corollary 7(b).
+  (§4.7), and proved again from the definition of corestriction in `corestriction.typ` §5.
+  The self-pairing formula used in @sec-obs-lag2 is its Corollary 7(b).
 ]
 
 = What this does and does not prove <sec-status>
