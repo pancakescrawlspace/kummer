@@ -1163,6 +1163,47 @@ no twist there could ever have worked.
 
 == Status <sec-obs-status>
 
+Everything above is a statement about one set of places, so it is worth having in one table. Write
+$Sigma(d) = { v : psi_* L'_v != L_v }$, as in $section 9$ of `kummer-survey.typ`. Since $beta_v$
+vanishes exactly when $psi_* L'_v = L_v$ (@sec-obs-owed), $Sigma(d)$ is the whole content.
+
+#v(2mm)
+#align(center)[
+#table(columns: 4, align: (left, left, center, left), stroke: 0.4pt + luma(170),
+  inset: (x: 7pt, y: 4pt),
+  table.header([place], [reason], [$psi_* L'_v = L_v$?], [where]),
+  [$v = infinity$], [$"disc" = -432 k^2 < 0$, so $E_d (RR)$ is connected and
+    $W_infinity = 0$], [yes], [@sec-obs-DE],
+  [$q divides.not 6 d$, good], [$L_q = H^1_"ur"$, intrinsic to the module, so $psi$ matches it],
+    [yes], [@sec-obs-unram],
+  [$q = 3$], [$dim W_3 = 0$: both sides are $0$, since $v_3 (9 d^3) equiv 2$ (mod $3$)],
+    [yes], [@sec-obs-three],
+  [$q divides d$, $q != 2, 3$], [$psi_* delta'_q (T') = delta_q (T)$, ratios explicit squares],
+    [yes], [@sec-obs-deg2, @sec-obs-general],
+  [$q = 2$, $v_2 (d)$ even], [the quadratic twist by $-1$ fixes $L_2$], [yes],
+    [@sec-obs-nosample],
+  [$q = 2$, $v_2 (d)$ odd], [it does not], [*no*], [@sec-obs-nosample],
+)]
+
+#v(2mm)
+
+Both curves are bad only at $2$, $3$ and the primes dividing $d$, so the rows exhaust the places
+and
+$ Sigma(d) = cases(emptyset & "if" d "odd", {2} & "if" d "even") . $
+Condition (E) is the statement $2 in.not Sigma(d) ==> Sigma(d) = emptyset$ read the other way:
+$beta_v equiv 0$ at every $v != 2$, which is the first four rows.
+
+#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
+  *Two things the table is charitable about.* The $q divides d$ row rests on Step 2 of
+  @sec-obs-lag --- that at $q divides d$ the reduction is $I_0^ast$ with $Phi_q$ of exponent $2$,
+  so $E_d [2](QQ_q) arrow.r.hook E_d (QQ_q) slash 2$. @sec-obs-general extends that argument to
+  the split regime but does not re-derive its reduction-type input for every $q divides d$; the
+  square-ratio identity itself is unconditional. And the two $q = 2$ rows are a *finite exhaustive
+  computation*, not a formula: eight square classes, each subgroup determined in full at order
+  $4 = 2^(dim L_2)$, with the Lemma of @sec-scan-seven guaranteeing the eight cover every twist.
+  Complete, but eight machine computations rather than something one reads off.
+]
+
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
   *Proved.* $beta_2 equiv.not 0$ on the four even classes and $beta_2 equiv 0$ on the four odd
   ones. Originally by exhibiting values --- a single non-zero one settles a class, and thousands
