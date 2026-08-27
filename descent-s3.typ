@@ -130,7 +130,8 @@ $ dim_(F_2) L_v = cases(
   dim E[2](QQ_2) + 1 & v = 2,
   dim E[2](RR) - 1 & v = infinity,
 ) $
-and $dim H^1(QQ_v, E[2]) = 2 dim L_v$, the local condition being maximal isotropic. Since
+and $dim H^1(QQ_v, E[2]) = 2 dim L_v$, the local condition being maximal isotropic for the
+local Tate pairing --- written out explicitly in @sec-tate. Since
 $dim E[2](QQ_v)$ counts roots of $f$ in $QQ_v$, this is a table:
 
 #align(center, table(
@@ -175,6 +176,278 @@ the same roots, hence equal. Evaluating at $x = theta$ and using $f(theta) = 0$,
 $ product_i (theta - x_i) = -(lambda theta + mu)^2, quad "so" quad
   product_i delta(P_i) = product_i (x_i - theta) = (lambda theta + mu)^2 , $
 a square. (If the line is vertical, $P_1 + P_2 = O$ and $delta(P_1) delta(P_2) = (x_1 - theta)^2$.)
+
+= The local Tate pairing, on the descent module itself <sec-tate>
+
+@sec-h1 asserted that $L_v$ is *maximal isotropic*; this section writes down the form it is
+isotropic for, entirely inside $A^times slash (A^times)^2$, with no cohomology left in the formula.
+
+Throughout let $A = QQ[x] slash f$ be the étale algebra of the four-case table of @sec-generic ---
+so $A = K$, the cubic field, in the generic case, but nothing below uses irreducibility --- and for
+a place $v$ of $QQ$ write
+$ A_v = A ⊗_QQ QQ_v = product_(w divides v) A_w , quad quad alpha = (alpha_w)_(w divides v) , $
+the product running over the places $w$ of $A$ above $v$, each $A_w$ a finite extension of $QQ_v$.
+By @sec-h1, $H^1(QQ_v, E[2]) = ker(N : A_v^times slash "sq" -> QQ_v^times slash "sq")$.
+
+== The Weil pairing is the permutation pairing <sec-weil>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma 5.* Give $F_2[Omega]$ the $G_QQ$-invariant symmetric form $⟨e_i, e_j⟩ = delta_(i j)$.
+  Under the identification $E[2] = ker sigma$ of Lemma 1, its restriction to $E[2]$ is the Weil
+  pairing $e_2$.
+
+  #v(2mm)
+  _Proof._ $E[2] = {0, e_1 + e_2, e_1 + e_3, e_2 + e_3}$. On it the form is
+  $⟨e_i + e_j, e_i + e_j⟩ = 0$ and $⟨e_i + e_j, e_i + e_k⟩ = 1$ for $j != k$: alternating, and
+  non-degenerate, because the perpendicular of $ker sigma$ inside $F_2[Omega]$ is the line
+  $⟨e_1 + e_2 + e_3⟩$, which meets $ker sigma$ in $0$. There is exactly one non-degenerate alternating form on $F_2^2$, and $e_2$ is
+  one, so they agree. $qed$
+]
+
+So the inclusion $E[2] arrow.r.hook F_2[Omega]$ is an *isometry*, and cup products computed in the
+big module restrict correctly to the small one. That is the whole reason the formula below can be
+written on $A^times slash (A^times)^2$ rather than on $ker N$.
+
+== The formula <sec-tate-formula>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem 6 (the Tate pairing as a corestricted Hilbert symbol).* For
+  $alpha, beta in A_v^times slash (A_v^times)^2$ the cup-product pairing
+  $ ⟨thin , thin ⟩_v : H^1(QQ_v, F_2[Omega]) times H^1(QQ_v, F_2[Omega]) --> "Br"(QQ_v)[2] $
+  is
+  $ ⟨alpha, beta⟩_v = "cor"_(A_v slash QQ_v) (alpha, beta)_(A_v)
+    = sum_(w divides v) "cor"_(A_w slash QQ_v) (alpha_w, beta_w)_(A_w) in "Br"(QQ_v)[2] , $
+  of invariant
+  $ "inv"_v ⟨alpha, beta⟩_v = sum_(w divides v) "inv"_w (alpha_w, beta_w)_(A_w) in 1/2 ZZ slash ZZ ,
+  quad quad "equivalently" quad quad
+  (-1)^(2 "inv"_v ⟨alpha,beta⟩_v) = product_(w divides v) (alpha_w, beta_w)_w , $
+  a product of ordinary Hilbert symbols, one per local factor of $A_v$. Restricted to
+  $ker N = H^1(QQ_v, E[2])$ it is the local Tate pairing of $E[2]$.
+
+  #v(2mm)
+  _Proof._ The form of Lemma 5 factors as
+  $F_2[Omega] ⊗ F_2[Omega] -->^"mult" F_2[Omega] -->^sigma F_2$, coordinatewise multiplication
+  followed by the sum of coordinates. Now $F_2[Omega] = "Ind"_(G_A)^(G_QQ) mu_2$, the
+  multiplication is the induced multiplication $mu_2 ⊗ mu_2 -> mu_2$, and $sigma$ is the trace map
+  of the induced module, whose effect on cohomology is *corestriction*. Shapiro turns
+  $H^i(QQ_v, F_2[Omega])$ into $H^i(A_v, mu_2)$ compatibly with cup products, so
+  $⟨alpha, beta⟩_v = "cor"_(A_v slash QQ_v)(alpha union beta)$, and $alpha union beta$ in
+  $H^2(A_v, mu_2) = "Br"(A_v)[2]$ is the quaternion class $(alpha, beta)_(A_v)$. Splitting
+  $A_v$ into its local factors splits the corestriction; and
+  $"inv"_(QQ_v) compose "cor"_(A_w slash QQ_v) = "inv"_(A_w)$ in local class field theory gives the
+  invariant. Lemma 5 makes $E[2] arrow.r.hook F_2[Omega]$ an isometry, hence the restriction
+  statement. $qed$
+]
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *The quaternion algebra, as asked for.* Locally the answer is a *tensor product of
+  corestrictions of quaternion algebras*,
+  $ cal(A)_v (alpha, beta) = limits(⊗)_(w divides v) "cor"_(A_w slash QQ_v)
+    ((alpha_w, beta_w)_2 slash A_w) , $
+  with slots $alpha_w, beta_w in A_w$ --- not in $QQ_v$. In the generic case that is the honest
+  shape of the thing and it cannot be improved: $A$ is a cubic field, $alpha$ genuinely has three
+  conjugate components, and the same remark is made in `ec-density-bm.typ` §5 about the associated
+  Brauer class on $E$.
+
+  #v(2mm)
+  What *is* a single quaternion algebra with slots in $QQ$ is the *global* class. Set
+  $ Sigma(alpha, beta) = { v : product_(w divides v) (alpha_w, beta_w)_w = -1 } . $
+  By Proposition 9 below this is finite of *even* cardinality, so there is a unique quaternion
+  algebra over $QQ$ ramified exactly on $Sigma$, and
+  $ "cor"_(A slash QQ) (alpha, beta)_A = (a, b)_2 quad "for that" (a,b) . $
+  Computing $Sigma$ is a finite list of Hilbert symbols; reading $(a,b)$ off $Sigma$ is the
+  standard recipe of `csa-brauer.typ` §3. @sec-tate-37 does this explicitly.
+]
+
+== Cases where the slots are constant <sec-tate-constant>
+
+Three specialisations put the answer back into $QQ_v$ with no corestriction left.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Corollary 7.* Let $N = N_(A slash QQ)$.
+
+  #v(1mm)
+  *(a) (projection formula)* For $b in QQ_v^times$, embedded diagonally in $A_v^times$,
+  $ ⟨alpha, b⟩_v = (N alpha, thin b)_2 quad "over" QQ_v , $
+  a quaternion algebra with both slots in $QQ_v$.
+
+  #v(1mm)
+  *(b) (self-pairing)* $ ⟨alpha, alpha⟩_v = ⟨alpha, -1⟩_v = (N alpha, thin -1)_2 . $
+
+  #v(1mm)
+  *(c)* Consequently the annihilator of the diagonal $QQ_v^times slash "sq"$ is exactly $ker N$,
+  and --- the pairing on $A_v^times slash "sq"$ being perfect --- the annihilator of
+  $ker N = H^1(QQ_v, E[2])$ is exactly the diagonal. The two subgroups meet in $1$, since
+  $N(b) = b^3 equiv b$.
+
+  #v(1mm)
+  *(d)* On $ker N$ the pairing is *alternating*: $N alpha$ is a square there, so
+  $⟨alpha,alpha⟩_v = 0$ by (b) --- which is Lemma 5's "alternating" seen on the other side of
+  Shapiro.
+
+  #v(2mm)
+  _Proof._ (a) is $"cor"(alpha union "res" b) = "cor"(alpha) union b$ and
+  $"cor" : A^times slash "sq" -> QQ^times slash "sq"$ is the norm. (b) is
+  $(alpha, alpha) = (alpha, -alpha) + (alpha,-1) = (alpha,-1)$ componentwise. (c): $(N alpha, b)_2$
+  is trivial for all $b in QQ_v^times$ iff $N alpha in (QQ_v^times)^2$. $qed$
+]
+
+Part (b) is the formula used in `kummer-example-j0.typ` §6.3, where
+$⟨a,a⟩ = sum_(w divides q) (a, -1)_(K_w)$ decides whether the self-pairing functional is non-zero;
+Corollary 7(b) says that functional is nothing but $a |-> (N a, -1)_q$.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Corollary 8 (the reducible rows of the table).* Let $alpha, beta in ker N$.
+
+  #v(1mm)
+  *(a)* If $f$ splits completely over $QQ_v$, so $A_v = QQ_v^3$, then
+  $ ⟨alpha, beta⟩_v = (alpha_1, beta_2)_2 ⊗ (alpha_2, beta_1)_2 , $
+  the classical *antidiagonal* formula of split 2-descent.
+
+  #v(1mm)
+  *(b)* If $f = (x - e) g(x)$ over $QQ_v$ with $g$ irreducible, so $A_v = QQ_v times L$ with $L$
+  quadratic, then
+  $ ⟨alpha, beta⟩_v = (N_(L slash QQ_v) alpha_2, thin N_(L slash QQ_v) beta_2)_2
+    ⊗ "cor"_(L slash QQ_v) (alpha_2, beta_2)_L . $
+
+  #v(2mm)
+  _Proof._ In (a) the constraint $alpha in ker N$ reads $alpha_3 equiv alpha_1 alpha_2$ modulo
+  squares, and likewise for $beta$; bilinearity of the symbol gives
+  $(alpha_1,beta_1)(alpha_2,beta_2)(alpha_1 alpha_2, beta_1 beta_2) = (alpha_1,beta_2)(alpha_2,beta_1)$.
+  In (b) it reads $alpha_1 equiv N_(L slash QQ_v)(alpha_2)$. $qed$
+]
+
+Row (a) is why the split case needs no field arithmetic at all: both slots are rational numbers.
+Row (b) shows what the generic case costs --- one irreducible corestriction survives --- and the
+generic case proper, $A_v$ a cubic field, is a single symbol $(alpha, beta)_(A_v)$ with no
+rational part to peel off.
+
+== The tame formula, and why only $v in S$ matters <sec-tate-tame>
+
+For $v$ odd and $w divides v$ with residue field $k_w$, the symbol is the tame symbol: writing
+$n = v_w (alpha_w)$ and $m = v_w (beta_w)$, the element
+$ u = (-1)^(n m) thin alpha_w^m thin beta_w^(-n) $
+is a unit at $w$, and
+$ (alpha_w, beta_w)_w = cases(
+  +1 & "if" u mod frak(p)_w "is a square in" k_w^times ,
+  -1 & "otherwise" ,
+) $
+--- the quadratic residue symbol of $u$ at $frak(p)_w$. Two consequences, both used silently in
+Step 3 of @sec-full:
+
+*(i)* If $alpha_w$ and $beta_w$ both have even valuation at every $w divides v$ --- the
+*unramified* subgroup --- the symbol is a square and the pairing vanishes. So the unramified
+subgroup is isotropic, and since it has half the dimension it *is* $L_v$ at good odd $v$.
+
+*(ii)* At odd $v$, $⟨alpha,beta⟩_v$ can be non-zero only if some $alpha_w$ or $beta_w$ has odd
+valuation. Membership in $K(S,2)$ forbids that outside $S$, which is exactly the statement that
+the conditions outside $S$ are automatic.
+
+== Reciprocity, and the isotropy of the Selmer group <sec-tate-recip>
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Proposition 9.* For $alpha, beta in A^times slash (A^times)^2$ global,
+  $ sum_v "inv"_v ⟨alpha, beta⟩_v = 0 , quad quad "equivalently" quad quad
+    product_v product_(w divides v) (alpha_w, beta_w)_w = 1 , $
+  all but finitely many terms being $1$. Consequently $Sigma(alpha,beta)$ is finite of even
+  cardinality.
+
+  #v(2mm)
+  _Proof._ Regroup the double product by places $w$ of $A$: it becomes
+  $product_w (alpha, beta)_w$, which is Hilbert reciprocity for the number field (or étale algebra)
+  $A$. Cohomologically it is $sum_v "inv"_v "cor"(alpha union beta) =
+  sum_w "inv"_w (alpha union beta) = 0$ by the reciprocity sequence for $A$. $qed$
+]
+
+Two standard consequences follow at once, and they are the reason the pairing is worth having:
+
+*(i) $"Sel"_2(E)$ is isotropic under $sum_v ⟨thin,thin⟩_v$* --- trivially, by Proposition 9 --- and
+each $L_v$ is isotropic under $⟨thin,thin⟩_v$, because $L_v$ is the image of
+$E(QQ_v) slash 2$ and the Weil pairing of two Kummer classes of the same curve vanishes.
+
+*(ii) A class $alpha in K(S,2) inter ker N$ that pairs non-trivially with a known Selmer class
+is not in $"Sel"_2$*, and Proposition 9 says *where* it fails: at the places of $Sigma$. This is
+the cheapest possible local test, and it needs no local points at all.
+
+== `37a1`, with the algebras written out <sec-tate-37>
+
+Take $E : Y^2 = X^3 - 16X + 16$ of @sec-37, $K = QQ[theta]$, $theta^3 = 16 theta - 16$, and the
+Selmer generator $alpha = -theta$, with $N(-theta) = 16$. Pair it against $beta = x_0 - theta$ for
+small rational $x_0$; by Theorem 6 this is $product_(w divides v)(-theta, x_0 - theta)_(K_w)$, and
+$N(beta) = f(x_0)$.
+
+#align(center, table(
+  columns: 5, align: (center, center, left, left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([$x_0$], [$f(x_0)$ mod sq.], [$Sigma(alpha, beta)$], [$"cor"_(K slash QQ)(alpha,beta)$], [what it says]),
+  [$-4, 0, 1, 4, 8$], [$1$], [$emptyset$], [split], [$beta in "Sel"_2$: $x_0$ is a rational point],
+  [$2$],  [$-2$], [${infinity, 2}$], [$(-1,-1)_2$], [Hamilton's quaternions],
+  [$3$],  [$-5$], [${infinity, 5}$], [$(-2,-5)_2$], [fails at $infinity$ and at $5$],
+  [$-2$], [$10$],  [${2, 5}$],       [$(2,5)_2$],   [fails at $2$ and at $5$],
+  [$-6$], [$-26$], [${2, 13}$],      [$(2,13)_2$],  [fails at $2$ and at $13$],
+  [$6$],  [$34$],  [${2, 17}$],      [$(3,-17)_2$], [fails at $2$ and at $17$],
+  [$7$],  [$247$], [${13, 19}$],     [$(2,247)_2$], [fails at $13$ and at $19$],
+))
+
+#v(2mm)
+
+Read the first row: $f(-4) = 16$, $f(0) = 16$, $f(1) = 1$, $f(4) = 16$, $f(8) = 400$ are squares, so
+$(x_0, sqrt(f(x_0)))$ is a rational point and $beta = delta(P)$ lies in the Selmer group with
+$alpha$; the pairing vanishes at *every* place, which is isotropy of $"Sel"_2$ made visible. Read
+the second: $f(2) = -8$, so $2$ is not the abscissa of a $QQ_2$-point, and the pairing against the
+Selmer class detects it --- the local invariant at $2$ is $1 slash 2$, and since $2$ is totally
+ramified in $K$ there is a single $w divides 2$ and the class is the single corestriction
+$"cor"_(K_w slash QQ_2)(-theta, thin 2 - theta)$, of invariant $1 slash 2$, i.e. the quaternion
+division algebra over $QQ_2$. Globally that and the real place are the only failures, so
+$ "cor"_(K slash QQ) (-theta, thin 2 - theta) = (-1,-1)_2 = bb(H) , $
+Hamilton's quaternions --- a completely explicit answer to "which quaternion algebra".
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *What `descent-s3.gp` checks.* All four claims, on `37a1`, via `nfhilbert`:
+  Corollary 7(b), $⟨a,a⟩_v = (N a, -1)_v$, at $v = 2, 37, infinity$ for ten test classes ---
+  no discrepancy; Corollary 7(a), $⟨a,b⟩_v = (N a, b)_v$ for rational $b in {-1,2,3,37,-74}$ ---
+  no discrepancy; Proposition 9 over all of $v in {2,3,5,7,11,13,37,101} union {infinity}$ for all
+  $100$ pairs --- no discrepancy; and isotropy of $L_v$, by pairing $x - theta$ against
+  $x' - theta$ over every rational $x, x' in [-60,60]$ with $f(x), f(x')$ square in $QQ_v$: at
+  $v = 2$ all $46^2$ symbols trivial, at $v = 37$ all $57^2$, at $v = 3$ all $121^2$, at
+  $v = infinity$ all $63^2$. The normalisation of Theorem 6 is therefore the right one.
+]
+
+== Provenance <sec-tate-refs>
+
+Theorem 6 is proved above rather than quoted, but it is standard, and the same formula --- the local
+Tate pairing on a descent module $A^times slash (A^times)^n$ as a sum of local symbols over the
+places of the étale algebra $A$ --- is the working tool of the explicit-descent literature. Where to
+read it:
+
+#block(inset: (left: 4pt))[
+#set enum(numbering: "[1]")
++ E. F. Schaefer, *2-descent on the Jacobians of hyperelliptic curves*, J. Number Theory *51*
+  (1995), 219--232. The source of the $A = k[x] slash f$ formalism used here: $x - theta$ as the
+  descent map, $ker N$ as the image, for hyperelliptic Jacobians and in particular for $E$.
++ B. Poonen, E. F. Schaefer,
+  #link("https://math.mit.edu/~poonen/papers/descent.pdf")[*Explicit descent for Jacobians of
+  cyclic covers of the projective line*], J. reine angew. Math. *488* (1997), 141--188. The same setup for $mu_n$-covers, with the
+  cup-product/corestriction bookkeeping made explicit.
++ B. Poonen, M. Stoll, #link("https://arxiv.org/abs/math/9911267")[*The Cassels--Tate pairing on
+  polarized abelian varieties*], Ann. of Math. *150* (1999), 1109--1149. The reference for the
+  pairing itself: the local pairing on $H^1(k_v, J[2])$ is computed as a sum of Hilbert symbols
+  over the places of $A ⊗ k_v$, which is Theorem 6 for a general hyperelliptic Jacobian.
++ M. Stoll, #link("https://www.impan.pl/en/publishing-house/journals-and-series/acta-arithmetica/all/98/3/83397/implementing-2-descent-for-jacobians-of-hyperelliptic-curves")[*Implementing
+  2-descent for Jacobians of hyperelliptic curves*], Acta Arith. *98* (2001), 245--277. The same formula as an algorithm, including the tame reduction of
+  @sec-tate-tame and the reason only $v in S$ is tested.
++ J. W. S. Cassels, *Second descents for elliptic curves*, J. reine angew. Math. *494* (1998),
+  101--127. Uses the pairing on $A^times slash (A^times)^2$ for an elliptic curve to decide which
+  Selmer classes lift --- the 4-descent alluded to at the end of @sec-nopartial.
++ J. Neukirch, A. Schmidt, K. Wingberg, *Cohomology of Number Fields*, Ch. I. The two cohomological
+  inputs to the proof of Theorem 6: that Shapiro's isomorphism is compatible with cup products, and
+  that the trace map of an induced module induces corestriction. Local duality and
+  $"inv" compose "cor" = "inv"$ are in Ch. VII; see also `local-duality.typ`.
+]
+
+The elliptic-curve case with $A$ a *cubic* algebra is the $g = 1$ instance of [1]--[4] throughout;
+none of those sources assumes $f$ reducible, which is why Corollary 8 reads as a degeneration rather
+than as the main case.
 
 = Full 2-descent, as an algorithm <sec-full>
 
@@ -278,7 +551,7 @@ $"Sel"^phi (E)$ and $"Sel"^(hat(phi))(E')$ separately and combining them. In the
 is unavailable, and it is worth being precise about how completely.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *Proposition 5.* Let $"Gal"(f)$ be $S_3$ or $C_3$. Then over $QQ$:
+  *Proposition 10.* Let $"Gal"(f)$ be $S_3$ or $C_3$. Then over $QQ$:
 
   #v(1mm)
   *(a)* $E$ has no 2-isogeny, since a 2-isogeny is a $G_QQ$-stable line in $E[2]$, i.e. a fixed
@@ -301,7 +574,7 @@ is unavailable, and it is worth being precise about how completely.
   group, no units of a cubic field. The Selmer group of the congruent number curve is computed this
   way, and Monsky's matrix is precisely the resulting $F_2$-linear algebra. In the generic case none
   of that is available: the arithmetic of a cubic field is *forced*, and it is forced by
-  Proposition 5.
+  Proposition 10.
 ]
 
 What *does* remain over $QQ$ is not a partial descent but a *deeper* one: second descent, i.e.
@@ -348,7 +621,7 @@ decompose
 $ E(L) ⊗ QQ tilde.equiv m_1 dot bold(1) ⊕ m_epsilon dot "sgn" ⊕ m_"std" dot "std" . $
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *Proposition 6.* With $F = QQ(sqrt("disc" f))$ the quadratic resolvent and $E^Delta$ the quadratic
+  *Proposition 11.* With $F = QQ(sqrt("disc" f))$ the quadratic resolvent and $E^Delta$ the quadratic
   twist of $E$ by $"disc" f$,
   $ "rank" E(QQ) = m_1, quad
     "rank" E(F) = m_1 + m_epsilon = "rank" E(QQ) + "rank" E^Delta (QQ), $
@@ -434,6 +707,19 @@ algorithm of @sec-full is (F1) finiteness, the table of @sec-h1 is (F2) self-dua
 absence of partial descent (@sec-nopartial) is the failure of the module to decompose --- which is
 also why the statistics of $"Sel"_2$ in the generic case are the cleanest, being the
 $"Gal" = S_3$ case where the Klagsbrun--Mazur--Rubin disparity depends on a single parameter.
+
+`ec-density-bm.typ` §5 and `kummer-example-j0.typ` §6 both *use* Theorem 6 --- the first to say that
+in the irreducible case the Brauer class on $E$ is a corestriction
+$cal(A)_alpha = "cor"_(A(E) slash QQ(E)) (alpha, X - theta)$ rather than a quaternion algebra with
+constant slots, the second to compute $beta_q$ as a sum of Hilbert symbols over $w divides q$ and to
+flag that identification as *assumed*. Neither note points anywhere for it; @sec-tate supplies the
+missing derivation, and @sec-tate-refs the missing citation. The
+evaluation pairing $⟨alpha, delta_v (Q)⟩_v = "inv"_v cal(A)_alpha (Q)$ is Theorem 6 applied to
+$beta = X(Q) - theta$, and the self-pairing functional $a |-> ⟨a,a⟩$ of the $j = 0$ note is
+Corollary 7(b), $(N a, -1)_q$.
+
+`csa-brauer.typ` supplies the last step of @sec-tate-37: turning the ramification set
+$Sigma(alpha,beta)$ into an explicit pair $(a,b)$.
 
 #v(3mm)
 

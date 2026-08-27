@@ -118,3 +118,37 @@ the descent map on 37a1, by hand
   (theta) is supported above 2 since N(theta) = -16, so -theta lies in K(S,2)
   hence Sel_2(37a1) = <-theta>, of dimension 1, and rank = 1, Sha[2] = 0
 
+======================================================================
+the local Tate pairing on K^* / (K^*)^2 for 37a1,  K = Q[th]/(th^3-16th+16)
+
+  10 test classes: -1, the units, the S-units, and x - th for x = 0,1,2,-2
+
+  Corollary 7(b)  <a,a>_v = (N a, -1)_v      at v = 2, 37, oo :  0 discrepancies
+  Corollary 7(a)  <a,b>_v = (N a, b)_v       for b = -1,2,3,37,-74 :  0 discrepancies
+  Proposition 9   prod_v <a,b>_v = 1         on all 100 pairs :  0 discrepancies
+  L_v isotropic   v = 2 :  46 abscissae in [-60,60],  0 of 2116 symbols non-trivial
+  L_v isotropic   v = 37 :  57 abscissae in [-60,60],  0 of 3249 symbols non-trivial
+  L_v isotropic   v = 3 :  121 abscissae in [-60,60],  0 of 14641 symbols non-trivial
+  L_v isotropic   v = oo :  63 abscissae in [-60,60],  0 of 3969 symbols non-trivial
+
+  cor_{K/Q}(-theta, x - theta), by ramification set (Sigma is even, Prop 9):
+      x = -6	f(x) = -104  (core -26)	Sigma = [2, 13]
+      x = -5	f(x) = -29  (core -29)	Sigma = []
+      x = -4	f(x) = 16  (core 1)	Sigma = []
+      x = -3	f(x) = 37  (core 37)	Sigma = []
+      x = -2	f(x) = 40  (core 10)	Sigma = [2, 5]
+      x = -1	f(x) = 31  (core 31)	Sigma = []
+      x = 0	f(x) = 16  (core 1)	Sigma = []
+      x = 1	f(x) = 1  (core 1)	Sigma = []
+      x = 2	f(x) = -8  (core -2)	Sigma = ["oo", 2]
+      x = 3	f(x) = -5  (core -5)	Sigma = ["oo", 5]
+      x = 4	f(x) = 16  (core 1)	Sigma = []
+      x = 5	f(x) = 61  (core 61)	Sigma = []
+      x = 6	f(x) = 136  (core 34)	Sigma = [2, 17]
+      x = 7	f(x) = 247  (core 247)	Sigma = [13, 19]
+      x = 8	f(x) = 400  (core 1)	Sigma = []
+
+  x = -4,0,1,4,8 give f(x) square: those beta lie in Sel_2 with -theta, and
+  Sigma is empty -- isotropy of the Selmer group, place by place.
+  x = 2 gives Sigma = {oo,2}: cor_{K/Q}(-theta, 2-theta) = (-1,-1)_2, Hamilton.
+

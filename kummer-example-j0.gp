@@ -103,6 +103,66 @@ Epd(d) = ellinit([0,0,0,0,-81*d^3]);
        if(wit[k], Str("d = ", wit[k]), "none found"))));
   Vec(L);}
 
+\\ ------------------------------------- L_q at q | d, and psi_* L'_q = L_q
+\\ Section 6.6.2 / 6.6.3 of kummer-example-j0.typ.  Everything here is a check
+\\ on identities that are PROVED there; the point is to catch a slip, not to
+\\ establish the result by sampling.
+\\
+\\ A_q = K (x) Q_q with K = Q(u), u^3 = 3.  For q = 2 mod 3 it is Q_q x L with
+\\ L = Q_q(zeta_3) unramified quadratic; L is carried as Q_q[t]/(t^2+t+1).
+
+\\ norm, valuation and square test in L = Q_q(zeta_3)
+NL(z)  = {my(a = polcoeff(lift(z),0), b = polcoeff(lift(z),1)); a^2 - a*b + b^2;}
+vL(z,q) = {my(a = polcoeff(lift(z),0), b = polcoeff(lift(z),1));
+           min(valuation(a,q), valuation(b,q));}
+{issqL(z,q) = my(v = vL(z,q));
+  if(v % 2, return(0)); kronecker(truncate(NL(z)/q^(2*v)) % q, q) == 1;}
+{issqQ(a,q) = my(v = valuation(a,q));
+  if(v % 2, return(0)); kronecker(truncate(a/q^v) % q, q) == 1;}
+
+\\ q = 2 mod 3: the classes delta_q(T) and psi_* delta'_q(T') in Q_q x L,
+\\ the exact-square identity, and the closed form <(3, d(1-zeta_3))>.
+{lqsplit(d, q, n) =
+  my(c = sqrtn(3 + O(q^n), 3), Z = Mod(t, t^2+t+1), e, ep, A1,A2, B1,B2);
+  e = -d*c^2;  ep = 3*d*c;
+  if(e^3 + 9*d^3 != 0 || ep^3 - 81*d^3 != 0, error("wrong roots"));
+  A1 = 3*e^2;   A2 = e  + d*Z^2*c^2;      \\ delta_q(T)          on E_d
+  B1 = 3*ep^2;  B2 = ep - 3*d*Z*c;        \\ psi_* delta'_q(T')  on E'_d
+  printf("  d = %-6s q = %-5s v_q(d) = %s\n", d, q, valuation(d,q));
+  printf("    identity  delta(T) = (c^-2, zeta/c)^2 . psi_*delta'(T') : %s\n",
+         if(A1/B1 - 1/c^4 == 0 && A2/B2 - (Z/c)^2 == 0, "exact", "*** FAILS"));
+  printf("    class     delta(T) = (3, d(1-zeta_3)) mod squares       : %s\n",
+         if(issqQ(A1/(3+O(q^n)),q) && issqL(A2/(d*(1-Z)+O(q^n)),q), "yes", "*** no"));
+  printf("    class     delta(T) = (3, q(1-zeta_3)) mod squares       : %s\n",
+         if(issqQ(A1/(3+O(q^n)),q) && issqL(A2/(q*(1-Z)+O(q^n)),q), "yes", "*** no"));
+  printf("    non-trivial, and in ker N                               : %s, %s\n",
+         if(issqQ(A1,q) && issqL(A2,q), "*** trivial", "yes"),
+         if(issqQ(A1*NL(A2),q), "yes", "*** no"));
+  \\ every sampled local class lies on the line <delta_q(T)>
+  my(cnt = 0, off = 0, odd2 = 0);
+  for(x = -300, 300,
+    my(fx = x^3 + 9*d^3, d1, d2);
+    if(fx == 0 || !issqQ(fx + O(q^n), q), next);
+    cnt++;  d1 = x + d*c^2;  d2 = x + d*Z^2*c^2;
+    if(vL(d2,q) % 2, odd2++);
+    if(!(issqQ(d1,q) && issqL(d2,q)) && !(issqQ(d1/A1,q) && issqL(d2/A2,q)), off++));
+  printf("    %s sampled abscissae: %s outside <delta_q(T)>, %s of odd v_w2\n",
+         cnt, off, odd2);}
+
+\\ any q != 3 with 3 a cube in Q_q: all nine component ratios are squares.
+{lqgeneral(d, q, n) =
+  my(c, Z, r, s, bad = 0);
+  if(Mod(3,q)^((q-1)/3) != 1, printf("  q = %s : 3 is not a cube, dim W_q = 0\n", q); return);
+  c = sqrtn(3 + O(q^n), 3);  Z = (-1 + sqrt(-3 + O(q^n)))/2;
+  r = vector(3, i, -d*c^2*Z^(i-1));  s = vector(3, j, 3*d*c*Z^(j-1));
+  for(j = 0, 2, my(pj = (2*j) % 3);
+    for(k = 0, 2, my(pk = (2*k) % 3, num, den);
+      if(k == j, num = 3*r[pj+1]^2;      den = 3*s[j+1]^2,
+                 num = r[pj+1]-r[pk+1];  den = s[j+1]-s[k+1]);
+      if(!issqQ(num/den, q), bad++)));
+  printf("  d = %-6s q = %-5s (q mod 12 = %s) : %s of 9 component ratios non-square\n",
+         d, q, q % 12, bad);}
+
 \\ ------------------------------------------------------------------- run
 {
 my(sample = [1,2,-3,-5,-6,-7,10,11,13,15,-17,-19,21,22,23,-29,-30,-31]);
@@ -116,5 +176,12 @@ print("\n=== at p = 2, dense implies rank >= 2 ===");
 rank2([-61,2,-6,10,-30,-66,94,130,-3,-5,1,13,22,23,35,-33]);
 print("\n=== the scan (B = 65 here; the document uses B = 150) ===");
 scan(65, [2,3,5,7]);
+print("\n=== L_q at q | d, q = 2 mod 3  (section 6.6.2) ===");
+lqsplit(-66, 11, 20); lqsplit(94, 47, 20); lqsplit(-5, 5, 20);
+lqsplit(2501, 41, 20); lqsplit(-30, 5, 20); lqsplit(10, 5, 20);
+print("\n=== all nine component ratios, any q != 3  (section 6.6.3) ===");
+lqgeneral(-61, 61, 20); lqgeneral(5105, 1021, 20); lqgeneral(-30, 61, 20);
+lqgeneral(67, 67, 20); lqgeneral(-103, 103, 20); lqgeneral(151, 151, 20);
+lqgeneral(1, 7, 20); lqgeneral(1, 43, 20);
 }
 quit

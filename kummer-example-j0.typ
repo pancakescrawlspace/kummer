@@ -487,15 +487,23 @@ $dim W_q = dim W'_q$ throughout --- which is the equality observed empirically a
   and $beta_q = 0$ trivially; $q equiv 1 space (mod 3)$ with $3$ a cube gives $q equiv 1$ or
   $7 space (mod 12)$, and if also $q equiv 1 space (mod 4)$ the local isomorphism of
   @sec-obs-owed applies.
+
+  #v(1.5mm)
+  *Two corrections, both made below.* First, $q equiv 7 space (mod 12)$ with $3$ a cube is *not*
+  settled by either clause above --- it has $dim W_q = 2$ and $q equiv 3 space (mod 4)$ --- so the
+  open set is $q equiv 11 space (mod 12)$ *together with* that case. Second, both are now closed:
+  @sec-obs-deg2 does $q equiv 2 space (mod 3)$ and @sec-obs-general does the rest, leaving only
+  $q = 3$.
 ]
 
 And the remaining case has usable structure: for $q equiv 2 space (mod 3)$ the polynomial
 $x^3 - 3$ has exactly one root mod $q$, so $q$ splits in $K$ as (degree $1$)(degree $2$) and
 $ K times.o QQ_q tilde.equiv QQ_q times QQ_(q^2) , $
-with $QQ_(q^2)$ the *unramified* quadratic extension. So $L_q$ and $psi_* L'_q$ are two
-Lagrangian lines inside a group built from one split factor and one unramified quadratic factor
---- a concrete enough setting that the coincidence ought to be provable there. It is not proved
-here.
+with $QQ_(q^2)$ the *unramified* quadratic extension --- better named $QQ_q (zeta_3)$, since the
+three roots of $x^3 + B$ differ from one another by $zeta_3$, which is what makes the two classes
+visibly proportional. So $L_q$ and $psi_* L'_q$ are two Lagrangian lines inside a group built from
+one split factor and one unramified quadratic factor: concrete enough that the coincidence is
+provable there, and @sec-obs-deg2 proves it.
 
 
 === Towards $q equiv 11 space (mod 12)$: the unique $2$-torsion point <sec-obs-lag>
@@ -567,19 +575,20 @@ Both $L_q$ and $psi_* L'_q$ have *even* valuation at the degree-one place in eve
 what isotropy demands, and the odd valuations of @sec-obs-unram all sit at the degree-*two* place,
 where the symbol is expected to vanish anyway.
 
-#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
-  *Where this stops.* Steps 1, 2 and (a), (b) are proofs. What is *not* verified is that
-  $x |-> ⟨x,x⟩$ is non-zero on $H^1$ --- equivalently that some class has odd valuation at $w_1$,
-  equivalently that $-1$ is a non-square in $K_(w_1)$ but a square in $K_(w_2)$. An attempt to
-  check the latter with `nfhilbert(K,-1,-1,pr)` was *wrong*: that symbol tests whether $-1$ is a
-  norm from $K_w (sqrt(-1))$, not whether it is a square, and it returned "yes" at every place
-  including ones where it should not. So the last step is stated, not confirmed.
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *This route is no longer needed --- and it never could have worked.* What it asks for is that
+  $x |-> ⟨x,x⟩$ be non-zero on $H^1$, equivalently that $-1$ be a non-square in $K_(w_1)$ but a
+  square in $K_(w_2)$. The second half is fine, but at $w_2$ the reason is that $-1$ is a square
+  in *every* $L = QQ_q (zeta_3)$ with $q$ odd; and by Corollary 7(b) of `descent-s3.typ` the
+  functional is $a |-> (N a, -1)_q$, which vanishes identically on $ker N$. So
+  $x |-> ⟨x,x⟩ equiv 0$ on $H^1 (QQ_q, E_d[2])$ *always* --- every line is isotropic, and (b)
+  distinguishes nothing.
 
   #v(1.5mm)
-  Note the two regimes are complementary, which is a good sign: for $q equiv 1 space (mod 4)$,
-  $-1$ *is* a square, the functional vanishes identically, every line is isotropic and this
-  argument gives nothing --- but that is exactly the case already settled by the local
-  isomorphism of @sec-obs-owed.
+  (An earlier attempt to test the square condition with `nfhilbert(K,-1,-1,pr)` was also wrong on
+  its own terms: that symbol tests whether $-1$ is a *norm* from $K_w (sqrt(-1))$, not whether it
+  is a square.) Steps 1, 2 and (a) remain proofs and are used below; (b) is a dead end.
+  @sec-obs-deg2 proves Step 3 directly instead, by computing both components of the class.
 ]
 
 
@@ -615,6 +624,150 @@ $E'_d$, where $f'(e') = 3 e'^2$, gives the class of $3$ again. So
   $L_q$ and $psi_* L'_q$ *provably agree at the degree-one place*: both are the class of $3$.
 ]
 
+@sec-obs-deg2 does the degree-two place as well, and the two classes turn out to be equal there
+too --- which finishes Step 3 outright.
+
+=== The degree-two component, and $L_q$ in closed form <sec-obs-deg2>
+
+The degree-two component is no harder, once the quadratic factor is named correctly. It is not
+merely "the unramified quadratic extension": it is $QQ_q (zeta_3)$, and that is the whole point ---
+the three roots of $x^3 + B$ differ from one another by $zeta_3$, so naming the field by $zeta_3$
+makes the two classes visibly proportional.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *The splitting, explicitly.* Let $q equiv 2 space (mod 3)$, $q != 3$, and let $c in ZZ_q^times$
+  be the cube root of $3$ (unique: cubing is bijective on $ZZ_q^times$). Then
+  $ K times.o QQ_q attach(-->, t: tilde) QQ_q times L , quad u |-> (c, thin zeta_3 c) ,
+    quad L = QQ_q (zeta_3) , $
+  the second factor being the unramified quadratic extension, and the two embeddings
+  $u |-> zeta_3 c$, $u |-> zeta_3^2 c$ being Frobenius-conjugate, hence one place.
+
+  #v(1.5mm)
+  The $QQ_q$-rational roots are then
+  $ e = -d c^2 quad "on" E_d : y^2 = x^3 + 9 d^3 , quad quad
+    e' = 3 d c quad "on" E'_d : y^2 = x^3 - 81 d^3 , $
+  and $psi(T') = T$ of Step 1 is visible: $psi$ matches $s_0 |-> r_0$, i.e. $e' |-> e$.
+]
+
+Now write both classes out. With $theta |-> -d u^2$ on $E_d$ and $theta' |-> 3 d u$ on $E'_d$
+(the identification of @sec-obs-formula, which is what makes $psi_*$ the identity on $K$), the
+degree-one components use the $f'(e)$ rule and the degree-two components are $e - theta$ read
+through $u |-> zeta_3 c$:
+
+$ delta_q (T) = (thin 3 e^2, thin e + d zeta_3^2 c^2 thin)
+  = (thin 3 e^2, thin d c^2 (zeta_3^2 - 1) thin) , $
+$ psi_* delta'_q (T') = (thin 3 e'^2, thin e' - 3 d zeta_3 c thin)
+  = (thin 3 e'^2, thin 3 d c (1 - zeta_3) thin) . $
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Proposition (Step 3, proved).* For every $q equiv 2 space (mod 3)$ with $q != 3$, and every $d$,
+  $ delta_q (T) = (thin c^(-2), thin zeta_3 c^(-1) thin)^2 dot psi_* delta'_q (T')
+    quad "in" quad QQ_q^times times L^times . $
+  This is an *identity in $A_q^times$*, not a congruence modulo squares: the two classes differ by
+  an explicit square.
+
+  #v(2mm)
+  _Proof._ Degree one: $3 e^2 = 3 d^2 c^4$ and $3 e'^2 = 27 d^2 c^2$, so the ratio is
+  $c^2 slash 9 = c^2 slash c^6 = c^(-4)$, using $c^3 = 3$.
+
+  #v(1mm)
+  Degree two: $zeta_3^2 - 1 = zeta_3^2 (1 - zeta_3)$, so the two components are
+  $d c^2 zeta_3^2 (1 - zeta_3)$ and $3 d c (1 - zeta_3)$, of ratio
+  $c zeta_3^2 slash 3 = zeta_3^2 slash c^2$. $qed$
+]
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Consequence.* By Step 2, $L_q = ⟨delta_q (T)⟩$ and $L'_q = ⟨delta'_q (T')⟩$ at
+  $q divides d$, so
+  $ psi_* L'_q = L_q quad "and hence" quad beta_q equiv 0 $
+  at *every* $q divides d$ with $q equiv 2 space (mod 3)$: the two Lagrangian lines are the same
+  line, and $beta_q (T,T') = ⟨delta_q (T), delta_q (T)⟩ = 0$ because $L_q$ is isotropic. No
+  congruence on $q$ modulo $4$ enters, so this covers $q equiv 5$ and $q equiv 11 space (mod 12)$
+  at once --- the whole of the open set of @sec-obs-twelve.
+]
+
+Reducing modulo squares gives $L_q$ itself. In $L$ the element $c$ is a unit and
+$3 c = c^4 = (c^2)^2$; $zeta_3 = (zeta_3^2)^2$; and $e^2$, $c^2$ are squares. So both classes
+collapse to the same normal form:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *$L_q$ in closed form.* For $q equiv 2 space (mod 3)$, $q divides d$, $q != 2, 3$,
+  $ L_q = psi_* L'_q = ⟨ thin ( thin 3, thin d (1 - zeta_3) thin ) thin ⟩
+    subset.eq QQ_q^times slash "sq" times L^times slash "sq" , $
+  and for $d$ squarefree this is $⟨ (3, thin q (1 - zeta_3)) ⟩$, since every unit of $ZZ_q$ is a
+  square in the unramified quadratic extension.
+]
+
+Three checks that this is the right object, none of them numerical:
+
+*(i) It lies in $ker N$.* $N_(L slash QQ_q) (1 - zeta_3) = (1-zeta_3)(1-zeta_3^2) = 3$, so the
+norm of the generator is $3 dot d^2 dot 3 = (3d)^2$, a square --- as every class of
+$H^1 (QQ_q, E_d [2])$ must be.
+
+*(ii) It is not unramified, and the odd valuation sits at $w_2$.* $v_(w_1)(3) = 0$ while
+$v_(w_2)(q(1 - zeta_3)) = 1$. That is exactly the pattern sampled in @sec-obs-unram --- odd
+valuations at the degree-two place only, none at the degree-one place --- which is what closed
+the unramified route there, now derived rather than observed.
+
+*(iii) It explains the zero counts.* @sec-obs-unram found *no* point of odd valuation for
+$d = 94, q = 47$ and $d = 2501, q = 41$, and a handful for $d = -66, q = 11$ and $d = -5, q = 5$.
+Both are consistent: the non-trivial class exists in every case, but a search over small rational
+abscissae meets it rarely when $q$ is large. Re-running the same sampling and testing membership
+in $⟨delta_q (T)⟩$ rather than parity of valuation puts *every* sampled class inside the line ---
+see `results/kummer-example-j0.txt`.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *What the identity does not give at $q = 2$.* The Proposition holds verbatim at $q = 2$
+  ($2 equiv 2$ mod $3$, and $3$ is a cube in $ZZ_2^times$), so
+  $delta_2 (T) = psi_* delta'_2 (T')$ there too. But Step 2 fails at $q = 2$:
+  $dim L_2 = dim E[2](QQ_2) + 1 = 2$, so $L_2$ is *not* the line spanned by $delta_2 (T)$ and the
+  argument gives only that the two lines inside $L_2$ and $psi_* L'_2$ agree. $beta_2$ stays with
+  @sec-obs-verdict.
+]
+
+=== The same computation at every $q != 3$ <sec-obs-general>
+
+Nothing above used $q equiv 2 space (mod 3)$ except to name the local factors. Done in the
+splitting field once, the identity covers every $q$ at which there is any $2$-torsion to speak of.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Proposition (general form).* Write $r_i = -d u^2 zeta_3^i$ and $s_j = 3 d u zeta_3^j$ for the
+  roots, as in @sec-obs-formula, with $psi(s_j) = r_(2j)$. Then for all $j$ and all $k != j$,
+  $ (3 r_(2j)^2) / (3 s_j^2) = (r_(2j) / s_j)^2 , quad quad
+    (r_(2j) - r_(2k)) / (s_j - s_k) = zeta_3^m / u^2 = (zeta_3^(2m) / u)^2 , $
+  where $m$ is the index outside $\{j, k\}$.
+
+  #v(2mm)
+  _Proof._ $r_(2j) - r_(2k) = -d u^2 (zeta_3^(2j) - zeta_3^(2k))
+  = -d u^2 (zeta_3^j - zeta_3^k)(zeta_3^j + zeta_3^k)$ and $s_j - s_k = 3 d u (zeta_3^j -
+  zeta_3^k)$, so the ratio is $-u (zeta_3^j + zeta_3^k) slash 3 = u zeta_3^m slash u^3
+  = zeta_3^m slash u^2$, using $zeta_3^j + zeta_3^k = -zeta_3^m$ and $u^3 = 3$. $qed$
+]
+
+The point is that the square root is *available locally*. At a place $w$ of $A_q$ the relevant
+component is $r_(2j) - theta_w$ with $r_(2j) in QQ_q$ and $theta_w = r_(2k) in A_w$; then
+$zeta_3^(2(j-k)) = r_(2j) slash r_(2k) in A_w$, so $zeta_3 in A_w$, and $u^2 = -r_(2j)
+zeta_3^(-2j) slash d in A_w$, whence $u = 3 slash u^2 in A_w$. So $zeta_3^(2m) slash u$ lies in
+$A_w$ and the ratio is a square *there*.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Corollary.* $psi_* delta'_q (T') = delta_q (T)$ for every $QQ_q$-rational $2$-torsion point,
+  at every $q != 3$. And the Step 2 argument generalises: at $q divides d$ the reduction is
+  $I_0^ast$, $E_0 (QQ_q)$ is pro-$q$, and $Phi_q tilde.equiv (ZZ slash 2)^2$ has exponent $2$, so
+  $E_d [2](QQ_q) --> E_d (QQ_q) slash 2$ is *injective*; its image therefore has dimension
+  $dim E_d [2](QQ_q) = dim L_q$ and is all of $L_q$. Hence
+  $ psi_* L'_q = L_q quad "and" quad beta_q equiv 0 quad "at every" q divides d "with"
+    q != 2, 3 . $
+  The three regimes of @sec-obs-twelve are covered uniformly: $dim L_q = 0$ (nothing to prove),
+  $dim L_q = 1$ (the case above), and $dim L_q = 2$ (all three roots rational, all nine component
+  ratios square).
+]
+
+Only $q = 3$ escapes, and it escapes for a reason: there $x^3 - 3$ is Eisenstein, $A_3$ is a
+*totally ramified* cubic field rather than a product, the roots do not generate it over each
+other in the way just used, and $u$ is a uniformiser rather than a unit. Nothing here replaces
+that case.
+
 == The open primes, now settled by an exact computation <sec-obs-step3b>
 
 Because $L_q = ⟨delta_q (T)⟩$ and $psi_* L'_q = ⟨psi_* delta'_q (T')⟩$ are *lines* (Step 2),
@@ -638,12 +791,14 @@ So $beta_q (T, T') = 0$ at both open primes. This *replaces* the sampled verific
 @sec-obs-E at $q divides d$ by an exact one on a spanning vector --- a strictly stronger
 statement, and much cheaper.
 
-#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
-  *What is still not a proof.* The degree-one components agree provably (both are the class of
-  $3$). The degree-*two* components are computed to pair trivially in each case tested, but no
-  argument is given that they must. Closing that --- or showing that the degree-one component
-  alone determines a class in the $2$-dimensional $H^1 (QQ_q, E_d [2])$, which would finish it
-  immediately --- is what remains.
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *And now it is a proof.* The table was the evidence; @sec-obs-deg2 is the reason. Both
+  components agree --- degree one by the $f'(e) = 3 e^2$ computation above, degree two by the
+  Proposition --- so $delta_q (T) = psi_* delta'_q (T')$ outright and the symbols are forced to be
+  $+1$. The $+1$ at $w_1$ is $(3,3)_(QQ_q) = (3,-1)_(QQ_q) = +1$ for $q divides.not 6$, and the
+  $+1$ at $w_2$ is $(alpha, alpha)_L = (alpha, -1)_L = +1$, where $alpha = d(1 - zeta_3)$ is the
+  common degree-two component, because $-1$ is a square in $L$ for odd $q$
+  ($\#bb(F)_(q^2)^times = q^2 - 1 equiv 0$ mod $8$). Nothing is left to check at these primes.
 ]
 
 
@@ -693,17 +848,28 @@ no twist there could ever have worked.
   the refutation argument, since the witnesses of @sec-scan have both local images full.
 
   #v(1.5mm)
-  *Partly discharged.* @sec-obs-owed proves $beta_q equiv 0$ at every $q divides d$ with
-  $q equiv 1 space (mod 4)$ (and $-9$ a cube), via a local isomorphism. What remains verified but
-  not proved is $beta_q equiv 0$ at $q divides d$ with $q equiv 11 space (mod 12)$
-  --- reduced by @sec-obs-step3 to the degree-two component alone, and settled there by an exact symbol computation ---
-  (@sec-obs-twelve), and at $q = 3$.
-  The non-density statement is *conditional on those*.
+  *Proved at $q divides d$, $q equiv 2 space (mod 3)$.* @sec-obs-deg2 computes $L_q$ in closed
+  form, $⟨(3, thin d(1 - zeta_3))⟩$, and shows $delta_q (T) = psi_* delta'_q (T')$ as an identity
+  in $A_q^times$. So $psi_* L'_q = L_q$ and $beta_q equiv 0$ there --- which is the whole of the
+  set left open by @sec-obs-twelve, $q equiv 11 space (mod 12)$ included, and it subsumes the
+  $q equiv 5 space (mod 12)$ part of @sec-obs-owed.
 
   #v(1.5mm)
-  *Also assumed.* That the local Tate pairing is the sum of Hilbert symbols over $w divides q$
-  --- standard in $2$-descent, and checked here against isotropy of $L_q$ and against global
-  reciprocity, but taken from the literature rather than derived.
+  *Proved at every $q divides d$ with $q != 2, 3$.* @sec-obs-general does the remaining regime,
+  $q equiv 1 space (mod 3)$ with $3$ a cube, by the same identity in the splitting field. This
+  also fills a case @sec-obs-twelve passed over: $q equiv 7 space (mod 12)$ with $3$ a cube has
+  $dim W_q = 2$ and $q equiv 3 space (mod 4)$, so neither the local isomorphism of @sec-obs-owed
+  nor the $dim W_q = 1$ analysis reached it. No such $q$ divides any $d$ in the tables, but the
+  bookkeeping needed it.
+
+  #v(1.5mm)
+  *Still open.* $q = 3$ only, where $x^3 - 3$ is Eisenstein and $A_3$ is a *totally ramified*
+  cubic field rather than a product. The non-density statement is *conditional on $q = 3$*.
+
+  #v(1.5mm)
+  *No longer assumed.* That the local Tate pairing is the sum of Hilbert symbols over
+  $w divides q$: this is Theorem 6 of `descent-s3.typ`, proved there and referenced there
+  (§4.7). The self-pairing formula used in @sec-obs-lag2 is its Corollary 7(b).
 ]
 
 = What this does and does not prove <sec-status>
@@ -720,8 +886,10 @@ no twist there could ever have worked.
   correlation between the two factors matters, and it is untouched here. The parity obstruction of
   @sec-parity blocks the *single-twist* route in the even classes. But @sec-obstruction goes
   further and shows the *union* form fails there too: $beta_2 equiv.not 0$ on all four even
-  classes, so $X(QQ)$ is not dense in $X(QQ_2)$ --- conditional on condition (E), which is
-  verified on large samples rather than proved.
+  classes, so $X(QQ)$ is not dense in $X(QQ_2)$ --- conditional on condition (E). That condition
+  is now *proved* at every $q divides d$ with $q != 2, 3$ (@sec-obs-deg2, @sec-obs-general) and
+  free at $infinity$ and at the good places (@sec-obs-DE); what is still sampled rather than
+  proved is the single prime $q = 3$.
 
   #v(1.5mm)
   *Search-limited.* The odd-class witnesses came from $|d| <= 6000$; three of the four lie beyond

@@ -159,10 +159,119 @@ byhand() =
   print("");
 };
 
+\\ ---------------------------------------------- the local Tate pairing (sec-tate)
+
+\\ Theorem 6 of descent-s3.typ: on A^* / (A^*)^2 the local Tate pairing is
+\\      <a,b>_v = prod_{w | v} (a_w, b_w)_{A_w},
+\\ a product of Hilbert symbols over the places of the etale algebra A = Q[x]/f.
+\\ Everything below is that formula, tested on 37a1 against Corollary 7(a),(b),\n\\ Proposition 9 (reciprocity), and the isotropy of L_v.
+
+\\ the finite part: nfhilbert at each prime of K above p
+tpair(K, a, b, p) =
+{ my(D = idealprimedec(K, p), s = 1);
+  for (i = 1, #D, s *= nfhilbert(K, a, b, D[i]));
+  s;
+};
+\\ the archimedean part: (a,b)_R = -1 iff both embeddings are negative
+tpairoo(K, a, b) =
+{ my(ra = nfeltembed(K, a), rb = nfeltembed(K, b), s = 1);
+  for (i = 1, #ra, if (real(ra[i]) < 0 && real(rb[i]) < 0, s = -s));
+  s;
+};
+hilbR(a, b) = { if (a < 0 && b < 0, -1, 1) };
+\\ the cubic of 37a1, as a function (defined here, not inside tate(): in GP a
+\\ function assignment swallows the rest of the enclosing sequence)
+f37(t) = { t^3 - 16*t + 16 };
+
+\\ is a a square in Q_p?
+issqQp(a, p) =
+{ if (a == 0, return(1));
+  my(v = valuation(a, p), u = a / p^v, n);
+  if (v % 2, return(0));
+  n = numerator(u) * denominator(u);
+  if (p == 2, n % 8 == 1, issquare(Mod(n, p)));
+};
+
+tate() =
+{ my(f = y^3 - 16*y + 16, K, bnf, th, S, pr, su, gens, bad, allv);
+  print("======================================================================");
+  print("the local Tate pairing on K^* / (K^*)^2 for 37a1,  K = Q[th]/(th^3-16th+16)");
+  print("");
+  K = nfinit(f); bnf = bnfinit(f, 1); th = Mod(y, f);
+  S = [2, 37];
+  pr = concat(idealprimedec(K, 2), idealprimedec(K, 37));
+  su = bnfsunit(bnf, pr);
+  gens = concat([Mod(-1,f)], [Mod(u,f) | u <- bnf.fu]);
+  gens = concat(gens, [Mod(nfbasistoalg(K,g),f) | g <- su[1]]);
+  gens = concat(gens, [-th, 1-th, 2-th, -2*th]);
+  print("  ", #gens, " test classes: -1, the units, the S-units, and x - th for x = 0,1,2,-2");
+  print("");
+
+  \\ Corollary 7(b):  <a,a>_v = (N a, -1)_v
+  bad = 0;
+  for (i = 1, #gens,
+    my(a = gens[i], n = nfeltnorm(K, a));
+    for (j = 1, #S,
+      if (tpair(K,a,a,S[j]) != hilbert(n,-1,S[j]), bad++));
+    if (tpairoo(K,a,a) != hilbR(n,-1), bad++));
+  print("  Corollary 7(b)  <a,a>_v = (N a, -1)_v      at v = 2, 37, oo :  ",
+        bad, " discrepancies");
+
+  \\ Corollary 7(a):  <a,b>_v = (N a, b)_v  for rational b
+  bad = 0;
+  for (i = 1, #gens,
+    for (k = 1, 5,
+      my(b = [-1, 2, 3, 37, -74][k], a = gens[i], n = nfeltnorm(K, a));
+      for (j = 1, #S,
+        if (tpair(K, a, Mod(b,f), S[j]) != hilbert(n, b, S[j]), bad++));
+      if (tpairoo(K, a, Mod(b,f)) != hilbR(n, b), bad++)));
+  print("  Corollary 7(a)  <a,b>_v = (N a, b)_v       for b = -1,2,3,37,-74 :  ",
+        bad, " discrepancies");
+
+  \\ Proposition 9: reciprocity
+  allv = [2, 3, 5, 7, 11, 13, 37, 101];
+  bad = 0;
+  for (i = 1, #gens, for (j = 1, #gens,
+    my(s = tpairoo(K, gens[i], gens[j]));
+    for (k = 1, #allv, s *= tpair(K, gens[i], gens[j], allv[k]));
+    if (s != 1, bad++)));
+  print("  Proposition 9   prod_v <a,b>_v = 1         on all ", #gens^2, " pairs :  ",
+        bad, " discrepancies");
+
+  \\ isotropy of L_v: pair x - th against x' - th for x, x' with f(x) square in Q_v
+  for (k = 1, 4,
+    my(p = [2, 37, 3, 0][k], pts = [], b = 0);
+    for (t = -60, 60,
+      if (f37(t) != 0 && if (p == 0, f37(t) > 0, issqQp(f37(t), p)),
+          pts = concat(pts, [t])));
+    for (i = 1, #pts, for (j = 1, #pts,
+      if (if (p == 0, tpairoo(K, pts[i]-th, pts[j]-th),
+                      tpair(K, pts[i]-th, pts[j]-th, p)) != 1, b++)));
+    print("  L_v isotropic   v = ", if (p == 0, "oo", p), " :  ", #pts,
+          " abscissae in [-60,60],  ", b, " of ", #pts^2, " symbols non-trivial"));
+  print("");
+
+  \\ the table of sec-tate-37: cor_{K/Q}(-th, x - th) by its ramification set
+  print("  cor_{K/Q}(-theta, x - theta), by ramification set (Sigma is even, Prop 9):");
+  allv = [2,3,5,7,11,13,17,19,23,29,31,37,41,43];
+  for (t = -6, 8,
+    if (f37(t) == 0, next);
+    my(R = [], b = t - th);
+    if (tpairoo(K, -th, b) == -1, R = concat(R, ["oo"]));
+    for (k = 1, #allv, if (tpair(K, -th, b, allv[k]) == -1, R = concat(R, [allv[k]])));
+    print("      x = ", t, "\tf(x) = ", f37(t), "  (core ", core(f37(t)), ")\tSigma = ", R));
+  print("");
+  print("  x = -4,0,1,4,8 give f(x) square: those beta lie in Sel_2 with -theta, and");
+  print("  Sigma is empty -- isotropy of the Selmer group, place by place.");
+  print("  x = 2 gives Sigma = {oo,2}: cor_{K/Q}(-theta, 2-theta) = (-1,-1)_2, Hamilton.");
+  print("");
+};
+
 \\ ------------------------------------------------------------------------ run
 
 report([0,0,1,-1,0],           "37a1   -- rank 1, Sha[2] = 0");
 report([0,-1,1,-929,-10595],   "571a1  -- rank 0, Sha[2] = (Z/2)^2");
 report([0,1,1,-2,0],           "389a1  -- rank 2, Sha[2] = 0");
 byhand();
+tate();
 quit;

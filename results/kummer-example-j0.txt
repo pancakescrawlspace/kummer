@@ -1,0 +1,90 @@
+=== densegroup / densegroup2 against an independent test ===
+  126 (curve,p) pairs compared, 0 mismatches [4 with p | M]
+
+=== the two factors are independent ===
+  144 independent cross pairs, 0 failed to land on X
+
+=== every twist has 2-torsion over Q_2 ===
+  48 twists checked, 0 WITHOUT a Q_2-rational 2-torsion point
+
+=== at p = 2, dense implies rank >= 2 ===
+  32 twists checked, 0 dense with rank < 2
+
+=== the scan (B = 65 here; the document uses B = 150) ===
+twists with both ranks positive, |d| <= 65 : 34
+
+=== p = 2 ===
+  class [1  ] : none found
+  class [3  ] : d = -61
+  class [5  ] : none found
+  class [7  ] : none found
+  class [2  ] : none found
+  class [6  ] : none found
+  class [10 ] : none found
+  class [14 ] : none found
+
+=== p = 3 ===
+  class [1  ] : d = 1
+  class [u  ] : d = 2
+  class [3  ] : d = -6
+  class [u*3] : d = -3
+
+=== p = 5 ===
+  class [1  ] : d = 1
+  class [u  ] : d = 47
+  class [5  ] : d = -5
+  class [u*5] : d = 15
+
+=== p = 7 ===
+  class [1  ] : d = 22
+  class [u  ] : d = -30
+  class [7  ] : none found
+  class [u*7] : d = -7
+
+=== L_q at q | d, q = 2 mod 3  (section 6.6.2) ===
+  d = -66    q = 11    v_q(d) = 1
+    identity  delta(T) = (c^-2, zeta/c)^2 . psi_*delta'(T') : exact
+    class     delta(T) = (3, d(1-zeta_3)) mod squares       : yes
+    class     delta(T) = (3, q(1-zeta_3)) mod squares       : yes
+    non-trivial, and in ker N                               : yes, yes
+    275 sampled abscissae: 0 outside <delta_q(T)>, 2 of odd v_w2
+  d = 94     q = 47    v_q(d) = 1
+    identity  delta(T) = (c^-2, zeta/c)^2 . psi_*delta'(T') : exact
+    class     delta(T) = (3, d(1-zeta_3)) mod squares       : yes
+    class     delta(T) = (3, q(1-zeta_3)) mod squares       : yes
+    non-trivial, and in ker N                               : yes, yes
+    294 sampled abscissae: 0 outside <delta_q(T)>, 0 of odd v_w2
+  d = -5     q = 5     v_q(d) = 1
+    identity  delta(T) = (c^-2, zeta/c)^2 . psi_*delta'(T') : exact
+    class     delta(T) = (3, d(1-zeta_3)) mod squares       : yes
+    class     delta(T) = (3, q(1-zeta_3)) mod squares       : yes
+    non-trivial, and in ker N                               : yes, yes
+    250 sampled abscissae: 0 outside <delta_q(T)>, 10 of odd v_w2
+  d = 2501   q = 41    v_q(d) = 1
+    identity  delta(T) = (c^-2, zeta/c)^2 . psi_*delta'(T') : exact
+    class     delta(T) = (3, d(1-zeta_3)) mod squares       : yes
+    class     delta(T) = (3, q(1-zeta_3)) mod squares       : yes
+    non-trivial, and in ker N                               : yes, yes
+    294 sampled abscissae: 0 outside <delta_q(T)>, 0 of odd v_w2
+  d = -30    q = 5     v_q(d) = 1
+    identity  delta(T) = (c^-2, zeta/c)^2 . psi_*delta'(T') : exact
+    class     delta(T) = (3, d(1-zeta_3)) mod squares       : yes
+    class     delta(T) = (3, q(1-zeta_3)) mod squares       : yes
+    non-trivial, and in ker N                               : yes, yes
+    251 sampled abscissae: 0 outside <delta_q(T)>, 11 of odd v_w2
+  d = 10     q = 5     v_q(d) = 1
+    identity  delta(T) = (c^-2, zeta/c)^2 . psi_*delta'(T') : exact
+    class     delta(T) = (3, d(1-zeta_3)) mod squares       : yes
+    class     delta(T) = (3, q(1-zeta_3)) mod squares       : yes
+    non-trivial, and in ker N                               : yes, yes
+    250 sampled abscissae: 0 outside <delta_q(T)>, 10 of odd v_w2
+
+=== all nine component ratios, any q != 3  (section 6.6.3) ===
+  d = -61    q = 61    (q mod 12 = 1) : 0 of 9 component ratios non-square
+  d = 5105   q = 1021  (q mod 12 = 1) : 0 of 9 component ratios non-square
+  d = -30    q = 61    (q mod 12 = 1) : 0 of 9 component ratios non-square
+  d = 67     q = 67    (q mod 12 = 7) : 0 of 9 component ratios non-square
+  d = -103   q = 103   (q mod 12 = 7) : 0 of 9 component ratios non-square
+  d = 151    q = 151   (q mod 12 = 7) : 0 of 9 component ratios non-square
+  q = 7 : 3 is not a cube, dim W_q = 0
+  q = 43 : 3 is not a cube, dim W_q = 0
