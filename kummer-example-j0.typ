@@ -498,6 +498,91 @@ Lagrangian lines inside a group built from one split factor and one unramified q
 here.
 
 
+=== Towards $q equiv 11 space (mod 12)$: the unique $2$-torsion point <sec-obs-lag>
+
+For $q equiv 2 space (mod 3)$ there is a *unique* point of order $2$ on each curve over $QQ_q$,
+and that pins down a great deal. Two steps go through; the third is where the argument still
+stops.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Step 1 ($psi(T') = T$).* By @sec-obs-twelve, $E_d [2](QQ_q)$ and $E'_d [2](QQ_q)$ each have
+  order $2$; write $T$, $T'$ for their non-trivial points. Since $psi$ is Galois-equivariant it
+  carries $E'_d [2](QQ_q)$ to $E_d [2](QQ_q)$, so $psi(T') = T$ --- forced, not chosen.
+
+  #v(1.5mm)
+  *Step 2 ($delta_q (T)$ spans $L_q$).* At $q divides d$ the reduction is $I_0^ast$, so
+  $E_0 (QQ_q)$ is pro-$q$ and has no $2$-torsion; the $2$-primary torsion of $E_d (QQ_q)$
+  therefore injects into the component group $Phi_q tilde.equiv (ZZ slash 2)^2$, which has
+  *exponent $2$*. So $E_d (QQ_q)$ has no point of order $4$, hence $T in.not 2 E_d (QQ_q)$ and
+  $delta_q (T) != 0$. As $dim L_q = 1$, $L_q = ⟨delta_q (T)⟩$, and likewise
+  $L'_q = ⟨delta'_q (T')⟩$.
+]
+
+Step 3 would be $psi_* delta'_q (T') = delta_q (T)$, giving $psi_* L'_q = L_q$ at once. It does
+*not* follow formally from Step 1: the Kummer class $delta_q (T)$ is represented by
+$sigma |-> sigma Q - Q$ for a point $Q$ with $2 Q = T$, and $Q$ lives on the curve, not in the
+module --- $psi$ says nothing about it.
+
+== A possible completion, and where it stops <sec-obs-lag2>
+
+There is a way round that avoids Step 3 entirely.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *(a) $psi_*$ is an isometry.* An isomorphism of Galois modules preserves the Weil pairing up to
+  a scalar; at $ell = 2$ that scalar lies in $bb(F)_2^times = \{1\}$, so *every* module
+  isomorphism preserves the pairing exactly. Hence $psi_* L'_q$ is isotropic.
+
+  #v(1.5mm)
+  *(b) In characteristic $2$ the self-pairing is linear.* On $H^1 (QQ_q, E_d [2])$, which is
+  $2$-dimensional here,
+  $ ⟨x + y, x + y⟩ = ⟨x,x⟩ + ⟨y,y⟩ + 2⟨x,y⟩ = ⟨x,x⟩ + ⟨y,y⟩ , $
+  so $x |-> ⟨x,x⟩$ is $bb(F)_2$-*linear*. If it is not identically zero its kernel is a *single*
+  line --- the unique isotropic line --- and both $L_q$ and $psi_* L'_q$, being isotropic, must
+  equal it. Then $psi_* L'_q = L_q$ and $beta_q = 0$.
+]
+
+So everything reduces to: *is $x |-> ⟨x,x⟩$ non-zero on $H^1 (QQ_q, E_d [2])$?* In the Hilbert
+symbol model $⟨a,a⟩ = sum_(w divides q) (a, -1)_(K_w)$. For $q equiv 2 space (mod 3)$ the algebra
+splits as $K times.o QQ_q tilde.equiv QQ_q times QQ_(q^2)$, and one expects the degree-$2$ term to
+die --- its residue field is $bb(F)_(q^2)$ with $q^2 equiv 1 space (mod 4)$ --- leaving
+$⟨a,a⟩ = v_(w_1) (a) mod 2$ at the degree-one place, where $q equiv 3 space (mod 4)$ makes $-1$ a
+non-square. That functional is non-zero as soon as some class of $H^1$ has odd valuation at $w_1$.
+
+The valuation data is consistent with exactly this:
+
+#v(2mm)
+#align(center)[
+#table(columns: 5, align: (right, right, center, center, center), stroke: 0.4pt + luma(170),
+  inset: (x: 8pt, y: 3pt),
+  table.header([$d$], [$q$], [$q mod 4$], [odd $v_(w_1)$], [odd $v_(w_2)$]),
+  [$-66$],  [$11$], [$3$], [$0$], [$1$ / $2$],
+  [$94$],   [$47$], [$3$], [$0$], [$0$],
+  [$-5$],   [$5$],  [$1$], [$0$], [$6$ / $9$],
+  [$2501$], [$41$], [$1$], [$0$], [$0$],
+)]
+
+#v(2mm)
+
+Both $L_q$ and $psi_* L'_q$ have *even* valuation at the degree-one place in every case, which is
+what isotropy demands, and the odd valuations of @sec-obs-unram all sit at the degree-*two* place,
+where the symbol is expected to vanish anyway.
+
+#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
+  *Where this stops.* Steps 1, 2 and (a), (b) are proofs. What is *not* verified is that
+  $x |-> ⟨x,x⟩$ is non-zero on $H^1$ --- equivalently that some class has odd valuation at $w_1$,
+  equivalently that $-1$ is a non-square in $K_(w_1)$ but a square in $K_(w_2)$. An attempt to
+  check the latter with `nfhilbert(K,-1,-1,pr)` was *wrong*: that symbol tests whether $-1$ is a
+  norm from $K_w (sqrt(-1))$, not whether it is a square, and it returned "yes" at every place
+  including ones where it should not. So the last step is stated, not confirmed.
+
+  #v(1.5mm)
+  Note the two regimes are complementary, which is a good sign: for $q equiv 1 space (mod 4)$,
+  $-1$ *is* a square, the functional vanishes identically, every line is isotropic and this
+  argument gives nothing --- but that is exactly the case already settled by the local
+  isomorphism of @sec-obs-owed.
+]
+
+
 == $beta_2$, and the verdict <sec-obs-verdict>
 
 #v(2mm)
@@ -547,6 +632,7 @@ no twist there could ever have worked.
   *Partly discharged.* @sec-obs-owed proves $beta_q equiv 0$ at every $q divides d$ with
   $q equiv 1 space (mod 4)$ (and $-9$ a cube), via a local isomorphism. What remains verified but
   not proved is $beta_q equiv 0$ at $q divides d$ with $q equiv 11 space (mod 12)$
+  --- reduced to one step in @sec-obs-lag2 ---
   (@sec-obs-twelve), and at $q = 3$.
   The non-density statement is *conditional on those*.
 
