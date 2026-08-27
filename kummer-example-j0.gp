@@ -103,6 +103,75 @@ Epd(d) = ellinit([0,0,0,0,-81*d^3]);
        if(wit[k], Str("d = ", wit[k]), "none found"))));
   Vec(L);}
 
+\\ ------------------------------------- p = 7, the square class [7] (section 4.1)
+\\ 7 || d with d/7 a quadratic residue.  Both curves then have additive reduction
+\\ of type I_0* at 7 with c_7 = 1, so M = #E(Q_7)/E_1 = 7 and E(Q_7) is
+\\ PROCYCLIC: rank 1 on each curve suffices, unlike p = 2.  The class was empty
+\\ in the first pass only because both ranks must be positive at once.
+
+\\ An independent density test, valid at additive p where crosscheck() bails out
+\\ (it skips p | N).  E_1 = Z_p, so any element of E_1 \ E_2 generates E_1
+\\ topologically; hence Gamma is dense as soon as its image in E(Q_p)/E_2 --- a
+\\ group of order p*M --- is everything.
+{inE2p(Q,p) = (Q == [0]) || (valuation(Q[1],p) <= -4);}
+{coverE2(E, p) =
+  my(v, Em = ellminimalmodel(E,&v), M = Mval(Em,p),
+     P = apply(Q -> ellchangepoint(Q,v), allpts(E)), Ep, PP, S, fr, nw, target);
+  if(#P == 0 || M == 0, return([0, 0, p*M]));
+  Ep = padiccurve(Em, p);
+  PP = apply(Q -> [Q[1]+O(p^PREC), Q[2]+O(p^PREC)], P);
+  target = p*M;  S = [[0]];  fr = [[0]];
+  while(#fr, nw = List();
+    for(i=1,#fr, for(j=1,#PP,
+      my(R = elladd(Ep, fr[i], PP[j]), new = 1);
+      for(t=1,#S, if(inE2p(ellsub(Ep,R,S[t]),p), new = 0; break));
+      if(new, S = concat(S,[R]); listput(nw,R))));
+    fr = Vec(nw);
+    if(#S > target, break));
+  [#S == target, #S, target];}
+
+\\ Corroboration of step (b) of the Proposition in section 4.1.  By Theorem 1 of
+\\ Pannekoek, arXiv:1211.5833, E_0(Q_p) = Z_p for additive reduction with all
+\\ a_i in pZ_p, EXCEPT (p=7) a_6 = 14 mod 49 -- which needs v_7(a_6) = 1, while
+\\ here v_7(a_6) = 3v_7(d).  So E_d(Q_7) = Z_7 and there is no 7-torsion; that
+\\ is what this checks.
+{has7(E, p, n) =
+  my(Em = ellminimalmodel(E), rts = polrootspadic(elldivpol(Em,p), p, n), cnt = 0);
+  for(i=1,#rts, my(x = rts[i],
+     y2 = x^3 + Em.a2*x^2 + Em.a4*x + Em.a6 + (Em.a1*x/2 + Em.a3/2)^2);
+     if(y2 == 0 || issquare(y2), cnt++));
+  cnt;}
+
+{notors7(B) = my(bad = 0, n = 0);
+  for(a = 1, B, foreach([a,-a], d,
+    if(core(abs(d)) != abs(d), next);
+    if(sqclass(d,7) != 2, next);
+    n++;
+    if(has7(Ed(d),7,40) || has7(Epd(d),7,40), bad++;
+       printf("  d = %s HAS 7-torsion over Q_7\n", d))));
+  printf("  %d twists in class [7] with |d| <= %d : %d with 7-torsion over Q_7\n", n, B, bad);
+  printf("  (0 means E_d(Q_7) = Z_7 is procyclic throughout the class)\n");}
+
+{seven(B) = my(cand = 0, both = 0, wit = List());
+  print("=== p = 7, square class [7], |d| <= ", B, " ===");
+  for(a = 1, B, foreach([a,-a], d,
+    if(core(abs(d)) != abs(d), next);
+    if(sqclass(d,7) != 2, next);
+    cand++;
+    my(E = ellminimalmodel(Ed(d)), Ep = ellminimalmodel(Epd(d)), r, rp, a1, b1);
+    r = ellrank(E)[1]; rp = ellrank(Ep)[1];
+    if(r < 1 || rp < 1, next);
+    both++;
+    a1 = coverE2(Ed(d), 7);  b1 = coverE2(Epd(d), 7);
+    printf("  d = %-7s ranks %d,%d   M = %s,%s   densegroup %d,%d   E/E_2 image %s/%s, %s/%s%s\n",
+      d, r, rp, Mval(E,7), Mval(Ep,7), dense(Ed(d),7), dense(Epd(d),7),
+      a1[2], a1[3], b1[2], b1[3],
+      if(dense(Ed(d),7) && dense(Epd(d),7), "   *** WITNESS ***", ""));
+    if(dense(Ed(d),7) && dense(Epd(d),7), listput(wit,d))));
+  printf("  %d squarefree d in the class, %d with both ranks positive, %d witnesses: %s\n",
+    cand, both, #wit, Vec(wit));
+  Vec(wit);}
+
 \\ ------------------------------------- L_q at q | d, and psi_* L'_q = L_q
 \\ Section 6.6.2 / 6.6.3 of kummer-example-j0.typ.  Everything here is a check
 \\ on identities that are PROVED there; the point is to catch a slip, not to
@@ -176,6 +245,9 @@ print("\n=== at p = 2, dense implies rank >= 2 ===");
 rank2([-61,2,-6,10,-30,-66,94,130,-3,-5,1,13,22,23,35,-33]);
 print("\n=== the scan (B = 65 here; the document uses B = 150) ===");
 scan(65, [2,3,5,7]);
+print("");
+seven(200);
+notors7(400);
 print("\n=== L_q at q | d, q = 2 mod 3  (section 6.6.2) ===");
 lqsplit(-66, 11, 20); lqsplit(94, 47, 20); lqsplit(-5, 5, 20);
 lqsplit(2501, 41, 20); lqsplit(-30, 5, 20); lqsplit(10, 5, 20);

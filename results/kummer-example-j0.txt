@@ -41,6 +41,13 @@ twists with both ranks positive, |d| <= 65 : 34
   class [7  ] : none found
   class [u*7] : d = -7
 
+=== p = 7, square class [7], |d| <= 200 ===
+  d = -91     ranks 1,1   M = 7,7   densegroup 1,0   E/E_2 image 49/49, 1/49
+  d = -182    ranks 1,2   M = 7,7   densegroup 1,1   E/E_2 image 49/49, 49/49   *** WITNESS ***
+  14 squarefree d in the class, 2 with both ranks positive, 1 witnesses: [-182]
+  30 twists in class [7] with |d| <= 400 : 0 with 7-torsion over Q_7
+  (0 means E_d(Q_7) = Z_7 is procyclic throughout the class)
+
 === L_q at q | d, q = 2 mod 3  (section 6.6.2) ===
   d = -66    q = 11    v_q(d) = 1
     identity  delta(T) = (c^-2, zeta/c)^2 . psi_*delta'(T') : exact

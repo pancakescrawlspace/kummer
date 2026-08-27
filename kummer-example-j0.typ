@@ -21,7 +21,7 @@
 #v(4mm)
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
-  *Summary.* At $p = 3, 5$ a single twist covers every square class; at $p = 7$ three of four. At
+  *Summary.* At $p = 3, 5, 7$ a single twist covers every square class. At
   $p = 2$ *all four odd classes* are covered and all four even classes are empty --- and the even
   half is genuinely *obstructed*: @sec-obstruction computes the twisted pairing at $ell = p = 2$
   and finds $beta_2 equiv.not 0$ there, so $X(QQ)$ is not dense in $X(QQ_2)$. $E_d (QQ_2)$ always has a $2$-torsion point while $E_d (QQ)$ never
@@ -101,13 +101,127 @@ dense in $E'_d (QQ_p)$:
   table.header([$p$], [class], [class], [class], [class]),
   [$3$], [$[1]$: $d = 1$],  [$[u]$: $d = 2$],    [$[3]$: $d = -6$],  [$[u 3]$: $d = -3$],
   [$5$], [$[1]$: $d = 1$],  [$[u]$: $d = 47$],   [$[5]$: $d = -5$],  [$[u 5]$: $d = 15$],
-  [$7$], [$[1]$: $d = 22$], [$[u]$: $d = -30$],  [$[7]$: *none*],    [$[u 7]$: $d = -7$],
+  [$7$], [$[1]$: $d = 22$], [$[u]$: $d = -30$],  [$[7]$: $d = -182$], [$[u 7]$: $d = -7$],
 )]
 
 #v(2mm)
 
-So $p = 3$ and $p = 5$ are settled outright: one twist per class, hence $X(QQ)$ is dense in
-$X(QQ_p)$. At $p = 7$ the class $[7]$ found nothing in the range.
+So $p = 3$, $p = 5$ *and* $p = 7$ are settled outright: one twist per class, hence $X(QQ)$ is
+dense in $X(QQ_p)$ for those three primes.
+
+== The class $[7]$ at $p = 7$: sparse, not obstructed <sec-scan-seven>
+
+The class $[7]$ was empty in the first pass, which invited the reading that it is blocked the way
+the even classes at $p = 2$ are (@sec-parity). It is not. It was a range effect, and the smallest
+witness sits just outside the first search.
+
+First, the local question at $7$ has *one* answer per class, not one per twist.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Lemma.* For $p equiv 1$ (mod $3$) --- in particular $p = 7$ --- the curves $E_d$ and $E_(d')$
+  are isomorphic over $QQ_p$ if and only if $d$ and $d'$ lie in the same square class of
+  $QQ_p^times$. The same holds for $E'_d$.
+
+  #v(2mm)
+  _Proof._ $j = 0$, so $"Aut" = mu_6$ and the twists of $y^2 = x^3 + A$ over $QQ_p$ are classified
+  by $A$ modulo $(QQ_p^times)^6$. Thus $E_d tilde.equiv E_(d')$ over $QQ_p$ iff
+  $9 d^3 slash 9 d'^3 = (d slash d')^3 in (QQ_p^times)^6$. If $x^3 = y^6$ then $x = zeta_3 y^2$ for
+  some cube root of unity; $p equiv 1$ (mod $3$) puts $zeta_3$ in $QQ_p$, where
+  $zeta_3 = (zeta_3^2)^2$ is a square, so $x in (QQ_p^times)^2$. The converse is immediate. $qed$
+]
+
+So *the square class is the $QQ_7$-isomorphism class* --- which is why the scan is indexed by
+square classes at all. Kodaira type, $c_7$, $M$, the group $E_d (QQ_7)$ and the density condition
+itself are constant across a class, and a single twist decides them. What they are:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Proposition.* Let $7 parallel d$, $d$ squarefree --- i.e. $d$ in class $[7]$ or $[u 7]$. Then
+  $ E_d (QQ_7) tilde.equiv ZZ_7 quad "and" quad E'_d (QQ_7) tilde.equiv ZZ_7 , $
+  both *procyclic*. Consequently $E_d (QQ)$ is dense in $E_d (QQ_7)$ as soon as it contains a
+  single point $P$ with $v_7 (x(P)) >= 0$.
+
+  #v(2mm)
+  _Proof._ Three steps, none numerical.
+
+  #v(1mm)
+  *(a) Type and Tamagawa number.* $v_7 (a_6) = v_7 (9 d^3) = 3$ and $v_7 (Delta) = v_7(-432 a_6^2)
+  = 6 < 12$, so the model is minimal and the reduction is additive of type $I_0^ast$. For
+  $I_0^ast$, $c_7 = 1 + \#\{"roots in" bb(F)_7 "of" P(T) = T^3 + a_2 slash 7 dot T^2 + a_4 slash
+  7^2 dot T + a_6 slash 7^3\}$, which here is $T^3 + 9 (d slash 7)^3$. Since $7 equiv 1$ (mod $3$),
+  that has a root iff $-9$ is a cube mod $7$; the cubes are $\{1, 6\}$ and $-9 equiv 5$, so it has
+  none and $c_7 = 1$. For $E'_d$ the polynomial is $T^3 - 81 (d slash 7)^3$ and $81 equiv 4$ is
+  likewise not a cube, so again $c_7 = 1$. Hence $E_d (QQ_7) = E_0 (QQ_7)$ and
+  $ M := \# E_d (QQ_7) slash E_1 = \# tilde(E)^"ns" (bb(F)_7) = 7 . $
+
+  #v(1mm)
+  *(b) $E_0 (QQ_7)$ is procyclic.* By Theorem 1 of [P], for $E slash QQ_p$ with additive reduction
+  given by a minimal model with every $a_i in p ZZ_p$, $E_0 (QQ_p) tilde.equiv ZZ_p$ *except* in
+  four listed cases, of which the one at $p = 7$ is $a_6 equiv 14$ (mod $49$). Here
+  $v_7 (a_6) = 3$, so $a_6 equiv 0$ (mod $49$), and $0 equiv.not 14$. The exception therefore
+  cannot occur *for any $d$ in this family*: $v_7 (a_6) = 3 v_7 (d)$ is a multiple of $3$, while
+  $a_6 equiv 14$ (mod $49$) forces $v_7 (a_6) = 1$. Same for $E'_d$, where $a_6 = -81 d^3$.
+
+  #v(1mm)
+  *(c)* Combining, $E_d (QQ_7) = E_0 (QQ_7) tilde.equiv ZZ_7$. Its unique subgroup of index $7$ is
+  $E_1$, so a point generates topologically iff it lies outside $E_1$, i.e. iff
+  $v_7 (x(P)) >= 0$. $qed$
+]
+
+#block(inset: (left: 4pt))[
+  [P] R. Pannekoek, #link("https://arxiv.org/abs/1211.5833")[*On $p$-torsion of $p$-adic elliptic
+  curves with additive reduction*], arXiv:1211.5833 (2013). Theorem 1: with $E slash QQ_p$
+  additive and $a_i in p ZZ_p$ throughout a minimal model, $E_0 (QQ_p) tilde.equiv ZZ_p$ unless
+  ($p=2$, $a_1 + a_3 equiv 2$ mod $4$), ($p=3$, $a_2 equiv 6$ mod $9$), ($p=5$, $a_4 equiv 10$ mod
+  $25$) or ($p=7$, $a_6 equiv 14$ mod $49$), in which cases it is $p ZZ_p times bb(F)_p$.
+]
+
+So the situation at $p = 7$ is the exact opposite of @sec-why2, where non-procyclicity of
+$E_delta (QQ_2)$ is a theorem for *every* twist and rank $>= 2$ is forced on both curves. Here
+procyclicity is a theorem for every twist in the class, rank $1$ on each curve suffices, and the
+density condition is the mild one that some rational point avoid the formal group.
+
+What makes the class thin is therefore only the double rank condition. Of the squarefree $d$ in
+class $[7]$ with $|d| <= 182$ --- there are fourteen of them --- exactly two have positive rank on
+*both* curves, and the first of those fails the density test:
+
+#v(2mm)
+#align(center)[
+#table(columns: 5, align: (right, center, center, left, left), stroke: 0.4pt + luma(170),
+  inset: (x: 8pt, y: 3pt),
+  table.header([$d$], [rank $E_d$], [rank $E'_d$], [dense at $7$], [why]),
+  [$-91$],   [$1$], [$1$], [yes, *no*],
+    [the generator of $E'_(-91)$ has $x = -3951 slash 7^4$: it lies in $E_2$],
+  [$-182$],  [$1$], [$2$], [yes, yes], [*witness*],
+)]
+
+#v(2mm)
+
+All twelve other candidates have rank $0$ on at least one of the two curves. So the class is
+settled by
+$ d = -182 = -2 dot 7 dot 13 , quad -182 slash 7 = -26 equiv 2 space (mod 7) , $
+a quadratic residue, so $d$ is indeed in class $[7]$; $"rank" E_(-182) (QQ) = 1$,
+$"rank" E'_(-182)(QQ) = 2$, and both closures are everything.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Checked twice.* `densegroup` says dense on both, and so does an independent test written for
+  the additive case: since $E_1 tilde.equiv ZZ_7$ and any element of $E_1 ∖ E_2$ generates it
+  topologically, a subgroup is dense as soon as its image in $E_d (QQ_7) slash E_2$ --- a group of
+  order $7 M = 49$ --- is everything. Both curves give $49$ of $49$ for $d = -182$ and for
+  $d = 203$, and the same test reproduces the failures: $1$ of $49$ at $d = -91$ and $d = 273$
+  (all of $E'_d (QQ)$ sits inside $E_2$), $0$ of $49$ at $d = 14$ and $d = -42$ (rank $0$).
+  The `crosscheck` of @sec-method cannot be used here --- it skips $p divides N$, and $7$ divides
+  the conductor throughout this class --- which is why the second test was needed.
+]
+
+Widening further confirms the picture is sparsity and nothing else. Of the $30$ squarefree $d$ in
+class $[7]$ with $|d| <= 400$, seven have positive rank on both curves and *three* are witnesses:
+$d = -182$, $203$, $371$. That is a hit rate of one in ten across the class --- low, but of the
+same order as the other classes once the double rank condition is imposed, and with no sign of the
+systematic vanishing that @sec-obstruction establishes at $p = 2$. As a check on step (b) of the
+Proposition, none of those $30$ twists has a point of order $7$ over $QQ_7$ on either curve
+(`elldivpol`, in the companion script) --- which is what $E_d (QQ_7) tilde.equiv ZZ_7$ predicts,
+the alternative $7 ZZ_7 times bb(F)_7$ having such a point. By the Lemma one twist would have
+sufficed and the other $29$ are free, but they cost nothing.
 
 At $p = 2$ the first pass ($|d| <= 150$) found a single witness in eight classes, which looked
 like an obstruction. It is not --- it is @sec-why2, which says a witness needs rank $>= 2$ on
@@ -875,11 +989,12 @@ no twist there could ever have worked.
 = What this does and does not prove <sec-status>
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
-  *Proved.* $X(QQ)$ is dense in $X(QQ_3)$ and in $X(QQ_5)$ --- a single twist in each of the four
-  classes. At $p = 2$ the four odd classes are settled, by $d = 5105, -61, 2501, 183$.
+  *Proved.* $X(QQ)$ is dense in $X(QQ_3)$, in $X(QQ_5)$ and in $X(QQ_7)$ --- a single twist in
+  each of the four classes, the last of them $d = -182$ (@sec-scan-seven). At $p = 2$ the four odd
+  classes are settled, by $d = 5105, -61, 2501, 183$.
 
   #v(1.5mm)
-  *Not proved.* That the four even classes at $p = 2$, or $[7]$ at $p = 7$, fail. Because
+  *Not proved.* That the four even classes at $p = 2$ fail. Because
   $E_delta (QQ_2)$ is *not procyclic* --- the very $2$-torsion that makes @sec-why2 work --- the
   single-twist form is not necessary at $2$ ($section 2.1.1$ of the main notes), so a union of
   several deficient twists could still cover. That union question is precisely where the
