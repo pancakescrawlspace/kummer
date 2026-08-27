@@ -21,7 +21,8 @@
 #v(4mm)
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
-  *Summary.* At $p = 3, 5, 7$ a single twist covers every square class. At
+  *Summary.* At $p = 3, 5, 7$ a single twist covers every square class, so $X(QQ)$ is dense in
+  $X(QQ_p)$ there. At
   $p = 2$ *all four odd classes* are covered and all four even classes are empty --- and the even
   half is genuinely *obstructed*: @sec-obstruction computes the twisted pairing at $ell = p = 2$
   and finds $beta_2 equiv.not 0$ there, so $X(QQ)$ is not dense in $X(QQ_2)$. $E_d (QQ_2)$ always has a $2$-torsion point while $E_d (QQ)$ never
@@ -118,20 +119,22 @@ witness sits just outside the first search.
 First, the local question at $7$ has *one* answer per class, not one per twist.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *Lemma.* For $p equiv 1$ (mod $3$) --- in particular $p = 7$ --- the curves $E_d$ and $E_(d')$
-  are isomorphic over $QQ_p$ if and only if $d$ and $d'$ lie in the same square class of
-  $QQ_p^times$. The same holds for $E'_d$.
+  *Lemma.* For *every* prime $p$, the curves $E_d$ and $E_(d')$ are isomorphic over $QQ_p$ if and
+  only if $d$ and $d'$ lie in the same square class of $QQ_p^times$. The same holds for $E'_d$.
 
   #v(2mm)
   _Proof._ $j = 0$, so $"Aut" = mu_6$ and the twists of $y^2 = x^3 + A$ over $QQ_p$ are classified
   by $A$ modulo $(QQ_p^times)^6$. Thus $E_d tilde.equiv E_(d')$ over $QQ_p$ iff
-  $9 d^3 slash 9 d'^3 = (d slash d')^3 in (QQ_p^times)^6$. If $x^3 = y^6$ then $x = zeta_3 y^2$ for
-  some cube root of unity; $p equiv 1$ (mod $3$) puts $zeta_3$ in $QQ_p$, where
-  $zeta_3 = (zeta_3^2)^2$ is a square, so $x in (QQ_p^times)^2$. The converse is immediate. $qed$
+  $9 d^3 slash 9 d'^3 = (d slash d')^3 in (QQ_p^times)^6$. Now for $x, y in QQ_p^times$,
+  $x^3 = y^6$ forces $(x slash y^2)^3 = 1$, so $x slash y^2 in mu_3 (QQ_p)$ --- and
+  $mu_3 (QQ_p) subset.eq (QQ_p^times)^2$ always: it is trivial unless $p equiv 1$ (mod $3$), and
+  then $zeta_3 = (zeta_3^2)^2$. Either way $x in (QQ_p^times)^2$. The converse is immediate. $qed$
 ]
 
-So *the square class is the $QQ_7$-isomorphism class* --- which is why the scan is indexed by
-square classes at all. Kodaira type, $c_7$, $M$, the group $E_d (QQ_7)$ and the density condition
+So the indexing of @sec-scan by square classes is the right one at *every* prime: four classes at
+each odd $p$, eight at $p = 2$, and one curve apiece.
+
+In particular the square class is the $QQ_7$-isomorphism class. Kodaira type, $c_7$, $M$, the group $E_d (QQ_7)$ and the density condition
 itself are constant across a class, and a single twist decides them. What they are:
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
@@ -360,9 +363,55 @@ Encouragingly, the parts that were delicate for the conductor-$200$ pair are fre
   curve is ever multiplicative* and there are no dangerous primes at all.
 - *$v = infinity$ is free even at $ell = 2$.* $"disc"(y^2 = x^3 + k) = -432 k^2 < 0$ always, so
   $E_d (RR)$ is connected, $E_d (RR) slash 2 = 0$, and $W_infinity = 0$. (Checked on nine twists.)
-- *$v = 3$ is free.* At the CM prime, $dim W_3 = dim W'_3 = 0$ for every twist tested.
+- *$v = 3$ is free.* At the CM prime, $dim W_3 = dim W'_3 = 0$ --- for every twist, not merely
+  every twist tested. @sec-obs-three proves it.
 
 What kills it is the rest of (E).
+
+=== $v = 3$: a valuation, and nothing to check <sec-obs-three>
+
+The Proposition of @sec-obs-twelve computes $dim E_d [2](QQ_q)$ for $q != 3$ and excludes $q = 3$
+because the cubic residue character is the wrong tool there. The right tool is the valuation, and
+it is even easier.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Proposition.* For every non-zero integer $d$,
+  $ E_d [2](QQ_3) = 0 quad "and" quad E'_d [2](QQ_3) = 0 , $
+  hence $dim W_3 = dim W'_3 = 0$ and $beta_3 equiv 0$ because a factor of the pairing vanishes.
+
+  #v(2mm)
+  _Proof._ A non-trivial $2$-torsion point of $E_d$ over $QQ_3$ is a root of $x^3 + 9 d^3$, i.e. a
+  cube root of $-9 d^3$ in $QQ_3$. Such a root would have
+  $3 v_3 (x) = v_3 (9 d^3) = 2 + 3 v_3 (d)$, and $2 + 3 v_3(d) equiv 2$ (mod $3$) is never
+  divisible by $3$. For $E'_d$ the root is a cube root of $81 d^3$, with
+  $3 v_3 (x) = 4 + 3 v_3 (d) equiv 1$ (mod $3$) --- again impossible. Since $3 divides.not 2$,
+  $dim W_3 = dim E_d [2](QQ_3) = 0$, and likewise for $E'_d$. $qed$
+]
+
+Note what the argument does *not* use: it is independent of $d$ entirely, so unlike the primes
+$q divides d$ it needs no twist-by-twist work. The reason is that $3$ ramifies in the CM field
+$QQ(zeta_3)$: the valuation $v_3 (9 d^3) equiv 2$ (mod $3$) can never be adjusted by a twist,
+because twisting multiplies the coefficient by a *cube*.
+
+For the record, the local data at $3$, which by the Lemma of @sec-scan-seven depends only on the
+square class of $d$ in $QQ_3^times$:
+
+#v(2mm)
+#align(center)[
+#table(columns: 6, align: (center, center, center, center, center, center),
+  stroke: 0.4pt + luma(170), inset: (x: 9pt, y: 3.5pt),
+  table.header([class of $d$], [rep.], [$E_d$ type], [$c_3 (E_d)$], [$E'_d$ type], [$c_3 (E'_d)$]),
+  [$[1]$],   [$d = 1$],  [$I V$],    [$3$], [$I V^ast$], [$1$],
+  [$[u]$],   [$d = -1$], [$I V$],    [$1$], [$I V^ast$], [$3$],
+  [$[3]$],   [$d = 3$],  [$I I^ast$], [$1$], [$I I$],    [$1$],
+  [$[u 3]$], [$d = -3$], [$I I^ast$], [$1$], [$I I$],    [$1$],
+)]
+
+#v(2mm)
+
+The conductor exponent at $3$ is $5$ in all eight cases, matching $N_E = 2^2 dot 3^5$ and
+$N_(E') = 2^4 dot 3^5$ of @sec-pair. Every type is *additive with potentially good reduction*, as
+$j = 0$ demands, and $dim W_3 = 0$ throughout --- the Proposition, seen in the table.
 
 #block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
   *At $ell = 2$ the primes dividing $d$ are never free.* For $ell >= 5$ a place $q divides d$ is
@@ -977,8 +1026,18 @@ no twist there could ever have worked.
   bookkeeping needed it.
 
   #v(1.5mm)
-  *Still open.* $q = 3$ only, where $x^3 - 3$ is Eisenstein and $A_3$ is a *totally ramified*
-  cubic field rather than a product. The non-density statement is *conditional on $q = 3$*.
+  *Proved at $q = 3$.* @sec-obs-three: $dim W_3 = dim W'_3 = 0$ for every $d$, because
+  $v_3 (9 d^3) equiv 2$ and $v_3 (81 d^3) equiv 1$ (mod $3$) are never divisible by $3$, so
+  neither curve has a $2$-torsion point over $QQ_3$ and a factor of the pairing vanishes. This
+  needed the valuation rather than the cubic residue character, which is why @sec-obs-twelve
+  excluded it.
+
+  #v(1.5mm)
+  *Nothing is open.* Condition (E) asks for $beta_v equiv 0$ at every $v != 2$, and the places
+  are exhausted: $v = infinity$ ($E_d (RR)$ connected, so $W_infinity = 0$), $v = 3$
+  (@sec-obs-three), $v = q divides d$ (@sec-obs-deg2 and @sec-obs-general), and $v$ of good
+  reduction (@sec-obs-DE). Both curves have bad reduction only at $2$, $3$ and the primes dividing
+  $d$, so that is every place. *The obstruction at $p = 2$ is therefore unconditional.*
 
   #v(1.5mm)
   *No longer assumed.* That the local Tate pairing is the sum of Hilbert symbols over
@@ -995,17 +1054,22 @@ no twist there could ever have worked.
   classes are settled, by $d = 5105, -61, 2501, 183$.
 
   #v(1.5mm)
-  *Not proved.* That the four even classes at $p = 2$ fail. Because
-  $E_delta (QQ_2)$ is *not procyclic* --- the very $2$-torsion that makes @sec-why2 work --- the
-  single-twist form is not necessary at $2$ ($section 2.1.1$ of the main notes), so a union of
-  several deficient twists could still cover. That union question is precisely where the
-  correlation between the two factors matters, and it is untouched here. The parity obstruction of
-  @sec-parity blocks the *single-twist* route in the even classes. But @sec-obstruction goes
-  further and shows the *union* form fails there too: $beta_2 equiv.not 0$ on all four even
-  classes, so $X(QQ)$ is not dense in $X(QQ_2)$ --- conditional on condition (E). That condition
-  is now *proved* at every $q divides d$ with $q != 2, 3$ (@sec-obs-deg2, @sec-obs-general) and
-  free at $infinity$ and at the good places (@sec-obs-DE); what is still sampled rather than
-  proved is the single prime $q = 3$.
+  *Also proved: $X(QQ)$ is not dense in $X(QQ_2)$.* The four even classes fail, and not for want
+  of searching. Two steps, both now complete. $beta_2 equiv.not 0$ on each even class ---
+  a *single* non-zero symbol settles that, and thousands were found (@sec-obs-verdict). And
+  condition (E), which the criterion needs, holds at every place other than $2$: at $infinity$
+  because $"disc" < 0$ makes $E_d (RR)$ connected and $W_infinity = 0$; at $q = 3$ by
+  @sec-obs-three; at $q divides d$ by @sec-obs-deg2 and @sec-obs-general; and at every good place
+  by @sec-obs-DE. Both curves are bad only at $2$, $3$ and the primes dividing $d$, so those are
+  all the places there are. The conclusion is therefore *unconditional*, and it is stronger than
+  the parity obstruction of @sec-parity: parity blocks the single-twist route, while
+  @sec-obstruction blocks the *union* form as well.
+
+  #v(1.5mm)
+  *Imported rather than proved here.* The criterion itself --- that
+  $beta_2 (w, w') != 0$ for some pair rules out every union $union.big_d H_d times H'_d$ --- is the
+  endgame of $section 5$ of `nondiagonal-obstruction.typ`, used as a black box. And the scan covers
+  $p = 2, 3, 5, 7$ only: nothing here says anything about $p >= 11$.
 
   #v(1.5mm)
   *Search-limited.* The odd-class witnesses came from $|d| <= 6000$; three of the four lie beyond

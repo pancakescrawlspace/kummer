@@ -152,6 +152,35 @@ Epd(d) = ellinit([0,0,0,0,-81*d^3]);
   printf("  %d twists in class [7] with |d| <= %d : %d with 7-torsion over Q_7\n", n, B, bad);
   printf("  (0 means E_d(Q_7) = Z_7 is procyclic throughout the class)\n");}
 
+\\ ------------------------------ v = 3 is free, for every twist (section 6.2.1)
+\\ E_d[2](Q_3) needs a cube root of -9d^3 in Q_3, i.e. 3 | v_3(9d^3) = 2 + 3v_3(d)
+\\ -- never.  E'_d[2](Q_3) needs one of 81d^3, with v_3 = 4 + 3v_3(d).  So
+\\ dim W_3 = dim W'_3 = 0 always and beta_3 vanishes because a factor does.
+{kod(k) = if(k==1,"I0", k==2,"II", k==3,"III", k==4,"IV", k==-1,"I0*",
+             k==-2,"II*", k==-3,"III*", k==-4,"IV*", k>4, Str("I",k-4), Str("I",-k-4,"*"));}
+{dimtors2(f, p) =
+  my(F = factorpadic(f, p, 60), n = 0);
+  for(i = 1, #F~, if(poldegree(F[i,1]) == 1, n += F[i,2]));
+  min(n, 2);}
+
+{three(B) = my(bad = 0, n = 0, seen = List());
+  print("=== v = 3 : reduction type and dim W_3, by square class of d ===");
+  for(a = 1, B, foreach([a,-a], d,
+    if(core(abs(d)) != abs(d), next);
+    n++;
+    my(E = ellminimalmodel(Ed(d)), Ep = ellminimalmodel(Epd(d)),
+       l = elllocalred(E,3), lp = elllocalred(Ep,3),
+       w = dimtors2(x^3 + 9*d^3, 3), wp = dimtors2(x^3 - 81*d^3, 3),
+       k = sqclass(d,3), tag);
+    if(w || wp, bad++; printf("  d = %s HAS 2-torsion over Q_3\n", d));
+    tag = Str(sqclassname(k,3), "|", kod(l[2]), "|", l[4], "|", kod(lp[2]), "|", lp[4]);
+    if(!setsearch(Set(Vec(seen)), tag), listput(seen, tag);
+      printf("  class [%-3s] : E_d %-4s f_3=%s c_3=%s   E'_d %-4s f_3=%s c_3=%s   (first d = %d)\n",
+             sqclassname(k,3), kod(l[2]), l[1], l[4], kod(lp[2]), lp[1], lp[4], d))));
+  printf("  %d squarefree d tested, %d with 2-torsion over Q_3 : dim W_3 = dim W'_3 = 0 throughout\n",
+         n, bad);
+  printf("  %d distinct (class, types, Tamagawa) patterns -- one per square class of Q_3^*\n", #seen);}
+
 {seven(B) = my(cand = 0, both = 0, wit = List());
   print("=== p = 7, square class [7], |d| <= ", B, " ===");
   for(a = 1, B, foreach([a,-a], d,
@@ -245,6 +274,8 @@ print("\n=== at p = 2, dense implies rank >= 2 ===");
 rank2([-61,2,-6,10,-30,-66,94,130,-3,-5,1,13,22,23,35,-33]);
 print("\n=== the scan (B = 65 here; the document uses B = 150) ===");
 scan(65, [2,3,5,7]);
+print("");
+three(120);
 print("");
 seven(200);
 notors7(400);

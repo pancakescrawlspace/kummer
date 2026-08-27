@@ -41,6 +41,14 @@ twists with both ranks positive, |d| <= 65 : 34
   class [7  ] : none found
   class [u*7] : d = -7
 
+=== v = 3 : reduction type and dim W_3, by square class of d ===
+  class [1  ] : E_d IV   f_3=5 c_3=3   E'_d IV*  f_3=5 c_3=1   (first d = 1)
+  class [u  ] : E_d IV   f_3=5 c_3=1   E'_d IV*  f_3=5 c_3=3   (first d = -1)
+  class [3  ] : E_d II*  f_3=5 c_3=1   E'_d II   f_3=5 c_3=1   (first d = 3)
+  class [u*3] : E_d II*  f_3=5 c_3=1   E'_d II   f_3=5 c_3=1   (first d = -3)
+  150 squarefree d tested, 0 with 2-torsion over Q_3 : dim W_3 = dim W'_3 = 0 throughout
+  4 distinct (class, types, Tamagawa) patterns -- one per square class of Q_3^*
+
 === p = 7, square class [7], |d| <= 200 ===
   d = -91     ranks 1,1   M = 7,7   densegroup 1,0   E/E_2 image 49/49, 1/49
   d = -182    ranks 1,2   M = 7,7   densegroup 1,1   E/E_2 image 49/49, 49/49   *** WITNESS ***
