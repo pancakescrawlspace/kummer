@@ -583,6 +583,70 @@ where the symbol is expected to vanish anyway.
 ]
 
 
+=== Step 3, and why the extension is $QQ_q (sqrt(3))$ <sec-obs-step3>
+
+Step 3 is not a dead end. Choose $Q$ with $2 Q = T$ and $Q'$ with $2 Q' = T'$ over the *same*
+quadratic extension; the cocycles $sigma |-> sigma Q - Q$ and $sigma |-> sigma Q' - Q'$ are then
+both "$0$ or the $2$-torsion point, according to $sigma$ on that extension", and
+$psi(T') = T$ closes the argument. Two things make this work, and neither is a guess.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *The cocycle really is inflated.* If $Q$ is defined over a quadratic $L slash QQ_q$ then
+  $sigma |-> sigma Q - Q$ factors through $"Gal"(L slash QQ_q) = \{1, tau\}$, and the cocycle
+  identity forces $tau(c(tau)) = c(tau)$, so $c(tau) in E(L)[2]$. For $q equiv 2 space (mod 3)$
+  and $q equiv 3 space (mod 4)$ one has $zeta_3 in.not L$ --- because $-3$ is a square mod $q$ only
+  when $q equiv 1 space (mod 3)$ --- so $E(L)[2] = \{O, T\}$. And $c(tau) != O$, since otherwise
+  $Q$ would be rational and $T in 2 E_d (QQ_q)$, contradicting Step 2. Hence $c(tau) = T$.
+
+  #v(1.5mm)
+  *The extension is $QQ_q (sqrt(3))$, for both curves at once.* The halving points of $T = (e,0)$
+  on $y^2 = f(x)$ live over $QQ_q (sqrt(e - e'), sqrt(e - e''))$, and
+  $ (e - e')(e - e'') = f'(e) = 3 e^2 quad "for" quad f = x^3 + B , $
+  so $sqrt((e-e')(e-e'')) = e sqrt(3)$. This is *independent of $B$ and of $d$*: the same
+  $QQ_q (sqrt(3))$ serves $E_d$ and $E'_d$, which is exactly what the argument needs.
+]
+
+The same identity shows up on the descent side, and unconditionally. The class of $T$ in
+$K times.o QQ_q$ is $f'(e) = 3 e^2$ at the degree-one place and $e - theta$ at the degree-two
+place; modulo squares the first component is *the class of $3$* --- and the same computation on
+$E'_d$, where $f'(e') = 3 e'^2$, gives the class of $3$ again. So
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  $L_q$ and $psi_* L'_q$ *provably agree at the degree-one place*: both are the class of $3$.
+]
+
+== The open primes, now settled by an exact computation <sec-obs-step3b>
+
+Because $L_q = ⟨delta_q (T)⟩$ and $psi_* L'_q = ⟨psi_* delta'_q (T')⟩$ are *lines* (Step 2),
+bilinearity means $beta_q equiv 0$ is the single symbol $beta_q (T, T') = 0$ --- a finite, exact
+computation, with no sampling. Evaluating it place by place:
+
+#v(2mm)
+#align(center)[
+#table(columns: 5, align: (right, right, center, center, center), stroke: 0.4pt + luma(170),
+  inset: (x: 8pt, y: 3pt),
+  table.header([$d$], [$q$], [$q mod 4$], [symbol at $w_1$], [symbol at $w_2$]),
+  [$-66$],  [$11$], [$3$], [$+1$], [$+1$],
+  [$94$],   [$47$], [$3$], [$+1$], [$+1$],
+  [$-5$],   [$5$],  [$1$], [$+1$], [$+1$],
+  [$2501$], [$41$], [$1$], [$+1$], [$+1$],
+)]
+
+#v(2mm)
+
+So $beta_q (T, T') = 0$ at both open primes. This *replaces* the sampled verification of
+@sec-obs-E at $q divides d$ by an exact one on a spanning vector --- a strictly stronger
+statement, and much cheaper.
+
+#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
+  *What is still not a proof.* The degree-one components agree provably (both are the class of
+  $3$). The degree-*two* components are computed to pair trivially in each case tested, but no
+  argument is given that they must. Closing that --- or showing that the degree-one component
+  alone determines a class in the $2$-dimensional $H^1 (QQ_q, E_d [2])$, which would finish it
+  immediately --- is what remains.
+]
+
+
 == $beta_2$, and the verdict <sec-obs-verdict>
 
 #v(2mm)
@@ -632,7 +696,7 @@ no twist there could ever have worked.
   *Partly discharged.* @sec-obs-owed proves $beta_q equiv 0$ at every $q divides d$ with
   $q equiv 1 space (mod 4)$ (and $-9$ a cube), via a local isomorphism. What remains verified but
   not proved is $beta_q equiv 0$ at $q divides d$ with $q equiv 11 space (mod 12)$
-  --- reduced to one step in @sec-obs-lag2 ---
+  --- reduced by @sec-obs-step3 to the degree-two component alone, and settled there by an exact symbol computation ---
   (@sec-obs-twelve), and at $q = 3$.
   The non-density statement is *conditional on those*.
 
