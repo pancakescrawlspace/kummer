@@ -1,0 +1,34 @@
+======================================================================
+residues.gp -- checks for residues.typ
+
+The two worked examples of section 4.3, residues on P^1_Q:
+
+  (3, t):
+    P = t          kappa(P) = Q             residue = 3
+    P = infinity   kappa(P) = Q             residue = 3
+  (t, t-1):
+    P = t          kappa(P) = Q             residue = -1
+    P = t - 1      kappa(P) = Q             residue = 1
+    P = infinity   kappa(P) = Q             residue = -1
+
+  -- (3,t) is ramified exactly on (0) + (oo) with residue 3 at both;
+     (t,t-1) is ramified exactly on (0) + (oo) with residue -1 at both,
+     and the vanishing at t = 1 is the Steinberg relation.
+
+checks
+
+  (1) tame symbol = Hilbert symbol over Q_p, p odd : 0 wrong of 43200
+  (2) Steinberg: every residue of (f, 1-f) is trivial : 0 wrong of 41
+  (3) sum of corestrictions of the residues = 0 on P^1_Q : 0 wrong of 120
+  (4) d_P . cor = sum_{w|P} cor . d_w  for Q(u) < Q(t), u = t^2 : 0 wrong of 330
+  (5) div(f) 2-divisible => (f^2,g) unramified everywhere : 0 wrong of 433
+
+(1) is section 6: over a local field the residue IS the invariant, so it
+    must reproduce the Hilbert symbol -- and it does, with the sign
+    (-1)^(v(a)v(b)) exactly accounting for the (-1/p)^(ab) in the classical
+    formula.  (2) is the well-definedness of the symbol on K_2.  (3) is
+    Faddeev's exact sequence: the last map is a sum of corestrictions, and
+    reciprocity says the residues of a class on P^1 always cancel.  (4) is
+    the compatibility that makes 'cor preserves unramified' true, tested on
+    a degree-2 cover of the t-line ramified at 0 and infinity.  (5) is the
+    mechanism by which descent functions give unramified algebras.
