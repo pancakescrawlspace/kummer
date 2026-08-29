@@ -1363,23 +1363,143 @@ four primes, sampled local points on both curves --- with no disagreement.
 
 == It is unramified <sec-brauer-unram>
 
-On $E_d times E'_d$ over $K$ this is the argument of `kummer-survey.typ` §7.9, and it is short.
+=== On $E times E'$, which is the easy half <sec-brauer-unram-prod>
+
+Over $K$ this is the argument of `kummer-survey.typ` §7.9, and it is short.
 $"div"(U + d u^2) = 2(T_0) - 2(O)$ because $T_0$ is $2$-torsion; and $Q(U) = V^2 slash (U + d u^2)$
 gives
 $ "div"(Q(U)) = 2["div"(V)] - "div"(U + d u^2)
   = 2[(T_0)+(T_1)+(T_2) - 3(O)] - [2(T_0) - 2(O)] = 2(T_1) + 2(T_2) - 4(O) , $
 divisible by $2$ --- and $(T_1) + (T_2)$ is $K$-rational even though $T_1, T_2$ are not. Same for
 $h$. Two slots with $2$-divisible divisors make every tame symbol trivial (`residues.typ` §8.1),
-so $(g, h) in "Br"(E_d times E'_d)_K$. Corestriction preserves that (`residues.typ` §9), so
+so $(g, h) in "Br"(E_d times E'_d)_K$; corestriction preserves that (`residues.typ` §9), so
 $cal(A)$ is unramified on $E times E'$ over $QQ$.
 
+That also disposes of most of $X$. Prime divisors of $X$ are of two kinds: the sixteen
+*exceptional curves* $F_(a b)$ of the resolution $X --> Y = (E times E') slash iota$,
+$iota = (-1,-1)$, lying over the sixteen fixed points $(T_a, T'_b)$; and the strict transforms of
+divisors of $Y$. The second kind is free, because $E times E' --> Y$ is étale in codimension one
+--- it ramifies only at the sixteen points --- so such a valuation extends with $e = 1$ and
+inherits the $2$-divisibility above. What is left is the sixteen curves.
+
+=== The sixteen exceptional curves <sec-brauer-unram-exc>
+
+The local computation is Stage 2 of `kummer-survey.typ` §7.11.2, and it transfers *verbatim*: it
+is a computation on one factor at a time, so it does not care that the two factors are different
+curves. With anti-invariant uniformisers at the fixed point, $v_F = "ord" slash 2$ on invariant
+functions, and for $g_1 = product_(k != i)(x - r_k)$,
+
+#align(center, table(
+  columns: 3, align: (left, center, left),
+  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3.5pt),
+  table.header([position of $a$], [$alpha = v_F (g_1)$], [$C_1$]),
+  [$a = infinity$ (the point $O$)], [$-2$], [$1$],
+  [$a = i$], [$0$], [$f'(r_i)$],
+  [$a in.not {infinity, i}$], [$1$], [$1 slash (r_a - r_i)$],
+))
+
+#v(2mm)
+with the same table in $(b, j)$ on the second factor, and
+$ partial_F (g_1, g_2) = (-1)^(alpha beta) space C_1^beta C_2^alpha
+  quad in kappa(F)^times slash square . $
+
+Here $f = x^3 + 9$ with roots $r_i = -u^2 zeta_3^i$ and $f' = 3x^2$; $tilde(f) = t^3 - 81$ with
+roots $s_j = 3 u zeta_3^j$ and $tilde(f)' = 3t^2$. The class $cal(A)_K = (g,h)$ is the symbol with
+$i = j = 0$, since $g$ and $h$ are the complementary factors to $x - r_0 = x + u^2$ and
+$t - s_0 = t - 3u$.
+
 #block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
-  *The descent to the Kummer surface is not re-proved here.* Passing from $E times E'$ to
-  $X = "Kum"(E times E')$ requires the residues along the sixteen exceptional curves to vanish,
-  and that step inherits exactly the status it has in `kummer-survey.typ` §7.11.2 --- sketched
-  there, not verified in detail. What is checked here is the consequence: $"inv"_v cal(A)$ is
-  well defined and locally constant on $X(QQ_v)$ at every place tested, and reciprocity holds on
-  $X(QQ)$ (@sec-brauer-gp, checks 5 and 6).
+  *And $(g,h)$ is ramified.* On six of the sixteen curves the residue is not a square:
+  $ partial_(F_(1 2)) = -(r_1 - r_0)(s_2 - s_0) = 27, quad
+    partial_(F_(0 1)) = f'(r_0) = 9u, quad
+    partial_(F_(1 0)) = tilde(f)'(s_0) = 27 u^2 , $
+  and each of $27 equiv 3$, $9u equiv u$, $27u^2 equiv u$ is a non-square in
+  $L = QQ(u, zeta_3)$ --- $u = root(3,3)$ is not a square there, since a square root of it would
+  generate the *real* field $QQ(3^(1 slash 6))$ of degree $6$, while the maximal real subfield of
+  $L$ is $QQ(u)$ of degree $3$. So the symbol over $K$ does *not* descend to $X_K$, and the
+  corestriction is not a convenience here --- it is what makes the class unramified.
+]
+
+To see how, count the divisors. $"Gal"(L slash QQ) = S_3$ acts on the indices by $i |-> i+1$,
+$j |-> j-1$ and by $i |-> -i$, $j |-> -j$; both preserve $i + j$ up to sign, so
+*$i + j$ mod $3$ is the invariant* and the sixteen curves fall into five $QQ$-rational prime
+divisors:
+
+#align(center, table(
+  columns: 4, align: (left, center, center, left),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([$D$], [curves], [$k(D)$], [how the residue dies]),
+  [$(infinity,infinity)$], [$1$], [$QQ$], [$alpha, beta$ both even],
+  [$(infinity, b)$], [$3$], [$K$], [$alpha$ even and $C_1 = 1$],
+  [$(a, infinity)$], [$3$], [$K$], [$beta$ even and $C_2 = 1$],
+  [$(a,b)$, $a + b equiv 0$], [$3$], [$K$], [a *norm* --- see below],
+  [$(a,b)$, $a + b equiv.not 0$], [$6$], [$L$], [*cancellation* --- see below],
+))
+
+#v(2mm)
+On the last two the residues of $(g,h)$ do not vanish, and the corestriction clears them in two
+genuinely different ways. Both use `residues.typ` §9,
+$partial_D ("cor" B) = sum_(D' divides D) "cor"_(kappa(D') slash kappa(D)) partial_(D') (B)$.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *$D = $ the orbit of $(0,0)$, with $k(D) = K$.* Above it lie two divisors of $X_K$: $F_(0 0)$
+  itself, with $k(D') = K$ and residue $1$; and $\{F_(1 2), F_(2 1)\}$, with $k(D') = L$ and
+  residue $27$. The second is corestricted by $N_(L slash K)$, and the norm of a constant from a
+  quadratic extension is its square:
+  $ partial_D cal(A) = 1 dot N_(L slash K)(27) = 27^2 = 729 . $
+  *A norm kills it.*
+
+  #v(3mm)
+  *$D = $ the orbit of $(0,1)$, with $k(D) = L$.* Above it lie three divisors of $X_K$, each with
+  $k(D') = L = k(D)$, so every corestriction is the *identity* and the residues simply multiply:
+  $ partial_D cal(A) = 9u dot 27 u^2 dot 9(1 - zeta_3)^2
+    = 9 dot 27 dot 9 dot u^3 dot (1-zeta_3)^2 = 6561 (1 - zeta_3)^2 = (81(1 - zeta_3))^2 . $
+  *Cancellation kills it* --- the two non-square residues $9u$ and $27u^2$ multiply to
+  $243 u^3 = 729$, because $u dot u^2 = u^3 = 3$.
+]
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Conclusion.* $partial_D cal(A) = 0$ for all five $D$, so $cal(A)$ is unramified along the whole
+  exceptional locus; with @sec-brauer-unram-prod, $cal(A) in "Br"(X)$.
+
+  #v(2mm)
+  The mechanism is worth naming, because it is the reverse of the usual one. `residues.typ` §9
+  records that corestriction *preserves* unramifiedness. Here it *creates* it: every input to the
+  corestriction is ramified, and the output is not.
+]
+
+`kummer-j0-exceptional.gp` runs all of this --- the Galois action on the sixteen points, the
+orbit decomposition, the residues, the norms, and the squareness tests in the right subfield of
+$L$ each time (an element of $L$ is a square in $L^A$ iff it has a square root fixed by $A$). It
+also checks the closed forms tabulated above, and cross-checks the whole thing by a second route:
+over $L$ the corestriction becomes the sum of the three conjugate symbols
+$cal(A)^((2k, k))$, $k = 0,1,2$ --- which are exactly the $(i,j)$ with $i + j equiv 0$, the
+$psi$-matched pairs --- and their product is a square in $L$ along every one of the sixteen curves.
+Both routes agree.
+
+=== A second proof, with no geometry at all <sec-brauer-unram-harari>
+
+There is a shorter argument, and it deserves to be recorded because it is independent of
+everything above. Harari's formal lemma --- D. Harari, _Méthode des fibrations et obstruction de
+Manin_, Duke Math. J. *75* (1994), Théorème 2.1.1 --- says that if $alpha in "Br"(QQ(X))$ lies in
+$"Br"(U)$ for some open $U subset.eq X$ but *not* in $"Br"(X)$, then the evaluation map
+$U(QQ_v) --> "Br"(QQ_v)$ is non-constant for *infinitely many* $v$.
+
+Contrapositive: if $"inv"_v cal(A)$ is constant on $U(QQ_v)$ for all but finitely many $v$, then
+$cal(A) in "Br"(X)$ modulo $"Br"(QQ)$. And that hypothesis is exactly condition (E), which
+@sec-obs-status proves at *every* place other than $2$. So the arithmetic already done implies
+unramifiedness, with no residue computation whatsoever.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Why keep the computation.* Three reasons. It is *independent*: Harari's route derives
+  unramifiedness from the $beta$ analysis, so it cannot be used to say anything the $beta$ analysis
+  did not already say, whereas @sec-brauer-unram-exc is a finite calculation with roots of unity
+  that never mentions a local point. It is *sharper*: Harari gives $cal(A) in "Br"(X)$ only modulo
+  $"Br"(QQ)$, which is harmless for @sec-brauer-verdict --- a constant class contributes equally at
+  every point and sums to $0$ by reciprocity --- but it is not the same statement. And it *shows
+  the mechanism*: that the three conjugate symbols are individually ramified on six curves and
+  their corestriction is not, is invisible from Harari's side, and it is the reason the class had
+  to be built as a corestriction rather than found as a symbol.
 ]
 
 == The non-density proof, in one statement <sec-brauer-verdict>
@@ -1417,18 +1537,22 @@ real point at once.
   Harari's formal-lemma machinery applies to it as it does in `kummer-survey.typ` §7.12.
 
   #v(2mm)
-  It does *not* add anything to the proof. Lines 1 and 3 are theorems of @sec-obs-status, which
-  closes condition (E) at every place and calls the obstruction unconditional; line 2 is the
-  exhaustive eight-class computation of @sec-obs-nosample. The one thing $cal(A)$ *owes* that
-  $beta$ does not is unramifiedness on the Kummer surface itself: $beta$ needs no such statement,
-  and $cal(A) in "Br"(X)$ --- as opposed to $"Br"(E times E')$, which @sec-brauer-unram does prove
-  --- inherits `kummer-survey.typ` §7.11.2's sketched status at the sixteen exceptional curves.
-  So this is a change of packaging that trades one kind of debt for another, not a strengthening
+  It does *not* add anything to the proof of non-density. Lines 1 and 3 are theorems of
+  @sec-obs-status, which closes condition (E) at every place and calls the obstruction
+  unconditional; line 2 is the exhaustive eight-class computation of @sec-obs-nosample. The one
+  thing $cal(A)$ owes that $beta$ does not --- unramifiedness on the Kummer surface itself --- is
+  paid in @sec-brauer-unram-exc, and paid twice over, since @sec-brauer-unram-harari gets it a
+  second way. So nothing here is conditional; it is a change of packaging, not a strengthening
 ]
 
 == What the companion script checks <sec-brauer-gp>
 
-`kummer-j0-brauer.gp`, results in `results/kummer-j0-brauer.txt`.
+Two scripts. `kummer-j0-brauer.gp` (results in `results/kummer-j0-brauer.txt`) does the six
+checks below; `kummer-j0-exceptional.gp` (results in `results/kummer-j0-exceptional.txt`) does
+@sec-brauer-unram-exc --- the Galois action on the sixteen fixed points, the five $QQ$-rational
+prime divisors, the residues of $(g,h)$ along each, the corestrictions, the squareness tests in
+the correct subfield of $L$, the four closed forms of @sec-brauer-unram-exc, and the
+sum-of-three-conjugates cross-check over $L$.
 
 #v(1mm)
 - *(1)* The two factorisations over $K$, and $(U + d u^2) g(U slash d) = (V slash d)^2$ on $71$

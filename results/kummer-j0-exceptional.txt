@@ -1,0 +1,73 @@
+======================================================================
+kummer-j0-exceptional.gp -- the sixteen exceptional curves
+
+L = Q(u, zeta_3), u^3 = 3 : y^6 + 3*y^5 + 6*y^4 + 13*y^3 + 15*y^2 - 6*y + 4   disc -177147
+Gal(L/Q) has order 6; tau (fixing u) generates Gal(L/K)
+
+  Gal(L/K) has order 2
+
+The sixteen curves F_(a,b), a from E[2] and b from E'[2] (-1 = the point O):
+
+  Q-orbit of [-1, -1] : 1 curves, k(D) has degree 1 over Q
+  Q-orbit of [-1, 0] : 3 curves, k(D) has degree 3 over Q
+  Q-orbit of [0, -1] : 3 curves, k(D) has degree 3 over Q
+  Q-orbit of [0, 0] : 3 curves, k(D) has degree 3 over Q
+  Q-orbit of [0, 1] : 6 curves, k(D) has degree 6 over Q
+
+Residues of A = cor_{K/Q}(g,h) along them.  A_K = (g,h) is the symbol
+with i = j = 0, i.e. the linear factors are x + u^2 and t - 3u.
+
+  D = Q-orbit of [-1, -1]  (1 curves, k(D) degree 1):
+      D' over F_[-1, -1] : d_{D'}(g,h) square in L? yes ;  after cor : square
+      ==> d_D(A) is a square in k(D) : YES
+
+  D = Q-orbit of [-1, 0]  (3 curves, k(D) degree 3):
+      D' over F_[-1, 0] : d_{D'}(g,h) square in L? yes ;  after cor : square
+      D' over F_[-1, 1] : d_{D'}(g,h) square in L? yes ;  after cor : square
+      ==> d_D(A) is a square in k(D) : YES
+
+  D = Q-orbit of [0, -1]  (3 curves, k(D) degree 3):
+      D' over F_[0, -1] : d_{D'}(g,h) square in L? yes ;  after cor : square
+      D' over F_[1, -1] : d_{D'}(g,h) square in L? yes ;  after cor : square
+      ==> d_D(A) is a square in k(D) : YES
+
+  D = Q-orbit of [0, 0]  (3 curves, k(D) degree 3):
+      D' over F_[0, 0] : d_{D'}(g,h) square in L? yes ;  after cor : square
+      D' over F_[1, 2] : d_{D'}(g,h) square in L? NO  <- (g,h) is ramified here ;  after cor : square
+      ==> d_D(A) is a square in k(D) : YES
+
+  D = Q-orbit of [0, 1]  (6 curves, k(D) degree 6):
+      D' over F_[0, 1] : d_{D'}(g,h) square in L? NO  <- (g,h) is ramified here ;  after cor : not a square
+      D' over F_[1, 0] : d_{D'}(g,h) square in L? NO  <- (g,h) is ramified here ;  after cor : not a square
+      D' over F_[1, 1] : d_{D'}(g,h) square in L? yes ;  after cor : square
+      ==> d_D(A) is a square in k(D) : YES
+
+  the symbol (g,h) over K is ramified along 3 of the K-divisors,
+  and the corestriction A is unramified along ALL sixteen curves : YES
+
+The residues of (g,h) in closed form, checked against the hand values:
+
+      F_[1, 2] : -(r_1-r_0)(s_2-s_0) = 27          agrees
+      F_[0, 1] : f'(r_0) = 3 r_0^2 = 9u            agrees
+      F_[1, 0] : f~'(s_0) = 3 s_0^2 = 27u^2        agrees
+      F_[1, 1] : -(r_1-r_0)(s_1-s_0) = 9(1-z)^2    agrees
+  0 of 4 closed forms wrong
+
+  so the two Q-divisors that carry ramification are cleared differently:
+    D = orbit of (0,0), k(D) = K : residues 1 and 27, and the second is
+        corestricted by N_{L/K}, giving 27^2 = 729 -- a NORM kills it;
+    D = orbit of (0,1), k(D) = L : residues 9u, 27u^2, 9(1-z)^2 with
+        k(D') = k(D) so cor is the identity, and the PRODUCT is
+        9*27*9*u^3*(1-z)^2 = 6561(1-z)^2 = (81(1-z))^2 -- cancellation.
+
+Cross-check.  Over L the corestriction becomes the sum of the three
+conjugate symbols, A^(2k,k) for k = 0,1,2 -- the three psi-matched pairs,
+which are exactly the (i,j) with i + j = 0 mod 3.  Their product must be
+a square in L along every one of the sixteen curves:
+
+  0 of 16 fail over L
+
+Both routes agree.  The point is that (g,h) alone does NOT work: it is
+ramified on six of the sixteen curves, and what removes the ramification
+is the corestriction -- by a norm from a quadratic extension on one
+Q-divisor, and by cancellation among the three conjugates on the other.
