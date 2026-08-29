@@ -1,0 +1,67 @@
+======================================================================
+integral-points.gp -- checks for integral-points.typ
+
+E : y^2 = x^3 - 16x + 16   (a model of 37a1),  P0 = (0,4)
+rank 1, torsion trivial, so E(Q) = Z P0.
+
+  (1) h^(n P0) = n^2 h^(P0) for n <= 30 : 0 wrong
+      h^(P0) = 0.0511114082, so an integral point with coefficient n has
+      log|x| about 0.0511 n^2 -- n = 20 already means |x| ~ 10^9
+
+  (2) integral points with |x| <= 1000000 : 12 of them (6 up to sign of y)
+      (    -4,        4) = -3 P0
+      (     0,        4) = 1 P0
+      (     1,        1) = -5 P0
+      (     4,        4) = 2 P0
+      (     8,       20) = -4 P0
+      (    24,      116) = 6 P0
+      every one is n P0 with |n| <= 6 : 0 unidentified
+
+  (3) v_p(log_E P) = -v_p(x(P))/2 : 0 wrong of 214 (p odd, good reduction)
+
+  (4) where the denominators come from:
+      p = 3    first n with p | den : 7     order of P0 mod p : 7    equal
+      p = 5    first n with p | den : 8     order of P0 mod p : 8    equal
+      p = 7    first n with p | den : 9     order of P0 mod p : 9    equal
+      p = 11   first n with p | den : 17    order of P0 mod p : 17   equal
+      p = 13   first n with p | den : 16    order of P0 mod p : 16   equal
+      p = 17   first n with p | den : 18    order of P0 mod p : 18   equal
+      p = 23   first n with p | den : 11    order of P0 mod p : 11   equal
+      p = 29   first n with p | den : 12    order of P0 mod p : 12   equal
+      p = 31   first n with p | den : 18    order of P0 mod p : 18   equal
+      p = 43   first n with p | den : 14    order of P0 mod p : 14   equal
+      p = 59   first n with p | den : 13    order of P0 mod p : 13   equal
+  (4) first n with p in the denominator = order of P0 mod p : 0 wrong
+      and v_p(den) = 2(1 + v_p(n/n_0)) thereafter : 0 wrong
+
+  (5) S-integral multiples:
+      S = {}  (integral points)        : n = [1, 2, 3, 4, 5, 6]
+      S = [2]                          : n = [1, 2, 3, 4, 5, 6, 10]
+      S = [3]                          : n = [1, 2, 3, 4, 5, 6, 7]
+      S = [5]                          : n = [1, 2, 3, 4, 5, 6, 8]
+      S = [2, 3]                       : n = [1, 2, 3, 4, 5, 6, 7, 10]
+      S = [2, 3, 5]                    : n = [1, 2, 3, 4, 5, 6, 7, 8, 10]
+      S = [2, 3, 5, 7]                 : n = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      S = [2, 3, 5, 7, 11, 13, 17, 23, 29] : n = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 16]
+  (5) S-integral multiples with n <= 60, listed above
+
+  (6) the archimedean estimate:
+      n=6   x = 24.0000       |psi| = 2.046805 e-1   x^(-1/2) = 2.041241 e-1   ratio 1.0027
+      n=10  x = 40.2500       |psi| = 1.577756 e-1   x^(-1/2) = 1.576221 e-1   ratio 1.0010
+      n=16  x = 454.5382      |psi| = 4.690489 e-2   x^(-1/2) = 4.690453 e-2   ratio 1.0000
+      n=22  x = 15.9932       |psi| = 2.515854 e-1   x^(-1/2) = 2.500531 e-1   ratio 1.0061
+  (6) |psi(P)| = x(P)^(-1/2) (1 + O(1/x)) : worst relative error 0.0061
+
+  (7) 389a1, rank 2, p = 5 : v_p(lambda_1) = 1, v_p(lambda_2) = 1
+      v_p(n1 l1 + n2 l2) >= 2  :    124 of 624 pairs   (expected ~ 124.8)
+      v_p(n1 l1 + n2 l2) >= 3  :     24 of 624 pairs   (expected ~ 25.0)
+      v_p(n1 l1 + n2 l2) >= 4  :      6 of 624 pairs   (expected ~ 5.0)
+      v_p(n1 l1 + n2 l2) >= 5  :      2 of 624 pairs   (expected ~ 1.0)
+
+Checks (1), (2) and (6) are the archimedean half of the method: the height
+is a quadratic form, integral points are therefore gigantic, and gigantic
+points have tiny elliptic logarithms.  Checks (3), (4), (5) and (7) are the
+p-adic half, and they say the same thing in the other topology: a large
+power of p in the denominator IS a large power of p dividing the p-adic
+logarithm.  Baker's theorem, in each topology, says a non-zero linear form
+in logarithms cannot be that small -- and the two estimates collide.
