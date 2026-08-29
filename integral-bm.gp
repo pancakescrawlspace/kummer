@@ -270,6 +270,136 @@ family(dmax) =
   print("");
 }
 
+
+\\ ============================================================ (11) relative dim 0
+\\ Does any of this survive when X -> Spec Z is quasi-finite, i.e. when the generic
+\\ fibre is a finite set of closed points?  Three checks, one per subsection of the
+\\ note's section on relative dimension zero.
+\\
+\\  (11a) FINITE over Z  =>  X(Z_p) = X(Q_p):  a Q_p-root of a MONIC integer
+\\        polynomial is automatically a Z_p-root.  So there is no integral theory
+\\        distinct from the rational one.  Contrast: 2x-1 = 0 has the Q_2-root 1/2
+\\        and no Z_2-root.
+\\  (11b) TATE'S EXAMPLE (Harari-Voloch, MPCPS 2010, Remark 3.1): the roots of an
+\\        irreducible cubic with group S_3 together with the roots of x^2 - disc.
+\\        Points everywhere locally, no rational point -- and one quaternion class
+\\        over Q(sqrt disc) kills every adelic point.  Both branches are monic, so
+\\        by (11a) this is an "integral" obstruction that is not integral at all.
+\\  (11c) THE NON-MONIC CASE, where integrality really does bite:
+\\        X = Spec Z[x]/((2x-1)(3x-1)).  X(Z) = 0/, X(Q) = {1/2, 1/3} != 0/,
+\\        X(Z_v) != 0/ everywhere, and the non-diagonal class ((-1,-1), (-1,-3))
+\\        in Br(Q) + Br(Q) = Br(X_Q) obstructs X(Z) but NOT X(Q).
+
+reldim0a() =
+{ my(f, r, v);
+  print("(11a) finite over Z  =>  Z_p-points = Q_p-points");
+  f = x^3 - x - 1;
+  print("    monic f = ", f, ":  its Q_p-roots and their valuations");
+  forprime (p = 2, 30,
+    r = polrootspadic(f, p, 6);
+    if (#r > 0,
+      print("      p = ", p, "   roots ", #r,
+            "   valuations ", apply(z -> valuation(z, p), Vec(r)),
+            "   all >= 0 : ", vecmin(apply(z -> valuation(z, p), Vec(r))) >= 0)));
+  print("    non-monic g = 2x - 1:  its unique Q_p-root is 1/2, of valuation");
+  forprime (p = 2, 7, print("      p = ", p, "   v_p(1/2) = ", valuation(1/2, p),
+                            if (valuation(1/2,p) < 0, "   NOT a Z_p-point", "")));
+  print("    so the collapse X(Z_v) = X(Q_v) is exactly the monicity of the equations.");
+  print("");
+}
+
+reldim0b(N) =
+{ my(f, D, K1, K2, bad, d1, d2, dec, pr, Alg, ram);
+  print("(11b) Tate's example: a zero-dimensional Hasse failure, killed by one class");
+  f = x^3 - x - 1; D = poldisc(f);
+  K1 = nfinit(f); K2 = nfinit(y^2 - D);
+  print("    K1 = Q[x]/(", f, ")   irreducible = ", polisirreducible(f),
+        "   disc = ", D, "   Galois group S_3 = ", !issquare(D));
+  print("    K2 = Q(sqrt ", D, ")");
+  print("    X(Q) = 0/ : neither factor is Q.");
+  bad = List();
+  forprime (p = 2, N,
+    d1 = vecmin(apply(u -> u[4], idealprimedec(K1, p)));
+    d2 = vecmin(apply(u -> u[4], idealprimedec(K2, p)));
+    if (d1 != 1 && d2 != 1, listput(bad, p)));
+  print("    primes p < ", N, " with NO local point : ", Vec(bad),
+        "   (a degree-1 prime in K1 or in K2 always exists)");
+  print("    real place: f has ", #polrootsreal(f), " real root, so X(R) != 0/.");
+  print("    the ramified prime 23:  K1 -> ", apply(u -> [u[3], u[4]], idealprimedec(K1, 23)),
+        "   K2 -> ", apply(u -> [u[3], u[4]], idealprimedec(K2, 23)), "   [e, f]");
+  dec = idealprimedec(K1, 2);
+  print("    p = 2 in K1: ", #dec, " prime(s), residue degree ", dec[1][4],
+        "  ->  2 is INERT: no K1-branch at 2");
+  pr = idealprimedec(K2, 2);
+  print("    p = 2 in K2: ", #pr, " primes  ->  2 SPLITS: the only branch at 2 is K2");
+  Alg = alginit(K2, [2, [[pr[1], pr[2]], Vecsmall([1,1])], []]);
+  ram = algramifiedplaces(Alg);
+  print("    B_2 = quaternion algebra over K2, degree ", algdegree(Alg),
+        ", ramified exactly at the two primes above 2 : ", ram == [pr[1], pr[2]]);
+  print("    so with B = (0, B_2) in Br(K1) + Br(K2) = Br(X):");
+  print("      v = 2        only the K2-branch, both points give inv = 1/2");
+  print("      v != 2       K1-branch gives 0 (B_1 = 0); K2-branch gives 0 (B_2 unramified)");
+  print("      sum_v inv_v = 1/2 for EVERY adelic point:  X(A_Q)^Br = 0/.");
+  print("    both branches are monic, so by (11a) X(A_Z) = X(A_Q) and this is");
+  print("    simultaneously an integral obstruction -- with no integral content.");
+  print("");
+}
+
+\\ the two branches of X : (2x-1)(3x-1) = 0, each carrying a constant Brauer class
+\\ branch[i] = [root, a, b]  with class (a,b) in Br(Q)
+reldim0c() =
+{ my(br, places, S, T, h, e, ram);
+  print("(11c) the non-monic case: X = Spec Z[x]/((2x-1)(3x-1))");
+  br = [[1/2, -1, -1], [1/3, -1, -3]];
+  print("    X(Z) = 0/ (neither root is an integer);  X(Q) = {1/2, 1/3} != 0/.");
+  print("    the two Brauer classes, one per component of X_Q = Spec(Q x Q):");
+  for (i = 1, 2,
+    ram = select(p -> hilbert(br[i][2], br[i][3], p) == -1, primes(20));
+    if (hilbert(br[i][2], br[i][3]) == -1, ram = concat([0], ram));
+    print("      branch x = ", br[i][1], " carries (", br[i][2], ",", br[i][3],
+          "),  ramified at ", ram, "     [place 0 = the real place]"));
+  print("    both classes are unramified outside {2, 3, oo}, so every other place gives 0.");
+  print("");
+  print("      v      X(Z_v)        X(Q_v)        inv_v on branch 1 / branch 2");
+  places = [0, 2, 3, 5, 7];
+  for (j = 1, #places,
+    my(v = places[j], intbr = List(), ratbr = List(), invs = List());
+    for (i = 1, 2,
+      h = if (v == 0, hilbert(br[i][2], br[i][3]), hilbert(br[i][2], br[i][3], v));
+      listput(invs, if (h == -1, "1/2", "  0"));
+      listput(ratbr, br[i][1]);
+      if (v == 0 || valuation(br[i][1], v) >= 0, listput(intbr, br[i][1])));
+    print("     ", if (v == 0, "oo", Str(v)), "     ",
+          if (#intbr == 1, Str(Vec(intbr), "     "), Vec(intbr)), "   ", Vec(ratbr),
+          "     ", invs[1], " / ", invs[2]));
+  print("");
+  \\ the achievable invariant sums.  Every invariant here is 0 or 1/2, so track
+  \\ twice the invariant, an integer mod 2; S over X(A_Z), T over X(A_Q).
+  S = [0]; T = [0];
+  for (j = 1, #places,
+    my(v = places[j], newS = List(), newT = List());
+    for (i = 1, 2,
+      h = if (v == 0, hilbert(br[i][2], br[i][3]), hilbert(br[i][2], br[i][3], v));
+      e = if (h == -1, 1, 0);
+      for (k = 1, #T, listput(newT, (T[k] + e) % 2));
+      if (v == 0 || valuation(br[i][1], v) >= 0,
+        for (k = 1, #S, listput(newS, (S[k] + e) % 2))));
+    S = Set(Vec(newS)); T = Set(Vec(newT)));
+  print("    achievable sum_v inv_v over X(A_Z) : ", apply(e -> if (e, "1/2", "0"), S),
+        if (setsearch(Set(S), 0), "   -- no obstruction", "   -- OBSTRUCTION"));
+  print("    achievable sum_v inv_v over X(A_Q) : ", apply(e -> if (e, "1/2", "0"), T),
+        if (setsearch(Set(T), 0), "   -- no obstruction", "   -- OBSTRUCTION"));
+  print("    at 2 the point is forced onto branch 2, where inv_2 = 0;  at 3 onto");
+  print("    branch 1, where inv_3 = 0;  at oo nothing is forced and BOTH branches");
+  print("    give 1/2.  So the integral sum is 1/2 always, carried by the real place.");
+  print("    Rationally, x = 1/2 at every place gives inv_2 + inv_oo = 1/2 + 1/2 = 0,");
+  print("    as reciprocity demands.");
+  print("");
+  print("    So X(A_Z)^Br = 0/ while X(A_Q)^Br != 0/ : in relative dimension zero the");
+  print("    integral obstruction is non-vacuous exactly when X -> Spec Z is not finite.");
+  print("");
+}
+
 \\ ------------------------------------------------------------------------ driver
 
 print("=========================================================================");
@@ -286,4 +416,7 @@ obstruction();
 rationalpoints(60);
 genustheory();
 family(200);
+reldim0a();
+reldim0b(50000);
+reldim0c();
 print("done.");

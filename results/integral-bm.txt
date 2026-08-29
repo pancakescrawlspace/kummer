@@ -125,4 +125,61 @@
       d = 226  c = 776  x mod 8 in [1, 7]  inv_2 values [1]   no obstruction   neg Pell SOLUBLE   consistent
       d = 274  c = 1744  x mod 8 in [1, 7]  inv_2 values [1]   no obstruction   neg Pell SOLUBLE   consistent
 
+(11a) finite over Z  =>  Z_p-points = Q_p-points
+    monic f = x^3 - x - 1:  its Q_p-roots and their valuations
+      p = 5   roots 1   valuations [0]   all >= 0 : 1
+      p = 7   roots 1   valuations [0]   all >= 0 : 1
+      p = 11   roots 1   valuations [0]   all >= 0 : 1
+      p = 17   roots 1   valuations [0]   all >= 0 : 1
+      p = 19   roots 1   valuations [0]   all >= 0 : 1
+      p = 23   roots 1   valuations [0]   all >= 0 : 1
+    non-monic g = 2x - 1:  its unique Q_p-root is 1/2, of valuation
+      p = 2   v_p(1/2) = -1   NOT a Z_p-point
+      p = 3   v_p(1/2) = 0
+      p = 5   v_p(1/2) = 0
+      p = 7   v_p(1/2) = 0
+    so the collapse X(Z_v) = X(Q_v) is exactly the monicity of the equations.
+
+(11b) Tate's example: a zero-dimensional Hasse failure, killed by one class
+    K1 = Q[x]/(x^3 - x - 1)   irreducible = 1   disc = -23   Galois group S_3 = 1
+    K2 = Q(sqrt -23)
+    X(Q) = 0/ : neither factor is Q.
+    primes p < 50000 with NO local point : []   (a degree-1 prime in K1 or in K2 always exists)
+    real place: f has 1 real root, so X(R) != 0/.
+    the ramified prime 23:  K1 -> [[2, 1], [1, 1]]   K2 -> [[2, 1]]   [e, f]
+    p = 2 in K1: 1 prime(s), residue degree 3  ->  2 is INERT: no K1-branch at 2
+    p = 2 in K2: 2 primes  ->  2 SPLITS: the only branch at 2 is K2
+    B_2 = quaternion algebra over K2, degree 2, ramified exactly at the two primes above 2 : 1
+    so with B = (0, B_2) in Br(K1) + Br(K2) = Br(X):
+      v = 2        only the K2-branch, both points give inv = 1/2
+      v != 2       K1-branch gives 0 (B_1 = 0); K2-branch gives 0 (B_2 unramified)
+      sum_v inv_v = 1/2 for EVERY adelic point:  X(A_Q)^Br = 0/.
+    both branches are monic, so by (11a) X(A_Z) = X(A_Q) and this is
+    simultaneously an integral obstruction -- with no integral content.
+
+(11c) the non-monic case: X = Spec Z[x]/((2x-1)(3x-1))
+    X(Z) = 0/ (neither root is an integer);  X(Q) = {1/2, 1/3} != 0/.
+    the two Brauer classes, one per component of X_Q = Spec(Q x Q):
+      branch x = 1/2 carries (-1,-1),  ramified at [0, 2]     [place 0 = the real place]
+      branch x = 1/3 carries (-1,-3),  ramified at [0, 3]     [place 0 = the real place]
+    both classes are unramified outside {2, 3, oo}, so every other place gives 0.
+
+      v      X(Z_v)        X(Q_v)        inv_v on branch 1 / branch 2
+     oo     [1/2, 1/3]   [1/2, 1/3]     1/2 / 1/2
+     2     [1/3]        [1/2, 1/3]     1/2 /   0
+     3     [1/2]        [1/2, 1/3]       0 / 1/2
+     5     [1/2, 1/3]   [1/2, 1/3]       0 /   0
+     7     [1/2, 1/3]   [1/2, 1/3]       0 /   0
+
+    achievable sum_v inv_v over X(A_Z) : ["1/2"]   -- OBSTRUCTION
+    achievable sum_v inv_v over X(A_Q) : ["0", "1/2"]   -- no obstruction
+    at 2 the point is forced onto branch 2, where inv_2 = 0;  at 3 onto
+    branch 1, where inv_3 = 0;  at oo nothing is forced and BOTH branches
+    give 1/2.  So the integral sum is 1/2 always, carried by the real place.
+    Rationally, x = 1/2 at every place gives inv_2 + inv_oo = 1/2 + 1/2 = 0,
+    as reciprocity demands.
+
+    So X(A_Z)^Br = 0/ while X(A_Q)^Br != 0/ : in relative dimension zero the
+    integral obstruction is non-vacuous exactly when X -> Spec Z is not finite.
+
 done.

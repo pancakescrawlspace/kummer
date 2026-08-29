@@ -293,6 +293,120 @@ not: seven for seven. In each case the residue field of the zeros of $x + c$ is 
 so the class is unramified on $X$ by the same computation as for $d = 34$; and $d = 34$ is the
 smallest such $d$.
 
+= Relative dimension zero <sec-dim0>
+
+Does any of this survive when $cal(X) --> "Spec" ZZ$ is quasi-finite --- when the generic fibre
+is a finite set of closed points rather than a curve? It does, but the answer splits in two, and
+the split is exactly the point made in the box of @sec-setup.
+
+== The collapse: a finite $ZZ$-scheme has no integral theory
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Proposition.* Let $cal(X) = "Spec" B$ with $B$ a *finite* $ZZ$-algebra. Then
+  $cal(X)(ZZ_p) = cal(X)(QQ_p)$ for every $p$, and therefore
+  $ cal(X)(bold(A)_ZZ) = X(bold(A)_QQ) . $
+
+  #v(2mm)
+  _Proof._ A $QQ_p$-point is a ring homomorphism $phi : B --> QQ_p$. Every element of $B$ is
+  integral over $ZZ$, hence over $ZZ_p$, so every element of $phi(B)$ is integral over $ZZ_p$;
+  and $ZZ_p$ is integrally closed in $QQ_p$. So $phi(B) subset.eq ZZ_p$. (Equivalently: a finite
+  morphism is proper, and this is the valuative criterion for the discrete valuation ring
+  $ZZ_p subset QQ_p$.) The real place is unchanged. $qed$
+]
+
+So for a finite $ZZ$-scheme --- an order in a number field, or $ZZ[x] slash (f)$ with $f$ *monic*
+--- the integral Brauer--Manin set *is* the rational one, and nothing bearing the word "integral"
+can be new. In the language of @sec-setup: a class separates $cal(X)(ZZ_p)$ from $X(QQ_p)$ only by
+seeing a denominator, and a finite $ZZ$-scheme has none. That is why the example of this note is an
+affine curve: non-properness is not a convenience of the exposition, it is the hypothesis.
+
+== What the rational theory in dimension zero is
+
+Write $X = "Spec"(product_i K_i)$; equivalently, $X$ is the finite $G_QQ$-set
+$S = "Hom"(product K_i, overline(QQ))$, and
+$ X(QQ) = S^(G_QQ), quad X(QQ_v) = S^(G_v) . $
+Local points almost everywhere therefore says: every Frobenius --- by Chebotarev, every cyclic
+subgroup --- of $Gamma = "Gal"(L slash QQ)$, $L$ the Galois closure, is conjugate into one of the
+stabilisers $H_i$. If $X$ is *connected* there is a single proper $H$, and a proper subgroup can
+never cover a finite group by its conjugates (Jordan); so a connected zero-dimensional scheme with
+points almost everywhere has a rational point, which is the familiar statement that a number field
+$K != QQ$ has infinitely many primes with no degree-one factor. Disconnected $X$ can fail, and the
+first failure is in degree $5$: a zero-dimensional scheme of degree $<= 4$ with points almost
+everywhere has a global point, a fact Harari and Voloch use as a lemma, and whose sharpness they
+record in Remark 3.1 with an example they credit to Tate.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Tate's example, and the class that kills it.* Let $f = x^3 - x - 1$, of discriminant $-23$ and
+  Galois group $S_3$, and take
+  $ X = "Spec" QQ[x] slash (f) quad union.sq quad "Spec" QQ(sqrt(-23)) . $
+  A Frobenius in $S_3$ is trivial, a transposition, or a $3$-cycle; in the first two cases $f$ has
+  a root in $QQ_v$, and in the third the Frobenius lies in $A_3$, so $-23$ is a square in $QQ_v$.
+  Hence $X(QQ_v) != nothing$ for every $v$ (checked for all $p < 50000$, at the ramified prime
+  $23$, and at $infinity$, where $f$ has one real root), while $X(QQ) = nothing$: neither factor
+  is $QQ$.
+
+  #v(2mm)
+  Now $2$ is *inert* in $QQ[x] slash (f)$ and *splits* in $K_2 = QQ(sqrt(-23))$. Let
+  $ cal(B) = (0, cal(B)_2) in "Br"(K_1) xor "Br"(K_2) = "Br"(X) , $
+  with $cal(B)_2$ the quaternion algebra over $K_2$ ramified at exactly the two primes above $2$
+  --- it exists, the ramification set being even and $K_2$ having no real place, and PARI's
+  `alginit` builds it. Then at $v = 2$ the only available branch is $K_2$, and both of its points
+  give $"inv"_2 = 1 slash 2$; at every other $v$ the $K_1$-branch gives $0$ because
+  $cal(B)_1 = 0$, and the $K_2$-branch gives $0$ because $cal(B)_2$ is unramified there. So
+  $ sum_v "inv"_v cal(B)(P_v) = 1/2 quad "for every" (P_v) in X(bold(A)_QQ) , $
+  and $X(bold(A)_QQ)^"Br" = nothing$. The shape is the one of @sec-eval: the whole obstruction at
+  a single prime.
+
+  #v(2mm)
+  Both branches are cut out by *monic* polynomials, so by the Proposition
+  $cal(X)(bold(A)_ZZ) = X(bold(A)_QQ)$ and this is simultaneously an obstruction to
+  $cal(X)(ZZ)$ --- an integral Brauer--Manin obstruction in relative dimension zero with no
+  integral content whatsoever.
+]
+
+== Where integrality does bite: quasi-finite, not finite
+
+What is left is the non-monic case. There a root can fail to be $p$-adically integral,
+$cal(X)(ZZ_p) subset.neq X(QQ_p)$ again, and integrality *selects among the degree-one places
+above $v$*. That is enough for a genuinely integral obstruction, and the smallest example is
+about as small as an example gets.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *An integral obstruction in relative dimension zero.* Let
+  $ cal(X) = "Spec" ZZ[x] slash ((2x-1)(3x-1)) = "Spec" ZZ[x] slash (6x^2 - 5x + 1) , $
+  so $X = "Spec"(QQ times QQ)$. Then $cal(X)(ZZ) = nothing$ and $X(QQ) = {1 slash 2, 1 slash 3}$,
+  while
+  $ cal(X)(ZZ_2) = {1/3}, quad cal(X)(ZZ_3) = {1/2}, quad
+    cal(X)(ZZ_p) = {1/2, 1/3} " otherwise," quad cal(X)(RR) = {1/2, 1/3} , $
+  so $cal(X)(bold(A)_ZZ) != nothing$. Now $"Br"(X) = "Br"(QQ) xor "Br"(QQ)$, one class per
+  component; the constant classes are the diagonal, so the useful ones are the *non-diagonal*
+  ones. Take
+  $ cal(B) = ((-1,-1), (-1,-3)) , quad "ramified at" {2, infinity} "and" {3, infinity} . $
+  At $v = 2$ the point is forced onto the second branch, where $"inv"_2 (-1,-3) = 0$; at $v = 3$
+  onto the first, where $"inv"_3 (-1,-1) = 0$; at $v = infinity$ nothing is forced and *both*
+  branches give $1 slash 2$; everywhere else both classes are unramified. Hence
+  $ sum_v "inv"_v cal(B)(P_v) = 1/2 quad "for every" (P_v) in cal(X)(bold(A)_ZZ) . $
+  But the rational adelic point that is $x = 1 slash 2$ at every place has
+  $"inv"_2 + "inv"_infinity = 1 slash 2 + 1 slash 2 = 0$, as reciprocity demands. So
+  $ cal(X)(bold(A)_ZZ)^"Br" = nothing quad "while" quad X(bold(A)_QQ)^"Br" != nothing : $
+  the obstruction is integral and nothing but integral.
+]
+
+Two remarks on that example. First, the underlying fact is a triviality --- $1 slash 2$ and
+$1 slash 3$ are not integers, though at each place one of them is a local integer --- and the
+Brauer class is exactly the reciprocity bookkeeping of that covering, just as the class of
+@sec-genus was the bookkeeping of genus theory. Second, the two *forced* places $2$ and $3$
+contribute nothing, and the obstruction is carried by the real place, where nothing is forced at
+all; the forcing is what removes the escape route, not what supplies the invariant.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *The dichotomy.* In relative dimension zero the integral Brauer--Manin obstruction is
+  non-vacuous exactly when $cal(X) --> "Spec" ZZ$ fails to be finite. What a Brauer class can see
+  is denominators; a finite $ZZ$-scheme has none, the negative Pell conic of this note has a
+  denominator at some prime $p equiv plus.minus 3 mod 8$ for every one of its rational points, and
+  the leading coefficient of $2x - 1$ is the smallest denominator there is.
+]
+
 = Summary <sec-summary>
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
@@ -318,4 +432,7 @@ gp -q -s 2000000000 integral-bm.gp < /dev/null > results/integral-bm.txt
 It verifies (1) the norm of the fundamental unit, (2) local solubility at every place,
 (3) the residue computation for $cal(A)$, (4)--(6) the three invariant computations,
 (8) reciprocity and the denominators of rational points, (9) the genus-field identification,
-and (10) the family scan of @sec-family.
+(10) the family scan of @sec-family, and (11) the three claims of @sec-dim0: the collapse
+$cal(X)(ZZ_p) = cal(X)(QQ_p)$ for monic equations, Tate's example with its quaternion class,
+and the invariant sums of $(2x-1)(3x-1) = 0$ over $cal(X)(bold(A)_ZZ)$ and over
+$X(bold(A)_QQ)$.
