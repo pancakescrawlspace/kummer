@@ -1,0 +1,30 @@
+======================================================================
+sha-fermat-minus.gp -- Sha of y^2 = x^3 - p x at the Fermat primes
+
+      389a1, rank 2    expect 1  got 1.000000  ok
+      37a1,  rank 1    expect 1  got 1.000000  ok
+      66c,   rank 0    expect 1  got 1.000000  ok
+      11a1,  rank 0    expect 1  got 1.000000  ok
+      rank 2 control   expect 1  got 1.000000  ok
+      571a1, Sha = 4   expect 4  got 4.000000  ok
+  (1) the BSD ratio, calibrated on curves of known Sha : 0 wrong of 6
+
+      F_1 = 5      = 2^2+1 : (-1,2) on the curve; m = 2 is not a square, no second point -> rank 1
+      F_2 = 17     = 4^2+1 : (-1,4) on the curve; (-4,2) too  -> rank >= 2
+      F_3 = 257    = 16^2+1 : (-1,16) on the curve; (-16,4) too  -> rank >= 2
+      F_4 = 65537  = 256^2+1 : (-1,256) on the curve; (-256,16) too  -> rank >= 2
+  (2) the two elementary points : 0 failures of 7
+
+  (3) the two families at the Fermat primes:
+      p        y^2 = x^3 + p x            y^2 = x^3 - p x           
+      5        rank 1, w = -1 , Sha = 1        rank 1, w = -1 , Sha = 1
+      17       rank 0, w = 1 , Sha = 4        rank 2, w = 1 , Sha = 1
+      257      rank 0, w = 1 , Sha = 16       rank 2, w = 1 , Sha = 1
+      65537    rank 0, w = 1 , Sha = 64       rank 2, w = 1 , Sha = 1
+      plus: Sha = 4, 16, 64 = 2^(2(k-1)), the pattern of sha-fermat.typ
+      minus: Sha = 1 throughout, the rank absorbing everything
+
+So for the minus curve Sha is trivial at every Fermat prime tested, and
+the question 'what is the exponent of Sha' has the answer 'there is no
+Sha'.  What grows instead is the Mordell-Weil group, and it grows for a
+reason one can write on one line: p = m^2 + 1 with m a square.
