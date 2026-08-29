@@ -38,6 +38,29 @@ mersenne-fermat-class.gp -- what Lemmermeyer's comment might mean
       p=19   p-2 = 17    h = 255       h/(p-2) = 15.0       sqrt(M_p) = 724
       p=31   p-2 = 29    h = 19865     h/(p-2) = 685.0      sqrt(M_p) = 46341
 
+  (6) the real fields Q(sqrt(M_p)) -- where the mechanism dies
+      p=3   M_p=7           h=1     e(2)=2 f(2)=1  N(eps)=1   h odd: yes [p_2] principal: yes
+      p=5   M_p=31          h=1     e(2)=2 f(2)=1  N(eps)=1   h odd: yes [p_2] principal: yes
+      p=7   M_p=127         h=1     e(2)=2 f(2)=1  N(eps)=1   h odd: yes [p_2] principal: yes
+      p=13  M_p=8191        h=1     e(2)=2 f(2)=1  N(eps)=1   h odd: yes [p_2] principal: yes
+      p=17  M_p=131071      h=9     e(2)=2 f(2)=1  N(eps)=1   h odd: yes [p_2] principal: yes
+      p=19  M_p=524287      h=1     e(2)=2 f(2)=1  N(eps)=1   h odd: yes [p_2] principal: yes
+      p=31  M_p=2147483647  h=5     e(2)=2 f(2)=1  N(eps)=1   h odd: yes [p_2] principal: yes
+      violations of (2 ramifies, h odd, N(eps)=+1, p_2 principal) : 0
+
+  (7) the class number formula, and where each field spends it
+      p=3    h(+)=1    R=2.77         h*R=2.8           h(-M_p)=1        ratio 2.77   sqrt(M)=3
+      p=5    h(+)=1    R=8.02         h*R=8.0           h(-M_p)=3        ratio 2.67   sqrt(M)=6
+      p=7    h(+)=1    R=16.06        h*R=16.1          h(-M_p)=5        ratio 3.21   sqrt(M)=11
+      p=13   h(+)=1    R=192.12       h*R=192.1         h(-M_p)=55       ratio 3.49   sqrt(M)=91
+      p=17   h(+)=9    R=53.27        h*R=479.4         h(-M_p)=285      ratio 1.68   sqrt(M)=362
+      p=19   h(+)=1    R=1420.63      h*R=1420.6        h(-M_p)=255      ratio 5.57   sqrt(M)=724
+      p=31   h(+)=5    R=15486.21     h*R=77431.1       h(-M_p)=19865    ratio 3.90   sqrt(M)=46341
+      h(+) runs 1,1,1,1,9,1,5 while h(-M_p) runs 1,3,5,55,285,255,19865;
+      h*R and h(-M_p) are the same size throughout.  h(+) > 1 happens
+      exactly where the regulator is anomalously SMALL (p=17: R=53 against
+      sqrt(M)=362), never where it is large (p=19: R=1421 > 724, h=1).
+
 Two different phenomena, both real.  For Mersenne discriminants the shape
 of the number forces a large cyclic subgroup of the class group, by an
 elementary norm computation.  For Fermat discriminants the shape instead

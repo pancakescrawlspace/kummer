@@ -111,6 +111,46 @@ check5() =
       p, p-2, h, h*1.0/(p-2), sqrt(M*1.0)));
 };
 
+\\ ---------------------------------------------------------------- check 6
+\\ THE NEGATIVE CONTROL: the REAL field Q(sqrt(M_p)), discriminant 4M_p.
+\\ Here 2 RAMIFIES rather than splits, so [p_2]^2 = 1 and no large cyclic
+\\ subgroup can come from it.  And h is odd: disc = (-4)(-M_p) has two prime
+\\ discriminant factors so the NARROW 2-rank is 1, while M_p = 3 mod 4 makes
+\\ -1 a non-residue, so negative Pell is unsolvable, N(eps) = +1 and h+ = 2h.
+\\ Hence the wide 2-rank is 0, and p_2 is actually PRINCIPAL.
+
+check6() =
+{ my(bad = 0);
+  printf("  (6) the real fields Q(sqrt(M_p)) -- where the mechanism dies\n");
+  for (i = 1, #MERS,
+    my(p = MERS[i], M = 2^p - 1, K = bnfinit(x^2 - M, 1), P = idealprimedec(K,2)[1],
+       v = bnfisprincipal(K, P, 0), triv, eps = quadunit(4*M), h = K.no);
+    triv = (v == []~ || vecsum(Vec(v)) == 0);
+    if (!triv || h % 2 == 0 || norm(eps) != 1, bad++);
+    printf("      p=%-3d M_p=%-11d h=%-5d e(2)=%d f(2)=%d  N(eps)=%-3d h odd: %-3s [p_2] principal: %s\n",
+      p, M, h, P.e, P.f, norm(eps), if (h % 2 == 1, "yes", "NO"), if (triv, "yes", "NO")));
+  printf("      violations of (2 ramifies, h odd, N(eps)=+1, p_2 principal) : %d\n", bad);
+};
+
+\\ ---------------------------------------------------------------- check 7
+\\ Where the size went.  By the class number formula the real field's h*R and
+\\ the imaginary field's h are both of size sqrt(M_p) L(1,chi).  The imaginary
+\\ field spends all of it on the class number; the real field spends nearly all
+\\ of it on the REGULATOR, leaving h small and erratic.
+
+check7() =
+{ printf("  (7) the class number formula, and where each field spends it\n");
+  for (i = 1, #MERS,
+    my(p = MERS[i], M = 2^p - 1, cl = quadclassunit(4*M), h = cl[1], R = cl[4],
+       hm = qfbclassno(-M));
+    printf("      p=%-3d  h(+)=%-4d R=%-11.2f  h*R=%-11.1f   h(-M_p)=%-8d ratio %.2f   sqrt(M)=%.0f\n",
+      p, h, R, h*R, hm, h*R/hm, sqrt(M*1.0)));
+  printf("      h(+) runs 1,1,1,1,9,1,5 while h(-M_p) runs 1,3,5,55,285,255,19865;\n");
+  printf("      h*R and h(-M_p) are the same size throughout.  h(+) > 1 happens\n");
+  printf("      exactly where the regulator is anomalously SMALL (p=17: R=53 against\n");
+  printf("      sqrt(M)=362), never where it is large (p=19: R=1421 > 724, h=1).\n");
+};
+
 \\ ------------------------------------------------------------------------ run
 
 {
@@ -126,6 +166,10 @@ print("");
 check4();
 print("");
 check5();
+print("");
+check6();
+print("");
+check7();
 print("");
 print("Two different phenomena, both real.  For Mersenne discriminants the shape");
 print("of the number forces a large cyclic subgroup of the class group, by an");

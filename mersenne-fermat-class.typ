@@ -131,6 +131,73 @@ $h(QQ(root(4,p))) equiv 2$ (mod $4$) (@sec-refs [3]) is the same genre. Fermat p
 $1$ (mod $16$) for $k >= 2$ so that theorem does not apply to them, but the class numbers of those
 quartic fields grow anyway: $1, 2, 60$ for $k = 1, 2, 3$.
 
+= The real field $QQ(sqrt(+M_p))$: a negative control <sec-real>
+
+The obvious next question is whether the *real* Mersenne field shows anything. It does not, and the
+reason is worth having, because it says what @sec-mersenne is really about.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *The mechanism dies, in two independent ways.*
+
+  #v(1.5mm)
+  *(i) $2$ ramifies instead of splitting.* $M_p equiv 3$ (mod $4$), so the discriminant is
+  $4 M_p$ and $frak(p)_2^2 = (2)$. So $[frak(p)_2]$ is $2$-torsion --- it cannot have large order,
+  whatever the norm computation says. In $QQ(sqrt(-M_p))$ the discriminant is $-M_p equiv 1$
+  (mod $8$) and $2$ *splits*; that is the entire difference.
+
+  #v(1.5mm)
+  *(ii) And then it is trivial.* $"disc" = 4M_p = (-4)(-M_p)$ has two prime discriminant factors,
+  so the *narrow* $2$-rank is $1$. Meanwhile $M_p equiv 3$ (mod $4$) makes $-1$ a non-residue, so
+  the negative Pell equation $x^2 - M_p y^2 = -1$ is unsolvable, $N(epsilon) = +1$, and
+  $h^+ = 2h$. Hence the *wide* $2$-rank is $0$: $h$ is odd, and $[frak(p)_2]$, being $2$-torsion in
+  a group of odd order, is *trivial*. The prime above $2$ is principal.
+]
+
+Verified on all seven Mersenne primes (@sec-gp, check 6): $e = 2$, $f = 1$, $N(epsilon) = +1$,
+$h$ odd, $frak(p)_2$ principal, with no exceptions. So there is no forced subgroup at all, and
+indeed the class numbers are tiny:
+
+#align(center, table(
+  columns: 8, align: (left,) + (right,)*7,
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 3.5pt),
+  table.header([$p$], [$3$], [$5$], [$7$], [$13$], [$17$], [$19$], [$31$]),
+  [$h(QQ(sqrt(M_p)))$], [$1$], [$1$], [$1$], [$1$], [$9$], [$1$], [$5$],
+  [$h(QQ(sqrt(-M_p)))$], [$1$], [$3$], [$5$], [$55$], [$285$], [$255$], [$19865$],
+))
+
+== Where the size went <sec-real-size>
+
+The two fields have the *same* amount of arithmetic in them; they spend it differently. By the
+class number formula, $h R$ for the real field and $h$ for the imaginary one are both of size
+$sqrt(M_p) L(1, chi)$ --- and the computed ratio $h R slash h(-M_p)$ stays near $3$ throughout
+(@sec-gp, check 7):
+
+#align(center, table(
+  columns: 5, align: (center, right, right, right, right),
+  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3.5pt),
+  table.header([$p$], [$h$], [$R$], [$h R$], [$h(-M_p)$]),
+  [$13$], [$1$], [$192.1$], [$192$], [$55$],
+  [$17$], [$9$], [$53.3$], [$479$], [$285$],
+  [$19$], [$1$], [$1420.6$], [$1421$], [$255$],
+  [$31$], [$5$], [$15486.2$], [$77431$], [$19865$],
+))
+
+#v(2mm)
+*The imaginary field spends it all on the class number; the real field spends nearly all of it on
+the regulator.* And the residue is legible: $h > 1$ happens exactly where the fundamental unit is
+anomalously *small* --- at $p = 17$, $R = 53$ against $sqrt(M_p) = 362$, and $h = 9$ --- and never
+where it is large, as at $p = 19$, where $R = 1421 > 724 = sqrt(M_p)$ and $h = 1$. That is the
+usual real-quadratic story (Cohen--Lenstra, Ankeny--Artin--Chowla), with nothing Mersenne about it.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *What this contributes to reading the comment.* @sec-mersenne is *not* the statement "Mersenne
+  discriminants give large class groups". It is the statement that $-M_p equiv 1$ (mod $8$) makes
+  $2$ split while $2^(p-2)$ is a norm --- and changing the sign destroys both halves at once.
+  So if that is the phenomenon Lemmermeyer had in mind, he meant the *imaginary* field
+  specifically, and the "Mersenne" in the comment is doing less work than the shape
+  $-M_p = 1 - 2^p$ is.
+]
+
 = What the comment does and does not settle <sec-status>
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
@@ -146,6 +213,10 @@ quartic fields grow anyway: $1, 2, 60$ for $k = 1, 2, 3$.
   So a comment naming both families in one breath is naming two mechanisms. What they share is the
   *shape* of the answer, and it is the shape of the Ш question they were a comment on: the special
   form of the prime hands you the structure and never the size.
+
+  #v(2mm)
+  And @sec-real sharpens the first one further: it is not the Mersenne *prime* that matters but the
+  *sign*, since $QQ(sqrt(+M_p))$ has nothing at all.
 ]
 
 = What the companion script checks <sec-gp>
@@ -161,6 +232,9 @@ quartic fields grow anyway: $1, 2, 60$ for $k = 1, 2, 3$.
   @sec-fermat.
 - *(4)* $h(QQ(F_k^(1 slash 4)))$ for $k = 1,2,3$.
 - *(5)* The size comparison of @sec-mersenne: $p-2$ against $h$ against $sqrt(M_p)$.
+- *(6)* The real fields of @sec-real: $e(2) = 2$, $f(2) = 1$, $N(epsilon) = +1$, $h$ odd and
+  $frak(p)_2$ principal, on all seven Mersenne primes, with no exceptions.
+- *(7)* The class number formula balance of @sec-real-size: $h R$ against $h(-M_p)$.
 
 = References <sec-refs>
 
