@@ -77,7 +77,7 @@ Additive reduction means the special fibre of the connected Néron model $cal(E)
 $GG_a$ over $bb(F)_p$. Write the usual filtration
 $ E_0 (QQ_p) = cal(E)^0 (ZZ_p) supset E_1 supset E_2 supset dots.c , quad
   E_0 slash E_1 = GG_a (bb(F)_p) tilde.equiv bb(F)_p , quad
-  E_n slash E_(n+1) tilde.equiv "Lie"(cal(E)) times.circle bb(F)_p tilde.equiv bb(F)_p . $
+  E_n slash E_(n+1) tilde.equiv "Lie"(cal(E)) ⊗ bb(F)_p tilde.equiv bb(F)_p . $
 Since $GG_a$ is killed by $p$, multiplication by $p$ carries $E_0$ into $E_1$, and induces an
 $bb(F)_p$-linear map between two one-dimensional spaces:
 
