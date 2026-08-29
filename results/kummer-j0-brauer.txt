@@ -1,0 +1,46 @@
+======================================================================
+kummer-j0-brauer.gp -- the Azumaya algebra of kummer-example-j0.typ s7
+
+K = Q(u), u^3 = 3;  disc = -243;  signature = [1, 1]
+A = cor_{K(X)/Q(X)} ( x^2 - u^2 x + 3u,  t^2 + 3u t + 9u^2 )
+
+  (1) x^3+9 = (x+u^2)g(x) and t^3-81 = (t-3u)h(t) over K : 0 wrong of 2
+      the descent class equals the twist-free factor, up to a square : 0 wrong of 71
+
+  (2) inv_q A = beta_q, twist-free against twisted : 0 wrong of 43670
+
+  (3) inv_q A vanishes identically for q != 2 (condition (E)):
+      q = 3    :    2430 points of X(Q_q) sampled, inv_q = 1/2 at 0
+      q = 5    :    2423 points of X(Q_q) sampled, inv_q = 1/2 at 0
+      q = 7    :    3605 points of X(Q_q) sampled, inv_q = 1/2 at 0
+      q = 11   :    2763 points of X(Q_q) sampled, inv_q = 1/2 at 0
+      q = 13   :    2657 points of X(Q_q) sampled, inv_q = 1/2 at 0
+      q = 47   :    3117 points of X(Q_q) sampled, inv_q = 1/2 at 0
+      q = 61   :    3117 points of X(Q_q) sampled, inv_q = 1/2 at 0
+      q = oo   :    3258 points of X(R)   sampled, inv_oo = 1/2 at 0
+               disc of g at the real place = -12.9802, of h = -56.1623 : both < 0,
+               so g > 0 and h > 0 on all of R and inv_oo = 0 identically
+
+  (4) inv_2 A on X(Q_2), by square class of the point:
+      class [ 1] odd  :    325 points, inv_2 = 1/2 at      0  zero
+      class [ 3] odd  :     30 points, inv_2 = 1/2 at      0  zero
+      class [ 5] odd  :     25 points, inv_2 = 1/2 at      0  zero
+      class [ 7] odd  :    390 points, inv_2 = 1/2 at      0  zero
+      class [ 2] even :     99 points, inv_2 = 1/2 at     64  *** NON-ZERO ***
+      class [ 6] even :    110 points, inv_2 = 1/2 at     64  *** NON-ZERO ***
+      class [10] even :    100 points, inv_2 = 1/2 at     49  *** NON-ZERO ***
+      class [14] even :     90 points, inv_2 = 1/2 at     49  *** NON-ZERO ***
+      inv_2 A vanishes on all four odd classes : yes
+      inv_2 A is non-zero on all four even classes : yes
+
+  (5) sum_v inv_v A(T) = 0 on X(Q) : 0 wrong of 164 rational points
+
+  (6) inv_2 A is constant on the discs x0 + 2^8 Z_2, t0 + 2^8 Z_2
+      around 40 points where it is 1/2 : 0 wrong of 1960
+
+The last two lines of (4) are the whole of section 6 in one function:
+inv_2 A is a locally constant function on X(Q_2) that is not constant,
+(3) says every other place contributes nothing, and (5) pins the total
+to 0 on X(Q).  So X(Q) misses the open set where inv_2 A = 1/2, and is
+not dense in X(Q_2).  The eight square classes of section 6.12 are the
+eight values inv_2 A takes -- no twist is mentioned anywhere above.
