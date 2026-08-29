@@ -23,6 +23,28 @@ checks
   (4) d_P . cor = sum_{w|P} cor . d_w  for Q(u) < Q(t), u = t^2 : 0 wrong of 330
   (5) div(f) 2-divisible => (f^2,g) unramified everywhere : 0 wrong of 433
 
+  (6) Iskovskikh's surface  y^2 + z^2 = (3-x^2)(x^2-2),  A = (-1, 3-x^2):
+      v = oo   x sampled with X(Q_v) != 0/ :   124   inv_v achieved : {0}
+      v = 2    x sampled with X(Q_v) != 0/ :   337   inv_v achieved : {1/2}
+      v = 3    x sampled with X(Q_v) != 0/ :  1458   inv_v achieved : {0}
+      v = 5    x sampled with X(Q_v) != 0/ :  1959   inv_v achieved : {0}
+      v = 7    x sampled with X(Q_v) != 0/ :  1525   inv_v achieved : {0}
+      v = 11   x sampled with X(Q_v) != 0/ :  1663   inv_v achieved : {0}
+      v = 13   x sampled with X(Q_v) != 0/ :  1959   inv_v achieved : {0}
+      v = 17   x sampled with X(Q_v) != 0/ :  1959   inv_v achieved : {0}
+      v = 19   x sampled with X(Q_v) != 0/ :  1959   inv_v achieved : {0}
+      v = 23   x sampled with X(Q_v) != 0/ :  1647   inv_v achieved : {0}
+      v = 29   x sampled with X(Q_v) != 0/ :  1959   inv_v achieved : {0}
+      v = 31   x sampled with X(Q_v) != 0/ :  1845   inv_v achieved : {0}
+      X(Q_v) != 0/ at every sampled place, one forced invariant at each,
+      and  sum_v inv_v = 1/2  for every adelic point : obstruction CONFIRMED
+
+  (7) prescribed residues realised at the rational points : 0 wrong of 648
+      unramified at infinity <=> prod of targets is a square : 0 wrong of 216
+  (8) unramified <=> constant, read off the specialisations : 0 wrong of 64
+      (12 of the test classes unramified, 52 ramified; the class is twisted
+      by the constant (-1,-1) so that 'constant' does not mean 'trivial')
+
 (1) is section 6: over a local field the residue IS the invariant, so it
     must reproduce the Hilbert symbol -- and it does, with the sign
     (-1)^(v(a)v(b)) exactly accounting for the (-1/p)^(ab) in the classical
@@ -31,4 +53,7 @@ checks
     reciprocity says the residues of a class on P^1 always cancel.  (4) is
     the compatibility that makes 'cor preserves unramified' true, tested on
     a degree-2 cover of the t-line ramified at 0 and infinity.  (5) is the
-    mechanism by which descent functions give unramified algebras.
+    mechanism by which descent functions give unramified algebras.  (6) is
+    a Brauer-Manin obstruction found entirely by a residue argument, (7) is
+    Faddeev used backwards to build classes to order, and (8) is Faddeev
+    exactness on the left: no residues anywhere means constant.
