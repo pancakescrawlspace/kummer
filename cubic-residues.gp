@@ -117,6 +117,136 @@ check5(KS) =
   printf("      1/6 = %.5f\n", 1.0/6);
 };
 
+\\ ---------------------------------------------------------------- check 6
+\\ THE GENERAL PICTURE.  Everything above is the case l = 3 of one mechanism.
+\\ Let l be an odd prime, K = Q(zeta_l) (a PID for l <= 19), lambda = 1 - zeta,
+\\ and p = 1 mod l.  Each prime above p is principal; normalise a generator to be
+\\ PRIMARY, i.e. congruent to a rational integer mod lambda^2 -- exactly one of
+\\ the l associates zeta^j pi is.  Eisenstein reciprocity then says, for a
+\\ rational integer a coprime to l,
+\\
+\\     ( a / pi )_l  =  ( pi / a )_l ,
+\\
+\\ and the right-hand side is computed in the residue fields of a.  For a = q a
+\\ rational prime with f = ord_l(q), q is unramified in K with residue field
+\\ F_(q^f) at each of the (l-1)/f primes above it, and
+\\
+\\     ( pi / q )_l  =  prod_{Q | q}  ( pi mod Q )^((q^f - 1)/l) .
+\\
+\\ So "q is an l-th power mod p" becomes a CONGRUENCE ON pi MODULO q -- not a
+\\ congruence on p, which is impossible (check 4).
+
+{setupl(l) = my(K = bnfinit(polcyclo(l,y), 1));
+  [K, idealprimedec(K,l)[1], Mod(y, polcyclo(l,y))];}
+
+{isprimary(D, a, l) = for (c = 1, l-1, if (nfeltval(D[1], lift(a)-c, D[2]) >= 2, return(1))); 0;}
+
+{primarize(D, a, l) = for (j = 0, l-1, my(t = a*D[3]^j); if (isprimary(D,t,l), return(t))); 0;}
+
+\\ the symbol (pi/q)_l, returned as an exponent of zeta modulo l (0 = trivial)
+{sym(D, pi, q, l) = my(K = D[1], s = 0, PD = idealprimedec(K,q));
+  for (i = 1, #PD,
+    my(Q = PD[i], mp = nfmodprinit(K, Q),
+       t = nfmodpr(K, lift(pi), mp)^((q^Q.f - 1)/l), found = -1);
+    for (a = 0, l-1, if (nfmodpr(K, lift(D[3]^a), mp) == t, found = a; break));
+    if (found < 0, return(-1));
+    s += found);
+  s % l;}
+
+check6(LS, QSS, XS) =
+{ for (li = 1, #LS,
+    my(l = LS[li], D = setupl(l), QS = QSS[li], X = XS[li]);
+    printf("      l = %d, h(Q(zeta_%d)) = %d :\n", l, l, D[1].no);
+    for (qi = 1, #QS,
+      my(q = QS[qi], f = znorder(Mod(q,l)), g = (l-1)/f, tot = 0, bad = 0);
+      forprime (p = 2*l+1, X,
+        if (p % l != 1, next);
+        my(pr = idealprimedec(D[1],p)[1], v = bnfisprincipal(D[1], pr, 1),
+           pi = primarize(D, Mod(nfbasistoalg(D[1], v[2]), polcyclo(l,y)), l));
+        if (pi == 0, next);
+        tot++;
+        if ((sym(D, pi, q, l) == 0) != (Mod(q,p)^((p-1)/l) == 1), bad++));
+      printf("        q = %-2d : ord_%d(q) = %d, %d prime%s above q, residue field F_%d^%d : %d wrong of %d\n",
+        q, l, f, g, if (g == 1, " ", "s"), q, f, bad, tot)));
+  printf("  (6) q is an l-th power mod p  <=>  (pi/q)_l = 1 : counts above\n");
+};
+
+\\ ---------------------------------------------------------------- check 7
+\\ Why the criterion is well defined.  pi is only determined up to units, and
+\\ several associates can be primary at once -- for l = 5 both pi and
+\\ (1+zeta) zeta^2 pi are.  What saves it is that every PRIMARY UNIT has trivial
+\\ symbol, so the answer depends only on the ideal.  (zeta itself is not
+\\ primary, which is what the normalisation is for.)
+
+check7(LS, QSS) =
+{ my(bad = 0, np = 0, nu = 0);
+  for (li = 1, #LS,
+    my(l = LS[li], D = setupl(l), K = D[1], z = D[3], FU = K.fu, QS = QSS[li]);
+    for (s = 1, 2, for (j = 0, l-1,
+      forvec (e = vector(#FU, i, [-2,2]),
+        my(u = (-1)^s * z^j);
+        for (i = 1, #FU, u *= Mod(nfbasistoalg(K, FU[i]), polcyclo(l,y))^e[i]);
+        nu++;
+        if (!isprimary(D, u, l), np++; next);
+        for (qi = 1, #QS,
+          if (sym(D, u, QS[qi], l) != 0, bad++))))));
+  printf("  (7) primary units have trivial symbol : %d violations\n", bad);
+  printf("      (%d units swept, %d of them not primary and so not tested)\n", nu, np);
+};
+
+\\ ---------------------------------------------------------------- check 8
+\\ The quintic structure, for contrast with l = 3.  Q(zeta_5) has degree 4, not
+\\ 2, so there is no imaginary quadratic field underneath and no BINARY
+\\ quadratic form: the criterion of check 6 is the honest answer, and the
+\\ classical quaternary substitute does not give a clean divisibility rule.
+
+check8(X) =
+{ my(L = nfsplitting(x^5 - 3), G, tot = 0, q = 0);
+  printf("  (8) splitting field of x^5-3 has degree %d, ", poldegree(L));
+  G = galoisinit(L);
+  printf("Galois group %s, abelian: %s\n", galoisidentify(G), if (galoisisabelian(G,1), "yes", "NO"));
+  forprime (p = 7, X, tot++; if (p % 5 == 1 && Mod(3,p)^((p-1)/5) == 1, q++));
+  printf("      density of { 3 is a 5th power } below %d : %.5f   (1/20 = %.5f)\n",
+         X, q*1.0/tot, 1.0/20);
+};
+
+\\ ---------------------------------------------------------------- check 9
+\\ The negative result.  Dickson's quaternary system
+\\     16p = x^2 + 50u^2 + 50v^2 + 125w^2 ,   xw = v^2 - 4uv - u^2 ,  x = 1 mod 5
+\\ is the classical substitute for 4p = L^2 + 27M^2.  As written it does not
+\\ pin the representation down -- several (u,v,w) occur for one p -- and no
+\\ simple divisibility condition on it reproduces the quintic character.
+
+{dick(p) = my(S = List(), B = sqrtint(16*p));
+  for (x = -B, B,
+    if ((x % 5 + 5) % 5 != 1, next);
+    my(r1 = 16*p - x^2); if (r1 < 0, next);
+    for (w = -sqrtint(r1\125)-1, sqrtint(r1\125)+1,
+      my(r2 = r1 - 125*w^2); if (r2 < 0 || r2 % 50 != 0, next);
+      my(s2 = r2/50);
+      for (uu = -sqrtint(s2)-1, sqrtint(s2)+1,
+        my(t = s2 - uu^2, vv); if (t < 0 || !issquare(t, &vv), next);
+        for (sg = 1, 2, my(v = if (sg == 1, vv, -vv));
+          if (x*w == v^2 - 4*uu*v - uu^2, listput(S, [x,uu,v,w]))))));
+  Vec(S);}
+
+check9(X) =
+{ my(tot = 0, multi = 0, nm = ["3|w","3|u v","3|u v w","9|w","3|x-1"], bad = vector(5));
+  forprime (p = 11, X,
+    if (p % 5 != 1, next);
+    my(S = dick(p), c = (Mod(3,p)^((p-1)/5) == 1));
+    if (#S == 0, next);
+    tot++;
+    if (#Set([[abs(t[2]),abs(t[3]),abs(t[4])] | t <- S]) > 1, multi++);
+    my(t = S[1], cond = [t[4]%3==0, (t[2]*t[3])%3==0, (t[2]*t[3]*t[4])%3==0,
+                         t[4]%9==0, (t[1]-1)%3==0]);
+    for (k = 1, 5, if (cond[k] != c, bad[k]++)));
+  printf("  (9) Dickson's 16p = x^2+50u^2+50v^2+125w^2 with xw = v^2-4uv-u^2:\n");
+  printf("      %d primes; %d of them admit essentially different (u,v,w)\n", tot, multi);
+  for (k = 1, 5, printf("        %-10s : %d mismatches of %d\n", nm[k], bad[k], tot));
+  printf("      -- no clean divisibility rule, unlike 3 | M at l = 3\n");
+};
+
 \\ a small table, for the eye
 table(X) =
 { forprime (p = 7, X,
@@ -145,6 +275,15 @@ print("");
 check4([9, 27, 81, 243, 729], 200000);
 print("");
 check5([3,4,5,6,7]);
+print("");
+print("  (6) the general mechanism, of which all of the above is the case l = 3:");
+check6([3,5,7], [[2,5],[2,3,7],[2,3,5]], [20000,20000,6000]);
+print("");
+check7([3,5], [[2,5],[2,3]]);
+print("");
+check8(1000000);
+print("");
+check9(1500);
 print("");
 print("A small table, for the eye:");
 print("");

@@ -33,6 +33,35 @@ bijection on F_p^*.  Everything below is about p = 1 mod 3.
       x = 10^7 :   110695 of   664577 primes = 0.16656
       1/6 = 0.16667
 
+  (6) the general mechanism, of which all of the above is the case l = 3:
+      l = 3, h(Q(zeta_3)) = 1 :
+        q = 2  : ord_3(q) = 2, 1 prime  above q, residue field F_2^2 : 0 wrong of 1124
+        q = 5  : ord_3(q) = 2, 1 prime  above q, residue field F_5^2 : 0 wrong of 1124
+      l = 5, h(Q(zeta_5)) = 1 :
+        q = 2  : ord_5(q) = 4, 1 prime  above q, residue field F_2^4 : 0 wrong of 563
+        q = 3  : ord_5(q) = 4, 1 prime  above q, residue field F_3^4 : 0 wrong of 563
+        q = 7  : ord_5(q) = 4, 1 prime  above q, residue field F_7^4 : 0 wrong of 563
+      l = 7, h(Q(zeta_7)) = 1 :
+        q = 2  : ord_7(q) = 3, 2 primes above q, residue field F_2^3 : 0 wrong of 126
+        q = 3  : ord_7(q) = 6, 1 prime  above q, residue field F_3^6 : 0 wrong of 126
+        q = 5  : ord_7(q) = 6, 1 prime  above q, residue field F_5^6 : 0 wrong of 126
+  (6) q is an l-th power mod p  <=>  (pi/q)_l = 1 : counts above
+
+  (7) primary units have trivial symbol : 0 violations
+      (56 units swept, 44 of them not primary and so not tested)
+
+  (8) splitting field of x^5-3 has degree 20, Galois group [20, 3], abelian: NO
+      density of { 3 is a 5th power } below 1000000 : 0.04993   (1/20 = 0.05000)
+
+  (9) Dickson's 16p = x^2+50u^2+50v^2+125w^2 with xw = v^2-4uv-u^2:
+      58 primes; 55 of them admit essentially different (u,v,w)
+        3|w        : 5 mismatches of 58
+        3|u v      : 26 mismatches of 58
+        3|u v w    : 26 mismatches of 58
+        9|w        : 5 mismatches of 58
+        3|x-1      : 31 mismatches of 58
+      -- no clean divisibility rule, unlike 3 | M at l = 3
+
 A small table, for the eye:
 
       p = 7     4p =   28 = (  1)^2 + 27*1^2   3|M : no    3 a cube : no

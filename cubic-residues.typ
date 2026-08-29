@@ -11,8 +11,8 @@
 #align(center)[
   #text(size: 16pt, weight: "bold")[When is $3$ a cube mod $p$?]
   #v(2mm)
-  #text(size: 10pt)[A criterion that cannot be a congruence, and why the answer
-  is a quadratic form]
+  #text(size: 10pt)[A criterion that cannot be a congruence, why the answer is a quadratic
+  form, and what happens for $ell$-th powers in general]
   #v(1mm)
   #text(size: 9pt, style: "italic")[checks in `cubic-residues.gp`; the condition
   `kummer-example-j0.typ` §6.6.2 runs on]
@@ -175,6 +175,113 @@ And good error terms are open: unconditionally one has only effective Chebotarev
 Lagarias--Odlyzko type, with its possible Siegel zero, while GRH gives
 $pi_L (x) = 1/6 "Li"(x) + O(sqrt(x) log x)$.
 
+= General $ell$-th power residues <sec-general>
+
+Everything above is the case $ell = 3$ of one mechanism, and it is worth seeing the mechanism,
+because the *shape* of the answer changes with $ell$ in a way that is easy to mispredict.
+
+== The criterion, for any $ell$ <sec-gen-crit>
+
+Let $ell$ be an odd prime, $K = QQ(zeta_ell)$, $lambda = 1 - zeta_ell$, and $p equiv 1$ (mod
+$ell$). Assume $K$ has class number $1$ (true for $ell <= 19$), so each of the $ell - 1$ primes
+above $p$ has a generator $pi$. Normalise $pi$ to be *primary*: $pi equiv a$ (mod $lambda^2$) for
+some rational integer $a$. Exactly one of the $ell$ associates $zeta^j pi$ is.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Eisenstein reciprocity.* For a rational integer $a$ coprime to $ell$ and $pi$ primary and
+  coprime to $a$,
+  $ (a slash pi)_ell = (pi slash a)_ell . $
+]
+
+The left side is what we want: $(q slash pi)_ell = 1$ says exactly that $q$ is an $ell$-th power
+mod $p$. The right side is computable, because it lives in the residue fields *of $q$*, which are
+small. Writing $f = "ord"_ell (q)$, the prime $q$ is unramified in $K$ with residue field
+$bb(F)_(q^f)$ at each of the $(ell-1) slash f$ primes above it, and
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  $q$ is an $ell$-th power mod $p$ if and only if
+  $ product_(Q divides q) ( pi mod Q )^((q^f - 1) slash ell) = 1 . $
+]
+
+So the question becomes a *congruence on $pi$ modulo $q$* --- never a congruence on $p$, which
+@sec-nocong rules out for good. When $q$ is inert ($f = ell - 1$) there is a single factor and it
+reads: *$pi$ mod $q$ is an $ell$-th power in $bb(F)_(q^(ell-1))^times$*.
+
+Verified with no mismatch (@sec-gp, check 6):
+
+#align(center, table(
+  columns: 5, align: (center, center, center, left, center),
+  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3.5pt),
+  table.header([$ell$], [$q$], [$f = "ord"_ell q$], [the test], [primes, mismatches]),
+  [$3$], [$2$], [$2$], [$pi equiv 1$ (mod $2$), in $bb(F)_4$], [$1124$, none],
+  [$3$], [$5$], [$2$], [$pi^8 equiv 1$ (mod $5$), in $bb(F)_(25)$], [$1124$, none],
+  [$5$], [$2$], [$4$], [$pi^3 equiv 1$ (mod $2$), in $bb(F)_(16)$], [$563$, none],
+  [$5$], [$3$], [$4$], [$pi^(16) equiv 1$ (mod $3$), in $bb(F)_(81)$], [$563$, none],
+  [$5$], [$7$], [$4$], [$pi^(480) equiv 1$ (mod $7$), in $bb(F)_(2401)$], [$563$, none],
+  [$7$], [$2$], [$3$], [a *product* over the two primes above $2$], [$126$, none],
+  [$7$], [$3$], [$6$], [$pi^(104) equiv 1$ (mod $3$), in $bb(F)_(729)$], [$126$, none],
+))
+
+#v(2mm)
+The row $ell = 3$, $q = 2$ is Gauss's criterion in disguise: $pi equiv 1$ (mod $2$) in $ZZ[omega]$
+is $p = a^2 + 27 b^2$. And the row $ell = 7$, $q = 2$ is the one that shows the general shape ---
+$2$ splits into two primes there, and the symbol is a genuine product, not a single power.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Why it is well defined.* $pi$ is pinned only up to units, and several associates can be primary
+  at once: for $ell = 5$ both $pi$ and $(1+zeta)zeta^2 pi$ are, since $(1+zeta)zeta^2$ is a primary
+  unit. What saves the criterion is that *every primary unit has trivial symbol* --- checked over
+  $56$ units for $ell = 3, 5$ with no violation (@sec-gp, check 7) --- so the answer depends only on
+  the ideal $(pi)$. Note $zeta$ itself is *not* primary, and does not have trivial symbol; that is
+  precisely what the normalisation is for.
+]
+
+== Why $ell = 3$ gets a quadratic form and $ell = 5$ does not <sec-gen-shape>
+
+The pretty part of @sec-crit --- a criterion in terms of a *binary quadratic form* --- does not
+generalise, and the reason is a coincidence of small numbers.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  $QQ(zeta_3)$ is *imaginary quadratic*. That is what puts $QQ(zeta_3, root(3,3))$ inside the
+  theory of ring class fields of imaginary quadratic orders, where Cox's theorem converts "splits
+  completely" into "represented by a binary quadratic form" (@sec-form). For $ell >= 5$,
+  $QQ(zeta_ell)$ has degree $ell - 1 >= 4$; there is no imaginary quadratic field underneath, and
+  no binary form.
+]
+
+For $ell = 5$ the structural facts are otherwise the same as at $ell = 3$: $x^5 - 3$ has splitting
+field of degree $20$ with Galois group the Frobenius group $F_(20)$ --- non-abelian, so still no
+congruence --- and the density of $\{p : 3$ is a fifth power$\}$ is $1 slash 20$ among all primes,
+observed as $0.04993$ below $10^6$ (@sec-gp, check 8).
+
+What replaces the binary form classically is a *quaternary* system, due to Dickson:
+$ 16 p = x^2 + 50 u^2 + 50 v^2 + 125 w^2 , quad x w = v^2 - 4 u v - u^2 , quad x equiv 1 space
+  (mod 5) . $
+
+#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
+  *Reported honestly:* as written above, that system does *not* determine the representation.
+  Of $58$ primes tested, $55$ admit essentially different $(u,v,w)$ --- $p = 11$ has both
+  $(1,-1,0,-1)$ and $(1,0,1,1)$ --- so more normalisation is needed than the side condition
+  supplies. And no simple divisibility condition on $(x,u,v,w)$ reproduces the quintic character:
+  the best of the ones tried, $3 divides w$, fails $5$ times in $58$ (@sec-gp, check 9). The
+  classical quintic residuacity criteria of Dickson and E. Lehmer are stated in these terms but
+  are markedly more involved than $3 divides M$; nothing of that kind is claimed here.
+]
+
+== What the pattern actually is <sec-gen-pattern>
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  For $q$ *unramified* in $QQ(zeta_ell)$ --- which is every $q eq.not ell$ --- Eisenstein
+  reciprocity turns "$q$ is an $ell$-th power mod $p$" into a congruence on $pi$ modulo $q$, in a
+  residue field of size $q^f$. That is the general answer, and it is uniform in $ell$.
+
+  #v(2mm)
+  What made $ell = 3$, $q = 3$ special --- and produced the memorable $3 divides M$ --- is that
+  there $q = ell$ is *ramified*: $3 = -omega^2 (1 - omega)^2$, Eisenstein does not apply, and one
+  falls back on the supplementary law for $lambda = 1 - omega$. That is where the shape $4p = L^2 +
+  27 M^2$ comes from. The memorable criterion is the exceptional case, not the typical one.
+]
+
 = Where this is used in the repository <sec-uses>
 
 `kummer-example-j0.typ` §6.6.2 proves that for $q eq.not 3$ and every twist $d$,
@@ -203,6 +310,14 @@ hypothesis "$-9 in (QQ_q^times)^6$" is "$q equiv 1$ (mod $4$) and $-9$ a cube mo
   $h(-243) = 3$, $h(-972) = 9$, $h(-108) = 3$.
 - *(4)* Colliding pairs at moduli $9, 27, 81, 243, 729$: the table of @sec-nocong.
 - *(5)* The density, to $10^7$.
+- *(6)* The general criterion of @sec-gen-crit for $ell = 3, 5, 7$ and seven pairs $(ell, q)$,
+  including the split case $ell = 7$, $q = 2$: no mismatch anywhere.
+- *(7)* Every primary unit has trivial symbol, over $56$ units for $ell = 3, 5$ --- the
+  well-definedness of @sec-gen-crit.
+- *(8)* $x^5 - 3$ has splitting field of degree $20$ with group $F_(20)$, non-abelian; density
+  $0.04993$ below $10^6$ against $1 slash 20$.
+- *(9)* Dickson's quaternary system: its non-uniqueness, and the failure of five candidate
+  divisibility rules.
 
 = References <sec-refs>
 
@@ -219,6 +334,12 @@ hypothesis "$-9 in (QQ_q^times)^6$" is "$q equiv 1$ (mod $4$) and $-9$ a cube mo
 + J. Neukirch, *Algebraic Number Theory*, Ch. VII §13 for Chebotarev, and Ch. VI for the
   characterisation of congruence-defined sets of primes as those coming from abelian extensions ---
   the theorem behind @sec-nocong.
++ K. Ireland, M. Rosen, op. cit., Ch. 14. *Eisenstein reciprocity* --- the statement used in
+  @sec-gen-crit, with the definition of primary and the $ell$-th power residue symbol. Ch. 11 and
+  12 for the residue symbol in general.
++ L. E. Dickson, *Cyclotomy, higher congruences, and Waring's problem*, Amer. J. Math. *57*
+  (1935), 391--424; and E. Lehmer, *Criteria for cubic and quintic residuacity*, Mathematika *5*
+  (1958), 20--29. The quintic criteria in terms of the quaternary system of @sec-gen-shape.
 + J. C. Lagarias, A. M. Odlyzko, *Effective versions of the Chebotarev density theorem*, in
   Algebraic Number Fields (Durham 1975), 409--464. The effective and GRH-conditional error terms
   quoted in @sec-density.
