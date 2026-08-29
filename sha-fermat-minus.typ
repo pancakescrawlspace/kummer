@@ -14,8 +14,8 @@
   #text(size: 10pt)[The minus family has no Ш at all --- and the rank that replaces it
   is visible by hand]
   #v(1mm)
-  #text(size: 9pt, style: "italic")[companion to `sha-fermat.typ`, which treats $+ p x$;
-  checks in `sha-fermat-minus.gp`]
+  #text(size: 9pt, style: "italic")[companion to `sha-fermat.typ`, which treats $+ p x$ and is
+  the family actually asked about; checks in `sha-fermat-minus.gp`]
 ]
 
 #v(4mm)
@@ -36,17 +36,21 @@
   $k = 1$ is the exception.
 ]
 
-= Where this comes from <sec-origin>
+= Why this family <sec-origin>
 
-This is the family of MathOverflow 151396, "The exponent of Ш of $y^2 = x^3 - p x$ where $p$ is a
-Fermat prime".
+MathOverflow 151396 asks about the exponent of Ш for $y^2 = x^3 + p x$ --- the *plus* family, the
+one `sha-fermat.typ` treats. This note is about the minus family, which is not what was asked
+there.
 
 #block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
-  *What is not in this note.* `mathoverflow.net` and `web.archive.org` are both unreachable from
-  here, so the thread itself could not be read. Nothing below reports what was asked or answered
-  there, and in particular nothing reports what Franz Lemmermeyer said. What follows is only the
-  computation, done independently, together with the contrast to `sha-fermat.typ`.
+  *Recorded because it was an error.* The first version of this note claimed to be about the family
+  of MathOverflow 151396. It is not: the URL slug renders both signs as `x3-px`, and the sign was
+  guessed wrong. The saved page's title is $y^2 = x^3 + p x$.
 ]
+
+What survives is the contrast, which is worth having on its own: the same primes, the same CM by
+$ZZ[i]$, a quartic twist apart, and completely opposite behaviour --- all the arithmetic in Ш on
+one side, all of it in $E(QQ)$ on the other.
 
 = The two points <sec-points>
 
@@ -158,8 +162,10 @@ same size of Selmer group is accounted for by actual points, and nothing is left
 + `sha-fermat.typ` in this repository --- the plus family, where the shape
   $(ZZ slash 2^(k-1))^2$ is forced and the size is one $L$-value.
 + #link("https://mathoverflow.net/questions/151396/")[MathOverflow 151396], "The exponent of Ш of
-  $y^2 = x^3 - p x$ where $p$ is a Fermat prime" --- the source of the question. Not readable from
-  here; see the caveat in @sec-origin.
+  $y^2 = x^3 + p x$, where $p$ is a Fermat prime" --- the *plus* family, and the origin of
+  `sha-fermat.typ`. See @sec-origin.
++ `mersenne-fermat-class.typ` in this repository --- Lemmermeyer's comment on that same thread,
+  about class groups at Mersenne and Fermat discriminants.
 + J. H. Silverman, *The Arithmetic of Elliptic Curves*, 2nd ed., GTM 106, X.6 for the $2$-descent
   on $y^2 = x^3 + d x$ used by both notes, and X.4 for the Cassels--Tate pairing being alternating
   --- the fact that catches the error recorded in @sec-gp.

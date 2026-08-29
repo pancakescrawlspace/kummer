@@ -1,0 +1,47 @@
+======================================================================
+mersenne-fermat-class.gp -- what Lemmermeyer's comment might mean
+
+  (1) -M_p and F_k are prime discriminants with h odd : 0 wrong of 11
+      and h(-4F_k) is even in all 4 cases (2-rank 1) : 0 odd
+
+  (2) Mersenne: the forced cyclic subgroup
+      p=3   M_p=7           h=1       p-2=1   ord[p_2]=1    = p-2    Cl=[]
+      p=5   M_p=31          h=3       p-2=3   ord[p_2]=3    = p-2    Cl=[3]
+      p=7   M_p=127         h=5       p-2=5   ord[p_2]=5    = p-2    Cl=[5]
+      p=13  M_p=8191        h=55      p-2=11  ord[p_2]=11   = p-2    Cl=[55]
+      p=17  M_p=131071      h=285     p-2=15  ord[p_2]=15   = p-2    Cl=[285]
+      p=19  M_p=524287      h=255     p-2=17  ord[p_2]=17   = p-2    Cl=[255]
+      p=31  M_p=2147483647  h=19865   p-2=29  ord[p_2]=29   = p-2    Cl=[19865]
+      ord[p_2] != p-2 : 0 times;  (p-2) does not divide h : 0 times
+
+  (3) Fermat: explicit symbols, and where the 2-class group jumps
+      k=1 F_k=5      a=1 b=2     2 a 4th power: no  (8|b: no )  Cl(-4F_k)=[2]     2-part=2
+      k=2 F_k=17     a=1 b=4     2 a 4th power: no  (8|b: no )  Cl(-4F_k)=[4]     2-part=4
+      k=3 F_k=257    a=1 b=16    2 a 4th power: yes (8|b: yes)  Cl(-4F_k)=[16]    2-part=16
+      k=4 F_k=65537  a=1 b=256   2 a 4th power: yes (8|b: yes)  Cl(-4F_k)=[320]   2-part=64
+      the criterion 8|b agrees with the direct test : 0 wrong
+      2-part runs 2, 4, 16, 64 -- it skips 8, and the skip is at k=3,
+      exactly where 2 becomes a fourth power mod F_k
+
+  (4) the quartic fields Q(F_k^(1/4)) -- Lemmermeyer's own territory
+      k=1 p=5       h(Q(p^(1/4))) = 1     Cl = []      p mod 16 = 5
+      k=2 p=17      h(Q(p^(1/4))) = 2     Cl = [2]     p mod 16 = 1
+      k=3 p=257     h(Q(p^(1/4))) = 60    Cl = [60]    p mod 16 = 1
+      (k=4 omitted: bnfinit on x^4 - 65537 is slow)
+
+  (5) the size of the forced subgroup against the whole class number
+      p=3    p-2 = 1     h = 1         h/(p-2) = 1.0        sqrt(M_p) = 3
+      p=5    p-2 = 3     h = 3         h/(p-2) = 1.0        sqrt(M_p) = 6
+      p=7    p-2 = 5     h = 5         h/(p-2) = 1.0        sqrt(M_p) = 11
+      p=13   p-2 = 11    h = 55        h/(p-2) = 5.0        sqrt(M_p) = 91
+      p=17   p-2 = 15    h = 285       h/(p-2) = 19.0       sqrt(M_p) = 362
+      p=19   p-2 = 17    h = 255       h/(p-2) = 15.0       sqrt(M_p) = 724
+      p=31   p-2 = 29    h = 19865     h/(p-2) = 685.0      sqrt(M_p) = 46341
+
+Two different phenomena, both real.  For Mersenne discriminants the shape
+of the number forces a large cyclic subgroup of the class group, by an
+elementary norm computation.  For Fermat discriminants the shape instead
+makes the residue symbols that govern the 2-class group explicit, so the
+4-rank and 8-rank become computable conditions on k.  Both match the shape
+of the Sha question they were a comment on: what the special form of the
+prime gives you is the STRUCTURE, and never the SIZE.
