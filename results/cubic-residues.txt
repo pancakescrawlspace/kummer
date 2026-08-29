@@ -1,0 +1,54 @@
+======================================================================
+cubic-residues.gp -- checks for cubic-residues.typ
+
+For p = 3 and p = 2 mod 3, every residue is a cube: cubing is a
+bijection on F_p^*.  Everything below is about p = 1 mod 3.
+
+  (1) 4p = L^2 + 27M^2 for p = 1 mod 3, p < 100000 : 4784 primes,
+      no representation 0 times, more than one 0 times
+
+  (2) on the 2556 primes p = 1 mod 3 below 50000:
+      2 is a cube mod p  <=>  2 | M     : 0 mismatches
+      3 is a cube mod p  <=>  3 | M     : 0 mismatches
+      5 is a cube mod p  <=>  5 | L M   : 0 mismatches
+      7 is a cube mod p  <=>  7 | L M   : 0 mismatches
+
+  (3) p = x^2 + xy + 61y^2  <=>  3 is a cube  : 0 mismatches of 2556
+      3 is a cube for 833 of them; p = x^2 + 243y^2 for only 271,
+      and that never fails to imply it (0 counterexamples) -- sufficient,
+      not necessary.   h(-243) = 3, h(-972) = 9, h(-108) = 3
+
+      mod 9     : 7 and 61 are both 7 mod 9, and 3 is a cube mod 61 but not mod 7
+      mod 27    : 7 and 61 are both 7 mod 27, and 3 is a cube mod 61 but not mod 7
+      mod 81    : 31 and 193 are both 31 mod 81, and 3 is a cube mod 193 but not mod 31
+      mod 243   : 13 and 499 are both 13 mod 243, and 3 is a cube mod 499 but not mod 13
+      mod 729   : 139 and 1597 are both 139 mod 729, and 3 is a cube mod 1597 but not mod 139
+  (4) witnesses above: a congruence on p cannot decide the question
+
+  (5) density of { p : 3 is a cube mod p, p = 1 mod 3 } among all primes:
+      x = 10^3 :       26 of      166 primes = 0.15663
+      x = 10^4 :      191 of     1227 primes = 0.15566
+      x = 10^5 :     1582 of     9590 primes = 0.16496
+      x = 10^6 :    13044 of    78496 primes = 0.16617
+      x = 10^7 :   110695 of   664577 primes = 0.16656
+      1/6 = 0.16667
+
+A small table, for the eye:
+
+      p = 7     4p =   28 = (  1)^2 + 27*1^2   3|M : no    3 a cube : no
+      p = 13    4p =   52 = ( -5)^2 + 27*1^2   3|M : no    3 a cube : no
+      p = 19    4p =   76 = (  7)^2 + 27*1^2   3|M : no    3 a cube : no
+      p = 31    4p =  124 = (  4)^2 + 27*2^2   3|M : no    3 a cube : no
+      p = 37    4p =  148 = (-11)^2 + 27*1^2   3|M : no    3 a cube : no
+      p = 43    4p =  172 = ( -8)^2 + 27*2^2   3|M : no    3 a cube : no
+      p = 61    4p =  244 = (  1)^2 + 27*3^2   3|M : yes   3 a cube : YES
+      p = 67    4p =  268 = ( -5)^2 + 27*3^2   3|M : yes   3 a cube : YES
+      p = 73    4p =  292 = (  7)^2 + 27*3^2   3|M : yes   3 a cube : YES
+      p = 79    4p =  316 = (-17)^2 + 27*1^2   3|M : no    3 a cube : no
+      p = 97    4p =  388 = ( 19)^2 + 27*1^2   3|M : no    3 a cube : no
+      p = 103   4p =  412 = ( 13)^2 + 27*3^2   3|M : yes   3 a cube : YES
+      p = 109   4p =  436 = ( -2)^2 + 27*4^2   3|M : no    3 a cube : no
+      p = 127   4p =  508 = (-20)^2 + 27*2^2   3|M : no    3 a cube : no
+
+Note 7 and 61: same L, different M -- and 7 = 61 mod 27.  That pair alone
+shows no congruence can work, and shows what a congruence throws away.
