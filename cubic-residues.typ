@@ -244,9 +244,11 @@ generalise, and the reason is a coincidence of small numbers.
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   $QQ(zeta_3)$ is *imaginary quadratic*. That is what puts $QQ(zeta_3, root(3,3))$ inside the
   theory of ring class fields of imaginary quadratic orders, where Cox's theorem converts "splits
-  completely" into "represented by a binary quadratic form" (@sec-form). For $ell >= 5$,
-  $QQ(zeta_ell)$ has degree $ell - 1 >= 4$; there is no imaginary quadratic field underneath, and
-  no binary form.
+  completely" into "represented by a binary quadratic form" (@sec-form). The same is true of
+  $QQ(zeta_4) = QQ(i)$ --- which is why $ell = 4$ also has binary-form criteria (@sec-biquad).
+  For $ell >= 5$, $QQ(zeta_ell)$ has degree $ell - 1 >= 4$; there is no imaginary quadratic field
+  underneath, and no binary form. *Exactly two exponents are lucky, and they are the two with
+  $phi(ell) = 2$.*
 ]
 
 For $ell = 5$ the structural facts are otherwise the same as at $ell = 3$: $x^5 - 3$ has splitting
@@ -268,12 +270,74 @@ $ 16 p = x^2 + 50 u^2 + 50 v^2 + 125 w^2 , quad x w = v^2 - 4 u v - u^2 , quad x
   are markedly more involved than $3 divides M$; nothing of that kind is claimed here.
 ]
 
+== The biquadratic case $ell = 4$ <sec-biquad>
+
+$ell = 4$ is not prime, so @sec-gen-crit does not cover it: Eisenstein reciprocity is a statement
+about odd prime $ell$. What replaces it is Gauss's *biquadratic reciprocity* in $ZZ[i]$, and the
+answers are again binary quadratic forms --- because $QQ(i)$ is imaginary quadratic, the second and
+last exponent for which that happens.
+
+For $p equiv 1$ (mod $4$) write $p = a^2 + b^2$ with $a$ odd and $b$ even; this determines $a$ and
+$b$ up to sign. Then $pi = a + b i$ is a prime above $p$, and it is *primary* --- the correct
+normalisation here --- when $a + b equiv 1$ (mod $4$), which picks out one of $plus.minus pi$.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Biquadratic reciprocity.* For $pi, theta$ primary in $ZZ[i]$,
+  $ chi_pi (theta) = chi_theta (pi) dot (-1)^(((N pi - 1) slash 4)((N theta - 1) slash 4)) . $
+]
+
+#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
+  *The trap that catches a first attempt.* For $q equiv 3$ (mod $4$) it is $-q$, not $q$, that is
+  primary --- $q + 0 i$ has $a + b = q equiv 3$. So $chi_pi (q) = chi_pi (-1) chi_pi (-q)$ picks up
+  an extra $chi_pi (-1) = (-1)^((p-1) slash 4)$, and the criterion acquires a dependence on $p$
+  modulo $8$ that is invisible if one forgets to normalise. Dropping it gives a rule that fails on
+  about a quarter of all primes.
+]
+
+With that factor in place the classical criteria come out (@sec-gp, checks 10 and 11, no mismatch
+on the $2085$ primes below $40000$):
+
+#align(center, table(
+  columns: 2, align: (center, left),
+  stroke: 0.4pt + luma(170), inset: (x: 9pt, y: 3.5pt),
+  table.header([$q$], [$q$ is a fourth power mod $p$ iff]),
+  [$-1$], [$p equiv 1$ (mod $8$)],
+  [$2$], [$8 divides b$ --- equivalently $p = x^2 + 64 y^2$ (Gauss)],
+  [$3$], [$3 divides b$ if $p equiv 1$ (mod $8$); $3 divides a$ if $p equiv 5$ (mod $8$)],
+))
+
+#v(2mm)
+The $q = 3$ row is as far as the pretty form goes. For $q = 7$ and $q = 11$ the same shape *fails*
+--- on $533$ and $343$ of the $2085$ primes --- and the reason is visible in the exponent: the
+symbol is $pi^((q^2-1) slash 4)$ in $bb(F)_(q^2)$, and $(q^2-1) slash 4$ is $2$ for $q = 3$ but
+$12$ and $30$ for $q = 7, 11$. Only for $q = 3$ is "$pi^2 = plus.minus 1$" the same as
+"$q divides a$ or $q divides b$"; beyond that it is a subgroup condition in $bb(F)_(q^2)^times$
+with no divisibility phrasing.
+
+The general biquadratic criterion, verified for $q = 3, 5, 7, 11, 13, 19$ --- inert and split alike
+--- is what @sec-gp check 10 computes:
+$ chi_pi (q) = cases(
+  (-1)^((p-1) slash 4) dot pi^((q^2-1) slash 4) " in " bb(F)_(q^2) & "if" q equiv 3 space (mod 4)
+    " (inert)," ,
+  product_(Q divides q) pi^((q-1) slash 4) " in " bb(F)_q & "if" q equiv 1 space (mod 4)
+    " (split)." ,
+) $
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *So the count of lucky cases is two.* $ell = 3$ and $ell = 4$ both give binary quadratic forms,
+  because $QQ(zeta_3)$ and $QQ(i)$ are the imaginary quadratic cyclotomic fields. Within each,
+  a *further* accident is needed for a memorable divisibility rule --- $q = ell$ ramified at
+  $ell = 3$, and $(q^2-1) slash 4 = 2$ at $ell = 4$, $q = 3$. Everything else is the congruence on
+  $pi$ of @sec-gen-crit.
+]
+
 == What the pattern actually is <sec-gen-pattern>
 
 #block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
-  For $q$ *unramified* in $QQ(zeta_ell)$ --- which is every $q eq.not ell$ --- Eisenstein
-  reciprocity turns "$q$ is an $ell$-th power mod $p$" into a congruence on $pi$ modulo $q$, in a
-  residue field of size $q^f$. That is the general answer, and it is uniform in $ell$.
+  For $q$ *unramified* in $QQ(zeta_ell)$ --- which is every $q eq.not ell$ --- reciprocity turns
+  "$q$ is an $ell$-th power mod $p$" into a congruence on $pi$ modulo $q$, in a residue field of
+  size $q^f$: Eisenstein's for odd prime $ell$, Gauss's biquadratic law for $ell = 4$. That is the
+  general answer, and it is uniform in $ell$.
 
   #v(2mm)
   What made $ell = 3$, $q = 3$ special --- and produced the memorable $3 divides M$ --- is that
@@ -318,6 +382,11 @@ hypothesis "$-9 in (QQ_q^times)^6$" is "$q equiv 1$ (mod $4$) and $-9$ a cube mo
   $0.04993$ below $10^6$ against $1 slash 20$.
 - *(9)* Dickson's quaternary system: its non-uniqueness, and the failure of five candidate
   divisibility rules.
+- *(10)* Biquadratic reciprocity in $ZZ[i]$ for $q = 3, 5, 7, 11, 13, 19$, inert and split alike,
+  on $1125$ primes: no mismatch. The extra $(-1)^((p-1) slash 4)$ for $q equiv 3$ (mod $4$) is
+  what makes it work.
+- *(11)* The criteria of @sec-biquad for $-1$, $2$, $3$ --- no mismatch on $2085$ primes --- and
+  the deliberate failures at $q = 7, 11$ that show why the divisibility phrasing stops at $3$.
 
 = References <sec-refs>
 
@@ -337,6 +406,10 @@ hypothesis "$-9 in (QQ_q^times)^6$" is "$q equiv 1$ (mod $4$) and $-9$ a cube mo
 + K. Ireland, M. Rosen, op. cit., Ch. 14. *Eisenstein reciprocity* --- the statement used in
   @sec-gen-crit, with the definition of primary and the $ell$-th power residue symbol. Ch. 11 and
   12 for the residue symbol in general.
++ D. A. Cox, op. cit., §4 also treats the *biquadratic* case: Theorem 4.23 is
+  $p = x^2 + 64 y^2 <==> p equiv 1$ (mod $4$) and $2$ a fourth power mod $p$, the row of
+  @sec-biquad. Ireland--Rosen Ch. 9 §§7--9 has Gauss's biquadratic reciprocity in $ZZ[i]$ with the
+  primary normalisation used there.
 + L. E. Dickson, *Cyclotomy, higher congruences, and Waring's problem*, Amer. J. Math. *57*
   (1935), 391--424; and E. Lehmer, *Criteria for cubic and quintic residuacity*, Mathematika *5*
   (1958), 20--29. The quintic criteria in terms of the quaternary system of @sec-gen-shape.

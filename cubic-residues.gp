@@ -247,6 +247,84 @@ check9(X) =
   printf("      -- no clean divisibility rule, unlike 3 | M at l = 3\n");
 };
 
+\\ --------------------------------------------------------------- check 10
+\\ THE BIQUADRATIC CASE, l = 4.  Not covered by check 6: 4 is not prime, so
+\\ Eisenstein reciprocity does not apply and one uses Gauss's biquadratic
+\\ reciprocity in Z[i] instead.  For p = 1 mod 4 write p = a^2 + b^2 with a odd
+\\ and b even; pi = a + bi is PRIMARY when a + b = 1 mod 4, which pins it among
+\\ +-pi.  Then for primary pi, theta,
+\\
+\\     chi_pi(theta) = chi_theta(pi) * (-1)^( ((N pi -1)/4)((N theta -1)/4) ) .
+\\
+\\ For q = 3 mod 4 it is -q, not q, that is primary -- which is exactly the
+\\ factor a first attempt drops -- so an extra (-1)^((p-1)/4) appears.
+
+{abrep(p) = for (b = 0, sqrtint(p),
+    if (b % 2 == 0 && issquare(p - b^2, &a) && a % 2 == 1, return([a,b]))); 0;}
+{primary4(t) = if ((t[1] + t[2] - 1) % 4 == 0, t, [-t[1], -t[2]]);}
+{is4(q, p) = Mod(q, p)^((p-1)/4) == 1;}
+
+\\ (pi/q)_4 as an exponent of i modulo 4
+{symq(a, b, q) =
+  if (q % 4 == 3,
+     my(F = t^2 + 1, z = Mod(Mod(a,q) + Mod(b,q)*t, F*Mod(1,q))^((q^2-1)/4), f = -1);
+     for (k = 0, 3, if (Mod(Mod(1,q)*t, F*Mod(1,q))^k == z, f = k; break));
+     f,
+     my(r = lift(sqrt(Mod(-1,q))), e = (q-1)/4, s = 0);
+     for (sg = 1, 2,
+       my(rr = if (sg == 1, r, q - r), z = Mod(a + b*rr, q)^e, f = -1);
+       for (k = 0, 3, if (Mod(rr,q)^k == z, f = k; break));
+       if (f < 0, return(-1));
+       s += f);
+     s % 4);}
+
+check10(QS, X) =
+{ my(bad = vector(#QS), tot = 0);
+  forprime (p = 5, X,
+    if (p % 4 != 1, next);
+    my(t = primary4(abrep(p)), a = t[1], b = t[2], e4 = (p-1)/4);
+    tot++;
+    for (k = 1, #QS,
+      my(q = QS[k], s);
+      if (p == q, next);
+      s = symq(a, b, q);
+      if (q % 4 == 3, s = (s + 2*e4) % 4);
+      if ((s == 0) != is4(q,p), bad[k]++)));
+  printf("  (10) biquadratic reciprocity in Z[i], %d primes p = 1 mod 4 below %d:\n", tot, X);
+  for (k = 1, #QS,
+    printf("        q = %-3d (%d mod 4, %s) : %d mismatches\n",
+      QS[k], QS[k] % 4, if (QS[k] % 4 == 3, "inert", "split"), bad[k]));
+};
+
+\\ --------------------------------------------------------------- check 11
+\\ The two memorable biquadratic criteria, and the shape of the general one.
+\\ 2 and 3 come out as conditions on b (resp. a) alone; 7 and 11 do NOT, because
+\\ there (q^2-1)/4 is 12 and 30 rather than 2, and the subgroup condition in
+\\ F_(q^2)^* stops being a divisibility.
+
+check11(X) =
+{ my(tot = 0, nm1 = 0, n2 = 0, n3 = 0, n2f = 0, n7 = 0, n11 = 0);
+  forprime (p = 5, X,
+    if (p % 4 != 1, next);
+    my(t = abrep(p), a = t[1], b = t[2], e = (p % 8 == 1), g = 0);
+    tot++;
+    if (is4(-1,p) != (p % 8 == 1), nm1++);
+    if (is4(2,p)  != (b % 8 == 0), n2++);
+    if (is4(3,p)  != if (e, b % 3 == 0, a % 3 == 0), n3++);
+    if (is4(7,p)  != if (e, b % 7 == 0, a % 7 == 0), n7++);
+    if (is4(11,p) != if (e, b % 11 == 0, a % 11 == 0), n11++);
+    for (d = 0, sqrtint(p\64) + 1, if (issquare(p - 64*d^2), g = 1; break));
+    if (g != is4(2,p), n2f++));
+  printf("  (11) on the %d primes p = 1 mod 4 below %d, p = a^2 + b^2 (a odd, b even):\n", tot, X);
+  printf("        -1 is a 4th power <=> p = 1 mod 8              : %d mismatches\n", nm1);
+  printf("         2 is a 4th power <=> 8 | b                    : %d mismatches\n", n2);
+  printf("         2 is a 4th power <=> p = x^2 + 64y^2 (Gauss)  : %d mismatches\n", n2f);
+  printf("         3 is a 4th power <=> 3|b if p=1(8), 3|a if 5(8) : %d mismatches\n", n3);
+  printf("         7 the same shape                              : %d mismatches  <- FAILS\n", n7);
+  printf("        11 the same shape                              : %d mismatches  <- FAILS\n", n11);
+  printf("        (the last two show the shape is special to (q^2-1)/4 = 2)\n");
+};
+
 \\ a small table, for the eye
 table(X) =
 { forprime (p = 7, X,
@@ -284,6 +362,10 @@ print("");
 check8(1000000);
 print("");
 check9(1500);
+print("");
+check10([3,5,7,11,13,19], 20000);
+print("");
+check11(40000);
 print("");
 print("A small table, for the eye:");
 print("");

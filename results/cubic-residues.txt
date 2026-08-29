@@ -62,6 +62,23 @@ bijection on F_p^*.  Everything below is about p = 1 mod 3.
         3|x-1      : 31 mismatches of 58
       -- no clean divisibility rule, unlike 3 | M at l = 3
 
+  (10) biquadratic reciprocity in Z[i], 1125 primes p = 1 mod 4 below 20000:
+        q = 3   (3 mod 4, inert) : 0 mismatches
+        q = 5   (1 mod 4, split) : 0 mismatches
+        q = 7   (3 mod 4, inert) : 0 mismatches
+        q = 11  (3 mod 4, inert) : 0 mismatches
+        q = 13  (1 mod 4, split) : 0 mismatches
+        q = 19  (3 mod 4, inert) : 0 mismatches
+
+  (11) on the 2085 primes p = 1 mod 4 below 40000, p = a^2 + b^2 (a odd, b even):
+        -1 is a 4th power <=> p = 1 mod 8              : 0 mismatches
+         2 is a 4th power <=> 8 | b                    : 0 mismatches
+         2 is a 4th power <=> p = x^2 + 64y^2 (Gauss)  : 0 mismatches
+         3 is a 4th power <=> 3|b if p=1(8), 3|a if 5(8) : 0 mismatches
+         7 the same shape                              : 533 mismatches  <- FAILS
+        11 the same shape                              : 343 mismatches  <- FAILS
+        (the last two show the shape is special to (q^2-1)/4 = 2)
+
 A small table, for the eye:
 
       p = 7     4p =   28 = (  1)^2 + 27*1^2   3|M : no    3 a cube : no
