@@ -372,6 +372,65 @@ the twists by $-1, 3, 5, -7$ all fail, at $67$, $67$, $67$, $61$ respectively.
   question --- which is precisely why an obstruction can live at $2$ and nowhere else.
 ]
 
+= The $M_(i j)$ are residues <sec-residues>
+
+The class behind $beta$ is the symbol algebra
+$ cal(A) = sum_(k=1)^3 (x - r_k, thin x' - s_(sigma(k))) quad "on" E times E' , $
+whose local invariants are the $beta_v$. On $E times E'$ itself it is unramified for a reason with
+nothing to check: $x - r_k$ has divisor $2(T_k) - 2(O)$, so *every* valuation is even and every
+tame symbol along a divisor pulled back from either factor is trivial. The only divisors that can
+carry a residue are the *sixteen exceptional curves* of $"Kum"(E times E')$, indexed by the pairs
+$(T_i, T'_j)$ of $2$-torsion points --- which is exactly the index set of the $M_(i j)$.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Proposition.* $M_(i j) = - partial_(i j) (cal(A))$ in $QQ^times slash (QQ^times)^2$, where
+  $partial_(i j)$ is the residue at the exceptional curve over $(T_i, T'_j)$.
+
+  #v(2mm)
+  _Proof._ At the singular point of $A slash plus.minus$ over $(T_i, T'_j)$ take the uniformisers
+  $u = y$ on $E$ and $w = y'$ on $E'$. The involution is $(u,w) |-> (-u,-w)$, so $t = w slash u$ is
+  a coordinate on the exceptional $PP^1$ and $s = u^2$ is transverse to it. Writing
+  $c_i = product_(k eq.not i) (r_i - r_k)$,
+  $ v(f_i) = v(g_j) = 1 , wide "all other valuations" 0 , $
+  $ f_i slash s --> 1 slash c_i , wide g_j slash s --> t^2 slash c'_j , wide
+    f_k --> r_i - r_k , wide g_l --> s_j - s_l . $
+  Additivity of the residue over the three symbols, with $k_0 = sigma^(-1)(j)$, gives
+  $ sigma(i) = j : quad partial_(i j) = - c_i c'_j , wide
+    sigma(i) eq.not j : quad partial_(i j) = (s_j - s_(sigma(i))) (r_i - r_(k_0)) . $
+  Comparing with $M_(i j)$ and using $c_i = (r_i - r_(k_0))(r_i - r_(k_2))$ to absorb a square
+  gives $M_(i j) = -partial_(i j)$ in both cases. $qed$
+]
+
+#v(2mm)
+Two features of the computation are worth recording. The $t^2$ in $g_j slash s$ is a *square*, so
+the residue is *constant* along the exceptional curve --- which is what allows $M_(i j)$ to be a
+bare element of $QQ^times slash (QQ^times)^2$ carrying no parameter. And the discrepancy is a
+single global sign: $M_(i j)$ carries $(-1)^(1 + [sigma(i) = j])$ while the tame symbol carries
+$(-1)^(v(f) v(g))$, and the two differ by $-1$ uniformly. Check 10 verifies the identification on
+$54$ comparisons over six $(#[pair], psi)$ combinations, with no mismatch.
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *So $S_2$ is a ramification set.* The decomposition of @sec-full2 reads
+  $ Sigma = underbrace(S_1, "where the class evaluates non-trivially") union
+    underbrace(S_2, "where its ramification along the exceptional locus is visible") , $
+  and this also explains the typing: $M_(i j)$ is independent of the place because residues are
+  global objects, while $beta_v$ is a local invariant.
+
+  #v(1.5mm)
+  *No tension with unramifiedness.* The residues above are those of the *raw* symbol on
+  $QQ(E times E')$. The algebra $cal(A)$ of `kummer-example-j0.typ` §7 is the corrected class,
+  which *is* unramified on $X$; its dependence on $d$ comes from evaluating a locally constant
+  class on different *components* of $X(QQ_v)$ --- the twist classes --- and not from ramification.
+  What the $M_(i j)$ measure is the obstruction to the symbol descending to $X$, and that is
+  precisely what makes the twist classes see different values.
+]
+
+#v(2mm)
+The derivation above uses full rational $2$-torsion, where $cal(A)$ is a product of three quaternion
+symbols over $QQ$. In the $S_3$ case the corestriction obscures the symbol structure and the local
+computation has not been redone --- though the parity argument, which is what confines the residues
+to the exceptional locus, is insensitive to the Galois action.
+
 = Status <sec-status>
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
@@ -391,7 +450,8 @@ the twists by $-1, 3, 5, -7$ all fail, at $67$, $67$, $67$, $61$ respectively.
   exhaustion.
 
   #v(1.5mm)
-  *New.* The criterion of @sec-reframe; the exact $M_(i j)$ formula of @sec-full2, which makes
+  *New.* The criterion of @sec-reframe; the identification of the $M_(i j)$ with residues at the
+  sixteen exceptional curves (@sec-residues), which makes $S_2$ a ramification set; the exact $M_(i j)$ formula of @sec-full2, which makes
   twist-uniformity automatic and computable; the reciprocity bound $abs(S_1) eq.not 1$; and two
   full-$2$-torsion pairs with $Sigma = {2}$ and $psi_* L'_2 eq.not L_2$ on the full $L_2$
   (@sec-newsearch). Those two still owe condition (D) --- dangerous multiplicative primes, no
@@ -422,6 +482,7 @@ the twists by $-1, 3, 5, -7$ all fail, at $67$, $67$, $67$, $61$ respectively.
   verdict, on six $(a, d, q)$.
 - *(7)* The corrected sweep of @sec-search by the exact torsion-class test: $0$ survivors of $16$,
   every first failure at a prime $equiv 7$ (mod $12$).
+- *(10)* The identification of @sec-residues, $M_(i j) = -partial_(i j)$, on $54$ comparisons.
 - *(9)* The search of @sec-newsearch: $684$ combinations, smallest non-empty $Sigma$ of size $1$,
   and the reciprocity bound $abs(S_1) eq.not 1$ observed throughout.
 - *(8)* The criterion of @sec-criterion: the twist by $-3$ has no odd-$q$ failure up to $400$ for

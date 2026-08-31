@@ -116,4 +116,16 @@ j0-obstruction-family.gp -- how far the j=0 obstruction generalises
       x(x-1)(x--1) / x(x-1)(x-9)  psi = [2, 3, 1]  Sigma = [2]
       |S_1| = 1 never occurs: reciprocity on the torsion classes forbids it
 
+ (10) the M_ij are residues at the exceptional curves: M_ij = -d_ij
+      E / E'                             psi      mismatches of nine
+      x(x-1)(x-2) / x(x-1)(x-9)                [1, 2, 3] 0
+      x(x-1)(x--1) / x(x-1)(x-9)                [2, 3, 1] 0
+      x(x-1)(x-2) / x(x-1)(x-5)                [2, 1, 3] 0
+      x(x-2)(x-3) / x(x-1)(x--2)                [3, 2, 1] 0
+      x(x-1)(x-3) / x(x-3)(x-4)                [1, 3, 2] 0
+      x(x-1)(x-4) / x(x-1)(x-5)                [1, 2, 3] 0
+      54 comparisons, 0 mismatches
+      so S_2 is a RAMIFICATION set: the places where a residue of the
+      raw symbol at an exceptional curve fails to be a local square
+
 ======================================================================

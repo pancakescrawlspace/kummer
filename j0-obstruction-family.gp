@@ -357,6 +357,52 @@ check9() =
   printf("      |S_1| = 1 never occurs: reciprocity on the torsion classes forbids it\n");
 };
 
+
+\\ --------------------------------------------------------------- check 10
+\\ THE M_ij ARE RESIDUES.  The class is  cA = sum_k (x - r_k, x' - s_{s(k)})
+\\ on E x E'.  There x - r_k has divisor 2(T_k) - 2(O), so every valuation is
+\\ EVEN and all residues on E x E' vanish.  The only divisors that can carry a
+\\ residue are the sixteen exceptional curves of Kum(E x E'), indexed by pairs
+\\ (T_i, T'_j) of 2-torsion points -- the index set of the M_ij.
+\\
+\\ Local picture at the singular point over (T_i, T'_j): u = y and w = y' are
+\\ uniformisers, the involution is (u,w) -> (-u,-w), so t = w/u is a coordinate
+\\ on the exceptional P^1 and s = u^2 is transverse.  Then v(f_i) = v(g_j) = 1
+\\ and all other valuations are 0, with f_i/s -> 1/c_i, g_j/s -> t^2/c'_j,
+\\ f_k -> r_i - r_k and g_l -> s_j - s_l.  The tame symbol gives
+\\
+\\    s(i) = j :  d_ij = -c_i c'_j
+\\    s(i) != j:  d_ij = (s_j - s_{s(i)}) (r_i - r_{k0}),   k0 = s^(-1)(j)
+\\
+\\ and in both cases  M_ij = -d_ij  modulo squares.  The t^2 is a square, so
+\\ the residue is CONSTANT along the exceptional curve, as it must be for a
+\\ bare class in Q^*/(Q^*)^2.
+
+resd(r, ss, sig, i, j) =
+{ my(ci = 1, cj = 1, k0 = 0, R);
+  for (k=1,3, if (k != i, ci *= (r[i]-r[k])));
+  for (l=1,3, if (l != j, cj *= (ss[j]-ss[l])));
+  for (k=1,3, if (sig[k] == j, k0 = k));
+  R = if (sig[i] == j, -ci*cj, (ss[j]-ss[sig[i]]) * (r[i]-r[k0]));
+  sqf(R); };
+
+check10() =
+{ my(T = [[1,2,1,9,1],[1,-1,1,9,4],[1,2,1,5,3],[2,3,1,-2,6],[1,3,3,4,2],[1,4,1,5,1]],
+    bad = 0, n = 0);
+  printf(" (10) the M_ij are residues at the exceptional curves: M_ij = -d_ij\n");
+  printf("      %-34s %-8s %s\n", "E / E'", "psi", "mismatches of nine");
+  for (t = 1, #T,
+    my(m=T[t][1], nn=T[t][2], mp=T[t][3], np=T[t][4], sig=S3P[T[t][5]],
+       A = dT3(m,nn), B = dT3(mp,np), r = [0,m,nn], ss = [0,mp,np], b = 0);
+    for (i=1,3, for (j=1,3, n++;
+      if (MM(A,B,sig,i,j) != sqf(-resd(r,ss,sig,i,j)), b++; bad++)));
+    printf("      x(x-%d)(x-%d) / x(x-%d)(x-%d)%s %-8s %d\n", m,nn,mp,np,
+           if (#Str(m*nn*mp*np) < 5, "               ", "           "), Str(sig), b));
+  printf("      %d comparisons, %d mismatches\n", n, bad);
+  printf("      so S_2 is a RAMIFICATION set: the places where a residue of the\n");
+  printf("      raw symbol at an exceptional curve fails to be a local square\n");
+};
+
 print("======================================================================");
 print("j0-obstruction-family.gp -- how far the j=0 obstruction generalises");
 print("");
@@ -369,4 +415,5 @@ check6(); print("");
 check7(200); print("");
 check8(); print("");
 check9(); print("");
+check10(); print("");
 print("======================================================================");
