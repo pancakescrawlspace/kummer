@@ -1,0 +1,66 @@
+======================================================================
+kummer-dedekind.gp -- factoring p by factoring f mod p
+
+  (1) Kummer-Dedekind against idealprimedec, all p < 500 with p not dividing the index
+      f                      index   p tested  p skipped mismatches
+      x^2 + 1                1       95        0         0
+      x^2 - 5                2       94        1         0
+      x^2 + 5                1       95        0         0
+      x^2 - 12               2       94        1         0
+      x^3 - 2                1       95        0         0
+      x^3 - x - 1            1       95        0         0
+      x^3 - x^2 - 2*x - 8    2       94        1         0
+      x^4 - 2                1       95        0         0
+      x^4 + 1                1       95        0         0
+      x^4 - x - 1            1       95        0         0
+      x^5 - x - 1            1       95        0         0
+      total: 1042 prime-field pairs tested, 3 skipped, 0 mismatches
+
+  (2) failure at an index-dividing prime: Dedekind's example
+      f = x^3 - x^2 - 2*x - 8,  disc(f) = -2012,  disc(K) = -503,  index = 2
+      f mod 2 = (x)^2 * (x + 1)^1
+      Kummer-Dedekind would predict [e,f] = [[1, 1], [2, 1]]
+      the truth is                   [e,f] = [[1, 1], [1, 1], [1, 1]]
+      they differ: 1  (2 splits completely; the polynomial says it ramifies)
+      and at every other p < 500 the theorem holds: 0 mismatches
+
+  (3) 2 is a common index divisor of that field
+      primes above 2: 3 of them, all with e = f = 1 : 1
+      monic linear polynomials over F_2 : 2 (namely x and x+1)
+      a cubic needing 3 distinct linear factors mod 2 cannot exist : 1
+      generators a+b.theta+c.theta^2 with |a|,|b|,|c| <= 6 whose index is odd : 0
+
+  (4) Dedekind's criterion agrees with the true index
+      1045 pairs (f, p) tested, disagreements with nf.index : 0
+
+  (5) fundamental identity, and disc(f) = index^2 . disc(K)
+      disc(f) != index^2 . disc(K) : 0 of 11 fields
+      sum e_i f_i != n             : 0
+      p divides index but p^2 does not divide disc(f) : 0
+
+  (6) worked example: x^3 - 2, index 1, so every p is covered
+      p      f mod p                              [e,f] of the primes above p
+      2      (x)^3                                [[3, 1]]
+      3      (x + 1)^3                            [[3, 1]]
+      5      (x + 2) . (x^2 + 3*x + 4)            [[1, 1], [1, 2]]
+      7      (x^3 + 5)                            [[1, 3]]
+      29     (x + 3) . (x^2 + 26*x + 9)           [[1, 1], [1, 2]]
+      31     (x + 11) . (x + 24) . (x + 27)       [[1, 1], [1, 1], [1, 1]]
+      127    (x + 5) . (x + 27) . (x + 95)        [[1, 1], [1, 1], [1, 1]]
+
+  (7) primes above p <-> irreducible factors of f over Q_p, unconditionally
+      506 pairs (f, p) tested, all p < 200
+      wrong number of p-adic factors        : 0
+      degrees not matching the e.f of O_K   : 0
+      at p dividing the index: mod-p count, p-adic count, and the [e,f] verdict
+        x^2 - 5                p=2    mod p: 1   over Q_p: 1   KD says [[2, 1]]         truth [[1, 2]]         FAILS
+        x^2 - 12               p=2    mod p: 1   over Q_p: 1   KD says [[2, 1]]         truth [[2, 1]]         holds anyway
+        x^3 - x^2 - 2*x - 8    p=2    mod p: 2   over Q_p: 3   KD says [[1, 1], [2, 1]] truth [[1, 1], [1, 1], [1, 1]] FAILS
+
+  (8) the monogenicity count: #{P : f(P/p) = d} <= #monic irreducibles of degree d
+        x^3 - x^2 - 2*x - 8    p=2   d=1 : 3 primes but only 2 monic irreducibles
+      1564 (field, p, d) triples tested, violations : 1
+      a violation is exactly an obstruction to prod_{P|p} O_P being
+      monogenic over Z_p, i.e. exactly a common index divisor
+
+======================================================================
