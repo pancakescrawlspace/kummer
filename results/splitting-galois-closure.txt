@@ -1,0 +1,51 @@
+======================================================================
+splitting-galois-closure.gp -- splitting completely in K and in its closure
+
+  (1) Spl(K) = Spl(L) below 100000
+      K            [K:Q]  [L:Q]  #Spl(K)   #Spl(L)   in K not L  in L not K
+      x^3 - 2      3      6      1559      1559      0           0
+      x^4 - 2      4      8      1182      1182      0           0
+      x^4 - x - 1  4      24     375       375       0           0
+      primes splitting in K but not in L : 0
+      primes splitting in L but not in K : 0
+
+  (2) p split in L implies p split in every subfield of L
+      L = closure of x^4-2, degree 8, 10 subfields, |Spl(L)| = 1182
+      subfield of degree 2   : 0 of 1182 fail to split
+      subfield of degree 2   : 0 of 1182 fail to split
+      subfield of degree 2   : 0 of 1182 fail to split
+      subfield of degree 4   : 0 of 1182 fail to split
+      subfield of degree 4   : 0 of 1182 fail to split
+      subfield of degree 4   : 0 of 1182 fail to split
+      subfield of degree 4   : 0 of 1182 fail to split
+      subfield of degree 4   : 0 of 1182 fail to split
+      subfield of degree 8   : 0 of 1182 fail to split
+      total failures : 0
+
+  (3) control: the closure is not just any larger field
+      K = Q(2^(1/3)), degree 3          |Spl(K)| = 1559
+      L = closure of K, degree 6        |Spl(L)| = 1559,  Spl(K) minus Spl(L) = 0
+      M = K(sqrt 7), degree 6, NOT the closure and not Galois:
+        |Spl(M)| = 766,  Spl(K) minus Spl(M) = 793
+      so K and M share no such equivalence; only the closure gives one
+
+  (4) density of Spl(K) is 1/[L:Q], not 1/[K:Q]   (pi(100000) = 9592)
+      K            observed   1/[L:Q]      1/[K:Q]      verdict
+      x^3 - 2      0.16253    0.16667      0.33333      matches 1/[L:Q]
+      x^4 - 2      0.12323    0.12500      0.25000      matches 1/[L:Q]
+      x^4 - x - 1  0.03910    0.04167      0.25000      matches 1/[L:Q]
+
+  (5) Spl depends only on the closure: quartic subfields of L
+      subfield                   [clos:Q]  |Spl|     Galois?
+      x^4 + 1                    4         2384      yes
+      x^4 - 2                    8         1182      no
+      x^4 - 2                    8         1182      no
+      x^4 + 2                    8         1182      no
+      x^4 + 2                    8         1182      no
+      the 4 non-Galois quartic subfields all have closure of degree 8
+      and identical splitting sets : 1
+      x^4-2 and x^4+2 isomorphic as fields? 0   (discriminants -2048 and 2048)
+      so two NON-isomorphic quartic fields share one splitting set,
+      because they share one Galois closure
+
+======================================================================
