@@ -1,0 +1,119 @@
+======================================================================
+j0-obstruction-family.gp -- how far the j=0 obstruction generalises
+
+  (1) the local-at-2 transfer
+      a        a'        a mod 8   a' mod 8   a 6th pow  -a' 6th pow
+      9        -81        1         7          1          1
+      9        -9         1         7          1          1
+      33       -33        1         7          1          1
+      225      15        1         7          1          1
+      -15       -225       1         7          1          1
+      105      -105       1         7          1          1
+      -63       63        1         7          1          1
+      failures : 0
+
+  (2) beta_2 by Hilbert symbols (0 = zero, 1 = non-zero)
+      a        a'        d = [1, -7, 3, 2, -6, 10]
+      9        -81        [0, 0, 0, 1, 1, 1]
+      225      15        [0, 0, 0, 1, 1, 1]
+      9        -9         [1, 1, 1, 1, 1, 1]
+      33       -33        [1, 1, 1, 1, 1, 1]
+      the known pair (9,-81) reproduces section 6.9 of kummer-example-j0.typ:
+      zero on d = 1,-7,3 (odd) and non-zero on d = 2,-6,10 (even)
+
+  (3) isotropy of L_2 (soundness of the symbols)
+      a=9     d=1   : 0 non-zero of 9604 symbols
+      a=9     d=2   : 0 non-zero of 900 symbols
+      a=33    d=1   : 0 non-zero of 9604 symbols
+      a=225   d=2   : 0 non-zero of 900 symbols
+      total non-zero (must be 0) : 0 of 21008
+
+  (5) why the reduction-type filter is needed: the pair (9, 375)
+      v_5(375) = 3, so v_5(375 d^3) = 6 = 0 (mod 6) when 5 || d: GOOD reduction
+      passes (i),(ii),(iii),(v): 1   passes (iv): 0
+      beta_2 on d = 2 : non-zero (as wanted)
+      beta_5 on d = 10: NON-ZERO -- (E) fails
+      beta_5 on d = -15: NON-ZERO -- (E) fails
+
+  (4) the search: pairs meeting (i)-(v), swept for (E) at q <= 31
+      a        a'        branch       first bad q      verdict
+      -231      231       a'/a cube    none             SURVIVES
+      -207      207       a'/a cube    none             SURVIVES
+      -183      183       a'/a cube    q = 7            (E) fails
+      -159      159       a'/a cube    none             SURVIVES
+      -111      111       a'/a cube    q = 7            (E) fails
+      -87       87        a'/a cube    none             SURVIVES
+      -63       63        a'/a cube    none             SURVIVES
+      -39       39        a'/a cube    none             SURVIVES
+      -15       -225       aa' cube     q = 7            (E) fails
+      -15       15        a'/a cube    q = 7            (E) fails
+      9        -81        aa' cube     none             SURVIVES
+      9        -9         a'/a cube    none             SURVIVES
+      33       -33        a'/a cube    none             SURVIVES
+      57       -57        a'/a cube    q = 7            (E) fails
+      81       -81        a'/a cube    none             SURVIVES
+      81       -9         aa' cube     none             SURVIVES
+      105      -105       a'/a cube    none             SURVIVES
+      129      -129       a'/a cube    none             SURVIVES
+      153      -153       a'/a cube    q = 7            (E) fails
+      177      -177       a'/a cube    none             SURVIVES
+      201      -201       a'/a cube    q = 19           (E) fails
+      225      -225       a'/a cube    q = 7            (E) fails
+      225      15        aa' cube     q = 7            (E) fails
+      249      -249       a'/a cube    none             SURVIVES
+      24 pairs meet (i)-(v); 15 survive the sweep
+
+  (6) the three regimes of the torsion-class comparison
+      a      d      q     q mod 12  dim W_q  -1 sq?   psi_* L'_q vs L_q
+      225    -7      7     7         2        0        DIFFERENT
+      33     31     31    7         2        0        DIFFERENT
+      9      61     61    1         2        1        equal
+      9      5      5     5         1        1        equal
+      9      7      7     7         0        0        equal
+      105    139    139   7         2        0        DIFFERENT
+      dim W_q = 1 is always equal: -1 is a square in the unramified quadratic
+      dim W_q = 2 needs -1 square in Q_q, i.e. q = 1 mod 4
+
+  (7) exact sweep of condition (E), branch a' = -a, q <= 200
+      a        first bad q        q mod 12   verdict
+      9        q = 67             7          (E) FAILS
+      33       q = 31             7          (E) FAILS
+      81       q = 67             7          (E) FAILS
+      105      q = 139            7          (E) FAILS
+      129      q = 67             7          (E) FAILS
+      177      q = 67             7          (E) FAILS
+      249      q = 31             7          (E) FAILS
+      -39       q = 19             7          (E) FAILS
+      -63       q = 31             7          (E) FAILS
+      -87       q = 19             7          (E) FAILS
+      -159      q = 19             7          (E) FAILS
+      -207      q = 43             7          (E) FAILS
+      -231      q = 43             7          (E) FAILS
+      57       q = 7              7          (E) FAILS
+      153      q = 7              7          (E) FAILS
+      225      q = 7              7          (E) FAILS
+      survivors: 0 of 16 -- the branch does not work
+      the first bad q is = 7 (mod 12) in every case
+
+  (8) the criterion Q(sqrt d) inside Q(E[2]), i.e. d = -3 modulo squares
+      a       twist -1     twist 3      twist 5      twist -7     twist -3
+      9       q=67         q=67         q=67         q=61         NONE up to 400
+      81      q=67         q=67         q=67         q=61         NONE up to 400
+      105     q=139        q=139        q=13         q=13         NONE up to 400
+      129     q=67         q=67         q=13         q=13         NONE up to 400
+      33      q=31         q=31         q=97         q=31         NONE up to 400
+      (entries are the first odd q at which condition (E) fails)
+      but the same twist makes beta_2 vanish too:
+        a = 9     d = 1   : beta_2 zero
+        a = 9     d = 2   : beta_2 zero
+        a = 105   d = 1   : beta_2 zero
+        a = 33    d = 2   : beta_2 zero
+      so the branch is a dichotomy: (E) at odd q and beta_2 != 0 are incompatible
+
+  (9) full rational 2-torsion: minimising Sigma = S_1 union S_2
+      684 (pair, psi) scanned; smallest non-empty Sigma has size 1
+      x(x-1)(x-2) / x(x-1)(x-9)  psi = [1, 2, 3]  Sigma = [2]
+      x(x-1)(x--1) / x(x-1)(x-9)  psi = [2, 3, 1]  Sigma = [2]
+      |S_1| = 1 never occurs: reciprocity on the torsion classes forbids it
+
+======================================================================
