@@ -1,0 +1,4 @@
+=== deep p=2 scan, a = 3 only, squarefree |d| <= 10000 ===
+  (4) deep scan at p = 2 for a = 3, squarefree |d| <= 10000
+        ...   1000 twists,   64 rank>=2 candidates, 4 of 8 classes filled
+        ...   2000 twists,  126 rank>=2 candidates, 4 of 8 classes filled
