@@ -256,6 +256,127 @@
   print("      the entire extra cost.");
   g == 0;}
 
+\\ ---------------------------------------------------------------- check 9 --
+/* Unit rank 1 means r_1 + r_2 - 1 = 1, i.e. K has exactly TWO archimedean
+   places.  Then n = r_1 + 2 r_2 = 2 + r_2 <= 4: the rank-one fields are
+   confined to degrees 2, 3, 4, with signatures (2,0), (1,1), (0,2), and there
+   are no others in any degree.  It is also why all three proofs are the same:
+   the trace-zero hyperplane inside R^(r_1+r_2) = R^2 is a LINE.              */
+{check9(N) =
+  my(ok = 1, fam = List());
+  print("  (9) the rank-one fields, in every degree");
+  print("      n     signatures (r_1,r_2) with r_1 + 2r_2 = n, and unit rank r_1+r_2-1");
+  for (n = 2, N,
+    my(L = List());
+    for (r2 = 0, n\2, my(r1 = n - 2*r2);
+      listput(L, Str("(",r1,",",r2,"):", r1+r2-1));
+      if (r1 + r2 - 1 == 1, listput(fam, [n, r1, r2])));
+    printf("      %-5d %s\n", n, Vec(L)));
+  printf("      rank one occurs exactly at %s\n", Vec(fam));
+  foreach(Vec(fam), t, if (t[1] > 4, ok = 0));
+  print("      r_1 + r_2 = 2 forces n = 2 + r_2 <= 4: real quadratic, complex cubic,");
+  print("      totally imaginary quartic, and NOTHING ELSE in any degree.  It is also");
+  print("      why the three proofs coincide -- the trace-zero hyperplane in R^2 is a");
+  print("      line, so discreteness alone already gives rank <= 1.");
+  ok;}
+
+\\ --------------------------------------------------------------- check 10 --
+{sub2(K) = my(r = 0, im = 0);
+  foreach(nfsubfields(K), t, if (poldegree(t[1]) == 2,
+    if (poldisc(t[1]) > 0, r = t[1], im = t[1])));
+  [r, im];}
+
+{check10(fs) =
+  my(ok = 1);
+  print(" (10) totally imaginary quartics: the first place torsion is not +-1");
+  print("      f                         d_K        mu(K)  Gal   real quad subfield   CM?");
+  foreach(fs, f,
+    my(K = bnfinit(f), t = sub2(K), cm = (K.sign[1] == 0 && t[1] != 0));
+    if (K.sign != [0,2], ok = 0);
+    printf("      %-25s %-10d %-6d %-5d %-20s %s\n", f, K.disc, nfrootsof1(K)[1],
+           polgalois(f)[1], if (t[1], t[1], "none"), if (cm, "yes", "no")));
+  print("      A real embedding forces mu(K) = +-1, so the quadratic and cubic cases");
+  print("      never see torsion.  A totally imaginary quartic can contain mu_m for");
+  print("      any m with phi(m) | 4, and does: mu_4, mu_6, mu_8, mu_10, mu_12 all");
+  print("      occur.  The conclusion O^x = mu(K) x eps^Z is unchanged, but eps is now");
+  print("      only defined modulo torsion.");
+  ok;}
+
+\\ --------------------------------------------------------------- check 11 --
+/* If K is CM -- totally imaginary with a totally real subfield K+ of index 2 --
+   then K+ is real quadratic and ALSO has unit rank 1, so O_{K+}^x sits inside
+   O_K^x with finite index.  Hasse: [O_K^x : mu_K O_{K+}^x] = Q in {1,2}.
+   For CM quartics the unit theorem therefore REDUCES to the real quadratic
+   case; the genuinely new fields are the non-CM ones.                        */
+{check11(fs) =
+  my(ok = 1);
+  print(" (11) the CM reduction, and Hasse's unit index");
+  print("      f                         K+            eps+ = zeta . eps_K^Q   Q");
+  foreach(fs, f,
+    my(K = bnfinit(f), t = sub2(K));
+    if (t[1] == 0, printf("      %-25s not CM -- no totally real subfield\n", f),
+      my(Kp = bnfinit(t[1]), ep = nfbasistoalg(Kp, Kp.fu[1]),
+         inc = nfisincl(Kp.pol, K.pol), e, u, Q);
+      if (#inc == 0, ok = 0; printf("      %-25s K+ does not embed in K ??\n", f),
+        e = Mod(subst(lift(ep), variable(Kp.pol), inc[1]), K.pol);
+        u = bnfisunit(K, e);
+        Q = abs(u[1]);
+        if (Q != 1 && Q != 2, ok = 0);
+        printf("      %-25s %-13s %-23s %d\n", f, t[1],
+               Str("eps+ = zeta . eps_K^", u[1]), Q))));
+  print("      Q = 1 or 2 in every case, as Hasse's theorem requires.  So a CM");
+  print("      quartic's fundamental unit is that of its real quadratic subfield, up");
+  print("      to torsion and a square root -- the unit theorem there is the unit");
+  print("      theorem for Q(sqrt d), already done in (3).");
+  ok;}
+
+\\ --------------------------------------------------------------- check 12 --
+/* Existence for a totally imaginary quartic: the same proof again.  Now there
+   is no real embedding, so the small linear form is COMPLEX and the pigeonhole
+   target is 2-dimensional: among the (Q+1)^4 values of sigma_1(alpha), which
+   lie in a disc of radius O(Q), bucket by squares of side delta = C/Q.  There
+   are O(Q^4/C^2) buckets against (Q+1)^4 points, so for C large enough a
+   collision exists, giving |sigma_1(alpha)| <= delta sqrt 2 = O(1/Q) with
+   coefficients O(Q), hence |N(alpha)| = |s_1|^2 |s_2|^2 = O(1/Q^2) O(Q^2) = O(1). */
+{boxq(f, Q, C) =
+  my(th = polroots(f)[1], d = C/Q, M = Map(), out = 0, key);
+  for (a0 = 0, Q, for (a1 = 0, Q, for (a2 = 0, Q, for (a3 = 0, Q,
+    if (!out,
+      my(sg = a0 + a1*th + a2*th^2 + a3*th^3);
+      key = [floor(real(sg)/d), floor(imag(sg)/d)];
+      if (mapisdefined(M, key),
+        my(p = mapget(M, key));
+        if (p != [a0,a1,a2,a3], out = [a0-p[1], a1-p[2], a2-p[3], a3-p[4]]),
+        mapput(M, key, [a0,a1,a2,a3])))))));
+  out;}
+
+{check12(fs, QM, C) =
+  my(ok = 1);
+  print(" (12) existence for a totally imaginary quartic: the same proof again");
+  print("      f                         Q range  max |N(alpha)|  unit found          infinite order?");
+  foreach(fs, f,
+    my(K = bnfinit(f), A = List(), key = List(), mx = 0, hit = 0, u = 0);
+    for (Q = 3, QM, foreach(C, cc,
+      my(t = boxq(f, Q, cc));
+      if (t != 0,
+        my(al = t[1] + t[2]*x + t[3]*x^2 + t[4]*x^3, nm = norm(Mod(al, f)));
+        if (nm != 0,
+          mx = max(mx, abs(nm));
+          listput(A, al);
+          listput(key, [nm, lift(Mod(nfalgtobasis(K, Mod(al,f)), abs(nm)))])))));
+    for (i = 1, #A, for (j = i+1, #A,
+      if (!hit && key[i] == key[j] && A[i] != A[j],
+        my(v = nfeltdiv(K, Mod(A[j],f), Mod(A[i],f)));
+        if (denominator(v) == 1 && abs(nfeltnorm(K,v)) == 1
+            && abs(abs(nfeltembed(K,v)[1]) - 1) > 1e-9, hit = 1; u = v))));
+    if (!hit, ok = 0; printf("      %-25s 3..%-6d %-15d no collision\n", f, QM, mx),
+      printf("      %-25s 3..%-6d %-15d |sigma_1(u)| = %-8.5f yes\n",
+             f, QM, mx, abs(nfeltembed(K,u)[1]))));
+  print("      |N(alpha)| bounded again, and the collision again yields a unit of");
+  print("      infinite order -- here 'not a root of unity' has to be checked as");
+  print("      |sigma_1(u)| =/= 1, since mu(K) is no longer just +-1.");
+  ok;}
+
 \\ ===========================================================================
 print("======================================================================");
 print("dirichlet-rank-one.gp -- the unit theorem where the rank is one");
@@ -268,4 +389,8 @@ check5([2,3,5,6,7,10,11,13,15,17,19,26,29,46], [x^3-x-1, x^3-2, x^3-3], [2,5,10,
 check6(3000, 12); print();
 check7(1000, 10); print();
 check8(3000, 12); print();
+check9(10); print();
+check10([polcyclo(5), polcyclo(8), polcyclo(12), x^4+x+1, x^4+2*x^2+2, x^4-x^3+2*x+1]); print();
+check11([polcyclo(5), polcyclo(8), polcyclo(12), x^4+x+1, x^4+2*x^2+2]); print();
+check12([x^4+x+1, x^4+2*x^2+2, polcyclo(5), polcyclo(8), x^4-x^3+2*x+1], 14, [2.0,2.5,3.0,3.5,4.0,5.0]); print();
 print("======================================================================");

@@ -11,8 +11,8 @@
 #align(center)[
   #text(size: 16pt, weight: "bold")[Where the unit theorem is easy]
   #v(2mm)
-  #text(size: 10pt)[Rank one, twice over: real quadratic fields and complex cubic fields,
-  and exactly how much the second costs]
+  #text(size: 10pt)[Rank one, three times over --- real quadratic, complex cubic, totally
+  imaginary quartic, and nothing else --- and exactly what each costs]
   #v(1mm)
   #text(size: 9pt, style: "italic")[a question of René Pannekoek's; companion to
   `dirichlet-mordell-weil.typ`; checks in `dirichlet-rank-one.gp`]
@@ -37,10 +37,12 @@
     norm; two of them are congruent modulo that norm, and their ratio is a unit $eq.not plus.minus 1$.
   ]
   #v(1.5mm)
-  *The cubic question.* A cubic field has $r_1 + 2r_2 = 3$, so the unit rank $r_1 + r_2 - 1$ is
-  $2$ (totally real) or $1$ (one real place, $d_K < 0$). The rank-one cubics are exactly the
-  *complex* ones, and for them *the very same proof runs* --- checks 3 and 4 run both versions and
-  they differ only in that the pigeonhole is $2$-dimensional instead of $1$-dimensional.
+  *Which fields these are.* Rank $1$ says $r_1 + r_2 = 2$: *exactly two archimedean places.* Then
+  $n = r_1 + 2r_2 = 2 + r_2 <= 4$, so the rank-one fields are confined to degrees $2, 3, 4$ with
+  signatures $(2,0)$, $(1,1)$, $(0,2)$ --- real quadratic, complex cubic, *totally imaginary
+  quartic* --- and there are no others in any degree (check 9). For all three *the very same proof
+  runs*: checks 3, 4 and 12 run the three versions and they differ only in the dimension of the
+  pigeonhole.
 
   #v(1.5mm)
   So the honest answer to "is the cubic case more complicated?" is: *yes, in exactly one structural
@@ -48,15 +50,35 @@
   order $2$ in a group of order $3$; so *every* rank-one cubic is non-Galois. In $QQ(sqrt(d))$ the
   conjugate $u'$ lies inside the field, and $"Tr"(u)$, $N(u)$ are visible there --- the whole
   argument happens inside $K$. In a complex cubic the other two conjugates live outside $K$ and one
-  must work in the Minkowski embedding. Everything else that differs (@sec-ledger) is a matter of
-  what the two cases *support*, not of what the proof costs: continued fractions, the sign of
-  $N(epsilon)$, Artin's inequality.
+  must work in the Minkowski embedding.
+
+  #v(1.5mm)
+  *The quartics add one genuinely new feature and one shortcut* (@sec-quartic). New: with no real
+  embedding, $mu(K)$ is no longer $plus.minus 1$ --- $mu_4, mu_6, mu_8, mu_10, mu_12$ all occur, so
+  $epsilon$ is only defined modulo torsion and "not a root of unity" must be tested as
+  $|sigma_1(u)| eq.not 1$. Shortcut: if $K$ is *CM* its maximal real subfield is real quadratic and
+  *also* of rank $1$, so by Hasse's unit index the whole question reduces to @sec-quad. The
+  genuinely new quartics are the non-CM ones. Everything else that differs (@sec-ledger) is a matter
+  of what the cases *support*, not of what the proof costs.
 ]
 
 = Which fields have unit rank one <sec-which>
 
 Dirichlet's theorem gives $cal(O)_K^times tilde.equiv mu(K) times ZZ^r$ with $r = r_1 + r_2 - 1$.
-Rank $1$ in low degree means:
+So $r = 1$ says $r_1 + r_2 = 2$: the field has *exactly two archimedean places*. Since
+$n = r_1 + 2 r_2 = (r_1 + r_2) + r_2 = 2 + r_2$ and $r_2 <= 2$, this pins the degree:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *The rank-one fields are exactly these three families, in these three degrees:*
+  $ (r_1, r_2) = (2,0) : "real quadratic" , wide (1,1) : "complex cubic" , wide
+    (0,2) : "totally imaginary quartic" . $
+  There are none of unit rank $1$ in any degree $>= 5$.
+]
+
+Check 9 tabulates the signatures degree by degree and confirms this. The same computation explains
+why all three proofs coincide: with $r_1 + r_2 = 2$ the logarithmic image sits in $RR^2$ and the
+trace-zero condition $sum_v n_v log|u|_v = 0$ cuts out a *line*, so discreteness alone already gives
+rank $<= 1$ and only existence is left to prove. In low degree:
 
 #align(center)[
   #table(columns: 5, stroke: 0.4pt, inset: 6pt, align: (left, center, center, center, left),
@@ -65,11 +87,15 @@ Rank $1$ in low degree means:
     [imaginary quadratic], [$(0,1)$], [$0$], [$mu_4$, $mu_6$, $plus.minus 1$], [$-$],
     [totally real cubic], [$(3,0)$], [$2$], [$plus.minus 1$], [$+$],
     [*complex cubic*], [$(1,1)$], [$1$], [$plus.minus 1$], [$-$],
+    [totally real quartic], [$(4,0)$], [$3$], [$plus.minus 1$], [$+$],
+    [quartic, one complex place], [$(2,1)$], [$2$], [$plus.minus 1$], [$-$],
+    [*totally imaginary quartic*], [$(0,2)$], [$1$], [up to $mu_12$], [$+$],
   )
 ]
 
-Both rank-one families have a real embedding, so $mu(K) = {plus.minus 1}$ and there is nothing to
-say about torsion. Check 1 tabulates this.
+The first two rank-one families have a real embedding, so $mu(K) = {plus.minus 1}$ and there is
+nothing to say about torsion. The third does not, and torsion becomes a genuine feature
+(@sec-quartic). Check 1 tabulates the first two, check 10 the third.
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
   *Every rank-one cubic is non-Galois.* If $K slash QQ$ is a Galois cubic it is cyclic, so
@@ -181,6 +207,60 @@ first collision produces in each case a genuine unit of infinite order, a power 
 Note what did *not* change: the norm identity, the pigeonhole, the divisibility $alpha divides
 N(alpha)$, the conclusion. What changed is that the box has two free coordinates instead of one.
 
+= Rank one a third time: totally imaginary quartics <sec-quartic>
+
+Signature $(0,2)$, $d_K > 0$, degree $4$. Everything above runs again, and two things are new.
+
+*Torsion is no longer $plus.minus 1$.* This is the first place in the rank-one story where $mu(K)$
+matters, and it is forced by the absence of a real embedding. $mu_m subset K$ needs $phi(m)
+divides 4$; if $phi(m) = 4$ then $K = QQ(zeta_m)$ itself ($m = 5, 8, 10, 12$), and if $phi(m) = 2$
+then $QQ(zeta_m)$ is an imaginary quadratic subfield ($m = 3, 4, 6$). Check 10 exhibits
+$mu_4, mu_6, mu_8, mu_10, mu_12$. The conclusion $cal(O)_K^times = mu(K) times epsilon^ZZ$ is
+unchanged, but $epsilon$ is only defined modulo torsion, and in the existence proof "not a root of
+unity" has to be tested as $|sigma_1(u)| eq.not 1$ rather than $u eq.not plus.minus 1$.
+
+*Discreteness is unchanged.* With two complex places, $1 = |N(u)| = |sigma_1(u)|^2 |sigma_2(u)|^2$,
+so $|sigma_2(u)| = |sigma_1(u)|^(-1)$: one real parameter controls all four conjugates, exactly as
+before, and bounded conjugates again mean bounded integer symmetric functions.
+
+*Existence: the box principle a third time, now with a complex target.* There is no real embedding,
+so the linear form we make small is *complex* and the pigeonhole target is two-dimensional. Among
+the $(Q+1)^4$ values $sigma_1(alpha)$, $alpha = x_0 + x_1 theta + x_2 theta^2 + x_3 theta^3$ with
+$0 <= x_i <= Q$, which lie in a disc of radius $O(Q)$, bucket by squares of side $delta = C slash Q$:
+there are $O(Q^4 slash C^2)$ buckets against $(Q+1)^4$ points, so for $C$ large enough a collision
+exists. Subtracting gives coefficients $O(Q)$ and
+$ |sigma_1(alpha)| <= delta sqrt(2) = O(1 slash Q) , wide "hence" wide
+  |N(alpha)| = |sigma_1(alpha)|^2 |sigma_2(alpha)|^2 = O(1 slash Q^2) dot O(Q^2) = O(1) . $
+Then the same pigeonhole on $(N(alpha), alpha mod N(alpha))$, and the same divisibility
+$alpha divides N(alpha)$ in $cal(O)_K$. Check 12 runs it for $Q <= 14$ and finds a unit of infinite
+order in every case, with $max |N(alpha)|$ bounded throughout.
+
+#block(fill: luma(243), inset: 9pt, radius: 3pt, width: 100%)[
+  *The CM shortcut.* $K$ is *CM* iff it is totally imaginary with a totally real subfield $K^+$ of
+  index $2$ --- for a quartic, $K^+$ is *real quadratic*, hence *also of unit rank $1$*. Then
+  $cal(O)_(K^+)^times subset cal(O)_K^times$ with finite index, and Hasse's theorem says
+  $ [thin cal(O)_K^times : mu(K) dot cal(O)_(K^+)^times thin] = Q in {1, 2} . $
+  So for CM quartics the unit theorem *reduces to the real quadratic case of @sec-quad*, with
+  nothing new to prove. Check 11 confirms $Q in {1,2}$, with $Q = 2$ realised at $QQ(zeta_12)$.
+
+  #v(1mm)
+  Check 12 sees this without being told: for $QQ(zeta_5)$ the unit its pigeonhole produces has
+  $|sigma_1| = 1.618 dots$, the golden ratio; for $QQ(zeta_8)$ it is $2.414 dots = 1 + sqrt(2)$ ---
+  the fundamental units of $QQ(sqrt(5))$ and $QQ(sqrt(2))$.
+]
+
+*So the genuinely new quartics are the non-CM ones.* A totally imaginary quartic fails to be CM
+exactly when it has no real quadratic subfield --- either none at all (a *primitive* quartic, Galois
+group $S_4$ or $A_4$) or only an imaginary one, whose units are finite and give nothing. Check 10
+exhibits both: $x^4 + x + 1$ has group $S_4$ and $mu(K) = plus.minus 1$; $x^4 + 2x^2 + 2$ and
+$x^4 - x^3 + 2x + 1$ have group $D_4$ with $mu_4$ and $mu_6$, so they contain $QQ(i)$ and
+$QQ(zeta_3)$ respectively but no real quadratic subfield. On those fields the box principle of
+check 12 is doing real work.
+
+Note also that complex conjugation is an automorphism of $K$ precisely in the CM case. So the
+non-Galois difficulty diagnosed for cubics in @sec-ledger recurs here, and in the same shape: the
+fields where the argument can be run inside $K$ are exactly the ones where it does not need to be.
+
 = The ledger: what actually differs <sec-ledger>
 
 Setting the two proofs side by side, here is everything that is genuinely different.
@@ -215,6 +295,15 @@ Setting the two proofs side by side, here is everything that is genuinely differ
   reaches $0.9936$ at $x^3 + 7x - 1$. So a complex cubic's fundamental unit is bounded *below* by
   its discriminant, which is why its regulator cannot be small.
 
++ *Torsion, in the quartic case only (check 10).* A real embedding forces $mu(K) = plus.minus 1$,
+  which is why the quadratic and cubic cases never mention it. Totally imaginary quartics realise
+  $mu_4, mu_6, mu_8, mu_10, mu_12$, and $epsilon$ becomes well defined only modulo $mu(K)$.
+
++ *The CM reduction (check 11).* Unique to degree $4$: a CM quartic has a real quadratic subfield
+  of unit rank $1$, and Hasse's index $Q in {1,2}$ makes its unit group that of $QQ(sqrt(d))$ up to
+  torsion and a square root. Nothing analogous happens for cubics, which have no proper subfield
+  at all.
+
 + *Size of the regulator (check 7).* For $d <= 1000$ the largest real quadratic regulator is
   $68.80$ at $d = 991$, at the scale of $sqrt(d)$; for $|d_K| <= 1000$ the largest complex cubic
   regulator is $12.51$, at the scale of $log |d_K|$. The lower bound is Artin's theorem; the upper
@@ -235,6 +324,18 @@ embedding rather than inside $K$, and the pigeonhole gains a dimension. Both pro
 two steps and the second is no deeper than the first. Where the cubic case really does fall behind
 is *algorithmically* --- continued fractions have no easy analogue --- and where it gets something
 back is Artin's inequality, which has no quadratic counterpart.
+
+*And the quartics?* Same again, with the pigeonhole target now two-dimensional. The one genuinely
+new ingredient is torsion, which the two smaller cases are spared by having a real embedding; and
+the CM half of the family is not new at all, since Hasse's index hands it back to @sec-quad. The
+non-CM totally imaginary quartics are the only rank-one fields where the argument has to be run in
+full, with no automorphism to lean on and no smaller field to descend to --- and even there it is
+the same two steps.
+
+*The general shape.* All three cases are: *two archimedean places, so the log image lies on a line;
+discreteness is free; one unit of infinite order finishes it.* The degree only sets the dimension of
+the box. That is the whole reason the theorem is easy here, and it stops at degree $4$ because
+$r_1 + r_2 = 2$ cannot hold any higher.
 
 = The checks <sec-gp>
 
@@ -257,6 +358,14 @@ back is Artin's inequality, which has no quadratic counterpart.
        no violations, sup ratio $0.9936$],
   [7], [largest regulator in each family, $|d_K| <= 1000$],
   [8], [no complex cubic among $403$ is Galois --- the structural difference, verified],
+  [9], [the rank-one classification, degree by degree: $(2,0)$, $(1,1)$, $(0,2)$ and nothing
+       in any degree $>= 5$],
+  [10], [totally imaginary quartics: $d_K$, $mu(K)$, Galois group, real quadratic subfield or
+        not, CM or not --- $mu_4, mu_6, mu_8, mu_10, mu_12$ all realised],
+  [11], [Hasse's unit index for the CM quartics: $Q in {1,2}$ in every case, $Q = 2$ at
+        $QQ(zeta_12)$],
+  [12], [the quartic existence proof, run: the $2$-dimensional bucket collision,
+        $max|N(alpha)|$ bounded for $Q <= 14$, and a unit of infinite order in every case],
 )
 
 = References <sec-refs>
@@ -267,5 +376,7 @@ back is Artin's inequality, which has no quadratic counterpart.
   Number Theory*, Ch. 5 for the algorithmic side and Voronoi's algorithm for cubics.
 - Artin's inequality for complex cubic fields: Delone--Faddeev, *The Theory of Irrationalities of
   the Third Degree*; also in Cohen's Ch. 6 discussion of unit computation in cubic fields.
+- CM fields and Hasse's unit index $Q$: Washington, *Introduction to Cyclotomic Fields*, Ch. 4
+  (where $Q$ is computed for cyclotomic fields), and Shimura for the general CM theory.
 - The companion note `dirichlet-mordell-weil.typ` treats the different question of whether Dirichlet
   splits into an arithmetic and a height half the way Mordell--Weil does.

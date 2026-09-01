@@ -100,4 +100,58 @@ dirichlet-rank-one.gp -- the unit theorem where the rank is one
       in the Minkowski embedding.  That, and the 2-dimensional pigeonhole, is
       the entire extra cost.
 
+  (9) the rank-one fields, in every degree
+      n     signatures (r_1,r_2) with r_1 + 2r_2 = n, and unit rank r_1+r_2-1
+      2     ["(2,0):1", "(0,1):0"]
+      3     ["(3,0):2", "(1,1):1"]
+      4     ["(4,0):3", "(2,1):2", "(0,2):1"]
+      5     ["(5,0):4", "(3,1):3", "(1,2):2"]
+      6     ["(6,0):5", "(4,1):4", "(2,2):3", "(0,3):2"]
+      7     ["(7,0):6", "(5,1):5", "(3,2):4", "(1,3):3"]
+      8     ["(8,0):7", "(6,1):6", "(4,2):5", "(2,3):4", "(0,4):3"]
+      9     ["(9,0):8", "(7,1):7", "(5,2):6", "(3,3):5", "(1,4):4"]
+      10    ["(10,0):9", "(8,1):8", "(6,2):7", "(4,3):6", "(2,4):5", "(0,5):4"]
+      rank one occurs exactly at [[2, 2, 0], [3, 1, 1], [4, 0, 2]]
+      r_1 + r_2 = 2 forces n = 2 + r_2 <= 4: real quadratic, complex cubic,
+      totally imaginary quartic, and NOTHING ELSE in any degree.  It is also
+      why the three proofs coincide -- the trace-zero hyperplane in R^2 is a
+      line, so discreteness alone already gives rank <= 1.
+
+ (10) totally imaginary quartics: the first place torsion is not +-1
+      f                         d_K        mu(K)  Gal   real quad subfield   CM?
+      x^4 + x^3 + x^2 + x + 1   125        10     4     x^2 + x - 1          yes
+      x^4 + 1                   256        8      4     x^2 - 2              yes
+      x^4 - x^2 + 1             144        12     4     x^2 - 3              yes
+      x^4 + x + 1               229        2      24    none                 no
+      x^4 + 2*x^2 + 2           512        4      8     none                 no
+      x^4 - x^3 + 2*x + 1       189        6      8     none                 no
+      A real embedding forces mu(K) = +-1, so the quadratic and cubic cases
+      never see torsion.  A totally imaginary quartic can contain mu_m for
+      any m with phi(m) | 4, and does: mu_4, mu_6, mu_8, mu_10, mu_12 all
+      occur.  The conclusion O^x = mu(K) x eps^Z is unchanged, but eps is now
+      only defined modulo torsion.
+
+ (11) the CM reduction, and Hasse's unit index
+      f                         K+            eps+ = zeta . eps_K^Q   Q
+      x^4 + x^3 + x^2 + x + 1   x^2 + x - 1   eps+ = zeta . eps_K^-1  1
+      x^4 + 1                   x^2 - 2       eps+ = zeta . eps_K^-1  1
+      x^4 - x^2 + 1             x^2 - 3       eps+ = zeta . eps_K^2   2
+      x^4 + x + 1               not CM -- no totally real subfield
+      x^4 + 2*x^2 + 2           not CM -- no totally real subfield
+      Q = 1 or 2 in every case, as Hasse's theorem requires.  So a CM
+      quartic's fundamental unit is that of its real quadratic subfield, up
+      to torsion and a square root -- the unit theorem there is the unit
+      theorem for Q(sqrt d), already done in (3).
+
+ (12) existence for a totally imaginary quartic: the same proof again
+      f                         Q range  max |N(alpha)|  unit found          infinite order?
+      x^4 + x + 1               3..14     3               |sigma_1(u)| = 0.84477  yes
+      x^4 + 2*x^2 + 2           3..14     20              |sigma_1(u)| = 0.46567  yes
+      x^4 + x^3 + x^2 + x + 1   3..14     1               |sigma_1(u)| = 1.61803  yes
+      x^4 + 1                   3..14     2               |sigma_1(u)| = 2.41421  yes
+      x^4 - x^3 + 2*x + 1       3..14     1               |sigma_1(u)| = 1.53922  yes
+      |N(alpha)| bounded again, and the collision again yields a unit of
+      infinite order -- here 'not a root of unity' has to be checked as
+      |sigma_1(u)| =/= 1, since mu(K) is no longer just +-1.
+
 ======================================================================
