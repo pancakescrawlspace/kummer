@@ -1,0 +1,252 @@
+======================================================================
+plusminus-beta.gp -- the pairing beta for y^2 = x^3 -+ c^3
+
+  (1) the configuration
+      c       N(E)      N(E')     E[2](Q)  E'[2](Q)  Q(E[2])                Q(E'[2])               isog?
+      1       144       36        [2]      [6]       x^2 - x + 1            x^2 - x + 1            no
+      3       36        144       [2]      [2]       x^2 - x + 1            x^2 - x + 1            no
+      5       3600      900       [2]      [2]       x^2 - x + 1            x^2 - x + 1            no
+      7       1764      7056      [2]      [2]       x^2 - x + 1            x^2 - x + 1            no
+      21      7056      1764      [2]      [2]       x^2 - x + 1            x^2 - x + 1            no
+      26      97344     97344     [2]      [2]       x^2 - x + 1            x^2 - x + 1            no
+      30      14400     14400     [2]      [2]       x^2 - x + 1            x^2 - x + 1            no
+      both cubics factor as (linear)(quadratic) with quadratic discriminant -3c^2,
+      so both 2-division fields are Q(zeta_3) and E[2] = E'[2] = F_2[C_2].
+      Aut_G(F_2[C_2]) = (F_2[C_2])^x = {1, sigma} has order 2:
+      exactly TWO isomorphisms psi : E[2] -> E'[2].
+
+  (2) the two psi on the rational 2-torsion
+      T_0 = (c,0) on E and T'_0 = (-c,0) on E' are the rational 2-torsion,
+      delta(T_0) = [3c^2, c(1-zeta)],  delta'(T'_0) = [3c^2, -c(1-zeta)].
+      c = 1      delta(T_0) / psi_2^-1 delta'(T'_0) = y          / psi_1^-1 delta'(T'_0) = -1
+      c = 3      delta(T_0) / psi_2^-1 delta'(T'_0) = y          / psi_1^-1 delta'(T'_0) = -1
+      c = 21     delta(T_0) / psi_2^-1 delta'(T'_0) = y          / psi_1^-1 delta'(T'_0) = -1
+      c = 26     delta(T_0) / psi_2^-1 delta'(T'_0) = y          / psi_1^-1 delta'(T'_0) = -1
+      zeta_3 = (zeta_3^2)^2 is a GLOBAL square in K, so psi_2 matches the
+      rational 2-torsion classes EXACTLY, at every place at once.
+      psi_1 misses by the class [1,-1], so wherever L_v = <delta(T_0)> is
+      one-dimensional the whole of beta_v^{psi_1} is the single symbol
+        <delta(T_0), [1,-1]>_v = prod_{w|v} ( c(1-zeta), -1 )_{K_w},
+      the Legendre symbol of -1 in the residue field of K_w:
+      v      K (x) Q_v            residue field   (c(1-zeta),-1)   dim L_v
+      3      ramified          F_3             -1             1 
+      5      inert             F_(v^2)         1              1 
+      7      split             F_v x F_v       1              2 
+      11     inert             F_(v^2)         1              1 
+      13     split             F_v x F_v       1              2 
+      17     inert             F_(v^2)         1              1 
+      19     split             F_v x F_v       1              2 
+      23     inert             F_(v^2)         1              1 
+      31     split             F_v x F_v       1              2 
+      37     split             F_v x F_v       1              2 
+      43     split             F_v x F_v       1              2 
+      -1 is a square in F_(v^2) for every v, and in F_v iff v = 1 mod 4;
+      it is a non-square in F_3.  So among the places with dim L_v = 1 the
+      symbol is -1 at v = 3 ALONE.  The places v = 1 mod 3 have dim L_v = 2
+      and need the full 2 x 2 test -- that is where v = 7 mod 12 enters.
+
+  (3) local structure of A_v^x/2 and of the Kummer images  (c = 21)
+      v     dim A_v^x/2  Gram rank   dim L_v  dim L'_v  predicted  L_v isotropic?
+      0     1            1           0        0         0          yes
+      2     7            7           2        2         2          yes
+      3     4            4           1        1         1          yes
+      5     4            4           1        1         1          yes
+      7     6            6           2        2         2          yes
+      11    4            4           1        1         1          yes
+      13    6            6           2        2         2          yes
+      19    6            6           2        2         2          yes
+      31    6            6           2        2         2          yes
+      dim L_v = dim E[2](Q_v) for v odd, one more at v = 2, zero at v = oo
+      (E(R) is connected: x^3 - c^3 has one real root), and L_v is a
+      Lagrangian for the cup product -- so beta_v = 0 iff psi_* L_v = L'_v.
+
+  (4) reduction at odd primes: j = 0, so never multiplicative
+      c      v     type   c_v   Phi_v            order-4 point?
+      3      3     III*   2     Z/2              no
+      21     3     III*   2     Z/2              no
+      21     7     I0*    4     exponent 2       no
+      26     3     III    2     Z/2              no
+      26     13    I0*    4     exponent 2       no
+      30     3     III*   2     Z/2              no
+      30     5     I0*    2     exponent 2       no
+      42     3     III*   2     Z/2              no
+      42     7     I0*    4     exponent 2       no
+      Every type occurring is potentially good (never I_n or I_n*, n >= 1),
+      so Phi_v has exponent 2 or order 3 and no element of order 4.
+      E_0(Q_v) is uniquely 2-divisible for v odd (E_1 = Z_v, E_0/E_1 of odd
+      order), hence E(Q_v)[2] = Phi_v[2] and E(Q_v) has NO point of order 4;
+      with |E(Q_v)/2| = |E[2](Q_v)| this gives L_v = delta(E[2](Q_v)).
+
+  (5) beta_v over ALL square classes of c -- a complete check at each v
+      v      c      v_v(c)   beta_v(psi_1)   beta_v(psi_2)
+      2      1      0        NONZERO         zero
+      2      3      0        NONZERO         zero
+      2      5      0        NONZERO         zero
+      2      7      0        NONZERO         zero
+      2      2      1        NONZERO         NONZERO
+      2      6      1        NONZERO         NONZERO
+      2      10     1        NONZERO         NONZERO
+      2      14     1        NONZERO         NONZERO
+      3      1      0        NONZERO         zero
+      3      2      0        NONZERO         zero
+      3      3      1        NONZERO         zero
+      3      6      1        NONZERO         zero
+      5      1      0        zero            zero
+      5      2      0        zero            zero
+      5      5      1        zero            zero
+      5      10     1        zero            zero
+      7      1      0        zero            zero
+      7      3      0        zero            zero
+      7      7      1        NONZERO         zero
+      7      21     1        NONZERO         zero
+      11     1      0        zero            zero
+      11     2      0        zero            zero
+      11     11     1        zero            zero
+      11     22     1        zero            zero
+      13     1      0        zero            zero
+      13     2      0        zero            zero
+      13     13     1        zero            zero
+      13     26     1        zero            zero
+      17     1      0        zero            zero
+      17     3      0        zero            zero
+      17     17     1        zero            zero
+      17     51     1        zero            zero
+      19     1      0        zero            zero
+      19     2      0        zero            zero
+      19     19     1        NONZERO         zero
+      19     38     1        NONZERO         zero
+      23     1      0        zero            zero
+      23     5      0        zero            zero
+      23     23     1        zero            zero
+      23     115    1        zero            zero
+      29     1      0        zero            zero
+      29     2      0        zero            zero
+      29     29     1        zero            zero
+      29     58     1        zero            zero
+      31     1      0        zero            zero
+      31     3      0        zero            zero
+      31     31     1        NONZERO         zero
+      31     93     1        NONZERO         zero
+      37     1      0        zero            zero
+      37     2      0        zero            zero
+      37     37     1        zero            zero
+      37     74     1        zero            zero
+      41     1      0        zero            zero
+      41     3      0        zero            zero
+      41     41     1        zero            zero
+      41     123    1        zero            zero
+      43     1      0        zero            zero
+      43     2      0        zero            zero
+      43     43     1        NONZERO         zero
+      43     86     1        NONZERO         zero
+      Reading off:   beta_v^{psi_2} =/= 0  <=>  v = 2 and v_2(c) odd
+                     beta_v^{psi_1} =/= 0  <=>  v = 2, or v = 3, or
+                                              v = 7 mod 12 with v_v(c) odd
+      predictions matched at every class: YES
+
+  (6) Sigma over the twist family, a = odd prime, d squarefree, c = a d
+      Sigma_w = { v : beta_v^{psi_w} =/= 0 }, tested at 0, 2, 3, p | c and [5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43]
+      128 twists;  psi_1 rule: 0 mismatches;  psi_2 rule: 0 mismatches
+      so for d EVEN, Sigma_2 = {2} exactly -- a one-place obstruction;
+      for every d, Sigma_1 contains {2,3} -- a two-place obstruction.
+
+  (7) reciprocity on genuine global points:  prod_v beta_v(P,P') = 1
+      c = 26    v_2(c) = 1   P = [65, 507]                P' = [22, 168]
+        psi_1: beta_v =/= 0 at v in [2, 3]         product = +1
+        psi_2: beta_v =/= 0 at v in []             product = +1
+      c = -26    v_2(c) = 1   P = [22, 168]                P' = [65, 507]
+        psi_1: beta_v =/= 0 at v in [2, 3]         product = +1
+        psi_2: beta_v =/= 0 at v in []             product = +1
+      c = 38    v_2(c) = 1   P = [57, 361]                P' = [1178, 40432]
+        psi_1: beta_v =/= 0 at v in [2, 19]        product = +1
+        psi_2: beta_v =/= 0 at v in []             product = +1
+      c = 78    v_2(c) = 1   P = [20238/121, 2729160/1331] P' = [-26, 676]
+        psi_1: beta_v =/= 0 at v in []             product = +1
+        psi_2: beta_v =/= 0 at v in []             product = +1
+      c = 33    v_2(c) = 0   P = [55977/1369, 9121140/50653] P' = [-6, 189]
+        psi_1: beta_v =/= 0 at v in [2, 3]         product = +1
+        psi_2: beta_v =/= 0 at v in []             product = +1
+      c = -33    v_2(c) = 0   P = [-6, 189]                P' = [55977/1369, 9121140/50653]
+        psi_1: beta_v =/= 0 at v in [2, 3]         product = +1
+        psi_2: beta_v =/= 0 at v in []             product = +1
+      Every product is +1.  Note what this MEANS for v_2(c) odd: Sigma_2 = {2},
+      so beta_2(P,P') = 0 is forced for global points, while beta_2 is a
+      non-trivial pairing on E(Q_2)/2 x E'(Q_2)/2 -- see check (8).
+
+  (8) the 2-adic obstruction, exhibited
+      c = 1      v_2(c) = 0 :  beta_2 vanishes identically
+      c = 3      v_2(c) = 0 :  beta_2 vanishes identically
+      c = 21     v_2(c) = 0 :  beta_2 vanishes identically
+      c = 33     v_2(c) = 0 :  beta_2 vanishes identically
+      c = 2      v_2(c) = 1 :  <g, psi_2^-1 h>_2 = -1
+                    g = [-1, -2*y + 1]             in L_2
+                    h = [3, 2*y + 1]               in L'_2
+      c = 6      v_2(c) = 1 :  <g, psi_2^-1 h>_2 = -1
+                    g = [-5, -6*y + 1]             in L_2
+                    h = [-1, 6*y - 7]              in L'_2
+      c = 26     v_2(c) = 1 :  <g, psi_2^-1 h>_2 = -1
+                    g = [-1, -26*y + 25]           in L_2
+                    h = [27, 26*y + 1]             in L'_2
+      c = 38     v_2(c) = 1 :  <g, psi_2^-1 h>_2 = -1
+                    g = [-37, -38*y + 1]           in L_2
+                    h = [-1, 38*y - 39]            in L'_2
+      c = 78     v_2(c) = 1 :  <g, psi_2^-1 h>_2 = -1
+                    g = [-77, -78*y + 1]           in L_2
+                    h = [-1, 78*y - 79]            in L'_2
+      c = 28     v_2(c) = 2 :  beta_2 vanishes identically
+      c = 44     v_2(c) = 2 :  beta_2 vanishes identically
+      For v_2(c) odd the open set { beta_2 = 1 } in E(Q_2) x E'(Q_2) is
+      non-empty and contains no rational point: (E x E')(Q) is NOT dense.
+
+  (9) what the Lemma really needs
+      (a) the ratios (e_i - e_k)/(e'_{psi i} - e'_{psi k}) -- the ONLY data
+          delta sees on the 2-torsion.  c cancels in both cases:
+          c = 1     psi_1 : (0,1)->-1       (0,2)->-1       (1,0)->-1       (1,2)->-1       (2,0)->-1       (2,1)->-1        all squares in K? no
+          c = 1     psi_2 : (0,1)->y        (0,2)->-y - 1   (1,0)->y        (1,2)->1        (2,0)->-y - 1   (2,1)->1         all squares in K? YES
+          c = 3     psi_1 : (0,1)->-1       (0,2)->-1       (1,0)->-1       (1,2)->-1       (2,0)->-1       (2,1)->-1        all squares in K? no
+          c = 3     psi_2 : (0,1)->y        (0,2)->-y - 1   (1,0)->y        (1,2)->1        (2,0)->-y - 1   (2,1)->1         all squares in K? YES
+          c = 21    psi_1 : (0,1)->-1       (0,2)->-1       (1,0)->-1       (1,2)->-1       (2,0)->-1       (2,1)->-1        all squares in K? no
+          c = 21    psi_2 : (0,1)->y        (0,2)->-y - 1   (1,0)->y        (1,2)->1        (2,0)->-y - 1   (2,1)->1         all squares in K? YES
+          c = 26    psi_1 : (0,1)->-1       (0,2)->-1       (1,0)->-1       (1,2)->-1       (2,0)->-1       (2,1)->-1        all squares in K? no
+          c = 26    psi_2 : (0,1)->y        (0,2)->-y - 1   (1,0)->y        (1,2)->1        (2,0)->-y - 1   (2,1)->1         all squares in K? YES
+          psi_2 leaves zeta_3^(i+k), of ODD order hence a square: the Lemma.
+          psi_1 leaves -1, a square only where -1 is: the Lemma FAILS for it.
+          Both are G-isomorphisms E[2] -> E'[2], so the Lemma is NOT formal.
+      (b) delta(T_0) is exactly the 4-divisibility datum:
+          c      v     T_0 in 2E(Q_v)?   delta(T_0) trivial?   agree?
+          1      5     no                no                    ok
+          1      7     no                no                    ok
+          1      11    yes               yes                   ok
+          1      13    no                no                    ok
+          1      19    no                no                    ok
+          1      31    no                no                    ok
+          1      37    yes               yes                   ok
+          1      43    no                no                    ok
+          3      5     no                no                    ok
+          3      7     no                no                    ok
+          3      11    yes               yes                   ok
+          3      13    no                no                    ok
+          3      19    no                no                    ok
+          3      31    no                no                    ok
+          3      37    yes               yes                   ok
+          3      43    no                no                    ok
+          21     5     no                no                    ok
+          21     7     no                no                    ok
+          21     11    yes               yes                   ok
+          21     13    yes               yes                   ok
+          21     19    no                no                    ok
+          21     31    no                no                    ok
+          21     37    yes               yes                   ok
+          21     43    no                no                    ok
+          26     5     no                no                    ok
+          26     7     no                no                    ok
+          26     11    yes               yes                   ok
+          26     13    no                no                    ok
+          26     19    no                no                    ok
+          26     31    no                no                    ok
+          26     37    yes               yes                   ok
+          26     43    no                no                    ok
+          32 comparisons, 0 mismatches -- delta|E[2] is the connecting map
+          of 0 -> E[2] -> E[4] -> E[2] -> 0, so it remembers E[4], not E[2].
+
+======================================================================
