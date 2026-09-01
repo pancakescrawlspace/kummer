@@ -42,8 +42,56 @@ plusminus-cube.gp -- y^2 = x^3 -+ a^3, and the 2-adic gap
         p = 17  : 4 of 4  [1]=26 [u]=39 [17]=17 [u*17]=51 
         p = 19  : 4 of 4  [1]=1 [u]=-1 [19]=95 [u*19]=-95 
 
-  (4) deep scan at p = 2 for a = 3, squarefree |d| <= 3000
-        ...    500 twists,   32 rank>=2 candidates, 4 of 8 classes filled
-        ...   1000 twists,   64 rank>=2 candidates, 4 of 8 classes filled
-        ...   1500 twists,  100 rank>=2 candidates, 4 of 8 classes filled
-        ...   2000 twists,  126 rank>=2 candidates, 4 of 8 classes filled
+  (4) deep scan at p = 2 for a = 3, squarefree |d| <= 100000, budget 300 s
+        ... |d| <=   203,    250 twists,   14 rank>=2,     1 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
+        ... |d| <=   410,    500 twists,   32 rank>=2,    42 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
+        ... |d| <=   614,    750 twists,   44 rank>=2,    43 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
+        ... |d| <=   817,   1000 twists,   64 rank>=2,   299 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
+      reached |d| <= 1006 in 300 s (budget exhausted)
+      1226 squarefree twists scanned; 72 even ones with rank >= 2 on the
+      even-root-number curve, 72 of those with both ranks positive
+      4 of 8 square classes covered:
+        [1  ] : d = -7
+        [3  ] : d = -21
+        [5  ] : d = 21
+        [7  ] : d = 7
+        [2  ] : none
+        [6  ] : none
+        [10 ] : none
+        [14 ] : none
+
+  (4) deep scan at p = 2 for a = 5, squarefree |d| <= 100000, budget 300 s
+        ... |d| <=   203,    250 twists,   18 rank>=2,     0 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
+        ... |d| <=   410,    500 twists,   32 rank>=2,    30 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
+      reached |d| <= 478 in 698 s (budget exhausted)
+      586 squarefree twists scanned; 36 even ones with rank >= 2 on the
+      even-root-number curve, 36 of those with both ranks positive
+      4 of 8 square classes covered:
+        [1  ] : d = -7
+        [3  ] : d = -21
+        [5  ] : d = 21
+        [7  ] : d = 7
+        [2  ] : none
+        [6  ] : none
+        [10 ] : none
+        [14 ] : none
+
+  (4) deep scan at p = 2 for a = 7, squarefree |d| <= 100000, budget 300 s
+        ... |d| <=   203,    250 twists,   22 rank>=2,     0 s, 4 of 8: 1=1 3=3 5=-3 7=-1 2=-- 6=-- 10=-- 14=--
+        ... |d| <=   410,    500 twists,   42 rank>=2,     0 s, 4 of 8: 1=1 3=3 5=-3 7=-1 2=-- 6=-- 10=-- 14=--
+        ... |d| <=   614,    750 twists,   64 rank>=2,     1 s, 4 of 8: 1=1 3=3 5=-3 7=-1 2=-- 6=-- 10=-- 14=--
+        ... |d| <=   817,   1000 twists,   86 rank>=2,   103 s, 4 of 8: 1=1 3=3 5=-3 7=-1 2=-- 6=-- 10=-- 14=--
+      reached |d| <= 1002 in 1078 s (budget exhausted)
+      1220 squarefree twists scanned; 96 even ones with rank >= 2 on the
+      even-root-number curve, 96 of those with both ranks positive
+      4 of 8 square classes covered:
+        [1  ] : d = 1
+        [3  ] : d = 3
+        [5  ] : d = -3
+        [7  ] : d = -1
+        [2  ] : none
+        [6  ] : none
+        [10 ] : none
+        [14 ] : none
+
+======================================================================

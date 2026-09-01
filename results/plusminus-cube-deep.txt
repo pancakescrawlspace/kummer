@@ -1,4 +1,91 @@
-=== deep p=2 scan, a = 3 only, squarefree |d| <= 10000 ===
-  (4) deep scan at p = 2 for a = 3, squarefree |d| <= 10000
-        ...   1000 twists,   64 rank>=2 candidates, 4 of 8 classes filled
-        ...   2000 twists,  126 rank>=2 candidates, 4 of 8 classes filled
+======================================================================
+plusminus-cube.gp, check 4 only -- the long deep scan at p = 2
+======================================================================
+
+A single run of check 4 for each of a = 3, 5, 7, launched in parallel as
+
+    echo 'AONLY=<a>; BUDGET=5400; read("plusminus-cube.gp")' | gp -q -s 8000000000
+
+on 2026-09-01.  The default budget in the script is 300 s per value of a and
+produces results/plusminus-cube.txt; this file records the deeper run.
+
+Two things to know when reading it.
+
+  * The budget is a FLOOR, not a deadline.  check 4 tests the clock only
+    between values of |d|, and a single twist can spend an hour inside
+    ellheegner / ellsaturation, so each process ran to roughly 8000 s against
+    a 5400 s budget.  The "reached |d| <= N" line is the honest bound.
+
+  * The progress lines below are in the format the script had WHEN THIS RUN
+    STARTED.  The script was edited while the run was in flight -- the current
+    version prints the witness table on every progress line, not just a count.
+    The numbers are unaffected: gp had already parsed check 4 into memory
+    before the edit, so the computation is the pre-edit code throughout.  The
+    edit did corrupt what gp read AFTER the driver returned, and that trailing
+    output has been removed here.
+
+  (4) deep scan at p = 2 for a = 3, squarefree |d| <= 100000, budget 5400 s
+        ... |d| <=   203,    250 twists,   14 rank>=2, 4 of 8 classes,     1 s
+        ... |d| <=   410,    500 twists,   32 rank>=2, 4 of 8 classes,    45 s
+        ... |d| <=   614,    750 twists,   44 rank>=2, 4 of 8 classes,    45 s
+        ... |d| <=   817,   1000 twists,   64 rank>=2, 4 of 8 classes,   358 s
+        ... |d| <=  1027,   1250 twists,   72 rank>=2, 4 of 8 classes,   359 s
+        ... |d| <=  1231,   1500 twists,  100 rank>=2, 4 of 8 classes,  1728 s
+        ... |d| <=  1434,   1750 twists,  112 rank>=2, 4 of 8 classes,  2033 s
+        ... |d| <=  1637,   2000 twists,  126 rank>=2, 4 of 8 classes,  3699 s
+        ... |d| <=  1851,   2250 twists,  136 rank>=2, 4 of 8 classes,  5030 s
+      reached |d| <= 1966 in 8487 s (budget exhausted)
+      2388 squarefree twists scanned; 144 even ones with rank >= 2 on the
+      even-root-number curve, 144 of those with both ranks positive
+      4 of 8 square classes covered:
+        [1  ] : d = -7
+        [3  ] : d = -21
+        [5  ] : d = 21
+        [7  ] : d = 7
+        [2  ] : none
+        [6  ] : none
+        [10 ] : none
+        [14 ] : none
+
+  (4) deep scan at p = 2 for a = 5, squarefree |d| <= 100000, budget 5400 s
+        ... |d| <=   203,    250 twists,   18 rank>=2, 4 of 8 classes,     0 s
+        ... |d| <=   410,    500 twists,   32 rank>=2, 4 of 8 classes,    38 s
+        ... |d| <=   614,    750 twists,   48 rank>=2, 4 of 8 classes,   862 s
+        ... |d| <=   817,   1000 twists,   68 rank>=2, 4 of 8 classes,  4981 s
+        ... |d| <=  1027,   1250 twists,   72 rank>=2, 4 of 8 classes,  4982 s
+      reached |d| <= 1094 in 8275 s (budget exhausted)
+      1328 squarefree twists scanned; 76 even ones with rank >= 2 on the
+      even-root-number curve, 76 of those with both ranks positive
+      4 of 8 square classes covered:
+        [1  ] : d = -7
+        [3  ] : d = -21
+        [5  ] : d = 21
+        [7  ] : d = 7
+        [2  ] : none
+        [6  ] : none
+        [10 ] : none
+        [14 ] : none
+
+  (4) deep scan at p = 2 for a = 7, squarefree |d| <= 100000, budget 5400 s
+        ... |d| <=   203,    250 twists,   22 rank>=2, 4 of 8 classes,     0 s
+        ... |d| <=   410,    500 twists,   42 rank>=2, 4 of 8 classes,     0 s
+        ... |d| <=   614,    750 twists,   64 rank>=2, 4 of 8 classes,     1 s
+        ... |d| <=   817,   1000 twists,   86 rank>=2, 4 of 8 classes,   129 s
+        ... |d| <=  1027,   1250 twists,   98 rank>=2, 4 of 8 classes,  1350 s
+        ... |d| <=  1231,   1500 twists,  110 rank>=2, 4 of 8 classes,  2286 s
+        ... |d| <=  1434,   1750 twists,  122 rank>=2, 4 of 8 classes,  2287 s
+        ... |d| <=  1637,   2000 twists,  140 rank>=2, 4 of 8 classes,  2288 s
+      reached |d| <= 1702 in 7610 s (budget exhausted)
+      2072 squarefree twists scanned; 146 even ones with rank >= 2 on the
+      even-root-number curve, 146 of those with both ranks positive
+      4 of 8 square classes covered:
+        [1  ] : d = 1
+        [3  ] : d = 3
+        [5  ] : d = -3
+        [7  ] : d = -1
+        [2  ] : none
+        [6  ] : none
+        [10 ] : none
+        [14 ] : none
+
+======================================================================

@@ -23,13 +23,20 @@
 #block(fill: luma(240), inset: 9pt, radius: 3pt, width: 100%)[
   *Summary.* For $a = 3, 5, 7$ and every odd $p <= 19$, a single twist covers each square class, so
   $X(QQ)$ is dense in $X(QQ_p)$ there (@sec-odd). At $p = 2$ the four *odd* square classes have
-  witnesses and the four *even* ones have none --- out to $abs(d) <= 10^4$ (@sec-deep). That is the
-  exact signature of `kummer-example-j0.typ`, and the reason is visible: $E'$ is the quadratic twist
-  of $E$ by $-1$, and here *globally*, $E'_d = E_(-d)$. But the pair is *not* covered by either
+  witnesses and the four *even* ones have none, however far the scan is pushed (@sec-deep). That is
+  the exact signature of `kummer-example-j0.typ`, and the reason is visible: $E'$ is the quadratic
+  twist of $E$ by $-1$, and here *globally*, $E'_d = E_(-d)$. The pair is *not* covered by either
   branch of `j0-obstruction-family.typ`: both curves have a *rational* $2$-torsion point and the
   $2$-division field is $QQ(zeta_3)$, of degree $2$ --- so $E[2]$ is the module $bb(F)_2 [C_2]$,
-  not the $S_3$-module, and the descent algebra is $QQ times QQ(zeta_3)$ (@sec-pair). The $beta$
-  analysis for that configuration has not been done, and @sec-status says so.
+  not the $S_3$-module, and the descent algebra is $QQ times QQ(zeta_3)$ (@sec-pair).
+
+  #v(1.5mm)
+  *This note has since been overtaken on its main point.* The $beta$ analysis for exactly this
+  configuration is carried out from scratch in `plusminus-beta.typ`, and its Theorem A *proves*
+  what the scan below could only observe: for every even squarefree $d$, $(E_d times E'_d)(QQ)$ is
+  not dense in $(E_d times E'_d)(QQ_2)$. The scan therefore changes role, from a search for a
+  witness that might yet turn up to an *independent cross-check* of a theorem, run with no shared
+  code --- which is the reading @sec-deep and @sec-status now take.
 ]
 
 = The pair <sec-pair>
@@ -125,7 +132,31 @@ obstruction. Contrast the behaviour at $2$, which does not move at all.
 The parity fact of @sec-parity says where the cost is, so the search is steered by it. On an even
 class one curve has $w = -1$ and the other $w = +1$; the binding constraint is *rank $>= 2$ on the
 $w = +1$ curve*. Check 4 tests that first and computes the partner's rank, and the density test,
-only on survivors --- which is what makes $abs(d) <= 10^4$ affordable at all.
+only on survivors.
+
+Even so the scan is expensive, and expensive in a lopsided way: the cost is not in `ellrank`, which
+runs in milliseconds, but in the saturation and Heegner-point work for the few percent of twists
+that pass the rank filter, where a *single* twist can occupy an hour. Check 4 therefore takes a
+wall-clock budget and reports the $abs(d)$ it actually reached rather than promising a bound. A run
+of $5400$ s per value of $a$ (they are independent, so the three ran in parallel; results in
+`results/plusminus-cube-deep.txt`) gave:
+
+#align(center, table(
+  columns: 6, align: (center, right, right, right, center, center),
+  stroke: 0.4pt + luma(170), inset: (x: 8pt, y: 3.5pt),
+  table.header([$a$], [reached], [twists], [#[even, both ranks $> 0$]], [odd classes], [even classes]),
+  [$3$], [$abs(d) <= 1966$], [$2388$], [$144$], [$4 slash 4$], [$0 slash 4$],
+  [$5$], [$abs(d) <= 1094$], [$1328$], [$76$],  [$4 slash 4$], [$0 slash 4$],
+  [$7$], [$abs(d) <= 1702$], [$2072$], [$146$], [$4 slash 4$], [$0 slash 4$],
+))
+
+#v(2mm)
+The witnesses for the odd classes turn up almost at once --- $d = -7, -21, 21, 7$ for $a = 3$ and
+$a = 5$, and $d = 1, 3, -3, -1$ for $a = 7$, all inside the first $250$ twists --- and the even
+classes stay empty for the remaining two thousand. The fourth column is the one that matters:
+$366$ even twists across the three families have *positive rank on both curves*, so each is a
+twist where a witness had somewhere to come from and none appeared. By @sec-status those $366$ are
+not failures of the search. They are instances of Theorem A.
 
 #block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
   *Why the steering is sound and not a shortcut.* Nothing is skipped that could have been a
@@ -138,7 +169,7 @@ only on survivors --- which is what makes $abs(d) <= 10^4$ affordable at all.
 = What this does and does not show <sec-status>
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
-  *Established.* The structural facts of @sec-pair: $E'_d = E_(-d)$ globally, a rational
+  *Established here.* The structural facts of @sec-pair: $E'_d = E_(-d)$ globally, a rational
   $2$-torsion point on both curves, $2$-division field $QQ(zeta_3)$, non-isogeny, and hence that
   the pair falls outside both branches treated in `j0-obstruction-family.typ`. The root-number
   dichotomy of @sec-parity, with no exception in the range tested. Density of $X(QQ)$ in
@@ -146,23 +177,27 @@ only on survivors --- which is what makes $abs(d) <= 10^4$ affordable at all.
   witness per square class is all the criterion needs.
 
   #v(1.5mm)
-  *Not established.* Non-density at $2$. What @sec-deep shows is that no witness exists in the
-  range searched; that is evidence, not an obstruction. The $j = 0$ example earns its conclusion
-  from $beta_2 equiv.not 0$ together with $beta_v equiv 0$ elsewhere, and *no $beta$ analysis has
-  been carried out for this configuration*. It would have to be done afresh: the descent algebra
-  here is $QQ times QQ(zeta_3)$, so neither the ratio formula of `j0-obstruction-family.typ` §4 nor
-  the $M_(i j)$ of its §6 applies as written.
+  *Established elsewhere, and it settles the main question.* `plusminus-beta.typ` carries out the
+  $beta$ analysis for this exact configuration and proves (its Theorem A) that for every $c$ with
+  $v_2(c)$ odd --- here $c = a d$ with $a$ odd, so exactly the *even* $d$ --- one has
+  $Sigma_(psi_2) = {2}$, hence $beta_2$ vanishes on rational points while being non-trivial on
+  $E_c (QQ_2) slash 2 times E'_c (QQ_2) slash 2$: $(E_d times E'_d)(QQ)$ is *not dense* in
+  $(E_d times E'_d)(QQ_2)$. The empty even column of @sec-deep is therefore not sparsity. It is
+  the theorem, seen from the other side.
 
   #v(1.5mm)
-  *The natural next step.* Run that analysis. $E[2]$ is $bb(F)_2 [C_2]$, whose automorphism group
-  gives *two* admissible $psi$ rather than one or six, and $Sigma = S_1 union S_2$ should again be
-  computable from global data --- with the slot structure $QQ times QQ(zeta_3)$ in place of
-  $QQ times QQ times QQ$.
+  *Still not established.* Two gaps remain, and they are the ones `plusminus-beta.typ` also
+  declares. First, Theorem A obstructs $(E times E')(QQ)$, not $X(QQ)$; a rational point of the
+  Kummer surface need not lift to a rational point of the product, and upgrading requires the
+  Brauer step of Skorobogatov--Zarhin, which neither note redoes. Second, the odd $d$ are genuinely
+  untouched: there $Sigma_(psi_2) = nothing$ and the construction says nothing at $2$ --- which is
+  consistent with the scan, since it is exactly the odd classes that *do* have witnesses.
 ]
 
 = What the companion script checks <sec-gp>
 
-`plusminus-cube.gp`, results in `results/plusminus-cube.txt`. Density is decided by the
+`plusminus-cube.gp`, results in `results/plusminus-cube.txt`, with the long check-4 run of
+@sec-deep in `results/plusminus-cube-deep.txt`. Density is decided by the
 repository's own single-curve tests `densegroup` and `densegroup2`, applied once to each curve, as
 in $section 2$ of `kummer-example-j0.typ`.
 
@@ -172,8 +207,8 @@ in $section 2$ of `kummer-example-j0.typ`.
 - *(2)* The root-number dichotomy of @sec-parity, over $244$ squarefree twists for each of four
   values of $a$.
 - *(3)* The scan of @sec-odd at every odd $p <= 19$, $abs(d) <= 150$.
-- *(4)* The deep scan of @sec-deep at $p = 2$, squarefree $abs(d) <= 10^4$, steered by root
-  numbers.
+- *(4)* The deep scan of @sec-deep at $p = 2$, steered by root numbers and bounded by a wall-clock
+  budget --- $300$ s per value of $a$ by default, $5400$ s for the run tabulated above.
 
 = References <sec-refs>
 
@@ -184,6 +219,10 @@ in $section 2$ of `kummer-example-j0.typ`.
   parity observation, $section 6.8$ for the theorem at $2$.
 + `j0-obstruction-family.typ`. The two branches, the $4$-torsion mechanism, and the criterion
   $Sigma$ finite and non-empty --- none of which covers the present configuration.
++ `plusminus-beta.typ` in this repository. The $beta$ analysis for this configuration, done from
+  scratch: $H^1 = ker N$ over $QQ times QQ(zeta_3)$, the two admissible $psi$, Theorem A
+  ($Sigma_(psi_2) = {2}$ when $v_2(c)$ is odd) and Theorem B
+  ($Sigma_(psi_1) = {2,3} union {q equiv 7 space (mod 12) : v_q (c) "odd"}$).
 + `kummer2.gp`, `p2.gp`. `densegroup`, `densegroup2`, `Mval`, `sqclass`: the single-curve density
   tests the scan rests on.
 ]

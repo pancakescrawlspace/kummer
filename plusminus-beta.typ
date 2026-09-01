@@ -309,8 +309,9 @@ With $a$ an odd prime and $d$ squarefree, $c = a d$, so $v_2(c) = v_2(d)$ and Th
 That is exactly the dichotomy the independent density scan of `plusminus-cube.typ` found, by a
 completely different route (saturated Mordell--Weil generators, and closure in $E(QQ_2)$): among the
 eight square classes of $d$ at $2$, the four *odd* ones are realised by twists whose rational points
-*are* $2$-adically dense, and the four *even* ones are never realised --- and not for want of rank,
-since the scan does exhibit even twists with positive rank on both curves. The root numbers agree
+*are* $2$-adically dense, and the four *even* ones are never realised --- and not for want of rank:
+across $a = 3, 5, 7$ the scan turns up $366$ *even* twists with positive rank on *both* curves, each
+one a place a witness could have come from, and none is dense. The root numbers agree
 too: $w(E_d) w(E'_d) = +1$ for every odd $d$ and $-1$ for every even $d$ in the range tested.
 Two computations that share no code agree on where the obstruction lives.
 
