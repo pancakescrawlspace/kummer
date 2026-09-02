@@ -45,4 +45,91 @@ pencil-conic-count.gp -- eight planes, not twelve (MSE 5130224)
       degree bookkeeping, honest chart (x:q:w): [1, 0, 1] -> [1, 2, 1] -> [3, 2, 3] -> 8
       degree bookkeeping, naive  chart (x:y:w): [1, 1, 1] -> [2, 2, 2] -> [4, 4, 4] -> 12
 
+  (7a) the transversals to L_1, L_2, L_3, and the eigenvector form
+      configurations : 40   (0 rejected as not pairwise disjoint)
+      some M_p failing to meet L_1, L_2 or L_3 identically : 0
+      det(M_p, L_4) not a nonzero multiple of q_A          : 0
+      disc(q_A) != tr(A)^2 - 4 det(A)                      : 0
+
+  (7b) the quadric surface through L_1, L_2, L_3
+      configurations : 40
+      quadrics through the three lines other than one     : 0
+      that quadric not of rank 4, i.e. not smooth         : 0
+      L_1, L_2 or L_3 not lying on it                     : 0
+      the transversal M_p not lying on it (the ruling)    : 0
+      its restriction to L_4 not a multiple of q_A        : 0
+      not equal to {omega(phi u, v) = 0} in basis coords  : 0
+
+  (7c) the Klein quadric: a line in P^5 meets it twice
+      configurations : 40
+      [L_i] not on the Klein quadric, or off its own hyperplane : 0
+      the four hyperplanes not cutting a line in P^5            : 0
+      the Klein form on that line not a binary quadratic        : 0
+      a 3x3 minor not proportional to q_A                       : 0 of 800
+      all twenty minors vanishing identically                   : 0
+
+  (7d) the two degenerate configurations
+      same ruling, L_4 = graph(2 phi):  q_A = 0,  every M_p meets L_4 : 1
+           L_4 lies on the quadric : 1;  rank of the Klein system : 3 (kernel 3, a plane in P^5)
+      tangency, A = [1,1;0,1]:  q_A = -Y^2,  disc = 0
+           det(M_p, L_4) proportional to q_A : 1;  Q|_{L_4} proportional to q_A : 1
+
+  (7e) the pencil determinant of check 4 is the same quadratic
+      Delta pulled back along p -> plane(M_p, L) not proportional to q_A : 0 of 40
+
+  (7f) over the reals: two transversals, or none
+      of 1000 random integer configurations: 860 with two real transversals, 140 with none, 0 tangent
+
+  (7g) two configurations in detail, checked back in P^3
+      -- positive discriminant --
+      A = phi^-1 psi (cleared to a primitive integer matrix; eigendirections
+          are unchanged by scaling) = [1313, 2543; 286, 4546]
+      q_A = 286*X^2 + 3233*Y*X - 2543*Y^2,   disc = tr^2 - 4 det = 13361481
+      p = (-12.04254539 + 0.00000000i : 1)   max relative incidence with the four L_i : 1.297 e-38
+      p = (0.73834959 + 0.00000000i   : 1)   max relative incidence with the four L_i : 5.819 e-40
+      -- negative discriminant --
+      A = phi^-1 psi (cleared to a primitive integer matrix; eigendirections
+          are unchanged by scaling) = [3451, 2416; -1710, -288]
+      q_A = -1710*X^2 - 3739*Y*X - 2416*Y^2,   disc = tr^2 - 4 det = -2545319
+      p = (-1.09327485 - 0.46649286i  : 1)   max relative incidence with the four L_i : 6.149 e-39
+      p = (-1.09327485 + 0.46649286i  : 1)   max relative incidence with the four L_i : 6.149 e-39
+
+  (8a) the special position: two pairs of incident lines
+      configurations : 40
+      the four conditions not cutting a line in P^5 : 0
+      the Klein form on it not a binary quadratic   : 0
+      that quadratic with a repeated root           : 0
+      PQ or Pi ^ Sigma failing to be a root         : 0
+      the two roots not distinct                    : 0
+
+  (8b) both special solutions are transverse, hence reduced
+      configurations : 40
+      rank of the four tangent conditions at PQ         not 4 : 0
+      rank of the four tangent conditions at Pi ^ Sigma not 4 : 0
+      (rank 4 on a 4-dimensional tangent space = multiplicity 1)
+
+  (8c) conservation of number along a path to a general configuration
+      epsilon    ker dim  deg      disc = 0?      distance to the special pair
+      0          2        2        no             0 (the special pair)
+      1/1000     2        2        no             3.407 e-3
+      1/100      2        2        no             3.478 e-2
+      1/8        2        2        no             3.341 e-1
+      1/2        2        2        no             1.564 e0
+      1          2        2        no             1.556 e0
+      the length of the fibre never drops: two roots throughout
+
+  (8d) a specialisation with a double solution
+      R on Q : 1;  L_4 = span(R,S) inside the tangent plane at R : 1
+      Q restricted to L_4, coefficients up to scale : [0, 0, 1]   (a perfect square:
+           L_4 meets Q only at R, doubly -- it is tangent there)
+      the Klein quadratic for L_1,L_2,L_3,L_4 : disc = 0
+      the ruling line through R is the double root : 1
+      rank of the four tangent conditions there : 3  (not 4: not transverse)
+      so the special fibre is ONE point of multiplicity 2, not one solution
+
+  (8e) degenerating one pair only: sigma_1^2 = sigma_2 + sigma_(1,1)
+      configurations : 40
+      the line through P, or the line in Pi, failing to be a root : 0
+      the two not distinct                                       : 0
+
 ======================================================================
