@@ -17,16 +17,69 @@
 
 read("p2.gp");
 
-{gens(E) = my(r = ellrank(E), P = r[4]);
-  if(#P == 0 && r[1] == 1, P = [ellheegner(E)]);
-  if(#P == 0, [], ellsaturation(E,P,40));}
-{allpts(E) = concat(gens(E), elltors(E)[3]);}
-{dense(E,p) = my(v, Em = ellminimalmodel(E,&v),
-                 P = apply(Q -> ellchangepoint(Q,v), allpts(E)));
-  if(#P == 0, 0, if(p == 2, densegroup2(Em,P), densegroup(Em,P,p)));}
-
 Emin(a,d) = ellinit([0,0,0,0, -a^3*d^3]);
 Epls(a,d) = ellinit([0,0,0,0,  a^3*d^3]);
+Ecur(a,d,s) = if (s < 0, Emin(a,d), Epls(a,d));
+
+\\ ---------------------------------------------------------------- the cache
+\\ Everything expensive here is a Mordell-Weil computation -- ellrank, and then
+\\ ellheegner / ellsaturation on the survivors -- and it is a pure function of
+\\ the curve.  The density test on top of it costs nothing.  So the ranks and
+\\ the saturated generators are written to results/, keyed by (a, d, sign), and
+\\ a later run reuses them: changing the density test, the filtering, or the
+\\ bound then costs no Mordell-Weil work at all.  One file per value of a, so
+\\ that parallel runs never write to the same file.
+\\
+\\ A line is  [a, d, s, rank, gflag, points]  with s = -1 for y^2 = x^3 - a^3d^3
+\\ and s = +1 for y^2 = x^3 + a^3d^3, gflag = 1 if the points are SATURATED
+\\ generators and 0 if they are only what ellrank happened to return.  Entries
+\\ are appended, never rewritten, so a key may occur twice (rank first, then
+\\ the saturated upgrade); the later line wins on reload.
+
+CFILE = "";
+CMAP = Map();
+{ckey(a,d,s) = Str(a, ",", d, ",", s);}
+
+{cinit(a) = my(V, n = 0);
+  CFILE = Str("results/plusminus-cube-cache-", a, ".txt");
+  CMAP = Map();
+  V = iferr(readvec(CFILE), E, []);
+  foreach(V, e,
+    if (type(e) == "t_VEC" && #e == 6,
+      mapput(CMAP, ckey(e[1],e[2],e[3]), [e[4],e[5],e[6]]); n++));
+  printf("      cache %s: %d lines, %d keys\n", CFILE, #V, #CMAP);
+  n;}
+
+{cput(a,d,s,r,gf,P) =
+  mapput(CMAP, ckey(a,d,s), [r,gf,P]);
+  write(CFILE, Str("[", a, ", ", d, ", ", s, ", ", r, ", ", gf, ", ", P, "]"));}
+
+\\ The rank, computed once ever.  ellrank's own points are cached with it.
+{crank(a,d,s) = my(z, r);
+  if (mapisdefined(CMAP, ckey(a,d,s), &z), return(z[1]));
+  r = ellrank(Ecur(a,d,s));
+  cput(a,d,s, r[1], 0, r[4]);
+  r[1];}
+
+\\ Saturated generators, computed once ever.  Reuses the cached ellrank points
+\\ when they are there, so a twist that check 3 has already ranked does not pay
+\\ for ellrank again in check 4.
+{cgens(a,d,s) = my(z, E = Ecur(a,d,s), P, r);
+  if (mapisdefined(CMAP, ckey(a,d,s), &z),
+    if (z[2], return(z[3]));
+    r = z[1]; P = z[3]
+  ,
+    my(rr = ellrank(E)); r = rr[1]; P = rr[4]);
+  if (#P == 0 && r == 1, P = [ellheegner(E)]);
+  P = if (#P == 0, [], ellsaturation(E,P,40));
+  cput(a,d,s, r, 1, P);
+  P;}
+
+{dense(a,d,s,p) = my(E = Ecur(a,d,s), v, Em, P);
+  P = concat(cgens(a,d,s), elltors(E)[3]);
+  Em = ellminimalmodel(E,&v);
+  P = apply(Q -> ellchangepoint(Q,v), P);
+  if(#P == 0, 0, if(p == 2, densegroup2(Em,P), densegroup(Em,P,p)));}
 
 \\ ---------------------------------------------------------------- check 1
 \\ The pair itself: conductors, ranks, torsion, non-isogeny, and the split
@@ -38,10 +91,11 @@ check1() =
          "a","N(E)","N(E')","ranks","torsion","isogenous?","2-division field");
   foreach([3,5,7,11,13], a,
     my(E = Emin(a,1), F = Epls(a,1), iso = 1, q = 5);
+    cinit(a);
     while (q < 400, if (a%q, if (ellap(E,q) != ellap(F,q), iso = 0; break)); q = nextprime(q+1));
     printf("      %-5d %-9d %-9d %d, %-4d %-9s %-11d Q(zeta_3), disc = %d\n",
            a, ellglobalred(E)[1], ellglobalred(F)[1],
-           ellrank(E)[1], ellrank(F)[1], Str(elltors(E)[2]), iso, -3*a^2));
+           crank(a,1,-1), crank(a,1,1), Str(elltors(E)[2]), iso, -3*a^2));
 };
 
 \\ ---------------------------------------------------------------- check 2
@@ -68,10 +122,11 @@ check2(B) =
 
 check3(a, B, ps) =
 { my(L = List());
+  cinit(a);
   for (k = 1, B, foreach([k,-k], d,
     if (core(abs(d)) != abs(d), next);
-    if (ellrank(Emin(a,d))[1] < 1, next);
-    if (ellrank(Epls(a,d))[1] < 1, next);
+    if (crank(a,d,-1) < 1, next);
+    if (crank(a,d,1) < 1, next);
     listput(L, d)));
   printf("      a = %d : %d twists |d| <= %d with both ranks positive\n", a, #L, B);
   foreach(ps, p,
@@ -79,7 +134,7 @@ check3(a, B, ps) =
     foreach(Vec(L), d,
       my(c = sqclass(d,p) + 1);
       if (wit[c], next);
-      if (dense(Emin(a,d),p) && dense(Epls(a,d),p), wit[c] = d));
+      if (dense(a,d,-1,p) && dense(a,d,1,p), wit[c] = d));
     for (c = 1, 4, if (wit[c], got++));
     printf("        p = %-3d : %d of 4  ", p, got);
     for (c = 1, 4, printf("[%s]=%s ", sqclassname(c-1,p), if (wit[c], Str(wit[c]), "--")));
@@ -97,6 +152,7 @@ check4(a, B, step, budget) =
      t0 = getwalltime(), dmax = 0, stopped = 0);
   printf("  (4) deep scan at p = 2 for a = %d, squarefree |d| <= %d, budget %d s\n",
          a, B, budget);
+  cinit(a);
   for (k = 1, B,
     if (!stopped && budget && (getwalltime() - t0) > budget*1000,
         stopped = 1; dmax = k - 1);
@@ -106,14 +162,14 @@ check4(a, B, step, budget) =
           n++;
           my(c = sqclass2(d) + 1);
           if (!wit[c],
-            my(E = Emin(a,d), F = Epls(a,d), w1 = ellrootno(E), G, H, ok = 1);
+            my(w1 = ellrootno(Emin(a,d)), sg, sh, ok = 1);
             if (d % 2 == 0,
-              G = if (w1 == 1, E, F); H = if (w1 == 1, F, E);
-              if (ellrank(G)[1] < 2, ok = 0, cand++; if (ellrank(H)[1] < 1, ok = 0, both++))
+              sg = if (w1 == 1, -1, 1); sh = -sg;
+              if (crank(a,d,sg) < 2, ok = 0, cand++; if (crank(a,d,sh) < 1, ok = 0, both++))
             ,
-              if (ellrank(E)[1] < 1 || ellrank(F)[1] < 1, ok = 0)
+              if (crank(a,d,-1) < 1 || crank(a,d,1) < 1, ok = 0)
             );
-            if (ok, if (dense(E,2) && dense(F,2), wit[c] = d)));
+            if (ok, if (dense(a,d,-1,2) && dense(a,d,1,2), wit[c] = d)));
           if (step && n % step == 0,
             f = 0; for (c2 = 1, 8, if (wit[c2], f++));
             printf("        ... |d| <= %5d, %6d twists, %4d rank>=2, %5d s, %d of 8:",
@@ -154,6 +210,7 @@ print("plusminus-cube.gp -- y^2 = x^3 -+ a^3, and the 2-adic gap");
    Setting CHEAP instead runs only checks 1-3, which cost seconds.  Leaving
    both unset runs everything sequentially.                                   */
 BUDGET = if (type(BUDGET) == "t_INT", BUDGET, 300);
+BMAX   = if (type(BMAX)   == "t_INT", BMAX,   100000);
 
 {driver() =
   if (type(CHEAP) == "t_INT",
@@ -167,7 +224,7 @@ BUDGET = if (type(BUDGET) == "t_INT", BUDGET, 300);
     print("")
   ,
   if (type(AONLY) == "t_INT",
-    print(""); check4(AONLY, 100000, 250, BUDGET); print("")
+    print(""); check4(AONLY, BMAX, 250, BUDGET); print("")
   ,
     print("");
     check1(); print("");
@@ -177,9 +234,11 @@ BUDGET = if (type(BUDGET) == "t_INT", BUDGET, 300);
     check3(5, 150, [3,5,7,11,13,17,19]);
     check3(7, 150, [3,5,7,11,13,17,19]);
     print("");
-    check4(3, 100000, 250, BUDGET); print("");
-    check4(5, 100000, 250, BUDGET); print("");
-    check4(7, 100000, 250, BUDGET); print("");
+    check4(3, BMAX, 250, BUDGET); print("");
+    check4(5, BMAX, 250, BUDGET); print("");
+    check4(7, BMAX, 250, BUDGET); print("");
   ));
   print("======================================================================");}
-driver();
+\\ Reading this file runs the driver, unless NORUN is set -- set it to use the
+\\ file as a library (Emin/Epls, the cache, check1..check4) without scanning.
+if (type(NORUN) != "t_INT", driver());
