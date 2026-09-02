@@ -36,7 +36,10 @@
   four ways and identifies with a single binary quadratic form --- and $d(d+1)(d+2) slash 3$ in
   general (@sec-general). The Pascal route suggested
   in the comments reaches $8$ too, and by a shorter count --- because it is the same polynomial
-  (@sec-pascal).
+  (@sec-pascal). Turned around and applied to *equations* rather than points, the same chart
+  counts the five planes through a line on a smooth cubic surface (@sec-cubic): there the $q$-slot
+  *gains* a degree instead of losing one, $3 + 1 + 1 = 5$, and the naive chart overcounts by the
+  same $t^4$.
 ]
 
 = The question, and where the twelve comes from <sec-question>
@@ -690,6 +693,289 @@ $ deg Delta = sum_(a + b + c = d) (d - b) = N d - d(d+1)(d+2) slash 6 = d(d+1)(d
 The $d = 1$ row is the classical $2$; the $d = 2$ row is the question; the $d = 3$ row says ten
 general lines and a cubic give $20$. Check 5 computes all three determinants directly.
 
+= Five planes through a line on a cubic surface <sec-cubic>
+
+A second classical count in the same style, and the sharpest test of what the chart of
+@sec-chart is really doing. Let $S subset PP^3$ be a smooth cubic surface and $L subset S$ a
+line. Every plane $V$ containing $L$ cuts $S$ in a plane cubic curve containing $L$, hence in
+$L$ together with a residual conic; for how many planes of the pencil does that conic degenerate
+into two lines?
+
+#block(fill: luma(240), inset: 9pt, radius: 3pt, width: 100%)[
+  *The one-line answer.* Five. The matrix of the residual conic has entries of degree
+  $1 + [i = q] + [j = q]$ in $(s,t)$, so its determinant has degree
+  $ 3 + 1 + 1 = 5 : $
+  one from each row and column, plus one for the $q$-row and one for the $q$-column.
+
+  #v(1.5mm)
+  And yes --- the naive chart overcounts here too, by the *identical* factor $t^4$: it says
+  nine. What differs is the temptation. Nobody reaches for that chart here, because writing the
+  residual conic down at all forces you to parametrise the moving plane, and the honest
+  parametrisation is the obvious one. The error this problem invites is the opposite one: the
+  residual conics form a pencil, linear in $(s,t)$, so *surely* the discriminant is a cubic ---
+  three. The truth is bracketed on both sides, $3 < 5 < 9$, and both errors are the same error:
+  forgetting that the chart moves.
+]
+
+== Points lose degree, forms gain it
+
+Everything in this note comes from one chart,
+$phi_lambda (x : q : w) = (x : -t q : s q : w)$, and from the fact that its middle slot carries
+the pencil parameter while the outer two do not. Which way the degree moves depends on what is
+being transported.
+
+#v(1mm)
+- *A point.* $P_i (lambda)$ has coordinates linear in $(s,t)$ as a point of $PP^3$, but the
+  chart reads it as $phi_lambda^(-1)(P_i)$, and the $q$-slot divides a factor out:
+  $(#[_linear_] : #[_constant_] : #[_linear_])$. Degree $1 - 1 = 0$ in the middle.
+  Contravariant.
+- *A form.* A form $F$ on $PP^3$ with constant coefficients is transported the other way, as
+  the pullback $phi_lambda^* F$, and the $q$-slot multiplies a factor in: the coefficient of
+  $x^a q^b w^c$ has degree $b$. Covariant.
+
+#v(2mm)
+@sec-general is the first rule: the Veronese monomial $x^a q^b w^c$ of degree $d$ contributes
+$d - b$, and summing gives $d(d+1)(d+2) slash 3$. What follows is the second rule, with the sign
+the other way.
+
+== The residual conic, and its five degenerations
+
+Keep $L = {y = z = 0}$ and $V_([s:t]) = {s y + t z = 0}$. A cubic form vanishes on $L$ exactly
+when it lies in the ideal $(y, z)$, so
+
+$ F = y G + z H , wide G, H " quadratic forms on " PP^3 . $
+
+The pair $(G,H)$ is not unique --- $(G + z K, H - y K)$ does as well --- but nothing below
+depends on the choice. Pull back along the chart:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  $ F(x, -t q, s q, w) = (-t q) dot G(phi) + (s q) dot H(phi)
+    = q dot underbrace([-t dot G(phi) + s dot H(phi)], C_([s:t])) . $
+  #v(1.5mm)
+  The factor $q$ is $L$ itself, which is ${q = 0}$ in the chart; $C_([s:t])$ is the residual
+  conic. This is an identity of polynomials in $(x, q, w, s, t)$, so it holds for every member
+  of the pencil at once, with no exceptional plane --- check 9a.
+]
+
+#v(2mm)
+Now the degrees. In $G(phi)$ the coefficient of $x^a q^b w^c$ has degree exactly $b$, because
+each $q$ carries one factor of $s$ or $t$; the outer $-t$ or $s$ adds one more. So the symmetric
+matrix $M(s,t)$ of the conic has $deg M_(i j) = 1 + [i = q] + [j = q]$, that is
+
+#align(center, table(
+  columns: 4, align: (left,) + (center,)*3,
+  stroke: 0.4pt + luma(170), inset: (x: 12pt, y: 3.5pt),
+  table.header([degree of $M_(i j)$], [$x$], [$q$], [$w$]),
+  [$x$], [$1$], [$2$], [$1$],
+  [$q$], [$2$], [$3$], [$2$],
+  [$w$], [$1$], [$2$], [$1$],
+))
+
+#v(2mm)
+Every term of the determinant takes one entry from each row and one from each column, so it
+collects $1$ three times, plus $1$ for the $q$-row and $1$ for the $q$-column, whatever the
+permutation: $Delta = det M$ is homogeneous of degree $5$. A conic is a pair of lines (or a
+double line) exactly when its determinant vanishes, so:
+
+#block(fill: luma(240), inset: 9pt, radius: 3pt, width: 100%)[
+  *Five planes*, counted with multiplicity, over any field. Check 9a verifies the degree of
+  every entry and the bidegree $(5,5)$ of $Delta$ on forty random surfaces.
+]
+
+== Nine, not five: the same phantom plane
+
+Insist instead on the coordinates $(x : y : w)$ of @sec-missing. The parametrisation of
+$V_([s:t])$ is then $psi(x : y : w) = (t x : t y : -s y : t w)$, and now *no slot is special*:
+every coefficient of the residual conic has degree $3$, and the determinant has degree $9$. The
+relation is exact:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  $ Delta_"naive" = -t^4 dot Delta , wide 9 = 4 + 5 , $
+  an identity of polynomials, verified in check 9b on forty surfaces. Same exponent, same
+  plane ${y = 0}$, same reason as @sec-missing: at $[s:t] = [1:0]$ the map $psi$ drops from
+  rank $3$ to rank $1$ --- the whole of $PP^2$ collapses to the single point $(0:0:1:0)$ ---
+  while $phi$ has rank $3$ for every $[s:t]$, checked at both ends of the pencil.
+]
+
+#v(2mm)
+The bookkeeping is not the same as in @sec-chart: there three of six Veronese columns *dropped*
+degree, here one row and one column *gained* it. The phantom factor is nevertheless the same
+$t^4$, because it measures the same collapse of the same chart and not the problem being asked.
+
+== Three, not five: the undercount this problem invites
+
+Set $R_([s:t]) = -t G + s H$, a *pencil of quadrics* in $PP^3$, linear in the parameter. The
+residual conic is the restriction of $R_([s:t])$ to $V_([s:t])$. Since $R$ is linear in $(s,t)$
+and a conic has a $3 times 3$ determinant, the discriminant is a cubic --- three planes.
+
+The reasoning is exactly right for a *fixed* plane and exactly wrong here, and the two missing
+degrees have an address: the $q$-row and the $q$-column, one factor of $(s,t)$ for each $q$
+substituted for $y$ or $z$. Check 9c computes the fixed-plane cubic and finds that its three
+roots share nothing with the five: the resultant of the cubic and the quintic is nonzero in
+every draw. It is not an undercount of the five planes but a count of something else.
+
+== Why the five are distinct: smoothness, used once
+
+Everything so far is a degree count, valid for any cubic containing a line, singular or not. It
+gives five roots with multiplicity. Smoothness enters exactly once, and it is worth isolating
+where.
+
+Differentiate the identity $F(phi) = q C$ along the pencil, in a direction $(dot(s), dot(t))$ of
+the parameters. Since $partial phi slash partial s = (0,0,q,0)$ and $partial phi slash partial t =
+(0,-q,0,0)$, the factor $q$ cancels and
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  $ (dot(s) F_z - dot(t) F_y) compose phi = dot(C) , $
+  #v(1.5mm)
+  again an identity of polynomials in $(x,q,w,s,t)$. Differentiating in the *space* directions
+  instead gives $(F_x, -t F_y + s F_z, F_w) compose phi = nabla(q C) = (q C_x, C + q C_q, q C_w)$.
+]
+
+#v(2mm)
+Let $[s_0 : t_0]$ be a root of $Delta$, let $C_0$ be the conic there and $v$ a singular point of
+it, and put $p = phi(v) in PP^3$. At a singular point of a conic both $C_0$ and its gradient
+vanish, so the right-hand side of the second identity is zero at $v$, whence
+
+$ F_x (p) = F_w (p) = 0 , wide t_0 F_y (p) = s_0 F_z (p) , wide "so" wide
+  nabla F(p) = kappa dot (0, s_0, t_0, 0) $
+
+for a scalar $kappa$. Read geometrically: if $S$ is smooth at $p$ then its tangent plane there
+*is* the plane of the section --- which is why these five planes are classically called
+*tritangent*. Read through the first identity: $dot(C)(v) = kappa dot (dot(s) t_0 - dot(t) s_0)$,
+so along any direction transverse to $[s_0 : t_0]$,
+
+$ dot(C)(v) eq.not 0 quad <==> quad kappa eq.not 0 quad <==> quad nabla F(p) eq.not 0 . $
+
+And $dot(C)(v)$ is exactly what decides the multiplicity of the root. If $C_0$ has rank $2$ with
+kernel $v$, then $"adj"(M_0) = c dot v^tack.b v$ with $c eq.not 0$, and
+
+$ d Delta = "tr"("adj"(M_0) dot dot(M)) = c dot v dot(M) v^tack.b = c dot dot(C)(v) . $
+
+If $C_0$ has rank $1$ the adjugate vanishes identically and the root is automatically at least
+double. (And if $Delta equiv 0$, then $d Delta = 0$ everywhere, so the same line applies
+at any plane whose conic has rank $2$, and step (1) below at any whose conic has rank $1$: either
+way $S$ is singular.)
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Theorem.* Let $S = {F = 0} subset PP^3$ be a cubic surface containing the line $L$, over an
+  algebraically closed field of characteristic $eq.not 2$, and let $Delta$ be the binary quintic
+  above.
+
+  #v(1mm)
+  - If $S$ is singular at a point $p in.not L$, then $Delta$ vanishes to order $gt.eq 2$ at the
+    plane spanned by $L$ and $p$ (or vanishes identically).
+  - If $S$ is smooth, then $Delta eq.not 0$ and its five roots are distinct; at each of them the
+    residual conic has rank exactly $2$, so it is a pair of *distinct* lines, neither of them $L$.
+
+  #v(1.5mm)
+  Hence a line on a smooth cubic surface lies in exactly five tritangent planes, and meets
+  exactly ten other lines of the surface. #h(1fr) $square$
+]
+
+#v(2mm)
+Three short steps finish it, and each is where some hypothesis is spent.
+
+#v(1mm)
++ *A double line forces a singularity.* If $C_0$ has rank $1$, its singular locus is a whole
+  line $M$, and the displayed computation applies at every $v in M$. As a function of $v$,
+  $kappa$ is $F_y compose phi$ divided by $s_0$ --- or $F_z compose phi$ divided by $t_0$,
+  whichever is nonzero --- hence the restriction of a quadratic form, so $kappa|_M$ is a binary
+  quadratic form, and over an algebraically closed field it has a root. At that root
+  $nabla F = 0$. So a plane section $L + 2M$ is impossible on a smooth surface. Check 9f builds
+  such a section by hand, $F|_{z = 0} = y x^2$, and finds the singular point where the theory
+  says it must be.
++ *The conic never contains $L$.* Restricting $C$ to ${q = 0}$ gives
+  $C|_L = -t dot G|_L + s dot H|_L$, the pencil of binary quadratic forms spanned by the
+  restrictions of $G$ and $H$ to $L$. On the other hand $nabla F|_L = (0, G|_L, H|_L, 0)$, since
+  the $x$- and $w$-derivatives of $y G + z H$ vanish on ${y = z = 0}$. So $S$ is smooth along
+  $L$ exactly when $G|_L$ and $H|_L$ have no common zero, and then no member of the pencil is
+  the zero form: $C_0$ never vanishes on $L$. As a by-product, the two residual lines meet $L$
+  at the two roots of $-t_0 G|_L + s_0 H|_L$.
++ *The ten lines are distinct.* Any line $M eq.not L$ of $S$ meeting $L$ spans a plane with it,
+  necessarily a member of the pencil, and $M subset S inter V = L union C$ makes $M$ a component
+  of $C$. Two distinct planes of the pencil meet in $L$ alone, so lines from different planes
+  cannot coincide, and by (2) none of them is $L$.
+
+#v(2mm)
+What smoothness does *not* exclude is worth naming. The two residual lines may meet $L$ at the
+same point, so that $L$ and the two lines are concurrent: an *Eckardt point*. The Fermat cubic
+has eighteen of them, two on every line, and its five planes are still distinct. The theorem
+controls the multiplicity of a root, not the position of the vertex.
+
+#block(inset: (left: 12pt, y: 2pt), stroke: (left: 2pt + luma(190)))[
+  *A cheap smoothness test.* The theorem is an equivalence, and it buys something practical.
+  $S$ is singular at a point of $L$ iff $G|_L$ and $H|_L$ share a zero, and singular off $L$ iff
+  $Delta$ has a repeated root. So
+  $ S " is smooth" quad <==> quad "Res"(G|_L, H|_L) eq.not 0 " and " "disc"(Delta) eq.not 0 : $
+  a resultant of two binary quadratics and the discriminant of a binary quintic, with no
+  elimination in four variables anywhere. Check 9d certifies all forty random surfaces this way,
+  and check 9e then goes to $PP^3$ and finds the ten lines: at each of the five roots it splits
+  the conic, maps the two lines back through the chart, and evaluates $F$ along them --- worst
+  value $2.4 times 10^(-35)$ against $5.6 times 10^(2)$ for the same construction at a plane that
+  is not one of the five, a separation of thirty-seven orders of magnitude. The ten lines come
+  out pairwise distinct and none of them is $L$.
+]
+
+== A topological control, and any degree
+
+The five can be had a second time with no coordinates at all. By step (2) the pencil of residual
+conics has no base point, so it is a morphism $pi : S --> PP^1$ --- the classical conic bundle
+structure --- whose fibres are the conics $C_lambda$. Over $CC$ the topological Euler
+characteristic $chi$ is additive over the base; a smooth conic has $chi = 2$ and a pair of
+distinct lines has $chi = 2 + 2 - 1 = 3$, so if $n$ is the number of degenerate fibres,
+
+$ chi(S) = chi(PP^1) dot 2 + n dot (3 - 2) = 4 + n . $
+
+A smooth cubic surface is $PP^2$ blown up at six points, so $chi(S) = 3 + 6 = 9$, and $n = 5$.
+Not a whisper of a chart.
+
+Both computations survive to a smooth surface $S$ of degree $d$ containing a line, where the
+residual curve has degree $e = d - 1$.
+
+#v(1mm)
+- *The weights.* The discriminant of a ternary form of degree $e$ is a polynomial of degree
+  $3(e-1)^2$ in its coefficients, and $"Disc"(f compose g) = det(g)^(e(e-1)^2) dot "Disc"(f)$ for
+  $g in "GL"_3$. Up to those two operations the residual curve is a form with constant
+  coefficients: the coefficient of $x^a q^b w^c$ has degree $1 + b$, which is what scaling $q$ by
+  a parameter of degree $1$ and then multiplying the whole form by one more produces. So the
+  discriminant picks up $3(e-1)^2$ from the overall factor and $e(e-1)^2$ from the substitution:
+  $ deg Delta = 3(e-1)^2 + e(e-1)^2 = (e-1)^2 (e+3) = (d-2)^2 (d+2) . $
+- *Euler.* Adjunction gives $L^2 = 2 - d$, so $(H - L)^2 = d - 2 + (2 - d) = 0$ and the residual
+  curves again form a base-point-free pencil, now of genus $(e-1)(e-2) slash 2$; its smooth fibre
+  has $chi = 2 - (e-1)(e-2)$, while $chi(S) = c_2 = d^3 - 4d^2 + 6 d$. A one-nodal fibre costs
+  exactly one, so
+  $ n = (d^3 - 4d^2 + 6d) - 2(2 - (d-2)(d-3)) = d^3 - 2d^2 - 4d + 8 . $
+
+#v(2mm)
+The two polynomials in $d$ are equal --- check 9g prints them side by side for $d = 2, ..., 6$
+and confirms the identity, together with the weighted homogeneity
+$C(x, q slash lambda, w; lambda s, lambda t) = lambda C(x, q, w; s, t)$ that is the whole
+content of the chart bookkeeping at any degree.
+
+#align(center, table(
+  columns: 5, align: (center,)*5,
+  stroke: 0.4pt + luma(170), inset: (x: 11pt, y: 3.5pt),
+  table.header([$d$], [residual curve], [$(d-2)^2 (d+2)$], [$c_2 (S)$], [what the count is]),
+  [$2$], [a line], [$0$], [$4$], [nothing to degenerate],
+  [$3$], [a conic], [$5$], [$9$], [the five tritangent planes],
+  [$4$], [a plane cubic], [$24$], [$24$], [the nodal fibres of an elliptic K3],
+))
+
+#v(2mm)
+The $d = 4$ row is a pleasant coincidence that is not one: on a quartic surface containing a
+line the residual pencil is an elliptic fibration on a K3, its nodal fibres are counted by
+$chi("K3") = 24$, and the weight count agrees. Past $d = 3$ the reading changes --- a singular
+residual curve is no longer the same thing as one that splits off further lines --- but the
+degree is the degree.
+
+== What the two problems share
+
+@sec-question and this one are one chart used twice: once on points, where the $q$-slot loses a
+degree and the count falls from $12$ to $8$; once on forms, where it gains one and the count
+rises from $3$ to $5$. In both the naive chart $(x : y : w)$ is off by the factor $t^4$ of
+@sec-missing, always the plane ${y = 0}$ counted four times over, and always for the reason that
+this chart, and not the geometry, degenerates at one member of the pencil.
+
 = Dictionary to the bundle answer <sec-dict>
 
 The answer on the site does exactly this computation in the language of vector bundles on $PP^1$.
@@ -812,6 +1098,23 @@ integer coordinates of height $10^3$; forty configurations per check unless stat
   --- one solution of multiplicity two, not one solution. *(8e)* The half-degeneration
   $sigma_1^2 = sigma_2 + sigma_(1,1)$, with both transversals identified.
 
+#v(1mm)
+- *(9)* The cubic surface of @sec-cubic, in seven parts. *(9a)* $F(phi) = q C$ identically, every
+  entry of the conic matrix of degree exactly $1 + [i=q] + [j=q]$ --- $360$ entries --- and
+  $Delta$ of bidegree $(5,5)$. *(9b)* $Delta_"naive" = -t^4 Delta$ identically, degree $9$, with
+  the naive chart of rank $1$ at $t = 0$ against rank $3$ for the honest one at both ends of the
+  pencil. *(9c)* The undercount: the pencil of quadrics restricted to a *fixed* plane does have a
+  cubic determinant, whose roots have nothing to do with the five (nonzero resultant every time).
+  *(9d)* The smoothness certificate $"Res"(G|_L, H|_L) eq.not 0$, $"disc"(Delta) eq.not 0$.
+  *(9e)* The five planes and the ten lines, computed back in $PP^3$: worst $abs(F)$ on a residual
+  line $2.4 times 10^(-35)$ against $5.6 times 10^2$ for the same construction at a plane that is
+  not one of the five, ten lines pairwise distinct, none of them $L$. *(9f)* A node imposed at a
+  chosen point off $L$: the corresponding linear form divides $Delta$ exactly twice, the vertex of
+  the conic there is the node to $3 times 10^(-39)$, and the other three planes stay simple; then
+  the other degeneration, a plane section $L + 2M$, with the singularity found on $M$ where the
+  binary quadratic $kappa|_M$ vanishes. *(9g)* The weighted homogeneity at $d = 2, ..., 6$, and
+  the two formulas for $(d-2)^2 (d+2)$ side by side.
+
 = References <sec-refs>
 
 #block(inset: (left: 4pt))[
@@ -838,6 +1141,15 @@ integer coordinates of height $10^3$; forty configurations per check unless stat
 + S. L. Kleiman, D. Laksov, "Schubert calculus", #emph[Amer. Math. Monthly] *79* (1972),
   1061--1082. The expository source for @sec-special, where the specialisation argument is given
   in outline.
++ M. Reid, *Undergraduate Algebraic Geometry*, CUP 1988. The cubic surface and its $27$ lines,
+  counted through exactly the pencil of residual conics of @sec-cubic.
++ R. Hartshorne, *Algebraic Geometry*, Springer 1977. Chapter V.4, the cubic surface as $PP^2$
+  blown up at six points --- where @sec-cubic gets $chi(S) = 9$ --- and Chapter V.1 for
+  adjunction and $L^2 = 2 - d$.
++ I. M. Gelfand, M. M. Kapranov, A. V. Zelevinsky, *Discriminants, Resultants and
+  Multidimensional Determinants*, Birkhäuser 1994. The degree $3(e-1)^2$ of the discriminant of a
+  plane curve of degree $e$ and its weight under $"GL"_3$, used for the any-degree count of
+  @sec-cubic.
 + S. L. Kleiman, "Problem 15: rigorous foundation of Schubert's enumerative calculus", in
   *Mathematical Developments Arising from Hilbert Problems*, Proc. Sympos. Pure Math. 28, AMS
   1976, pp. 445--482. What the principle of conservation of number costs, and why it needed a

@@ -132,4 +132,74 @@ pencil-conic-count.gp -- eight planes, not twelve (MSE 5130224)
       the line through P, or the line in Pi, failing to be a root : 0
       the two not distinct                                       : 0
 
+  (9a) the residual conic of a plane through a line on a cubic surface
+      configurations : 40
+      F(phi(v)) != q . C(v) identically                    : 0
+      an entry off degree 1 + [i=q] + [j=q]                : 0   (over 360)
+      the discriminant not of bidegree (5,5)               : 0
+      degree matrix of the conic in (s,t) : [1, 2, 1; 2, 3, 2; 1, 2, 1]
+      one entry per row and column, plus the q-row and the q-column:
+      3 + 1 + 1 = 5.  Five planes.
+
+  (9b) the naive chart again: nine, not five -- and the same t^4
+      configurations : 40
+      D_naive not of degree 9 : 0
+      D_naive != -t^4 . D     : 0
+      rank of the naive chart at t = 0 : 1   (the plane {y=0} collapses to a point)
+      rank of the honest chart at t = 0 : 3, and at s = 0 : 3   (never degenerate)
+
+  (9c) the tempting undercount: the pencil of quadrics on a FIXED plane
+      configurations : 40
+      det of the pencil restricted to a fixed plane not cubic : 0
+      that cubic sharing a root with the quintic              : 0
+      the residual conics are linear in (s,t) only in a chart that does not move
+
+  (9d) smoothness, certified by the lemma itself
+      configurations : 40
+      res(G|_L, H|_L) = 0, i.e. S singular somewhere on L : 0
+      disc of the quintic = 0, i.e. a repeated plane      : 0
+      a singular point off L would force a repeated root, so the two lines
+      above certify all 40 surfaces smooth, with five distinct planes each
+
+  (9e) the five planes and the ten lines, checked back in P^3
+      configurations : 40
+      a residual line not lying on S (|F| > 1e-20 somewhere on it) : 0
+      two of the ten lines coinciding                              : 0
+      -- one configuration in detail --
+      plane 1 : s = -0.15567263 + 0.00000000i          max |F| on its two lines : 5.266 e-36
+      plane 2 : s = 0.46135605 + 0.00000000i           max |F| on its two lines : 2.821 e-37
+      plane 3 : s = 0.58615734 + 0.00000000i           max |F| on its two lines : 8.934 e-37
+      plane 4 : s = -0.02908567 - 2.09888371i          max |F| on its two lines : 2.426 e-35
+      plane 5 : s = -0.02908567 + 2.09888371i          max |F| on its two lines : 2.170 e-35
+      largest at one of the five : 2.426 e-35 ;  same construction at s = 7/3 : 5.629 e2
+      separation : 37 orders of magnitude
+      the ten lines: closest pair in normalised Pluecker coordinates : 1.080 e-1
+      closest of the ten to L itself : 8.706 e-1   (none of them is L)
+
+  (9f) a repeated root is a singular point of the surface
+      -- a node imposed at p = [-7, -12, -7, -4], off L --
+      grad F(p) = [0, 0, 0, 0],  F(p) = 0
+      the plane <L,p> is (s:t) = (-7:12), i.e. the root of l = -7*t - 12*s
+      l^2 divides the quintic : 1
+      l divides the residual cubic : 0   (the root is double, not triple)
+      the residual cubic has disc = 0 : 0   (the other three planes stay simple)
+      the vertex of the conic there is p itself : 2.939 e-39   (projective distance)
+      -- a plane section L + 2M: G = x^2 + z.l, l = [-5, 12, 3, 11], so F|_{z=0} = y x^2 --
+      rank of the residual conic at (s:t) = (0:1) : 1   (a double line)
+      s^2 divides the quintic : 1   (rank 1 kills the whole adjugate)
+      grad F on the double line {x = z = 0} is (0, 0, beta(y,w), 0), beta = [12, -23, 15]
+      max |grad F| at the two roots of beta : 1.330 e-37
+      a binary quadratic always has a root, so L + 2M forces a singularity
+
+  (9g) any degree: the same weights, and a topological control
+      the weighted homogeneity C(x, q/L, w; L s, L t) = L C(x, q, w; s, t)
+      for d = 2..6, random forms, exact arithmetic : 0 failures in 91
+      d    deg disc   weight   count    c_2(S)   chi(F)   c_2 - 2 chi(F)
+      2    0         0        0        4        2        0
+      3    3         2        5        9        2        5
+      4    12        12       24       24       0        24
+      5    27        36       63       55       -4        63
+      6    48        80       128      108      -10       128
+      the two counts agree as polynomials in d : 1   (X^3 - 2*X^2 - 4*X + 8)
+
 ======================================================================

@@ -18,6 +18,13 @@
 \\ specialisation proof of the same count, including the transversality
 \\ computation that makes it rigorous.
 \\
+\\ Check 9 turns the same chart around.  S is a cubic surface containing a
+\\ line L; the planes through L cut S in L plus a residual conic, and the
+\\ conic degenerates into two lines for exactly five of them.  Here the
+\\ q-slot GAINS degree rather than losing it -- forms are covariant where
+\\ points are contravariant -- and the count is 3 + 1 + 1 = 5.  The naive
+\\ chart says 9, off by the same factor t^4.
+\\
 \\ Coordinates: L = {y = z = 0}, and V_[s:t] = {s y + t z = 0}.
 
 default(realprecision, 38);
@@ -779,6 +786,305 @@ check8e() =
   printf("      the two not distinct                                       : %d\n", bdist);
 };
 
+
+\\ ---------------------------------------------------------------- check 9
+\\ The same chart, read the other way round.  S = {F = 0} is a cubic surface
+\\ containing L = {y = z = 0}, so F = y G + z H with G, H quadratic forms.
+\\ Each plane V_[s:t] of the pencil cuts S in L plus a residual conic, and
+\\ the planes cutting TWO further lines are those where that conic is
+\\ singular.  Pulling F back along the honest chart,
+\\
+\\        F(x, -t q, s q, w)  =  q . C_[s:t](x, q, w) ,
+\\
+\\ and C is a conic whose matrix entries have degree 1 + [i=q] + [j=q] in
+\\ (s,t): points LOSE degree in the q-slot, forms GAIN it.  So the
+\\ discriminant has degree 3 + 1 + 1 = 5.  Five planes.
+\\
+\\ Same chart, same phantom: the naive chart (x : y : w) gives 9 = 5 + 4,
+\\ with the identical spurious factor t^4 of check 2.
+
+\\ a random quadratic form on P^3, as a symmetric 4x4 matrix
+symrand(H) =
+{ my(M = matrix(4,4));
+  for (i = 1, 4, for (j = i, 4, my(c = rnd(H)); M[i,j] = c; M[j,i] = c));
+  M;
+};
+\\ F = y G + z H, and its gradient
+cubval(G, Hq, P) = P[2]*(P*G*P~) + P[3]*(P*Hq*P~);
+cubgrad(G, Hq, P) =
+{ my(g = 2*(G*P~)~, h = 2*(Hq*P~)~);
+  vector(4, k, P[2]*g[k] + P[3]*h[k] + if (k == 2, P*G*P~, 0) + if (k == 3, P*Hq*P~, 0));
+};
+\\ the two charts of check 1, as 4x3 matrices
+JH = [1,0,0; 0,-t,0; 0,s,0; 0,0,1];      \\ honest: (x:q:w) -> (x : -t q : s q : w)
+JN = [t,0,0; 0,t,0; 0,-s,0; 0,0,t];      \\ naive : (x:y:w) -> (t x : t y : -s y : t w)
+\\ the residual conic in each chart, as a symmetric 3x3 over Q[s,t]
+resh(G, Hq) = -t*(JH~*G*JH) + s*(JH~*Hq*JH);
+resn(G, Hq) =  t*(JN~*G*JN) - s*(JN~*Hq*JN);
+\\ the binary quadratic a quadric cuts on L = {y = z = 0}, coordinates (x,w),
+\\ and the resultant of two of them.  S is singular at a point of L exactly
+\\ where G|_L and H|_L both vanish.
+onL(G) = [G[1,1], 2*G[1,4], G[4,4]];
+bres(a, b) = (a[1]*b[3] - a[3]*b[1])^2 - (a[1]*b[2] - a[2]*b[1])*(a[2]*b[3] - a[3]*b[2]);
+
+check9a() =
+{ my(bad = 0, badd = 0, baddet = 0, tot = 0, DM = 0);
+  printf("  (9a) the residual conic of a plane through a line on a cubic surface\n");
+  for (trial = 1, TRIALS,
+    my(G = symrand(HGT), Hq = symrand(HGT), M = resh(G, Hq), v, D);
+    tot++;
+    v = [rnd(10), rnd(10), rnd(10)];
+    if (cubval(G, Hq, v*JH~) - v[2]*(v*M*v~) != 0, bad++);
+    for (i = 1, 3, for (j = 1, 3,
+      if (tdeg(M[i,j]) != 1 + (i == 2) + (j == 2), badd++)));
+    D = matdet(M);
+    if (tdeg(D) != 5 || poldegree(subst(D, t, 1), s) != 5 ||
+        poldegree(subst(D, s, 1), t) != 5, baddet++);
+    if (trial == 1, DM = matrix(3, 3, i, j, tdeg(M[i,j]))));
+  printf("      configurations : %d\n", tot);
+  printf("      F(phi(v)) != q . C(v) identically                    : %d\n", bad);
+  printf("      an entry off degree 1 + [i=q] + [j=q]                : %d   (over %d)\n",
+         badd, 9*tot);
+  printf("      the discriminant not of bidegree (5,5)               : %d\n", baddet);
+  printf("      degree matrix of the conic in (s,t) : %s\n", DM);
+  printf("      one entry per row and column, plus the q-row and the q-column:\n");
+  printf("      3 + 1 + 1 = 5.  Five planes.\n");
+};
+
+check9b() =
+{ my(bad = 0, badd = 0, tot = 0);
+  printf("  (9b) the naive chart again: nine, not five -- and the same t^4\n");
+  for (trial = 1, TRIALS,
+    my(G = symrand(HGT), Hq = symrand(HGT), D = matdet(resh(G, Hq)), Dn = matdet(resn(G, Hq)));
+    tot++;
+    if (tdeg(Dn) != 9, badd++);
+    if (Dn != -t^4 * D, bad++));
+  printf("      configurations : %d\n", tot);
+  printf("      D_naive not of degree 9 : %d\n", badd);
+  printf("      D_naive != -t^4 . D     : %d\n", bad);
+  printf("      rank of the naive chart at t = 0 : %d   (the plane {y=0} collapses to a point)\n",
+         matrank(subst(JN, t, 0)));
+  printf("      rank of the honest chart at t = 0 : %d, and at s = 0 : %d   (never degenerate)\n",
+         matrank(subst(JH, t, 0)), matrank(subst(JH, s, 0)));
+};
+
+check9c() =
+{ my(bad = 0, badg = 0, tot = 0, PL);
+  printf("  (9c) the tempting undercount: the pencil of quadrics on a FIXED plane\n");
+  PL = matconcat([[1,0,0], [0,1,0], [0,0,0], [0,0,1]]~);        \\ the plane {z = 0}
+  for (trial = 1, TRIALS,
+    my(G = symrand(HGT), Hq = symrand(HGT), cb = matdet(PL~*(-t*G + s*Hq)*PL),
+       D = matdet(resh(G, Hq)));
+    tot++;
+    if (tdeg(cb) != 3, bad++);
+    if (polresultant(subst(cb, t, 1), subst(D, t, 1)) == 0, badg++));
+  printf("      configurations : %d\n", tot);
+  printf("      det of the pencil restricted to a fixed plane not cubic : %d\n", bad);
+  printf("      that cubic sharing a root with the quintic              : %d\n", badg);
+  printf("      the residual conics are linear in (s,t) only in a chart that does not move\n");
+};
+
+check9d() =
+{ my(badL = 0, badD = 0, tot = 0);
+  printf("  (9d) smoothness, certified by the lemma itself\n");
+  for (trial = 1, TRIALS,
+    my(G = symrand(HGT), Hq = symrand(HGT), D = matdet(resh(G, Hq)), f);
+    tot++;
+    if (bres(onL(G), onL(Hq)) == 0, badL++);
+    f = subst(D, t, 1);
+    if (poldegree(f, s) != 5 || poldisc(f) == 0, badD++));
+  printf("      configurations : %d\n", tot);
+  printf("      res(G|_L, H|_L) = 0, i.e. S singular somewhere on L : %d\n", badL);
+  printf("      disc of the quintic = 0, i.e. a repeated plane      : %d\n", badD);
+  printf("      a singular point off L would force a repeated root, so the two lines\n");
+  printf("      above certify all %d surfaces smooth, with five distinct planes each\n", tot);
+};
+
+\\ the vertex of a conic of rank 2: any nonzero column of the adjugate, which
+\\ is c . v~ v
+vertexof(M) =
+{ my(A = matadjoint(M, 1), k = 1, m = -1);
+  for (j = 1, 3, my(n = vecmax(vector(3, i, abs(A[i,j])))); if (n > m, m = n; k = j));
+  Vec(A[,k]);
+};
+\\ split a rank-2 conic: the two lines are the joins of the vertex with the
+\\ two points cut on an auxiliary line
+splitconic(M) =
+{ my(v = vertexof(M), a, b, A, B, C, r);
+  for (try = 1, 20,
+    a = vector(3, i, random(2000) - 1000 + 0.);
+    b = vector(3, i, random(2000) - 1000 + 0.);
+    C = b*M*b~;
+    if (abs(matdet(Mat([v~, a~, b~]))) > 1e-6 && abs(C) > 1e-6, break));
+  A = a*M*a~; B = 2*(a*M*b~);
+  r = polroots(C*z^2 + B*z + A);
+  [v, [a + r[1]*b, a + r[2]*b]];
+};
+supn(P) = vecmax(vector(#P, k, abs(P[k])));
+nrm(P) = P / supn(P);
+\\ the ten lines cut on S by the five planes, and the largest |F| on them
+tenlines(G, Hq, M) =
+{ my(rts = polroots(subst(matdet(M), t, 1)), LN = List(), mx = 0, out = List());
+  for (i = 1, #rts,
+    my(s0 = rts[i], J = subst(subst(JH, t, 1), s, s0), sp, P0, m = 0);
+    sp = splitconic(subst(subst(M, t, 1), s, s0));
+    P0 = Vec(J*sp[1]~);
+    for (j = 1, 2,
+      my(P = Vec(J*sp[2][j]~));
+      listput(LN, nrm(pl(nrm(P0), nrm(P))));
+      for (k = 1, 5, m = max(m, abs(cubval(G, Hq, nrm(P0 + (k-3)*P))))));
+    listput(out, [s0, m]); mx = max(mx, m));
+  [Vec(out), Vec(LN), mx];
+};
+\\ projective distance: the largest 2x2 minor of two normalised vectors, 0
+\\ exactly when they are proportional
+pdist(u, w) =
+{ my(m = 0);
+  for (a = 1, #u, for (b = a+1, #u, m = max(m, abs(u[a]*w[b] - u[b]*w[a]))));
+  m;
+};
+\\ the closest pair among the ten lines, in Pluecker coordinates
+closest(LN) =
+{ my(m = -1);
+  for (i = 1, #LN, for (j = i+1, #LN,
+    my(d = pdist(LN[i], LN[j]));
+    if (m < 0 || d < m, m = d)));
+  m;
+};
+
+check9e() =
+{ my(G, Hq, M, T, bad = 0, badd = 0, tot = 0, ctl, LL, JC, SP, P0);
+  printf("  (9e) the five planes and the ten lines, checked back in P^3\n");
+  for (trial = 1, TRIALS,
+    my(g = symrand(HGT), h = symrand(HGT), m = resh(g, h), r);
+    tot++;
+    r = tenlines(g, h, m);
+    if (r[3] > 1e-20, bad++);
+    if (closest(r[2]) < 1e-9, badd++));
+  printf("      configurations : %d\n", tot);
+  printf("      a residual line not lying on S (|F| > 1e-20 somewhere on it) : %d\n", bad);
+  printf("      two of the ten lines coinciding                              : %d\n", badd);
+  G = symrand(HGT); Hq = symrand(HGT); M = resh(G, Hq);
+  T = tenlines(G, Hq, M);
+  printf("      -- one configuration in detail --\n");
+  for (i = 1, #T[1],
+    my(s0 = T[1][i][1], m = T[1][i][2]);
+    printf("      plane %d : s = %-34s max |F| on its two lines : %s\n", i,
+           strprintf("%.8f %s %.8fi", real(s0), if (imag(s0) < 0, "-", "+"), abs(imag(s0))),
+           if (m == 0, "0", strprintf("%.3e", m))));
+  \\ negative control: the same construction at a plane that is not one of the five
+  ctl = 0;
+  JC = subst(subst(JH, t, 1), s, 7/3.);
+  SP = splitconic(subst(subst(M, t, 1), s, 7/3.));
+  P0 = Vec(JC*SP[1]~);
+  for (j = 1, 2, my(P = Vec(JC*SP[2][j]~));
+    for (k = 1, 5, ctl = max(ctl, abs(cubval(G, Hq, nrm(P0 + (k-3)*P))))));
+  printf("      largest at one of the five : %.3e ;  same construction at s = 7/3 : %.3e\n",
+         T[3], ctl);
+  printf("      separation : %d orders of magnitude\n", round(log(ctl/T[3])/log(10)));
+  LL = T[2];
+  printf("      the ten lines: closest pair in normalised Pluecker coordinates : %.3e\n",
+         closest(LL));
+  printf("      closest of the ten to L itself : %.3e   (none of them is L)\n",
+         vecmin(vector(#LL, i, pdist(LL[i], [0,0,1,0,0,0]))));
+};
+
+\\ a cubic surface with a prescribed node off L: grad F(p) = 0 is four linear
+\\ conditions on the twenty coefficients of (G, H)
+nodalGH(p0) =
+{ my(V = matrix(4, 20), K, c);
+  for (k = 1, 10,
+    V[,k]    = 2*p0[2]*(SYM[k]*p0~) + [0, p0*SYM[k]*p0~, 0, 0]~;
+    V[,10+k] = 2*p0[3]*(SYM[k]*p0~) + [0, 0, p0*SYM[k]*p0~, 0]~);
+  K = matker(V);
+  c = sum(i = 1, matsize(K)[2], rnd(20)*K[,i]);
+  [sum(k = 1, 10, c[k]*SYM[k]), sum(k = 1, 10, c[10+k]*SYM[k])];
+};
+
+check9f() =
+{ my(p0, GH, G, Hq, M, D, ell, cb, J, v, P, c, bq, rts, worst);
+  printf("  (9f) a repeated root is a singular point of the surface\n");
+  for (try = 1, 100,
+    p0 = pt(20);
+    if (p0[2] == 0 && p0[3] == 0, next);
+    GH = nodalGH(p0); G = GH[1]; Hq = GH[2];
+    M = resh(G, Hq); D = matdet(M);
+    if (D == 0 || tdeg(D) != 5 || p0[2] == 0, next);
+    break);
+  ell = p0[2]*s + p0[3]*t;
+  printf("      -- a node imposed at p = %s, off L --\n", p0);
+  printf("      grad F(p) = %s,  F(p) = %d\n", cubgrad(G, Hq, p0), cubval(G, Hq, p0));
+  printf("      the plane <L,p> is (s:t) = (%d:%d), i.e. the root of l = %s\n",
+         p0[3], -p0[2], ell);
+  printf("      l^2 divides the quintic : %d\n", (D % ell^2) == 0);
+  cb = D \ ell^2;
+  printf("      l divides the residual cubic : %d   (the root is double, not triple)\n",
+         (cb % ell) == 0);
+  printf("      the residual cubic has disc = 0 : %d   (the other three planes stay simple)\n",
+         poldisc(subst(cb, t, 1)) == 0);
+  J = subst(subst(JH, t, 1), s, -p0[3]/p0[2]*1.);
+  v = vertexof(subst(subst(M, t, 1), s, -p0[3]/p0[2]*1.));
+  P = Vec(J*v~);
+  printf("      the vertex of the conic there is p itself : %.3e   (projective distance)\n",
+         pdist(nrm(P), nrm(p0*1.)));
+  \\ (ii) the other degeneration: a plane section L + 2M
+  c = vector(4, i, rnd(20));
+  G = matrix(4,4); G[1,1] = 1;
+  G[1,3] += c[1]/2; G[3,1] += c[1]/2; G[2,3] += c[2]/2; G[3,2] += c[2]/2;
+  G[3,3] += c[3];   G[3,4] += c[4]/2; G[4,3] += c[4]/2;
+  Hq = symrand(20);
+  M = resh(G, Hq); D = matdet(M);
+  printf("      -- a plane section L + 2M: G = x^2 + z.l, l = %s, so F|_{z=0} = y x^2 --\n", c);
+  printf("      rank of the residual conic at (s:t) = (0:1) : %d   (a double line)\n",
+         matrank(subst(subst(M, s, 0), t, 1)));
+  printf("      s^2 divides the quintic : %d   (rank 1 kills the whole adjugate)\n",
+         (D % s^2) == 0);
+  bq = [c[2] + Hq[2,2], c[4] + 2*Hq[2,4], Hq[4,4]];
+  rts = polroots(bq[1]*z^2 + bq[2]*z + bq[3]);
+  worst = 0;
+  for (i = 1, #rts, worst = max(worst, supn(cubgrad(G, Hq, [0, rts[i], 0, 1.]))));
+  printf("      grad F on the double line {x = z = 0} is (0, 0, beta(y,w), 0), beta = %s\n", bq);
+  printf("      max |grad F| at the two roots of beta : %.3e\n", worst);
+  printf("      a binary quadratic always has a root, so L + 2M forces a singularity\n");
+};
+
+\\ monomials of degree e in four variables, and evaluation
+mono4(e) =
+{ my(L = List());
+  for (a = 0, e, for (b = 0, e-a, for (c = 0, e-a-b, listput(L, [a, b, c, e-a-b-c]))));
+  Vec(L);
+};
+frm(cf, mn, P) = sum(k = 1, #mn, cf[k]*P[1]^mn[k][1]*P[2]^mn[k][2]*P[3]^mn[k][3]*P[4]^mn[k][4]);
+\\ the residual curve of degree d-1 cut on a surface of degree d, in the chart
+cres(cg, ch, mn, v, ss, tt) =
+{ my(P = [v[1], -tt*v[2], ss*v[2], v[3]]);
+  -tt*frm(cg, mn, P) + ss*frm(ch, mn, P);
+};
+
+check9g() =
+{ my(bad = 0, tot = 0, p1, p2);
+  printf("  (9g) any degree: the same weights, and a topological control\n");
+  for (d = 2, 6,
+    my(mn = mono4(d-1));
+    for (trial = 1, 20,
+      my(cg = vector(#mn, i, rnd(50)), ch = vector(#mn, i, rnd(50)),
+         v = [rnd(9), rnd(9), rnd(9)], s0 = rnd(9), t0 = rnd(9), lam = rnd(9));
+      if (lam == 0 || v[2] == 0, next);
+      tot++;
+      if (cres(cg, ch, mn, [v[1], v[2]/lam, v[3]], lam*s0, lam*t0) !=
+          lam*cres(cg, ch, mn, v, s0, t0), bad++)));
+  printf("      the weighted homogeneity C(x, q/L, w; L s, L t) = L C(x, q, w; s, t)\n");
+  printf("      for d = 2..6, random forms, exact arithmetic : %d failures in %d\n", bad, tot);
+  printf("      d    deg disc   weight   count    c_2(S)   chi(F)   c_2 - 2 chi(F)\n");
+  for (d = 2, 6,
+    my(e = d-1, N = 3*(e-1)^2, W = e*(e-1)^2, c2 = d^3 - 4*d^2 + 6*d,
+       chi = 2 - (e-1)*(e-2));
+    printf("      %-4d %-9d %-8d %-8d %-8d %-8d %d\n", d, N, W, N+W, c2, chi, c2 - 2*chi));
+  p1 = (X-2)^2*(X+2);
+  p2 = (X^3 - 4*X^2 + 6*X) - 2*(2 - (X-2)*(X-3));
+  printf("      the two counts agree as polynomials in d : %d   (%s)\n", p1 == p2, p1);
+};
+
 print("======================================================================");
 print("pencil-conic-count.gp -- eight planes, not twelve (MSE 5130224)");
 print("");
@@ -800,4 +1106,11 @@ check8b(); print("");
 check8c(); print("");
 check8d(); print("");
 check8e(); print("");
+check9a(); print("");
+check9b(); print("");
+check9c(); print("");
+check9d(); print("");
+check9e(); print("");
+check9f(); print("");
+check9g(); print("");
 print("======================================================================");
