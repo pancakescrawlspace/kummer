@@ -95,3 +95,37 @@ plusminus-cube.gp -- y^2 = x^3 -+ a^3, and the 2-adic gap
         ... |d| <=   614,    750 twists,   64 rank>=2,     0 s, 4 of 8: 1=1 3=3 5=-3 7=-1 2=-- 6=-- 10=-- 14=--
         ... |d| <=   817,   1000 twists,   86 rank>=2,     0 s, 4 of 8: 1=1 3=3 5=-3 7=-1 2=-- 6=-- 10=-- 14=--
         ... |d| <=  1027,   1250 twists,   98 rank>=2,     0 s, 4 of 8: 1=1 3=3 5=-3 7=-1 2=-- 6=-- 10=-- 14=--
+      reached |d| <= 1086 in 546 s (budget exhausted)
+      1318 squarefree twists scanned; 104 even ones with rank >= 2 on the
+      even-root-number curve, 104 of those with both ranks positive
+      4 of 8 square classes covered:
+        [1  ] : d = 1
+        [3  ] : d = 3
+        [5  ] : d = -3
+        [7  ] : d = -1
+        [2  ] : none
+        [6  ] : none
+        [10 ] : none
+        [14 ] : none
+
+  (5) cache audit: how much of the even column was actually tested
+      cache results/plusminus-cube-cache-3.txt: 1004 lines, 788 keys
+      a = 3 : cache covers |d| <= 1174, 190 twists with both curves cached
+        96 even twists with rank >= 2 and rank >= 1 on the two curves, of which
+          96 were genuinely tested: generators found on E, density decided
+          0 gave a VACUOUS verdict: no generators found on E, so not-dense
+          0 have no generator data for E at all (should be 0)
+      cache results/plusminus-cube-cache-5.txt: 666 lines, 529 keys
+      a = 5 : cache covers |d| <= 638, 145 twists with both curves cached
+        50 even twists with rank >= 2 and rank >= 1 on the two curves, of which
+          50 were genuinely tested: generators found on E, density decided
+          0 gave a VACUOUS verdict: no generators found on E, so not-dense
+          0 have no generator data for E at all (should be 0)
+      cache results/plusminus-cube-cache-7.txt: 976 lines, 765 keys
+      a = 7 : cache covers |d| <= 1086, 203 twists with both curves cached
+        104 even twists with rank >= 2 and rank >= 1 on the two curves, of which
+          104 were genuinely tested: generators found on E, density decided
+          0 gave a VACUOUS verdict: no generators found on E, so not-dense
+          0 have no generator data for E at all (should be 0)
+
+======================================================================
