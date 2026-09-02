@@ -210,6 +210,82 @@ pairing $beta_v$ there is a sum of local invariants, and the reason it must vani
 points is precisely this section. The Brauer--Manin obstruction is this exact sequence used in
 anger.
 
+= Where this route came from <sec-history>
+
+The choice made in this note is not a stylistic one. Working through algebras is the *historical*
+solution to a specific defect, and the defect is exactly the one a reader is likely to worry about.
+
+#block(fill: luma(243), inset: 9pt, radius: 3pt, width: 100%)[
+  *The first local class field theory was a corollary of the global one.* Hasse and F. K. Schmidt
+  (1930) obtained it as follows. Given an abelian $E slash F$ of local fields with
+  $"char" F = 0$, write $F = K_v$ for a number field $K$ --- every characteristic-zero local field
+  contains a dense number field, in many ways. Takagi's theory supplies an abelian $L slash K$ with
+  $E = L dot K_v$, and the *global* Artin map for $L slash K$, restricted to $K_v^times$, defines
+  the local one. One then checks independence of the choice of $L$.
+]
+
+#v(2mm)
+Emmy Noether objected to the order of business: there ought to be a self-contained derivation of the
+local theory, with the global theory derived *from it*. F. K. Schmidt announced a local development
+for tamely ramified extensions in 1930 but never published it.
+
+The obstruction is sharp, and it is worth naming because it explains why the fix took three years
+rather than three weeks. For an *unramified* extension there is no difficulty: Frobenius is sitting
+there, and the local Artin map is obvious. It is the *ramified* abelian extensions where nothing
+tells you what the Artin symbol ought to be.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *What broke the deadlock was noncommutative algebra.* Two steps.
+
+  #v(1.5mm)
+  *Hasse (1931).* Every cyclic algebra over a characteristic-zero local field $F$, of dimension
+  $n^2$, can be normalised as
+  $ (F_n slash F, "Frob", pi^a) $
+  with $F_n slash F$ *unramified* of degree $n$ and $pi$ a prime of $F$. Since
+  $N_(F_n slash F)(F_n^times) = pi^(n ZZ) times cal(O)_F^times$, the residue $a mod n$ is a
+  well-defined invariant, zero exactly when the algebra splits. That is @sec-local of this note.
+
+  #v(1.5mm)
+  *Hasse (1933), extended to the abelian case by Chevalley.* For $E slash F$ cyclic of degree $n$,
+  $alpha in F^times$ and $sigma$ a generator of $"Gal"(E slash F)$, form the cyclic algebra
+  $A = (E slash F, sigma, alpha)$ and let its invariant be $a mod n$. Changing $sigma$ changes $A$
+  and changes $a$ --- but $sigma^a$ does *not* change. And $sigma^a$ is the local Artin symbol:
+  $ (alpha, E slash F) = sigma^a . $
+  The abelian case follows by writing $E$ as a composite of cyclic $E_i slash F$ and checking the
+  symbols agree on overlaps. No global input anywhere.
+]
+
+#v(2mm)
+So the route through cyclic algebras is precisely what allowed local class field theory to stand on
+its own --- a surprising thing, as Conrad observes, since the subject is about *abelian* Galois
+groups of *commutative* fields. Chevalley's ideles then supplied the other half of Noether's
+programme, deriving the global theory from the local one, which is the order every modern treatment
+uses.
+
+#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
+  *And the cohomology came afterwards, by subtraction.* In 1950--52, Hochschild, Nakayama, Weil,
+  Artin and Tate observed that the algebras were defined entirely in terms of the fields anyway, and
+  stripped them out of the proofs, leaving the cohomological formalism behind. The $H^2$ one meets
+  first in a modern course is historically a *residue* of the crossed products of @sec-crossed, not
+  their conceptual origin. Reading the algebras back in is not a detour; it is a return.
+
+  #v(1.5mm)
+  What was lost in the stripping is worth naming, because it is the whole complaint this note began
+  with: an algebra can be multiplied out, and a claim about it can be *checked*. Hasse's own worked
+  example is the first line of check 3. He computes $(-1, QQ(i) slash QQ)_v$ from the rational
+  quaternions $(-1,-1)$, finding the invariant $1 slash 2$ at $infinity$ and at $2$ and $0$ at every
+  odd prime, because $-1$ is a sum of two squares in $QQ_p$ for $p$ odd. The script reports exactly
+  that: index $2$, ramified at ${infinity, 2}$.
+]
+
+#v(2mm)
+Explicit *construction* of the local class fields, as opposed to the existence statement, came much
+later --- Lubin and Tate (1965), via formal groups. And an elementary, cohomology-free foundation
+covering the local and global reciprocity laws uniformly is Neukirch's, from the mid-1980s; if a
+date in that decade is attached to this story in one's memory, that is the likeliest source, but it
+is a reworking of a theory whose independence from the global case had been settled fifty years
+earlier.
+
 = What the approach buys, and what it does not <sec-verdict>
 
 #block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
@@ -258,6 +334,15 @@ anger.
   crossed products carefully in Ch. 2 and 4, the Brauer group of a local field in Ch. 6.
 + P. Roquette, *The Brauer--Hasse--Noether Theorem in Historical Perspective*. Short, and shows why
   the algebras came first.
++ K. Conrad, *History of Class Field Theory* (online notes), §7. The source for @sec-history: the
+  Hasse--Schmidt derivation of $1930$ and its use of the global theory, Noether's objection,
+  Hasse's normalisation of cyclic algebras over a local field ($1931$), the local definition of the
+  Artin symbol via invariants ($1933$, with Chevalley), and the stripping-out of the algebras in
+  $1950$--$52$.
++ H. Hasse, *Die Normenresttheorie relativ-Abelscher Zahlkörper als Klassenkörpertheorie im
+  Kleinen*, Crelle $162$ ($1930$). Local class field theory, in its original global-dependent form.
++ C. Chevalley, *Sur la théorie du corps de classes dans les corps finis et les corps locaux*
+  ($1933$).
 + I. Reiner, *Maximal Orders*, §32. The arithmetic of orders alongside the Brauer group.
 + J. S. Milne, *Class Field Theory* (online notes). Compact statement-level map, with a Brauer-group
   chapter.

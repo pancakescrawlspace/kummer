@@ -159,6 +159,25 @@ twist where a witness had somewhere to come from and none appeared. By @sec-stat
 not failures of the search. They are instances of Theorem A.
 
 #block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
+  *One way that count could have been inflated, and was not.* `gens` invokes `ellheegner` only when
+  the rank is *exactly* $1$. A curve of rank $>= 2$ whose generators `ellrank` fails to produce
+  therefore keeps an empty point list, and `dense` returns $0$ --- recording the twist as not-dense
+  without any density test having taken place. Such a twist would be a false negative: it belongs
+  in the fourth column but was never really examined. This cannot invent a witness, so @sec-odd is
+  unaffected either way, but it would weaken the reading above.
+
+  #v(1.5mm)
+  Check 5 audits exactly this, free of charge, from the cached Mordell--Weil data. Because
+  $"dense"(E) and "dense"(E')$ short-circuits on the sign, it is always $E$ that decides; the
+  question is whether $E$ had generators. Over the cached range --- $abs(d) <= 1070, 478, 1002$ for
+  $a = 3,5,7$, covering $208$ of the $366$ --- the answer is *$0$ vacuous verdicts*: every one of
+  those twists was rejected by a real density test on a curve whose generators had been found and
+  saturated. The residual caveat is the saturation bound itself, `ellsaturation(E,P,40)`: a
+  subgroup of index divisible by a prime above $40$ would be missed, a limitation shared with every
+  density computation in this repository.
+]
+
+#block(fill: rgb("#fff4e6"), inset: 8pt, radius: 3pt, width: 100%)[
   *Why the steering is sound and not a shortcut.* Nothing is skipped that could have been a
   witness. A witness needs rank $>= 1$ on both curves; on an even class the $w = +1$ curve has even
   analytic rank, so rank $>= 1$ there forces rank $>= 2$. Discarding the twists that fail it
@@ -197,7 +216,10 @@ not failures of the search. They are instances of Theorem A.
 = What the companion script checks <sec-gp>
 
 `plusminus-cube.gp`, results in `results/plusminus-cube.txt`, with the long check-4 run of
-@sec-deep in `results/plusminus-cube-deep.txt`. Density is decided by the
+@sec-deep in `results/plusminus-cube-deep.txt`. Every rank and every saturated generator is cached
+in `results/plusminus-cube-cache-<{a}>.txt`, so re-running costs no Mordell--Weil work: a cold run
+to $abs(d) <= 622$ took $76$ s and the warm re-run of the same ceiling took $0.03$ s. Density is
+decided by the
 repository's own single-curve tests `densegroup` and `densegroup2`, applied once to each curve, as
 in $section 2$ of `kummer-example-j0.typ`.
 
@@ -209,6 +231,9 @@ in $section 2$ of `kummer-example-j0.typ`.
 - *(3)* The scan of @sec-odd at every odd $p <= 19$, $abs(d) <= 150$.
 - *(4)* The deep scan of @sec-deep at $p = 2$, steered by root numbers and bounded by a wall-clock
   budget --- $300$ s per value of $a$ by default, $5400$ s for the run tabulated above.
+- *(5)* A cache audit: of the even twists with positive rank on both curves, how many were
+  genuinely tested for density and how many got a vacuous not-dense verdict for want of
+  generators. Over the cached range, $0$ vacuous.
 
 = References <sec-refs>
 

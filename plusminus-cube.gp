@@ -189,6 +189,51 @@ check4(a, B, step, budget) =
   [got, dmax, n, cand, both];
 };
 
+\\ ---------------------------------------------------------------- check 5
+\\ A CACHE AUDIT, and an honest limit on what check 4 proves.
+\\
+\\ gens() calls ellheegner only when the rank is exactly 1.  On a curve of rank
+\\ >= 2 whose generators ellrank does not find, the point list stays EMPTY, so
+\\ dense() returns 0 -- the twist is recorded as not-dense without any density
+\\ test having happened.  That is a false negative.  It can never manufacture a
+\\ witness, so the odd-prime results of check 3 are proofs regardless; but it
+\\ means the empty even column at p = 2 is partly untested rather than tested
+\\ and failed.  This check counts which is which, using only the cache, so it
+\\ costs nothing.  dense(E) && dense(F) short-circuits, so a twist rejected on
+\\ the first curve may have no generator data for the second at all.
+
+check5(a) =
+{ my(tot = 0, both = 0, tested = 0, vac = 0, nog = 0, dmax = 0);
+  cinit(a);
+  for (k = 1, 100000,
+    foreach([k,-k], d,
+      if (core(abs(d)) != abs(d), next);
+      my(z1, z2);
+      if (!mapisdefined(CMAP, ckey(a,d,-1), &z1), next);
+      if (!mapisdefined(CMAP, ckey(a,d, 1), &z2), next);
+      if (abs(d) > dmax, dmax = abs(d));
+      tot++;
+      if (d % 2, next);
+      my(w1 = ellrootno(Emin(a,d)), sg, zg, zh);
+      sg = if (w1 == 1, -1, 1);
+      zg = if (sg < 0, z1, z2); zh = if (sg < 0, z2, z1);
+      if (zg[1] < 2 || zh[1] < 1, next);
+      both++;
+      \\ dense(E) && dense(F) short-circuits on the SIGN: E (s = -1) is always
+      \\ tested first, so z1 is the one that decides.  A verdict is vacuous when
+      \\ that curve's saturated generator list is empty -- not-dense by absence
+      \\ of points rather than by a density test.
+      if (z1[2] == 0, nog++,
+        if (#z1[3] == 0, vac++, tested++))));
+  printf("      a = %d : cache covers |d| <= %d, %d twists with both curves cached\n",
+         a, dmax, tot);
+  printf("        %d even twists with rank >= 2 and rank >= 1 on the two curves, of which\n", both);
+  printf("          %d were genuinely tested: generators found on E, density decided\n", tested);
+  printf("          %d gave a VACUOUS verdict: no generators found on E, so not-dense\n", vac);
+  printf("          %d have no generator data for E at all (should be 0)\n", nog);
+  [both, tested, vac, nog];
+};
+
 print("======================================================================");
 print("plusminus-cube.gp -- y^2 = x^3 -+ a^3, and the 2-adic gap");
 /* The driver.  check4 is the expensive part and its cost per twist grows
@@ -237,6 +282,8 @@ BMAX   = if (type(BMAX)   == "t_INT", BMAX,   100000);
     check4(3, BMAX, 250, BUDGET); print("");
     check4(5, BMAX, 250, BUDGET); print("");
     check4(7, BMAX, 250, BUDGET); print("");
+    print("  (5) cache audit: how much of the even column was actually tested");
+    check5(3); check5(5); check5(7); print("");
   ));
   print("======================================================================");}
 \\ Reading this file runs the driver, unless NORUN is set -- set it to use the

@@ -3,10 +3,15 @@ plusminus-cube.gp -- y^2 = x^3 -+ a^3, and the 2-adic gap
 
   (1) the pair, for small odd primes a
       a     N(E)      N(E')     ranks   torsion   isogenous?  2-division field
+      cache results/plusminus-cube-cache-3.txt: 912 lines, 726 keys
       3     36        144       0, 0    [2]       0           Q(zeta_3), disc = -27
+      cache results/plusminus-cube-cache-5.txt: 569 lines, 451 keys
       5     3600      900       0, 0    [2]       0           Q(zeta_3), disc = -75
+      cache results/plusminus-cube-cache-7.txt: 927 lines, 727 keys
       7     1764      7056      1, 1    [2]       0           Q(zeta_3), disc = -147
+      cache results/plusminus-cube-cache-11.txt: 2 lines, 2 keys
       11    4356      17424     1, 1    [2]       0           Q(zeta_3), disc = -363
+      cache results/plusminus-cube-cache-13.txt: 2 lines, 2 keys
       13    24336     6084      0, 0    [2]       0           Q(zeta_3), disc = -507
 
   (2) root numbers of the pair, by parity of d, |d| <= 200
@@ -17,6 +22,7 @@ plusminus-cube.gp -- y^2 = x^3 -+ a^3, and the 2-adic gap
       11    162 / 0                  0 / 82
 
   (3) the scan at the odd primes p <= 19
+      cache results/plusminus-cube-cache-3.txt: 912 lines, 726 keys
       a = 3 : 76 twists |d| <= 150 with both ranks positive
         p = 3   : 4 of 4  [1]=-11 [u]=11 [3]=-78 [u*3]=78 
         p = 5   : 4 of 4  [1]=21 [u]=7 [5]=95 [u*5]=35 
@@ -25,6 +31,7 @@ plusminus-cube.gp -- y^2 = x^3 -+ a^3, and the 2-adic gap
         p = 13  : 2 of 4  [1]=114 [u]=-- [13]=-- [u*13]=91 
         p = 17  : 3 of 4  [1]=69 [u]=11 [17]=-- [u*17]=119 
         p = 19  : 4 of 4  [1]=-21 [u]=21 [19]=19 [u*19]=-19 
+      cache results/plusminus-cube-cache-5.txt: 569 lines, 451 keys
       a = 5 : 80 twists |d| <= 150 with both ranks positive
         p = 3   : 4 of 4  [1]=22 [u]=-22 [3]=21 [u*3]=-21 
         p = 5   : 4 of 4  [1]=19 [u]=7 [5]=55 [u*5]=35 
@@ -33,6 +40,7 @@ plusminus-cube.gp -- y^2 = x^3 -+ a^3, and the 2-adic gap
         p = 13  : 3 of 4  [1]=133 [u]=67 [13]=-- [u*13]=91 
         p = 17  : 3 of 4  [1]=19 [u]=11 [17]=-- [u*17]=119 
         p = 19  : 4 of 4  [1]=-22 [u]=22 [19]=19 [u*19]=-19 
+      cache results/plusminus-cube-cache-7.txt: 927 lines, 727 keys
       a = 7 : 76 twists |d| <= 150 with both ranks positive
         p = 3   : 4 of 4  [1]=-47 [u]=47 [3]=-15 [u*3]=15 
         p = 5   : 4 of 4  [1]=1 [u]=3 [5]=5 [u*5]=15 
@@ -43,13 +51,15 @@ plusminus-cube.gp -- y^2 = x^3 -+ a^3, and the 2-adic gap
         p = 19  : 4 of 4  [1]=1 [u]=-1 [19]=95 [u*19]=-95 
 
   (4) deep scan at p = 2 for a = 3, squarefree |d| <= 100000, budget 300 s
-        ... |d| <=   203,    250 twists,   14 rank>=2,     1 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
-        ... |d| <=   410,    500 twists,   32 rank>=2,    42 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
-        ... |d| <=   614,    750 twists,   44 rank>=2,    43 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
-        ... |d| <=   817,   1000 twists,   64 rank>=2,   299 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
-      reached |d| <= 1006 in 300 s (budget exhausted)
-      1226 squarefree twists scanned; 72 even ones with rank >= 2 on the
-      even-root-number curve, 72 of those with both ranks positive
+      cache results/plusminus-cube-cache-3.txt: 912 lines, 726 keys
+        ... |d| <=   203,    250 twists,   14 rank>=2,     0 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
+        ... |d| <=   410,    500 twists,   32 rank>=2,     0 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
+        ... |d| <=   614,    750 twists,   44 rank>=2,     0 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
+        ... |d| <=   817,   1000 twists,   64 rank>=2,     0 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
+        ... |d| <=  1027,   1250 twists,   72 rank>=2,     0 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
+      reached |d| <= 1174 in 662 s (budget exhausted)
+      1430 squarefree twists scanned; 96 even ones with rank >= 2 on the
+      even-root-number curve, 96 of those with both ranks positive
       4 of 8 square classes covered:
         [1  ] : d = -7
         [3  ] : d = -21
@@ -61,37 +71,7 @@ plusminus-cube.gp -- y^2 = x^3 -+ a^3, and the 2-adic gap
         [14 ] : none
 
   (4) deep scan at p = 2 for a = 5, squarefree |d| <= 100000, budget 300 s
+      cache results/plusminus-cube-cache-5.txt: 569 lines, 451 keys
         ... |d| <=   203,    250 twists,   18 rank>=2,     0 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
-        ... |d| <=   410,    500 twists,   32 rank>=2,    30 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
-      reached |d| <= 478 in 698 s (budget exhausted)
-      586 squarefree twists scanned; 36 even ones with rank >= 2 on the
-      even-root-number curve, 36 of those with both ranks positive
-      4 of 8 square classes covered:
-        [1  ] : d = -7
-        [3  ] : d = -21
-        [5  ] : d = 21
-        [7  ] : d = 7
-        [2  ] : none
-        [6  ] : none
-        [10 ] : none
-        [14 ] : none
-
-  (4) deep scan at p = 2 for a = 7, squarefree |d| <= 100000, budget 300 s
-        ... |d| <=   203,    250 twists,   22 rank>=2,     0 s, 4 of 8: 1=1 3=3 5=-3 7=-1 2=-- 6=-- 10=-- 14=--
-        ... |d| <=   410,    500 twists,   42 rank>=2,     0 s, 4 of 8: 1=1 3=3 5=-3 7=-1 2=-- 6=-- 10=-- 14=--
-        ... |d| <=   614,    750 twists,   64 rank>=2,     1 s, 4 of 8: 1=1 3=3 5=-3 7=-1 2=-- 6=-- 10=-- 14=--
-        ... |d| <=   817,   1000 twists,   86 rank>=2,   103 s, 4 of 8: 1=1 3=3 5=-3 7=-1 2=-- 6=-- 10=-- 14=--
-      reached |d| <= 1002 in 1078 s (budget exhausted)
-      1220 squarefree twists scanned; 96 even ones with rank >= 2 on the
-      even-root-number curve, 96 of those with both ranks positive
-      4 of 8 square classes covered:
-        [1  ] : d = 1
-        [3  ] : d = 3
-        [5  ] : d = -3
-        [7  ] : d = -1
-        [2  ] : none
-        [6  ] : none
-        [10 ] : none
-        [14 ] : none
-
-======================================================================
+        ... |d| <=   410,    500 twists,   32 rank>=2,     0 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
+        ... |d| <=   614,    750 twists,   48 rank>=2,     0 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
