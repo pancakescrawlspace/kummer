@@ -75,3 +75,23 @@ plusminus-cube.gp -- y^2 = x^3 -+ a^3, and the 2-adic gap
         ... |d| <=   203,    250 twists,   18 rank>=2,     0 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
         ... |d| <=   410,    500 twists,   32 rank>=2,     0 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
         ... |d| <=   614,    750 twists,   48 rank>=2,     0 s, 4 of 8: 1=-7 3=-21 5=21 7=7 2=-- 6=-- 10=-- 14=--
+      reached |d| <= 638 in 590 s (budget exhausted)
+      778 squarefree twists scanned; 50 even ones with rank >= 2 on the
+      even-root-number curve, 50 of those with both ranks positive
+      4 of 8 square classes covered:
+        [1  ] : d = -7
+        [3  ] : d = -21
+        [5  ] : d = 21
+        [7  ] : d = 7
+        [2  ] : none
+        [6  ] : none
+        [10 ] : none
+        [14 ] : none
+
+  (4) deep scan at p = 2 for a = 7, squarefree |d| <= 100000, budget 300 s
+      cache results/plusminus-cube-cache-7.txt: 927 lines, 727 keys
+        ... |d| <=   203,    250 twists,   22 rank>=2,     0 s, 4 of 8: 1=1 3=3 5=-3 7=-1 2=-- 6=-- 10=-- 14=--
+        ... |d| <=   410,    500 twists,   42 rank>=2,     0 s, 4 of 8: 1=1 3=3 5=-3 7=-1 2=-- 6=-- 10=-- 14=--
+        ... |d| <=   614,    750 twists,   64 rank>=2,     0 s, 4 of 8: 1=1 3=3 5=-3 7=-1 2=-- 6=-- 10=-- 14=--
+        ... |d| <=   817,   1000 twists,   86 rank>=2,     0 s, 4 of 8: 1=1 3=3 5=-3 7=-1 2=-- 6=-- 10=-- 14=--
+        ... |d| <=  1027,   1250 twists,   98 rank>=2,     0 s, 4 of 8: 1=1 3=3 5=-3 7=-1 2=-- 6=-- 10=-- 14=--

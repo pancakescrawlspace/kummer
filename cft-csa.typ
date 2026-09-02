@@ -341,8 +341,28 @@ earlier.
   $1950$--$52$.
 + H. Hasse, *Die Normenresttheorie relativ-Abelscher Zahlkörper als Klassenkörpertheorie im
   Kleinen*, Crelle $162$ ($1930$). Local class field theory, in its original global-dependent form.
++ H. Hasse, *Über $frak(p)$-adische Schiefkörper und ihre Bedeutung für die Arithmetik
+  hyperkomplexer Zahlsysteme*, Math. Ann. $104$ ($1931$), $495$--$534$. The Brauer group of a local
+  field, and the normalisation $(F_n slash F, "Frob", pi^a)$ of @sec-history --- the step that made
+  the invariant available.
 + C. Chevalley, *Sur la théorie du corps de classes dans les corps finis et les corps locaux*
-  ($1933$).
+  ($1933$). The abelian case, and later the ideles that derive the global theory from the local one.
++ J. Lubin and J. Tate, *Formal complex multiplication in local fields*, Ann. of Math. $81$
+  ($1965$), $380$--$387$. Explicit construction of the local class fields, which the existence
+  statement of @sec-lcft does not provide.
++ J. Neukirch, *Class Field Theory*, Springer, Grundlehren $280$ ($1986$). The cohomology-free
+  foundation, local and global under one group-theoretic principle; the likeliest referent of a
+  $1980$s date attached to the story of @sec-history.
++ M. Rosen, *An elementary proof of the local Kronecker--Weber theorem*, Trans. AMS $265$ ($1981$),
+  $599$--$605$; J. Lubin, *The local Kronecker--Weber theorem*, Trans. AMS $267$ ($1981$),
+  $133$--$138$. Purely local proofs of local Kronecker--Weber. *A distinct question from
+  @sec-history*, and worth flagging because it is easy to conflate the two: the classical route runs
+  local $=>$ global, and local Kronecker--Weber was classically proved *via local class field
+  theory*, not deduced from the global theorem. These papers avoid local class field theory, not a
+  dependence on the global case.
++ J. Koenigsmann and B. Stock, *An Elementary Proof of the Local Kronecker--Weber Theorem*,
+  arXiv:$2206.05801$. Its introduction is the source for the direction of the classical argument
+  just described.
 + I. Reiner, *Maximal Orders*, §32. The arithmetic of orders alongside the Brauer group.
 + J. S. Milne, *Class Field Theory* (online notes). Compact statement-level map, with a Brauer-group
   chapter.
