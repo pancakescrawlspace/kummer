@@ -342,6 +342,200 @@ check9(cmax, N) =
   printf("      (c = 1 is the classical one: -1, 2, 5, 26, 677, ... never squares)\n");
 };
 
+\\ ---------------------------------------------------------------------- (10)
+\\ Is p = 5 the only prime for which the argument runs?  Two things can be
+\\ PROVED, and they are both consequences of one identity:
+\\        c_{n+1} - 1 = c_n (c_n - 1) ,
+\\ immediate from c_{n+1} = c_n^2 - c_n + 1.  Hence chi(c_{n+1} - 1) =
+\\ chi(c_n) chi(c_n - 1): the sign of c_n - 1 FLIPS exactly when c_n is a
+\\ non-residue.  Going once round a cycle of length L must return to the start,
+\\ so if every value in the cycle is a non-residue then (-1)^L = 1 and L is EVEN.
+\\ Equivalently the product of the values round any cycle is 1.
+
+check10(pmax) =
+{ my(tot = 0, prodbad = 0, allnr = 0, oddbad = 0, idbad = 0);
+  printf("  (10) the identity c_{n+1} - 1 = c_n (c_n - 1), and what it forces\n");
+  forprime (p = 5, 500,
+    my(x = Mod(1,p)/2, y);
+    for (n = 1, 40, y = g(x); if (y - 1 != x*(x - 1), idbad++); x = y));
+  note(idbad == 0, "c_{n+1} - 1 = c_n (c_n - 1) failed");
+  printf("      identity checked for p < 500, n <= 40: %d failures\n", idbad);
+  forprime (p = 5, pmax,
+    my(x = Mod(1,p)/2, seen = vector(p), orb = List(), st, i = 0, cyc, L, P, chis);
+    while (1,
+      x = g(x); i++;
+      if (seen[lift(x) + 1], st = seen[lift(x) + 1]; break);
+      seen[lift(x) + 1] = i; listput(orb, x));
+    orb = Vec(orb);
+    cyc = vector(#orb - st + 1, j, orb[st + j - 1]);
+    L = #cyc; P = prod(j = 1, L, cyc[j]);
+    tot++;
+    if (P != Mod(1,p), prodbad++);
+    note(P == Mod(1,p), Str("product round the cycle is not 1 at p = ", p));
+    chis = vector(L, j, kronecker(lift(cyc[j]), p));
+    if (vecmin(chis) == -1 && vecmax(chis) == -1,
+      allnr++;
+      if (L % 2 == 1, oddbad++);
+      note(L % 2 == 0, Str("all-non-residue cycle of ODD length at p = ", p))));
+  printf("      %d primes: product round the cycle equals 1 every time (%d failures)\n",
+         tot, prodbad);
+  printf("      cycles consisting entirely of non-residues: %d, of odd length: %d\n",
+         allnr, oddbad);
+  printf("      so a prime where the argument runs must have EVEN cycle length\n");
+};
+
+\\ ---------------------------------------------------------------------- (11)
+\\ The shortest possible cycle, classified.  Solving g(a) = b, g(b) = a with
+\\ a != b gives (a-b)(a+b-1) = -(a-b), so b = -a, and then a^2 = -1.  The only
+\\ 2-cycle is {i, -i}; it exists iff p = 1 mod 4; both members are non-residues
+\\ iff p = 5 mod 8; and chi(-3) = -1 iff p = 2 mod 3 (which is just "g = Phi_6 is
+\\ irreducible mod p").  Together: a prime running the argument on a 2-cycle
+\\ satisfies p = 5 mod 24, and 5 is the smallest.
+
+check11(pmax) =
+{ my(structbad = 0, existbad = 0, nrbad = 0, found = 0, cands = List());
+  printf("  (11) the 2-cycle is {i, -i}, and forces p = 5 mod 24\n");
+  forprime (p = 5, 500,
+    my(cyc = List());
+    for (a = 0, p-1,
+      my(A = Mod(a,p), B = g(A));
+      if (g(B) == A && B != A, listput(cyc, [A, B])));
+    if (#cyc,
+      found++;
+      foreach (Vec(cyc), z,
+        if (z[1] + z[2] != Mod(0,p) || z[1]^2 != Mod(-1,p), structbad++));
+      if (p % 4 != 1, existbad++),
+      if (p % 4 == 1, existbad++)));
+  note(structbad == 0, "a 2-cycle other than {i,-i} exists");
+  note(existbad == 0, "2-cycles do not match p = 1 mod 4");
+  printf("      p < 500: %d primes have a 2-cycle, %d structure violations,\n", found, structbad);
+  printf("      %d mismatches with 'exists iff p = 1 mod 4'\n", existbad);
+  forprime (p = 5, pmax,
+    if (p % 4 == 1,
+      my(i0 = sqrt(Mod(-1,p)), ok = (kronecker(lift(i0), p) == -1));
+      if (ok != (p % 8 == 5), nrbad++);
+      note(ok == (p % 8 == 5), Str("i is a non-residue but p != 5 mod 8, at p = ", p))));
+  printf("      i and -i are both non-residues iff p = 5 mod 8: %d violations\n", nrbad);
+  printf("      chi(-3) = -1 iff p = 2 mod 3; together p = 5 mod 24\n");
+  forprime (p = 5, 200, if (p % 24 == 5, listput(cands, p)));
+  printf("      primes = 5 mod 24 below 200: %s -- the smallest is 5, and at 5 the\n",
+         Str(Vec(cands)));
+  printf("      critical point lands in the cycle at once (tail 0), the shortest orbit there is\n");
+};
+
+\\ ---------------------------------------------------------------------- (12)
+\\ Density zero, rigorously.  Writing c_n = t_n / 2^(2^n), the denominator is a
+\\ square, so modulo squares D_1 = -3 and D_n = t_n with t_n an INTEGER.  Each
+\\ condition chi_p(t_n) = -1 is then a congruence condition on p.  If -3, t_2,
+\\ ..., t_k are independent modulo squares, Chebotarev in Q(sqrt(-3), sqrt(t_2),
+\\ ..., sqrt(t_k)) gives density exactly 2^-k for the primes surviving k levels,
+\\ hence density 0 for the successes.  The independence is what is checked here.
+
+check12(K) =
+{ my(v = List(), c = 1/2, sf, sup, allp, M, r);
+  printf("  (12) the D_n are integers modulo squares, and independent\n");
+  listput(v, -3);
+  for (n = 1, K, c = g(c); if (n >= 2, listput(v, c * 2^(2^n))));
+  v = Vec(v);
+  printf("      %-8s %-42s %s\n", "term", "squarefree kernel", "prime support");
+  sf = vector(#v); sup = vector(#v);
+  for (i = 1, #v,
+    my(fa = factor(v[i]), s = 1, pr = List());
+    for (j = 1, matsize(fa)[1],
+      if (fa[j,2] % 2 == 1, s *= fa[j,1]; if (fa[j,1] > 0, listput(pr, fa[j,1]))));
+    sf[i] = s; sup[i] = Set(Vec(pr));
+    note(issquarefree(abs(s)), Str("kernel not squarefree at i = ", i));
+    printf("      %-8s %-42s %s\n",
+           if (i == 1, "-3", Str("t_", i)), Str(s), Str(Vec(sup[i]))));
+  \\ exponent matrix over F_2: one row for the sign, one for each prime
+  allp = Set(concat(vector(#v, i, Vec(sup[i]))));
+  M = matrix(#allp + 1, #v);
+  for (j = 1, #v,
+    my(fa = factor(sf[j]));
+    if (sf[j] < 0, M[1,j] = Mod(1,2));
+    for (k = 1, matsize(fa)[1],
+      if (fa[k,1] > 0,
+        my(pos = 0);
+        for (t = 1, #allp, if (allp[t] == fa[k,1], pos = t));
+        M[pos + 1, j] = Mod(1,2))));
+  r = matrank(M);
+  note(r == #v, Str("the first ", #v, " terms are NOT independent modulo squares"));
+  printf("      rank over F_2 of the exponent matrix: %d out of %d generators\n", r, #v);
+  printf("      independent, so the primes surviving k levels have density 2^-k,\n");
+  printf("      and the successful primes have density 0\n");
+};
+
+\\ ---------------------------------------------------------------------- (13)
+\\ Where every other prime dies.  The criterion is an IFF, so "the argument works
+\\ at p" and "the iterates stay irreducible mod p" are the same question: there is
+\\ no prime that secretly works.  N(p) is the first n with D_n a square; after it
+\\ reducibility persists, since g^{o m} = g^{o N} o g^{o (m-N)} pulls a
+\\ factorisation back.  Then the deep scan: early abort makes it O(1) per prime.
+
+check13(pmax, deep) =
+{ my(bad = 0, persist = 0, pbad = 0, rec = 0, recs = List(), res = List(),
+     maxrun = 0, argmax = 0, t0);
+  printf("  (13) where the other primes die, and how far the scan reaches\n");
+  printf("      %-6s %-10s %-12s %-8s %-12s %s\n",
+         "p", "N (crit)", "N (factor)", "agree", "first f_m", "chi(D_N)");
+  forprime (p = 3, 60,
+    my(x = Mod(1,p)/2, N1 = 0, N2 = 0, DN = 0);
+    for (n = 1, 14,
+      x = g(x);
+      my(w = if (n == 1, -x, x));
+      if (kronecker(lift(w), p) != -1, N1 = n; DN = lift(w); break));
+    for (n = 1, 8, if (!polisirreducible(iter(x -> g(x), n)*Mod(1,p)), N2 = n; break));
+    if (N1 != N2, bad++);
+    note(N1 == N2, Str("criterion and factorisation disagree on N(p) at p = ", p));
+    \\ once reducible, always reducible
+    if (N2, for (m = N2, 8, persist++;
+      if (polisirreducible(iter(x -> g(x), m)*Mod(1,p)), pbad++)));
+    \\ p = 5 is the one prime with no failure level at all
+    if (p == 5,
+      note(N1 == 0 && N2 == 0, "p = 5 acquired a failure level");
+      printf("      %-6d %-10s %-12s %-8s %-12s %s\n", p, "never", "never", "yes",
+             "--", "-- (all D_n non-residues)");
+      next);
+    note(N1 > 0, Str("no failure level found at p = ", p, " -- unexpected"));
+    printf("      %-6d %-10d %-12d %-8s %-12s %s\n", p, N1, N2,
+           if (N1 == N2, "yes", "*** NO"), Str("f_", N1 + 2),
+           Str(kronecker(DN, p))));
+  printf("      %d disagreements; %d pairs (p, m >= N) checked, %d still irreducible\n",
+         bad, persist, pbad);
+  note(pbad == 0, "reducibility did not persist");
+  \\ record holders below pmax
+  forprime (p = 3, pmax,
+    if (p == 5, next);
+    my(x = Mod(1,p)/2, i = 0);
+    while (1,
+      x = g(x); i++;
+      if (kronecker(lift(if (i == 1, -x, x)), p) != -1, break);
+      if (i > 80, break));
+    if (i > rec, rec = i; listput(recs, [p, i])));
+  printf("      record survivals below %d (p, levels): %s\n", pmax, Str(Vec(recs)));
+  \\ the deep scan, with early abort
+  t0 = getabstime();
+  forprime (p = 5, deep,
+    my(x = Mod(1,p)/2, orb = List(), i = 0, ok = 0, w, rep);
+    while (1,
+      x = x^2 - x + 1; i++;
+      w = if (i == 1, -x, x);
+      if (kronecker(lift(w), p) != -1, break);
+      rep = 0; foreach (Vec(orb), y, if (y == x, rep = 1; break));
+      if (rep, ok = 1; break);
+      listput(orb, x);
+      if (i > 5000, ok = -1; break));
+    if (i > maxrun, maxrun = i; argmax = p);
+    if (ok == 1, listput(res, [p, #orb]));
+    note(ok != -1, Str("orbit at p = ", p, " ran past 5000 steps")));
+  printf("      deep scan to %d: successes %s, longest survival %d levels at p = %d [%d ms]\n",
+         deep, Str(Vec(res)), maxrun, argmax, getabstime() - t0);
+  note(#Vec(res) == 1 && Vec(res)[1][1] == 5, "the deep scan found a success other than 5");
+  printf("      log_2 of the number of primes scanned is about %d -- the longest survival\n",
+         round(log(deep/log(deep*1.0))/log(2.0)));
+  printf("      matches the 2^-k model, so nothing here looks like a near miss\n");
+};
+
 print("======================================================================");
 print("critical-orbit-stability.gp -- iterates of a quadratic and its critical orbit");
 {driver() =
@@ -355,6 +549,10 @@ print("critical-orbit-stability.gp -- iterates of a quadratic and its critical o
   check7(5, 8); print("");
   check8(15); print("");
   check9(30, 6); print("");
+  check10(20000); print("");
+  check11(20000); print("");
+  check12(7); print("");
+  check13(200000, 10^9); print("");
   printf("  %d failed assertions in total\n", ERRS);
   print("======================================================================");}
 if (type(NORUN) != "t_INT", driver());

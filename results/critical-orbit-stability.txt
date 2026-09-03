@@ -128,5 +128,56 @@ critical-orbit-stability.gp -- iterates of a quadratic and its critical orbit
       43 values of c; 0 cases where the test passed and an iterate was reducible
       (c = 1 is the classical one: -1, 2, 5, 26, 677, ... never squares)
 
+  (10) the identity c_{n+1} - 1 = c_n (c_n - 1), and what it forces
+      identity checked for p < 500, n <= 40: 0 failures
+      2260 primes: product round the cycle equals 1 every time (0 failures)
+      cycles consisting entirely of non-residues: 26, of odd length: 0
+      so a prime where the argument runs must have EVEN cycle length
+
+  (11) the 2-cycle is {i, -i}, and forces p = 5 mod 24
+      p < 500: 44 primes have a 2-cycle, 0 structure violations,
+      0 mismatches with 'exists iff p = 1 mod 4'
+      i and -i are both non-residues iff p = 5 mod 8: 0 violations
+      chi(-3) = -1 iff p = 2 mod 3; together p = 5 mod 24
+      primes = 5 mod 24 below 200: [5, 29, 53, 101, 149, 173, 197] -- the smallest is 5, and at 5 the
+      critical point lands in the cycle at once (tail 0), the shortest orbit there is
+
+  (12) the D_n are integers modulo squares, and independent
+      term     squarefree kernel                          prime support
+      -3       -3                                         [3]
+      t_2      13                                         [13]
+      t_3      217                                        [7, 31]
+      t_4      57073                                      [57073]
+      t_5      3811958497                                 [3811958497]
+      t_6      16605534578235736513                       [43, 23209, 16639028943499]
+      t_7      309708098978072051970763989442580255617    [536479, 577297711519131321022377370675423]
+      rank over F_2 of the exponent matrix: 7 out of 7 generators
+      independent, so the primes surviving k levels have density 2^-k,
+      and the successful primes have density 0
+
+  (13) where the other primes die, and how far the scan reaches
+      p      N (crit)   N (factor)   agree    first f_m    chi(D_N)
+      3      1          1            yes      f_3          0
+      5      never      never        yes      --           -- (all D_n non-residues)
+      7      1          1            yes      f_3          1
+      11     4          4            yes      f_6          1
+      13     1          1            yes      f_3          1
+      17     2          2            yes      f_4          1
+      19     1          1            yes      f_3          1
+      23     2          2            yes      f_4          1
+      29     2          2            yes      f_4          1
+      31     1          1            yes      f_3          1
+      37     1          1            yes      f_3          1
+      41     4          4            yes      f_6          1
+      43     1          1            yes      f_3          1
+      47     8          8            yes      f_10         1
+      53     2          2            yes      f_4          1
+      59     4          4            yes      f_6          1
+      0 disagreements; 100 pairs (p, m >= N) checked, 0 still irreducible
+      record survivals below 200000 (p, levels): [[3, 1], [11, 4], [47, 8], [2069, 14], [15803, 15], [139703, 16]]
+      deep scan to 1000000000: successes [[5, 2]], longest survival 27 levels at p = 443762873 [101468 ms]
+      log_2 of the number of primes scanned is about 26 -- the longest survival
+      matches the 2^-k model, so nothing here looks like a near miss
+
   0 failed assertions in total
 ======================================================================

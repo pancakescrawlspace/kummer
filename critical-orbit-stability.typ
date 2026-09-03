@@ -46,8 +46,9 @@
   points of the critical cycle; there are two of them because mod $5$ the critical point of $g$ is
   periodic of *period two*, and their alternation is that cycle turning. And the whole proof
   collapses to one line: mod $5$ the critical cycle is ${2, 3}$, which *is* the set of non-squares
-  mod $5$. @sec-rewrite is the answer rewritten that way. Check 6 finds that $p = 5$ is the *only*
-  prime below $20000$ for which the argument runs at all.
+  mod $5$. @sec-rewrite is the answer rewritten that way. $p = 5$ is the only prime below $10^9$ for which
+  the argument runs at all (@sec-only), and the cycle length at a working prime is forced to be
+  even.
 ]
 
 = What the question is <sec-question>
@@ -322,9 +323,114 @@ The test is finite for each $p$ but rarely passes, because the orbit has length 
 and each of its values must independently land among the non-squares. Heuristically $p$ succeeds
 with probability about $2^(-sqrt(p))$, so the small primes are the only realistic candidates, and
 one expects only finitely many successes ever. For $g = X^2 - X + 1$ this is borne out sharply:
-check 6 scans all $2261$ primes below $20000$ and finds *exactly one* success, $p = 5$, whose orbit
+check 6 scans the primes below $20000$ and finds *exactly one* success, $p = 5$, whose orbit
 ${2, 3}$ is the shortest an orbit can be and lands on the non-squares exactly. The choice of $5$ in
-the posted answer is not a convenience --- it is the only prime that works.
+the posted answer is not a convenience --- and @sec-only pushes this much further, to $10^9$, with
+two structural constraints proved along the way.
+
+= Is $5$ the only prime? <sec-only>
+
+The question splits, but only apparently. Because @sec-thm is an *if and only if*, "the argument
+runs at $p$" and "the iterates stay irreducible mod $p$" are the *same* statement: there is no
+prime that secretly works and no prime at which the method is merely too weak. So the failure of
+the criterion at $p$ is a proof that some $g^(circle.small n)$ *is* reducible mod $p$, and one can
+say exactly which. Writing $N(p)$ for the first $n$ with $D_n$ a square, check 13 confirms $N(p)$
+against honest factorisation and confirms that reducibility persists past it --- as it must, since
+$g^(circle.small m) = g^(circle.small N) circle.small g^(circle.small (m - N))$ pulls a
+factorisation back.
+
+#align(center, table(
+  columns: 9, align: (left, center, center, center, center, center, center, center, center),
+  stroke: 0.4pt + luma(170), inset: (x: 7pt, y: 4pt),
+  table.header([$p$], [$7$], [$11$], [$17$], [$23$], [$29$], [$41$], [$47$], [$59$]),
+  [first reducible $f_m$], [$f_3$], [$f_6$], [$f_4$], [$f_4$], [$f_4$], [$f_6$], [$f_10$], [$f_6$]),
+)
+
+#v(2mm)
+So $p = 47$ carries eight levels --- $f_2, dots, f_9$ are irreducible mod $47$ --- and then dies.
+Below $2 dot 10^5$ the record is $p = 139703$, good for sixteen: $f_2, dots, f_17$ irreducible,
+$f_18$ not.
+
+== Two things one can prove <sec-proved>
+
+Both come from a single identity. From $c_(n+1) = c_n^2 - c_n + 1$,
+$ c_(n+1) - 1 = c_n (c_n - 1) , wide "hence" wide
+  chi(c_(n+1) - 1) = chi(c_n) dot chi(c_n - 1) $
+for the quadratic character $chi$ mod $p$. *The sign of $c_n - 1$ flips exactly when $c_n$ is a
+non-residue.*
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Proposition 1.* _If the argument runs at $p$, the critical orbit's cycle length mod $p$ is
+  even._
+
+  #v(1.5mm)
+  _Proof._ Every $c_n$ is a non-residue, so $chi(c_n - 1)$ alternates. Going once round a cycle of
+  length $L$ returns to the starting value, so $(-1)^L = 1$. $qed$
+]
+
+#v(2mm)
+Equivalently: iterating $c_(n+k) - 1 = (c_n - 1) product_(j=n)^(n+k-1) c_j$ round a full cycle and
+cancelling $c_n - 1 eq.not 0$ gives $product_"cycle" c_j = 1$, so an all-non-residue cycle has
+evenly many terms. Check 10 verifies the product identity at $2260$ primes without exception, and
+finds $26$ cycles consisting entirely of non-residues --- every one of even length.
+
+#v(2mm)
+The shortest admissible cycle can then be classified outright. Solving $g(a) = b$, $g(b) = a$ with
+$a eq.not b$ gives $(a - b)(a + b - 1) = -(a - b)$, so $b = -a$, and then $a^2 = -1$.
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Proposition 2.* _The only $2$-cycle of $g$ mod $p$ is ${i, -i}$ with $i^2 = -1$; it exists iff
+  $p equiv 1 (mod 4)$, and both members are non-residues iff $p equiv 5 (mod 8)$. Since
+  $chi(-3) = -1$ iff $p equiv 2 (mod 3)$, a prime running the argument on a $2$-cycle satisfies_
+  $ p equiv 5 (mod 24) . $
+]
+
+#v(2mm)
+The condition $p equiv 2 (mod 3)$ is not an extra hypothesis: it is exactly the statement that
+$g = Phi_6$ is irreducible mod $p$, i.e. that the tower gets off the ground at all. And $5$ is the
+smallest prime $equiv 5 (mod 24)$, at which the critical point lands in the cycle *immediately* ---
+tail length $0$, the shortest orbit that exists. Check 11 verifies the classification at all primes
+below $500$ and the residue conditions below $20000$.
+
+== Density zero <sec-density>
+
+Write $c_n = t_n slash 2^(2^n)$. The denominator is a square for every $n >= 1$, so *modulo squares
+the conditions are about integers*:
+$ D_1 equiv -3, wide D_n equiv t_n quad (n >= 2), wide
+  t_1, t_2, t_3, dots = 3, 13, 217, 57073, 3811958497, dots $
+with $t_(n+1) = t_n^2 - 2^(2^n) t_n + 2^(2^(n+1))$. Each condition $chi_p (t_n) = -1$ is therefore a
+*congruence condition* on $p$, by quadratic reciprocity.
+
+Check 12 verifies that $-3, t_2, dots, t_7$ are independent modulo squares --- their squarefree
+kernels $-3$, $13$, $7 dot 31$, $57073$, $dots$ have disjoint prime supports, and the exponent
+matrix over $bb(F)_2$ has full rank $7$. So $QQ(sqrt(-3), sqrt(t_2), dots, sqrt(t_k))$ has degree
+$2^k$, and Chebotarev gives:
+
+#block(stroke: 0.6pt + black, inset: 9pt, radius: 3pt, width: 100%)[
+  *Proposition 3.* _The primes surviving $k$ levels have density exactly $2^(-k)$. Hence the primes
+  at which the argument runs have density $0$._
+]
+
+== What is not decided <sec-open>
+
+Whether $5$ is the only such prime, full stop. Check 13 runs the scan to $10^9$ --- $50.8$ million
+primes, with early abort, since surviving $k$ levels has probability about $2^(-k)$ and the average
+cost per prime is therefore $O(1)$ --- and finds nothing else. The longest any other prime survives
+is $27$ levels, at $p = 443762873$; since $log_2 (5.08 dot 10^7) approx 25.6$, that is exactly what
+the random model predicts, and there is no near miss anywhere in the range.
+
+The heuristic is overwhelming. A prime succeeds only by surviving its entire orbit, of length
+$ell(p)$ typically of order $sqrt(p)$, at probability about $2^(-ell(p))$; and
+$sum_p 2^(-sqrt(p))$ contributes essentially nothing past $5$. But converting that into a proof
+needs a lower bound on the orbit length at *every* prime, which is out of reach --- the same
+obstruction that prevents anyone proving that only finitely many Fermat numbers are prime. So:
+
+#block(fill: rgb("#fff4e6"), inset: 9pt, radius: 3pt, width: 100%)[
+  For any *fixed* prime the question is settled by a finite computation, and no prime can secretly
+  work. Below $10^9$, $p = 5$ is the only one, and at every other prime the $f_i$ genuinely do
+  become reducible --- the method is not at fault. That $5$ is the only such prime is true beyond
+  reasonable doubt and is not a theorem.
+]
 
 = The answer, rewritten <sec-rewrite>
 
@@ -379,8 +485,10 @@ is nothing but $"disc"(g^(circle.small n) - b)$, which is why the critical orbit
 sequence: the covering ramifies over the post-critical set.
 
 Two footnotes on the choice of $5$. First, it is forced: a computer search finds that $5$ is the
-*only* prime below $20000$ whose critical orbit avoids the squares --- the orbit has length about
-$sqrt(p)$ and every value has to land right. Second, this is why one sees *two* auxiliary elements
+*only* prime below $10^9$ whose critical orbit avoids the squares --- the orbit has length about
+$sqrt(p)$ and every value has to land right. Moreover the cycle length at a working prime must be
+*even* (because $c_(n+1) - 1 = c_n (c_n - 1)$ makes $chi(c_n - 1)$ alternate), and a prime working
+on a $2$-cycle must satisfy $p equiv 5 (mod 24)$ --- the only $2$-cycle being ${i, -i}$. Second, this is why one sees *two* auxiliary elements
 alternating in the more computational version of the argument: they are $alpha_i - c_1$ and
 $alpha_i - c_2$ up to squares, one for each point of the critical cycle, and their alternation is
 the cycle turning.
@@ -403,13 +511,21 @@ assertions.
   triples (prime, monic quadratic, base point), $0$ mismatches.
 - *(5)* $"disc"(g^(circle.small n)) = D_n$ modulo squares at $210$ pairs $(p,n)$, $0$ mismatches.
 - *(6)* The scan: of the $2261$ primes below $20000$, exactly one --- $p = 5$ --- has a critical
-  orbit avoiding the squares.
+  orbit avoiding the squares, with its orbit printed.
 - *(7)* $delta_i = 4(alpha_i - c_1)$ and $delta'_i = 4(alpha_i - c_2)$ to $[K_8 : FF_5] = 128$, and
   the answer's two-floor norm step is Lemma 2 twice.
 - *(8)* The original polynomials: both recursions agree, $f_n = g^(circle.small (n-2))(X+1)$, and
   $f_n$ is irreducible mod $5$ --- hence over $QQ$ --- for $n <= 15$, $deg f_15 = 8192$.
 - *(9)* The characteristic-zero form for $X^2 + c$, $-12 <= c <= 30$: the test never passes where an
   iterate is reducible.
+- *(10)* $c_(n+1) - 1 = c_n (c_n - 1)$ for $p < 500$; the product round a cycle is $1$ at $2260$
+  primes; and all $26$ all-non-residue cycles found have even length (@sec-proved).
+- *(11)* The $2$-cycle classification at all primes below $500$, and the residue conditions
+  $p equiv 5 (mod 8)$, $p equiv 2 (mod 3)$ below $20000$.
+- *(12)* $-3, t_2, dots, t_7$ independent modulo squares: full rank $7$ over $bb(F)_2$, so the
+  density at level $k$ is $2^(-k)$ (@sec-density).
+- *(13)* $N(p)$ against factorisation for $p < 60$, persistence of reducibility, the record
+  survivals below $2 dot 10^5$, and the early-abort scan to $10^9$ --- one success, $p = 5$.
 
 = Ties to the rest of this repository <sec-repo>
 
