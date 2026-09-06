@@ -14,8 +14,8 @@
   #text(size: 16pt, weight: "bold")[Pascal's theorem]
   #v(2mm)
   #text(size: 10pt)[Six points on a conic and the line that appears: a proof by a pencil
-  of cubics, the one identity all its degenerations come from, and what the figure
-  turns into when the conic breaks]
+  of cubics, a synthetic proof after Steiner, the one identity all the degenerations come
+  from, and what the figure turns into when the conic breaks]
   #v(1mm)
   #text(size: 9pt, style: "italic")[figures and checks in `pascal.gp`,
   output in `results/pascal.txt`]
@@ -37,9 +37,13 @@
   cubic it is the conic together with a line --- a line which must therefore carry $X, Y, Z$.
 
   Only one lemma is needed (@sec-lemma), and it is proved by dividing by $x z - y^2$; no Bézout,
-  no Nullstellensatz. @sec-identity gives a second, computational proof, whose virtue is that
-  every degenerate form of the theorem --- tangents in place of sides, Pappus --- is a
-  *specialization of a single polynomial identity* rather than a separate limiting argument.
+  no Nullstellensatz.
+
+  Two further proofs follow. @sec-steiner is Steiner's: no coordinates at all, the Pascal line
+  arriving as the *axis of a perspectivity* between two ranges cut on a pair of chords.
+  @sec-identity is computational, and its virtue is that every degenerate form of the theorem ---
+  tangents in place of sides, Pappus --- is a *specialization of a single polynomial identity*
+  rather than a separate limiting argument.
 ]
 
 = The statement <sec-statement>
@@ -234,6 +238,126 @@ cubics meeting in nine points, and any cubic through eight of them passes throug
 the ninth point is delivered by a *reducible* cubic, the conic plus the Pascal line, and Pascal's
 theorem is what that degeneracy says.
 
+= A synthetic proof, after Steiner <sec-steiner>
+
+The proof just given computes with forms. Steiner's projective geometry proves the theorem with no
+coordinates at all, from two facts about projectivities, and it sees the Pascal line differently:
+not as the leftover component of a degenerate cubic, but as the *axis of a perspectivity*. The
+conic enters only through the correspondence it sets up between two pencils of lines.
+
+#block(inset: (left: 6pt))[
+  *(S1) (Steiner, Chasles).* Let $P$ be a point of a conic $Q$. As $T$ runs over $Q$, the line
+  $P T$ runs over the pencil of lines at $P$, and this identification is *projective*: the
+  cross-ratio of four lines $P T_1, ..., P T_4$ does not depend on which $P in Q$ is used. Hence
+  for $P, P' in Q$ the correspondence $P T mapsto P' T$ is a projectivity between the two pencils.
+]
+
+#block(inset: (left: 6pt))[
+  *(S2).* A projectivity between two distinct lines which fixes their point of intersection is a
+  *perspectivity*: the joins of corresponding points all pass through one point.
+]
+
+#v(1mm)
+(S1) is Steiner's own *definition* of a conic, read backwards --- for him a conic is what two
+projectively related pencils generate, and the substance is his theorem that these loci are
+exactly the conics. A reader who prefers the algebraic definition gets (S1) in one line from the
+chord formula of @sec-identity: the lines of the pencil at $nu(u)$ are
+$ "chord"(u, t) = [1 : -u : 0] + t dot [0 : -1 : u] , $
+an affine-linear --- hence projective --- parametrization of the pencil by $t$, so the cross-ratio
+of four of those lines *is* the cross-ratio of the four parameters, whatever $u$ is. (S2) is the
+standard consequence of the fundamental theorem of projective geometry.
+
+*The proof.* Take the hexagon $A_1 ... A_6$ on $Q$ and put
+$ m = A_4 A_5 , wide p = A_5 A_6 . $
+These are distinct lines --- otherwise $A_4, A_5, A_6$ would be collinear, which Fact 2 forbids ---
+so they meet in exactly the point $A_5$. Note also $A_1 in.not m$ and $A_3 in.not p$, for the same
+reason, so cutting the pencil at $A_1$ by $m$, and the pencil at $A_3$ by $p$, are legitimate
+sections.
+
+By (S1) the pencils at $A_1$ and $A_3$ correspond projectively, $A_1 T mapsto A_3 T$. Composing
+with the two sections gives a projectivity
+$ sigma : m --> p , $
+and following $T = A_2, A_4, A_5, A_6$ around the conic reads off four of its values:
+
+#align(center, table(
+  columns: 4, align: (center, left, left, left),
+  stroke: 0.4pt + luma(170), inset: (x: 9pt, y: 3.5pt),
+  table.header([$T$], [line at $A_1$, cut by $m$], [line at $A_3$, cut by $p$], [$sigma$]),
+  [$A_2$], [$A_1A_2 inter m = X$], [$A_3A_2 inter p = Y$], [$X mapsto Y$],
+  [$A_4$], [$A_1A_4 inter m = A_4$], [$A_3A_4 inter p = V$], [$A_4 mapsto V$],
+  [$A_5$], [$A_1A_5 inter m = A_5$], [$A_3A_5 inter p = A_5$], [$A_5 mapsto A_5$],
+  [$A_6$], [$A_1A_6 inter m = U$], [$A_3A_6 inter p = A_6$], [$U mapsto A_6$],
+))
+
+#v(2mm)
+Here $U = A_6A_1 inter A_4A_5$ and $V = A_3A_4 inter A_5A_6$ are two auxiliary points; $X$ and $Y$
+are two of the three points of the theorem, and they have appeared without being asked for.
+
+The third row is the crux: $sigma$ *fixes* $A_5 = m inter p$. By (S2), $sigma$ is therefore a
+perspectivity, so the three joins
+$ X Y , wide A_4 V , wide U A_6 $
+pass through a single point $O$. It remains only to recognize them. Since $V$ lies on $A_3A_4$ and
+so does $A_4$, the join $A_4 V$ *is* the line $A_3A_4$; since $U$ lies on $A_6A_1$ and so does
+$A_6$, the join $U A_6$ *is* the line $A_6A_1$. Hence
+$ O = A_3A_4 inter A_6A_1 = Z , $
+and the remaining join $X Y$ passes through $O = Z$ as well. So $X$, $Y$, $Z$ are collinear. $qed$
+
+#v(1mm)
+The two degeneracies the argument needs are harmless: $A_4 eq.not V$ and $U eq.not A_6$, since
+either equality would put three points of $Q$ on a line; and if $X = Y$ the conclusion is trivial.
+The companion script confirms each step of the argument as an identity in $ZZ[t_1, ..., t_6]$: that
+the join $A_4V$ is the line $A_3A_4$, that $U A_6$ is $A_6A_1$, that the three joins are
+concurrent, and that their common point is $Z$.
+
+#figure(
+  cetz.canvas(length: 1cm, {
+  import cetz.draw: *
+  circle((0,0), radius: (3.4, 2.2), stroke: 0.9pt + luma(110))
+  line((3.131, -1.502), (-3.298, 1.344), stroke: 1.0pt + black)
+  line((-3.337, 1.150), (4.550, 1.371), stroke: 1.0pt + black)
+  line((-2.414, -1.833), (-1.239, 2.271), stroke: 0.75pt + rgb("#cd6155"))
+  line((-2.594, -1.607), (2.970, -1.307), stroke: 0.75pt + rgb("#cd6155"))
+  line((-2.297, -1.838), (-2.935, 1.408), stroke: 0.75pt + rgb("#cd6155"))
+  line((3.630, -0.099), (-1.537, 2.130), stroke: 0.75pt + rgb("#5499c7"))
+  line((3.646, -0.045), (-3.133, 1.208), stroke: 0.75pt + rgb("#5499c7"))
+  line((3.514, -0.222), (2.606, 1.542), stroke: 0.75pt + rgb("#5499c7"))
+  line((2.537, -1.676), (4.836, 2.787), stroke: 1.4pt + rgb("#1e8449"))
+  line((-2.692, -1.793), (4.999, 2.631), stroke: 1.4pt + rgb("#1e8449"))
+  line((-2.235, 0.490), (5.182, 2.581), stroke: 1.4pt + rgb("#1e8449"))
+  circle((-2.345, -1.593), radius: 0.075, fill: black, stroke: none)
+  circle((-1.308, 2.031), radius: 0.075, fill: black, stroke: none)
+  circle((3.400, 0.000), radius: 0.075, fill: black, stroke: none)
+  circle((2.720, -1.320), radius: 0.075, fill: black, stroke: none)
+  circle((-2.887, 1.162), radius: 0.075, fill: black, stroke: none)
+  circle((2.720, 1.320), radius: 0.075, fill: black, stroke: none)
+  circle((-1.706, 0.639), radius: 0.095, fill: white, stroke: 1.0pt + black)
+  circle((0.486, 1.257), radius: 0.095, fill: white, stroke: 1.0pt + black)
+  circle((0.126, -0.172), radius: 0.095, fill: white, stroke: 1.0pt + black)
+  circle((4.100, 1.359), radius: 0.095, fill: white, stroke: 1.0pt + black)
+  circle((4.653, 2.432), radius: 0.095, fill: white, stroke: 1.0pt + black)
+  content((-2.345, -2.414), text(9pt)[$A_1$])
+  content((-1.622, 2.789), text(9pt)[$A_2$])
+  content((4.205, 0.160), text(9pt)[$A_3$])
+  content((3.034, -2.079), text(9pt)[$A_4$])
+  content((-3.201, 1.921), text(9pt)[$A_5$])
+  content((2.626, 0.846), text(9pt)[$A_6$])
+  content((-1.392, -0.119), text(9pt)[$X$])
+  content((0.486, 1.740), text(9pt)[$Y$])
+  content((4.196, 3.114), text(9pt)[$Z$])
+  content((0.126, -0.824), text(9pt)[$U$])
+  content((4.783, 0.903), text(9pt)[$V$])
+  }),
+  caption: [The synthetic proof. The pencil at $A_1$ (red) is cut by $m = A_4A_5$, the pencil at $A_3$ (blue) by $p = A_5A_6$; both are drawn in black. The resulting projectivity $m -> p$ sends $X mapsto Y$, $A_4 mapsto V$, $U mapsto A_6$ and *fixes* $A_5 = m inter p$, so it is a perspectivity: the three joins (green) are concurrent. Two of them are the chords $A_3A_4$ and $A_6A_1$, whose intersection is $Z$ --- so the third join, $X Y$, passes through $Z$.],
+) <fig-steiner>
+
+
+*What the two proofs see.* @sec-proof produces the Pascal line as the residual component of a
+cubic that was forced to contain the conic; @sec-steiner produces it as the axis of a
+perspectivity between two ranges cut out on a pair of chords. Neither is a translation of the
+other: the first is a statement about linear systems of curves, the second about the projective
+self-correspondences of a conic, and only the second survives into synthetic axiomatics, where
+there are no polynomials to factor.
+
 = The identity behind the theorem, and all of its degenerations <sec-identity>
 
 The proof above assumes the six points distinct. There is a second proof which does not, and
@@ -419,15 +543,23 @@ drawn configurations are therefore $0$ on the nose, not merely small.
 - *(3)* Pappus, symbolically in $ZZ[a_1, a_2, a_3, b_1, b_2, b_3]$ (@sec-pappus).
 - *(4)* The exact coordinates of the four figures, with collinearity determinant $0$, and the
   collinearity of the two triples in the Pappus figure.
-- *(5)* The hexagrammum mysticum counts of @sec-mysticum, including the identification of the
+- *(5)* Every step of the synthetic proof of @sec-steiner as an identity in $ZZ[t_1, ..., t_6]$:
+  the parametrization of the pencil behind (S1), the identification of the joins $A_4V$ and
+  $U A_6$ with the chords $A_3A_4$ and $A_6A_1$, their concurrency, and that the centre is $Z$ ---
+  together with the exact coordinates of @fig-steiner.
+- *(6)* The hexagrammum mysticum counts of @sec-mysticum, including the identification of the
   $45$ quadruple points with the diagonal points.
 
 = References <sec-refs>
 
 #block(inset: (left: 4pt))[
 #set enum(numbering: "[1]")
-+ H. S. M. Coxeter, *Projective Geometry*, 2nd ed., Springer 1987. Chapters 3 and 6 for the
-  synthetic treatment and for Braikenridge--Maclaurin.
++ J. Steiner, *Systematische Entwickelung der Abhängigkeit geometrischer Gestalten von
+  einander*, Berlin 1832 --- conics defined by projectively related pencils, which is (S1) of
+  @sec-steiner taken as a definition.
++ H. S. M. Coxeter, *Projective Geometry*, 2nd ed., Springer 1987. Chapter 3 for projectivities
+  and perspectivities, including (S2); Chapters 6 and 8 for conics, Steiner's theorem, Pascal and
+  Braikenridge--Maclaurin.
 + J. Harris, *Algebraic Geometry: A First Course*, GTM 133, Lecture 18 for the pencil-of-cubics
   argument and the Cayley--Bacharach theorem in the form used in @sec-proof.
 + D. Eisenbud, M. Green, J. Harris, *Cayley--Bacharach theorems and conjectures*, Bull. Amer.

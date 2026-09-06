@@ -129,8 +129,54 @@ print("");
         det3(concat(X,[1]), concat(Y,[1]), concat(Z,[1]))); }
 print("");
 
-\\ ------------------------------------------- (5) the hexagrammum mysticum
-print("(5) THE HEXAGRAMMUM MYSTICUM.");
+\\ ----------------------------------------- (5) the synthetic proof, checked
+print("(5) THE SYNTHETIC PROOF OF SECTION 5 OF THE NOTE, STEP BY STEP.");
+print("");
+print("    (S1) The pencil of lines at the point with parameter u is");
+print("         chord(u,t) = [1,-u,0] + t*[0,-1,u],  affine-linear in t, hence a");
+print("         projective parametrization of the pencil by t.  Difference:");
+{ print("           chord(u,t) - ([1,-u,0] + t*[0,-1,u]) = ",
+        chord(u,t) - ([1,-u,0] + t*[0,-1,u])); }
+print("         So the cross-ratio of four such lines is that of the four");
+print("         parameters, INDEPENDENT of u: that is Chasles' theorem, and it is");
+print("         what makes the two pencils correspond projectively.");
+print("");
+pt3(t) = [t^2, t, 1];
+{ my(X = cross(chord(t1,t2), chord(t4,t5)),
+     Y = cross(chord(t2,t3), chord(t5,t6)),
+     Z = cross(chord(t3,t4), chord(t6,t1)),
+     U = cross(chord(t6,t1), chord(t4,t5)),
+     V = cross(chord(t3,t4), chord(t5,t6)));
+  my(j1 = cross(X,Y), j2 = cross(pt3(t4), V), j3 = cross(U, pt3(t6)));
+  print("    The projectivity m -> p sends  X|->Y,  A4|->V,  A5|->A5,  U|->A6,");
+  print("    so by (S2) the three joins are concurrent.  Symbolically:");
+  print("      join(A4,V) is the line A3A4      : ", cross(j2, chord(t3,t4)) == [0,0,0]);
+  print("      join(U,A6) is the line A6A1      : ", cross(j3, chord(t6,t1)) == [0,0,0]);
+  print("      the three joins are concurrent   : ", det3(j1,j2,j3) == 0);
+  print("      and their common point is Z      : ", cross(cross(j2,j3), Z) == [0,0,0]);
+  print("    The last two lines are the theorem: the centre of the perspectivity is");
+  print("    Z = A3A4 ^ A6A1, and the join of X and Y passes through it."); }
+print("");
+{ S = [-7/3, 3/2, 0, -1/3, 7/2, 1/3];
+  my(A = vector(6, i, ell(S[i])));
+  my(sd = vector(6, i, lin2(A[i], A[i%6+1])));
+  my(X = mt(sd[1],sd[4]), Y = mt(sd[2],sd[5]), Z = mt(sd[3],sd[6]));
+  my(U = mt(lin2(A[1],A[6]), lin2(A[4],A[5])),
+     V = mt(lin2(A[3],A[4]), lin2(A[5],A[6])));
+  print("    The configuration drawn in the figure, exactly:");
+  for(i = 1, 6, print("      A", i, " = ", A[i]));
+  print("      X = ", X, "   Y = ", Y, "   Z = ", Z);
+  print("      U = A1A6 ^ A4A5 = ", U);
+  print("      V = A3A4 ^ A5A6 = ", V);
+  my(cl(P,Q,R) = det3(concat(P,[1]), concat(Q,[1]), concat(R,[1])) == 0);
+  print("      X, Y, Z collinear   : ", cl(X,Y,Z));
+  print("      A4, V, Z collinear  : ", cl(A[4],V,Z));
+  print("      U, A6, Z collinear  : ", cl(U,A[6],Z));
+  print("      -- the three joins of corresponding points all pass through Z."); }
+print("");
+
+\\ ------------------------------------------- (6) the hexagrammum mysticum
+print("(6) THE HEXAGRAMMUM MYSTICUM.");
 print("");
 print("    Six points carry 6!/(6*2) = 60 hexagons, hence 60 Pascal lines.");
 print("    Taking t = [1/2, -3, 5/3, -1/4, 4, -2/5] on the conic xz = y^2:");

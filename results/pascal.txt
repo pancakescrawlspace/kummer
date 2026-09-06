@@ -75,7 +75,41 @@
       A1,A3,A5 collinear: 1     A2,A4,A6 collinear: 1
       collinearity determinant = 0
 
-(5) THE HEXAGRAMMUM MYSTICUM.
+(5) THE SYNTHETIC PROOF OF SECTION 5 OF THE NOTE, STEP BY STEP.
+
+    (S1) The pencil of lines at the point with parameter u is
+         chord(u,t) = [1,-u,0] + t*[0,-1,u],  affine-linear in t, hence a
+         projective parametrization of the pencil by t.  Difference:
+           chord(u,t) - ([1,-u,0] + t*[0,-1,u]) = [0, 0, 0]
+         So the cross-ratio of four such lines is that of the four
+         parameters, INDEPENDENT of u: that is Chasles' theorem, and it is
+         what makes the two pencils correspond projectively.
+
+    The projectivity m -> p sends  X|->Y,  A4|->V,  A5|->A5,  U|->A6,
+    so by (S2) the three joins are concurrent.  Symbolically:
+      join(A4,V) is the line A3A4      : 1
+      join(U,A6) is the line A6A1      : 1
+      the three joins are concurrent   : 1
+      and their common point is Z      : 1
+    The last two lines are the theorem: the centre of the perspectivity is
+    Z = A3A4 ^ A6A1, and the join of X and Y passes through it.
+
+    The configuration drawn in the figure, exactly:
+      A1 = [-68/29, -231/145]
+      A2 = [-17/13, 132/65]
+      A3 = [17/5, 0]
+      A4 = [68/25, -33/25]
+      A5 = [-153/53, 308/265]
+      A6 = [68/25, 33/25]
+      X = [-29/17, 924/1445]   Y = [17/35, 44/35]   Z = [442/95, 231/95]
+      U = A1A6 ^ A4A5 = [34/269, -231/1345]
+      V = A3A4 ^ A5A6 = [41/10, 231/170]
+      X, Y, Z collinear   : 1
+      A4, V, Z collinear  : 1
+      U, A6, Z collinear  : 1
+      -- the three joins of corresponding points all pass through Z.
+
+(6) THE HEXAGRAMMUM MYSTICUM.
 
     Six points carry 6!/(6*2) = 60 hexagons, hence 60 Pascal lines.
     Taking t = [1/2, -3, 5/3, -1/4, 4, -2/5] on the conic xz = y^2:
