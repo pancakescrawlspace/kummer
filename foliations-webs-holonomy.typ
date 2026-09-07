@@ -202,9 +202,14 @@ natural objects in sheaf theory.
 
 This is the bridge from your background, so let me make it exact.
 
-Suppose $pi : E -> B$ is a covering map, and foliate $E$ by the *discrete* fibres
-— no, better: foliate $E$ by the connected components of $pi^(-1)$ of nothing at
-all. The cleanest statement is via the *suspension* construction.
+Suppose $pi : E -> B$ is a covering map. Lifting loops gives the monodromy action
+of $pi_1 (B, b)$ on the discrete fibre $pi^(-1)(b)$, and one would like to read
+that off as a holonomy. It is not the germinal holonomy of the theorem above:
+foliate $E$ by its connected components and the transversals are discrete, so
+every germ at a point is trivial; foliate it by the fibres instead and the leaves
+are single points. Monodromy is rather the *global* holonomy of a foliated
+bundle, and the construction that exhibits it — together with every other
+representation — is the *suspension*.
 
 #box-note("Suspension")[
   Let $B$ be a connected manifold with universal cover $tilde(B)$, let $F$ be a
