@@ -1,0 +1,338 @@
+=========================================================================
+ Desargues' theorem: the identity, the figure, the converse,
+ the 10_3 configuration, and two planes -- one where it survives
+ without commutativity, one where it fails outright
+=========================================================================
+
+=========================================================================
+ (1) THE IDENTITY, IN Z[o1,o2,o3, a1,...,c3].
+=========================================================================
+
+    Take representatives o, a, b, c for O, A, B, C.  A' lies on the line
+    OA, so a' = lambda a + mu o with lambda, mu nonzero; rescaling a and
+    a' we may assume a' = a - o, and likewise b' = b - o, c' = c - o.
+    That normalisation is the entire content of the proof:
+
+      a' - b'  =  [(a1 - b1), (a2 - b2), (a3 - b3)]   =  a - b
+
+    so the vector a - b represents a point of AB and a point of A'B' at
+    once, which is to say it represents X.  Likewise Y = [b - c] and
+    Z = [c - a], and the three add up to zero, so they are dependent:
+
+      X + Y + Z        =  [0, 0, 0]
+      det[X; Y; Z]     =  0        identically zero: 1
+
+    and the two incidences that make X the meet of AB and A'B':
+      det[a;  b;  X]   =  0
+      det[a'; b'; X]   =  0
+
+    No genericity is needed for the identity itself; the hypotheses
+    (distinct points, honest triangles) enter only to make the three
+    vectors nonzero, so that they name actual points.  Note that nothing
+    was ever commuted -- see section (5).
+
+=========================================================================
+ (2) THE FIGURE OF SECTION 1, EXACTLY.
+=========================================================================
+
+    A' = O + (69/100)(A - O),  B' = O + (55/100)(B - O),
+    C' = O + (36/100)(C - O), so AA', BB', CC' concur at O by construction.
+
+      O  = (-3.01000, 1.48000)
+      A  = (-0.15000, -2.69000)     A' = (-1.03660, -1.39730)
+      B  = (2.61000, -1.49000)     B' = (0.08100, -0.15350)
+      C  = (1.24000, 2.03000)     C' = (-1.48000, 1.67800)
+      X  = AB ^ A'B'  = (-3.51129, -4.15143)   exactly [-24579/7000, -1453/350]
+      Y  = BC ^ B'C'  = (3.77811, -4.49126)   exactly [8973/2375, -42667/9500]
+      Z  = CA ^ C'A'  = (-0.62007, -4.28622)   exactly [-4263/6875, -117871/27500]
+
+    perspective from the point O:
+      det[O;A;A'] = 0   det[O;B;B'] = 0   det[O;C;C'] = 0
+    perspective from a line:
+      det[X;Y;Z]  = 0        collinear: 1
+      the axis is [l1:l2:l3] = [1, 11969/558, 25823873/279000]
+
+    Order along the axis is X, Z, Y; all ten points lie in the box
+    [-3.6, 3.8] x [-4.5, 2.1], which is what the figure draws.
+
+=========================================================================
+ (2b) THE SPATIAL CASE, EXACTLY -- AND THE FIGURE FOR IT.
+=========================================================================
+
+    Two planes of P^3 meet in a line.  Put
+      pi  = {z = 0},   pi' = {y = 0},   l = pi ^ pi' = the x-axis,
+    the triangle ABC in pi and A'B'C' in pi'.  If O, A, A' are collinear
+    then AB and A'B' lie in the single plane OAB, so they MEET; the meet
+    lies in pi and in pi', hence on l.  Three times over, and the axis is
+    forced -- no computation at all.  Here it is anyway.
+
+      O  = [9/10, -6/5, 2]
+      A  = [5/2, 14/5, 0]   A' = [69/50, 0, 7/5]
+      B  = [19/5, -33/10, 0]   B' = [-53/70, 0, 22/7]
+      C  = [-22/5, 7/10, 0]   C' = [-93/38, 0, 14/19]
+      A, B, C lie in pi (z = 0)    : 1
+      A', B', C' lie in pi' (y = 0): 1
+      the two planes are distinct, so pi ^ pi' is the single line l.
+      perspective from O: 1
+
+      X = AB ^ l = [1889/610, 0, 0]   on A'B' too: 1
+      Y = BC ^ l = [-593/200, 0, 0]   on B'C' too: 1
+      Z = CA ^ l = [-67/10, 0, 0]   on C'A' too: 1
+
+    All three sit on l = {y = z = 0} by construction, and each is a point
+    of the corresponding primed side as well -- which is the theorem.
+
+    The figure projects along (x,y,z) |-> (x + 3y/5 - 3z/5, 3y/5 + 7z/5),
+    which flattens l onto the horizontal axis and tilts the two planes
+    away from it in opposite directions:
+      O   (-1.02000, 2.08000)
+      A   (4.18000, 1.68000)
+      B   (1.82000, -1.98000)
+      C   (-3.98000, 0.42000)
+      A'  (0.54000, 1.96000)
+      B'  (-2.64286, 4.40000)
+      C'  (-2.88947, 1.03158)
+      X   (3.09672, 0.00000)
+      Y   (-2.96500, 0.00000)
+      Z   (-6.70000, 0.00000)
+
+=========================================================================
+ (3) THE CONVERSE IS THE THEOREM, RELABELLED.
+=========================================================================
+
+    The converse asks: if X, Y, Z are collinear, do AA', BB', CC' concur?
+    It needs no new proof.  Apply the forward theorem to the triangles
+
+        A A' Z    and    B B' Y,
+
+    which are perspective from X, because the three lines joining
+    corresponding vertices are AB, A'B' and the axis ZY -- and those
+    three do pass through X:
+      X on AB   : 1     X on A'B' : 1     X on ZY : 1
+
+    The forward theorem then puts the three points
+      AA' ^ BB',    A'Z ^ B'Y,    ZA ^ YB
+    on a line.  But the last two are C' and C:
+      A'Z ^ B'Y  = (-1.48000, 1.67800)   equals C' : 1
+      ZA  ^ YB   = (1.24000, 2.03000)   equals C  : 1
+      AA' ^ BB'  = (-3.01000, 1.48000)   equals O  : 1
+
+    so O, C, C' are collinear -- which is the concurrence asked for:
+      det[AA'^BB'; C; C'] = 0
+
+    Section (4) explains why this relabelling exists at all.
+
+=========================================================================
+ (4) TEN POINTS, TEN LINES: FIVE POINTS OF P^3 CUT BY A PLANE.
+=========================================================================
+
+    Take P1,...,P5 in general position in P^3, and a plane H meeting none
+    of them.  The 10 lines PiPj cut H in 10 points p_ij, and the 10 planes
+    PiPjPk cut H in 10 lines l_ijk.  Then
+
+        p_ij lies on l_klm   <=>   {i,j} is contained in {k,l,m},
+
+    because a line lies in a plane exactly when it is spanned inside it.
+    So the incidences are pure combinatorics of subsets of {1,...,5}.
+
+    P5 = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1], [1, 1, 1, 1]],   H = {1x1 + 2x2 + 3x3 - 7x4 = 0}
+    h.Pi = [1, 2, 3, -7, -1] -- none zero, so H misses every Pi.
+
+    the ten points p_ij in the chart:
+      p_12 = [1, 0, 0]
+      p_13 = [0, 1, 0]
+      p_14 = [0, 0, 1]
+      p_15 = [1, 1, 1]
+      p_23 = [1, -2/3, 0]
+      p_24 = [1, 0, 2/7]
+      p_25 = [1, 2/3, 2/3]
+      p_34 = [0, 1, 3/7]
+      p_35 = [1, 4/3, 1]
+      p_45 = [1, 1, 6/7]
+
+    the ten lines l_ijk (as [l1:l2:l3]):
+      l_123 = [0, 0, 1]
+      l_124 = [0, 1, 0]
+      l_125 = [0, 1, -1]
+      l_134 = [1, 0, 0]
+      l_135 = [1, 0, -1]
+      l_145 = [1, -1, 0]
+      l_234 = [1, 3/2, -7/2]
+      l_235 = [1, 3/2, -3]
+      l_245 = [1, 2, -7/2]
+      l_345 = [1, 1, -7/3]
+
+    the three points of each triple really are collinear: 1
+    the ten points are distinct: 1
+    the ten lines  are distinct: 1
+    incidence = containment, in all 100 cases: 1
+    total incidences: 30  = 10 points x 3 lines = 10 lines x 3 points
+
+    An aside on symmetry.  The 120 automorphisms are combinatorial, and most
+    of them cannot be drawn: the configuration has NO realisation in the real
+    plane with a 5-fold rotation.  A rotation of order 5 permutes the labels
+    as a 5-cycle, so after relabelling it is i |-> i+1, and the two point
+    orbits are the adjacent pairs {k,k+1} and the skip pairs {k,k+2} -- each
+    a regular pentagon, say at radius 1 and angles 72k, and at radius r and
+    angles 72k + b.  The line {0,1,2} forces  r cos(b - 36) = cos 36, and the
+    line {0,1,3} forces  cos(144 + b) = r cos 72.  Eliminating r:
+
+       cos(144 + b) cos(b - 36) = cos 36 cos 72,
+
+    whose left side is (cos(2b + 108) - 1)/2.  So cos(2b + 108) would have to
+    equal 1 + 2 cos 36 cos 72, and that number is exactly 3/2:
+      sqrt(5) = w,  cos 36 = 1/4 + 1/4*w,  cos 72 = -1/4 + 1/4*w
+      cos 36 cos 72        = 1/4        (exactly 1/4: 1)
+      1 + 2 cos 36 cos 72  = 3/2        no cosine takes that value.
+      so there is no such b, and no 5-fold symmetric drawing.
+
+    One more reading of the same combinatorics.  Join two of the ten points
+    when they do NOT share a line.  Since p_ij and p_kl share a line exactly
+    when {i,j} and {k,l} meet, that graph joins DISJOINT pairs -- which is
+    the Petersen graph, and it is what the Levi graph of the configuration
+    double-covers:
+      vertices 10, edges 15, every degree 3: 1
+      triangles: 0     4-cycles: 0     so the girth is 5: 1
+      (3-regular, 10 vertices, girth 5 -- that pins it down to Petersen,
+      whose automorphism group is the same S5 acting on {1,...,5}.)
+
+    So the figure is the configuration 10_3, and it carries an action of
+    S5 (order 120) permuting the labels.  Reading Desargues out of it:
+    take any p_ij as the centre O.  The three lines through it are the
+    l_ijm, m not in {i,j}; the six remaining points off those lines split
+    into the two triangles, and the axis is l_klm, {k,l,m} the complement
+    of {i,j}.  Ten points, so ten readings of the theorem in one figure.
+
+    In section (2)'s labelling:  O = p_45,  and
+      A = p_14, B = p_24, C = p_34,   A' = p_15, B' = p_25, C' = p_35,
+      X = p_12, Y = p_23, Z = p_13,   axis = l_123 = complement of {4,5}.
+    The relabelling of section (3) was: read the theorem at the centre
+    p_12 = X instead, whose axis l_345 is the line OCC'.
+
+    Self-duality: {i,j} |-> complement {i,j}^c sends points to lines and
+    reverses containment, so it is a duality of the configuration --
+    and it exchanges the centre p_45 with the axis l_123.  That is the
+    converse of section (3) again, seen a third way.
+      complementation reverses every incidence: 1
+
+=========================================================================
+ (5) A NONCOMMUTATIVE PLANE: DESARGUES SURVIVES, PAPPUS DOES NOT.
+=========================================================================
+
+    The proof of section (1) never multiplied two scalars in the wrong
+    order, so it runs over any division ring D, with P^2(D) the right
+    D-lines in D^3.  Pappus' theorem does not: it is equivalent to
+    commutativity.  Here is the difference, exactly, over H = Q<i,j,k>.
+
+    H is embedded in M_2(C) by  q0+q1 i+q2 j+q3 k  |-->
+        [q0 + q1 I ,  q2 + q3 I ;  -q2 + q3 I ,  q0 - q1 I],
+    so a point of P^2(H) -- a right H-line in H^3 -- becomes the column
+    span of a 6x2 complex matrix, a line of P^2(H) the span of a 6x4 one,
+    and three points are collinear exactly when the 6x6 matrix they
+    build has rank at most 4.  All arithmetic below is in Q(I).
+
+    homomorphism check:  q(i)q(j) = q(k) : 1     ji = -k : 1
+
+    (5a) DESARGUES, over H.
+
+      O  = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0]]
+      A  = [[0, 0, 1, 0], [1, 0, 0, 0], [0, 0, 0, 1]]   A' = A(1+i) + O(i+j)  = [[0, 1, 2, -1], [0, 1, 0, 1], [-1, 0, 1, 0]]
+      B  = [[0, 1, 0, 0], [0, 0, 0, 1], [1, 0, 0, 0]]   B' = B(1+j) + O(1+k)  = [[1, 1, 0, 2], [0, 0, -1, 1], [1, 1, 2, 0]]
+      C  = [[1, 0, 0, 0], [1, 0, 0, 0], [0, 1, 0, 0]]   C' = C(i+k) + O(1+i)  = [[1, 2, 0, 1], [-1, 2, 0, 1], [-1, 0, 0, -1]]
+      AA', BB', CC' concur at O, by construction: 1
+      X = AB ^ A'B' = [[0, 1, -1, 0], [-1, 0, 0, 1], [1, 0, 2, -1]]
+      Y = BC ^ B'C' = [[0, 0, -1, 1], [-1, 1, 0, 0], [-2, 0, -1, 1]]
+      Z = CA ^ C'A' = [[0, 0, 0, -2], [1, 1, -1, -1], [0, 0, 2, 0]]
+      rank of [X | Y | Z] over C = 4  (6 would mean non-collinear)
+      X, Y, Z COLLINEAR: 1
+
+    (5b) PAPPUS, over the same H.
+
+      Two lines, three points on each, alternating joins -- the exact
+      hypothesis of Pappus, and the conclusion fails:
+      P = [[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]   Q = [[0, 0, 0, 0], [1, 0, 0, 0], [0, 0, 0, 0]]   R = [[0, 0, 0, 0], [0, 0, 0, 0], [1, 0, 0, 0]]
+      A1 = P + Q,   A3 = P + Q i,   A5 = P + Q j     (on the line PQ)
+      A2 = P + R,   A4 = P + R i,   A6 = P + R k     (on the line PR)
+      the two lines are distinct: 1
+      X = A1A2 ^ A4A5 = [[1/2, -1/2, 1/2, 1/2], [0, 0, 1, 0], [1/2, -1/2, -1/2, 1/2]]
+      Y = A2A3 ^ A5A6 = [[1, 0, 0, 1], [0, 1, 0, 0], [0, 0, 0, 1]]
+      Z = A3A4 ^ A6A1 = [[1/2, -1/2, -1/2, 1/2], [1, 0, 0, 0], [-1/2, 1/2, -1/2, -1/2]]
+      X, Y, Z pairwise distinct: 1     none of them one of the six A_i: 1
+      rank of [X | Y | Z] over C = 6   -- rank 6, not 4
+      X, Y, Z COLLINEAR: 0        <-- Pappus FAILS over H
+
+    In P^2(K) with K commutative this configuration would be forced onto
+    a line; over H it is not, and the obstruction is exactly that i and j
+    do not commute.  This is Hilbert's
+    dictionary: a projective plane is Desarguesian iff it is P^2(D) for a
+    division ring D, and Pappian iff D is a field.
+
+=========================================================================
+ (6) A PLANE WHERE DESARGUES IS FALSE: MOULTON'S.
+=========================================================================
+
+    Points: the affine plane over Q (completed by a line at infinity).
+    Lines:  the verticals x = c; the ordinary y = mx + b with m >= 0;
+    and, for m < 0, the BENT line
+
+        y = m x + b   for x <= 0,        y = (m/2) x + b   for x >= 0,
+
+    which is continuous at the y-axis.  Two points still lie on exactly
+    one line and two lines still meet at most once, so this is a genuine
+    projective plane -- but not one of the form P^2(D).
+
+    axiom check on 4000 random rational pairs:
+      join of two points contains both, every time : 1
+      meet of two lines lies on both, every time   : 1   (9 parallel pairs, meeting at infinity)
+
+      O  = [-27/10, 3/2]
+      A  = [33/10, 2]     A' = [9/10, 9/5]   (on the Moulton line OA)
+      B  = [-4, -11/10]     B' = [-439/100, -47/25]   (on the Moulton line OB)
+      C  = [39/10, -11/10]     C' = [129/50, -1133/1550]   (on the Moulton line OC)
+      the three joins really do pass through O and the primed points: 1
+
+    so AA', BB', CC' concur at O -- the hypothesis of Desargues holds.
+    Now the three points of the would-be axis, all Moulton meets:
+
+      X = AB ^ A'B'  = [-743/350, -53/175]  = (-2.12286, -0.30286)
+      Y = BC ^ B'C'  = [2339/6850, -11/10]  = (0.34146, -1.10000)
+      Z = CA ^ C'A'  = [15329/3530, -3586/1059]  = (4.34249, -3.38621)
+
+      the Moulton line XY is slope -76446/219955  BENT, intercept -5722472/5498875
+      does it contain Z?   0        <-- DESARGUES FAILS
+      it passes through x = 15329/3530 at height -6969667067/3882205750
+      while Z sits at height -3586/1059,  a gap of 18528930299/11646617250
+      (about 1.591 units -- plainly visible in the figure)
+
+    Which of the ten lines are bent, and which actually use their bend
+    between the two points they join?
+      OA    left slope 1/12          straight
+      OB    left slope 2             straight
+      OC    left slope -52/93        BENT, and it bends between them
+      AB    left slope 31/73         straight
+      A'B'  left slope 16/23         straight
+      BC    left slope 0             straight
+      B'C'  left slope 3562/21607    straight
+      CA    left slope -31/3         bent, but only off to the left
+      C'A'  left slope -3923/1302    bent, but only off to the left
+      XY    left slope -76446/219955  BENT, and it bends between them
+
+    So the join OC bends between O and C, and so does the axis XY between
+    X and Y.  That is where the theorem leaks.
+
+    THE CONTROL.  Run the same recipe with straight lines: same O, A, B, C
+    and the same three ratios along the joins.  Only C' moves -- OC is the
+    one join that bends -- and collinearity comes straight back:
+      A' = [9/10, 9/5]   B' = [-439/100, -47/25]   C' = [129/50, -29/50]
+      X  = (-2.12286, -0.30286)   Y = (-0.20800, -1.10000)   Z = (4.26000, -2.96000)
+      det[X;Y;Z] = 0     collinear: 1
+
+    Nothing changed but which curves are called lines.  Desargues is
+    therefore NOT a consequence of the incidence axioms: it is
+    an extra hypothesis, and by Hilbert's theorem it is exactly the one that
+    buys coordinates in a division ring.  The reason the proof of section (4)
+    cannot be repeated here is that the Moulton plane embeds in no P^3.
+
+=========================================================================
+ done.
+=========================================================================
