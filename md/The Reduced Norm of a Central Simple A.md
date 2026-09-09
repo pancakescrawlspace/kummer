@@ -44,6 +44,33 @@ $$\chi_a(X) = \big(\mathrm{Prd}_a(X)\big)^n, \qquad \mathrm{Prd}_a(X) := \det\bi
 
 A monic polynomial has at most one monic $n$-th root, and $\chi_a$ has coefficients in $K$; since $K[X] \hookrightarrow L[X]$ is injective and the root computed in $L[X]$ must agree with the one computed in $\bar K[X]$, the root $\mathrm{Prd}_a$ already lies in $K[X]$. This simultaneously gives you the **reduced characteristic polynomial** for free.
 
+### Remark: why not just intersect all splitting fields?
+
+It is tempting to bypass descent as follows: $\mathrm{Nrd}(a)$ lies in *every* splitting field, so if the splitting fields had no proper extension of $K$ in common, we would get $\mathrm{Nrd}(a) \in K$ for free. **As stated for algebraic splitting fields this fails.** Take $K = \mathbb{R}$ and $A = \mathbb{H}$: the only subfields of $\mathbb{C}$ containing $\mathbb{R}$ are $\mathbb{R}$ and $\mathbb{C}$, and $\mathbb{R}$ does not split $\mathbb{H}$, so
+
+$$\bigcap_{L/\mathbb{R} \text{ algebraic},\ L \text{ splits } \mathbb{H}} L \;=\; \mathbb{C} \;\supsetneq\; \mathbb{R},$$
+
+and the intersection argument yields only $\mathrm{Nrd}(a) \in \mathbb{C}$ — even though $\mathrm{Nrd}(x + yi + zj + wk) = x^2+y^2+z^2+w^2$ is visibly real.
+
+The general picture: inside $K_s$ the set of splitting fields is stable under $\mathrm{Gal}(K_s/K)$, since $\sigma_*\varphi$ splits $A$ over $\sigma L$ whenever $\varphi$ splits it over $L$. So $E := \bigcap L$ is normal over $K$, and $\mathrm{Gal}(K_s/E)$ is the closed subgroup *generated* by the open subgroups $H$ with $[A]|_H = 0$. Nothing forces that generated subgroup to be all of $G$, and for $G = \mathbb{Z}/2$ with $[A] \neq 0$ it is not. Whether $E = K$ depends on the field, not just on the algebra: over $\mathbb{Q}_p$ it does hold — a division algebra of degree $n$ is split both by the unramified extension of degree $n$ and by a totally ramified one, and those meet in $\mathbb{Q}_p$ — but that is local class field theory, far more expensive than the averaging argument above.
+
+**The repair.** The claim becomes true, and does prove $\mathrm{Nrd}(a) \in K$, once transcendental splitting fields are allowed. Let
+
+$$X \;=\; \underline{\mathrm{Isom}}_{K\text{-alg}}(A, M_n),$$
+
+the affine $K$-variety of algebra isomorphisms, a closed subvariety of $\mathrm{Hom}_K(A, M_n)$. Over $\bar K$ it is nonempty, and $\mathrm{PGL}_n$ acts on it simply transitively — this is exactly the Skolem–Noether step above — so $X_{\bar K} \cong \mathrm{PGL}_{n, \bar K}$, which is smooth and connected. Hence $X$ is geometrically integral, and therefore
+
+- $K$ is algebraically closed in $F := K(X)$, the standard consequence of geometric integrality;
+- $F$ splits $A$, since the generic point is a canonical $F$-point of $X_F$, i.e. an isomorphism $A \otimes_K F \cong M_n(F)$.
+
+(One may use $F = K(\mathrm{SB}(A))$ instead; same conclusion, slightly more input.) So no proper *algebraic* extension of $K$ embeds into every splitting field. The counterexample dissolves accordingly: $\mathbb{R}(x,y)/(x^2+y^2+1)$, the function field of the pointless conic, splits $\mathbb{H}$ and contains no square root of $-1$.
+
+Given this, the independence of $L$ established above finishes the job: embed $\bar K \hookrightarrow \bar F$, compute $\mathrm{Nrd}(a)$ over $\bar F$ in two ways, and conclude
+
+$$\mathrm{Nrd}(a) \in \bar K \cap F = K.$$
+
+This is a genuine proof, and it is the reason the notion of a *generic splitting field* is useful — but it is not cheaper. It trades four lines of Galois averaging for the existence and geometric integrality of a torsor plus a lemma on function fields. The regular-representation argument remains the economical descent-free route.
+
 ## Reduced characteristic polynomial, norm, trace
 
 Writing $\mathrm{Prd}_a(X) = X^n - c_1 X^{n-1} + \cdots + (-1)^n c_n \in K[X]$:
