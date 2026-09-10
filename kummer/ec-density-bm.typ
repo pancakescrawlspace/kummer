@@ -436,7 +436,7 @@ started from.
 _Companion file:_ `ec-density-bm.gp`, run as
 
 ```sh
-gp -q -s 4000000000 ec-density-bm.gp < /dev/null > results/ec-density-bm.txt
+gp -q -s 4000000000 ec-density-bm.gp < /dev/null > ../results/ec-density-bm.txt
 ```
 
 It verifies the ranks and analytic ranks, the local images $S_v$ at $v = 2$ (by scanning

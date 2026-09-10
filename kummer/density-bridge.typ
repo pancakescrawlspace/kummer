@@ -340,7 +340,7 @@ dead for that class. So one twist can kill the obstruction; no number of twists 
 _Companion file:_ `density-bridge.gp`, run as
 
 ```sh
-gp -q -s 12000000000 density-bridge.gp < /dev/null > results/density-bridge.txt
+gp -q -s 12000000000 density-bridge.gp < /dev/null > ../results/density-bridge.txt
 ```
 
 It reproduces the CM Tamagawa row at $p = 3$, the half-dimension count showing $W_v$ Lagrangian,

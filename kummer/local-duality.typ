@@ -311,7 +311,7 @@ self-dual and why the Weil pairing appears where it does.
 _Companion file:_ `local-duality.gp`, run as
 
 ```sh
-gp -q -s 4000000000 local-duality.gp < /dev/null > results/local-duality.txt
+gp -q -s 4000000000 local-duality.gp < /dev/null > ../results/local-duality.txt
 ```
 
 It verifies the $ZZ slash 2$ case as non-degeneracy of the Hilbert symbol (exhaustive Gram

@@ -401,7 +401,7 @@ E. de Shalit, _Iwasawa theory of elliptic curves with complex multiplication_ (1
 _Companion file:_ `wild-symbols.gp`, run as
 
 ```sh
-gp -q -s 12000000000 wild-symbols.gp < /dev/null > results/wild-symbols.txt
+gp -q -s 12000000000 wild-symbols.gp < /dev/null > ../results/wild-symbols.txt
 ```
 
 It verifies the triviality of the tame symbol on units ($556656$ cases), the mod-$p$ versus

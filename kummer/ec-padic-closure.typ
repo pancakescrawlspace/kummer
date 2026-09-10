@@ -332,7 +332,7 @@ above has rank exactly $1$ precisely to avoid this.
 _Companion file:_ `ec-padic-closure.gp`, run as
 
 ```sh
-gp -q -s 4000000000 ec-padic-closure.gp < /dev/null > results/ec-padic-closure.txt
+gp -q -s 4000000000 ec-padic-closure.gp < /dev/null > ../results/ec-padic-closure.txt
 ```
 
 It recomputes every number above: the ranks and saturated generators via `ellrank` and

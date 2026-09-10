@@ -426,7 +426,7 @@ all; the forcing is what removes the escape route, not what supplies the invaria
 _Companion file:_ `integral-bm.gp`, run as
 
 ```sh
-gp -q -s 2000000000 integral-bm.gp < /dev/null > results/integral-bm.txt
+gp -q -s 2000000000 integral-bm.gp < /dev/null > ../results/integral-bm.txt
 ```
 
 It verifies (1) the norm of the fundamental unit, (2) local solubility at every place,
