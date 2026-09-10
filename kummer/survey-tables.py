@@ -10,7 +10,7 @@ Run from this directory:  python3 survey-tables.py
 """
 import json, re, os
 
-path = "results/survey-Nmin20.txt"
+path = "../results/survey-Nmin20.txt"
 txt = open(path).read().splitlines()
 
 surfaces = []
@@ -50,7 +50,7 @@ by = {s["label"].split()[0]: s for s in surfaces}
 
 # ---- identification from the Sage/Cremona listing ----------------------
 ident = {}
-for ln in open("results/surfaces-cremona.txt"):
+for ln in open("../results/surfaces-cremona.txt"):
     t = ln.split()
     if len(t) < 12 or ln.startswith("#"):
         continue

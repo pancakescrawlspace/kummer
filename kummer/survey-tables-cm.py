@@ -43,11 +43,11 @@ def parse(path):
             cur["ttot"] = int(re.search(r"time=(\d+)", ln).group(1))
     return S
 
-S = parse("results/survey-cm.txt")
+S = parse("../results/survey-cm.txt")
 by = {s["label"]: s for s in S}
 
 ident = {}
-for ln in open("results/surfaces-cm.txt"):
+for ln in open("../results/surfaces-cm.txt"):
     t = ln.split()
     if ln.startswith("#") or len(t) < 9: continue
     lbl = {"rigid": "rigid:%s", "j0": "j0:%s", "j1728": "j1728:%s"}[t[0]] % t[1]
@@ -111,12 +111,12 @@ W(")\n")
 
 # ============ the family scans =========================================
 sx = []
-for ln in open("results/survey-cm-sextic.txt"):
+for ln in open("../results/survey-cm-sextic.txt"):
     m = re.match(r"\s+B=(\d+)\s+\[([^\]]*)\]\s+\[([^\]]*)\]\s+(\d)/4", ln)
     if m:
         sx.append((int(m.group(1)), [int(x) for x in m.group(2).split(",")], int(m.group(4))))
 qt = []
-for ln in open("results/survey-cm-quartic.txt"):
+for ln in open("../results/survey-cm-quartic.txt"):
     m = re.match(r"\s+A=(-?\d+)\s+\[([^\]]*)\]\s+(\d)/8", ln)
     if m:
         qt.append((int(m.group(1)), [int(x) for x in m.group(2).split(",")], int(m.group(3))))
