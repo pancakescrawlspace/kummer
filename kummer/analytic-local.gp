@@ -1,6 +1,6 @@
 \\ analytic-local.gp -- the worked example of analytic-local.typ, section 8.
 \\ Run from this directory:
-\\     gp -q -s 2000000000 analytic-local.gp < /dev/null > results/analytic-local.txt
+\\     gp -q -s 2000000000 analytic-local.gp < /dev/null > ../results/analytic-local.txt
 \\
 \\ The theorem says: for X a variety over K, P a smooth K-rational point and
 \\ f regular at P, the formal expansion of f in local coordinates at P converges

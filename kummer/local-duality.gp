@@ -1,6 +1,6 @@
 \\ local-duality.gp -- computations for local-duality.typ.
 \\ Run from this directory:
-\\     gp -q -s 4000000000 local-duality.gp < /dev/null > results/local-duality.txt
+\\     gp -q -s 4000000000 local-duality.gp < /dev/null > ../results/local-duality.txt
 \\
 \\ Local Tate duality, and the instances of it that the other documents in this
 \\ directory lean on.  For K/Q_p finite and M a finite G_K-module with dual

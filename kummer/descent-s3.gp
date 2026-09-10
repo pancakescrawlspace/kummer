@@ -1,6 +1,6 @@
 \\ descent-s3.gp -- 2-descent when E[2] is generic (Gal(Q(E[2])/Q) = S_3)
 \\ companion to descent-s3.typ.  Run from this directory:
-\\     gp -q -s 4000000000 descent-s3.gp < /dev/null > results/descent-s3.txt
+\\     gp -q -s 4000000000 descent-s3.gp < /dev/null > ../results/descent-s3.txt
 \\
 \\ For each curve it reports, in the order the document develops them:
 \\   (1) the cubic f with y^2 = f(x), its discriminant, and the Galois type;

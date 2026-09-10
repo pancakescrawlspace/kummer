@@ -1,7 +1,7 @@
 \\ corestriction.gp -- checks for corestriction.typ
 \\
 \\ Run from this directory:
-\\     gp -q -s 2000000000 corestriction.gp < /dev/null > results/corestriction.txt
+\\     gp -q -s 2000000000 corestriction.gp < /dev/null > ../results/corestriction.txt
 \\
 \\ Everything here tests the Theorem of section 5 and the two corollaries of
 \\ section 5.1, on two etale algebras:

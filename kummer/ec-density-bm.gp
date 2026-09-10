@@ -1,6 +1,6 @@
 \\ ec-density-bm.gp -- computations for ec-density-bm.typ.
 \\ Run from this directory:
-\\     gp -q -s 4000000000 ec-density-bm.gp < /dev/null > results/ec-density-bm.txt
+\\     gp -q -s 4000000000 ec-density-bm.gp < /dev/null > ../results/ec-density-bm.txt
 \\
 \\ Is the failure of density of E(Q) in E(Q_p) -- the phenomenon of
 \\ ec-padic-closure.typ -- a Brauer-Manin obstruction / a Tate-pairing

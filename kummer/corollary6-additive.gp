@@ -14,7 +14,7 @@
    square class, the ramified one, at the same prime.  It tests §10.8.1 and the
    class-label transport of §4 at once.
 
-   Output: results/survey-corollary6-additive.txt
+   Output: ../results/survey-corollary6-additive.txt
    ============================================================================ */
 read("survey.gp");
 

@@ -21,7 +21,7 @@
    the proof is the necessity half of Lemma 4.
 
    Functions: sqreps, tw, ntorsx, ismult, splitclass, canroot, symtab, oos.
-   Output: results/survey-depends-check.txt
+   Output: ../results/survey-depends-check.txt
    ============================================================================ */
 
 read("kummer2.gp"); read("survey.gp");

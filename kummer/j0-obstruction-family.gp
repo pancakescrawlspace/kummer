@@ -2,7 +2,7 @@
 \\
 \\ Run from this directory:
 \\     gp -q -s 6000000000 j0-obstruction-family.gp < /dev/null \
-\\         > results/j0-obstruction-family.txt
+\\         > ../results/j0-obstruction-family.txt
 \\
 \\ kummer-example-j0.typ proves that X = Kum(E x E') is not 2-adically dense
 \\ for E : y^2 = x^3 + 9 and E' : y^2 = x^3 - 81.  This asks which pairs of

@@ -18,7 +18,7 @@
 
    Functions: dimtors2, C2, compare2, samemod, run.  (NB: `cmp` is a PARI
    builtin, so the comparison driver cannot be called that.)
-   Output: results/selmer-involution.txt
+   Output: ../results/selmer-involution.txt
    ============================================================================ */
 
 dimtors2(E) = { my(f = factor(x^3 + E.a6)); sum(i = 1, #f~, if(poldegree(f[i,1]) == 1, 1, 0)); }

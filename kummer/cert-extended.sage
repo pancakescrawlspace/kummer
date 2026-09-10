@@ -5,8 +5,8 @@
 # This is a port of cert-extended.gp.  The two are meant to be run
 # against each other:
 #
-#     sage cert-extended.sage > results/cert-extended-sage.txt
-#     diff results/cert-extended.txt results/cert-extended-sage.txt
+#     sage cert-extended.sage > ../results/cert-extended-sage.txt
+#     diff ../results/cert-extended.txt ../results/cert-extended-sage.txt
 #
 # The output format is therefore PARI's, down to the "Mod(a, p)" spelling
 # of a residue and the "[x, y]" spelling of a point, so that the diff is
@@ -90,7 +90,7 @@
 
 # ---------------------------------------------------------------------
 # PARI-shaped printing.  Everything user-visible goes through these, so
-# the diff against results/cert-extended.txt stays honest.
+# the diff against ../results/cert-extended.txt stays honest.
 # ---------------------------------------------------------------------
 
 def ptstr(P):

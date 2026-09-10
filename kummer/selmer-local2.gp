@@ -25,7 +25,7 @@
    ranks to differ by an odd number, contradicting the computation.
 
    Functions: kmul, kval, kissq, kinv, samecl, mulcl, addto, closure, LE, LEp.
-   Output: results/selmer-local2.txt
+   Output: ../results/selmer-local2.txt
    ============================================================================ */
 
 PR = 40;

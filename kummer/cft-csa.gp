@@ -1,7 +1,7 @@
 \\ cft-csa.gp -- checks for cft-csa.typ
 \\
 \\ Run from this directory:
-\\     gp -q -s 2000000000 cft-csa.gp < /dev/null > results/cft-csa.txt
+\\     gp -q -s 2000000000 cft-csa.gp < /dev/null > ../results/cft-csa.txt
 \\
 \\ Class field theory through central simple algebras.  The point of the
 \\ approach is that nothing is asserted to be compatible: a 2-cocycle is the

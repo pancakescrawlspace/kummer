@@ -1,6 +1,6 @@
 \\ csa-brauer.gp -- computations for csa-brauer.typ.
 \\ Run from this directory:
-\\     gp -q -s 2000000000 csa-brauer.gp < /dev/null > results/csa-brauer.txt
+\\     gp -q -s 2000000000 csa-brauer.gp < /dev/null > ../results/csa-brauer.txt
 \\
 \\ Six illustrations of central simple algebras in number theory, all explicit:
 \\   (1) Hilbert reciprocity: prod_v (a,b)_v = 1.

@@ -1,7 +1,7 @@
 \\ local-nonmaximality.gp -- checks for local-nonmaximality.typ
 \\
 \\ Run from this directory:
-\\     gp -q -s 4000000000 local-nonmaximality.gp < /dev/null > results/local-nonmaximality.txt
+\\     gp -q -s 4000000000 local-nonmaximality.gp < /dev/null > ../results/local-nonmaximality.txt
 \\
 \\ Two questions.  (A) Can non-maximality of an order be seen locally?  Yes, in
 \\ every sense one might mean, and sharply: p-maximality of Z[theta] depends only

@@ -1,6 +1,6 @@
 \\ coupling.gp -- does the l-primary reduction of section 3.5.1 survive in the
 \\ S-adic case, where a square class may need SEVERAL twists?  Run from here:
-\\     gp -q -s 2000000000 coupling.gp < /dev/null > results/coupling.txt
+\\     gp -q -s 2000000000 coupling.gp < /dev/null > ../results/coupling.txt
 \\
 \\ THE QUESTION.  Section 3.5.1 decides density at one place by
 \\        R = G   <=>   R --> G/lG onto for every l,

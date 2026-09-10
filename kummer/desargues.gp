@@ -16,7 +16,7 @@
 \\
 \\ ("O" is PARI's big-oh, so the points are called vO, vA, ... throughout.)
 \\
-\\ Run from this directory:   gp -q desargues.gp > results/desargues.txt
+\\ Run from this directory:   gp -q desargues.gp > ../results/desargues.txt
 
 cross(u,v) = [u[2]*v[3]-u[3]*v[2], u[3]*v[1]-u[1]*v[3], u[1]*v[2]-u[2]*v[1]];
 det3(P,Q,R) = matdet(matrix(3,3,i,j, [P,Q,R][i][j]));

@@ -1,7 +1,7 @@
 \\ padic-ptorsion.gp -- checks for padic-ptorsion.typ
 \\
 \\ Run from this directory:
-\\     gp -q -s 6000000000 padic-ptorsion.gp < /dev/null > results/padic-ptorsion.txt
+\\     gp -q -s 6000000000 padic-ptorsion.gp < /dev/null > ../results/padic-ptorsion.txt
 \\
 \\ Theorem 1 of arXiv:1211.5833 (Pannekoek): for E/Q_p with additive reduction
 \\ given by a minimal model with every a_i in pZ_p, E_0(Q_p) = Z_p except in

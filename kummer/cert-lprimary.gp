@@ -3,7 +3,7 @@
 \\ its verdicts; the two share the canonical base and the p-adic component map
 \\ verbatim, and ordv there and ordE1 here are the same function.  Run from
 \\ this directory:
-\\     gp -q cert-lprimary.gp < /dev/null > results/cert-lprimary.txt
+\\     gp -q cert-lprimary.gp < /dev/null > ../results/cert-lprimary.txt
 \\ No -s is needed; see WHERE THE TIME GOES below for why it once was.
 \\
 \\ WHAT THE l-PRIMARY APPROACH IS, WHICH THE FIRST VERSION OF THIS FILE LEFT

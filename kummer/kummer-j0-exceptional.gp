@@ -2,7 +2,7 @@
 \\
 \\ Run from this directory:
 \\     gp -q -s 4000000000 kummer-j0-exceptional.gp < /dev/null \
-\\         > results/kummer-j0-exceptional.txt
+\\         > ../results/kummer-j0-exceptional.txt
 \\
 \\ Companion to section 7.4 of kummer-example-j0.typ.  X = Kum(E x E') is the
 \\ minimal resolution of Y = (E x E')/(-1,-1); the sixteen A_1 points of Y are

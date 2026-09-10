@@ -14,7 +14,7 @@
    Counterexample pair: 4177 and 4937 both have b = 64 and are both of the form
    x^2 + 256 y^2 with y = 4, yet m = 2 and m = 4 respectively.
 
-   Functions: ab, mval, rung1, rung2.  Output: results/sha-tunnell.txt
+   Functions: ab, mval, rung1, rung2.  Output: ../results/sha-tunnell.txt
    ============================================================================ */
 
 ab(p) = { my(v = qfbsolve(Qfb(1,0,1), p), A = abs(v[1]), B = abs(v[2]));

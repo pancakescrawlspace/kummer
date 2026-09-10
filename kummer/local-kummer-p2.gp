@@ -17,7 +17,7 @@
 \\ "is a square in Q_4" is decided by pairing against a basis -- no p-adic
 \\ square-root extraction in a ramified tower is needed anywhere.
 \\
-\\ Run from this directory:   gp -q local-kummer-p2.gp > results/local-kummer-p2.txt
+\\ Run from this directory:   gp -q local-kummer-p2.gp > ../results/local-kummer-p2.txt
 
 K  = nfinit(w^2 + w + 1);            \\ Q(omega),  omega = zeta_3
 pr = idealprimedec(K, 2)[1];         \\ 2 is inert: e = 1, f = 2

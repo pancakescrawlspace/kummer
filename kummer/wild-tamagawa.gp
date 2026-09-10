@@ -32,7 +32,7 @@
    reach the wild place.  What does survive, as an observation, is the one
    direction 3 | c_3 ==> alpha =/= 0 (4 of 4 here).
 
-   Output: results/survey-wild-tamagawa.txt
+   Output: ../results/survey-wild-tamagawa.txt
    ============================================================================ */
 
 /* alpha3.gp --- the image of the level-3 descent map at v = ell = 3.

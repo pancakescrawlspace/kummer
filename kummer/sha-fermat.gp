@@ -18,7 +18,7 @@
    4-torsion -- so the 2-descent is telling us, unasked, that Sha has 4-torsion
    for 257 and 65537 and not for 17.
 
-   Functions: ab, dat, scan, fermat.  Output: results/sha-fermat.txt
+   Functions: ab, dat, scan, fermat.  Output: ../results/sha-fermat.txt
    ============================================================================ */
 
 ab(p) = { my(v = qfbsolve(Qfb(1,0,1), p), A = abs(v[1]), B = abs(v[2]));

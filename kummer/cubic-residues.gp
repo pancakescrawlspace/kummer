@@ -1,7 +1,7 @@
 \\ cubic-residues.gp -- checks for cubic-residues.typ
 \\
 \\ Run from this directory:
-\\     gp -q -s 4000000000 cubic-residues.gp < /dev/null > results/cubic-residues.txt
+\\     gp -q -s 4000000000 cubic-residues.gp < /dev/null > ../results/cubic-residues.txt
 \\
 \\ The question: for which primes p is 3 a cube modulo p?  For p = 3 and for
 \\ p = 2 mod 3 the answer is "always", cubing being a bijection.  For p = 1 mod 3

@@ -1,6 +1,6 @@
 \\ cert-extended.gp -- the extended density certificate for kummer-padic-density.typ.
 \\ Run from this directory:
-\\     gp -q cert-extended.gp < /dev/null > results/cert-extended.txt
+\\     gp -q cert-extended.gp < /dev/null > ../results/cert-extended.txt
 \\ No -s is needed: the run is a second and a half in the default 8 Mbyte
 \\ stack, with the high-water mark measured between 2 and 4.  It used to ask
 \\ for twelve GIGABYTES, and needed them, because ordv took its multiples on

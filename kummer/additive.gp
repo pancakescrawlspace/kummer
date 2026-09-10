@@ -37,7 +37,7 @@
    where W_v sees the formal group at all.
 
    Functions: kodname, tw, ci, imgs, predict, direct, splitscan, lemma7, run.
-   Output: results/survey-additive.txt
+   Output: ../results/survey-additive.txt
    ============================================================================ */
 
 read("kummer2.gp"); read("survey.gp");

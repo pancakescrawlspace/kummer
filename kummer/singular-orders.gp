@@ -1,7 +1,7 @@
 \\ singular-orders.gp -- checks for singular-orders.typ
 \\
 \\ Run from this directory:
-\\     gp -q -s 2000000000 singular-orders.gp < /dev/null > results/singular-orders.txt
+\\     gp -q -s 2000000000 singular-orders.gp < /dev/null > ../results/singular-orders.txt
 \\
 \\ A non-maximal order R in O_K is a singular curve, and R -> O_K is its
 \\ normalisation, hence (dimension one) its resolution.  Nothing here is an

@@ -1,7 +1,7 @@
 \\ residues.gp -- checks for residues.typ
 \\
 \\ Run from this directory:
-\\     gp -q -s 2000000000 residues.gp < /dev/null > results/residues.txt
+\\     gp -q -s 2000000000 residues.gp < /dev/null > ../results/residues.txt
 \\
 \\ Everything here is the n = 2 tame symbol of residues.typ section 4.2,
 \\

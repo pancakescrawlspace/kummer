@@ -13,7 +13,7 @@
 \\ degenerate form of the theorem below is a specialization of one identity,
 \\ not a separate limiting argument.
 \\
-\\ Run from this directory:   gp -q pascal.gp > results/pascal.txt
+\\ Run from this directory:   gp -q pascal.gp > ../results/pascal.txt
 
 cross(u,v) = [u[2]*v[3]-u[3]*v[2], u[3]*v[1]-u[1]*v[3], u[1]*v[2]-u[2]*v[1]];
 chord(a,b) = [1, -(a+b), a*b];

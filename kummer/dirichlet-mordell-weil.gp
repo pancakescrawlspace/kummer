@@ -2,7 +2,7 @@
 \\
 \\ Run from this directory:
 \\     gp -q -s 2000000000 dirichlet-mordell-weil.gp < /dev/null \
-\\         > results/dirichlet-mordell-weil.txt
+\\         > ../results/dirichlet-mordell-weil.txt
 \\
 \\ The note asks whether Dirichlet's unit theorem splits the way Mordell-Weil
 \\ does, into an arithmetic half (weak Mordell-Weil) and a height half.  It

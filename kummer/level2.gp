@@ -52,7 +52,7 @@
        even a bad prime.
 
    Functions: fp, ci, diagonal, betaq, family, analyse.
-   Output: results/survey-level2.txt
+   Output: ../results/survey-level2.txt
    ============================================================================ */
 read("kummer2.gp"); read("survey.gp");
 

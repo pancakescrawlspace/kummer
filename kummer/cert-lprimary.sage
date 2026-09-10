@@ -5,8 +5,8 @@
 # A port of cert-lprimary.gp.  As with cert-extended.sage, the two are
 # meant to be run against each other:
 #
-#     sage cert-lprimary.sage > results/cert-lprimary-sage.txt
-#     diff results/cert-lprimary.txt results/cert-lprimary-sage.txt
+#     sage cert-lprimary.sage > ../results/cert-lprimary-sage.txt
+#     diff ../results/cert-lprimary.txt ../results/cert-lprimary-sage.txt
 #
 # so the output format is PARI's throughout, down to the "Mod(a, p)"
 # spelling of a residue and the "[x, y]" spelling of a point.  Nothing is

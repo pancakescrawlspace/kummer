@@ -1,6 +1,6 @@
 \\ cert-ledger.gp -- the extended certificate for the LEDGER of section 2.
 \\ Run from this directory:
-\\     gp -q -s 12000000000 cert-ledger.gp < /dev/null > results/cert-ledger.txt
+\\     gp -q -s 12000000000 cert-ledger.gp < /dev/null > ../results/cert-ledger.txt
 \\
 \\ Section 3.4 extends the single-place certificate of section 3.3.  This does the
 \\ same for the S-adic ledger of section 2.5, S = {11,13,17}, f = x^3+x+1.

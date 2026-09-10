@@ -2,7 +2,7 @@
 \\
 \\ Run from this directory:
 \\     gp -q -s 6000000000 splitting-galois-closure.gp < /dev/null \
-\\         > results/splitting-galois-closure.txt
+\\         > ../results/splitting-galois-closure.txt
 \\
 \\ If p splits completely in the Galois closure L of K, must it split
 \\ completely in K?  Yes, and trivially: e and f are multiplicative in towers

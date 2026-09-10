@@ -1,6 +1,6 @@
 \\ lprimary.gp -- what the l-primary rewrite buys, measured rather than asserted.
 \\ Run from this directory:
-\\     gp -q -s 8000000000 lprimary.gp < /dev/null > results/lprimary.txt
+\\     gp -q -s 8000000000 lprimary.gp < /dev/null > ../results/lprimary.txt
 \\
 \\ Two questions, for f = x^3+x+1, S = {11,13,17}, the tuple of d_0 = 1.
 \\

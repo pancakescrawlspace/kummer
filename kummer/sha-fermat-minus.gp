@@ -1,7 +1,7 @@
 \\ sha-fermat-minus.gp -- checks for sha-fermat-minus.typ
 \\
 \\ Run from this directory:
-\\     gp -q -s 8000000000 sha-fermat-minus.gp < /dev/null > results/sha-fermat-minus.txt
+\\     gp -q -s 8000000000 sha-fermat-minus.gp < /dev/null > ../results/sha-fermat-minus.txt
 \\
 \\ Companion to sha-fermat.gp/typ, which treats y^2 = x^3 + p x.  Here the
 \\ MINUS family y^2 = x^3 - p x at the Fermat primes p = F_k = 2^(2^k) + 1.

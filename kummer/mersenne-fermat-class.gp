@@ -2,7 +2,7 @@
 \\
 \\ Run from this directory:
 \\     gp -q -s 8000000000 mersenne-fermat-class.gp < /dev/null \
-\\         > results/mersenne-fermat-class.txt
+\\         > ../results/mersenne-fermat-class.txt
 \\
 \\ Reconstructing Franz Lemmermeyer's comment on MathOverflow 151396: "There are
 \\ similar phenomena in connection with class groups of quadratic fields whose

@@ -2,7 +2,7 @@
 \\
 \\ Run from this directory:
 \\     gp -q -s 4000000000 pencil-conic-count.gp < /dev/null \
-\\         > results/pencil-conic-count.txt
+\\         > ../results/pencil-conic-count.txt
 \\
 \\ Mathematics Stack Exchange 5130224.  L, L_1, ..., L_6 are lines in P^3;
 \\ the planes V through L form a pencil, and each cuts the L_i in six points.

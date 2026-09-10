@@ -1,6 +1,6 @@
 \\ wild-symbols.gp -- computations for wild-symbols.typ.
 \\ Run from this directory:
-\\     gp -q -s 12000000000 wild-symbols.gp < /dev/null > results/wild-symbols.txt
+\\     gp -q -s 12000000000 wild-symbols.gp < /dev/null > ../results/wild-symbols.txt
 \\
 \\ Why the n-th norm residue symbol is easy when v does not divide n (TAME) and
 \\ hard when it does (WILD).  For a local field K containing mu_n,

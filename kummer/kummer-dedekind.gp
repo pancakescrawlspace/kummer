@@ -2,7 +2,7 @@
 \\
 \\ Run from this directory:
 \\     gp -q -s 4000000000 kummer-dedekind.gp < /dev/null \
-\\         > results/kummer-dedekind.txt
+\\         > ../results/kummer-dedekind.txt
 \\
 \\ The Kummer-Dedekind theorem: for K = Q(theta) with theta an algebraic
 \\ integer of minimal polynomial f, and for a prime p NOT dividing the index

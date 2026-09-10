@@ -16,7 +16,7 @@
    not alternating for phi_B: the norm lemma is a statement about a particular
    pair of descent maps, not about the curve.  Document 10.5.1.
 
-   Functions: realchk, fin.  Output: results/survey-15a1-sigma.txt
+   Functions: realchk, fin.  Output: ../results/survey-15a1-sigma.txt
    ============================================================================ */
 
 read("kummer2.gp"); read("survey.gp");

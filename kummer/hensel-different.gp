@@ -1,6 +1,6 @@
 \\ hensel-different.gp -- companion to hensel-different.typ.
 \\ Run from this directory:
-\\     gp -q -s 2000000000 hensel-different.gp < /dev/null > results/hensel-different.txt
+\\     gp -q -s 2000000000 hensel-different.gp < /dev/null > ../results/hensel-different.txt
 \\
 \\ The document's claim is that the coordinate-free invariant behind the
 \\ multivariate Hensel lemma is the KAEHLER DIFFERENT

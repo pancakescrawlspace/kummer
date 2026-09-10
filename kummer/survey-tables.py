@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Turn the raw output of the survey runs into survey-tables.typ.
 
-Reads   results/survey-Nmin20.txt   (the main run: 30 surfaces, p <= 200)
-        results/surfaces-cremona.txt (the curve list, from surfaces.sage)
-and the follow-up runs results/survey-{deephunt,audit,rankaudit,p2deep,
+Reads   ../results/survey-Nmin20.txt   (the main run: 30 surfaces, p <= 200)
+        ../results/surfaces-cremona.txt (the curve list, from surfaces.sage)
+and the follow-up runs ../results/survey-{deephunt,audit,rankaudit,p2deep,
 p2hunt}.txt, whose few numbers are transcribed in the tables below.
 
 Run from this directory:  python3 survey-tables.py

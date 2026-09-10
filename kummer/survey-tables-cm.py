@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Turn the CM-batch runs into survey-tables-cm.typ.
 
-Reads   results/survey-cm.txt          (43 surfaces, all p <= 200)
-        results/surfaces-cm.txt        (the curve list, from cm-surfaces.sage)
-        results/survey-cm-sextic.txt   (x^3+B at p = 3, B <= 100 cubefree)
-        results/survey-cm-quartic.txt  (x^3+Ax at p = 2, |A| <= 60 squarefree)
+Reads   ../results/survey-cm.txt          (43 surfaces, all p <= 200)
+        ../results/surfaces-cm.txt        (the curve list, from cm-surfaces.sage)
+        ../results/survey-cm-sextic.txt   (x^3+B at p = 3, B <= 100 cubefree)
+        ../results/survey-cm-quartic.txt  (x^3+Ax at p = 2, |A| <= 60 squarefree)
 The handful of numbers from the audit / deep-hunt / pairing runs are
-transcribed into the tables below; those runs are in results/survey-cm-*.txt.
+transcribed into the tables below; those runs are in ../results/survey-cm-*.txt.
 
 Run from this directory:  python3 survey-tables-cm.py
 """

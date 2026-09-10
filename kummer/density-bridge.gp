@@ -1,6 +1,6 @@
 \\ density-bridge.gp -- computations for density-bridge.typ.
 \\ Run from this directory:
-\\     gp -q -s 12000000000 density-bridge.gp < /dev/null > results/density-bridge.txt
+\\     gp -q -s 12000000000 density-bridge.gp < /dev/null > ../results/density-bridge.txt
 \\
 \\ How the single-curve documents (ec-padic-closure, ec-density-bm, wild-symbols)
 \\ sit against the twist-family work (kummer-padic-density.typ, kummer-survey.typ,

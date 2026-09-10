@@ -36,7 +36,7 @@
    wp -- out of reach analytically.  A 2-adic evaluation is what is wanted.
 
    Functions: q4 (quartic residue symbol), S (the sum), rep.
-   Output: results/sha-bsdsum.txt
+   Output: ../results/sha-bsdsum.txt
    ============================================================================ */
 
 default(realprecision, 40);

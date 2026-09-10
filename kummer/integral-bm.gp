@@ -1,6 +1,6 @@
 \\ integral-bm.gp -- computations for integral-bm.typ.
 \\ Run from this directory:
-\\     gp -q -s 2000000000 integral-bm.gp < /dev/null > results/integral-bm.txt
+\\     gp -q -s 2000000000 integral-bm.gp < /dev/null > ../results/integral-bm.txt
 \\
 \\ A Brauer-Manin obstruction to INTEGRAL points, on the negative Pell conic
 \\

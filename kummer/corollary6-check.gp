@@ -6,7 +6,7 @@
    odd p <= 200 EXCEPT one class at the predicted p, where Corollary 6 says
    X(Q) is not dense in X(Q_p).  Same parameters as the survey run.
 
-   Output: results/survey-corollary6-check.txt
+   Output: ../results/survey-corollary6-check.txt
    ============================================================================ */
 read("survey.gp");
 

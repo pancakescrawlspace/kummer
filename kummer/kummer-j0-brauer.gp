@@ -1,7 +1,7 @@
 \\ kummer-j0-brauer.gp -- the Azumaya algebra of kummer-example-j0.typ section 7
 \\
 \\ Run from this directory:
-\\     gp -q -s 4000000000 kummer-j0-brauer.gp < /dev/null > results/kummer-j0-brauer.txt
+\\     gp -q -s 4000000000 kummer-j0-brauer.gp < /dev/null > ../results/kummer-j0-brauer.txt
 \\
 \\ X : y^2 = (x^3 + 9)(t^3 - 81)   is Kum(E x E') for  E : y^2 = x^3 + 9  and
 \\ E' : v^2 = u^3 - 81, and the twists E_d, E'_d map to it by U = dx, S = dt.

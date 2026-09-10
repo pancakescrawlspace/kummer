@@ -35,7 +35,7 @@
 
    Uses the tangent/descent machinery of alpha3.gp, inlined so that reading this
    file does not run alpha3's own driver.
-   Output: results/survey-wild.txt
+   Output: ../results/survey-wild.txt
    ============================================================================ */
 
 /* alpha3.gp --- the image of the level-3 descent map at v = ell = 3.

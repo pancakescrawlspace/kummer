@@ -35,7 +35,7 @@
    why the chapter 3 search witnesses that class.  See document 10.5.1.
 
    Functions: sqreps, tw, ratroots, ntorsx, redtype, canline, splitclass, run.
-   Output: results/survey-depends.txt
+   Output: ../results/survey-depends.txt
    ============================================================================ */
 
 PREC = 40;

@@ -1,6 +1,6 @@
 \\ cert-ptors.gp -- the p-part of the torsion, which the other two certificates
 \\ assert rather than compute.  Run from this directory:
-\\     gp -q -s 4000000000 cert-ptors.gp < /dev/null > results/cert-ptors.txt
+\\     gp -q -s 4000000000 cert-ptors.gp < /dev/null > ../results/cert-ptors.txt
 \\
 \\ THE GAP.  cert-extended.gp and cert-ledger.gp both write E^d(Q_p) = Z_p x T
 \\ and read T off the prime-to-p part of M = #(E^d(Q_p)/E_1):
@@ -91,7 +91,7 @@ WIT = [
 }
 CLS = ["[1]", "[u]", "[p]", "[up]"];
 
-\ ---- the twists occurring in results/cert-ledger.txt, S = {11,13,17}
+\ ---- the twists occurring in ../results/cert-ledger.txt, S = {11,13,17}
 LDGR = [-3441,-1590,-1213,-1086,-938,-889,-641,-519,-511,-367,-349,-199,-149,-127,53,94,131,134,241,335,586,1047,1154,1730,1821,1923,2546,2859,2994,3391,3714,4279,4886];
 
 print("=========================================================================");

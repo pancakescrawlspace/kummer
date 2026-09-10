@@ -1,6 +1,6 @@
 \\ ec-padic-closure.gp -- computations for ec-padic-closure.typ.
 \\ Run from this directory:
-\\     gp -q -s 4000000000 ec-padic-closure.gp < /dev/null > results/ec-padic-closure.txt
+\\     gp -q -s 4000000000 ec-padic-closure.gp < /dev/null > ../results/ec-padic-closure.txt
 \\
 \\ Elliptic curves E/Q and primes p for which the image of E(Q) in E(Q_p) is
 \\ NOT dense.  E(Q_p) is filtered by

@@ -1,7 +1,7 @@
 \\ critical-orbit-stability.gp -- checks for critical-orbit-stability.typ
 \\
 \\ Run from this directory:
-\\     gp -q -s 4000000000 critical-orbit-stability.gp < /dev/null > results/critical-orbit-stability.txt
+\\     gp -q -s 4000000000 critical-orbit-stability.gp < /dev/null > ../results/critical-orbit-stability.txt
 \\
 \\ g = X^2 - X + 1, gamma = 1/2 its critical point, c_n = g^{o n}(gamma) the
 \\ critical orbit.  The claim being checked is that irreducibility of every

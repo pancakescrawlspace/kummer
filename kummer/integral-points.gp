@@ -1,7 +1,7 @@
 \\ integral-points.gp -- checks for integral-points.typ
 \\
 \\ Run from this directory:
-\\     gp -q -s 4000000000 integral-points.gp < /dev/null > results/integral-points.txt
+\\     gp -q -s 4000000000 integral-points.gp < /dev/null > ../results/integral-points.txt
 \\
 \\ The running example is the 37a1 model already used in analytic-local.typ 8:
 \\     E : y^2 = x^3 - 16x + 16,   rank 1, trivial torsion, P0 = (0,4) a generator.

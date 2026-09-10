@@ -17,7 +17,7 @@
    Also eliminated below: v_2(p-1) does not determine the answer (193 and 577
    share v_2(p-1) = 6 with m = 1 and 2).
 
-   Output: results/sha-zhao.txt
+   Output: ../results/sha-zhao.txt
    ============================================================================ */
 
 /* Nomoto arXiv:2207.10380, Prop 2.1: E_{-D}: y^2 = x^3+Dx has good reduction

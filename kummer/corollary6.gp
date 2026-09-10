@@ -26,7 +26,7 @@
    f = x^3 + b2 x^2 + 8 b4 x + 16 b6.
 
    Functions: monicF, nisog, canline, splitclass, fulltors, sigma1, scan.
-   Output: results/survey-corollary6.txt
+   Output: ../results/survey-corollary6.txt
    ============================================================================ */
 
 sqreps(v) = if(v == 2, [1,-1,2,-2,5,-5,10,-10], my(u = lift(znprimroot(v))); [1, u, v, u*v]);

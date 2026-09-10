@@ -1,6 +1,6 @@
 \\ cert-p2.gp -- the extended certificate at p = 2, for section 3.2.
 \\ Run from this directory:
-\\     gp -q -s 4000000000 cert-p2.gp < /dev/null > results/cert-p2.txt
+\\     gp -q -s 4000000000 cert-p2.gp < /dev/null > ../results/cert-p2.txt
 \\
 \\ Section 3.2 lists eight witness twists, one per class of Q_2^*/(Q_2^*)^2, and
 \\ nothing else.  This is the same certificate as section 3.4, at p = 2 -- where
