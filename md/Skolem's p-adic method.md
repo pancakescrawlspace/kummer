@@ -43,14 +43,147 @@ So the task becomes finding the integers $n$ at which the $\theta^2$-coefficient
 
 ## When it works
 
-You need **at least as many equations as unknown exponents**. In general there are $r$ exponents, one per fundamental unit, and some number of coefficient conditions. If the number of conditions is at least $r$, $p$-adic analytic geometry (Weierstrass preparation in several variables) gives finiteness.
+You need **at least as many equations as unknown exponents**. In general there are $r$ exponents, one per fundamental unit, and some number of coefficient conditions. Having at least $r$ conditions is **necessary** for the method to prove finiteness, but it is **not sufficient**: the equations can be degenerate. The next section explains this, and gives a complete proof via Weierstrass preparation in the one-variable case.
 
 - For a cubic field with negative discriminant, $r = 1$ and there is one condition, so the method works.
 - For a totally real cubic field, $r = 2$ and there is still only one condition, so the basic method fails without extra tricks.
 
 More generally, for a Thue equation of degree $n \ge 3$ you get $n - 2$ conditions and $r = r_1 + r_2 - 1$ exponents. Since $r_1 + 2r_2 = n$, the inequality $r \le n - 2$ holds exactly when $r_2 \ge 1$, i.e. when $f(x, 1)$ has at least one non-real root. So the basic method fails only when the field is totally real.
 
-This "number of conditions versus rank" count is made precise in the next section.
+This "number of conditions versus rank" count is made precise in the section "Skolem and Chabauty" below.
+
+## Finiteness via Weierstrass preparation
+
+This section does four things:
+1. It shows that counting conditions alone does not give finiteness.
+2. It proves the Weierstrass preparation theorem for power series converging on $\mathbb{Z}_p$.
+3. It uses that theorem to give a complete proof that $x^3 - dy^3 = 1$ has only finitely many integer solutions.
+4. It explains what survives in several variables.
+
+### Counting conditions is not enough
+
+Let $K = \mathbb{Q}(\sqrt{2}, i)$, of degree $n = 4$. It is totally complex, so its unit rank is $r = 1$. Consider
+$$N_{K/\mathbb{Q}}\big(x + y\sqrt{2}\big) = 1, \qquad x, y \in \mathbb{Z}.$$
+The module $M = \mathbb{Z} + \mathbb{Z}\sqrt{2}$ has rank $m = 2$. Writing $x + y\sqrt{2}$ in a basis of $K$ imposes $n - m = 2$ linear conditions: the coefficients of $i$ and $i\sqrt{2}$ vanish. So there are $2 \ge r = 1$ conditions.
+
+Nevertheless there are infinitely many solutions. For $\alpha \in \mathbb{Q}(\sqrt{2})$, $N_{K/\mathbb{Q}}(\alpha) = N_{\mathbb{Q}(\sqrt{2})/\mathbb{Q}}(\alpha)^2$, so the equation says $x^2 - 2y^2 = \pm 1$. Every power $(1 + \sqrt{2})^k$ is a solution.
+
+In Skolem's setup, the powers of the unit $1 + \sqrt{2}$ lie in $M$. On the corresponding residue class, both analytic coefficient functions vanish **identically**, so no zero-counting argument can work.
+
+The cause is the intermediate field $\mathbb{Q}(\sqrt{2})$, which has infinitely many units. Borevich–Shafarevich (Ch. 4, §6.4) call such modules *degenerate*. That norm form equations for non-degenerate modules always have finitely many solutions was proved only by Schmidt (1972), using his subspace theorem rather than $p$-adic analysis.
+
+So any finiteness proof must show that the analytic functions are **not identically zero**. For cubic fields this is easy, because a field of prime degree has no intermediate subfields.
+
+### The ring of power series converging on $\mathbb{Z}_p$
+
+Let
+$$A = \mathbb{Z}_p\langle t \rangle = \Big\{ \textstyle\sum_{k \ge 0} a_k t^k : a_k \in \mathbb{Z}_p,\ a_k \to 0 \Big\}.$$
+Each such series converges at every $a \in \mathbb{Z}_p$. Sums and products of elements of $A$ stay in $A$. Evaluation $f \mapsto f(a)$ is a ring homomorphism $A \to \mathbb{Z}_p$: in the non-archimedean setting, absolutely convergent series can be multiplied and rearranged freely.
+
+The **Gauss norm** is $\|f\| = \max_k |a_k|_p$. It is multiplicative, and $A$ is complete for it. Write $\bar{f} \in \mathbb{F}_p[t]$ for the reduction of $f$ modulo $p$. It is a polynomial, because $a_k \to 0$.
+
+### Weierstrass division and preparation
+
+Throughout, let $f = \sum a_k t^k \in A$ with $\bar{f} \neq 0$, and let
+$$N = \deg \bar{f} = \max\{k : a_k \in \mathbb{Z}_p^\times\}.$$
+
+**Lemma (division).** For every $g \in A$ there are $q \in A$ and $r \in \mathbb{Z}_p[t]$ with $\deg r < N$ such that $g = qf + r$.
+
+*Proof.*
+1. **Split $f$.** Let $f_0 = \sum_{k \le N} a_k t^k$, a polynomial of degree $N$ whose leading coefficient $a_N$ is a unit. Every $a_k$ with $k > N$ lies in $p\mathbb{Z}_p$, so $f = f_0 + p f_1$ with $f_1 \in A$ and $\|f_1\| \le 1$.
+2. **Divide by $f_0$.** For a polynomial $g \in \mathbb{Z}_p[t]$, long division by $f_0$ gives $g = Q(g) f_0 + R(g)$ with $Q(g), R(g) \in \mathbb{Z}_p[t]$ and $\deg R(g) < N$. No denominators appear, because $a_N$ is a unit. Scaling shows $\|Q(g)\|, \|R(g)\| \le \|g\|$. The maps $Q$ and $R$ are $\mathbb{Z}_p$-linear, so they extend by continuity from polynomials (which are dense) to all of $A$, keeping the same bounds and the identity $g = Q(g) f_0 + R(g)$.
+3. **Correct for $f_1$ by iterating.** Put $g_0 = g$ and $g_{i+1} = -p\,Q(g_i)\, f_1$. Then
+   $$g_i = Q(g_i) f_0 + R(g_i) = Q(g_i)\, f + R(g_i) + g_{i+1},$$
+   and $\|g_{i+1}\| \le p^{-1}\|g_i\|$, so $\|g_i\| \le p^{-i}\|g\|$. Summing,
+   $$g = \Big(\sum_{i \ge 0} Q(g_i)\Big) f + \sum_{i \ge 0} R(g_i).$$
+   Both series converge, because $A$ is complete and polynomials of degree $< N$ form a closed subspace. $\square$
+
+**Theorem (Weierstrass preparation).** There is a unit $u \in A^\times$ and a monic polynomial $P \in \mathbb{Z}_p[t]$ of degree $N$ with
+$$f = u \cdot P .$$
+
+*Proof.*
+1. **Divide $t^N$ by $f$.** The lemma gives $t^N = qf + r$ with $\deg r < N$. Put $P = t^N - r$, which is monic of degree $N$, so $P = qf$.
+2. **Reduce mod $p$.** We get $\bar{q}\,\bar{f} = t^N - \bar{r}$. The right side has degree exactly $N$, and $\deg \bar{f} = N$. Hence $\bar{q}$ is a nonzero constant.
+3. **$q$ is a unit.** Step 2 means $q = w + ph$ with $w \in \mathbb{Z}_p^\times$ and $h \in A$. Then $q = w\,(1 + p w^{-1} h)$, and $1 + p w^{-1} h$ is invertible in $A$ via the convergent geometric series $\sum_j (-p w^{-1} h)^j$.
+4. **Conclude.** Take $u = q^{-1}$; then $f = uP$. $\square$
+
+**Corollary (Strassmann's theorem).** Let $0 \neq f = \sum a_k t^k \in A$, and let $N$ be the largest index with $|a_N|_p = \max_k |a_k|_p$. Then $f$ has at most $N$ zeros in $\mathbb{Z}_p$.
+
+*Proof.*
+1. **Normalize.** The maximum of $|a_k|_p$ is attained, since $a_k \to 0$. Write $f = p^\mu f'$ with $\bar{f'} \neq 0$. Then $\deg \bar{f'} = N$.
+2. **Factor.** By preparation, $f' = uP$ with $\deg P = N$.
+3. **Count zeros.** For $a \in \mathbb{Z}_p$, $u(a)\,u^{-1}(a) = 1$, so $u(a) \neq 0$. Hence the zeros of $f$ in $\mathbb{Z}_p$ are exactly the roots of $P$ in $\mathbb{Z}_p$, and there are at most $N$ of them. $\square$
+
+### Full proof: $x^3 - dy^3 = 1$ has finitely many integer solutions
+
+> **Theorem.** Let $d \in \mathbb{Z}$ not be a cube. Then $x^3 - dy^3 = 1$ has only finitely many solutions $(x, y) \in \mathbb{Z}^2$.
+
+*Proof.*
+
+**Step 1: reduce to units.**
+- Let $\theta = \sqrt[3]{d}$ (real), $K = \mathbb{Q}(\theta)$, and $R = \mathbb{Z}[\theta]$. Since $X^3 - d$ is irreducible, $[K:\mathbb{Q}] = 3$.
+- $K$ has one real and one pair of complex embeddings. By Dirichlet's unit theorem, which holds for any order, $R^\times = \{\pm 1\} \times \langle \eta_0 \rangle$ with $\eta_0$ of infinite order.
+- $N(-1) = -1$, so exactly one of $\pm\eta_0$ has norm $1$; call it $\eta$. The units of norm $1$ are then exactly the powers $\eta^n$, $n \in \mathbb{Z}$.
+- A solution $(x, y)$ gives $N(x - y\theta) = x^3 - dy^3 = 1$, so $x - y\theta = \eta^n$ for a unique $n$. Distinct solutions give distinct $n$.
+- Writing $\eta^n = A(n) + B(n)\,\theta + C(n)\,\theta^2$ with $A(n), B(n), C(n) \in \mathbb{Z}$, it therefore suffices to show that **$C(n) = 0$ for only finitely many $n \in \mathbb{Z}$**.
+
+**Step 2: choose a prime and residue classes.**
+- Fix an odd prime $p$. The image of $\eta$ in the finite ring $R/pR$ is a unit, so there is $m \ge 1$ with $\eta^m \equiv 1 \pmod{pR}$.
+- Put $\beta = \eta^m = 1 + p\alpha$ with $\alpha \in R$.
+- Every $n$ can be written as $n = n_0 + mt$ with $0 \le n_0 < m$ and $t \in \mathbb{Z}$. Fix $n_0$ and put $\gamma = \eta^{n_0} \in R$.
+
+**Step 3: interpolate $t \mapsto \gamma\beta^t$ by power series.** For $t \in \mathbb{Z}_{\ge 0}$ the binomial theorem gives
+$$\gamma\,\beta^t = \sum_{j \ge 0} \binom{t}{j} p^j\, \gamma\alpha^j, \qquad \binom{t}{j} = \frac{1}{j!}\sum_{k=0}^{j} s(j,k)\, t^k,$$
+where the $s(j,k) \in \mathbb{Z}$ are Stirling numbers of the first kind.
+
+- **Bound the coefficients.** By Legendre's formula, $v_p(j!) \le (j-1)/(p-1)$. Hence
+  $$v_p\!\left(\frac{p^j}{j!}\right) \ge \frac{j(p-2) + 1}{p-1},$$
+  which tends to $\infty$ because $p \ge 3$.
+- **Rearrange.** The double series $\sum_{j,k} \frac{p^j s(j,k)}{j!}\, \gamma\alpha^j\, t^k$ can therefore be rearranged by powers of $t$. Taking coordinates in the $\mathbb{Z}_p$-basis $1, \theta, \theta^2$ of $R \otimes \mathbb{Z}_p$ gives three series $\mathcal{A}, \mathcal{B}, \mathcal{C} \in \mathbb{Q}_p[[t]]$.
+- **They lie in $A$.** The coefficient of $t^k$ collects only terms with $j \ge k$, so its valuation is at least $k(p-2)/(p-1) \to \infty$, and all coefficients are in $\mathbb{Z}_p$. Hence $\mathcal{A}, \mathcal{B}, \mathcal{C} \in A = \mathbb{Z}_p\langle t\rangle$.
+- **They interpolate.** By construction $\mathcal{C}(t) = C(n_0 + mt)$ for all $t \in \mathbb{Z}_{\ge 0}$. This extends to all $t \in \mathbb{Z}$ by continuity. The right side is continuous for the $p$-adic topology on $\mathbb{Z}$, because $\beta^{p^k} \equiv 1 \pmod{p^{k+1}R}$. The left side is continuous on $\mathbb{Z}_p$. And $\mathbb{Z}_{\ge 0}$ is $p$-adically dense in $\mathbb{Z}$.
+
+**Step 4: $\mathcal{C}$ is not identically zero.** Suppose $\mathcal{C} = 0$.
+- Then $C(n_0 + mt) = 0$ for all $t \ge 0$, so $\gamma\beta^t \in L := \mathbb{Q} + \mathbb{Q}\theta$ for all $t \ge 0$.
+- $L$ is a $\mathbb{Q}$-subspace, so it contains the $\mathbb{Q}$-span of these elements, which is $\gamma\,\mathbb{Q}[\beta]$.
+- Now $\beta = \eta^m$ has infinite order, so $\beta \neq \pm 1$, and $\beta \notin \mathbb{Q}$ because the only rational units are $\pm 1$. Since $[K:\mathbb{Q}] = 3$ is prime, $\mathbb{Q}[\beta] = \mathbb{Q}(\beta) = K$.
+- Therefore $\gamma K = K \subseteq L$, which is impossible because $\dim_{\mathbb{Q}} K = 3 > 2 = \dim_{\mathbb{Q}} L$.
+
+This is exactly where degeneracy is ruled out: a field of prime degree has no intermediate subfield like the $\mathbb{Q}(\sqrt{2})$ in the counterexample.
+
+**Step 5: conclude with Weierstrass preparation.**
+- By Step 4, $0 \neq \mathcal{C} \in A$. By the corollary, $\mathcal{C}$ has at most $N_{n_0}$ zeros in $\mathbb{Z}_p$, hence at most $N_{n_0}$ zeros $t \in \mathbb{Z}$.
+- So each residue class $n \equiv n_0 \pmod m$ contains at most $N_{n_0}$ values of $n$ with $C(n) = 0$.
+- There are $m$ classes, so there are at most $\sum_{n_0} N_{n_0}$ such $n$, and at most that many solutions. $\blacksquare$
+
+**Remarks.**
+- The proof works for any odd prime $p$. Choosing $p$ well only affects how small the bound $\sum N_{n_0}$ is.
+- The same argument works for any irreducible binary cubic form $F$ with negative discriminant and any $c \neq 0$ in $F(x,y) = c$. One replaces $\gamma = \eta^{n_0}$ by $\gamma_i\,\eta^{n_0}$, where the $\gamma_i$ are the finitely many elements of norm $c$ up to units. Step 4 is unchanged.
+- **Worked check** ($d = 2$, $p = 5$, computed in PARI/GP):
+  - Here $\eta = \theta - 1$ has norm $1$, and $\eta^8 \equiv 1 \pmod 5$, so $m = 8$ works.
+  - For $n_0 = 0$ and $n_0 = 1$, the coefficients $c_k$ of $\mathcal{C}$ have valuations $(\infty, 1, \ge 2, \dots)$. The minimum is attained only at $k = 1$, so $N_{n_0} = 1$. The known zero $t = 0$ gives the solutions $(1, 0)$ and $(-1, -1)$ respectively.
+  - For the other six classes, $c_0$ is a unit and all other $c_k$ lie in $p\mathbb{Z}_p$, so $N_{n_0} = 0$.
+  - Hence $(1, 0)$ and $(-1, -1)$ are the only solutions.
+
+### Several variables: what is true
+
+With unit rank $r \ge 2$, Step 3 produces restricted power series $F_1, \dots, F_s$ in $r$ variables, lying in $\mathbb{Z}_p\langle t_1, \dots, t_r\rangle$. One wants their common zeros in $\mathbb{Z}_p^r$ to be finite. There is a clean sufficient criterion.
+
+> **Proposition.** Let $I$ be the ideal generated by $F_1, \dots, F_s$ in $\mathbb{Q}_p\langle t_1, \dots, t_r\rangle = \mathbb{Z}_p\langle t_1, \dots, t_r\rangle \otimes \mathbb{Q}_p$. If $D = \dim_{\mathbb{Q}_p} \mathbb{Q}_p\langle t\rangle / I$ is finite, then the $F_i$ have at most $D^r$ common zeros in $\mathbb{Z}_p^r$.
+
+*Proof.*
+1. **A polynomial in each variable.** Fix $i$. The images of $1, t_i, \dots, t_i^D$ in the $D$-dimensional quotient are linearly dependent. So some nonzero polynomial $g_i \in \mathbb{Q}_p[X]$ of degree $\le D$ has $g_i(t_i) \in I$.
+2. **Evaluate at a common zero.** For $a \in \mathbb{Z}_p^r$, evaluation at $a$ is a ring homomorphism $\mathbb{Q}_p\langle t\rangle \to \mathbb{Q}_p$. If $a$ is a common zero of the $F_i$, it kills all of $I$, so $g_i(a_i) = 0$ for every $i$.
+3. **Count.** Each coordinate $a_i$ is one of at most $D$ roots of $g_i$. $\square$
+
+For $r = 1$, Weierstrass preparation shows that every nonzero $f$ generates an ideal of finite codimension: $\mathbb{Q}_p\langle t\rangle/(f) = \mathbb{Q}_p\langle t\rangle/(P)$ has dimension $\deg P$. So the proposition recovers the one-variable argument above.
+
+For $r \ge 2$, Weierstrass preparation in several variables gives more structure. It applies to series that are "distinguished" in $t_r$, which a linear change of variables always arranges. The consequences are that $\mathbb{Q}_p\langle t_1, \dots, t_r\rangle$ is Noetherian, satisfies Noether normalization, and has Krull dimension $r$; see Bosch–Güntzer–Remmert, *Non-Archimedean Analysis*, §5.2. Dimension theory then gives
+$$\dim \mathbb{Q}_p\langle t\rangle / (F_1, \dots, F_s) \;\ge\; r - s .$$
+
+So $s \ge r$ equations are **necessary** for the quotient to have dimension $0$, which is exactly Skolem's counting condition. They are not **sufficient**: each equation must actually cut the dimension down, and the counterexample above shows this can fail.
+
+Proving non-degeneracy for the specific exponential sums that come from norm forms is the real work. For $r = 1$ and a field of prime degree it is Step 4 above. Borevich–Shafarevich (§6.2–6.3 with §7) treat Thue equations of any degree with a non-real root. Their route: if there are infinitely many solutions, then the $p$-adic analytic set contains an analytic curve (§6, Theorem 1). An algebraic argument (§6.3, Lemma 2) then shows that no such curve exists.
 
 ## Skolem and Chabauty: one method in two settings
 
@@ -260,6 +393,9 @@ The new formula is **equisatisfiable** with the original but not logically equiv
 - N. Bruin, "Skolem's method" (lecture notes, BIRS summer school, 2012): the general Thue setup and the interpretation via twisted tori.
 - Skolem, "Ein Verfahren zur Behandlung gewisser exponentialer Gleichungen und diophantischer Gleichungen", *8. Skand. Mat.-Kongr.*, Stockholm, 1934, pp. 163–188.
 - Skolem, *Diophantische Gleichungen* (Ergebnisse der Mathematik und ihrer Grenzgebiete 5, Springer, 1938).
+
+- Bosch, Güntzer & Remmert, *Non-Archimedean Analysis* (Grundlehren 261, Springer, 1984), §5.2: Weierstrass division and preparation for restricted power series in several variables, Noetherianity and Noether normalization.
+- Schmidt, "Norm form equations", *Ann. of Math.* (2) 96 (1972), 526–551: finiteness for non-degenerate norm form equations via the subspace theorem.
 
 **Chabauty and its descendants**
 
