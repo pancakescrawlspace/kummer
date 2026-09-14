@@ -104,13 +104,78 @@ The test ran over all minimal models of $[a_1, a_2, a_3, a_4, a_6]$ with $a_1, a
 | 2 | 4 | 20 | 163 | 63 | 163 / 163 |
 | 2 | 6 | 30 | 75 | 42 | 75 / 75 |
 
-## 6. Over a finite extension $K/\mathbb{Q}_p$
+## 6. The component of order 2: lifts of order 2 and of order 4
+
+*Added 15 September 2026.*
+
+Now let $p$ be arbitrary, let $E/\mathbb{Q}_p$ have split multiplicative reduction, and let $n = -v(j)$ be **even**. The component group $\mathbb{Z}/n$ then has a unique element of order 2, the class $n/2$. There are two ways it can lift:
+- **to a point of order 2**, which for $p = 2$ is the case $k = n/2$ of the theorem in §4;
+- **to a point of order 4**, whose double is then the 2-torsion point $-1$ on the identity component.
+
+> **Proposition 3.** The class $n/2$ lifts to a point of order 4 in $E(\mathbb{Q}_p)$ if and only if $-q \in (\mathbb{Q}_p^\times)^2$, if and only if $-j \in (\mathbb{Q}_p^\times)^2$.
+>
+> Similarly, it lifts to a point of order 2 if and only if $q$, equivalently $j$, is a square.
+
+*Proof of the first equivalence.*
+- **If $-q = w^2$.** Then $v(w) = n/2$, $w^2 = -q \notin q^{\mathbb{Z}}$, and $w^4 = q^2 \in q^{\mathbb{Z}}$. So $w$ is a point of order 4 on component $n/2$.
+- **Conversely**, let $u$ represent a lift of order 4.
+  1. $2u$ lies on component $2 \cdot n/2 \equiv 0$, so $u^2 = \varepsilon\, q^a$ with $\varepsilon \in \mathbb{Z}_p^\times$.
+  2. Since $u^4 \in q^{\mathbb{Z}}$, we get $\varepsilon^2 = 1$. The only square roots of 1 in $\mathbb{Z}_p^\times$ are $\pm 1$, so $\varepsilon = \pm 1$.
+  3. If $\varepsilon = 1$, then $u$ has order at most 2. So $\varepsilon = -1$.
+  4. Taking valuations, $2v(u) = an$, and $v(u) \equiv n/2 \pmod n$ forces $a$ to be odd.
+  5. Hence $-q = u^2\, q^{1-a} = \big(u\, q^{(1-a)/2}\big)^2$.
+
+*The order-2 statement* is proved the same way with $\varepsilon = 1$, or by the argument of Proposition 1 with $p$ replaced by 2.
+
+*From $q$ to $j$.* Write $q = j^{-1}\beta$ with $\beta = 1 + 744\, j^{-1} + \cdots$ as in §3. For $p$ odd, $\beta \equiv 1 \pmod p$, so $\beta$ is a square. For $p = 2$, $\beta \equiv 1 \pmod 8$ because $n \ge 2$, as shown in the proof of Proposition 2, so again $\beta$ is a square. $\square$
+
+### The congruences
+
+Write $j = p^{-n} j_0$ and, on a minimal model, $\Delta = p^n \delta$, with $j_0, \delta$ units. Since $n$ is even, $p^{-n}$ is a square, so everything depends only on $j_0$.
+
+For $p$ odd, $c_4$ is automatically a square modulo $p$. Indeed $c_4^3 - c_6^2 = 1728\,\Delta \equiv 0 \pmod p$ gives $c_4 \equiv (c_6/c_4)^2$. Hence $\left(\frac{j_0}{p}\right) = \left(\frac{c_4^3/\delta}{p}\right) = \left(\frac{\delta}{p}\right)$. For $p = 2$, the relation $u^3 \equiv u^{-1} \equiv u \pmod 8$ gives $j_0 \equiv c_4\,\delta \pmod 8$.
+
+| | lift of order 2 | lift of order 4 |
+|---|---|---|
+| $p$ odd, via $j$ | $\left(\frac{j_0}{p}\right) = 1$ | $\left(\frac{-j_0}{p}\right) = 1$ |
+| $p$ odd, via $\Delta$ | $\left(\frac{\delta}{p}\right) = 1$ | $\left(\frac{-\delta}{p}\right) = 1$ |
+| $p = 2$, via $j$ | $j_0 \equiv 1 \pmod 8$ | $j_0 \equiv 7 \pmod 8$ |
+| $p = 2$, via coefficients | $c_4\,\delta \equiv 1 \pmod 8$ | $c_4\,\delta \equiv 7 \pmod 8$ |
+
+**How the two conditions interact.**
+- **$p \equiv 1 \pmod 4$:** $-1$ is a square, so the two conditions coincide. Either both kinds of lift exist or neither does. When both exist, they differ by $\sqrt{-1} \in \mathbb{Z}_p^\times \cong E_0(\mathbb{Q}_p)$.
+- **$p \equiv 3 \pmod 4$:** exactly one of the two conditions holds. So the component of order 2 **always** lifts to a point of order 2 or 4.
+- **$p = 2$:** at most one condition holds. If $j_0 \equiv 3$ or $5 \pmod 8$, neither does.
+
+### Numerical check
+
+The direct test, which does not use the Tate curve, looks for a point $P \in E(\mathbb{Q}_p)$ of exact order 4 with $P \notin E_0(\mathbb{Q}_p)$ and $2P \in E_0(\mathbb{Q}_p)$. Because the component group is cyclic, these two conditions say exactly that $P$ lies on component $n/2$.
+- The $x$-coordinates of points of exact order 4 are the roots of the 4-division polynomial with all factors of the 2-division polynomial removed.
+- A point lies off $E_0$ iff it is integral and reduces to the singular point of the minimal model.
+
+For order 2, the direct test looks for a 2-torsion point off $E_0$. Coefficient ranges are as in §5, and split reduction was detected by $a_p = 1$.
+
+| $p$ | $n$ | $B$ | split curves | order-4 lift | order-2 lift | criteria agree |
+|---|---|---|---|---|---|---|
+| 3 | 2 | 25 | 764 | 394 | 370 | all |
+| 3 | 4 | 40 | 195 | 76 | 119 | all |
+| 7 | 2 | 40 | 561 | 240 | 321 | all |
+| 5 | 2 | 40 | 981 | 516 | 516 | all |
+| 5 | 4 | 60 | 115 | 79 | 79 | all |
+| 13 | 2 | 60 | 457 | 276 | 276 | all |
+| 2 | 2 | 12 | 232 | 58 | 64 | all |
+| 2 | 4 | 20 | 163 | 39 | 63 | all |
+| 2 | 6 | 30 | 75 | 10 | 42 | all |
+
+"Criteria agree" means that both columns match the $j$-criterion and the order-4 column also matches the coefficient form. The counts show the pattern above: for $p = 3, 7$ the two lift counts add up to the total, for $p = 5, 13$ they are equal, and for $p = 2$ they are disjoint.
+
+## 7. Over a finite extension $K/\mathbb{Q}_p$
 
 - **Proposition 1 carries over verbatim.** A lift of order $p$ exists iff $q \in (K^\times)^p$.
 - **Proposition 2 needs more care.** The passage from $q$ to $j$ uses that $1 + \mathfrak{m}^{v(q)}$ consists of $p$-th powers. That requires $v_K(q)$ to be large relative to the ramification index; roughly, $v_K(q) > e\,p/(p-1)$ suffices.
 - **Extra torsion.** If $\mu_p \subset K$, the identity component $\mathcal{O}_K^\times$ contains $p$-torsion. Then "$E(K)$ has a point of order $p$" no longer implies that $\bar P$ lifts.
 
-## Appendix: PARI/GP script
+## Appendix: PARI/GP scripts
 
 ```gp
 default(parisize, 10^9);
@@ -145,4 +210,67 @@ test(p, n, B) =
 
 test(3, 3, 30); test(3, 6, 60); test(5, 5, 60);
 test(2, 2, 12); test(2, 4, 20); test(2, 6, 30);
+```
+
+### Script for §6 (lifts of order 2 and 4)
+
+```gp
+default(parisize, 10^9);
+
+issplit(E, p, n) = { my(lr = elllocalred(E, p)); valuation(E.disc, p) == n && lr[2] == 4 + n && ellap(E, p) == 1; }
+
+\\ is the p-adic point (x0, y0) off the identity component? (integral, reducing to the singular point)
+offE0(E, x0, y0, p) =
+{
+  if (valuation(x0, p) < 0 || valuation(y0, p) < 0, return(0));
+  valuation(3*x0^2 + 2*E.a2*x0 + E.a4 - E.a1*y0, p) > 0 && valuation(2*y0 + E.a1*x0 + E.a3, p) > 0;
+}
+
+\\ exists P of exact order 4 with P off E_0 and 2P in E_0, i.e. P on component n/2?
+lift4(E, p) =
+{
+  my(f4 = elldivpol(E, 4), f2 = elldivpol(E, 2), F, x0, d, y0, x2);
+  while (f4 % f2 == 0, f4 = f4 / f2);
+  F = factorpadic(f4, p, 80)[,1];
+  for (i = 1, #F, if (poldegree(F[i]) == 1,
+    x0 = -polcoef(F[i], 0)/polcoef(F[i], 1);
+    d = (E.a1*x0 + E.a3)^2 + 4*(x0^3 + E.a2*x0^2 + E.a4*x0 + E.a6);
+    if (!issquare(d), next);
+    y0 = (-(E.a1*x0 + E.a3) + sqrt(d))/2;
+    if (!offE0(E, x0, y0, p), next);
+    x2 = (x0^4 - E.b4*x0^2 - 2*E.b6*x0 - E.b8) / (4*x0^3 + E.b2*x0^2 + 2*E.b4*x0 + E.b6);   \\ x(2P)
+    if (!offE0(E, x2, -(E.a1*x2 + E.a3)/2, p), return(1))));
+  0;
+}
+
+\\ exists a 2-torsion point off E_0?
+lift2(E, p) =
+{
+  my(F = factorpadic(elldivpol(E, 2), p, 80)[,1], x0);
+  for (i = 1, #F, if (poldegree(F[i]) == 1,
+    x0 = -polcoef(F[i], 0)/polcoef(F[i], 1);
+    if (offE0(E, x0, -(E.a1*x0 + E.a3)/2, p), return(1))));
+  0;
+}
+
+sq(u, p) = if (p == 2, u % 8 == 1, kronecker(numerator(u)*denominator(u), p) == 1);
+unit(x, p) = x / p^valuation(x, p);
+predj4(E, p) = sq(-unit(E.j, p), p);
+predc4(E, p) = { my(delta = unit(E.disc, p)); if (p == 2, (E.c4*delta) % 8 == 7, kronecker(-delta, p) == 1); }
+predj2(E, p) = sq(unit(E.j, p), p);
+
+test24(p, n, B) =
+{
+  my(tot = 0, g4 = 0, g2 = 0, ok = 0, E, t4, t2);
+  forvec(v = [[0,1],[-1,1],[0,1],[-B,B],[-B,B]],
+    E = ellinit(v); if (#E == 0, next); E = ellminimalmodel(E);
+    if (issplit(E, p, n),
+      tot++; t4 = lift4(E, p); t2 = lift2(E, p); g4 += t4; g2 += t2;
+      ok += (t4 == predj4(E, p) && t4 == predc4(E, p) && t2 == predj2(E, p))));
+  print("p=", p, " n=", n, ": split curves ", tot, ", order-4 lift ", g4, ", order-2 lift ", g2, ", all criteria agree ", ok);
+}
+
+test24(3, 2, 25); test24(3, 4, 40); test24(7, 2, 40);
+test24(5, 2, 40); test24(5, 4, 60); test24(13, 2, 60);
+test24(2, 2, 12); test24(2, 4, 20); test24(2, 6, 30);
 ```
