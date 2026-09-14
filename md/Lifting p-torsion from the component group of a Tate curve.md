@@ -93,14 +93,14 @@ The criterion was compared with a direct computation that does not use the Tate 
 - **$p$ odd:** does the $p$-division polynomial have a root $x_0 \in \mathbb{Q}_p$ such that the corresponding $y$ is also in $\mathbb{Q}_p$? By the first remark in §2, this is equivalent to $\bar P$ lifting.
 - **$p = 2$:** does the 2-division polynomial have three roots in $\mathbb{Q}_2$? This means full rational 2-torsion, which by the second remark in §2 is equivalent to $\bar P$ lifting.
 
-The test ran over all minimal models of $[a_1, a_2, a_3, a_4, a_6]$ with $a_1, a_3 \in \{0, 1\}$, $a_2 \in \{-1, 0, 1\}$ and $|a_4|, |a_6| \le B$, keeping those with split multiplicative reduction of the given type. "Split multiplicative with $v(\Delta) = n$" was detected as Kodaira type $\mathrm{I}_n$ with Tamagawa number $n$.
+The test ran over all minimal models of $[a_1, a_2, a_3, a_4, a_6]$ with $a_1, a_3 \in \{0, 1\}$, $a_2 \in \{-1, 0, 1\}$ and $|a_4|, |a_6| \le B$, keeping those with split multiplicative reduction of the given type. "Split multiplicative with $v(\Delta) = n$" was detected as Kodaira type $\mathrm{I}_n$ with $a_p = 1$. (An earlier version of this note used "Tamagawa number $= n$" instead. That test cannot distinguish split from non-split when $n = 2$, since non-split $\mathrm{I}_2$ also has Tamagawa number 2. It wrongly included non-split curves in the $p = 2$, $v(\Delta) = 2$ row; the row below is corrected.)
 
 | $p$ | $v(\Delta) = kp$ | $B$ | curves | lift exists | criterion agrees |
 |---|---|---|---|---|---|
 | 3 | 3 | 30 | 376 | 152 | 376 / 376 |
 | 3 | 6 | 60 | 75 | 31 | 75 / 75 |
 | 5 | 5 | 60 | 12 | 3 | 12 / 12 |
-| 2 | 2 | 12 | 477 | 130 | 477 / 477 |
+| 2 | 2 | 12 | 232 | 64 | 232 / 232 |
 | 2 | 4 | 20 | 163 | 63 | 163 / 163 |
 | 2 | 6 | 30 | 75 | 42 | 75 / 75 |
 
@@ -137,7 +137,7 @@ test(p, n, B) =
   forvec(v = [[0,1],[-1,1],[0,1],[-B,B],[-B,B]],
     E = ellinit(v); if (#E == 0, next); E = ellminimalmodel(E);
     lr = elllocalred(E, p);
-    if (valuation(E.disc, p) == n && lr[2] == 4 + n && lr[4] == n,   \\ split I_n
+    if (valuation(E.disc, p) == n && lr[2] == 4 + n && ellap(E, p) == 1,   \\ split I_n (a_p = 1)
       tot++; got = if (p == 2, full2(E), haspt(E, p)); yes += got;
       agree += (got == pred(E, p))));
   print("p=", p, " v(Delta)=", n, ": curves ", tot, ", lift exists ", yes, ", criterion agrees ", agree);
