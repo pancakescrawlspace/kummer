@@ -169,7 +169,89 @@ For order 2, the direct test looks for a 2-torsion point off $E_0$. Coefficient 
 
 "Criteria agree" means that both columns match the $j$-criterion and the order-4 column also matches the coefficient form. The counts show the pattern above: for $p = 3, 7$ the two lift counts add up to the total, for $p = 5, 13$ they are equal, and for $p = 2$ they are disjoint.
 
-## 7. Over a finite extension $K/\mathbb{Q}_p$
+## 7. Non-split multiplicative reduction
+
+*Added 15 September 2026.*
+
+### The component group
+
+Let $E/\mathbb{Q}_p$ have non-split multiplicative reduction of type $\mathrm{I}_n$. Over $\bar{\mathbb{F}}_p$ the component group is still $\mathbb{Z}/n$. Frobenius swaps the two branches at the node, so it acts on the cycle of components by $x \mapsto -x$. The rational components are the fixed points:
+$$E(\mathbb{Q}_p)/E_0(\mathbb{Q}_p) \cong \Phi(\mathbb{F}_p) \cong \begin{cases} 0, & n \text{ odd}, \\ \mathbb{Z}/2, & n \text{ even}. \end{cases}$$
+The surjection onto $\Phi(\mathbb{F}_p)$ holds because the Néron model is smooth and each rational component, a non-split torus, has $p + 1$ rational points. So $E(\mathbb{Q}_p) = E_0(\mathbb{Q}_p)$ iff $n$ is odd.
+
+A PARI/GP tally over small curves and $p = 3, \dots, 13$ found Tamagawa number 1 in all 3,055 non-split cases with $n$ odd, and 2 in all 671 cases with $n$ even.
+
+**Example.** $E : y^2 = x^3 - x^2 - 6x$ has $\Delta = 2^6 \cdot 3^2 \cdot 5^2$ and $3 \nmid c_4 = 304$. Modulo 3 it is $y^2 = x^2(x-1)$. Near the node $y^2 \approx -x^2$, and $-1$ is not a square mod 3, so the reduction at 3 is non-split $\mathrm{I}_2$. The 2-torsion point $(0,0)$ reduces to the node, so it lies off $E_0(\mathbb{Q}_3)$.
+
+For $p$ odd, a component of order $p$ therefore never exists, and the question of §§2–5 does not arise. The question of §6 does, for $n$ even.
+
+### The twisted Tate curve
+
+Let $L = \mathbb{Q}_p(\sqrt{\varepsilon})$ be the unramified quadratic extension, with Frobenius $\sigma$. Take $\varepsilon$ a non-square unit for $p$ odd, and $\varepsilon = -3$ for $p = 2$. A non-split $E$ is the unramified quadratic twist of the Tate curve $E_q$ with the same $j$. So $q = q(j) \in \mathbb{Q}_p$ as in §3, and
+$$E(\mathbb{Q}_p) = \{P \in E_q(L) : \sigma P = -P\} \cong \{\, x \in L^\times/q^{\mathbb{Z}} : x\,\sigma(x) \in q^{\mathbb{Z}} \,\},$$
+with the component of $x$ given by $v(x) \bmod n$.
+
+The identity component corresponds to the norm-one units of $\mathcal{O}_L^\times$. Its torsion is $\mu_{p+1}$ for $p$ odd, and $\mu_6$ for $p = 2$. In every case $-1$ is its only point of order 2.
+
+**Points on component $n/2$** (for $n$ even). Multiplying by a power of $q$, such a point has a representative with $v(x) = n/2$. Then $N_{L/\mathbb{Q}_p}(x) = x\,\sigma(x)$ has valuation $n$ and lies in $q^{\mathbb{Z}}$, so $N(x) = q$. Conversely, every $x \in L^\times$ with $N(x) = q$ gives a point on this component. Such $x$ exist because norms from $L$ are exactly the elements of even valuation.
+
+> **Proposition 4.** Let $E/\mathbb{Q}_p$ have non-split multiplicative reduction with $n = -v(j)$ even. The component of order 2 lifts
+> - to a point of order 2 iff $q$, equivalently $j$, is a square in $\mathbb{Q}_p$, which is the same condition as in the split case;
+> - to a point of order 4 iff $-q \in \varepsilon\,(\mathbb{Q}_p^\times)^2$, equivalently $-j \in \varepsilon\,(\mathbb{Q}_p^\times)^2$. That is, $-j$ is a square in $L$ but **not** in $\mathbb{Q}_p$.
+
+*Proof.* Let $x \in L^\times$ with $N(x) = q$ represent a point on component $n/2$.
+- **Order 2.** The point has order 2 iff $x^2 = q$; valuations force the exponent to be 1.
+  - If $x^2 = q$, then $x\,\sigma(x) = q = x^2$, so $\sigma(x) = x$ and $x \in \mathbb{Q}_p$. Hence $q$ is a square in $\mathbb{Q}_p$.
+  - Conversely, if $x \in \mathbb{Q}_p$ with $x^2 = q$, then $N(x) = x^2 = q$, so $x$ gives such a point.
+- **Order 4.** The point has order 4 iff $x^4 = q^2$ and $x^2 \neq q$. Since $L$ is a field, this means $x^2 = -q$.
+  - If $x \in \mathbb{Q}_p$, then $N(x) = x^2 = -q \neq q$, which is impossible.
+  - If $x \notin \mathbb{Q}_p$, then $x^2 = -q \in \mathbb{Q}_p$ forces $\sigma(x) = -x$, and $N(x) = -x^2 = q$ as required.
+  - So a lift exists iff $-q$ has a square root in $L \setminus \mathbb{Q}_p$. That happens iff $-q \in \varepsilon\,(\mathbb{Q}_p^\times)^2$, because $\mathbb{Q}_p^\times \cap (L^\times)^2 = (\mathbb{Q}_p^\times)^2 \cup \varepsilon\,(\mathbb{Q}_p^\times)^2$.
+- **From $q$ to $j$.** As in §6, $q = j^{-1}\beta$ with $\beta$ a square in $\mathbb{Q}_p$. $\square$
+
+### The congruences, compared with the split case
+
+Write $j = p^{-n} j_0$ and, on a minimal model, $\Delta = p^n \delta$. As in §6, $\left(\frac{j_0}{p}\right) = \left(\frac{\delta}{p}\right)$ for $p$ odd, and $j_0 \equiv c_4\,\delta \pmod 8$ for $p = 2$.
+
+For $p = 2$ and non-split reduction:
+- The condition is that $-q \in -3\,(\mathbb{Q}_2^\times)^2$, i.e. that $3q$ is a square.
+- Writing $u$ for the unit part of $q$, this means $3u \equiv 1 \pmod 8$, i.e. $u \equiv 3 \pmod 8$.
+- Since $u \equiv j_0^{-1} \equiv j_0 \pmod 8$, it becomes $j_0 \equiv 3 \pmod 8$.
+
+| | order-2 lift | order-4 lift, split (§6) | order-4 lift, non-split |
+|---|---|---|---|
+| $p$ odd | $\left(\frac{\delta}{p}\right) = 1$ | $\left(\frac{-\delta}{p}\right) = 1$ | $\left(\frac{-\delta}{p}\right) = -1$ |
+| $p = 2$ | $j_0 \equiv c_4\delta \equiv 1 \pmod 8$ | $j_0 \equiv c_4\delta \equiv 7 \pmod 8$ | $j_0 \equiv c_4\delta \equiv 3 \pmod 8$ |
+
+**How the two lifts interact.** The roles of $p \equiv 1$ and $p \equiv 3 \pmod 4$ are swapped:
+
+| | split | non-split |
+|---|---|---|
+| $p \equiv 1 \pmod 4$ | both or neither | exactly one, so the component always lifts |
+| $p \equiv 3 \pmod 4$ | exactly one, so the component always lifts | both or neither |
+| $p = 2$ | at most one | at most one |
+
+For $p \equiv 3 \pmod 4$, the identity component contains points of order 4 of its own, namely the elements of order 4 in $\mu_{p+1}$. They do not affect the question, because a lift of order 4 doubles to a point of order 2 in $E_0$, and that point must be $-1$.
+
+### Numerical check
+
+The direct test and the coefficient ranges are those of §6. Non-split reduction was detected by $a_p = -1$.
+
+| $p$ | $n$ | $B$ | non-split curves | order-4 lift | order-2 lift | criteria agree |
+|---|---|---|---|---|---|---|
+| 3 | 2 | 25 | 761 | 369 | 369 | all |
+| 3 | 4 | 40 | 237 | 138 | 138 | all |
+| 7 | 2 | 40 | 638 | 352 | 352 | all |
+| 5 | 2 | 40 | 1016 | 490 | 526 | all |
+| 5 | 4 | 60 | 123 | 40 | 83 | all |
+| 13 | 2 | 60 | 453 | 190 | 263 | all |
+| 2 | 2 | 12 | 245 | 64 | 66 | all |
+| 2 | 4 | 20 | 158 | 35 | 57 | all |
+| 2 | 6 | 30 | 106 | 19 | 47 | all |
+
+The counts show the swapped pattern: for $p = 3, 7$ the two lift counts are equal, for $p = 5, 13$ they add up to the total, and for $p = 2$ they are disjoint.
+
+## 8. Over a finite extension $K/\mathbb{Q}_p$
 
 - **Proposition 1 carries over verbatim.** A lift of order $p$ exists iff $q \in (K^\times)^p$.
 - **Proposition 2 needs more care.** The passage from $q$ to $j$ uses that $1 + \mathfrak{m}^{v(q)}$ consists of $p$-th powers. That requires $v_K(q)$ to be large relative to the ramification index; roughly, $v_K(q) > e\,p/(p-1)$ suffices.
@@ -273,4 +355,31 @@ test24(p, n, B) =
 test24(3, 2, 25); test24(3, 4, 40); test24(7, 2, 40);
 test24(5, 2, 40); test24(5, 4, 60); test24(13, 2, 60);
 test24(2, 2, 12); test24(2, 4, 20); test24(2, 6, 30);
+```
+
+### Script for §7 (non-split reduction)
+
+Run this after the §6 script: it reuses `offE0`, `lift4`, `lift2`, `sq`, `unit` and `predj2`.
+
+```gp
+isnonsplit(E, p, n) = { my(lr = elllocalred(E, p)); valuation(E.disc, p) == n && lr[2] == 4 + n && ellap(E, p) == -1; }
+
+\\ non-split: order-4 lift iff -j is a square in L but not in Q_p
+predj4ns(E, p) = { my(u = -unit(E.j, p)); if (p == 2, unit(E.j, 2) % 8 == 3, kronecker(numerator(u)*denominator(u), p) == -1); }
+predc4ns(E, p) = { my(delta = unit(E.disc, p)); if (p == 2, (E.c4*delta) % 8 == 3, kronecker(-delta, p) == -1); }
+
+test24ns(p, n, B) =
+{
+  my(tot = 0, g4 = 0, g2 = 0, ok = 0, E, t4, t2);
+  forvec(v = [[0,1],[-1,1],[0,1],[-B,B],[-B,B]],
+    E = ellinit(v); if (#E == 0, next); E = ellminimalmodel(E);
+    if (isnonsplit(E, p, n),
+      tot++; t4 = lift4(E, p); t2 = lift2(E, p); g4 += t4; g2 += t2;
+      ok += (t4 == predj4ns(E, p) && t4 == predc4ns(E, p) && t2 == predj2(E, p))));
+  print("p=", p, " n=", n, ": non-split curves ", tot, ", order-4 lift ", g4, ", order-2 lift ", g2, ", all criteria agree ", ok);
+}
+
+test24ns(3, 2, 25); test24ns(3, 4, 40); test24ns(7, 2, 40);
+test24ns(5, 2, 40); test24ns(5, 4, 60); test24ns(13, 2, 60);
+test24ns(2, 2, 12); test24ns(2, 4, 20); test24ns(2, 6, 30);
 ```
