@@ -95,3 +95,32 @@ namely $Q$ itself.
 The plain statement $n \mid \dim_k I$ is the base-changed, index-blind version — which is the right
 one for the functor, since over a general $R$ the algebra need not be split and $\operatorname{ind}$
 is not constant in families.
+---
+
+## 4. Not just ideals: every finite-dimensional module
+
+*(Added 17 September 2026.)* Nothing in §2 used that $I$ sits inside $A$. Since $A$ is simple
+Artinian, every right $A$-module is a direct sum of copies of the unique simple module $S = D^m$,
+and a finite-dimensional one is $M \cong S^{\oplus j}$ with $j$ its length. Hence, for every
+finite-dimensional right (or left) $A$-module $M$,
+
+$$
+\dim_k M \;=\; j \cdot n \cdot \operatorname{ind}(A), \qquad j = \operatorname{length}(M),
+$$
+
+and conversely every non-negative multiple of $n \cdot \operatorname{ind}(A)$ occurs, namely as
+$S^{\oplus j}$. So the set of dimensions of finite-dimensional $A$-modules is exactly
+$n \cdot \operatorname{ind}(A) \cdot \mathbb{Z}_{\ge 0}$. (Infinite-dimensional modules exist, e.g.
+$S^{\oplus \mathbb{N}}$, and the statement is only about finite-dimensional ones.)
+
+Sanity checks at the extremes:
+
+- $A$ split ($e = 1$): dimensions are the multiples of $n$, the smallest being $k^n$ for $M_n(k)$.
+- $A$ a division algebra ($e = n$): dimensions are the multiples of $n^2$, the smallest being $A$
+  itself, as it must be since modules over a division ring are free.
+- $A$ as a module over itself: $n^2 = m \cdot ne$, i.e. $A_A \cong S^{\oplus m}$, which is
+  "$M_m(D)$ is $m$ copies of its column space".
+
+In particular $A$ is split if and only if it has a module of $k$-dimension $n$, which is the form in
+which this is used in "How Central Simple Algebras Entered Number Theory", §1, to prove that a cyclic
+algebra $(L/K, \sigma, a)$ splits iff $a$ is a norm.
