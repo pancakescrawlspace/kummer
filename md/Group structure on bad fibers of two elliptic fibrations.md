@@ -147,6 +147,162 @@ elliptic fibrations (§3) but never a common relatively minimal model.
 
 ---
 
+## 6. Application: multiplication along the two fibrations
+
+*(Added 17 September 2026.)* The motivation for the question was the following. Let $S$ be minimal
+with two elliptic fibrations $\pi_1, \pi_2$, both with sections $O_1, O_2$, so $S$ is a K3 or abelian
+surface (§5). One would like "multiplication by $p$ along the $i$-th fiber",
+
+$$
+\mu_{i,p}\colon S \to S, \qquad x \mapsto [p]\text{ applied to } x \text{ in the fiber } \pi_i^{-1}(\pi_i(x)),
+$$
+
+and an action of the free monoid $M$ on the symbols $\mu_{i,p}$ ($i = 1,2$, $p \in \mathbb{Z}$) on $S$.
+The group structure on the smooth loci of the bad fibers (§4) makes each $\mu_{i,p}$ a morphism on
+$U_i = S \smallsetminus \Sigma_i$, where $\Sigma_i$ is the set of points that are singular in their
+$\pi_i$-fiber: by the Néron mapping property, $[p]$ on the generic fiber extends to the Néron model
+$S^{\mathrm{sm}} \to C_i$. But the points of $\Sigma_i$ remain in the way, and compositions
+$\mu_{2,q} \circ \mu_{1,p}$ require the image of $\mu_{1,p}$ to avoid $\Sigma_2$, which it does not.
+
+### 6.1 The indeterminacy is unavoidable on a K3
+
+For $|p| \ge 2$, $\mu_{i,p}$ is never a morphism $S \to S$ on a K3 surface, on any birational model.
+If $f\colon S \to S$ is a surjective morphism of a K3 then $K_S = f^*K_S + R$ with $R$ the
+ramification divisor, and $K_S = 0$ forces $R = 0$, so $f$ is étale; étale covers multiply
+$\chi(\mathcal{O})$, so $2 = \deg(f) \cdot 2$ and $\deg f = 1$. Since $\mu_{i,p}$ has degree $p^2$ on
+the surface, it has genuine indeterminacy points, hidden in $\Sigma_i$.
+
+For abelian surfaces there is no problem: a section of $A \to E_1$ through the origin is a
+homomorphism by rigidity, so $A \cong F_1 \times E_1$ and $\mu_{1,p} = [p] \times \mathrm{id}$ is an
+endomorphism.
+
+### 6.2 The salvage: dominant rational maps, i.e. the function field
+
+Each $\mu_{i,p}$ with $p \ne 0$ is a dominant rational self-map $S \dashrightarrow S$. Dominant
+rational self-maps compose without any hypothesis, since the image of a dominant map meets every
+dense open, so they form a monoid $\operatorname{Rat}_{\mathrm{dom}}(S)$ and one gets a monoid
+homomorphism
+
+$$
+M \longrightarrow \operatorname{Rat}_{\mathrm{dom}}(S).
+$$
+
+Contravariantly, this is an action of $M$ on the function field $\mathbb{C}(S)$ by injective
+$\mathbb{C}$-algebra endomorphisms $\mu_{i,p}^*\colon \mathbb{C}(S) \hookrightarrow \mathbb{C}(S)$,
+each of degree $p^2$. Because pullback reverses composition, $(f \circ g)^* = g^* \circ f^*$, this is
+precisely a homomorphism $M^{\mathrm{op}} \to \operatorname{End}_{\mathbb{C}\text{-alg}}(\mathbb{C}(S))$,
+i.e. a right action of $M$ on $\mathbb{C}(S)$.
+
+This formulation needs the two sections, so that the generic fibers $E_i / \mathbb{C}(C_i)$ are
+elliptic curves and $[p]$ is defined on them, and nothing else. It does not need group structures on
+the bad fibers: $\mathbb{C}(S) = \mathbb{C}(C_1)(E_1) = \mathbb{C}(C_2)(E_2)$ sees only generic
+fibers. The bad-fiber structure of §4 only matters for the pointwise question below.
+
+If one wants a space on which rational maps act as genuine maps, the canonical one is the
+Zariski–Riemann space of $\mathbb{C}(S)/\mathbb{C}$ (all valuations of the function field): an
+injective endomorphism of the field pulls valuations back.
+
+### 6.3 Points: no Zariski open works, but very general points do
+
+Each word $w \in M$ is a morphism on a dense open $U_w \subseteq S$, but there is no single dense open
+$U$ with $\mu_{i,p}(U) \subseteq U$ for all $i, p$. Indeed $U$ must avoid $\Sigma_2$; pick
+$x \in \Sigma_2$ on a smooth $\pi_1$-fiber $F_1$ (a K3 always has singular fibers, as $e(S) = 24$ is
+the sum of the Euler numbers of the singular fibers). Then $\mu_{1,p}^{-1}(x)$ consists of $p^2$ points
+of $F_1$, and as $p$ varies these are Zariski dense in $F_1$, so $U \cap F_1 = \emptyset$. But $F_1$
+is a multisection of $\pi_2$, and $\mu_{2,q}^{-1}(F_1)$ is a curve of degree $q^2 (F_1 \cdot F_2)$
+over $C_2$; these are infinitely many distinct curves that must all miss $U$, contradicting that
+$S \smallsetminus U$ is a proper closed subset.
+
+What survives over $\mathbb{C}$: the set of points at which every word of $M$ is defined is the
+complement of a countable union of proper closed subsets. As $\mathbb{C}$ is uncountable this set is
+nonempty, dense in the Euclidean topology and of full measure. So $M$ acts on the set of **very
+general** points of $S$, as a set-theoretic action rather than on a variety.
+
+### 6.4 The degree-one part acts by automorphisms
+
+Translation by a section of a relatively minimal elliptic fibration extends to an automorphism of
+$S$ preserving the fibration (a birational self-map of a minimal surface with $\kappa \ge 0$ is
+biregular), and so does $[-1]_i = \mu_{i,-1}$. Hence
+
+$$
+G = \langle \operatorname{MW}(\pi_1),\ \operatorname{MW}(\pi_2),\ \mu_{1,-1},\ \mu_{2,-1} \rangle
+\subseteq \operatorname{Aut}(S)
+$$
+
+acts by honest automorphisms, where $\operatorname{MW}(\pi_i)$ is the Mordell–Weil group of the
+$i$-th fibration. This is one of the classical mechanisms producing K3 surfaces with infinite
+automorphism groups and interesting dynamics (Wehler's surfaces in $\mathbb{P}^2 \times \mathbb{P}^2$,
+Silverman's canonical heights, Cantat and McMullen on K3 dynamics). Only the generators with
+$|p| \ge 2$ are forced to be rational maps.
+
+---
+
+## 7. The monoid $\bar M = (\mathbb{Z} \smallsetminus \{0\}, \cdot) * (\mathbb{Z} \smallsetminus \{0\}, \cdot)$
+
+The free monoid $M$ is too big: the relations $\mu_{i,a}\mu_{i,b} = \mu_{i,ab}$ and $\mu_{i,1} = 1$
+hold in $\operatorname{End}(\mathbb{C}(S))$ because they hold on the generic fiber $E_i$, so the
+action descends to the quotient $\bar M$. Two refinements first.
+
+- **Drop $0$.** $\mu_{i,0}$ is $x \mapsto O_i(\pi_i(x))$, a morphism $S \to C_i \to S$ with image
+  the section $O_i$. It is not dominant, so it has no pullback on $\mathbb{C}(S)$ and does not belong
+  to the encoding of §6.2. Use the factor $(\mathbb{Z} \smallsetminus \{0\}, \cdot)$.
+- **Structure of one factor.** Unique factorisation gives
+  $(\mathbb{Z} \smallsetminus \{0\}, \cdot) \cong \{\pm 1\} \times \mathbb{N}^{(P)}$, with
+  $\mathbb{N}^{(P)}$ the free commutative monoid on the primes.
+
+Then $\bar M$ is the **free product of monoids** (the coproduct in the category of monoids):
+
+$$
+\bar M \;\cong\; (\mathbb{Z} \smallsetminus \{0\}, \cdot) * (\mathbb{Z} \smallsetminus \{0\}, \cdot)
+\;\cong\; \bigl(\{\pm 1\} \times \mathbb{N}^{(P)}\bigr) * \bigl(\{\pm 1\} \times \mathbb{N}^{(P)}\bigr).
+$$
+
+**Normal form.** As for free products of groups, every element has a unique alternating normal form
+
+$$
+(i_1, a_1)(i_2, a_2)\cdots(i_k, a_k), \qquad i_j \in \{1,2\},\ i_j \ne i_{j+1},\ a_j \in \mathbb{Z} \smallsetminus \{0, 1\},
+$$
+
+with $k = 0$ the identity. Multiplication concatenates and merges adjacent letters from the same
+factor by multiplying the integers (deleting the letter if the product is $1$). So $\bar M$ is the
+monoid of finite alternating sequences of nonzero integers $\ne 1$, tagged by fibration.
+
+**Presentation.** $\bar M$ is generated by $\varepsilon_i = \mu_{i,-1}$ and $\mu_{i,p}$ for
+$i = 1, 2$ and $p$ prime, subject only to
+
+$$
+\varepsilon_i^2 = 1, \qquad \varepsilon_i \mu_{i,p} = \mu_{i,p} \varepsilon_i, \qquad
+\mu_{i,p}\mu_{i,q} = \mu_{i,q}\mu_{i,p},
+$$
+
+with no relation between index-$1$ and index-$2$ generators.
+
+**Invariants matching the geometry.**
+
+- *Units.* In a free product of monoids an element is invertible iff every letter is (non-unit letters
+  cannot cancel in the normal form). So $\bar M^\times = \{\pm 1\} * \{\pm 1\} \cong D_\infty$, the
+  infinite dihedral group, which is exactly the subgroup $\langle \mu_{1,-1}, \mu_{2,-1} \rangle$
+  acting on $S$ by automorphisms (§6.4).
+- *Degree.* $w \mapsto \prod a_j^2$ is a homomorphism $\bar M \to (\mathbb{N}_{>0}, \cdot)$, the
+  degree of the rational map; its kernel is $\bar M^\times$.
+- *Abelianisation.* $\bar M^{\mathrm{ab}} = (\mathbb{Z} \smallsetminus \{0\})^2$. On a product
+  abelian surface $E_1 \times E_2$ the maps $[a] \times \mathrm{id}$ and $\mathrm{id} \times [b]$
+  commute, so the action factors through the abelianisation. On a K3 the two families do not commute
+  in general and the action is presumably faithful, though this was not checked for a given surface.
+- *Group completion.* Grothendieck-group formation is a left adjoint, so it commutes with coproducts:
+  $K(\bar M) = \mathbb{Q}^\times * \mathbb{Q}^\times$. This group does not act on $S$, since $[p]$
+  cannot be inverted, but it is the natural symmetry group of the inverse limit of $S$ under all the
+  $\mu_{i,p}$, a solenoid-like object.
+
+**The savepoint, precisely.** The encoding is a homomorphism
+$\bar M^{\mathrm{op}} \to \operatorname{End}_{\mathbb{C}\text{-alg}}(\mathbb{C}(S))$, equivalently a
+left action of $\bar M$ on $S$ by dominant rational maps. Since each factor is commutative,
+reversing alternating words gives $\bar M^{\mathrm{op}} \cong \bar M$, so the distinction is
+cosmetic. The generators go to the degree-$a^2$ field embeddings induced by multiplication by $a$ on
+the generic fiber of $\pi_i$.
+
+---
+
 ## References
 
 - S. Bosch, W. Lütkebohmert, M. Raynaud, *Néron Models* (Springer, 1990), §1.5, Prop. 1: the smooth
@@ -158,3 +314,8 @@ elliptic fibrations (§3) but never a common relatively minimal model.
   Ch. V (elliptic surfaces, canonical bundle formula) and Ch. III (minimal models).
 - R. Miranda, *The Basic Theory of Elliptic Surfaces* (ETS, 1989): Kodaira fibers and the group
   structure on their smooth loci; rational elliptic surfaces.
+- J. H. Silverman, "Rational points on K3 surfaces: a new canonical height", *Invent. Math.* 105
+  (1991), 347–373: Wehler surfaces and the automorphisms generated by two involutions.
+- S. Cantat, "Dynamique des automorphismes des surfaces K3", *Acta Math.* 187 (2001), 1–57.
+- C. T. McMullen, "Dynamics on K3 surfaces: Salem numbers and Siegel disks", *J. reine angew. Math.*
+  545 (2002), 201–233.
