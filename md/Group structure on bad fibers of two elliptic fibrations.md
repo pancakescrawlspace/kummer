@@ -586,6 +586,98 @@ hold.
 
 ---
 
+## 8. Can $S$ be reconstructed from the action of $\bar M$?
+
+*(Added 17 September 2026; the question is vague, so the answer is sorted by how much of the
+action one remembers.)* At the level where the action consists of algebraic maps, reconstruction is
+tautological; at the level of the abstract monoid it is impossible; at the level of the abstract
+$\bar M$-set of points it fails, and the Kummer surface shows why. The content lies in what the
+action *determines* even when it does not determine $S$.
+
+### 8.1 Four levels
+
+**(A) Algebraic maps on $S$.** Nothing to reconstruct; $S$ is part of the data.
+
+**(B) Field endomorphisms of $\mathbb{C}(S)$.** Also tautological, since $\mathbb{C}(S)$ determines
+$S$ (unique minimal model, $\kappa \ge 0$). But the action is Galois-like. For $|a| \ge 2$,
+
+$$
+\operatorname{Fix}(\mu_{1,a}^*) = \mathbb{C}(C_1).
+$$
+
+*Proof.* If $f \circ [a] = f$ on the generic fiber $E_1/K_1$, then $f \circ [a]^n = f$, so for
+$T \in E_1[a^n]$ one gets $f(x + T) = f([a]^n(x + T)) = f([a]^n x) = f(x)$. Thus $f$ is invariant under
+the infinite, hence Zariski-dense, group $\bigcup_n E_1[a^n]$, so $f$ is constant on the geometric
+generic fiber, i.e. $f \in K_1 = \mathbb{C}(C_1)$ ($K_1$ is algebraically closed in $K_1(E_1)$).
+$\blacksquare$
+
+Likewise the second factor fixes exactly $\mathbb{C}(C_2)$, both together fix only $\mathbb{C}$, and
+$\mathbb{C}(C_1)\mathbb{C}(C_2) = \mathbb{C}(C_1 \times C_2) \subset \mathbb{C}(S)$ has degree
+$F_1 \cdot F_2$, the degree of $(\pi_1, \pi_2)\colon S \to \mathbb{P}^1 \times \mathbb{P}^1$. So the
+action on the field recovers the two fibrations as fixed fields; Néron's mapping property then
+recovers $S^{\mathrm{sm}}$ from the generic fibers, and minimality recovers $S$. (For $a = -1$ the
+fixed field is $\mathbb{C}(S/\varepsilon_1)$, the function field of the quotient by the involution.)
+
+**(C) The abstract monoid.** If the action is faithful the image is $\bar M$ itself, the same for
+every such K3. The abstract monoid carries no information about $S$ except through its **kernel**:
+relations such as $\varepsilon_1 \varepsilon_2 = 1$ or commutation of the two factors detect product
+structures (§7.1).
+
+**(D) The abstract $\bar M$-set $S(\mathbb{C})$.** Keep only the set of points and the partial maps.
+This does **not** determine $S$. On $\operatorname{Km}(E_1 \times E_2)$ the maps are induced by
+$\mathrm{id} \times [a]$ and $[b] \times \mathrm{id}$, and any two complex elliptic curves are
+isomorphic as abstract groups (divisible, torsion $(\mathbb{Q}/\mathbb{Z})^2$, continuum rank), so an
+abstract group isomorphism $E_i \cong E_i'$ induces a bijection
+$\operatorname{Km}(E_1 \times E_2) \to \operatorname{Km}(E_1' \times E_2')$ commuting with all the
+$\mu$'s, while the surfaces have different $j$-invariants. The underlying reason: a single fiber, as
+an abstract set with the multiplication maps, is the same $(\mathbb{Z} \smallsetminus \{0\})$-set for
+every elliptic curve.
+
+The contrast is the fundamental theorem of projective geometry: $\mathbb{P}^1(k)$ as an abstract set
+with the permutation action of $\mathrm{PGL}_2(k)$ determines the field $k$. There the acting group
+is huge and $3$-transitive; here $\bar M$ is tiny, two commuting families, and its orbits are thin.
+
+### 8.2 What the action determines regardless
+
+- **A character on the $2$-form.** Pullback of a holomorphic $2$-form is functorial even for
+  rational maps (it extends across the finite indeterminacy set by Hartogs). Locally
+  $\omega = dt \wedge dz$ with $z$ a fiber coordinate and $[a]\colon z \mapsto az$, so
+  $\mu_{i,a}^* \omega = a \cdot \omega$. This gives $\chi\colon \bar M \to (\mathbb{Z} \smallsetminus \{0\}, \cdot)$,
+  $\chi(\mu_{i,a}) = a$, with $\deg = \chi^2$: the action on $H^{2,0}$ sees the *signed* product of
+  the multipliers, in particular that the $\varepsilon_i$ are non-symplectic.
+- **Fixed points.** $\operatorname{Fix}(\mu_{i,a})$ on a smooth fiber is the $(a-1)$-torsion, so the
+  action knows all torsion multisections of both fibrations.
+- **Bad sets.** $\operatorname{Ind}(\mu_{i,a})$ is the set of singular points of the reduced singular
+  fibers of $\pi_i$ (§7.3), so the action knows the number of singular points of each singular fiber,
+  and the blow-up computation (node $\mapsto$ whole component) sees some fiber types.
+- **Kernel and commutation** (C): product structures and finite-order relations among the
+  involutions.
+- **The base curves** (B): $\mathbb{C}(C_1)$ and $\mathbb{C}(C_2)$ as fixed fields.
+
+### 8.3 A direction that might be non-trivial
+
+For a set-level reconstruction that could work for non-product K3s, the natural candidate is the
+**web of curves** defined by the action. Writing $x \sim_i y$ for "same $\pi_i$-fiber", every pair of
+words $w, w'$ gives a subset
+
+$$
+\Gamma_{w,w',i} = \{ x \in S : w(x) \sim_i w'(x) \},
+$$
+
+an algebraic curve or a union of fibers, and the abstract $\bar M$-set knows all of these as sets of
+points. Whether the $\Gamma_{w,w',i}$ generate enough of the Zariski topology to recover
+$\mathbb{C}(S)$ is the exact analogue of the projective-geometry theorem. For Kummer surfaces the
+answer is no: every $\Gamma$ is a union of fibers, because the two factors commute. For a K3 on which
+$\mu_{1,a}$ moves the $\pi_2$-fibers the curves are transverse to both fibrations and the web is much
+richer; whether it is rich enough is not known to me.
+
+**Summary.** The action reconstructs the *elliptic structure* (fibrations, bases, torsion,
+singular-point combinatorics, product structures) but not the complex structure, unless one already
+remembers that the maps are algebraic, in which case $S$ is determined by the field they act on and
+the reconstruction is Néron's theorem plus minimal models.
+
+---
+
 ## References
 
 - S. Bosch, W. Lütkebohmert, M. Raynaud, *Néron Models* (Springer, 1990), §1.5, Prop. 1: the smooth
