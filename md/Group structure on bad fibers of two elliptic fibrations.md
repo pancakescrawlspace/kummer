@@ -290,9 +290,14 @@ with no relation between index-$1$ and index-$2$ generators.
   commute, so the action factors through the abelianisation. The same happens on some K3 surfaces;
   see §7.1.
 - *Group completion.* Grothendieck-group formation is a left adjoint, so it commutes with coproducts:
-  $K(\bar M) = \mathbb{Q}^\times * \mathbb{Q}^\times$. This group does not act on $S$, since $[p]$
-  cannot be inverted, but it is the natural symmetry group of the inverse limit of $S$ under all the
-  $\mu_{i,p}$, a solenoid-like object.
+  $K(\bar M) = \mathbb{Q}^\times * \mathbb{Q}^\times$, a discrete group. It does not act on $S$,
+  since $[p]$ cannot be inverted on a surface, but it acts on the inverse limit
+  $\hat S = \varprojlim S$ along all the $\mu_{i,p}$; that inverse limit, not the group, is the
+  solenoid-like object. On a single fiber $E$ the inverse limit is the adelic solenoid
+  $(H_1(E,\mathbb{Q}) \otimes \mathbb{A})/H_1(E,\mathbb{Q})$, the Pontryagin dual of
+  $H^1(E,\mathbb{Q})$: the "group completion" that produces the solenoid is the localisation of the
+  additive lattice $H_1(E,\mathbb{Z})$ at all integers, and $\mathbb{Q}^\times$ acts on it by
+  scalars.
 
 **The savepoint, precisely.** The encoding is a homomorphism
 $\bar M^{\mathrm{op}} \to \operatorname{End}_{\mathbb{C}\text{-alg}}(\mathbb{C}(S))$, equivalently a
