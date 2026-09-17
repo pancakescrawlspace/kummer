@@ -38,7 +38,71 @@ For n = 2 you can see it directly. The reduced norm of x + yu is N(x) − a·N(y
 
 The right side is the **norm residue group**, which is exactly the object of class field theory. So any statement about which elements are norms is also a statement about which algebras split, and the reverse holds too.
 
-**Why a noncommutative object at all?** A question about a Galois extension L/K involves two kinds of data: the field L and the action of G on it. A crossed product holds both at once. L sits inside as a maximal commutative subalgebra, and G acts through conjugation by the u_σ. The noncommutativity is the smallest price for putting the group action inside the ring. The "twisting" constants a_{σ,τ} (the factor system) are what cohomology later called a 2-cocycle [R].
+### Why a noncommutative object at all?
+
+*(Expanded 17 September 2026.)*
+
+Take a Galois extension L/K with group G. Two commutative objects are in play:
+
+1. **The field L**, a commutative ring.
+2. **The group G**, abelian in the cyclic case that class field theory needs, and in any case a group acting on L by ring automorphisms.
+
+Neither is noncommutative. But class field theory is not about L alone or G alone. It is about their **interaction**: which elements of K are norms, how primes decompose, what the Frobenius elements do. To study the interaction one wants a single ring that contains L and in which G acts by *inner* operations, so that "apply σ to x" is an algebraic operation inside the ring rather than an external symmetry.
+
+**The minimal construction.** Adjoin to L one invertible element u_σ for each σ ∈ G, with the rule
+
+  u_σ · x = σ(x) · u_σ  for all x ∈ L.
+
+This single relation is the whole source of the noncommutativity, and it is forced: if u_σ commuted with x, conjugation by u_σ would be the identity, not σ. So the ring can be commutative only if G acts trivially. **Noncommutativity is exactly the price of internalising the Galois action**, no more and no less. The L-span of the u_σ has dimension n = |G| over L, hence n² over K, and L sits inside as a maximal commutative subalgebra with G acting on it by conjugation.
+
+**The factor system.** What remains is how the u_σ multiply among themselves. One would like u_σ u_τ = u_{στ}, but associativity only forces
+
+  u_σ u_τ = a_{σ,τ} · u_{στ}  with a_{σ,τ} ∈ L*,
+
+and the a_{σ,τ} must satisfy a compatibility condition (Noether's equations). In the cyclic case G = ⟨σ⟩ this collapses to one scalar: u^n = a ∈ K*. That is Dickson's cyclic algebra (L/K, σ, a) above, and Noether's crossed product in general.
+
+**The payoff.** The algebra (L/K, σ, a) is a matrix algebra Mₙ(K) exactly when a is a norm from L (the Key fact above). So the arithmetic question "is a ∈ N(L*)?", which is the central question of class field theory since K*/N(L*) is the norm residue group, has become the structural question "is this algebra split?". The structural question can be attacked with Wedderburn theory, localised ℘-adically (Hasse 1931, §2(d)) and glued back together (Brauer–Hasse–Noether 1932, §2(e)). Two commutative ingredients, one twisting rule, and the noncommutative object that results is a **device for measuring the failure of a to be a norm**.
+
+**The modern residue.** The factor system a_{σ,τ} is a 2-cocycle, and the crossed product is what one gets by building a ring out of a 2-cocycle of G with values in L*. This is the isomorphism Br(L/K) ≅ H²(G, L*) [R]. It also explains why the algebras later receded from the foundations of class field theory (§3): the cohomology group carries the same data without needing to be a ring. But the reason they arose is that a ring holding both L and the action of G is the most concrete form that data can take.
+
+### The universal object and what it acts on
+
+*(Added 17 September 2026.)*
+
+The construction above is in two steps: first adjoin the symbols u_σ with u_σ x = σ(x) u_σ, then decide how the u_σ multiply among themselves. So there is a universal object in the background, at two levels.
+
+**1. No relations among the u_σ.** In the cyclic case, adjoining a single u with u·x = σ(x)·u and nothing else gives the **skew polynomial ring** L[u; σ] (an Ore extension): a left L-module with basis 1, u, u², …, with multiplication determined by u x = σ(x) u. The cyclic algebra is the quotient
+
+  (L/K, σ, a) = L[u; σ] / (uⁿ − a).
+
+The element uⁿ − a is *central* in L[u; σ], since uⁿ commutes with L (σⁿ = 1) and a ∈ K, so the ideal it generates is two-sided. For general G one gets the analogous skew ring over the free monoid on G.
+
+**2. The obvious relations.** Imposing u_σ u_τ = u_{στ}, the trivial factor system, gives the **skew group ring** L#G (also written L * G): the free left L-module on the u_σ, with u_σ x = σ(x) u_σ. This is the crossed product with a_{σ,τ} = 1, i.e. (L/K, σ, 1) in the cyclic case.
+
+These rings contain L and are free as L-modules, but they are not L-*algebras*: L is not central in them, which is the whole point. They are K-algebras.
+
+**The natural action is on L itself.** Both rings act on L as a K-vector space: x ∈ L acts by multiplication and u_σ acts by σ. The two rules are compatible precisely because u_σ·x = σ(x)·u_σ is the operator identity σ ∘ (mult by x) = (mult by σ(x)) ∘ σ. This gives a K-algebra map
+
+  L#G → End_K(L),
+
+and it is an **isomorphism**. Injectivity is Dedekind's independence of characters: if Σ x_σ σ = 0 as a map L → L then all x_σ = 0. Both sides have K-dimension n². So
+
+  L#G ≅ End_K(L) ≅ Mₙ(K).
+
+The universal crossed product with trivial cocycle is literally the ring of all K-linear endomorphisms of L, and u_σ is the Galois automorphism σ viewed as a K-linear operator. This is consistent with the Key fact: a = 1 is a norm, so (L/K, σ, 1) splits. The skew polynomial ring L[u; σ] also acts on L (u ↦ σ), now with kernel (uⁿ − 1). More generally L[u; σ] acts on any L-vector space with a σ-semilinear endomorphism; that is exactly what an L[u; σ]-module is.
+
+**Modules over the crossed product.** This gives a conceptual reading of the whole story.
+
+- A module over L#G is an L-vector space V with a semilinear G-action, σ(xv) = σ(x)σ(v). That is **Galois descent datum**. Galois descent says every such V is L ⊗_K V₀ with V₀ = V^G. In ring language: Mod(L#G) ≃ Mod(K), which is the Morita equivalence L#G ≅ Mₙ(K) again, with L as the standard module.
+- A module over (L/K, G, a) is an L-vector space V with σ-semilinear maps u_σ satisfying u_σ u_τ = a_{σ,τ} u_{στ}: **twisted descent datum**. The cocycle measures the obstruction to descending.
+
+**The Key fact from this viewpoint.** Set A = (L/K, σ, a), central simple of dimension n². Such an algebra is Mₙ(K) iff it has a module of K-dimension n, i.e. of L-dimension 1. A one-dimensional L-space with a σ-semilinear u is V = L with u(x) = c·σ(x) for some c ∈ L*. Then
+
+  uⁿ(x) = c·σ(c)·σ²(c)⋯σⁿ⁻¹(c)·x = N_{L/K}(c)·x,
+
+so the relation uⁿ = a can be satisfied exactly when a = N(c) for some c. The zero-divisor argument above (c + u has reduced norm 0 when N(c) = a) is the same fact seen through the reduced norm.
+
+**Further afield.** The same skew polynomial ring L[u; σ] appears wherever a field comes with a distinguished automorphism: with σ = Frobenius on the Witt vectors W(k) it is the **Dieudonné ring**, and its modules (Dieudonné modules, φ-modules, difference modules) are again vector spaces with a semilinear operator. The twisting rule u x = σ(x) u is the one piece of structure all of these share.
 
 ---
 
