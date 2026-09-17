@@ -477,6 +477,113 @@ maps, so the hyperbolic-geometry argument used for automorphism groups does not 
 The geometry is thus reduced to (O1)–(O3); proving them for a general non-product K3 is not done
 here.
 
+### 7.3 The size of the bad set
+
+*(Added 17 September 2026.)* For $m \in \bar M$ let $\operatorname{Bad}(m) = \operatorname{Ind}(m)$
+be the finite set of indeterminacy points of the associated dominant rational map $S \dashrightarrow S$.
+Recall the degree homomorphism $\deg\colon \bar M \to (\mathbb{N}_{>0}, \cdot)$,
+$\deg(\mu_{i,a}) = a^2$.
+
+> **Bound.** On a K3 surface, under the two caveats stated in §7.3.4,
+>
+> $$
+> \#\operatorname{Bad}(m) \;\le\; \tfrac{N}{3} \cdot \deg(m) \;\le\; 8 \cdot \deg(m),
+> $$
+>
+> where $N \le 24$ is the maximum over $i = 1, 2$ of the number of singular points of the reduced
+> singular fibers of $\pi_i$. Conversely $\#\operatorname{Bad}(m) \ge c \cdot \deg(m)$ for generic
+> pairs of fibrations along alternating words, so a constant times $\deg$ is the correct shape.
+
+#### 7.3.1 The bad set of a generator
+
+- $\operatorname{Ind}(\mu_{i,\pm 1}) = \emptyset$: these are automorphisms.
+- For $|a| \ge 2$, $\operatorname{Ind}(\mu_{i,a}) \subseteq \Sigma_i$ (points not smooth on their
+  $\pi_i$-fiber), since $[a]$ is a morphism on the Néron model. It genuinely contains every node of
+  every $\mathrm{I}_n$ fiber. Explicitly, near a node the surface is $\{xy = t\}$ with the Tate
+  coordinate $u = x$ on the fiber $E_t \cong \mathbb{C}^*/q^{\mathbb{Z}}$, $q \sim t$. Along the curve
+  $y = c\,x^{a-1}$ through the node one has $t = c\,x^a$, so $u^a = x^a = t/c \equiv 1/c \pmod{q^{\mathbb{Z}}}$:
+  the whole curve maps to the point $1/c \in \mathbb{G}_m$ of the special fiber. Different $c$ give
+  different limits, so the node is an indeterminacy point, and the exceptional curve of its blow-up
+  maps onto the closure of the smooth component, $c \mapsto 1/c$.
+
+Modulo caveat (i) below, $\operatorname{Ind}(\mu_{i,a})$ is the set of singular points of the reduced
+singular fibers of $\pi_i$; write $N_i$ for its cardinality. For each Kodaira type
+$\#\operatorname{Sing}(F_{\mathrm{red}}) \le e(F)$ ($\mathrm{I}_n$: $n = e$; II, III, IV: $1 < e$;
+$\mathrm{I}_n^*$: $n + 4 < n + 6$; II$^*$, III$^*$, IV$^*$: $8, 7, 6 < 10, 9, 8$), and
+$\sum_F e(F) = e(S) = 24$, so $N_i \le 24$ independently of $a$.
+
+#### 7.3.2 Composition: a derivation twisted by the degree
+
+For dominant rational self-maps $f, g$ of a smooth projective surface,
+
+$$
+\operatorname{Ind}(g \circ f) \subseteq \operatorname{Ind}(f) \cup \{x \notin \operatorname{Ind}(f) : f(x) \in \operatorname{Ind}(g)\},
+$$
+
+since if $f$ is defined at $x$ and $g$ at $f(x)$ then $g \circ f$ is defined at $x$. If $f$ contracts
+no curve onto a point of $\operatorname{Ind}(g)$ (caveat (ii)), each point of $\operatorname{Ind}(g)$
+has at most $\deg(f)$ isolated preimages, so
+
+$$
+\#\operatorname{Ind}(g \circ f) \;\le\; \#\operatorname{Ind}(f) + \deg(f) \cdot \#\operatorname{Ind}(g).
+$$
+
+Iterating along a normal form $m = \ell_k \cdots \ell_1$ ($\ell_1$ applied first,
+$\ell_j = \mu_{i_j, a_j}$):
+
+$$
+\#\operatorname{Bad}(m) \;\le\; f(m) := \sum_{j\,:\,|a_j| \ge 2} N_{i_j} \prod_{l < j} a_l^2 .
+$$
+
+The function $f$ is the unique one with $f(\text{units}) = 0$, $f(\mu_{i,a}) = N_i$ for $|a| \ge 2$,
+and
+
+$$
+f(xy) = f(y) + \deg(y)\, f(x),
+$$
+
+i.e. a $1$-cocycle (derivation) of $\bar M$ twisted by the character $\deg$. Since every non-unit
+letter has $a_l^2 \ge 4$, the $j$-th non-unit letter from the end contributes at most
+$\deg(m)/4^{(\text{number of non-unit letters from } j \text{ onward})}$, and summing the geometric
+series gives $f(m) \le (N/3) \deg(m)$, the bound above.
+
+#### 7.3.3 Sharpness
+
+The linear growth is real. Where $\mu_{1,a}$ is étale — everywhere on smooth $\pi_1$-fibers, since
+$[a]$ is étale in characteristic $0$ — it is a local isomorphism, so $x$ is an indeterminacy point of
+$\mu_{2,b} \circ \mu_{1,a}$ iff $\mu_{1,a}(x)$ is one of $\mu_{2,b}$. Hence every node of a
+$\pi_2$-fiber lying on a smooth $\pi_1$-fiber has $a^2$ preimages in
+$\operatorname{Ind}(\mu_{2,b} \circ \mu_{1,a})$. Continuing, for a generic pair of fibrations
+$\#\operatorname{Bad}(m) \ge c \cdot \deg(m)$ along alternating words. So no bound $o(\deg m)$ is
+possible and only the constant can be sharpened.
+
+#### 7.3.4 Caveats, and an unconditional bound
+
+Two points were not verified:
+
+- (i) that $\mu_{i,a}$ has no indeterminacy points on the non-reduced components of
+  $\mathrm{I}_n^*$, II$^*$, III$^*$, IV$^*$ fibers, where the Néron model does not see the surface;
+- (ii) that no $\mu_{i,a}$ contracts a curve onto an indeterminacy point of another generator (the
+  only candidates are again non-reduced fiber components).
+
+Without them, one still has a bound of the shape $C \cdot \deg(m)^2$, with an exponential in the word
+length: for any dominant rational self-map $f$ of a smooth projective surface with ample $H$, resolve
+the indeterminacy by $\sigma\colon \tilde S \to S$ with $g = f \circ \sigma$ a morphism, and write
+$g^*H = \sigma^*(f^*H) - \sum_j m_j E_j$ with $m_j \ge 0$ (negativity lemma, $g^*H$ nef). Then
+$\sum_j m_j^2 = (f^*H)^2 - \deg(f) H^2$, and each indeterminacy point forces some $m_j \ge 1$, since
+otherwise $g$ contracts the whole exceptional fiber over it and $f$ extends by Zariski's main
+theorem. With the Hodge index theorem,
+
+$$
+\#\operatorname{Ind}(f) \;\le\; (f^*H)^2 - \deg(f) H^2 \;\le\; \frac{(f^*H \cdot H)^2}{H^2} - \deg(f) H^2 .
+$$
+
+Degrees $f \mapsto f^*H \cdot H$ are submultiplicative up to a constant depending on $(S, H)$
+(Dinh–Sibony), and $\mu_{i,a}^* H \cdot H = O(a^2)$ since $\mu_{i,a*}$ acts by $a^2$ on the fiber
+class and by $a$ on the Mordell–Weil part. This yields $\#\operatorname{Bad}(m) \le A \cdot B^{\ell(m)} \cdot \deg(m)^2$
+with $\ell(m)$ the word length: rigorous without caveats, but weaker than §7.3.2 whenever the caveats
+hold.
+
 ---
 
 ## References
@@ -497,3 +604,5 @@ here.
   545 (2002), 201–233.
 - V. V. Nikulin, "Finite automorphism groups of Kähler K3 surfaces", *Trans. Moscow Math. Soc.* 38
   (1980), 71–135: symplectic automorphisms of finite order have order $\le 8$, with fixed-point counts.
+- T.-C. Dinh and N. Sibony, "Une borne supérieure pour l'entropie topologique d'une application
+  rationnelle", *Ann. of Math.* 161 (2005), 1637–1644: submultiplicativity of degrees of rational maps.
