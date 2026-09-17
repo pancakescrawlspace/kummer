@@ -376,6 +376,107 @@ infinite order, which can only fail for $\langle \varepsilon_1, \varepsilon_2 \r
 $n \le 8$. The full monoid is expected to act faithfully exactly when neither family of maps
 permutes the other's fibers.
 
+### 7.2 A ping-pong lemma for free products of monoids
+
+*(Added 17 September 2026.)* The group ping-pong lemma does not apply verbatim: one cannot conjugate,
+and non-injective maps can satisfy all containment hypotheses while collapsing words. Here is a
+version that works.
+
+**Conventions.** $A, B$ are monoids acting on the left on a set $X$. Elements of $A * B$ are written
+as alternating words $\ell_k \cdots \ell_1$ with letters in $(A \smallsetminus \{1\}) \sqcup
+(B \smallsetminus \{1\})$, $\ell_1$ applied first; every element has a unique such normal form. Let
+$W_A$ be the set of normal forms that are empty or whose *first-applied* letter lies in $A$, and
+$W_B$ likewise.
+
+> **Lemma.** Suppose there are points $p_1, p_2 \in X$ and subsets $X_A, X_B \subseteq X$ such that
+>
+> - (a) $A$ fixes $p_1$ and $B$ fixes $p_2$;
+> - (b) $X_A \cap X_B = \emptyset$ and $p_1, p_2 \notin X_A \cup X_B$;
+> - (c) the map $(A \smallsetminus \{1\}) \times (X_B \cup \{p_2\}) \to X$, $(a, y) \mapsto a \cdot y$,
+>   takes values in $X_A$ and is **injective**;
+> - (d) the map $(B \smallsetminus \{1\}) \times (X_A \cup \{p_1\}) \to X$, $(b, y) \mapsto b \cdot y$,
+>   takes values in $X_B$ and is **injective**.
+>
+> Then $A * B \to \operatorname{Map}(X)$ is injective.
+
+**Proof.** *Step 1: $w \mapsto w \cdot p_2$ is injective on $W_A$.* For nonempty $w \in W_A$, feed
+$p_2$ through the letters: the first letter $a_1$ receives $p_2 \in X_B \cup \{p_2\}$ and outputs into
+$X_A$ by (c); the next letter, in $B$, receives an element of $X_A \subseteq X_A \cup \{p_1\}$ and
+outputs into $X_B$ by (d); and so on. Hence $w \cdot p_2 \in X_A$ if the last-applied letter is in
+$A$, $\in X_B$ if it is in $B$, and the input to the last letter always lies in the domain of (c)
+resp. (d).
+
+Now let $w \ne w'$ in $W_A$; we show $w \cdot p_2 \ne w' \cdot p_2$ by induction on $|w| + |w'|$. If
+$w = \emptyset \ne w'$, then $w \cdot p_2 = p_2 \notin X_A \cup X_B \ni w' \cdot p_2$ by (b). If both
+are nonempty with last letters in different factors, the images lie in $X_A$ and $X_B$, which are
+disjoint. If both last letters lie in $A$, write $w = \ell u$, $w' = \ell' u'$. Removing the
+last-applied letter does not change the first-applied one (or leaves the empty word), so
+$u, u' \in W_A$, and $u \cdot p_2,\, u' \cdot p_2 \in X_B \cup \{p_2\}$. Since $w \ne w'$ as words,
+$(\ell, u) \ne (\ell', u')$: if $\ell \ne \ell'$ then $(\ell, u \cdot p_2) \ne (\ell', u' \cdot p_2)$,
+and if $\ell = \ell'$ then $u \ne u'$ and by induction $u \cdot p_2 \ne u' \cdot p_2$, so again
+$(\ell, u \cdot p_2) \ne (\ell', u' \cdot p_2)$. Injectivity in (c) gives
+$w \cdot p_2 \ne w' \cdot p_2$. Last letters in $B$: the same with (d).
+
+*Step 2:* symmetrically, $w \mapsto w \cdot p_1$ is injective on $W_B$.
+
+*Step 3.* Let $w \ne w'$ be normal forms acting identically on $X$. If both lie in $W_A$, Step 1
+gives a contradiction; if both lie in $W_B$, Step 2. Otherwise, say $w$ starts with $a \in A$ and
+$w'$ starts with $b \in B$. Write $w' = w'' b$ with $w'' \in W_A$ (normal forms alternate). Then,
+using (a),
+
+$$
+w \cdot p_2 = w' \cdot p_2 = w'' \cdot (b \cdot p_2) = w'' \cdot p_2,
+$$
+
+so $w = w''$ by Step 1. Symmetrically $w = \tilde w a$ with $\tilde w \in W_B$ and
+$w' \cdot p_1 = \tilde w \cdot p_1$, so $w' = \tilde w$. Hence $w' = wb = \tilde w ab = w' ab$, which
+is absurd since it says $|w'| = |w'| + 2$. $\blacksquare$
+
+**Why the hypotheses are needed.** Injectivity in (c), (d) cannot be dropped for monoids: if
+$a \in A$ and $b \in B$ act as constant maps with values in $X_A$ and $X_B$, all containment
+hypotheses hold but $a \circ b \circ a = a$. Injectivity in the *first* coordinate is what
+distinguishes different elements of the same factor, and it cannot be dropped either: on
+$X = \{p, q\}$ with $X_A = \{p\}$, $X_B = \{q\}$ and $a, b$ both the swap, all containments hold and
+the maps are bijections, but $ba = 1$. (For groups this is the familiar need for an extra point or
+$|G_i| \ge 3$.)
+
+**Application to $\operatorname{Fib}(S)$.** Take $X = \operatorname{Fib}(S)$, the set of subfields
+$K \subseteq \mathbb{C}(S)$ of transcendence degree $1$ that are algebraically closed in
+$\mathbb{C}(S)$, i.e. rational fibrations with connected fibers, pencils with base points included.
+A dominant rational map $f$ acts by $f \cdot K =$ algebraic closure of $f^*K$ in $\mathbb{C}(S)$.
+
+*This action is injective for every $f$.* Let $L = f^*\mathbb{C}(S)$, a subfield of finite index.
+Then $(f \cdot K) \cap L$ is the algebraic closure of $f^*K$ in $L$, which is $f^*(\text{algebraic
+closure of } K \text{ in } \mathbb{C}(S)) = f^*K$. So $K = (f^*)^{-1}\bigl((f \cdot K) \cap L\bigr)$
+is recovered from $f \cdot K$.
+
+With $A = (\mathbb{Z} \smallsetminus \{0\}, \cdot)$ acting through the $\mu_{1,a}$, $B$ through the
+$\mu_{2,b}$, $p_1 = \pi_1$, $p_2 = \pi_2$, hypothesis (a) holds by construction and injectivity in
+the second coordinate of (c), (d) is automatic. Taking $X_A, X_B$ to be the smallest sets forced by
+(c), (d) — the fibrations reached from $\pi_2$ by words in $W_A$ and from $\pi_1$ by words in $W_B$,
+sorted by the factor of the last-applied letter — the lemma reduces faithfulness to three **orbit
+conditions**:
+
+- (O1) no nonempty word in $W_A$ sends $\pi_2$ to $\pi_1$ or $\pi_2$, and no nonempty word in $W_B$
+  sends $\pi_1$ to $\pi_1$ or $\pi_2$;
+- (O2) fibrations reached with last letter in $A$ differ from those reached with last letter in $B$;
+- (O3) $a \cdot y \ne a' \cdot y'$ whenever $a \ne a'$ in $A \smallsetminus \{1\}$ and
+  $y, y' \in X_B \cup \{\pi_2\}$, and the same for $B$.
+
+The first instance of (O1) is the condition of §7.1, $\mu_{1,a} \cdot \pi_2 \ne \pi_2$, i.e.
+$\mu_{1,a}$ does not permute the $\pi_2$-fibers. The Kummer example fails already there.
+
+**What remains open.** The combinatorics is settled by the lemma, but (O1)–(O3) are statements about
+two orbits in $\operatorname{Fib}(S)$, and verifying them for a given K3 needs an invariant on
+$\operatorname{Fib}(S)$ that separates the orbits, as $|x| > |y|$ on $\mathbb{P}^1$ separates the
+ping-pong sets for matrix groups. The natural candidates are the degrees $d_i(K) = G_K \cdot F_i$ of
+a fibration over the two bases. One has $d_1(\mu_{1,a} \cdot K) = a^2 d_1(K)/e$, with $e$ the number
+of connected components of $\mu_{1,a}^{-1}(\text{general fiber of } K)$, but $d_2(\mu_{1,a} \cdot K)$
+is not controlled by this, and $\mu_{1,a}^*$ on $\operatorname{NS}(S)$ is not functorial for rational
+maps, so the hyperbolic-geometry argument used for automorphism groups does not transfer directly.
+The geometry is thus reduced to (O1)–(O3); proving them for a general non-product K3 is not done
+here.
+
 ---
 
 ## References
