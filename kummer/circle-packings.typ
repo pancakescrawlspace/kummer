@@ -107,7 +107,8 @@
   #v(1mm)
   #text(size: 9pt, style: "italic")[figures and checks in `circle-packings.py`,
   output in `results/circle-packings.txt`; degrees in `circle-degrees.sage`,
-  output in `results/circle-degrees.txt`]
+  output in `results/circle-degrees.txt`; the search of @sec-graph in
+  `circle-graph-search.py`, output in `results/circle-graph-search*.txt`]
 ]
 
 #v(4mm)
@@ -362,6 +363,94 @@ gap closes.
   where the gap closes.],
 ) <fig-flex>
 
+= How much of the pattern is needed? <sec-graph>
+
+In the picture of @sec-why the four sides are circles like the others: each passes through
+$infinity$, opposite sides are tangent there, and adjacent sides cross at right angles. So
+the natural combinatorial datum is the contact graph $G^*$ of all $n + 4$ circles, with its
+four side vertices marked as a set. Equivalently, it is a triangulation of the sphere with a
+marked vertex $infinity$ of degree $4$. Naming the sides is not needed: calling a side "top"
+rather than "left" only turns the picture through $90 degree$, which replaces $W$ by $1\/W$.
+The side vertices are part of the configuration, not extra information. One sphere
+triangulation can admit several choices of $infinity$, giving different packings.
+
+The question is therefore not whether the side data is needed, but how much of it is
+*redundant*. For square tilings half of it is. The squared-rectangle note
+(`md/squared-rectangles-adjacency-graph.md`) proves that the adjacency graph of the squares,
+together with the sets $T$ and $B$ of squares touching the top and the bottom, determines
+the tiling. Its extremal-length argument never looks at the left and right sides: a square
+tiling has no gaps, so those contacts are forced. Is the same true for circles?
+
+`circle-graph-search.py` lists every triangulated pattern with $n$ circles. It runs through
+the sphere triangulations with $n + 5$ vertices from plantri, together with every
+admissible choice of $infinity$. It solves each pattern and compares the packings up to
+isomorphism and scale, first by the bare tangency graph $G$ of the circles, then by $G$
+together with the circles touching one pair of opposite sides ("$G + T + B$").
+
+#figure(
+  {
+    let pair = (
+      (W: 2.0, circles: (
+        (x: 0.5, y: 0.5, r: 0.5, label: "", row: "top"),
+        (x: 1.5, y: 0.5, r: 0.5, label: "", row: "top")), cc: ((0, 1),), walls: ()),
+      (W: 1.0, circles: (
+        (x: 0.5, y: 0.5, r: 0.5, label: "", row: "top"),
+        (x: 0.0857864, y: 0.9142136, r: 0.0857864, label: "", row: "bottom")),
+        cc: ((0, 1),), walls: ()),
+    )
+    grid(columns: 2, column-gutter: 10mm, align: horizon,
+      packing(pair.at(0), unit: 1.6cm), packing(pair.at(1), unit: 1.6cm))
+  },
+  caption: [Two triangulated packings whose bare tangency graph is $K_2$. The radii are
+  in ratio $1 : 1$ on the left and $1 : 3 - 2 sqrt(2)$ on the right. The full patterns
+  $G^*$ differ in which circles touch which sides.],
+) <fig-k2>
+
+#figure(
+  table(
+    columns: 5,
+    align: (left, center, center, center, left),
+    stroke: none,
+    inset: (x: 5pt, y: 3pt),
+    table.hline(),
+    table.header([patterns], [$n$], [solved], [conflicts, $G$], [conflicts, $G + T + B$]),
+    table.hline(stroke: 0.5pt),
+    [all triangulated], [$<= 6$], [$1664 \/ 1672$], [from $n = 2$], [first at $n = 5$ (4)],
+    [every circle touches $>= 4$ objects], [$<= 7$], [$609 \/ 619$], [from $n = 4$],
+      [first at $n = 7$ (7)],
+    [no circle touches two opposite sides], [$<= 8$], [$5201 \/ 5210$], [from $n = 5$],
+      [first at $n = 8$ (11)],
+    [*both restrictions*], [$<= 8$], [$426 \/ 428$], [from $n = 5$], [*none*],
+    table.hline(),
+  ),
+  kind: table,
+  caption: [Conflicts are pairs of packings with the same data but different radii (up to
+  scale). The number in brackets is the number of conflicting graphs at the first $n$ where
+  they occur.],
+) <tab-graph>
+
+The results, in @tab-graph:
+
+- *The bare graph $G$ determines nothing.* Already for $n = 2$ the same $G = K_2$ comes from
+  two packings with different radii (@fig-k2), and almost every graph that occurs comes from
+  several patterns with different radii.
+- *$G + T + B$ fails from $n = 5$ on.* In the counterexamples one of two things happens. A
+  circle may touch two opposite sides, typically a circle inscribed in a square with the
+  other circles in one corner gap. Or circles may be dropped into gaps along an unmarked side
+  in different orders. In both cases the left and right contacts carry information that $G$,
+  $T$ and $B$ do not see.
+- *Excluding both, no conflicts remain* for $n <= 8$: $426$ packings of patterns in which
+  every circle touches at least four objects and no circle touches two opposite sides.
+
+*Conjecture.* For triangulated packings in which every circle touches at least four objects
+and no circle touches two opposite sides, $G$ together with $T$ and $B$ determines the
+packing.
+
+This is evidence, not a proof. The extremal-length argument for squares has no obvious
+analogue for circles. The solver also failed on under $1%$ of the patterns in every run ($2$ of the $428$
+in the restricted class), and a conflict could in principle hide among them.
+Full side data, on the other hand, always suffices, by @sec-why.
+
 = The container matters <sec-disk>
 
 Rigidity comes from the rectangle, not from the triangulation alone. For a triangulated
@@ -390,4 +479,7 @@ triangle, leaves only similarities.
   (6) for every two-row zigzag with $k = 2, 3, 4$ the minimal polynomials of $W$ and of
   generators of the field, by LLL at $3000$ digits, rechecked at $6000$, and certified by an
   exact verification of all equations in the number field (@sec-degrees).
+  `circle-graph-search.py`, output in `results/circle-graph-search*.txt`:
+  (7) every triangulated pattern with $n <= 6$ circles, and the two restricted classes up
+  to $n = 8$, solved and compared by the bare graph $G$ and by $G + T + B$ (@sec-graph).
 ]
