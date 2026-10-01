@@ -1,0 +1,576 @@
+Triangulated packings with circles touching no side: fields
+(every circle touches >= 4 objects; height 1)
+
+n = 1: 0 patterns with an interior circle  (0s)
+n = 2: 0 patterns with an interior circle  (0s)
+n = 3: 0 patterns with an interior circle  (0s)
+n = 4: 0 patterns with an interior circle  (0s)
+n = 5: 7 patterns with an interior circle  (2s)
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2]  Galois S2
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 37]  Galois D(6) = S(3)[x]2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F False  corner cluster False  W = 2.236068  disc primes [5]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2]  Galois S2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 0.733589  disc primes [2, 367]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster False  W = 0.640319  disc primes [2, 3]  Galois E(4) = 2[x]2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2]  Galois S2
+n = 6: 51 patterns with an interior circle  (22s)
+   2 interior   deg F   8  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 17]  Galois 1/2[2^4]dD(4)
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 3.000000  disc primes [2]  Galois S2
+   2 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   1 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F False  corner cluster False  W = 2.000000  disc primes [5]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2]  Galois S2
+   3 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2]  Galois S2
+   2 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 37]  Galois D(6) = S(3)[x]2
+   2 interior   deg F   2  deg W   2  certified True   sqrt2 in F False  corner cluster False  W = 2.154701  disc primes [2, 3]  Galois S2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F False  corner cluster False  W = 3.236068  disc primes [5]  Galois S2
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 0.500000  disc primes [2, 37]  Galois D(6) = S(3)[x]2
+   2 interior   deg F   2  deg W   1  certified True   sqrt2 in F False  corner cluster False  W = 2.000000  disc primes [5]  Galois S2
+   1 interior   deg F  10  deg W  10  certified True   sqrt2 in F True   corner cluster False  W = 1.603309  disc primes [2, 9298769]  Galois [S(5)^2]2
+   2 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 1.599862  disc primes [2, 2663]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 1.599862  disc primes [2, 2663]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster True   W = 1.819806  disc primes [2, 2663]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 1.111022  disc primes [2, 31, 89]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2]  Galois S2
+   3 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2]  Galois S2
+   1 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster False  W = 1.239101  disc primes [2, 31]  Galois D(4)
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 1.705264  disc primes [2, 1999]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster False  W = 1.329431  disc primes [2]  Galois S2
+   2 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster False  W = 0.752201  disc primes [2]  Galois S2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 0.753932  disc primes [2, 29399]  Galois [S(4)^2]2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster True   W = 1.705264  disc primes [2, 1999]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   3  deg W   3  certified True   sqrt2 in F False  corner cluster False  W = 2.314596  disc primes [2, 13]  Galois S3
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 5, 23]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   3 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 1.457107  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 0.686292  disc primes [2]  Galois S2
+   2 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 193]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster False  W = 0.390362  disc primes [2, 3]  Galois E(4) = 2[x]2
+   2 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 1.523016  disc primes [2, 23, 2063]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   3  deg W   3  certified True   sqrt2 in F False  corner cluster False  W = 2.521380  disc primes [2, 13]  Galois S3
+   2 interior   deg F   3  deg W   3  certified True   sqrt2 in F False  corner cluster False  W = 2.314596  disc primes [2, 13]  Galois S3
+   2 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 1.398083  disc primes [2, 34369]  Galois [S(4)^2]2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 0.423162  disc primes [2, 367]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 0.686292  disc primes [2]  Galois S2
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 5, 23]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 193]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster True   W = 1.199740  disc primes [2, 3889]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F  12  deg W  12  certified True   sqrt2 in F True   corner cluster False  W = 1.462053  disc primes [2, 191, 359, 37649]  Galois ?
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster True   W = 1.078431  disc primes [2, 5, 23]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F  12  deg W  12  certified True   sqrt2 in F True   corner cluster False  W = 0.683954  disc primes [2, 15031, 335809]  Galois ?
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster False  W = 0.510958  disc primes [2]  Galois S2
+   2 interior   deg F   8  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 7, 199]  Galois [S(4)^2]2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.750000  disc primes [2]  Galois S2
+n = 7: 333 patterns with an interior circle  (289s)
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 4.000000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 4.000000  disc primes [2]  Galois S2
+   3 interior   deg F  10  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 67, 167]  Galois S(5)[x]2
+   1 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 3]  Galois E(4) = 2[x]2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 3.000000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 3.000000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 3.000000  disc primes [2]  Galois S2
+   3 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 3]  Galois E(4) = 2[x]2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F False  corner cluster False  W = 2.000000  disc primes [2, 3]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F False  corner cluster False  W = 3.000000  disc primes [5]  Galois S2
+   [not solved or degree > 64]  2 interior
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 3.000000  disc primes [2]  Galois S2
+   3 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 3.000000  disc primes [2]  Galois S2
+   3 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 3]  Galois E(4) = 2[x]2
+   2 interior   deg F   2  deg W   2  certified True   sqrt2 in F False  corner cluster False  W = 3.154701  disc primes [2, 3]  Galois S2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 1.618073  disc primes [2, 7, 751]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F False  corner cluster False  W = 2.561553  disc primes [17]  Galois S2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 2.599862  disc primes [2, 2663]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 1.725990  disc primes [2, 761, 6359]  Galois [S(4)^2]2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 1.725990  disc primes [2, 761, 6359]  Galois [S(4)^2]2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F False  corner cluster False  W = 2.438447  disc primes [17]  Galois S2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 0.512351  disc primes [2, 761, 6359]  Galois [S(4)^2]2
+   2 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 1.725990  disc primes [2, 761, 6359]  Galois [S(4)^2]2
+   1 interior   deg F  12  deg W  12  certified True   sqrt2 in F True   corner cluster False  W = 1.727919  disc primes [2, 66137, 8733281]  Galois ?
+        (certified with W, 2500 digits)
+   2 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 1.725990  disc primes [2, 761, 6359]  Galois [S(4)^2]2
+   1 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 2.000000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2]  Galois S2
+   2 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   2 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 0.500000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   2 interior   deg F   2  deg W   1  certified True   sqrt2 in F False  corner cluster False  W = 2.000000  disc primes [5]  Galois S2
+   [not solved or degree > 64]  2 interior
+   3 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 2.000000  disc primes [2]  Galois S2
+   3 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2]  Galois S2
+   4 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   2 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F False  corner cluster False  W = 2.000000  disc primes [5]  Galois S2
+   1 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   1 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   1 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 2.000000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2]  Galois S2
+   4 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 0.333333  disc primes [2, 37]  Galois D(6) = S(3)[x]2
+   3 interior   deg F   2  deg W   1  certified True   sqrt2 in F False  corner cluster False  W = 2.000000  disc primes [2, 3]  Galois S2
+   2 interior   deg F   8  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2, 17]  Galois 1/2[2^4]dD(4)
+   2 interior   deg F   2  deg W   1  certified True   sqrt2 in F False  corner cluster False  W = 3.000000  disc primes [5]  Galois S2
+   2 interior   deg F   2  deg W   1  certified True   sqrt2 in F False  corner cluster False  W = 3.000000  disc primes [5]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2]  Galois S2
+   4 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2]  Galois S2
+   3 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2]  Galois S2
+   2 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   2 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   4 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   1 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   4 interior   deg F   2  deg W   1  certified True   sqrt2 in F False  corner cluster False  W = 2.000000  disc primes [5]  Galois S2
+   2 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 0.500000  disc primes [2, 37]  Galois D(6) = S(3)[x]2
+   2 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 0.500000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   2 interior   deg F   2  deg W   1  certified True   sqrt2 in F False  corner cluster False  W = 2.000000  disc primes [5]  Galois S2
+   2 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   4 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2]  Galois S2
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 37]  Galois D(6) = S(3)[x]2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F False  corner cluster False  W = 4.236068  disc primes [5]  Galois S2
+   3 interior   deg F   3  deg W   3  certified True   sqrt2 in F False  corner cluster False  W = 2.109916  disc primes [7]  Galois A3
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F False  corner cluster False  W = 4.236068  disc primes [5]  Galois S2
+   2 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 0.500000  disc primes [2, 5]  Galois E(4) = 2[x]2
+   4 interior   deg F   2  deg W   1  certified True   sqrt2 in F False  corner cluster False  W = 2.000000  disc primes [5]  Galois S2
+   2 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster True   W = 0.796290  disc primes [2, 601]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster False  W = 2.239101  disc primes [2, 31]  Galois D(4)
+   3 interior   deg F   3  deg W   3  certified True   sqrt2 in F False  corner cluster False  W = 2.193937  disc primes [2, 37]  Galois S3
+   2 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 1.684942  disc primes [2, 4649]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   2 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster False  W = 2.329431  disc primes [2]  Galois S2
+   3 interior   deg F   2  deg W   2  certified True   sqrt2 in F False  corner cluster False  W = 2.280776  disc primes [17]  Galois S2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster False  W = 2.329431  disc primes [2]  Galois S2
+   1 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster True   W = 2.693175  disc primes [2, 5]  Galois E(4) = 2[x]2
+   2 interior   deg F   3  deg W   3  certified True   sqrt2 in F False  corner cluster False  W = 2.193937  disc primes [2, 37]  Galois S3
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 2.326379  disc primes [2, 29399]  Galois [S(4)^2]2
+   2 interior   deg F   2  deg W   2  certified True   sqrt2 in F False  corner cluster False  W = 2.280776  disc primes [17]  Galois S2
+   2 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 0.593492  disc primes [2, 4649]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   3 interior   deg F  10  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 14924057]  Galois [S(5)^2]2
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 41, 47]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster True   W = 1.652930  disc primes [2, 113]  Galois D(4)
+   2 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 41, 47]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   3 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster True   W = 1.652930  disc primes [2, 113]  Galois D(4)
+   3 interior   deg F  10  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 14924057]  Galois [S(5)^2]2
+   1 interior   deg F  10  deg W  10  certified True   sqrt2 in F True   corner cluster False  W = 0.384127  disc primes [2, 9298769]  Galois [S(5)^2]2
+   3 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 1.618073  disc primes [2, 7, 751]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   2 interior   deg F  14  deg W  14  certified True   sqrt2 in F True   corner cluster False  W = 1.620838  disc primes [2, 1375558424033]  Galois ?
+        (certified with W, 2500 digits)
+   2 interior   deg F   2  deg W   2  certified True   sqrt2 in F False  corner cluster False  W = 2.561553  disc primes [17]  Galois S2
+   2 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 2.599862  disc primes [2, 2663]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster True   W = 1.652930  disc primes [2, 113]  Galois D(4)
+   3 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster True   W = 1.652930  disc primes [2, 113]  Galois D(4)
+   2 interior   deg F  10  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 14924057]  Galois [S(5)^2]2
+        (certified with random combination, 7500 digits)
+   1 interior   deg F   8  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 1889]  Galois [2^4]4
+   2 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 41, 47]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   2 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster True   W = 1.759349  disc primes [2, 7, 751]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster True   W = 2.819806  disc primes [2, 2663]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F False  corner cluster False  W = 2.780776  disc primes [17]  Galois S2
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 41, 47]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster True   W = 1.652930  disc primes [2, 113]  Galois D(4)
+   2 interior   deg F  10  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 14924057]  Galois [S(5)^2]2
+        (certified with random combination, 7500 digits)
+   2 interior   deg F  16  deg W  16  certified True   sqrt2 in F True   corner cluster False  W = 1.400361  disc primes [2, 113, 281, 601, 857, 6911]  Galois ?
+        (certified with W, 2500 digits)
+   1 interior   deg F  10  deg W  10  certified True   sqrt2 in F True   corner cluster False  W = 0.713430  disc primes [2, 1609177]  Galois [S(5)^2]2
+        (certified with W, 2500 digits)
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 1.313452  disc primes [2, 1246073]  Galois [S(4)^2]2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 1.275328  disc primes [2, 31, 2791]  Galois [S(4)^2]2
+   1 interior   deg F   8  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 1889]  Galois [2^4]4
+   1 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster True   W = 1.652930  disc primes [2, 113]  Galois D(4)
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 3, 523]  Galois D(6) = S(3)[x]2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 1.427875  disc primes [2, 181193]  Galois [S(4)^2]2
+   1 interior   deg F  14  deg W  14  certified True   sqrt2 in F True   corner cluster False  W = 1.524525  disc primes [2, 137, 3257, 451879]  Galois ?
+        (certified with W, 2500 digits)
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 2.069180  disc primes [2, 9433]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster False  W = 1.161260  disc primes [2, 113]  Galois D(4)
+   1 interior   deg F  12  deg W  12  certified True   sqrt2 in F True   corner cluster True   W = 1.187581  disc primes [2, 18987649]  Galois ?
+        (certified with W, 2500 digits)
+   [not solved or degree > 64]  2 interior
+   2 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 0.561184  disc primes [2, 9433]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   2 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 1.219162  disc primes [2, 3, 219017]  Galois [S(4)^2]2
+   1 interior   deg F  16  deg W  16  certified True   sqrt2 in F True   corner cluster False  W = 1.791504  disc primes [2, 73, 2162958554681]  Galois ?
+        (certified with W, 2500 digits)
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 1.372477  disc primes [2, 16633]  Galois [S(4)^2]2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 0.615827  disc primes [2, 34913]  Galois [S(4)^2]2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 1.624761  disc primes [2, 1489]  Galois [S(4)^2]2
+   1 interior   deg F  12  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 577]  Galois ?
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2]  Galois S2
+   4 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2]  Galois S2
+   3 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2]  Galois S2
+   3 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2]  Galois S2
+   3 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2]  Galois S2
+   4 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2]  Galois S2
+   [not solved or degree > 64]  1 interior
+   4 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2]  Galois S2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 1.172395  disc primes [2, 41]  Galois [4^2]2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 0.852955  disc primes [2, 41]  Galois [4^2]2
+   2 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster True   W = 0.818228  disc primes [2, 167]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster True   W = 0.818228  disc primes [2, 167]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 0.559485  disc primes [2, 41233]  Galois [S(4)^2]2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 1.787360  disc primes [2, 41233]  Galois [S(4)^2]2
+   1 interior   deg F  10  deg W  10  certified True   sqrt2 in F True   corner cluster True   W = 0.819289  disc primes [2, 73, 151, 641]  Galois [S(5)^2]2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 1.787360  disc primes [2, 41233]  Galois [S(4)^2]2
+   1 interior   deg F   3  deg W   3  certified True   sqrt2 in F False  corner cluster False  W = 3.314596  disc primes [2, 13]  Galois S3
+   1 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2]  Galois C(4) = 4
+   3 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2]  Galois C(4) = 4
+   3 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2]  Galois C(4) = 4
+   1 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2]  Galois C(4) = 4
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 1.296526  disc primes [2, 383]  Galois [2^4]4
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 103, 127]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster False  W = 1.281972  disc primes [2, 7]  Galois D(4)
+   3 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster True   W = 0.780048  disc primes [2, 7]  Galois D(4)
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 103, 127]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   3 interior   deg F  10  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 6710521]  Galois [S(5)^2]2
+   1 interior   deg F   3  deg W   3  certified True   sqrt2 in F False  corner cluster False  W = 2.675131  disc primes [2, 37]  Galois S3
+   2 interior   deg F  14  deg W  14  certified True   sqrt2 in F True   corner cluster True   W = 0.762867  disc primes [2, 193, 132811639]  Galois ?
+        (certified with W, 2500 digits)
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster True   W = 2.705264  disc primes [2, 1999]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 2.705264  disc primes [2, 1999]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 0.761446  disc primes [2, 191, 569]  Galois [S(4)^2]2
+   3 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 0.761446  disc primes [2, 191, 569]  Galois [S(4)^2]2
+   1 interior   deg F   3  deg W   3  certified True   sqrt2 in F False  corner cluster False  W = 2.675131  disc primes [2, 37]  Galois S3
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster False  W = 0.406983  disc primes [2]  Galois S2
+   1 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster True   W = 0.780048  disc primes [2, 7]  Galois D(4)
+   2 interior   deg F  10  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 6710521]  Galois [S(5)^2]2
+        (certified with random combination, 7500 digits)
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 103, 127]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F  10  deg W  10  certified True   sqrt2 in F True   corner cluster False  W = 1.342185  disc primes [2, 191, 919, 1567]  Galois [S(5)^2]2
+        (certified with W, 2500 digits)
+   2 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster True   W = 0.745760  disc primes [2, 3889]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 0.646850  disc primes [2, 7, 239]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   3 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 1.541191  disc primes [2, 27689]  Galois [S(4)^2]2
+   1 interior   deg F   3  deg W   3  certified True   sqrt2 in F False  corner cluster False  W = 2.350262  disc primes [2, 37]  Galois S3
+   1 interior   deg F   8  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 5, 29]  Galois E(8):2=D(4)[x]2
+   2 interior   deg F   8  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 19, 8689]  Galois [S(4)^2]2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster False  W = 0.406983  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster False  W = 2.414214  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 1.372583  disc primes [2]  Galois S2
+   1 interior   deg F  14  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2, 31, 73, 65617]  Galois ?
+        (certified with random combination, 7500 digits)
+   3 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster False  W = 0.406983  disc primes [2]  Galois S2
+   2 interior   deg F   8  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 19, 8689]  Galois [S(4)^2]2
+   3 interior   deg F   8  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 5, 29]  Galois E(8):2=D(4)[x]2
+   3 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster False  W = 2.414214  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 2.457107  disc primes [2]  Galois S2
+   2 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 0.396351  disc primes [2, 23, 2063]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   2 interior   deg F   3  deg W   3  certified True   sqrt2 in F False  corner cluster False  W = 2.481194  disc primes [2, 37]  Galois S3
+   2 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 0.417000  disc primes [2, 34369]  Galois [S(4)^2]2
+   3 interior   deg F   3  deg W   3  certified True   sqrt2 in F False  corner cluster False  W = 2.350262  disc primes [2, 37]  Galois S3
+   3 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster False  W = 1.381762  disc primes [2, 41]  Galois D(4)
+   2 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster False  W = 0.723714  disc primes [2, 41]  Galois D(4)
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 0.549370  disc primes [2, 367]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster True   W = 0.725983  disc primes [2, 73]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F  14  deg W  14  certified True   sqrt2 in F True   corner cluster True   W = 1.068600  disc primes [2, 3, 265123359793]  Galois ?
+        (certified with W, 2500 digits)
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 2.041784  disc primes [2, 27689]  Galois [S(4)^2]2
+   [not solved or degree > 64]  2 interior
+   1 interior   deg F  12  deg W  12  certified True   sqrt2 in F True   corner cluster False  W = 1.424310  disc primes [2, 3, 337, 191911]  Galois ?
+        (certified with W, 2500 digits)
+   1 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster False  W = 3.561722  disc primes [2, 3]  Galois E(4) = 2[x]2
+   3 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster False  W = 1.502687  disc primes [2]  Galois C(4) = 4
+   1 interior   deg F   3  deg W   3  certified True   sqrt2 in F False  corner cluster False  W = 3.521380  disc primes [2, 13]  Galois S3
+   1 interior   deg F   3  deg W   3  certified True   sqrt2 in F False  corner cluster False  W = 3.521380  disc primes [2, 13]  Galois S3
+   3 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 13]  Galois D(6) = S(3)[x]2
+   4 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 1.457107  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 0.686292  disc primes [2]  Galois S2
+   [not solved or degree > 64]  1 interior
+   2 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 13]  Galois D(6) = S(3)[x]2
+   2 interior   deg F   3  deg W   1  certified True   sqrt2 in F False  corner cluster False  W = 2.000000  disc primes [2, 13]  Galois S3
+   4 interior   deg F   4  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 1.457107  disc primes [2, 5]  Galois E(4) = 2[x]2
+   1 interior   deg F   4  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 0.686292  disc primes [2, 5]  Galois E(4) = 2[x]2
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2, 5, 23]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   3 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 13]  Galois D(6) = S(3)[x]2
+   4 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 1.457107  disc primes [2]  Galois S2
+   3 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 0.686292  disc primes [2]  Galois S2
+   2 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 193]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   2 interior   deg F   3  deg W   3  certified True   sqrt2 in F False  corner cluster False  W = 3.314596  disc primes [2, 13]  Galois S3
+   3 interior   deg F  10  deg W  10  certified True   sqrt2 in F True   corner cluster False  W = 1.416443  disc primes [2, 7508209]  Galois [S(5)^2]2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 0.297339  disc primes [2, 367]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   4 interior   deg F   4  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 1.457107  disc primes [2, 5]  Galois E(4) = 2[x]2
+   2 interior   deg F   4  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 0.686292  disc primes [2, 5]  Galois E(4) = 2[x]2
+   2 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 0.500000  disc primes [2, 193]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 0.500000  disc primes [2, 5, 23]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   3 interior   deg F   3  deg W   1  certified True   sqrt2 in F False  corner cluster False  W = 2.000000  disc primes [2, 13]  Galois S3
+   3 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 1.541191  disc primes [2, 27689]  Galois [S(4)^2]2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 0.646850  disc primes [2, 7, 239]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   2 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 0.743787  disc primes [2, 1489, 2039]  Galois [S(4)^2]2
+   3 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 1.344472  disc primes [2, 1489, 2039]  Galois [S(4)^2]2
+   3 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster False  W = 0.723714  disc primes [2, 41]  Galois D(4)
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster True   W = 1.193742  disc primes [2, 103, 127]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   2 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 0.776332  disc primes [2, 31, 89]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster True   W = 0.837702  disc primes [2, 103, 127]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F  12  deg W  12  certified True   sqrt2 in F True   corner cluster True   W = 0.777648  disc primes [2, 151, 8570719]  Galois ?
+        (certified with W, 2500 digits)
+   1 interior   deg F  12  deg W  12  certified True   sqrt2 in F True   corner cluster True   W = 0.777664  disc primes [2, 31, 1348951]  Galois ?
+        (certified with W, 2500 digits)
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 1.457107  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 0.686292  disc primes [2]  Galois S2
+   2 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 13]  Galois D(6) = S(3)[x]2
+   2 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 13]  Galois D(6) = S(3)[x]2
+   2 interior   deg F   4  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 0.686292  disc primes [2, 5]  Galois E(4) = 2[x]2
+   2 interior   deg F   3  deg W   1  certified True   sqrt2 in F False  corner cluster False  W = 2.000000  disc primes [2, 13]  Galois S3
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2, 5, 23]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 5, 23]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 1.457107  disc primes [2]  Galois S2
+   3 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 0.686292  disc primes [2]  Galois S2
+   2 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 13]  Galois D(6) = S(3)[x]2
+   3 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 13]  Galois D(6) = S(3)[x]2
+   1 interior   deg F   6  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 1.457107  disc primes [2, 37]  Galois D(6) = S(3)[x]2
+   2 interior   deg F   4  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 0.686292  disc primes [2, 5]  Galois E(4) = 2[x]2
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 0.500000  disc primes [2, 193]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 0.500000  disc primes [2, 5, 23]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   3 interior   deg F   3  deg W   1  certified True   sqrt2 in F False  corner cluster False  W = 2.000000  disc primes [2, 13]  Galois S3
+   2 interior   deg F   3  deg W   1  certified True   sqrt2 in F False  corner cluster False  W = 2.000000  disc primes [2, 13]  Galois S3
+   1 interior   deg F   4  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 0.686292  disc primes [2, 5]  Galois E(4) = 2[x]2
+   1 interior   deg F   6  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 0.686292  disc primes [2, 37]  Galois D(6) = S(3)[x]2
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.000000  disc primes [2, 193]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   2 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 13]  Galois D(6) = S(3)[x]2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 1.457107  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 0.686292  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster True   W = 0.686292  disc primes [2]  Galois S2
+   1 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 193]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   3 interior   deg F   6  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 13]  Galois D(6) = S(3)[x]2
+   [not solved or degree > 64]  1 interior
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 0.900051  disc primes [2, 1889]  Galois [2^4]4
+   2 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 1.648226  disc primes [2, 7, 239, 2833]  Galois [S(4)^2]2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster True   W = 1.108308  disc primes [2, 41, 47]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   [not solved or degree > 64]  1 interior
+   2 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 0.606713  disc primes [2, 7, 239, 2833]  Galois [S(4)^2]2
+   2 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster True   W = 1.108308  disc primes [2, 41, 47]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 2.164263  disc primes [2, 41, 47]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 2.157429  disc primes [2, 7, 239, 2833]  Galois [S(4)^2]2
+   2 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 1.180675  disc primes [2, 7, 115079]  Galois [S(4)^2]2
+   1 interior   deg F  10  deg W  10  certified True   sqrt2 in F True   corner cluster True   W = 1.241777  disc primes [2, 10457, 228049]  Galois [S(5)^2]2
+   1 interior   deg F  12  deg W  12  certified True   sqrt2 in F True   corner cluster False  W = 0.666532  disc primes [2, 5, 1721, 6151]  Galois ?
+        (certified with W, 2500 digits)
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 1.879285  disc primes [2, 1009, 2887]  Galois [S(4)^2]2
+   1 interior   deg F  12  deg W  12  certified True   sqrt2 in F True   corner cluster False  W = 1.502285  disc primes [2, 509556097]  Galois ?
+        (certified with W, 2500 digits)
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 0.546348  disc primes [2, 41, 47]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 1.950382  disc primes [2, 7, 239, 2833]  Galois [S(4)^2]2
+   [not solved or degree > 64]  2 interior
+   1 interior   deg F  14  deg W  14  certified True   sqrt2 in F True   corner cluster False  W = 0.529907  disc primes [2, 62067400242383]  Galois ?
+        (certified with W, 2500 digits)
+   2 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 1.879285  disc primes [2, 1009, 2887]  Galois [S(4)^2]2
+   2 interior   deg F  12  deg W  12  certified True   sqrt2 in F True   corner cluster False  W = 1.503208  disc primes [2, 17, 311, 6399961]  Galois ?
+        (certified with W, 2500 digits)
+   2 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 1.957392  disc primes [2, 41, 47]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F  10  deg W  10  certified True   sqrt2 in F True   corner cluster True   W = 1.348930  disc primes [2, 47, 42751]  Galois [S(5)^2]2
+   1 interior   deg F  10  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 1361401]  Galois [S(5)^2]2
+   2 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 1.150996  disc primes [2, 194671]  Galois [S(4)^2]2
+   1 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster False  W = 0.790285  disc primes [2]  Galois C(4) = 4
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 0.665490  disc primes [2, 31, 2791]  Galois [S(4)^2]2
+   [not solved or degree > 64]  1 interior
+   2 interior   deg F  10  deg W  10  certified True   sqrt2 in F True   corner cluster False  W = 1.096696  disc primes [2, 73, 5496809]  Galois [S(5)^2]2
+        (certified with W, 2500 digits)
+   1 interior   deg F  14  deg W  14  certified True   sqrt2 in F True   corner cluster False  W = 0.936920  disc primes [2, 137, 151, 769, 1783]  Galois ?
+        (certified with W, 2500 digits)
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 0.489768  disc primes [2, 27689]  Galois [S(4)^2]2
+   1 interior   deg F  12  deg W  12  certified True   sqrt2 in F True   corner cluster False  W = 1.422378  disc primes [2, 881, 9743119]  Galois ?
+        (certified with W, 2500 digits)
+   2 interior   deg F  12  deg W  12  certified True   sqrt2 in F True   corner cluster False  W = 1.421519  disc primes [2, 14888230943]  Galois ?
+        (certified with W, 2500 digits)
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 2.036506  disc primes [2, 8599]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 1.340913  disc primes [2, 3889]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   2 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 0.648849  disc primes [2, 27689]  Galois [S(4)^2]2
+   1 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster True   W = 2.018829  disc primes [2, 3]  Galois E(4) = 2[x]2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 1.377442  disc primes [2, 73]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 0.700765  disc primes [2, 79, 2633]  Galois [S(4)^2]2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 0.610273  disc primes [2, 79]  Galois [2^4]4
+   2 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 1.586948  disc primes [2, 715919]  Galois [S(4)^2]2
+   3 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 0.631732  disc primes [2, 1009, 2887]  Galois [S(4)^2]2
+   2 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 1.582949  disc primes [2, 1009, 2887]  Galois [S(4)^2]2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 1.586948  disc primes [2, 715919]  Galois [S(4)^2]2
+   3 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 0.631732  disc primes [2, 1009, 2887]  Galois [S(4)^2]2
+   1 interior   deg F  12  deg W  12  certified True   sqrt2 in F True   corner cluster False  W = 1.585511  disc primes [2, 199, 223, 1039, 2239]  Galois ?
+        (certified with W, 2500 digits)
+   2 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 0.597760  disc primes [2, 41, 47]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 2.092754  disc primes [2, 1009, 2887]  Galois [S(4)^2]2
+   2 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 1.582949  disc primes [2, 1009, 2887]  Galois [S(4)^2]2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 0.764496  disc primes [2, 2143]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 0.585621  disc primes [2, 2521]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   1 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2]  Galois C(4) = 4
+   2 interior   deg F   8  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 7, 35809]  Galois [S(4)^2]2
+   1 interior   deg F   8  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 17]  Galois [2^4]4
+   1 interior   deg F   2  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 2.750000  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster False  W = 2.707107  disc primes [2]  Galois S2
+   1 interior   deg F   8  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2, 17]  Galois [2^4]4
+   1 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2]  Galois C(4) = 4
+   3 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster True   W = 1.000000  disc primes [2]  Galois C(4) = 4
+   1 interior   deg F   4  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2]  Galois C(4) = 4
+   2 interior   deg F   8  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 7, 35809]  Galois [S(4)^2]2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster False  W = 0.338168  disc primes [2]  Galois S2
+   1 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster False  W = 2.914214  disc primes [2]  Galois S2
+   3 interior   deg F   8  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 2927]  Galois [S(4)^2]2
+   1 interior   deg F  12  deg W  12  certified True   sqrt2 in F True   corner cluster False  W = 0.406159  disc primes [2, 15031, 335809]  Galois ?
+        (certified with W, 2500 digits)
+   2 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster True   W = 1.048642  disc primes [2, 19, 8689]  Galois [S(4)^2]2
+   1 interior   deg F  12  deg W  12  certified True   sqrt2 in F True   corner cluster False  W = 2.462053  disc primes [2, 191, 359, 37649]  Galois ?
+   2 interior   deg F   2  deg W   2  certified True   sqrt2 in F True   corner cluster False  W = 2.414214  disc primes [2]  Galois S2
+   1 interior   deg F   8  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 17]  Galois [2^4]4
+   3 interior   deg F  10  deg W   1  certified True   sqrt2 in F True   corner cluster False  W = 1.000000  disc primes [2, 41, 929]  Galois [S(5)^2]2
+   [not solved or degree > 64]  2 interior
+   2 interior   deg F   8  deg W   8  certified True   sqrt2 in F True   corner cluster False  W = 1.063625  disc primes [2, 17, 14321]  Galois [S(4)^2]2
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 0.538451  disc primes [2, 31, 89]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+   2 interior   deg F   4  deg W   4  certified True   sqrt2 in F True   corner cluster False  W = 1.848684  disc primes [2]  Galois D(4)
+   1 interior   deg F  14  deg W  14  certified True   sqrt2 in F True   corner cluster False  W = 1.604352  disc primes [2, 7, 3921855810793]  Galois ?
+        (certified with W, 2500 digits)
+   1 interior   deg F   6  deg W   6  certified True   sqrt2 in F True   corner cluster False  W = 0.901055  disc primes [2, 367]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2
+
+(corner cluster, sqrt 2 in F) -> number of patterns: {(False, True): 231, (False, False): 44, (True, True): 105}
+(top-bottom triangle with a third circle on a line, sqrt 2 in F) -> number of patterns: {(False, True): 200, (False, False): 30, (True, True): 136, (True, False): 14}
+(each side wall touched by one circle of radius 1/2 only, sqrt 2 in F) -> number of patterns: {(True, True): 19, (False, True): 317, (True, False): 44}
+patterns whose field does not contain sqrt 2:
+   n = 5  deg F 2  W = 2.236068  disc primes [5]  Galois S2
+      tangencies [(0, 1), (0, 2), (0, 3), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
+      sides      [(0, 'bottom'), (0, 'left'), (0, 'top'), (1, 'top'), (2, 'bottom'), (4, 'bottom'), (4, 'right'), (4, 'top')]
+   n = 6  deg F 2  W = 2.000000  disc primes [5]  Galois S2
+      tangencies [(0, 1), (0, 4), (0, 5), (1, 2), (1, 5), (2, 3), (2, 5), (3, 4), (3, 5), (4, 5)]
+      sides      [(0, 'bottom'), (0, 'left'), (0, 'top'), (1, 'top'), (2, 'top'), (3, 'top'), (4, 'bottom'), (4, 'right'), (4, 'top')]
+   n = 6  deg F 2  W = 2.154701  disc primes [2, 3]  Galois S2
+      tangencies [(0, 1), (0, 2), (0, 5), (1, 3), (1, 4), (1, 5), (2, 3), (2, 4), (2, 5), (3, 4), (4, 5)]
+      sides      [(0, 'bottom'), (1, 'bottom'), (1, 'right'), (1, 'top'), (2, 'bottom'), (2, 'left'), (2, 'top'), (3, 'top')]
+   n = 6  deg F 2  W = 3.236068  disc primes [5]  Galois S2
+      tangencies [(0, 5), (1, 2), (1, 3), (1, 4), (2, 3), (2, 5), (3, 4), (3, 5), (4, 5)]
+      sides      [(0, 'bottom'), (0, 'left'), (0, 'top'), (1, 'bottom'), (1, 'right'), (1, 'top'), (2, 'top'), (4, 'bottom'), (5, 'bottom'), (5, 'top')]
+   n = 6  deg F 2  W = 2.000000  disc primes [5]  Galois S2
+      tangencies [(0, 1), (0, 2), (0, 4), (0, 5), (1, 2), (1, 4), (2, 3), (2, 5), (3, 4), (3, 5), (4, 5)]
+      sides      [(1, 'bottom'), (1, 'left'), (1, 'top'), (2, 'top'), (3, 'top'), (4, 'bottom'), (4, 'right'), (4, 'top')]
+   n = 6  deg F 3  W = 2.314596  disc primes [2, 13]  Galois S3
+      tangencies [(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 2), (1, 5), (2, 3), (3, 4), (4, 5)]
+      sides      [(1, 'bottom'), (1, 'left'), (1, 'top'), (2, 'bottom'), (3, 'bottom'), (4, 'bottom'), (4, 'right'), (4, 'top'), (5, 'top')]
+   n = 6  deg F 3  W = 2.521380  disc primes [2, 13]  Galois S3
+      tangencies [(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (1, 4), (1, 5), (2, 3), (3, 4), (4, 5)]
+      sides      [(1, 'top'), (2, 'top'), (3, 'bottom'), (3, 'left'), (3, 'top'), (4, 'bottom'), (5, 'bottom'), (5, 'right'), (5, 'top')]
+   n = 6  deg F 3  W = 2.314596  disc primes [2, 13]  Galois S3
+      tangencies [(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (1, 4), (1, 5), (2, 3), (2, 5), (3, 4), (3, 5)]
+      sides      [(1, 'top'), (3, 'bottom'), (4, 'bottom'), (4, 'right'), (4, 'top'), (5, 'bottom'), (5, 'left'), (5, 'top')]
+   n = 7  deg F 2  W = 2.000000  disc primes [2, 3]  Galois S2
+      tangencies [(0, 1), (0, 5), (0, 6), (1, 2), (1, 6), (2, 3), (2, 6), (3, 4), (3, 6), (4, 5), (4, 6), (5, 6)]
+      sides      [(0, 'bottom'), (0, 'right'), (0, 'top'), (1, 'bottom'), (1, 'left'), (1, 'top'), (2, 'top'), (3, 'top'), (4, 'top'), (5, 'top')]
+   n = 7  deg F 2  W = 3.000000  disc primes [5]  Galois S2
+      tangencies [(0, 1), (0, 4), (0, 5), (0, 6), (1, 2), (1, 6), (2, 3), (2, 6), (3, 4), (3, 6), (4, 6)]
+      sides      [(0, 'bottom'), (0, 'top'), (1, 'top'), (2, 'top'), (3, 'top'), (4, 'bottom'), (4, 'right'), (4, 'top'), (5, 'bottom'), (5, 'left'), (5, 'top')]
+   n = 7  deg F 2  W = 3.154701  disc primes [2, 3]  Galois S2
+      tangencies [(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 2), (1, 6), (2, 3), (2, 6), (3, 4), (3, 6), (4, 6)]
+      sides      [(0, 'bottom'), (0, 'top'), (1, 'top'), (4, 'bottom'), (5, 'bottom'), (5, 'right'), (5, 'top'), (6, 'bottom'), (6, 'left'), (6, 'top')]
+   n = 7  deg F 2  W = 2.561553  disc primes [17]  Galois S2
+      tangencies [(0, 1), (0, 4), (0, 5), (0, 6), (1, 2), (1, 5), (1, 6), (2, 3), (2, 6), (3, 4), (3, 6), (4, 6)]
+      sides      [(0, 'bottom'), (1, 'top'), (2, 'top'), (3, 'top'), (4, 'bottom'), (4, 'right'), (4, 'top'), (5, 'bottom'), (5, 'left'), (5, 'top')]
+   n = 7  deg F 2  W = 2.438447  disc primes [17]  Galois S2
+      tangencies [(0, 1), (0, 5), (0, 6), (1, 2), (1, 5), (2, 3), (2, 5), (3, 4), (3, 5), (4, 5), (4, 6), (5, 6)]
+      sides      [(0, 'bottom'), (1, 'bottom'), (1, 'left'), (1, 'top'), (2, 'top'), (3, 'top'), (4, 'bottom'), (4, 'right'), (4, 'top'), (6, 'bottom')]
+   n = 7  deg F 2  W = 2.000000  disc primes [5]  Galois S2
+      tangencies [(0, 1), (0, 3), (0, 5), (0, 6), (1, 2), (1, 3), (1, 5), (2, 3), (3, 4), (3, 6), (4, 5), (4, 6), (5, 6)]
+      sides      [(1, 'top'), (2, 'bottom'), (2, 'right'), (2, 'top'), (3, 'bottom'), (3, 'left'), (3, 'top'), (4, 'top'), (5, 'top')]
+   n = 7  deg F 2  W = 2.000000  disc primes [5]  Galois S2
+      tangencies [(0, 1), (0, 2), (0, 5), (0, 6), (1, 2), (2, 3), (2, 6), (3, 4), (3, 6), (4, 5), (4, 6), (5, 6)]
+      sides      [(0, 'bottom'), (0, 'right'), (0, 'top'), (1, 'bottom'), (1, 'left'), (1, 'top'), (2, 'top'), (3, 'top'), (4, 'top'), (5, 'top')]
+   n = 7  deg F 2  W = 2.000000  disc primes [2, 3]  Galois S2
+      tangencies [(0, 1), (0, 2), (0, 4), (0, 5), (1, 2), (1, 4), (2, 3), (2, 5), (2, 6), (3, 4), (3, 6), (4, 5), (4, 6), (5, 6)]
+      sides      [(1, 'bottom'), (1, 'left'), (1, 'top'), (2, 'top'), (3, 'top'), (4, 'bottom'), (4, 'right'), (4, 'top')]
+   n = 7  deg F 2  W = 3.000000  disc primes [5]  Galois S2
+      tangencies [(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 5), (1, 6), (3, 4), (3, 6), (4, 5), (4, 6), (5, 6)]
+      sides      [(0, 'bottom'), (0, 'top'), (1, 'bottom'), (1, 'right'), (1, 'top'), (2, 'bottom'), (2, 'left'), (2, 'top'), (3, 'bottom'), (6, 'bottom')]
+   n = 7  deg F 2  W = 3.000000  disc primes [5]  Galois S2
+      tangencies [(0, 2), (1, 2), (1, 3), (1, 4), (1, 5), (2, 5), (2, 6), (3, 4), (3, 6), (4, 5), (4, 6), (5, 6)]
+      sides      [(0, 'bottom'), (0, 'right'), (0, 'top'), (1, 'bottom'), (1, 'left'), (1, 'top'), (2, 'bottom'), (2, 'top'), (3, 'bottom'), (6, 'bottom')]
+   n = 7  deg F 2  W = 2.000000  disc primes [5]  Galois S2
+      tangencies [(0, 1), (0, 2), (0, 4), (0, 5), (0, 6), (1, 2), (1, 3), (1, 4), (2, 3), (2, 5), (3, 4), (3, 5), (3, 6), (4, 6), (5, 6)]
+      sides      [(1, 'bottom'), (1, 'left'), (1, 'top'), (2, 'top'), (3, 'bottom'), (3, 'right'), (3, 'top')]
+   n = 7  deg F 2  W = 2.000000  disc primes [5]  Galois S2
+      tangencies [(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 2), (1, 6), (2, 3), (2, 6), (3, 4), (3, 6), (4, 5), (4, 6)]
+      sides      [(0, 'top'), (1, 'top'), (4, 'bottom'), (4, 'left'), (4, 'top'), (5, 'bottom'), (5, 'right'), (5, 'top'), (6, 'top')]
+   n = 7  deg F 2  W = 4.236068  disc primes [5]  Galois S2
+      tangencies [(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (1, 5), (2, 3), (2, 5), (3, 5), (4, 6)]
+      sides      [(0, 'bottom'), (0, 'top'), (1, 'bottom'), (3, 'top'), (4, 'bottom'), (4, 'top'), (5, 'bottom'), (5, 'right'), (5, 'top'), (6, 'bottom'), (6, 'left'), (6, 'top')]
+   n = 7  deg F 3  W = 2.109916  disc primes [7]  Galois A3
+      tangencies [(0, 1), (0, 3), (0, 4), (0, 5), (1, 2), (1, 4), (1, 5), (1, 6), (2, 3), (2, 6), (3, 4), (3, 5), (3, 6), (5, 6)]
+      sides      [(1, 'bottom'), (1, 'left'), (1, 'top'), (2, 'top'), (3, 'bottom'), (3, 'right'), (3, 'top'), (4, 'bottom')]
+   n = 7  deg F 2  W = 4.236068  disc primes [5]  Galois S2
+      tangencies [(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (1, 5), (2, 3), (2, 5), (3, 5), (5, 6)]
+      sides      [(0, 'bottom'), (0, 'top'), (1, 'bottom'), (3, 'top'), (4, 'bottom'), (4, 'left'), (4, 'top'), (5, 'bottom'), (5, 'top'), (6, 'bottom'), (6, 'right'), (6, 'top')]
+   n = 7  deg F 2  W = 2.000000  disc primes [5]  Galois S2
+      tangencies [(0, 1), (0, 2), (0, 4), (0, 5), (1, 2), (1, 3), (1, 4), (2, 3), (2, 5), (2, 6), (3, 4), (3, 6), (4, 5), (4, 6), (5, 6)]
+      sides      [(1, 'bottom'), (1, 'left'), (1, 'top'), (2, 'top'), (3, 'bottom'), (3, 'right'), (3, 'top')]
+   n = 7  deg F 3  W = 2.193937  disc primes [2, 37]  Galois S3
+      tangencies [(0, 1), (0, 4), (0, 5), (0, 6), (1, 2), (1, 4), (1, 5), (2, 3), (2, 5), (3, 4), (3, 5), (3, 6), (4, 6), (5, 6)]
+      sides      [(1, 'bottom'), (1, 'left'), (1, 'top'), (2, 'top'), (3, 'bottom'), (3, 'right'), (3, 'top'), (4, 'bottom')]
+   n = 7  deg F 2  W = 2.280776  disc primes [17]  Galois S2
+      tangencies [(0, 1), (0, 4), (0, 5), (0, 6), (1, 2), (1, 4), (1, 5), (2, 3), (2, 5), (2, 6), (3, 4), (3, 6), (4, 6), (5, 6)]
+      sides      [(1, 'bottom'), (1, 'left'), (1, 'top'), (2, 'top'), (3, 'bottom'), (3, 'right'), (3, 'top'), (4, 'bottom')]
+   n = 7  deg F 3  W = 2.193937  disc primes [2, 37]  Galois S3
+      tangencies [(0, 3), (0, 4), (0, 5), (0, 6), (1, 2), (1, 4), (1, 5), (2, 3), (2, 5), (3, 5), (3, 6), (4, 5), (4, 6)]
+      sides      [(1, 'top'), (2, 'top'), (3, 'bottom'), (3, 'right'), (3, 'top'), (4, 'bottom'), (4, 'left'), (4, 'top'), (6, 'bottom')]
+   n = 7  deg F 2  W = 2.280776  disc primes [17]  Galois S2
+      tangencies [(0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (1, 2), (1, 4), (1, 5), (2, 3), (2, 5), (3, 6), (4, 5), (4, 6)]
+      sides      [(1, 'top'), (2, 'top'), (3, 'bottom'), (3, 'right'), (3, 'top'), (4, 'bottom'), (4, 'left'), (4, 'top'), (6, 'bottom')]
+   n = 7  deg F 2  W = 2.561553  disc primes [17]  Galois S2
+      tangencies [(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 2), (1, 5), (1, 6), (2, 3), (2, 6), (3, 4), (3, 6), (4, 6)]
+      sides      [(0, 'top'), (1, 'bottom'), (4, 'bottom'), (4, 'right'), (4, 'top'), (5, 'bottom'), (5, 'left'), (5, 'top'), (6, 'bottom')]
+   n = 7  deg F 2  W = 2.780776  disc primes [17]  Galois S2
+      tangencies [(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 2), (1, 6), (2, 3), (2, 6), (3, 4), (3, 6), (4, 5)]
+      sides      [(0, 'top'), (1, 'top'), (3, 'bottom'), (4, 'bottom'), (5, 'bottom'), (5, 'right'), (5, 'top'), (6, 'bottom'), (6, 'left'), (6, 'top')]
+   n = 7  deg F 3  W = 3.314596  disc primes [2, 13]  Galois S3
+      tangencies [(0, 1), (0, 2), (0, 3), (1, 2), (1, 4), (1, 5), (2, 3), (2, 5), (2, 6), (3, 6), (5, 6)]
+      sides      [(0, 'top'), (1, 'bottom'), (1, 'top'), (3, 'bottom'), (3, 'right'), (3, 'top'), (4, 'bottom'), (4, 'left'), (4, 'top'), (5, 'bottom'), (6, 'bottom')]
+   n = 7  deg F 3  W = 2.675131  disc primes [2, 37]  Galois S3
+      tangencies [(0, 1), (0, 2), (0, 3), (1, 2), (1, 4), (1, 5), (2, 3), (2, 5), (3, 5), (4, 5), (4, 6), (5, 6)]
+      sides      [(0, 'top'), (1, 'top'), (3, 'bottom'), (3, 'right'), (3, 'top'), (4, 'top'), (5, 'bottom'), (6, 'bottom'), (6, 'left'), (6, 'top')]
+   n = 7  deg F 3  W = 2.675131  disc primes [2, 37]  Galois S3
+      tangencies [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (1, 4), (2, 4), (2, 5), (3, 4), (3, 6), (4, 5), (4, 6)]
+      sides      [(0, 'top'), (2, 'top'), (3, 'top'), (4, 'bottom'), (5, 'bottom'), (5, 'right'), (5, 'top'), (6, 'bottom'), (6, 'left'), (6, 'top')]
+   n = 7  deg F 3  W = 2.350262  disc primes [2, 37]  Galois S3
+      tangencies [(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (1, 2), (1, 4), (2, 3), (3, 5), (4, 6), (5, 6)]
+      sides      [(1, 'bottom'), (1, 'left'), (1, 'top'), (2, 'top'), (3, 'bottom'), (3, 'right'), (3, 'top'), (4, 'bottom'), (5, 'bottom'), (6, 'bottom')]
+   n = 7  deg F 3  W = 2.481194  disc primes [2, 37]  Galois S3
+      tangencies [(0, 2), (0, 3), (0, 4), (0, 5), (1, 2), (1, 4), (2, 3), (2, 4), (3, 5), (3, 6), (4, 5), (4, 6), (5, 6)]
+      sides      [(1, 'bottom'), (1, 'left'), (1, 'top'), (2, 'top'), (3, 'bottom'), (3, 'right'), (3, 'top'), (4, 'bottom'), (6, 'bottom')]
+   n = 7  deg F 3  W = 2.350262  disc primes [2, 37]  Galois S3
+      tangencies [(0, 1), (0, 2), (0, 4), (0, 5), (1, 2), (1, 4), (2, 3), (2, 5), (2, 6), (3, 4), (3, 6), (4, 5), (4, 6), (5, 6)]
+      sides      [(1, 'bottom'), (1, 'left'), (1, 'top'), (2, 'top'), (3, 'bottom'), (3, 'right'), (3, 'top'), (4, 'bottom')]
+   n = 7  deg F 3  W = 3.521380  disc primes [2, 13]  Galois S3
+      tangencies [(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (1, 4), (1, 5), (2, 3), (3, 4), (3, 6), (4, 6)]
+      sides      [(1, 'bottom'), (1, 'top'), (2, 'bottom'), (3, 'bottom'), (4, 'top'), (5, 'bottom'), (5, 'left'), (5, 'top'), (6, 'bottom'), (6, 'right'), (6, 'top')]
+   n = 7  deg F 3  W = 3.521380  disc primes [2, 13]  Galois S3
+      tangencies [(0, 6), (1, 2), (1, 3), (1, 4), (1, 5), (2, 3), (2, 5), (3, 4), (4, 5), (4, 6), (5, 6)]
+      sides      [(0, 'bottom'), (0, 'right'), (0, 'top'), (2, 'bottom'), (2, 'left'), (2, 'top'), (3, 'bottom'), (4, 'bottom'), (5, 'top'), (6, 'bottom'), (6, 'top')]
+   n = 7  deg F 3  W = 2.000000  disc primes [2, 13]  Galois S3
+      tangencies [(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (1, 4), (1, 5), (2, 3), (2, 5), (2, 6), (3, 4), (3, 6), (5, 6)]
+      sides      [(1, 'top'), (3, 'top'), (4, 'top'), (5, 'bottom'), (5, 'left'), (5, 'top'), (6, 'bottom'), (6, 'right'), (6, 'top')]
+   n = 7  deg F 3  W = 3.314596  disc primes [2, 13]  Galois S3
+      tangencies [(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (1, 4), (1, 5), (2, 3), (2, 5), (3, 4), (3, 5), (5, 6)]
+      sides      [(1, 'top'), (3, 'bottom'), (4, 'bottom'), (4, 'right'), (4, 'top'), (5, 'bottom'), (5, 'top'), (6, 'bottom'), (6, 'left'), (6, 'top')]
+   n = 7  deg F 3  W = 2.000000  disc primes [2, 13]  Galois S3
+      tangencies [(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (1, 4), (1, 5), (1, 6), (2, 3), (2, 6), (3, 4), (3, 6), (4, 5), (5, 6)]
+      sides      [(3, 'top'), (4, 'top'), (5, 'bottom'), (5, 'left'), (5, 'top'), (6, 'bottom'), (6, 'right'), (6, 'top')]
+   n = 7  deg F 3  W = 2.000000  disc primes [2, 13]  Galois S3
+      tangencies [(0, 1), (0, 2), (0, 3), (1, 2), (1, 4), (1, 5), (2, 3), (2, 5), (3, 5), (3, 6), (4, 5), (4, 6), (5, 6)]
+      sides      [(0, 'top'), (1, 'top'), (3, 'bottom'), (3, 'right'), (3, 'top'), (4, 'top'), (6, 'bottom'), (6, 'left'), (6, 'top')]
+   n = 7  deg F 3  W = 2.000000  disc primes [2, 13]  Galois S3
+      tangencies [(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (1, 4), (1, 5), (1, 6), (2, 3), (2, 6), (3, 4), (3, 6), (4, 5), (5, 6)]
+      sides      [(3, 'bottom'), (3, 'left'), (3, 'top'), (4, 'bottom'), (4, 'right'), (4, 'top'), (5, 'top'), (6, 'top')]
+   n = 7  deg F 3  W = 2.000000  disc primes [2, 13]  Galois S3
+      tangencies [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (1, 4), (1, 5), (2, 5), (3, 4), (3, 6), (4, 5), (4, 6), (5, 6)]
+      sides      [(0, 'top'), (2, 'top'), (3, 'bottom'), (3, 'left'), (3, 'top'), (5, 'top'), (6, 'bottom'), (6, 'right'), (6, 'top')]
+
+The brick family: rows of k, k-1, k circles
+   k = 2 (5 circles): deg F   2  deg W   1  certified True   sqrt2 in F True   W = 1.000000  disc primes [2]  Galois S2  (0s)
+        distinct radii: [0.103553391, 0.25]
+   k = 3 (8 circles): deg F   4  deg W   4  certified True   sqrt2 in F True   W = 1.383204  disc primes [2, 7]  Galois D(4)  (0s)
+        distinct radii: [0.14098584, 0.195012108, 0.25]
+   k = 4 (11 circles): deg F   6  deg W   6  certified True   sqrt2 in F True   W = 1.752027  disc primes [2, 3889]  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2  (1s)
+        distinct radii: [0.145732469, 0.173516753, 0.190057468, 0.25]
+   k = 5 (14 circles): deg F  10  deg W  10  certified True   sqrt2 in F True   W = 2.118480  disc primes [2, 61, 79]  Galois [S(5)^2]2  (2s)
+        distinct radii: [0.146274965, 0.177750806, 0.184433569, 0.189511674, 0.25]
