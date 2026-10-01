@@ -1,0 +1,308 @@
+#import "@preview/cetz:0.4.2"
+
+#set page(paper: "a4", margin: (x: 2.0cm, y: 2.2cm), numbering: "1")
+#set text(font: "New Computer Modern", size: 10.5pt)
+#set par(justify: true)
+#set heading(numbering: "1.")
+#show link: set text(fill: blue.darken(20%))
+#show raw.where(block: true): it => block(
+  fill: luma(247), inset: 8pt, radius: 3pt, width: 100%, breakable: true,
+  text(size: 8pt, it),
+)
+
+// ---------------------------------------------------------------------
+// data and drawing
+// ---------------------------------------------------------------------
+
+#let data = json("circle-packings.json")
+
+#let row-fill = (
+  top: rgb("#d6e4f0"),
+  bottom: rgb("#f6dcc8"),
+  mid: rgb("#d5ecd4"),
+  new: rgb("#f3d2e4"),
+)
+
+// "A1" -> A with subscript 1; anything else as is
+#let circle-label(s) = {
+  let m = s.match(regex("^([A-Z]'?)(\d+)$"))
+  if m == none { math.equation(math.italic(s)) } else {
+    math.equation(math.attach(math.italic(m.captures.at(0)), b: m.captures.at(1)))
+  }
+}
+
+// p: one packing record from circle-packings.json.  `graph` draws the
+// contact graph on top: centre-to-centre segments for circle tangencies,
+// dashed segments from a centre to its tangency point on a side.
+#let packing(p, unit: 2.4cm, graph: false, labels: false, label-size: 8pt, emph-pair: none) = cetz.canvas(length: unit, {
+  import cetz.draw: *
+  let W = p.W
+  let cs = p.circles
+  rect((0, 0), (W, 1), stroke: 0.9pt)
+  for c in cs {
+    circle((c.x, c.y), radius: c.r, fill: row-fill.at(c.row), stroke: 0.55pt)
+  }
+  if emph-pair != none {
+    let a = cs.at(emph-pair.at(0))
+    let b = cs.at(emph-pair.at(1))
+    let d = calc.sqrt(calc.pow(b.x - a.x, 2) + calc.pow(b.y - a.y, 2))
+    let u = ((b.x - a.x) / d, (b.y - a.y) / d)
+    if d > a.r + b.r + 1e-6 {
+      line((a.x + a.r * u.at(0), a.y + a.r * u.at(1)), (b.x - b.r * u.at(0), b.y - b.r * u.at(1)),
+        stroke: 1.2pt + rgb("#c0392b"))
+    } else {
+      let t = (a.x + a.r * u.at(0), a.y + a.r * u.at(1))
+      circle(t, radius: 0.025, fill: rgb("#c0392b"), stroke: none)
+    }
+    content((a.x, a.y), text(8.5pt, circle-label(a.label)))
+    content((b.x, b.y), text(8.5pt, circle-label(b.label)))
+  }
+  if graph {
+    let edge = 0.6pt + rgb("#c0392b")
+    for e in p.cc {
+      let a = cs.at(e.at(0))
+      let b = cs.at(e.at(1))
+      line((a.x, a.y), (b.x, b.y), stroke: edge)
+    }
+    for w in p.walls {
+      let c = cs.at(w.at(0))
+      let foot = (
+        top: (c.x, 1), bottom: (c.x, 0), left: (0, c.y), right: (W, c.y),
+      ).at(w.at(1))
+      line((c.x, c.y), foot, stroke: (paint: rgb("#c0392b"), thickness: 0.6pt, dash: "dashed"))
+      circle(foot, radius: 0.012, fill: rgb("#c0392b"), stroke: none)
+    }
+    for c in cs {
+      circle((c.x, c.y), radius: 0.014, fill: black, stroke: none)
+    }
+  }
+  if labels {
+    for c in cs {
+      if c.label != "" {
+        content((c.x, c.y + if graph { 0.07 } else { 0 }), text(label-size, circle-label(c.label)))
+      }
+    }
+  }
+})
+
+#let fmt(x, digits: 6) = str(calc.round(x, digits: digits))
+#let path-str(p) = p.path.map(e => str(e.at(0)) + str(e.at(1))).join(" ")
+
+// a small panel: picture, then the cross tangencies and the width
+#let zig-panel(p, unit: 1.25cm) = align(center, stack(
+  dir: ttb, spacing: 1.2mm,
+  packing(p, unit: unit),
+  text(7.5pt, raw(path-str(p))),
+  text(7.5pt)[$W = #fmt(p.W)$],
+))
+
+// ---------------------------------------------------------------------
+
+#align(center)[
+  #text(size: 16pt, weight: "bold")[Rigid circle packings in a rectangle]
+  #v(2mm)
+  #text(size: 10pt)[A packing whose gaps are all triangles is determined by its tangencies;
+  the six circles of the MathOverflow problem, every two-row zigzag, circles that touch no
+  side, and what happens when one tangency is dropped]
+  #v(1mm)
+  #text(size: 9pt, style: "italic")[figures and checks in `circle-packings.py`,
+  output in `results/circle-packings.txt`]
+]
+
+#v(4mm)
+
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *Setting.* $n$ circles with disjoint interiors in a rectangle $[0, W] times [0, 1]$. A
+  _gap_ is a connected component of the rectangle minus the closed disks. The _pattern_ of the
+  packing is the list of its tangencies, circle--circle and circle--side, with the four sides
+  labelled.
+
+  *Theorem.* Suppose every gap is a curvilinear triangle: it is bounded by exactly three
+  objects (circles or sides) that touch pairwise. In particular each corner gap is bounded by
+  two sides and one circle touching both. Then:
+  + the pattern determines the packing up to similarity, so the packing is rigid, and it is
+    the only packing with that pattern at all;
+  + conversely every such pattern occurs: any triangulation of a quadrilateral with corners
+    _top_, _right_, _bottom_, _left_, without the chords _top_--_bottom_ and _left_--_right_,
+    is the pattern of exactly one packing, and its aspect ratio $W$ is determined;
+  + a symmetry of the pattern that maps sides to sides is realised by an isometry of the
+    rectangle.
+]
+
+#figure(
+  grid(
+    columns: 2, column-gutter: 6mm,
+    packing(data.six, unit: 2.75cm, labels: true, label-size: 9pt),
+    packing(data.six, unit: 2.75cm, graph: true, labels: true, label-size: 8pt),
+  ),
+  caption: [The six circles. Left: the packing, $W = #fmt(data.six.W)$. Right: its contact
+  graph, with circle tangencies as solid segments between centres and side tangencies as dashed
+  segments to the point of contact. The $19 = 3 dot 6 + 1$ tangencies cut the rectangle into
+  triangles only, so the theorem applies: the packing is rigid, and the half-turn symmetry of
+  the pattern forces $A tilde.equiv A'$, $B tilde.equiv B'$, $C tilde.equiv C'$.],
+) <fig-six>
+
+= Counting <sec-count>
+
+Fix the height to $1$ and one corner at the origin. A packing has $3n + 1$ unknowns: a centre
+and a radius per circle, and the width $W$. Every tangency is one equation.
+
+Form the graph with a vertex per circle and per side, an edge per tangency, and the four
+corners of the rectangle as edges between adjacent sides. It is planar, with $n + 4$ vertices
+and an outer face of length $4$, so Euler's formula gives
+$ \#"tangencies" + 4 lt.eq 3(n + 4) - 3 - 4, quad "that is," quad
+  \#"tangencies" lt.eq 3n + 1, $
+with equality exactly when every bounded face, that is every gap, is a triangle. So a
+triangulated packing has exactly as many equations as unknowns, and a packing with a gap of
+four or more sides has fewer. In the second case the Jacobian cannot have full rank, and the
+packing is not even infinitesimally rigid (@sec-flex shows the generic behaviour). The theorem
+says that in the first case nothing goes wrong: the square system has exactly one real
+solution that is a packing.
+
+= Why: the rectangle as four circles <sec-why>
+
+On the Riemann sphere the four sides are circles through $infinity$. Opposite sides are
+parallel, so they are tangent at $infinity$; adjacent sides meet at right angles. Give every
+tangency the intersection angle $Theta = 0$ and every corner of the rectangle
+$Theta = pi \/ 2$, and add one edge _top_--_bottom_ for the tangency at $infinity$. The result
+is a triangulation of the sphere with angles in $[0, pi\/2]$. The two new faces
+(_top_, _bottom_, _left_) and (_top_, _bottom_, _right_) have angle sum exactly $pi$, which is
+the case where three circles pass through one point.
+
+The Koebe--Andreev--Thurston theorem with intersection angles (Thurston's notes, ch. 13;
+Marden--Rodin) says that such a pattern exists and is unique up to Möbius transformations,
+provided (i) every $3$-cycle with angle sum $gt.eq pi$ bounds a face, and (ii) every $4$-cycle
+with angle sum $2 pi$ bounds two adjacent faces. Both hold: only the two faces at $infinity$
+reach $pi$, and only the cycle of the four sides reaches $2 pi$. Sending the common point of
+the four sides to $infinity$ turns them into a rectangle, and the Möbius maps preserving that
+are similarities. This gives (1) and (2); (3) follows from (1) applied to the relabelled
+packing.
+
+= Two-row zigzags <sec-zigzag>
+
+Put a row $A_1, dots, A_k$ along the top and a row $B_1, dots, B_k$ along the bottom, with
+neighbours in a row tangent and the four end circles tangent to the sides. The tangencies
+between the rows must triangulate the strip between them, so they are a lattice path of
+$2k - 1$ pairs $A_i B_j$ from $(1, 1)$ to $(k, k)$. That gives
+$ 2k + 4 + 2(k - 1) + (2k - 1) = 6k + 1 = 3n + 1 $
+tangencies for $n = 2k$ circles, so every one of the $binom(2k - 2, k - 1)$ paths is a
+triangulated pattern. Every circle touches at least four objects, so none of these arises by
+dropping a circle into a gap (@sec-insert).
+
+For $k = 2, 3, 4$ the script solved every pattern from $300$ random starting points. Each
+pattern has *exactly one* packing, and the Jacobian has full rank $3n + 1$ there. Mirror images
+in the horizontal axis have the same $W$, as they must. The six circles are the alternating
+path for $k = 3$.
+
+#figure(
+  {
+    grid(
+      columns: 2, column-gutter: 8mm, row-gutter: 4mm,
+      ..data.zigzag.at("2").map(p => zig-panel(p, unit: 1.6cm)),
+    )
+    v(3mm)
+    grid(
+      columns: 3, column-gutter: 5mm, row-gutter: 4mm,
+      ..data.zigzag.at("3").map(p => zig-panel(p, unit: 1.45cm)),
+    )
+  },
+  kind: image,
+  caption: [All two-row zigzags with $k = 2$ (top) and $k = 3$ (bottom). The digits $i j$ list
+  the tangencies $A_i B_j$. Both $k = 2$ packings are squares; one radius there is
+  $1 - 1\/sqrt(2)$. The six circles are `11 12 22 23 33` and its mirror image `11 21 22 32 33`.],
+) <fig-zig23>
+
+#figure(
+  grid(
+    columns: 4, column-gutter: 3mm, row-gutter: 3.5mm,
+    ..data.zigzag.at("4").map(p => zig-panel(p, unit: 1.13cm)),
+  ),
+  kind: image,
+  caption: [All $binom(6, 3) = 20$ two-row zigzags with $k = 4$: eight circles, $25$
+  equations, one packing each.],
+) <fig-zig4>
+
+= Circles that touch no side <sec-rows>
+
+The theorem does not care whether a circle touches the boundary. In @fig-rows two circles
+$M_1, M_2$ sit between a top row and a bottom row and touch no side; every circle touches at
+least five objects. The pattern has the symmetries of the rectangle, so by part (3) of the
+theorem so does the packing. The corner circles come out with radius exactly $1\/4$.
+
+#figure(
+  grid(
+    columns: 2, column-gutter: 6mm,
+    packing(data.three_rows, unit: 2.75cm, labels: true, label-size: 9pt),
+    packing(data.three_rows, unit: 2.75cm, graph: true, labels: true),
+  ),
+  caption: [Eight circles, $25$ tangencies, two circles touching no side;
+  $W = #fmt(data.three_rows.W)$. One packing, Jacobian of full rank.],
+) <fig-rows>
+
+= Dropping circles into gaps <sec-insert>
+
+A circle placed in a triangular gap, tangent to its three sides, adds three unknowns and three
+equations and splits the gap into three triangles, so the packing stays triangulated. The old
+circles do not move, and the new radius follows from the old ones by Descartes' theorem, a
+quadratic equation. Repeating this gives infinitely many rigid packings from any one, but they
+are cheap: rigidity of the new circles is just the uniqueness of an inscribed circle. The
+interesting patterns are the ones where every circle touches at least four objects, like the
+zigzags.
+
+#figure(
+  packing(data.inserted, unit: 3.3cm),
+  caption: [The six circles with a circle dropped into each of the four central gaps:
+  $10$ circles, $31$ tangencies, still triangulated and rigid.],
+) <fig-insert>
+
+= Dropping a tangency <sec-flex>
+
+Remove the tangency between $B$ and $B'$ from the six circles. There are now $18$ equations
+for $19$ unknowns, and the gap between $A, B, A', B'$ is a quadrilateral. Fixing $r(A) = t$
+gives back a square system, and the script follows the solution as $t$ varies. For
+$t > r(A)_"rigid" = #fmt(data.six.circles.at(0).r)$ the circles $B$ and $B'$ separate and the
+result is a genuine packing; for $t < r(A)_"rigid"$ they overlap. So the packings with this
+pattern form a one-parameter family, and the rigid packing sits at its end, at the moment the
+gap closes.
+
+#let flex-pick = data.flex.filter(p => p.t in (0.305, 0.32, 0.34))
+#figure(
+  grid(
+    columns: 2, column-gutter: 8mm, row-gutter: 4mm,
+    align(center, stack(dir: ttb, spacing: 1.2mm,
+      packing(data.six, unit: 2.3cm, emph-pair: (1, 4)),
+      text(8.5pt)[$t = #fmt(data.six.circles.at(0).r)$ (rigid)])),
+    ..flex-pick.map(p => align(center, stack(dir: ttb, spacing: 1.2mm,
+      packing(p, unit: 2.3cm, emph-pair: (1, 4)),
+      text(8.5pt)[$t = #fmt(p.t, digits: 3)$, $W = #fmt(p.W, digits: 4)$]))),
+  ),
+  caption: [The six circles without the tangency $B B'$: the family $r(A) = t$, with the gap
+  between $B$ and $B'$ in red. The rigid packing (top left, red dot) is the end of the family,
+  where the gap closes.],
+) <fig-flex>
+
+= The container matters <sec-disk>
+
+Rigidity comes from the rectangle, not from the triangulation alone. For a triangulated
+packing inside a _disk_, with the outer circles touching the boundary circle, the same theorem
+gives uniqueness only up to the Möbius maps that preserve the disk. That group is
+$3$-dimensional; rotations are harmless, but the other two parameters change the ratios of
+the radii. So triangulated packings in a disk are never rigid, and circle-in-circle puzzles are
+rigid only because of extra conditions such as equal radii. A container bounded by lines that
+all pass through one point $infinity$ of the sphere, such as a rectangle, a strip or a
+triangle, leaves only similarities.
+
+#v(4mm)
+#block(fill: luma(240), inset: 8pt, radius: 3pt, width: 100%)[
+  *What the script checks.* `circle-packings.py`, output in `results/circle-packings.txt`,
+  figure data in `circle-packings.json`. A solution counts only if it is an honest packing of
+  the pattern: all circles inside the rectangle, no overlaps, and no tangency beyond the
+  prescribed ones.
+  (1) every two-row zigzag with $k = 2, 3, 4$: exactly one packing from $300$ random starts,
+  Jacobian of rank $3n + 1$;
+  (2) the six circles, with the half-turn symmetry;
+  (3) the three-row packing with two interior circles;
+  (4) four inserted circles, with the old circles unchanged;
+  (5) the one-parameter family after dropping $B B'$, and which side of the rigid packing
+  gives honest packings.
+]
