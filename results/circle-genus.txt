@@ -1,0 +1,124 @@
+========================================================================
+ Two-row zigzags: drop a cross tangency at a turn of the path
+========================================================================
+
+ k  pattern                  dropped  bidegree (t,v)  genus   [orbit size]
+ 2  11 21 22                 A2B1    (1,1)           0       [2]
+ 3  11 21 31 32 33           A3B1    (1,1)           0       [2]
+ 3  11 21 22 32 33           A2B2    (1,1)           0       [2]
+ 3  11 21 22 32 33           A2B1    (1,2)           0       [4]
+ 3  11 21 22 23 33           A2B1    (1,2)           0       [4]
+ 4  11 21 31 41 42 43 44     A4B1    (1,1)           0       [2]
+ 4  11 21 31 32 42 43 44     A3B2    (1,1)           0       [2]
+ 4  11 21 22 32 33 43 44     A3B2    (1,1)           0       [2]
+ 4  11 21 22 23 33 43 44     A2B3    (1,1)           0       [2]
+ 4  11 21 31 32 42 43 44     A3B1    (1,2)           0       [4]
+ 4  11 21 31 32 33 43 44     A3B1    (1,2)           0       [4]
+ 4  11 21 31 32 33 34 44     A3B1    (1,2)           0       [4]
+ 4  11 21 22 32 33 43 44     A2B2    (1,2)           0       [4]
+ 4  11 21 22 32 33 34 44     A2B2    (1,2)           0       [4]
+ 4  11 21 22 32 33 43 44     A2B1    (1,3)           0       [4]
+ 4  11 21 22 32 33 34 44     A2B1    (1,3)           0       [4]
+ 4  11 21 22 23 33 43 44     A2B1    (1,3)           0       [4]
+ 4  11 21 31 32 33 43 44     A3B3    (2,1)           0       [4]
+ 4  11 21 31 32 33 43 44     A4B3    (3,1)           0       [4]
+ 4  11 21 31 32 33 34 44     A3B4    (3,1)           0       [4]
+ 4  11 21 22 32 33 34 44     A3B4    (3,1)           0       [4]
+ 4  11 21 22 32 33 34 44     A3B2    (2,2)           1       [4]
+
+ k = 2: 1 classes of genus 0
+ k = 3: 4 classes of genus 0
+ k = 4: 16 classes of genus 0, 1 classes of genus 1
+ (4s)
+
+========================================================================
+ The genus-one family: pattern 11 21 22 32 33 34 44 minus A3B2
+========================================================================
+
+ packing: t0 = sqrt r(A1) = 0.45049785496092162,  v0 = sqrt r(A4) = 0.46728683516461944
+ f = t^3 - 1/2*s*t^2 + (3/4*s - 3/2)*t + 1/4  (degree m = 3 over K)
+ H = t^2*v^2 - 3/2*t^2*v - 3/2*t*v^2 + (1/4*s)*t^2 + 2*t*v + (1/4*s)*v^2 + (-1/4*s)*t + (-1/4*s)*v
+ H symmetric in t and v: True
+ mirror pattern 11 21 22 23 33 34 44 minus A2B3: same curve: True;  its packing (t, v) = (0.46728683, 0.45049785)
+ so the mirror packing is the point (v0, t0) of H: True
+ genus of H: 1
+ as a quadratic in v: (x^2 - 3/2*x + 1/4*s) v^2 + (-3/2*x^2 + 2*x - 1/4*s) v + (1/4*s*x^2 - 1/4*s*x)
+ Delta(t) = (-s + 9/4)*x^4 + (5/2*s - 6)*x^3 + (-3/4*s + 7/2)*x^2 + (-s + 1/2)*x + 1/8
+          = (-s + 9/4) * (x^4 + (-6/49*s - 136/49)*x^3 + (29/49*s + 102/49)*x^2 + (-4/7*s - 2/7)*x + 2/49*s + 9/98)
+ Delta squarefree of degree 4: True
+ H irreducible over Kbar (Delta not a constant times a square): True
+ invariants of Delta: I = -57/2*s + 163/4, J = 2061/4*s - 2917/4
+ j = -274424*s + 418576 = (2*s - 3) * (-s)^7 * (17*s + 1)^3
+ j^sigma = 274424*s + 418576;  minimal polynomial of j: x^2 - 837152*x + 24588804224
+ Jacobian (minimal model): y^2 + a1 xy + a3 y = x^3 + a2 x^2 + a4 x + a6, [a1,a2,a3,a4,a6] = [0, -s, 0, -6*s - 11, 15*s + 22]
+   j(E) = j: True
+   conductor Fractional ideal (-16*s) = (Fractional ideal (-s))^9,  norm 2^9
+   minimal discriminant: (-29*s - 41) * (-s)^17, norm 2^17
+   torsion subgroup: (4,)
+   CM: False
+   isomorphic to its conjugate: False
+   traces a_P(E), a_P(E^sigma) at the primes of degree one (equal for all P iff E is isogenous to E^sigma):
+      p =  7  P = (2*s - 1):  a_P(E) =   0   a_P(E^sigma) =  -4
+      p =  7  P = (2*s + 1):  a_P(E) =  -4   a_P(E^sigma) =   0
+      p = 17  P = (3*s + 1):  a_P(E) =   2   a_P(E^sigma) =  -6
+      p = 17  P = (-3*s + 1):  a_P(E) =  -6   a_P(E^sigma) =   2
+      p = 23  P = (s + 5):  a_P(E) =  -8   a_P(E^sigma) =  -4
+      p = 23  P = (s - 5):  a_P(E) =  -4   a_P(E^sigma) =  -8
+      p = 31  P = (4*s + 1):  a_P(E) =  -8   a_P(E^sigma) =   8
+      p = 31  P = (-4*s + 1):  a_P(E) =   8   a_P(E^sigma) =  -8
+      p = 41  P = (2*s - 7):  a_P(E) =  10   a_P(E^sigma) =  -6
+      p = 41  P = (-2*s - 7):  a_P(E) =  -6   a_P(E^sigma) =  10
+      p = 47  P = (s + 7):  a_P(E) =  -8   a_P(E^sigma) =   0
+      p = 47  P = (s - 7):  a_P(E) =   0   a_P(E^sigma) =  -8
+   j modulo primes of K:
+      p =  3  P = (3), N(P) =    9:  j = sbar + 1
+      p =  5  P = (5), N(P) =   25:  j = sbar + 1
+      p =  7  P = (2*s - 1), N(P) =    7:  j = 6
+      p =  7  P = (2*s + 1), N(P) =    7:  j = 2
+      p = 11  P = (11), N(P) =  121:  j = 4*sbar + 4
+      p = 13  P = (13), N(P) =  169:  j = 6*sbar + 2
+      p = 17  P = (3*s + 1), N(P) =   17:  j = 11
+      p = 17  P = (-3*s + 1), N(P) =   17:  j = 10
+      p = 19  P = (19), N(P) =  361:  j = 12*sbar + 6
+      p = 23  P = (s + 5), N(P) =   23:  j = 8
+      p = 23  P = (s - 5), N(P) =   23:  j = 13
+      p = 29  P = (29), N(P) =  841:  j = 3*sbar + 19
+      p = 31  P = (4*s + 1), N(P) =   31:  j = 17
+      p = 31  P = (-4*s + 1), N(P) =   31:  j = 11
+      p = 37  P = (37), N(P) = 1369:  j = 5*sbar + 32
+      p = 41  P = (2*s - 7), N(P) =   41:  j = 30
+      p = 41  P = (-2*s - 7), N(P) =   41:  j = 25
+      p = 43  P = (43), N(P) = 1849:  j = 2*sbar + 14
+      p = 47  P = (s + 7), N(P) =   47:  j = 25
+      p = 47  P = (s - 7), N(P) =   47:  j = 10
+
+ fixed points of the involution (t, v) -> (v, t): t = v, roots of (x - 1) * x * (x^2 - 2*x + 1/2*s)
+   real fixed points: [0.00000000, 0.45880390, 1.0000000, 1.5411961]
+
+ the honest arc (real branch through the packing):
+   at t0: honest True, W = 2.004861, contacts beyond the pattern minus A3B2: [('A3', 'B2')]
+   at t1 = v0: honest True, W = 2.004861, A2 and B3 tangent: True
+   honest at 199 interior points of [t0, v0]: True;  just outside the interval: [False, False]
+   symmetric member: t = v = [0.45880390]
+   there: W - 2 = 2.2e-89;  radii A1 0.210501, A2 0.292893, A3 0.292893, A4 0.210501, B1 0.292893, B2 0.210501, B3 0.210501, B4 0.292893
+   A2, B2 touch the line x = 1: True
+   W on the diagonal t = v: (2) * (t + (-1/2*s))^-2 * (t - 1)^2 * t^2
+
+ the conjugate curve H^sigma (s -> -s):
+   real roots of f: [-0.62761, 0.45050, 0.88422]
+   real roots of f^sigma: [-2.0295, 0.10084, 1.2216]
+   real points sampled with -4 <= t <= 4 (step 1/1000): H 16002, of which honest 17;  H^sigma 14974, of which honest 0
+   a conjugate packing, t = 0.100839: Phi^sigma = 1.9e-82, W = -0.6903
+      A1: x =    0.0102  y =   0.9898  r =   0.0102
+      A2: x =   -0.0328  y =   0.9546  r =   0.0454
+      A3: x =    0.4174  y =  -0.1161  r =   1.1161
+      A4: x =   -2.0084  y =  -0.3181  r =   1.3181
+      B1: x =    0.8085  y =   0.8085  r =   0.8085
+      B2: x =   -2.1861  y =   2.7729  r =   2.7729
+      B3: x =   -0.8326  y =   0.1652  r =   0.1652
+      B4: x =   -0.7122  y =   0.0219  r =   0.0219
+
+ figure data written to circle-genus.json
+
+ discriminant of Delta: (-169*s + 239) * (-s)^-3, norm 2^-3
+ leading coefficient of Delta: -s + 9/4, norm 2^-4 * 7^2
