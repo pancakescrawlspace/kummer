@@ -1,0 +1,31 @@
+pattern ITvhHdEUW
+   tangencies: [(0, 1), (0, 3), (0, 4), (0, 5), (1, 2), (1, 4), (1, 5), (2, 3), (2, 5), (3, 5)]
+   sides     : [(0, 'bottom'), (1, 'left'), (1, 'top'), (2, 'right'), (2, 'top'), (3, 'bottom'), (3, 'right'), (4, 'bottom'), (4, 'left')]
+   roles     : ['Bm', 'TL', 'TR', 'BR', 'BL', 'In']
+
+(1) the packing: field of degree 6, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2, W = 1.1997397769
+    |centre(TL) - touch(TR, top)|^2 == |centre(TL) - touch(BL, bottom)|^2 exactly: True
+    common length 0.684583322414, its square has minimal polynomial x^6 - 189/8*x^5 + 20401/256*x^4 - 80245/512*x^3 + 988825/4096*x^2 - 913409/2048*x + 691441/4096
+    radii: Bm 0.190057, TL 0.332986, TR 0.268611, BR 0.232057, BL 0.178887, In 0.102751
+
+(2) without the interior circle: 5 circles, 15 contacts, 16 unknowns -> a one-parameter family
+    r(TL) = 0.2530: |c(TL) T(TR,top)| = 0.747037993363, |c(TL) T(BL,bottom)| = 0.747037993363, difference 0.0e+00, residual 6e-17, honest False
+    r(TL) = 0.2630: |c(TL) T(TR,top)| = 0.737460221781, |c(TL) T(BL,bottom)| = 0.737460221781, difference -1.1e-16, residual 1e-16, honest False
+    r(TL) = 0.2730: |c(TL) T(TR,top)| = 0.728403194027, |c(TL) T(BL,bottom)| = 0.728403194027, difference 0.0e+00, residual 1e-16, honest False
+    r(TL) = 0.2830: |c(TL) T(TR,top)| = 0.719858498571, |c(TL) T(BL,bottom)| = 0.719858498571, difference 0.0e+00, residual 2e-16, honest False
+    r(TL) = 0.2930: |c(TL) T(TR,top)| = 0.711818688526, |c(TL) T(BL,bottom)| = 0.711818688526, difference 0.0e+00, residual 2e-16, honest False
+    r(TL) = 0.3030: |c(TL) T(TR,top)| = 0.704277096055, |c(TL) T(BL,bottom)| = 0.704277096055, difference 2.2e-16, residual 5e-16, honest False
+    r(TL) = 0.3130: |c(TL) T(TR,top)| = 0.697227668703, |c(TL) T(BL,bottom)| = 0.697227668703, difference 1.1e-16, residual 2e-16, honest True
+    r(TL) = 0.3230: |c(TL) T(TR,top)| = 0.690664824368, |c(TL) T(BL,bottom)| = 0.690664824368, difference 0.0e+00, residual 8e-17, honest True
+    r(TL) = 0.3330: |c(TL) T(TR,top)| = 0.684583322414, |c(TL) T(BL,bottom)| = 0.684583322414, difference 0.0e+00, residual 8e-17, honest True
+    r(TL) = 0.3430: |c(TL) T(TR,top)| = 0.678978149036, |c(TL) T(BL,bottom)| = 0.678978149036, difference 0.0e+00, residual 8e-17, honest True
+    r(TL) = 0.3530: |c(TL) T(TR,top)| = 0.673844415485, |c(TL) T(BL,bottom)| = 0.673844415485, difference 0.0e+00, residual 1e-16, honest True
+    r(TL) = 0.3630: |c(TL) T(TR,top)| = 0.669177268072, |c(TL) T(BL,bottom)| = 0.669177268072, difference -1.1e-16, residual 1e-16, honest False
+    r(TL) = 0.3730: |c(TL) T(TR,top)| = 0.664971809183, |c(TL) T(BL,bottom)| = 0.664971809183, difference -1.1e-16, residual 2e-16, honest False
+    r(TL) = 0.3830: |c(TL) T(TR,top)| = 0.661223028700, |c(TL) T(BL,bottom)| = 0.661223028700, difference 1.1e-16, residual 3e-16, honest False
+    r(TL) = 0.3930: |c(TL) T(TR,top)| = 0.657925745345, |c(TL) T(BL,bottom)| = 0.657925745345, difference 2.2e-16, residual 8e-16, honest False
+    r(TL) = 0.4030: |c(TL) T(TR,top)| = 0.655074557589, |c(TL) T(BL,bottom)| = 0.655074557589, difference -2.2e-16, residual 2e-16, honest False
+    r(TL) = 0.4130: |c(TL) T(TR,top)| = 0.652663803730, |c(TL) T(BL,bottom)| = 0.652663803730, difference 1.1e-16, residual 1e-16, honest False
+    largest difference along the family: 2.2e-16
+
+figure data written to circle-porism.json

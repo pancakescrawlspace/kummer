@@ -1,0 +1,479 @@
+============================================================================
+ Two-row zigzags
+============================================================================
+k=2 11 12 22   [deg F = 4, W = 1.000000, symmetries: half-turn, diagonal, antidiagonal]
+k=3 11 12 13 23 33   [deg F = 6, W = 1.323762, symmetries: half-turn]
+k=3 11 12 22 23 33   [deg F = 6, W = 1.525936, symmetries: half-turn]
+   length 1.0000000000  exact: True   rigid                                         corner BL--corner TL (+1)  =  centre(A1)--centre(B3)
+k=3 11 12 22 32 33   [deg F = 6, W = 1.483358, symmetries: x -> W-x]
+k=4 11 12 13 14 24 34 44   [deg F = 8, W = 1.517885, symmetries: half-turn]
+k=4 11 12 13 23 24 34 44   [deg F = 6, W = 1.809948, symmetries: half-turn]
+k=4 11 12 13 23 33 34 44   [deg F = 4, W = 1.887988, symmetries: none]
+k=4 11 12 13 23 33 43 44   [deg F = 6, W = 1.789019, symmetries: none]
+k=4 11 12 22 23 33 34 44   [deg F = 6, W = 2.059495, symmetries: half-turn]
+k=4 11 12 22 23 33 43 44   [deg F = 6, W = 2.004861, symmetries: none]
+k=4 11 12 22 32 33 34 44   [deg F = 8, W = 1.969805, symmetries: half-turn]
+k=5 11 12 13 14 15 25 35 45 55   [deg F = 6, W = 1.639753, symmetries: half-turn]
+k=5 11 12 13 14 24 25 35 45 55   [deg F = 10, W = 1.976536, symmetries: half-turn]
+k=5 11 12 13 14 24 34 35 45 55: degree too large for LLL
+k=5 11 12 13 14 24 34 44 45 55: degree too large for LLL
+k=5 11 12 13 14 24 34 44 54 55: degree too large for LLL
+k=5 11 12 13 23 24 34 35 45 55   [deg F = 10, W = 2.334214, symmetries: half-turn]
+k=5 11 12 13 23 24 34 44 45 55: degree too large for LLL
+k=5 11 12 13 23 24 34 44 54 55: degree too large for LLL
+k=5 11 12 13 23 33 34 35 45 55   [deg F = 10, W = 2.286635, symmetries: half-turn]
+k=5 11 12 13 23 33 34 44 45 55   [deg F = 16, W = 2.429925, symmetries: none]
+k=5 11 12 13 23 33 34 44 54 55   [deg F = 14, W = 2.362330, symmetries: none]
+k=5 11 12 13 23 33 43 44 45 55: degree too large for LLL
+k=5 11 12 13 23 33 43 44 54 55: degree too large for LLL
+k=5 11 12 13 23 33 43 53 54 55   [deg F = 10, W = 2.057765, symmetries: x -> W-x]
+k=5 11 12 22 23 24 34 44 45 55   [deg F = 10, W = 2.454695, symmetries: half-turn]
+k=5 11 12 22 23 24 34 44 54 55   [deg F = 14, W = 2.352437, symmetries: none]
+k=5 11 12 22 23 33 34 44 45 55   [deg F = 10, W = 2.594878, symmetries: half-turn]
+k=5 11 12 22 23 33 34 44 54 55: degree too large for LLL
+k=5 11 12 22 23 33 43 44 45 55: degree too large for LLL
+k=5 11 12 22 23 33 43 44 54 55   [deg F = 6, W = 2.524878, symmetries: x -> W-x]
+k=5 11 12 22 32 33 34 44 54 55   [deg F = 8, W = 2.455548, symmetries: x -> W-x]
+k=5 11 12 22 32 33 43 44 45 55   [deg F = 10, W = 2.484398, symmetries: half-turn]
+k=5 11 12 22 32 42 43 44 45 55   [deg F = 8, W = 2.254527, symmetries: half-turn]
+
+============================================================================
+ Packings with interior circles (at most 6 circles), and the brick family
+============================================================================
+n=5 H}kOO|}   [deg F = 2, W = 2.000000, symmetries: x -> W-x]
+   length 1.3549119667  exact: True   porism (survives dropping 1 of 16 contacts)   corner BL--touch(c0T,c1T) (+1)  =  corner BL--touch(c0T,top) (+1)
+n=5 H^wG[xZ   [deg F = 6, W = 1.000000, symmetries: antidiagonal]
+   length 0.1724405398  exact: True   porism (survives dropping 6 of 16 contacts)   corner BR--touch(c2B,c3o) (+1)  =  corner BR--touch(c2B,bottom) (+1)
+n=5 H^wOS|]   [deg F = 2, W = 2.236068, symmetries: x -> W-x, y -> 1-y, half-turn]
+n=5 H}kGWxz   [deg F = 2, W = 1.000000, symmetries: none]
+   length 0.2071067812  exact: True   porism (survives dropping 2 of 16 contacts)   corner TR--touch(c2R,c3R)  =  corner TR--touch(c1BLRT,c4RT)
+   length 0.9142135624  exact: True   porism (survives dropping 10 of 16 contacts)  corner BR--touch(c4RT,right)  =  corner TL--touch(c4RT,top)
+   length 0.9182296829  exact: True   porism (survives dropping 10 of 16 contacts)  corner BR--centre(c4RT)  =  corner TL--centre(c4RT)
+   length 0.9238795325  exact: True   porism (survives dropping 1 of 16 contacts)   touch(c1BLRT,c4RT)--touch(c1BLRT,bottom) (+1)  =  touch(c2R,c3R)--touch(c1BLRT,bottom)
+   length 1.0000000000  exact: True   porism (survives dropping 3 of 16 contacts)   corner BL--corner BR (+5)  =  touch(c0o,c3R)--touch(c1BLRT,left)
+   length 1.3549119667  exact: True   porism (survives dropping 10 of 16 contacts)  corner BL--touch(c4RT,right)  =  corner BL--touch(c4RT,top)
+n=5 H}kHWxr   [deg F = 6, W = 0.733589, symmetries: x -> W-x]
+n=5 HvwHXd\   [deg F = 4, W = 0.640319, symmetries: none]
+   length 0.4913338099  exact: True   porism (survives dropping 3 of 16 contacts)   touch(c1LRT,right)--touch(c4BR,right)  =  touch(c2L,c3o)--touch(c4BR,right)
+n=5 H}lahWZ   [deg F = 2, W = 1.000000, symmetries: x -> W-x, y -> 1-y, half-turn, diagonal, antidiagonal, quarter-turn, three-quarter-turn]
+n=6 IR~oGMMRW   [deg F = 8, W = 1.000000, symmetries: antidiagonal]
+   length 0.1840054686  exact: True   porism (survives dropping 6 of 19 contacts)   corner BR--touch(c3o,c4R) (+1)  =  corner BR--touch(c2o,c3o)  =  corner BR--touch(c4R,right) (+1)
+n=6 IwqwO_^^o   [deg F = 2, W = 3.000000, symmetries: none]
+   length 0.0823277843  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c0o,c1T)--touch(c1T,c2T)  =  touch(c0o,c2T)--touch(c1T,c2T)
+   length 0.0857864376  exact: True   porism (survives dropping 6 of 19 contacts)   centre(c1T)--touch(c1T,c2T) (+3)  =  centre(c2T)--touch(c2T,top) (+3)
+   length 0.1213203436  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c1T,c2T)--touch(c1T,top)  =  touch(c1T,c2T)--touch(c2T,top)
+   length 0.1446203340  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c1T)--touch(c0o,c2T)  =  centre(c2T)--touch(c0o,c1T)
+   length 0.1585126678  exact: True   porism (survives dropping 5 of 19 contacts)   touch(c1T,c2T)--touch(c1T,c5BT)  =  touch(c1T,c5BT)--touch(c1T,top)  =  touch(c2T,c3BRT)--touch(c2T,top)  =  touch(c1T,c2T)--touch(c2T,c3BRT)
+   length 0.1590097423  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c0o)--centre(c1T)  =  centre(c0o)--centre(c2T)
+   length 0.1646555686  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c0o,c1T)--touch(c1T,top)  =  touch(c0o,c2T)--touch(c2T,top)
+   length 0.1715728753  exact: True   porism (survives dropping 10 of 19 contacts)  centre(c1T)--centre(c2T)  =  touch(c1T,top)--touch(c2T,top)
+   length 0.1918243061  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c1T)--touch(c2T,top)  =  centre(c2T)--touch(c1T,top)
+   length 0.2016610632  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c0o,c2T)--touch(c1T,top)  =  touch(c0o,c1T)--touch(c2T,top)
+   length 0.2358265974  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c0o)--touch(c1T,top)  =  centre(c0o)--touch(c2T,top)
+   length 0.2400246749  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c2T)--touch(c1T,c5BT)  =  centre(c1T)--touch(c2T,c3BRT)
+   length 0.2745519942  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c1T,c5BT)--touch(c2T,top)  =  touch(c2T,c3BRT)--touch(c1T,top)
+   length 0.3826834324  exact: True   porism (survives dropping 5 of 19 contacts)   touch(c2T,c3BRT)--touch(c3BRT,top) (+1)  =  touch(c2T,c3BRT)--touch(c3BRT,c5BT) (+1)
+   length 0.4142135624  exact: True   porism (survives dropping 5 of 19 contacts)   touch(c2T,top)--touch(c3BRT,top)  =  touch(c1T,c2T)--touch(c3BRT,c5BT)  =  touch(c1T,top)--touch(c5BT,top)
+   length 0.4230037685  exact: True   porism (survives dropping 5 of 19 contacts)   centre(c2T)--touch(c3BRT,top)  =  centre(c1T)--touch(c3BRT,c5BT)  =  centre(c2T)--touch(c3BRT,c5BT)  =  centre(c1T)--touch(c5BT,top)
+   length 0.5073059362  exact: True   porism (survives dropping 5 of 19 contacts)   touch(c1T,c2T)--touch(c3BRT,top)  =  touch(c1T,c2T)--touch(c5BT,top)  =  touch(c3BRT,c5BT)--touch(c1T,top)  =  touch(c3BRT,c5BT)--touch(c2T,top)
+   length 0.5857864376  exact: True   porism (survives dropping 5 of 19 contacts)   centre(c2T)--centre(c3BRT)  =  touch(c1T,top)--touch(c3BRT,top)  =  centre(c1T)--centre(c5BT)  =  touch(c2T,top)--touch(c5BT,top)
+   length 0.5920346809  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c1T)--touch(c3BRT,top)  =  centre(c2T)--touch(c5BT,top)
+   length 0.6492864354  exact: True   porism (survives dropping 5 of 19 contacts)   centre(c3BRT)--touch(c2T,top)  =  centre(c3BRT)--touch(c1T,c2T)  =  centre(c5BT)--touch(c1T,c2T)  =  centre(c5BT)--touch(c1T,top)
+   length 0.6628271481  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c1T,c5BT)--touch(c3BRT,top)  =  touch(c2T,c3BRT)--touch(c5BT,top)
+   length 0.7174389352  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c1T)--centre(c3BRT)  =  centre(c2T)--centre(c5BT)
+   length 0.7368128791  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c3BRT)--touch(c1T,c5BT)  =  centre(c5BT)--touch(c2T,c3BRT)
+   length 0.7701595617  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c3BRT)--touch(c1T,top)  =  centre(c5BT)--touch(c2T,top)
+   length 0.9238795325  exact: True   porism (survives dropping 4 of 19 contacts)   touch(c2T,c3BRT)--touch(c3BRT,right) (+1)  =  touch(c2T,c3BRT)--touch(c3BRT,bottom) (+1)
+   length 1.0000000000  exact: True   porism (survives dropping 6 of 19 contacts)   touch(c0o,c1T)--touch(c3BRT,bottom) (+1)  =  corner BL--corner TL (+13)
+   length 1.0036729113  exact: True   porism (survives dropping 1 of 19 contacts)   centre(c2T)--touch(c3BRT,right)  =  centre(c2T)--touch(c3BRT,bottom)  =  corner TR--touch(c1T,c2T)  =  centre(c1T)--touch(c4BLT,c5BT)  =  centre(c1T)--touch(c5BT,bottom)
+   length 1.0420107666  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c2T,top)--touch(c3BRT,right)  =  touch(c1T,c2T)--touch(c3BRT,bottom)  =  touch(c1T,c2T)--touch(c5BT,bottom)  =  touch(c4BLT,c5BT)--touch(c1T,top)
+   length 1.0707224708  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c1T,c5BT)--touch(c3BRT,bottom)  =  touch(c2T,c3BRT)--touch(c5BT,bottom)
+   length 1.0823922003  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c1T,c2T)--touch(c4BLT,c5BT)  =  touch(c1T,c2T)--touch(c3BRT,right)  =  touch(c2T,top)--touch(c3BRT,bottom)  =  touch(c1T,top)--touch(c5BT,bottom)
+   length 1.0857864376  exact: True   porism (survives dropping 4 of 19 contacts)   corner TR--touch(c1T,top)  =  centre(c1T)--touch(c3BRT,bottom)  =  centre(c2T)--touch(c5BT,bottom)
+   length 1.1589416510  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c1T,top)--touch(c3BRT,bottom)  =  touch(c2T,top)--touch(c5BT,bottom)
+   length 1.1621123282  exact: True   porism (survives dropping 3 of 19 contacts)   centre(c1T)--touch(c3BRT,right)  =  centre(c2T)--touch(c4BLT,c5BT)
+   length 1.1953795164  exact: True   porism (survives dropping 3 of 19 contacts)   touch(c1T,top)--touch(c3BRT,right)  =  touch(c4BLT,c5BT)--touch(c2T,top)
+   length 1.1997248969  exact: True   porism (survives dropping 3 of 19 contacts)   touch(c1T,c5BT)--touch(c3BRT,right)  =  touch(c2T,c3BRT)--touch(c4BLT,c5BT)
+   length 1.3549119667  exact: True   porism (survives dropping 4 of 19 contacts)   corner BR--touch(c2T,top)  =  corner BR--touch(c1T,c2T)
+   length 1.4142135624  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c1T,top)--touch(c4BLT,top)  =  touch(c3BRT,bottom)--touch(c5BT,top) (+3)
+   length 1.5000000000  exact: True   porism (survives dropping 1 of 19 contacts)   corner BL--touch(c5BT,bottom) (+7)  =  centre(c4BLT)--touch(c0o,c1T)  =  centre(c4BLT)--touch(c1T,top)
+   length 1.6839793460  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c1T)--touch(c4BLT,bottom)  =  centre(c4BLT)--touch(c2T,c3BRT)
+   length 1.7320508076  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c0o,c3BRT)--touch(c4BLT,bottom)  =  touch(c1T,top)--touch(c4BLT,bottom)
+   length 1.8027756377  exact: True   porism (survives dropping 11 of 19 contacts)  corner BL--touch(c5BT,top) (+1)  =  corner BR--touch(c5BT,top) (+1)
+n=6 Ik~oGKUNW   [deg F = 4, W = 1.000000, symmetries: none]
+   length 0.9142135624  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--touch(c1BR,bottom)  =  corner TR--touch(c1BR,right)
+   length 0.9182296829  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--centre(c1BR)  =  corner TR--centre(c1BR)
+   length 1.3549119667  exact: True   porism (survives dropping 13 of 19 contacts)  corner TL--touch(c1BR,bottom)  =  corner TL--touch(c1BR,right)
+n=6 InMWGKMzW   [deg F = 4, W = 1.000000, symmetries: none]
+   length 0.1213203436  exact: True   porism (survives dropping 3 of 19 contacts)   touch(c0LT,top)--touch(c2T,top)  =  corner TL--centre(c0LT) (+1)
+   length 0.1585126678  exact: True   porism (survives dropping 3 of 19 contacts)   touch(c0LT,c4BLRT)--touch(c0LT,left) (+1)  =  touch(c0LT,c4BLRT)--touch(c2T,top)
+   length 0.2071067812  exact: True   porism (survives dropping 2 of 19 contacts)   corner TL--touch(c0LT,c4BLRT)  =  corner TL--touch(c2T,c5o)  =  corner TL--touch(c2T,top)
+   length 0.9142135624  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--touch(c0LT,left)  =  corner TR--touch(c0LT,top)
+   length 0.9182296829  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--centre(c0LT)  =  corner TR--centre(c0LT)
+   length 1.0420107666  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c0LT,left)--touch(c4BLRT,bottom) (+1)  =  touch(c2T,top)--touch(c4BLRT,bottom)
+   length 1.3549119667  exact: True   porism (survives dropping 13 of 19 contacts)  corner BR--touch(c0LT,left)  =  corner BR--touch(c0LT,top)
+n=6 Iwqw_kL^g   [deg F = 2, W = 2.000000, symmetries: none]
+   length 0.2071067812  exact: True   porism (survives dropping 5 of 19 contacts)   corner TR--touch(c1T,c2T)  =  corner TR--touch(c3RT,c5BRT)
+   length 0.9238795325  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c3RT,c5BRT)--touch(c5BRT,bottom) (+1)  =  touch(c1T,c2T)--touch(c4BLT,c5BRT)
+   length 1.0000000000  exact: True   porism (survives dropping 6 of 19 contacts)   corner BL--corner TL (+8)  =  touch(c0o,c2T)--touch(c5BRT,bottom)
+   length 2.0406404785  exact: True   rigid                                         corner BL--touch(c1T,c2T)  =  corner BL--touch(c3RT,c5BRT)
+n=6 I}EwGON^o   [deg F = 2, W = 2.000000, symmetries: none]
+   length 0.7071067812  exact: True   porism (survives dropping 1 of 19 contacts)   corner BL--centre(c5BLT) (+13)  =  touch(c1T,top)--touch(c4BRT,top)
+   length 1.0000000000  exact: True   porism (survives dropping 6 of 19 contacts)   touch(c0o,c2T)--touch(c5BLT,bottom)  =  corner BL--corner TL (+12)
+   length 1.0077822185  exact: True   porism (survives dropping 9 of 19 contacts)   corner TL--centre(c3T)  =  corner TR--centre(c3T)  =  centre(c3T)--touch(c4BRT,bottom) (+1)
+   length 1.3287682266  exact: True   porism (survives dropping 11 of 19 contacts)  corner BL--centre(c3T)  =  corner BR--centre(c3T)
+n=6 I^dWOGNzo   [deg F = 2, W = 2.000000, symmetries: x -> W-x]
+   length 1.1180339887  exact: True   porism (survives dropping 1 of 19 contacts)   corner BL--touch(c0BLT,c4BRT) (+15)  =  corner TL--touch(c3T,top) (+1)
+   length 1.2247448714  exact: True   rigid                                         touch(c0BLT,c1T)--touch(c4BRT,right) (+1)  =  touch(c0BLT,left)--touch(c3T,top) (+1)
+   length 1.5000000000  exact: True   porism (survives dropping 1 of 19 contacts)   corner BL--touch(c3T,top) (+1)  =  corner BL--touch(c4BRT,bottom) (+5)
+n=6 ITjYALMNW   [deg F = 2, W = 2.000000, symmetries: none]
+   length 0.2071067812  exact: True   porism (survives dropping 5 of 19 contacts)   corner TR--touch(c1BRT,c2RT)  =  corner TR--touch(c3R,c4R)
+   length 0.9238795325  exact: True   porism (survives dropping 4 of 19 contacts)   touch(c3R,c4R)--touch(c1BRT,bottom)  =  touch(c1BRT,c2RT)--touch(c1BRT,bottom) (+1)
+   length 1.0000000000  exact: True   porism (survives dropping 2 of 19 contacts)   corner BL--corner TL (+8)  =  touch(c0BLT,c1BRT)--touch(c3R,c5o)
+   length 1.5000000000  exact: True   porism (survives dropping 1 of 19 contacts)   centre(c0BLT)--touch(c3R,c4R)  =  corner BL--touch(c1BRT,bottom) (+6)  =  centre(c0BLT)--touch(c2RT,c3R)
+n=6 IzuwOGNFo   [deg F = 2, W = 2.000000, symmetries: x -> W-x]
+n=6 InyWGKMNW   [deg F = 4, W = 1.000000, symmetries: none]
+   length 0.9142135624  exact: True   porism (survives dropping 13 of 19 contacts)  corner BR--touch(c1RT,right)  =  corner TL--touch(c1RT,top)
+   length 0.9182296829  exact: True   porism (survives dropping 13 of 19 contacts)  corner BR--centre(c1RT)  =  corner TL--centre(c1RT)
+   length 1.0000000000  exact: True   porism (survives dropping 1 of 19 contacts)   corner BL--corner BR (+5)  =  touch(c0T,c3o)--touch(c5BLRT,bottom)  =  touch(c1RT,c3o)--touch(c5BLRT,bottom)
+   length 1.3549119667  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--touch(c1RT,right)  =  corner BL--touch(c1RT,top)
+n=6 I^BgOU]VW   [deg F = 6, W = 1.000000, symmetries: antidiagonal]
+   length 0.0295861192  exact: True   porism (survives dropping 7 of 19 contacts)   corner TL--touch(c3o,c4L) (+1)  =  corner TL--touch(c2T,top) (+1)
+n=6 IR~oOINRo   [deg F = 2, W = 2.154701, symmetries: x -> W-x, y -> 1-y, half-turn]
+   length 0.2500000000  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c5o)--touch(c3T,c4o) (+1)  =  centre(c0B)--centre(c5o) (+1)
+   length 0.3333333333  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c0B)--touch(c4o,c5o) (+1)  =  touch(c0B,c5o)--touch(c3T,c4o)  =  touch(c0B,c5o)--touch(c0B,bottom) (+1)
+   length 0.4166666667  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c0B)--centre(c4o) (+1)  =  centre(c5o)--touch(c0B,bottom) (+1)
+   length 0.9659258263  exact: True   porism (survives dropping 2 of 19 contacts)   corner BL--touch(c0B,c2BLT) (+3)  =  touch(c0B,c2BLT)--touch(c2BLT,left) (+3)
+   length 1.1547005384  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c1BRT)--centre(c2BLT) (+2)  =  touch(c0B,bottom)--touch(c1BRT,top) (+3)
+   length 1.2470048796  exact: True   porism (survives dropping 2 of 19 contacts)   corner BL--touch(c0B,c1BRT) (+3)  =  touch(c0B,c1BRT)--touch(c2BLT,left) (+3)
+n=6 IB^oSBNjo   [deg F = 2, W = 3.236068, symmetries: y -> 1-y]
+   length 0.3819660113  exact: True   porism (survives dropping 5 of 19 contacts)   touch(c1BRT,c4B)--touch(c2T,c3o) (+3)  =  touch(c3o,c4B)--touch(c4B,bottom) (+1)
+   length 0.5000000000  exact: True   porism (survives dropping 5 of 19 contacts)   centre(c5BT)--touch(c2T,c5BT) (+23)  =  centre(c3o)--touch(c2T,top) (+1)
+   length 0.6180339887  exact: True   porism (survives dropping 5 of 19 contacts)   centre(c1BRT)--centre(c3o) (+5)  =  centre(c2T)--centre(c4B)  =  touch(c2T,c3o)--touch(c4B,bottom) (+1)
+   length 1.1180339887  exact: True   rigid                                         corner BL--touch(c0BLT,c5BT) (+11)  =  corner BR--touch(c4B,bottom) (+1)  =  centre(c3o)--touch(c0BLT,c5BT) (+1)
+   length 1.2247448714  exact: True   porism (survives dropping 1 of 19 contacts)   corner BR--centre(c3o) (+1)  =  touch(c0BLT,c5BT)--touch(c2T,top) (+3)
+   length 1.5000000000  exact: True   rigid                                         corner BL--touch(c5BT,bottom) (+3)  =  corner BR--touch(c2T,top) (+1)
+   length 1.6180339887  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c0BLT)--centre(c3o)  =  touch(c2T,c5BT)--touch(c0BLT,bottom) (+1)  =  touch(c0BLT,bottom)--touch(c4B,bottom) (+1)
+   length 1.6935270853  exact: True   porism (survives dropping 3 of 19 contacts)   centre(c0BLT)--touch(c2T,top) (+1)  =  centre(c3o)--touch(c0BLT,bottom) (+1)
+   length 1.8027756377  exact: True   porism (survives dropping 1 of 19 contacts)   centre(c0BLT)--touch(c1BRT,c2T) (+1)  =  corner BL--touch(c5BT,top) (+1)
+   length 2.1180339887  exact: True   porism (survives dropping 4 of 19 contacts)   corner BL--touch(c4B,bottom) (+1)  =  centre(c3o)--touch(c0BLT,left)
+   length 2.1762508995  exact: True   porism (survives dropping 3 of 19 contacts)   corner BL--centre(c3o) (+1)  =  touch(c0BLT,left)--touch(c2T,top) (+1)
+n=6 Iozo_lLNg   [deg F = 6, W = 0.500000, symmetries: none]
+   length 0.0203251069  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c2o,c3T)--touch(c2o,c5RT)  =  touch(c1R,c2o)--touch(c2o,c5RT)
+   length 0.0237219313  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c2o,c3T)--touch(c3T,c5RT)  =  touch(c1R,c2o)--touch(c1R,c5RT)
+   length 0.0241660668  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c2o,c5RT)--touch(c3T,c5RT)  =  touch(c1R,c5RT)--touch(c2o,c5RT)
+   length 0.0244111243  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c0LRT,c2o)--touch(c2o,c3T)  =  touch(c0LRT,c2o)--touch(c1R,c2o)
+   length 0.0310907998  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c0LRT,c1R)--touch(c1R,c2o)  =  touch(c0LRT,c3T)--touch(c2o,c3T)
+   length 0.0338847757  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c2o)--touch(c3T,c5RT)  =  centre(c2o)--touch(c1R,c5RT)
+   length 0.0380401980  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c0LRT,c2o)--touch(c0LRT,c3T)  =  touch(c0LRT,c1R)--touch(c0LRT,c2o)
+   length 0.0388988479  exact: True   porism (survives dropping 9 of 19 contacts)   touch(c1R,c5RT)--touch(c1R,right)  =  touch(c3T,c5RT)--touch(c3T,top)
+   length 0.0409558516  exact: True   porism (survives dropping 9 of 19 contacts)   touch(c1R,c5RT)--touch(c5RT,right)  =  touch(c3T,c5RT)--touch(c5RT,top)
+   length 0.0423230588  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c2o)--touch(c0LRT,c3T)  =  centre(c2o)--touch(c0LRT,c1R)
+   length 0.0427062822  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c1R)--centre(c2o)  =  centre(c2o)--centre(c3T)
+   length 0.0427822909  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c1R)--touch(c2o,c5RT)  =  centre(c3T)--touch(c2o,c5RT)
+   length 0.0440717859  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c1R,c2o)--touch(c3T,c5RT)  =  touch(c1R,c5RT)--touch(c2o,c3T)
+   length 0.0455056387  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c5RT)--touch(c1R,c2o)  =  centre(c5RT)--touch(c2o,c3T)
+   length 0.0481854246  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c1R)--touch(c0LRT,c2o)  =  centre(c3T)--touch(c0LRT,c2o)
+   length 0.0509822020  exact: True   porism (survives dropping 9 of 19 contacts)   touch(c0LRT,c1R)--touch(c1R,right)  =  touch(c0LRT,c3T)--touch(c3T,top)
+   length 0.0512258222  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c1R,c2o)--touch(c1R,right)  =  touch(c2o,c3T)--touch(c3T,top)
+   length 0.0549444827  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c2o,c5RT)--touch(c5RT,right)  =  touch(c2o,c5RT)--touch(c5RT,top)
+   length 0.0564845301  exact: True   porism (survives dropping 9 of 19 contacts)   touch(c1R,right)--touch(c5RT,right)  =  touch(c3T,top)--touch(c5RT,top)
+   length 0.0565595398  exact: True   porism (survives dropping 9 of 19 contacts)   centre(c1R)--centre(c5RT)  =  centre(c3T)--centre(c5RT)
+   length 0.0577620370  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c0LRT,c1R)--touch(c2o,c3T)  =  touch(c0LRT,c3T)--touch(c1R,c2o)
+   length 0.0578238801  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c1R)--touch(c2o,c3T)  =  centre(c3T)--touch(c1R,c2o)
+   length 0.0594517584  exact: True   porism (survives dropping 9 of 19 contacts)   touch(c1R,c5RT)--touch(c5RT,top)  =  touch(c3T,c5RT)--touch(c5RT,right)
+   length 0.0619198844  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c2o,c5RT)--touch(c1R,right)  =  touch(c2o,c5RT)--touch(c3T,top)
+   length 0.0625301399  exact: True   porism (survives dropping 9 of 19 contacts)   centre(c1R)--touch(c5RT,right)  =  centre(c3T)--touch(c5RT,top)
+   length 0.0638335050  exact: True   porism (survives dropping 9 of 19 contacts)   centre(c5RT)--touch(c1R,right)  =  centre(c5RT)--touch(c3T,top)
+   length 0.0639960887  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c1R,c2o)--touch(c5RT,right)  =  touch(c2o,c3T)--touch(c5RT,top)
+   length 0.0657850981  exact: True   porism (survives dropping 9 of 19 contacts)   corner TR--touch(c1R,c5RT)  =  corner TR--touch(c3T,c5RT)
+   length 0.0665514174  exact: True   porism (survives dropping 9 of 19 contacts)   centre(c1R)--touch(c3T,c5RT)  =  centre(c3T)--touch(c1R,c5RT)
+   length 0.0665587675  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c2o)--touch(c1R,right)  =  centre(c2o)--touch(c3T,top)
+   length 0.0698827960  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c2o)--touch(c5RT,right)  =  centre(c2o)--touch(c5RT,top)
+   length 0.0735472551  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c1R,c2o)--touch(c5RT,top)  =  touch(c2o,c3T)--touch(c5RT,right)
+   length 0.0743678254  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c0LRT,c2o)--touch(c1R,right)  =  touch(c0LRT,c2o)--touch(c3T,top)
+   length 0.0802073694  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c2o,c3T)--touch(c1R,right)  =  touch(c1R,c2o)--touch(c3T,top)
+   length 0.0830539669  exact: True   porism (survives dropping 9 of 19 contacts)   touch(c1R,c5RT)--touch(c3T,top)  =  touch(c3T,c5RT)--touch(c1R,right)
+   length 0.0842121932  exact: True   porism (survives dropping 9 of 19 contacts)   centre(c1R)--touch(c0LRT,c3T)  =  centre(c3T)--touch(c0LRT,c1R)
+   length 0.0851634937  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c0LRT,c2o)--touch(c5RT,right)  =  touch(c0LRT,c2o)--touch(c5RT,top)
+   length 0.0862202699  exact: True   porism (survives dropping 5 of 19 contacts)   corner TR--touch(c1R,c2o)  =  corner TR--touch(c1R,right)  =  corner TR--touch(c3T,top)  =  corner TR--touch(c2o,c3T)
+   length 0.0862694287  exact: True   porism (survives dropping 9 of 19 contacts)   centre(c1R)--touch(c5RT,top)  =  centre(c3T)--touch(c5RT,right)
+   length 0.0902964628  exact: True   porism (survives dropping 9 of 19 contacts)   corner TR--centre(c1R)  =  corner TR--centre(c3T)
+   length 0.0912038879  exact: True   porism (survives dropping 9 of 19 contacts)   touch(c1R,right)--touch(c5RT,top)  =  touch(c3T,top)--touch(c5RT,right)
+   length 0.1046989760  exact: True   porism (survives dropping 9 of 19 contacts)   centre(c1R)--touch(c3T,top)  =  centre(c3T)--touch(c1R,right)
+   length 0.1088534584  exact: True   porism (survives dropping 9 of 19 contacts)   touch(c0LRT,c3T)--touch(c1R,right)  =  touch(c0LRT,c1R)--touch(c3T,top)
+   length 0.1130033268  exact: True   porism (survives dropping 9 of 19 contacts)   corner TR--touch(c0LRT,c1R)  =  corner TR--touch(c0LRT,c3T)
+   length 0.1556425876  exact: True   porism (survives dropping 9 of 19 contacts)   touch(c0LRT,c1R)--touch(c0LRT,right)  =  touch(c0LRT,c3T)--touch(c0LRT,top)
+   length 0.1637797301  exact: True   porism (survives dropping 9 of 19 contacts)   touch(c0LRT,right)--touch(c1R,right)  =  touch(c0LRT,top)--touch(c3T,top)
+   length 0.1659617915  exact: True   porism (survives dropping 9 of 19 contacts)   centre(c1R)--touch(c0LRT,right)  =  centre(c3T)--touch(c0LRT,top)
+   length 0.1855598711  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c1R,c2o)--touch(c0LRT,right)  =  touch(c2o,c3T)--touch(c0LRT,top)
+   length 0.1913417162  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c0LRT,c2o)--touch(c0LRT,right)  =  touch(c0LRT,c2o)--touch(c0LRT,top)
+   length 0.1979642424  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c2o)--touch(c0LRT,right)  =  centre(c2o)--touch(c0LRT,top)
+   length 0.2056028615  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c2o,c5RT)--touch(c0LRT,right)  =  touch(c2o,c5RT)--touch(c0LRT,top)
+   length 0.2132539574  exact: True   porism (survives dropping 7 of 19 contacts)   touch(c2o,c3T)--touch(c0LRT,right)  =  touch(c1R,c2o)--touch(c0LRT,top)
+   length 0.2259317082  exact: True   porism (survives dropping 9 of 19 contacts)   touch(c0LRT,c3T)--touch(c0LRT,right)  =  touch(c0LRT,c1R)--touch(c0LRT,top)
+   length 0.2392520662  exact: True   porism (survives dropping 9 of 19 contacts)   centre(c1R)--touch(c0LRT,top)  =  centre(c3T)--touch(c0LRT,right)
+   length 0.2644502504  exact: True   porism (survives dropping 9 of 19 contacts)   touch(c0LRT,right)--touch(c3T,top)  =  touch(c0LRT,top)--touch(c1R,right)
+   length 0.2692132634  exact: True   porism (survives dropping 7 of 19 contacts)   centre(c0LRT)--touch(c2o,c3T)  =  centre(c0LRT)--touch(c1R,c2o)
+   length 0.2768238000  exact: True   porism (survives dropping 9 of 19 contacts)   centre(c0LRT)--centre(c1R)  =  centre(c0LRT)--centre(c3T)
+   length 0.2988708751  exact: True   porism (survives dropping 9 of 19 contacts)   centre(c0LRT)--touch(c1R,right)  =  centre(c0LRT)--touch(c3T,top)
+   length 0.4460435665  exact: True   porism (survives dropping 5 of 19 contacts)   touch(c0LRT,c3T)--touch(c0LRT,left)  =  touch(c0LRT,c1R)--touch(c0LRT,c4BLR)
+   length 0.4619397663  exact: True   porism (survives dropping 3 of 19 contacts)   touch(c0LRT,c2o)--touch(c0LRT,c4BLR)  =  touch(c0LRT,c2o)--touch(c0LRT,left)
+   length 0.4701290049  exact: True   porism (survives dropping 5 of 19 contacts)   centre(c1R)--touch(c0LRT,c4BLR)  =  centre(c3T)--touch(c0LRT,left)
+   length 0.4737872012  exact: True   porism (survives dropping 3 of 19 contacts)   touch(c0LRT,c4BLR)--touch(c1R,c2o)  =  touch(c2o,c3T)--touch(c0LRT,left)
+   length 0.4751582736  exact: True   porism (survives dropping 5 of 19 contacts)   touch(c0LRT,c3T)--touch(c0LRT,c4BLR)  =  touch(c0LRT,c1R)--touch(c0LRT,left)
+   length 0.4766520192  exact: True   porism (survives dropping 3 of 19 contacts)   centre(c2o)--touch(c0LRT,c4BLR)  =  centre(c2o)--touch(c0LRT,left)
+   length 0.4834394120  exact: True   porism (survives dropping 5 of 19 contacts)   touch(c0LRT,c4BLR)--touch(c1R,right)  =  touch(c0LRT,left)--touch(c3T,top)
+   length 0.4853030976  exact: True   porism (survives dropping 3 of 19 contacts)   touch(c0LRT,c4BLR)--touch(c2o,c3T)  =  touch(c1R,c2o)--touch(c0LRT,left)
+   length 0.4914371309  exact: True   porism (survives dropping 3 of 19 contacts)   touch(c0LRT,c4BLR)--touch(c2o,c5RT)  =  touch(c2o,c5RT)--touch(c0LRT,left)
+   length 0.5007189993  exact: True   porism (survives dropping 5 of 19 contacts)   centre(c1R)--touch(c0LRT,left)  =  centre(c3T)--touch(c0LRT,c4BLR)
+   length 0.5261404755  exact: True   porism (survives dropping 5 of 19 contacts)   touch(c0LRT,c4BLR)--touch(c3T,top)  =  touch(c0LRT,left)--touch(c1R,right)
+n=6 InfgOGNNo   [deg F = 2, W = 2.000000, symmetries: none]
+   length 0.0819809172  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c3T,c4BRT)--touch(c3T,c5o)  =  touch(c0o,c5o)--touch(c3T,c5o)
+   length 0.1419951139  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c3T,c5o)--touch(c3T,top)  =  touch(c0o,c4BRT)--touch(c3T,c5o)
+   length 0.1954395076  exact: True   porism (survives dropping 4 of 19 contacts)   touch(c3T,c5o)--touch(c2T,top)  =  touch(c0o,c1BLT)--touch(c3T,c5o)
+   length 0.2297529205  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c1BLT,c2T)--touch(c4BRT,c5o)  =  touch(c0o,c1BLT)--touch(c1BLT,c4BRT) (+1)
+   length 0.4472135955  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c1BLT,top)--touch(c2T,top)  =  touch(c4BRT,c5o)--touch(c4BRT,top)
+   length 0.5590169944  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c0o)--centre(c1BLT) (+1)  =  centre(c0o)--touch(c1BLT,top) (+1)
+   length 0.6180339887  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c0o,c1BLT)--touch(c4BRT,top) (+1)  =  touch(c1BLT,top)--touch(c3T,top)
+   length 0.6708203932  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c1BLT)--touch(c4BRT,c5o)  =  centre(c1BLT)--touch(c2T,top)
+   length 1.0000000000  exact: True   porism (survives dropping 3 of 19 contacts)   touch(c4BRT,c5o)--touch(c1BLT,bottom)  =  touch(c2T,c5o)--touch(c1BLT,bottom)  =  corner BL--corner TL (+8)
+   length 1.0307764064  exact: True   rigid                                         corner TL--centre(c0o)  =  corner TR--centre(c0o)  =  centre(c0o)--touch(c1BLT,left) (+1)
+   length 1.1180339887  exact: True   porism (survives dropping 1 of 19 contacts)   corner TL--touch(c4BRT,c5o)  =  corner BL--touch(c1BLT,c4BRT) (+11)  =  corner TL--touch(c3T,top)
+   length 1.1755705046  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c1BLT,c2T)--touch(c4BRT,right)  =  touch(c1BLT,bottom)--touch(c3T,top)
+   length 1.2247448714  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c3T,c4BRT)--touch(c1BLT,left)  =  touch(c1BLT,left)--touch(c3T,top)
+   length 1.2500000000  exact: True   porism (survives dropping 11 of 19 contacts)  corner BL--centre(c0o)  =  corner BR--centre(c0o)
+   length 1.5000000000  exact: True   porism (survives dropping 1 of 19 contacts)   corner BL--touch(c3T,top)  =  corner BL--touch(c4BRT,bottom) (+5)
+n=6 IvJgO[yTW   [deg F = 10, W = 1.603309, symmetries: none]
+n=6 IzugG[XLg   [deg F = 6, W = 1.599862, symmetries: none]
+n=6 Ix]oGkXrg   [deg F = 6, W = 1.599862, symmetries: none]
+n=6 IdvoPGzRo   [deg F = 6, W = 1.819806, symmetries: none]
+   length 0.6916422526  exact: True   porism (survives dropping 6 of 19 contacts)   touch(c2T,top)--touch(c3BRT,top)  =  touch(c0B,c5o)--touch(c2T,top)
+n=6 INurASebW   [deg F = 6, W = 1.111022, symmetries: x -> W-x]
+n=6 I|sWGKM^W   [deg F = 2, W = 1.000000, symmetries: none]
+   length 0.0149335020  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c3T,c4T)--touch(c4T,c5o)  =  touch(c1LT,c5o)--touch(c4T,c5o)
+   length 0.0165096076  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c2T,c5o)--touch(c4T,c5o)  =  centre(c3T)--touch(c2T,c5o)
+   length 0.0172437228  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c1LT,c2T)--touch(c1LT,c5o)  =  touch(c3T,c4T)--touch(c3T,top)
+   length 0.0202200573  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c2T,top)--touch(c3T,top)  =  touch(c2T,c5o)--touch(c2T,top)  =  touch(c1LT,c2T)--touch(c2T,top)
+   length 0.0285954792  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c1LT,c2T)--touch(c4T,c5o)  =  touch(c1LT,c4T)--touch(c4T,c5o)  =  touch(c4T,c5o)--touch(c3T,top)  =  centre(c3T)--touch(c1LT,c2T)
+   length 0.0316787415  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c1LT,c5o)--touch(c2T,top)  =  touch(c3T,c4T)--touch(c2T,top)
+   length 0.0344874455  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c1LT,c2T)--touch(c3T,c4T)  =  touch(c1LT,c5o)--touch(c3T,top)
+   length 0.0404401145  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c1LT,c4T)--touch(c2T,c5o)  =  touch(c3T,top)--touch(c4T,top)
+   length 0.0571909584  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c1LT,c4T)--touch(c3T,top)  =  touch(c1LT,c2T)--touch(c1LT,top)  =  touch(c2T,c5o)--touch(c4T,top)
+   length 0.0589510906  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c4T)--touch(c3T,top)  =  centre(c4T)--touch(c2T,c5o)
+   length 0.0606601718  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c1LT,c4T)--touch(c2T,top)  =  touch(c2T,top)--touch(c4T,top)  =  touch(c1LT,top)--touch(c2T,top)
+   length 0.0616006956  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c2T)--touch(c4T,top)  =  centre(c2T)--touch(c1LT,top)
+   length 0.0700443330  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c1LT,c4T)--touch(c4T,top)  =  touch(c2T,c5o)--touch(c1LT,top)  =  touch(c1LT,c2T)--touch(c4T,top)
+   length 0.0857864376  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c4T,c5o)--touch(c1LT,top)  =  centre(c1LT)--touch(c1LT,c2T) (+7)
+   length 0.0990576457  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c1LT,c4T)--touch(c1LT,top)  =  centre(c1LT)--touch(c4T,c5o)
+   length 0.1213203436  exact: True   porism (survives dropping 11 of 19 contacts)  touch(c1LT,top)--touch(c4T,top)  =  corner TL--centre(c1LT) (+1)
+   length 0.1275611441  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c0BLRT,c1LT)--touch(c1LT,c2T)  =  touch(c0BLRT,c1LT)--touch(c2T,c5o)
+   length 0.1286796564  exact: True   porism (survives dropping 11 of 19 contacts)  centre(c4T)--touch(c1LT,top)  =  centre(c1LT)--centre(c4T)
+   length 0.1464466094  exact: True   porism (survives dropping 2 of 19 contacts)   corner TL--touch(c2T,top)  =  touch(c0BLRT,c1LT)--touch(c2T,top)
+   length 0.1691019787  exact: True   porism (survives dropping 2 of 19 contacts)   corner TL--touch(c4T,c5o)  =  touch(c1LT,c4T)--touch(c1LT,left)
+   length 0.1762060825  exact: True   porism (survives dropping 2 of 19 contacts)   corner TL--touch(c1LT,c4T)  =  touch(c4T,c5o)--touch(c1LT,left)
+   length 0.2115018842  exact: True   porism (survives dropping 11 of 19 contacts)  corner TL--centre(c4T)  =  centre(c4T)--touch(c1LT,left)
+   length 0.5000000000  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c0BLRT)--touch(c0BLRT,c1LT) (+13)  =  touch(c4T,c5o)--touch(c0BLRT,left)
+   length 0.5838742081  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c0BLRT)--touch(c3T,c4T)  =  centre(c0BLRT)--touch(c1LT,c5o)
+   length 0.6009252126  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c0BLRT)--touch(c1LT,c2T)  =  centre(c0BLRT)--touch(c3T,top)
+   length 0.9142135624  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--touch(c1LT,left)  =  corner TR--touch(c1LT,top)
+   length 0.9182296829  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--centre(c1LT)  =  corner TR--centre(c1LT)
+   length 0.9574271078  exact: True   rigid                                         corner BL--touch(c1LT,c4T)  =  touch(c4T,c5o)--touch(c0BLRT,right)
+   length 0.9855985597  exact: True   rigid                                         touch(c1LT,c2T)--touch(c0BLRT,right)  =  corner BL--touch(c4T,c5o)
+   length 1.3549119667  exact: True   porism (survives dropping 13 of 19 contacts)  corner BR--touch(c1LT,left)  =  corner BR--touch(c1LT,top)
+n=6 I}AwOS]^W   [deg F = 2, W = 1.000000, symmetries: none]
+   length 0.0355339059  exact: True   porism (survives dropping 5 of 19 contacts)   corner BR--touch(c2R,c3R)  =  corner BR--touch(c1BR,c4BR)
+   length 0.9142135624  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--touch(c1BR,bottom)  =  corner TR--touch(c1BR,right)
+   length 0.9182296829  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--centre(c1BR)  =  corner TR--centre(c1BR)
+   length 0.9751974809  exact: True   porism (survives dropping 11 of 19 contacts)  corner BL--touch(c1BR,c4BR)  =  corner TR--touch(c1BR,c4BR)
+   length 0.9852813742  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--touch(c4BR,bottom)  =  corner TR--touch(c4BR,right)
+   length 0.9853913052  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--centre(c4BR)  =  corner TR--centre(c4BR)
+   length 1.0001083131  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--touch(c4BR,right)  =  corner TR--touch(c4BR,bottom)
+   length 1.0843817874  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c2R,c3R)--touch(c0BLRT,top)  =  touch(c1BR,c4BR)--touch(c0BLRT,left) (+1)
+   length 1.3549119667  exact: True   porism (survives dropping 13 of 19 contacts)  corner TL--touch(c1BR,bottom)  =  corner TL--touch(c1BR,right)
+   length 1.4038445022  exact: True   porism (survives dropping 13 of 19 contacts)  corner TL--touch(c4BR,bottom)  =  corner TL--touch(c4BR,right)
+n=6 I}lwGKMFW   [deg F = 2, W = 1.000000, symmetries: none]
+   length 0.0290133127  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c1BL,c4B)--touch(c1BL,c5o)  =  touch(c0BLRT,c2o)--touch(c1BL,c5o)
+   length 0.0700443330  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c0BLRT,c1BL)--touch(c3o,c5o)  =  touch(c1BL,c4B)--touch(c4B,bottom)
+   length 0.0823277843  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c0BLRT,c4B)--touch(c4B,bottom)  =  touch(c4B,c5o)--touch(c4B,bottom)
+   length 0.0915173314  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c0BLRT,c1BL)--touch(c1BL,c4B)  =  touch(c3o,c5o)--touch(c4B,bottom)
+   length 0.1213203436  exact: True   porism (survives dropping 2 of 19 contacts)   corner BL--centre(c1BL) (+1)  =  touch(c1BL,c5o)--touch(c1BL,bottom)  =  touch(c1BL,bottom)--touch(c4B,bottom)
+   length 0.1286796564  exact: True   porism (survives dropping 11 of 19 contacts)  centre(c1BL)--centre(c4B)  =  centre(c4B)--touch(c1BL,bottom)
+   length 0.2071067812  exact: True   porism (survives dropping 3 of 19 contacts)   corner BL--touch(c0BLRT,c1BL) (+1)  =  corner BL--touch(c3o,c5o)
+   length 0.2115018842  exact: True   porism (survives dropping 11 of 19 contacts)  corner BL--centre(c4B)  =  centre(c4B)--touch(c1BL,left)
+   length 0.9142135624  exact: True   rigid                                         corner BR--touch(c1BL,bottom)  =  corner TL--touch(c1BL,c2o)  =  corner TL--touch(c1BL,left)
+   length 0.9182296829  exact: True   rigid                                         corner BR--centre(c1BL)  =  corner TL--centre(c1BL)  =  touch(c4B,c5o)--touch(c0BLRT,right)
+   length 1.3549119667  exact: True   porism (survives dropping 13 of 19 contacts)  corner TR--touch(c1BL,bottom)  =  corner TR--touch(c1BL,left)
+n=6 IwuwGKU^W   [deg F = 2, W = 1.000000, symmetries: none]
+   length 0.0606601718  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c3B,c5o)--touch(c0B,bottom)  =  touch(c3B,c5o)--touch(c3B,bottom)
+   length 0.0857864376  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c0B,bottom)--touch(c3B,bottom)  =  centre(c2BR)--touch(c1BLRT,c2BR) (+5)
+   length 0.0884266359  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c0B)--centre(c3B)  =  centre(c0B)--touch(c3B,bottom)
+   length 0.1213203436  exact: True   porism (survives dropping 11 of 19 contacts)  touch(c2BR,bottom)--touch(c3B,bottom)  =  corner BR--centre(c2BR) (+1)
+   length 0.1286796564  exact: True   porism (survives dropping 11 of 19 contacts)  centre(c2BR)--centre(c3B)  =  centre(c3B)--touch(c2BR,bottom)
+   length 0.1585126678  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c1BLRT,c2BR)--touch(c3B,c4B)  =  touch(c1BLRT,c2BR)--touch(c2BR,bottom) (+2)
+   length 0.1697230753  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c2BR)--touch(c3B,c5o)  =  touch(c3B,c5o)--touch(c2BR,bottom)
+   length 0.1722030472  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c4B)--touch(c1BLRT,c2BR)  =  centre(c4B)--touch(c2BR,bottom)
+   length 0.1835922470  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c2BR)--centre(c5o)  =  centre(c5o)--touch(c2BR,bottom)
+   length 0.2071067812  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c0B,bottom)--touch(c2BR,bottom)  =  touch(c1BLRT,c2BR)--touch(c0B,bottom)  =  corner BR--touch(c1BLRT,c2BR) (+1)  =  touch(c0B,bottom)--touch(c1BLRT,bottom)
+   length 0.2082142547  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c0B)--touch(c2BR,bottom)  =  centre(c0B)--touch(c1BLRT,bottom)
+   length 0.2115018842  exact: True   porism (survives dropping 11 of 19 contacts)  corner BR--centre(c3B)  =  centre(c3B)--touch(c2BR,right)
+   length 0.2241707646  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c2BR)--touch(c0B,bottom)  =  touch(c2BR,right)--touch(c3B,bottom)
+   length 0.2536529681  exact: True   porism (survives dropping 2 of 19 contacts)   corner BR--touch(c3B,c5o)  =  touch(c3B,c5o)--touch(c1BLRT,bottom)  =  touch(c3B,c5o)--touch(c2BR,right)
+   length 0.2677557159  exact: True   porism (survives dropping 2 of 19 contacts)   corner BR--centre(c5o)  =  centre(c5o)--touch(c2BR,right)
+   length 0.2928932188  exact: True   porism (survives dropping 2 of 19 contacts)   corner BR--touch(c0B,bottom)  =  touch(c1BLRT,bottom)--touch(c3B,bottom)
+   length 0.5210053833  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c1BLRT)--touch(c3B,c5o)  =  touch(c3B,c5o)--touch(c1BLRT,right)
+   length 0.5411961001  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c1BLRT)--touch(c0B,bottom)  =  touch(c0B,c5o)--touch(c1BLRT,right)  =  touch(c1BLRT,right)--touch(c3B,bottom)
+   length 0.5794708255  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c1BLRT)--touch(c3B,bottom)  =  touch(c0B,bottom)--touch(c1BLRT,right)
+   length 0.7071067812  exact: True   porism (survives dropping 1 of 19 contacts)   corner BL--centre(c1BLRT) (+7)  =  corner BL--touch(c0B,bottom)
+   length 0.8660254038  exact: True   porism (survives dropping 1 of 19 contacts)   corner BL--touch(c1BLRT,c2BR) (+1)  =  touch(c0B,bottom)--touch(c1BLRT,left)
+   length 0.9142135624  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--touch(c2BR,bottom)  =  corner TR--touch(c2BR,right)
+   length 0.9182296829  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--centre(c2BR)  =  corner TR--centre(c2BR)
+   length 0.9892185757  exact: True   porism (survives dropping 2 of 19 contacts)   corner TR--touch(c3B,c5o)  =  touch(c3B,c5o)--touch(c1BLRT,top)
+   length 1.0000000000  exact: True   porism (survives dropping 4 of 19 contacts)   corner BL--corner BR (+6)  =  touch(c4B,c5o)--touch(c1BLRT,top)
+   length 1.0212214348  exact: True   porism (survives dropping 2 of 19 contacts)   corner TR--touch(c3B,bottom)  =  touch(c0B,bottom)--touch(c1BLRT,top)
+   length 1.0420107666  exact: True   rigid                                         corner TR--touch(c0B,bottom)  =  touch(c1BLRT,left)--touch(c2BR,bottom) (+2)
+   length 1.2071067812  exact: True   rigid                                         corner TL--touch(c0B,c5o)  =  corner TL--touch(c1BLRT,c2BR)
+   length 1.3549119667  exact: True   porism (survives dropping 13 of 19 contacts)  corner TL--touch(c2BR,bottom)  =  corner TL--touch(c2BR,right)
+n=6 IeywGke]W   [deg F = 4, W = 1.239101, symmetries: none]
+   length 0.2331619837  exact: True   porism (survives dropping 11 of 19 contacts)  corner BR--centre(c0BR) (+1)  =  corner TR--centre(c2RT) (+1)
+   length 0.6702591604  exact: True   porism (survives dropping 11 of 19 contacts)  centre(c0BR)--centre(c2RT)  =  touch(c0BR,right)--touch(c2RT,right)
+   length 0.6902387974  exact: True   porism (survives dropping 11 of 19 contacts)  centre(c0BR)--touch(c2RT,right)  =  centre(c2RT)--touch(c0BR,right)
+   length 0.8351295802  exact: True   porism (survives dropping 11 of 19 contacts)  corner BR--touch(c2RT,right)  =  corner TR--touch(c0BR,right)  =  centre(c0BR)--touch(c2RT,top)  =  centre(c2RT)--touch(c0BR,bottom)
+   length 0.8512483017  exact: True   porism (survives dropping 11 of 19 contacts)  corner BR--centre(c2RT)  =  corner TR--centre(c0BR)  =  touch(c0BR,bottom)--touch(c2RT,right)  =  touch(c0BR,right)--touch(c2RT,top)
+   length 1.0742306501  exact: True   porism (survives dropping 11 of 19 contacts)  corner BL--touch(c0BR,bottom)  =  corner TL--touch(c2RT,top)
+   length 1.0868089736  exact: True   porism (survives dropping 11 of 19 contacts)  corner BL--centre(c0BR)  =  corner TL--centre(c2RT)
+   length 1.1131491679  exact: True   porism (survives dropping 4 of 19 contacts)   touch(c4R,c5o)--touch(c1BLT,left)  =  touch(c2RT,c3R)--touch(c1BLT,left)
+   length 1.2500214865  exact: True   porism (survives dropping 11 of 19 contacts)  corner BL--touch(c0BR,right)  =  corner TL--touch(c2RT,right)
+   length 1.3606663461  exact: True   porism (survives dropping 11 of 19 contacts)  corner BL--centre(c2RT)  =  corner TL--centre(c0BR)
+   length 1.4676414718  exact: True   porism (survives dropping 11 of 19 contacts)  corner BL--touch(c2RT,top)  =  corner TL--touch(c0BR,bottom)
+   length 1.4942599764  exact: True   porism (survives dropping 11 of 19 contacts)  corner BL--touch(c2RT,right)  =  corner TL--touch(c0BR,right)
+n=6 Ifqx@KL]g   [deg F = 6, W = 1.705264, symmetries: none]
+   length 0.8467614348  exact: True   porism (survives dropping 4 of 19 contacts)   touch(c4BL,bottom)--touch(c5BRT,bottom) (+1)  =  touch(c0T,c2o)--touch(c4BL,bottom)
+n=6 I|WwGkMuW   [deg F = 2, W = 1.329431, symmetries: y -> 1-y]
+n=6 I|ZWGkMMW   [deg F = 2, W = 0.752201, symmetries: x -> W-x]
+   length 0.0857864376  exact: True   porism (survives dropping 1 of 19 contacts)   centre(c0o)--centre(c4o)  =  centre(c5B)--touch(c5B,bottom) (+4)
+n=6 Ie^gHMUMW   [deg F = 8, W = 0.753932, symmetries: none]
+n=6 IfnGG[h\g   [deg F = 6, W = 1.705264, symmetries: none]
+   length 0.5674521276  exact: True   porism (survives dropping 3 of 19 contacts)   touch(c0T,top)--touch(c5RT,top)  =  touch(c0T,c2o)--touch(c5RT,top)  =  touch(c2o,c4BR)--touch(c5RT,top)
+   length 0.8467614348  exact: True   porism (survives dropping 6 of 19 contacts)   touch(c1BLT,bottom)--touch(c4BR,bottom) (+1)  =  touch(c0T,c2o)--touch(c4BR,bottom)
+n=6 INuoOINZo   [deg F = 3, W = 2.314596, symmetries: x -> W-x]
+   length 0.4623154745  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c1BLT,c2B)--touch(c1BLT,bottom) (+1)  =  touch(c0o,c4BRT)--touch(c1BLT,c2B) (+1)
+   length 0.5213797068  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c0o,c4BRT)--touch(c2B,bottom) (+1)  =  touch(c1BLT,bottom)--touch(c2B,bottom) (+1)
+   length 1.0000000000  exact: True   porism (survives dropping 2 of 19 contacts)   corner BL--corner TL (+3)  =  touch(c0o,c4BRT)--touch(c1BLT,top) (+1)
+n=6 IvwoGKmVW   [deg F = 6, W = 1.000000, symmetries: none]
+   length 0.9627333903  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--touch(c1LT,left)  =  corner TR--touch(c1LT,top)
+   length 0.9634544000  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--centre(c1LT)  =  corner TR--centre(c1LT)
+   length 1.0006941592  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--touch(c1LT,top)  =  corner TR--touch(c1LT,left)
+   length 1.3881122364  exact: True   porism (survives dropping 13 of 19 contacts)  corner BR--touch(c1LT,left)  =  corner BR--touch(c1LT,top)
+n=6 I}lwGoVBo   [deg F = 2, W = 1.457107, symmetries: y -> 1-y]
+n=6 Iwuw_sUZW   [deg F = 2, W = 0.686292, symmetries: x -> W-x]
+n=6 IvxWGKuJW   [deg F = 6, W = 1.000000, symmetries: antidiagonal]
+   length 0.1618972777  exact: True   porism (survives dropping 3 of 19 contacts)   corner TL--touch(c3L,left) (+1)  =  corner TL--touch(c0o,c4o)
+n=6 ISnq?pVZo   [deg F = 4, W = 0.390362, symmetries: none]
+   length 0.2995355803  exact: True   porism (survives dropping 6 of 19 contacts)   touch(c0o,c2L)--touch(c4RT,right)  =  touch(c3LR,right)--touch(c4RT,right)
+n=6 Ik~oGkXJg   [deg F = 6, W = 1.523016, symmetries: none]
+   length 0.7452887938  exact: True   porism (survives dropping 3 of 19 contacts)   touch(c4BL,c5o)--touch(c1LT,top)  =  touch(c1LT,top)--touch(c2BRT,top)  =  touch(c2BRT,c5o)--touch(c1LT,top)
+n=6 Ip~__GvVo   [deg F = 3, W = 2.521380, symmetries: none]
+   length 0.1387105532  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c0o,c2T)--touch(c0o,c3BLT)  =  touch(c0o,c2T)--touch(c1T,c2T)
+   length 0.3699172522  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c0o,c1T)--touch(c3BLT,c4B)  =  touch(c0o,c1T)--touch(c1T,top)
+   length 0.4623154745  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c2T,c3BLT)--touch(c3BLT,top)  =  touch(c1T,c4B)--touch(c2T,c3BLT)
+   length 0.5213797068  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c1T,c4B)--touch(c2T,top)  =  touch(c2T,top)--touch(c3BLT,top)
+   length 0.6054312401  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c0o,c2T)--touch(c4B,c5BRT)  =  touch(c3BLT,c4B)--touch(c3BLT,bottom) (+1)  =  touch(c0o,c3BLT)--touch(c4B,c5BRT) (+1)
+   length 0.7606898534  exact: True   porism (survives dropping 6 of 19 contacts)   touch(c3BLT,bottom)--touch(c4B,bottom) (+2)  =  touch(c0o,c2T)--touch(c4B,bottom)
+   length 1.0000000000  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c2T,top)--touch(c5BRT,top)  =  touch(c0o,c2T)--touch(c5BRT,top) (+1)  =  touch(c0o,c4B)--touch(c5BRT,top)  =  corner BL--corner TL (+3)
+   length 1.0053307184  exact: True   porism (survives dropping 1 of 19 contacts)   corner TR--touch(c1T,c5BRT)  =  touch(c1T,top)--touch(c4B,bottom)
+   length 1.0091946350  exact: True   porism (survives dropping 6 of 19 contacts)   centre(c2T)--touch(c5BRT,top)  =  centre(c2T)--touch(c3BLT,bottom)
+   length 1.0480497443  exact: True   porism (survives dropping 1 of 19 contacts)   corner BL--touch(c3BLT,c4B) (+1)  =  centre(c3BLT)--touch(c4B,c5BRT) (+1)
+   length 1.1180339887  exact: True   porism (survives dropping 5 of 19 contacts)   centre(c5BRT)--touch(c2T,top)  =  corner BL--touch(c3BLT,top) (+3)
+   length 1.2028912371  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c0o,c3BLT)--touch(c5BRT,bottom)  =  touch(c1T,c2T)--touch(c5BRT,bottom)
+   length 1.2606898534  exact: True   rigid                                         corner BL--touch(c4B,bottom)  =  corner BR--touch(c4B,bottom)  =  touch(c1T,top)--touch(c5BRT,right)
+   length 1.2934634081  exact: True   porism (survives dropping 11 of 19 contacts)  corner BL--centre(c4B)  =  corner BR--centre(c4B)
+   length 1.3216039545  exact: True   porism (survives dropping 2 of 19 contacts)   centre(c2T)--touch(c5BRT,bottom)  =  touch(c1T,top)--touch(c3BLT,bottom)
+   length 1.4472036951  exact: True   porism (survives dropping 11 of 19 contacts)  corner TL--centre(c4B)  =  corner TR--centre(c4B)
+   length 1.6014356722  exact: True   porism (survives dropping 1 of 19 contacts)   centre(c3BLT)--touch(c5BRT,bottom) (+3)  =  corner BR--touch(c1T,c2T)
+   length 1.6091422891  exact: True   porism (survives dropping 11 of 19 contacts)  corner TL--touch(c4B,bottom)  =  corner TR--touch(c4B,bottom)
+n=6 I}loOGnFo   [deg F = 3, W = 2.314596, symmetries: x -> W-x, y -> 1-y, half-turn]
+   length 0.3966082527  exact: True   porism (survives dropping 2 of 19 contacts)   touch(c1T,c4BRT)--touch(c1T,c5BLT) (+1)  =  touch(c1T,c4BRT)--touch(c3B,c4BRT) (+1)
+n=6 Ik~o_sUJW   [deg F = 8, W = 1.398083, symmetries: y -> 1-y]
+n=6 IepxCovJo   [deg F = 6, W = 0.423162, symmetries: x -> W-x]
+n=6 ITzWILHNg   [deg F = 2, W = 0.686292, symmetries: none]
+   length 0.0597340079  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c2o,c3BL)--touch(c3BL,c5L)  =  touch(c0LRT,c2o)--touch(c2o,c3BL)
+   length 0.0660384305  exact: True   porism (survives dropping 1 of 19 contacts)   centre(c5L)--touch(c1L,c2o)  =  touch(c1L,c2o)--touch(c2o,c3BL)
+   length 0.0689748911  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c0LRT,c1L)--touch(c0LRT,c2o)  =  touch(c3BL,c5L)--touch(c5L,left)
+   length 0.0808802290  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c0LRT,c1L)--touch(c1L,left)  =  touch(c1L,left)--touch(c5L,left)  =  touch(c1L,c2o)--touch(c1L,left)
+   length 0.1143819168  exact: True   porism (survives dropping 1 of 19 contacts)   centre(c5L)--touch(c0LRT,c1L)  =  touch(c0LRT,c3BL)--touch(c2o,c3BL)  =  touch(c2o,c3BL)--touch(c5L,left)  =  touch(c0LRT,c1L)--touch(c2o,c3BL)
+   length 0.1267149662  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c0LRT,c2o)--touch(c1L,left)  =  touch(c3BL,c5L)--touch(c1L,left)
+   length 0.1379497822  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c0LRT,c2o)--touch(c5L,left)  =  touch(c0LRT,c1L)--touch(c3BL,c5L)
+   length 0.1617604581  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c0LRT,c3BL)--touch(c1L,c2o)  =  touch(c3BL,left)--touch(c5L,left)
+   length 0.1981152914  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c2o,c3BL)--touch(c3BL,left)  =  touch(c0LRT,c4BR)--touch(c3BL,c4BR) (+1)
+   length 0.2287638337  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c0LRT,c1L)--touch(c0LRT,left)  =  touch(c0LRT,c3BL)--touch(c0LRT,c4BR)  =  touch(c0LRT,c3BL)--touch(c5L,left)  =  touch(c1L,c2o)--touch(c3BL,left)
+   length 0.2358043624  exact: True   porism (survives dropping 1 of 19 contacts)   centre(c3BL)--touch(c1L,c2o)  =  centre(c3BL)--touch(c5L,left)
+   length 0.2426406871  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c0LRT,left)--touch(c1L,left)  =  corner BR--centre(c4BR) (+1)  =  touch(c3BL,c4BR)--touch(c4BR,bottom)  =  corner BL--centre(c3BL) (+1)  =  touch(c0LRT,c3BL)--touch(c1L,left)  =  touch(c3BL,c4BR)--touch(c3BL,bottom)  =  touch(c1L,left)--touch(c3BL,left)
+   length 0.2464027826  exact: True   porism (survives dropping 1 of 19 contacts)   centre(c1L)--touch(c0LRT,left)  =  centre(c1L)--touch(c3BL,left)
+   length 0.2801773320  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c1L,c2o)--touch(c0LRT,left)  =  touch(c0LRT,c3BL)--touch(c3BL,left) (+1)  =  touch(c2o,c3BL)--touch(c3BL,c4BR)  =  touch(c0LRT,c1L)--touch(c3BL,left)
+   length 0.3088311755  exact: True   porism (survives dropping 1 of 19 contacts)   centre(c2o)--touch(c3BL,c4BR)  =  centre(c2o)--touch(c0LRT,left)
+   length 0.3103870099  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c0LRT,c2o)--touch(c3BL,c4BR)  =  touch(c3BL,c4BR)--touch(c3BL,c5L)
+   length 0.3382039575  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c2o,c3BL)--touch(c3BL,bottom)  =  touch(c0LRT,c3BL)--touch(c3BL,bottom) (+1)
+   length 0.3431457505  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c3BL,c4BR)--touch(c4BR,right) (+14)  =  touch(c0LRT,c4BR)--touch(c2o,c3BL)  =  touch(c2o,c3BL)--touch(c0LRT,left)  =  touch(c1L,c2o)--touch(c3BL,c4BR)
+   length 0.3793619009  exact: True   porism (survives dropping 1 of 19 contacts)   centre(c0LRT)--touch(c1L,c2o) (+1)  =  touch(c0LRT,c1L)--touch(c3BL,c4BR)
+   length 0.3836486122  exact: True   porism (survives dropping 10 of 19 contacts)  corner BR--touch(c3BL,c4BR)  =  corner BL--touch(c3BL,c4BR)  =  centre(c3BL)--touch(c4BR,bottom)  =  centre(c4BR)--touch(c3BL,bottom)
+   length 0.3860389693  exact: True   porism (survives dropping 1 of 19 contacts)   centre(c0LRT)--centre(c1L)  =  centre(c1L)--touch(c3BL,c4BR)
+   length 0.3962305829  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c0LRT,c3BL)--touch(c0LRT,left) (+1)  =  touch(c0LRT,c1L)--touch(c0LRT,c4BR)  =  touch(c0LRT,c4BR)--touch(c3BL,c5L)  =  centre(c0LRT)--touch(c2o,c3BL)
+   length 0.4202659981  exact: True   porism (survives dropping 1 of 19 contacts)   centre(c0LRT)--touch(c1L,left)  =  touch(c3BL,c4BR)--touch(c1L,left)
+   length 0.5147186258  exact: True   porism (survives dropping 1 of 19 contacts)   corner BL--touch(c4BR,bottom) (+7)  =  centre(c4BR)--touch(c0LRT,c1L)  =  centre(c4BR)--touch(c1L,c5L)
+   length 0.5425610705  exact: True   porism (survives dropping 11 of 19 contacts)  corner BL--centre(c4BR)  =  corner BR--centre(c3BL)  =  touch(c3BL,bottom)--touch(c4BR,right)  =  touch(c3BL,left)--touch(c4BR,bottom)
+   length 0.5943458743  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c2o,c3BL)--touch(c4BR,right)  =  touch(c3BL,c4BR)--touch(c0LRT,right) (+3)
+   length 0.6470418323  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c0LRT,c1L)--touch(c0LRT,right)  =  touch(c1L,c2o)--touch(c4BR,right)
+   length 0.6669554547  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c1L,c2o)--touch(c0LRT,right)  =  touch(c0LRT,c1L)--touch(c4BR,right)
+   length 0.6764079149  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c0LRT,c3BL)--touch(c0LRT,top) (+1)  =  corner TL--touch(c2o,c3BL)
+   length 0.6788923012  exact: True   rigid                                         centre(c0LRT)--touch(c3BL,bottom) (+3)  =  touch(c0LRT,top)--touch(c1L,left)
+   length 0.6862915010  exact: True   porism (survives dropping 6 of 19 contacts)   corner BL--corner BR (+3)  =  touch(c2o,c5L)--touch(c0LRT,right)
+   length 0.6876306077  exact: True   porism (survives dropping 1 of 19 contacts)   centre(c1L)--touch(c0LRT,right)  =  centre(c1L)--touch(c4BR,right)
+   length 0.7048243299  exact: True   porism (survives dropping 1 of 19 contacts)   corner TL--touch(c0LRT,c3BL) (+1)  =  touch(c2o,c3BL)--touch(c0LRT,top)
+   length 0.7279220614  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c0LRT,right)--touch(c1L,left)  =  touch(c1L,left)--touch(c4BR,right)
+   length 0.9753085485  exact: True   porism (survives dropping 11 of 19 contacts)  corner TL--centre(c4BR)  =  corner TR--centre(c3BL)
+   length 1.0757729897  exact: True   porism (survives dropping 11 of 19 contacts)  corner TL--touch(c4BR,right)  =  corner TR--touch(c3BL,left)
+   length 1.1246934088  exact: True   porism (survives dropping 11 of 19 contacts)  corner TL--touch(c4BR,bottom)  =  corner TR--touch(c3BL,bottom)
+n=6 Id~OGKuZW   [deg F = 6, W = 1.000000, symmetries: none]
+   length 0.9627333903  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--touch(c5LT,left)  =  corner TR--touch(c5LT,top)
+   length 0.9634544000  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--centre(c5LT)  =  corner TR--centre(c5LT)
+   length 1.0006941592  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--touch(c5LT,top)  =  corner TR--touch(c5LT,left)
+   length 1.3881122364  exact: True   porism (survives dropping 13 of 19 contacts)  corner BR--touch(c5LT,left)  =  corner BR--touch(c5LT,top)
+n=6 INnOGMMZW   [deg F = 6, W = 1.000000, symmetries: none]
+   length 0.1618972777  exact: True   porism (survives dropping 2 of 19 contacts)   corner TR--touch(c5R,right)  =  corner TR--touch(c3o,c5R)  =  corner TR--touch(c1T,c4T)
+   length 0.9475785429  exact: True   porism (survives dropping 13 of 19 contacts)  corner BR--touch(c0RT,right)  =  corner TL--touch(c0RT,top)
+   length 0.9490274518  exact: True   porism (survives dropping 13 of 19 contacts)  corner BR--centre(c0RT)  =  corner TL--centre(c0RT)
+   length 1.0013730619  exact: True   porism (survives dropping 13 of 19 contacts)  corner BR--touch(c0RT,top)  =  corner TL--touch(c0RT,right)
+   length 1.3776447637  exact: True   porism (survives dropping 13 of 19 contacts)  corner BL--touch(c0RT,right)  =  corner BL--touch(c0RT,top)
+n=6 ITvhHdEUW   [deg F = 6, W = 1.199740, symmetries: none]
+   length 0.6845833224  exact: True   porism (survives dropping 4 of 19 contacts)   centre(c1LT)--touch(c2RT,top)  =  centre(c1LT)--touch(c4BL,bottom)
+n=6 I^YgG]UUW   [deg F = 12, W = 1.462053, symmetries: none]
+n=6 ITviOtELW   [deg F = 6, W = 1.078431, symmetries: none]
+n=6 I^egG\eUW   [deg F = 12, W = 0.683954, symmetries: none]
+n=6 Izqg_XZLo   [deg F = 2, W = 0.510958, symmetries: x -> W-x]
+   length 0.7445208382  exact: True   rigid                                         corner TL--touch(c0BLR,left) (+1)  =  centre(c4o)--touch(c0BLR,bottom)
+   length 0.7871346013  exact: True   rigid                                         corner BL--centre(c4o) (+1)  =  corner TL--centre(c0BLR) (+1)
+n=6 Iq~pOseDW   [deg F = 8, W = 1.000000, symmetries: half-turn, diagonal, antidiagonal]
+n=6 I\^_GqVRo   [deg F = 2, W = 1.750000, symmetries: y -> 1-y]
+   length 0.5590169944  exact: True   porism (survives dropping 1 of 19 contacts)   corner BR--touch(c4RT,c5BR) (+3)  =  centre(c4RT)--touch(c2BLT,c3o) (+1)
+   length 0.7071067812  exact: True   rigid                                         corner BL--centre(c2BLT) (+5)  =  touch(c2BLT,c3o)--touch(c4RT,top) (+1)
+   length 0.7500000000  exact: True   porism (survives dropping 1 of 19 contacts)   corner BR--touch(c4RT,right) (+3)  =  centre(c4RT)--touch(c0B,c2BLT) (+3)
+   length 0.7905694150  exact: True   porism (survives dropping 1 of 19 contacts)   corner BR--centre(c4RT) (+3)  =  touch(c2BLT,c3o)--touch(c4RT,right) (+1)
+   length 1.0000000000  exact: True   porism (survives dropping 1 of 19 contacts)   touch(c3o,c4RT)--touch(c2BLT,bottom) (+7)  =  centre(c2BLT)--touch(c4RT,c5BR) (+2)
+   length 1.0307764064  exact: True   porism (survives dropping 1 of 19 contacts)   corner BR--touch(c4RT,top) (+1)  =  centre(c2BLT)--centre(c4RT) (+3)
+   length 1.1180339887  exact: True   rigid                                         corner BL--touch(c2BLT,c3o) (+3)  =  centre(c2BLT)--touch(c4RT,top) (+3)
+   length 1.2500000000  exact: True   porism (survives dropping 1 of 19 contacts)   corner BR--touch(c2BLT,bottom) (+1)  =  centre(c4RT)--touch(c2BLT,bottom) (+1)
+brick k=2   [deg F = 2, W = 1.000000, symmetries: x -> W-x, y -> 1-y, half-turn, diagonal, antidiagonal, quarter-turn, three-quarter-turn]
+brick k=3   [deg F = 4, W = 1.383204, symmetries: x -> W-x, y -> 1-y, half-turn]
+brick k=4   [deg F = 6, W = 1.752027, symmetries: x -> W-x, y -> 1-y, half-turn]
+
+366 coincidences in total  (125s)
+
+rigid coincidences (survive dropping no contact) and porisms, by degree of the field:
+   deg F =  2:  16 rigid, 207 porisms
+   deg F =  3:   1 rigid,  21 porisms
+   deg F =  4:   0 rigid,  28 porisms
+   deg F =  6:   1 rigid,  91 porisms
+   deg F =  8:   0 rigid,   1 porisms
+rigid coincidences in fields of degree >= 4:
+    k=3 11 12 22 23 33  deg F = 6

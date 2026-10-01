@@ -135,7 +135,8 @@ def analyse(n, cc, walls, z):
             pass
     disc_primes = list(Kf.discriminant().prime_factors()) if D <= 16 else 'not computed'
     return {'degF': D, 'degW': mW.degree(), 'certified': ok, 'how': how, 'sqrt2': Kf(2).is_square(),
-            'galois': gal, 'disc_primes': disc_primes, 'W': float(zz[3 * n])}
+            'galois': gal, 'disc_primes': disc_primes, 'W': float(zz[3 * n]),
+            'field': Kf, 'exact': attempt[1] if ok else None, 'numeric': zz}
 
 
 
@@ -190,69 +191,6 @@ def spanning_ends(n, cc, walls):
             return False
     return True
 
-STATS = {}
-STATS2 = {}
-STATS3 = {}
-EXCEPT = []
-NOSQRT2 = []
-print('Triangulated packings with circles touching no side: fields')
-print('(every circle touches >= 4 objects; height 1)')
-print()
-for n in range(NMIN, NMAX + 1):
-    t0 = time.time()
-    rows = []
-    for cc, walls, key in cgs.patterns(n):
-        deg = [0] * n
-        for p, q in cc:
-            deg[p] += 1; deg[q] += 1
-        touched = set(p for p, sd in walls)
-        for p, sd in walls:
-            deg[p] += 1
-        interior = [i for i in range(n) if i not in touched]
-        if not interior or min(deg) < 4:
-            continue
-        z = cgs.solve(n, cc, walls)
-        if z is None:
-            rows.append((cc, walls, interior, None))
-            continue
-        res = analyse(n, cc, walls, z)
-        if res is not None:
-            res['cluster'] = sqrt2_cluster(n, cc, walls)
-            STATS[(res['cluster'], res['sqrt2'])] = STATS.get((res['cluster'], res['sqrt2']), 0) + 1
-            res['triangle'] = sqrt2_triangle(n, cc, walls)
-            res['spanning'] = spanning_ends(n, cc, walls)
-            STATS3[(res['spanning'], res['sqrt2'])] = STATS3.get((res['spanning'], res['sqrt2']), 0) + 1
-            STATS2[(res['triangle'], res['sqrt2'])] = STATS2.get((res['triangle'], res['sqrt2']), 0) + 1
-            if res['triangle'] != res['sqrt2']:
-                EXCEPT.append((n, cc, walls, res))
-            if not res['sqrt2']:
-                NOSQRT2.append((n, cc, walls, res))
-        rows.append((cc, walls, interior, res))
-    print('n = %d: %d patterns with an interior circle  (%.0fs)' % (n, len(rows), time.time() - t0))
-    for cc, walls, interior, res in rows:
-        if res is None:
-            print('   [not solved or degree > 64]  %d interior' % len(interior))
-            continue
-        print('   %d interior   deg F %3d  deg W %3d  certified %-5s  sqrt2 in F %-5s  corner cluster %-5s  W = %.6f  disc primes %s  Galois %s'
-              % (len(interior), res['degF'], res['degW'], res['certified'], res['sqrt2'], res['cluster'], res['W'], res['disc_primes'], res['galois']))
-        if res['certified'] and res['how'] != 'random combination, %d digits' % DIGITS:
-            print('        (certified with %s)' % res['how'])
-        if not res['certified']:
-            print('        tangencies %s' % cc)
-            print('        sides      %s' % walls)
-    sys.stdout.flush()
-
-print()
-print('(corner cluster, sqrt 2 in F) -> number of patterns:', STATS)
-print('(top-bottom triangle with a third circle on a line, sqrt 2 in F) -> number of patterns:', STATS2)
-print('(each side wall touched by one circle of radius 1/2 only, sqrt 2 in F) -> number of patterns:', STATS3)
-
-print('patterns whose field does not contain sqrt 2:')
-for n_, cc_, walls_, res_ in NOSQRT2:
-    print('   n = %d  deg F %d  W = %.6f  disc primes %s  Galois %s' % (n_, res_['degF'], res_['W'], res_['disc_primes'], res_['galois']))
-    print('      tangencies %s' % cc_)
-    print('      sides      %s' % walls_)
-
 
 def brick(k):
     """Top row A_1..A_k, middle row M_1..M_{k-1} touching no side,
@@ -273,19 +211,85 @@ def brick(k):
     return n, cc, walls
 
 
-print()
-print('The brick family: rows of k, k-1, k circles')
-for k in range(2, 6):
-    t0 = time.time()
-    n, cc, walls = brick(k)
-    z = cgs.solve(n, cc, walls, attempts=200)
-    if z is None:
-        print('   k = %d: not solved' % k); continue
-    res = analyse(n, cc, walls, z)
-    if res is None:
-        print('   k = %d (%d circles): degree > 64' % (k, n)); continue
-    radii = sorted(set(round(float(r), 9) for r in z[2 * n:3 * n]))
-    print('   k = %d (%d circles): deg F %3d  deg W %3d  certified %-5s  sqrt2 in F %-5s  W = %.6f  disc primes %s  Galois %s  (%.0fs)'
-          % (k, n, res['degF'], res['degW'], res['certified'], res['sqrt2'], res['W'], res['disc_primes'], res['galois'], time.time() - t0))
-    print('        distinct radii: %s' % radii)
-    sys.stdout.flush()
+
+if not globals().get('_NO_MAIN'):
+    STATS = {}
+    STATS2 = {}
+    STATS3 = {}
+    EXCEPT = []
+    NOSQRT2 = []
+    print('Triangulated packings with circles touching no side: fields')
+    print('(every circle touches >= 4 objects; height 1)')
+    print()
+    for n in range(NMIN, NMAX + 1):
+        t0 = time.time()
+        rows = []
+        for cc, walls, key in cgs.patterns(n):
+            deg = [0] * n
+            for p, q in cc:
+                deg[p] += 1; deg[q] += 1
+            touched = set(p for p, sd in walls)
+            for p, sd in walls:
+                deg[p] += 1
+            interior = [i for i in range(n) if i not in touched]
+            if not interior or min(deg) < 4:
+                continue
+            z = cgs.solve(n, cc, walls)
+            if z is None:
+                rows.append((cc, walls, interior, None))
+                continue
+            res = analyse(n, cc, walls, z)
+            if res is not None:
+                res['cluster'] = sqrt2_cluster(n, cc, walls)
+                STATS[(res['cluster'], res['sqrt2'])] = STATS.get((res['cluster'], res['sqrt2']), 0) + 1
+                res['triangle'] = sqrt2_triangle(n, cc, walls)
+                res['spanning'] = spanning_ends(n, cc, walls)
+                STATS3[(res['spanning'], res['sqrt2'])] = STATS3.get((res['spanning'], res['sqrt2']), 0) + 1
+                STATS2[(res['triangle'], res['sqrt2'])] = STATS2.get((res['triangle'], res['sqrt2']), 0) + 1
+                if res['triangle'] != res['sqrt2']:
+                    EXCEPT.append((n, cc, walls, res))
+                if not res['sqrt2']:
+                    NOSQRT2.append((n, cc, walls, res))
+            rows.append((cc, walls, interior, res))
+        print('n = %d: %d patterns with an interior circle  (%.0fs)' % (n, len(rows), time.time() - t0))
+        for cc, walls, interior, res in rows:
+            if res is None:
+                print('   [not solved or degree > 64]  %d interior' % len(interior))
+                continue
+            print('   %d interior   deg F %3d  deg W %3d  certified %-5s  sqrt2 in F %-5s  corner cluster %-5s  W = %.6f  disc primes %s  Galois %s'
+                  % (len(interior), res['degF'], res['degW'], res['certified'], res['sqrt2'], res['cluster'], res['W'], res['disc_primes'], res['galois']))
+            if res['certified'] and res['how'] != 'random combination, %d digits' % DIGITS:
+                print('        (certified with %s)' % res['how'])
+            if not res['certified']:
+                print('        tangencies %s' % cc)
+                print('        sides      %s' % walls)
+        sys.stdout.flush()
+
+    print()
+    print('(corner cluster, sqrt 2 in F) -> number of patterns:', STATS)
+    print('(top-bottom triangle with a third circle on a line, sqrt 2 in F) -> number of patterns:', STATS2)
+    print('(each side wall touched by one circle of radius 1/2 only, sqrt 2 in F) -> number of patterns:', STATS3)
+
+    print('patterns whose field does not contain sqrt 2:')
+    for n_, cc_, walls_, res_ in NOSQRT2:
+        print('   n = %d  deg F %d  W = %.6f  disc primes %s  Galois %s' % (n_, res_['degF'], res_['W'], res_['disc_primes'], res_['galois']))
+        print('      tangencies %s' % cc_)
+        print('      sides      %s' % walls_)
+
+
+    print()
+    print('The brick family: rows of k, k-1, k circles')
+    for k in range(2, 6):
+        t0 = time.time()
+        n, cc, walls = brick(k)
+        z = cgs.solve(n, cc, walls, attempts=200)
+        if z is None:
+            print('   k = %d: not solved' % k); continue
+        res = analyse(n, cc, walls, z)
+        if res is None:
+            print('   k = %d (%d circles): degree > 64' % (k, n)); continue
+        radii = sorted(set(round(float(r), 9) for r in z[2 * n:3 * n]))
+        print('   k = %d (%d circles): deg F %3d  deg W %3d  certified %-5s  sqrt2 in F %-5s  W = %.6f  disc primes %s  Galois %s  (%.0fs)'
+              % (k, n, res['degF'], res['degW'], res['certified'], res['sqrt2'], res['W'], res['disc_primes'], res['galois'], time.time() - t0))
+        print('        distinct radii: %s' % radii)
+        sys.stdout.flush()
