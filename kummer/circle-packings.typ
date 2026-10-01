@@ -107,7 +107,9 @@
   #v(1mm)
   #text(size: 9pt, style: "italic")[figures and checks in `circle-packings.py`,
   output in `results/circle-packings.txt`; degrees in `circle-degrees.sage`,
-  output in `results/circle-degrees.txt`; the search of @sec-graph in
+  output in `results/circle-degrees.txt`; larger $k$ in `circle-degrees-growth.sage` and
+  `circle-galois.sage`, output in `results/circle-degrees-growth.txt` and
+  `results/circle-galois.txt`; the search of @sec-graph in
   `circle-graph-search.py`, output in `results/circle-graph-search*.txt`]
 ]
 
@@ -281,10 +283,10 @@ makes it larger.
 #let wpoly(p) = text(9pt, p)
 Three things stand out.
 
-- *The degrees grow slowly.* For $k = 4$ they are $4$, $6$ or $8$, and four of the twenty
-  packings have *smaller* degree than the six circles, although the system admits up to $2048$
-  complex solutions by Bézout. Except for $k = 2$, where $W = 1$, the width $W$ generates the
-  whole field.
+- *The degrees are small for small $k$.* For $k = 4$ they are $4$, $6$ or $8$, and four of
+  the twenty packings have *smaller* degree than the six circles, although the system admits up
+  to $2048$ complex solutions by Bézout. Except for $k = 2$, where $W = 1$, the width $W$
+  generates the whole field. For larger $k$ the degrees grow quickly (@sec-growth).
 - *$sqrt(2)$ lies in every field.* Each zigzag has a bottom-left cluster of three circles: the
   corner circle $B_1$, the circle $A_1$ above it on the left side, and one circle touching both
   ($B_2$ or $A_2$). That cluster alone forces $sqrt(2)$, so every Galois group is a wreath
@@ -303,6 +305,105 @@ $ #wpoly[$W^8 - 5 W^7 + 91/8 W^6 - 241/16 W^5 + 3921/256 W^4 - 965/64 W^3 + 1219
 $ #wpoly[$W^8 + 1056/289 W^7 + 991/289 W^6 - 2254/289 W^5 - 27411/1156 W^4 - 7449/289 W^3
   - 8091/578 W^2 - 1091/289 W - 463/1156$]. $
 All $28$ minimal polynomials are listed in `results/circle-degrees.txt`.
+
+= Larger $k$: degrees and Galois groups <sec-growth>
+
+The Gröbner and LLL methods of @sec-degrees do not scale. A better route comes from the
+following observation.
+
+*Lemma.* Suppose $A_i$ and $B_j$ are tangent and the next circle in the path is $A_(i+1)$,
+tangent to the top, to $A_i$ and to $B_j$. Then
+$ a_i / a_(i+1) = Y_j - X_i + sqrt(2) b_j, quad X_(i+1) = X_i + 2 a_i a_(i+1), $
+and symmetrically $b_j \/ b_(j+1) = X_i - Y_j + sqrt(2) a_i$ when the next circle is
+$B_(j+1)$. Here $X_i, Y_j$ are the $x$-coordinates of the centres of $A_i, B_j$.
+
+*Proof.* Put $D = X_i - Y_j$, so that $D^2 = 2(a_i^2 + b_j^2) - 1$ by the tangency of $A_i$
+and $B_j$. The tangency of $A_(i+1)$ and $B_j$ reads
+$(D + 2 a_i a_(i+1))^2 = 2(a_(i+1)^2 + b_j^2) - 1$. Substituting $D^2$ turns this into
+$(2 a_i^2 - 1) a_(i+1)^2 + 2 a_i D a_(i+1) + a_i^2 = 0$. Its discriminant is
+$4 a_i^2 (D^2 - 2 a_i^2 + 1) = 2 (2 a_i b_j)^2$, and the root belonging to the packing gives
+the formula. That this is the right root was checked on all $28$ packings of @sec-zigzag.
+$square$
+
+So *no new square root ever appears*. Starting from $t = a_1$, $b_1 = 1 - t$, $X_1 = t^2$,
+$Y_1 = (1 - t)^2$, every coordinate is a rational function of $t$ over $K = QQ(sqrt(2))$.
+The packing is cut out by one equation: both end circles touch the right side, that is
+$X_k + a_k^2 = Y_k + b_k^2$.
+
+*Proposition.* For every two-row zigzag with $k >= 2$ the field of the packing is
+$F = QQ(sqrt(2), t)$, where $t = sqrt(r(A_1))$. Hence $deg F = 2m$ is even, where $m$ is the
+degree over $K$ of the irreducible factor $f$ of that equation which vanishes at the packing.
+The Galois group of the Galois closure of $F$ is a subgroup of $S_m wreath C_2$.
+
+*Proof.* The lemma gives $F subset.eq K(t)$. Conversely, $sqrt(r(A_1)) + sqrt(r(B_1)) = 1$
+gives $t = (1 + r(A_1) - r(B_1)) \/ 2 in F$. Moreover $a_(i+1) = (X_(i+1) - X_i) \/ (2 a_i)$, so
+all the $a_i, b_j$ lie in $F$, and then the lemma expresses $sqrt(2)$ in $F$. The minimal
+polynomial of $t$ over $QQ$ is $f dot f^sigma$, where $sigma$ is $sqrt(2) |-> -sqrt(2)$. Its
+roots fall into two blocks of $m$, which gives the bound on the Galois group. $square$
+
+`circle-degrees-growth.sage` computes $f$ exactly for every pattern. It factors the final
+equation over $K$ and evaluates the recursion at every real root in $(0, 1)$ of every factor;
+exactly one root gives an honest packing. The results for $k <= 7$, one symmetry orbit of
+patterns at a time, are in @tab-growth.
+
+#figure(
+  table(
+    columns: 7,
+    align: (left,) + (center,) * 6,
+    stroke: none,
+    inset: (x: 6pt, y: 3pt),
+    table.hline(),
+    table.header([$k$], [2], [3], [4], [5], [6], [7]),
+    table.hline(stroke: 0.5pt),
+    [orbits of patterns], [1], [3], [7], [23], [71], [252],
+    [largest $deg F$], [4], [6], [8], [20], [40], [66],
+    [smallest $deg F$], [4], [6], [4], [6], [10], [8],
+    [alternating path], [4], [6], [6], [10], [12], [16],
+    table.hline(),
+  ),
+  kind: table,
+  caption: [Degree of the field of the two-row zigzags. The alternating path continues with
+  $20$ and $24$ for $k = 8, 9$.],
+) <tab-growth>
+
+- *Linear growth fails in the worst case.* The largest degree goes $8, 20, 40, 66$ for
+  $k = 4, dots, 7$. Along the alternating path the degree grows by $4$ per step from $k = 6$
+  on, so linear growth is plausible for that family; it is not proved. The easy rigorous
+  bound, from the degrees of the rational functions in the recursion, is exponential in $k$.
+- *$W$ generates $F$* in all $356$ orbits with $3 <= k <= 7$. This is not proved; for
+  $k = 2$ it fails, since $W = 1$.
+
+*Galois groups.* `circle-galois.sage` determines the Galois group for every orbit with
+$k <= 7$. For $m <= 5$ it uses PARI's `polgalois` on $f f^sigma$. For larger $m$ it builds a
+certificate from Frobenius elements: for a prime $p equiv plus.minus 1 thick (mod 8)$ the
+factorisations of $f$ modulo the two primes of $K$ above $p$ give the cycle types of a pair
+$(g, h) in S_m times S_m$. The certificate needs three things:
+- an $m$-cycle and an $(m-1)$-cycle, so that both projections are primitive;
+- a type with exactly one cycle of length divisible by a prime $q$, of length exactly $q$,
+  where $q <= m - 3$ or $q <= 3$; a power of it is a $q$-cycle, so by Jordan's theorem both
+  projections are $S_m$;
+- a pair with $op("sgn") g != op("sgn") h$, and a pair with $g$ an $m$-cycle ($5$-cycle if $m = 6$) and
+  $h$ not. By Goursat's lemma these rule out the two proper subdirect products of
+  $S_m times S_m$.
+
+Then the group over $K$ is $S_m times S_m$, and over $QQ$ it is the full wreath product.
+
+*In $355$ of the $357$ orbits the Galois group is the full wreath product $S_m wreath C_2$,*
+of order $2 (m!)^2$, for every $m$ from $2$ to $33$. There are two exceptions.
+
+- $k = 2$: the group is $C_4$ rather than $D_4 = S_2 wreath C_2$. The field, cyclic of
+  discriminant $2^11$, looks like $QQ(sqrt(2 + sqrt(2)))$.
+- $k = 6$, pattern `11 12 13 14 24 34 44 54 55 56 66`, the pattern of largest degree for
+  $k = 6$ ($m = 20$, $deg F = 40$). Here $f$ has a *second root $t'$ in $F$*: over $F$ it
+  factors with degrees $1 + 1 + 18$. So $F$ has an automorphism $tau$ of order $2$ over $K$, and
+  a subfield of degree $10$ over $K$. The Galois group preserves the pairing
+  $\{"root", tau("root")\}$. Every Frobenius cycle type comes in matched pairs, such as
+  $(10, 10)$, $(9, 9, 2)$ and $(18, 2)$, with an even number of fixed points. The norm of
+  $"disc" f$ is $2$ times a square, so the two halves of each Frobenius pair always have the
+  same sign. The pattern has no geometric symmetry. The conjugate $t' = -0.5479...$ is a real
+  solution of the same equations in which some of the signed $sqrt(r)$ and the width are
+  negative; the value $t$ itself reappears there as $a_5 = -t$. I have no explanation for this
+  hidden involution.
 
 = Circles that touch no side <sec-rows>
 
@@ -479,6 +580,10 @@ triangle, leaves only similarities.
   (6) for every two-row zigzag with $k = 2, 3, 4$ the minimal polynomials of $W$ and of
   generators of the field, by LLL at $3000$ digits, rechecked at $6000$, and certified by an
   exact verification of all equations in the number field (@sec-degrees).
+  `circle-degrees-growth.sage` and `circle-galois.sage`, output in
+  `results/circle-degrees-growth.txt` and `results/circle-galois.txt`:
+  (6b) for every two-row zigzag with $k <= 7$ the exact factor $f$ and $deg F$, and the Galois
+  group, by `polgalois` for $m <= 5$ and a Frobenius certificate otherwise (@sec-growth).
   `circle-graph-search.py`, output in `results/circle-graph-search*.txt`:
   (7) every triangulated pattern with $n <= 6$ circles, and the two restricted classes up
   to $n = 8$, solved and compared by the bare graph $G$ and by $G + T + B$ (@sec-graph).

@@ -1,0 +1,65 @@
+two-row zigzags: F = Q(sqrt2, t), t = sqrt(r(A_1)), height 1
+m = [F : Q(sqrt 2)], so deg F = 2m;  N = degree of the numerator of the final equation
+
+k = 2: 1 patterns up to symmetry   (0s)
+   deg F = 2m takes the values [4]
+   max deg F = 4,  min deg F = 4,  N ranges over 6..6
+   patterns with deg W < deg F: 1
+     11 12 22                                 deg F   4  deg W   1  N   6  W = 1.00000000
+k = 3: 3 patterns up to symmetry   (0s)
+   deg F = 2m takes the values [6]
+   max deg F = 6,  min deg F = 6,  N ranges over 10..10
+   patterns with deg W < deg F: 0
+     11 12 13 23 33                           deg F   6  deg W   6  N  10  W = 1.32376238
+     11 12 22 23 33                           deg F   6  deg W   6  N  10  W = 1.52593579
+     11 12 22 32 33                           deg F   6  deg W   6  N  10  W = 1.48335776
+k = 4: 7 patterns up to symmetry   (0s)
+   deg F = 2m takes the values [4, 6, 8]
+   max deg F = 8,  min deg F = 4,  N ranges over 14..22
+   patterns with deg W < deg F: 0
+     11 12 13 23 33 34 44                     deg F   4  deg W   4  N  14  W = 1.88798834
+     11 12 13 23 24 34 44                     deg F   6  deg W   6  N  18  W = 1.80994790
+     11 12 13 23 33 43 44                     deg F   6  deg W   6  N  16  W = 1.78901876
+     11 12 22 23 33 34 44                     deg F   6  deg W   6  N  16  W = 2.05949545
+     11 12 22 23 33 43 44                     deg F   6  deg W   6  N  16  W = 2.00486124
+     11 12 13 14 24 34 44                     deg F   8  deg W   8  N  22  W = 1.51788524
+     11 12 22 32 33 34 44                     deg F   8  deg W   8  N  18  W = 1.96980459
+k = 5: 23 patterns up to symmetry   (1s)
+   deg F = 2m takes the values [6, 8, 10, 14, 16, 18, 20]
+   max deg F = 20,  min deg F = 6,  N ranges over 22..34
+   patterns with deg W < deg F: 0
+     11 12 13 14 15 25 35 45 55               deg F   6  deg W   6  N  34  W = 1.63975329
+     11 12 22 23 33 43 44 54 55               deg F   6  deg W   6  N  23  W = 2.52487845
+     11 12 22 32 33 34 44 54 55               deg F   8  deg W   8  N  30  W = 2.45554784
+     11 12 22 32 42 43 44 45 55               deg F   8  deg W   8  N  28  W = 2.25452677
+     11 12 13 14 24 25 35 45 55               deg F  10  deg W  10  N  32  W = 1.97653573
+     11 12 13 23 24 34 35 45 55               deg F  10  deg W  10  N  24  W = 2.33421399
+     11 12 13 23 33 34 35 45 55               deg F  10  deg W  10  N  26  W = 2.28663457
+     11 12 13 23 33 43 53 54 55               deg F  10  deg W  10  N  34  W = 2.05776455
+     11 12 22 23 24 34 44 45 55               deg F  10  deg W  10  N  22  W = 2.45469477
+     11 12 22 23 33 34 44 45 55               deg F  10  deg W  10  N  24  W = 2.59487790
+     11 12 22 32 33 43 44 45 55               deg F  10  deg W  10  N  28  W = 2.48439767
+     11 12 13 23 33 34 44 54 55               deg F  14  deg W  14  N  22  W = 2.36233028
+     11 12 22 23 24 34 44 54 55               deg F  14  deg W  14  N  22  W = 2.35243728
+     11 12 13 23 24 34 44 45 55               deg F  16  deg W  16  N  26  W = 2.38410029
+     11 12 13 23 24 34 44 54 55               deg F  16  deg W  16  N  26  W = 2.27216216
+     11 12 13 23 33 34 44 45 55               deg F  16  deg W  16  N  24  W = 2.42992461
+     11 12 22 23 33 34 44 54 55               deg F  16  deg W  16  N  26  W = 2.53738058
+     11 12 13 14 24 34 35 45 55               deg F  18  deg W  18  N  30  W = 2.10759348
+     11 12 13 14 24 34 44 54 55               deg F  18  deg W  18  N  30  W = 1.97576315
+     11 12 13 23 33 43 44 54 55               deg F  18  deg W  18  N  28  W = 2.30328914
+     11 12 22 23 33 43 44 45 55               deg F  18  deg W  18  N  27  W = 2.49235179
+     11 12 13 14 24 34 44 45 55               deg F  20  deg W  20  N  32  W = 2.11091677
+     11 12 13 23 33 43 44 45 55               deg F  20  deg W  20  N  30  W = 2.28068338
+k = 6: 71 patterns up to symmetry   (13s)
+   deg F = 2m takes the values [10, 12, 14, 16, 20, 22, 24, 26, 28, 30, 32, 34, 36, 40]
+   max deg F = 40,  min deg F = 10,  N ranges over 34..64
+   patterns with deg W < deg F: 0
+     11 12 13 14 15 25 26 36 46 56 66         deg F  10  deg W  10  N  48  W = 2.08230667
+     11 12 13 14 24 34 44 54 55 56 66         deg F  40  deg W  40  N  58  W = 2.47097476
+k = 7: 252 patterns up to symmetry   (337s)
+   deg F = 2m takes the values [8, 10, 12, 14, 16, 18, 20, 22, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 66]
+   max deg F = 66,  min deg F = 8,  N ranges over 46..132
+   patterns with deg W < deg F: 0
+     11 12 13 23 33 34 44 54 55 65 75 76 77   deg F   8  deg W   8  N  46  W = 3.23464439
+     11 12 13 14 24 34 44 54 55 56 57 67 77   deg F  66  deg W  66  N 126  W = 2.79441442

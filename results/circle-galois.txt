@@ -1,0 +1,64 @@
+Galois groups of the two-row zigzags: G inside S_m wr C_2, m = [F : Q(sqrt 2)]
+
+k = 2 (1 patterns up to symmetry, 0s):
+   C(4) = 4                                 1
+k = 3 (3 patterns up to symmetry, 0s):
+   S_3 wr C_2                               3
+k = 4 (7 patterns up to symmetry, 0s):
+   S_2 wr C_2                               1
+   S_3 wr C_2                               4
+   S_4 wr C_2                               2
+k = 5 (23 patterns up to symmetry, 1s):
+   S_3 wr C_2                               2
+   S_4 wr C_2                               2
+   S_5 wr C_2                               7
+   S_7 wr C_2                               2
+   S_8 wr C_2                               4
+   S_9 wr C_2                               4
+   S_10 wr C_2                              2
+k = 6 (71 patterns up to symmetry, 8s):
+   S_5 wr C_2                               2
+   S_6 wr C_2                               8
+   S_7 wr C_2                               4
+   S_8 wr C_2                               2
+   S_10 wr C_2                              2
+   S_11 wr C_2                              5
+   S_12 wr C_2                              6
+   S_13 wr C_2                              15
+   S_14 wr C_2                              8
+   S_15 wr C_2                              5
+   S_16 wr C_2                              9
+   S_17 wr C_2                              3
+   S_18 wr C_2                              1
+   undecided {'mcycle': True, 'm1cycle': False, 'jordan': True, 'sign': False, 'nondiag': True} 1
+k = 7 (252 patterns up to symmetry, 54s):
+   S_4 wr C_2                               1
+   S_5 wr C_2                               4
+   S_6 wr C_2                               2
+   S_7 wr C_2                               10
+   S_8 wr C_2                               10
+   S_9 wr C_2                               12
+   S_10 wr C_2                              1
+   S_11 wr C_2                              2
+   S_15 wr C_2                              2
+   S_16 wr C_2                              10
+   S_17 wr C_2                              6
+   S_18 wr C_2                              12
+   S_19 wr C_2                              21
+   S_20 wr C_2                              14
+   S_21 wr C_2                              26
+   S_22 wr C_2                              16
+   S_23 wr C_2                              25
+   S_24 wr C_2                              19
+   S_25 wr C_2                              12
+   S_26 wr C_2                              13
+   S_27 wr C_2                              7
+   S_28 wr C_2                              4
+   S_29 wr C_2                              13
+   S_30 wr C_2                              5
+   S_31 wr C_2                              1
+   S_33 wr C_2                              4
+
+patterns whose group is not the full wreath product (or undecided):
+   k = 2  m = 2  11 12 22  : C(4) = 4
+   k = 6  m = 20  11 12 13 14 24 34 44 54 55 56 66  : {'mcycle': True, 'm1cycle': False, 'jordan': True, 'sign': False, 'nondiag': True}
