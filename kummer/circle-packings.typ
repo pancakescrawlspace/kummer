@@ -109,7 +109,8 @@
   output in `results/circle-packings.txt`; degrees in `circle-degrees.sage`,
   output in `results/circle-degrees.txt`; larger $k$ in `circle-degrees-growth.sage` and
   `circle-galois.sage`, output in `results/circle-degrees-growth.txt` and
-  `results/circle-galois.txt`; the search of @sec-graph in
+  `results/circle-galois.txt`; the involution in `circle-involution.sage`, output in
+  `results/circle-involution.txt`; the search of @sec-graph in
   `circle-graph-search.py`, output in `results/circle-graph-search*.txt`]
 ]
 
@@ -402,8 +403,112 @@ of order $2 (m!)^2$, for every $m$ from $2$ to $33$. There are two exceptions.
   $"disc" f$ is $2$ times a square, so the two halves of each Frobenius pair always have the
   same sign. The pattern has no geometric symmetry. The conjugate $t' = -0.5479...$ is a real
   solution of the same equations in which some of the signed $sqrt(r)$ and the width are
-  negative; the value $t$ itself reappears there as $a_5 = -t$. I have no explanation for this
+  negative; the value $t$ itself reappears there as $a_5 = -t$. @sec-involution explains this
   hidden involution.
+
+= A hidden involution <sec-involution>
+
+This section explains the exceptional pattern `11 12 13 14 24 34 44 54 55 56 66` of
+@sec-growth, and predicts the next examples. The computations are in
+`circle-involution.sage`, with output in `results/circle-involution.txt`.
+
+Call the *core* of a zigzag all circles except the two end circles $B_1$ and $A_k$. In the
+exceptional pattern $B_1$ touches only $A_1$ across, and $A_6$ only $B_6$.
+
+*The involution.* The second root of $f$ in $F$ is $t' = -a_5$. At $t'$ the recursion gives a
+real configuration that satisfies every tangency of the pattern but is not a packing: its
+width is $W = -0.945$, and two of its circles are large, with radii $2.396$ and $1.783$. Its
+radii are
+#align(center, table(
+  columns: 7, stroke: none, inset: (x: 5pt, y: 2pt), align: center,
+  table.hline(),
+  [], [$1$], [$2$], [$3$], [$4$], [$5$], [$6$],
+  table.hline(stroke: 0.5pt),
+  [packing, $r(A_i)$], [0.3876], [0.1455], [0.1088], [0.1327], [0.3002], [0.2123],
+  [at $t'$, $r(A_i)$], [0.3002], [0.1327], [0.1088], [0.1455], [0.3876], [*1.7832*],
+  [packing, $r(B_j)$], [0.1425], [0.1125], [0.1478], [0.3915], [0.2014], [0.2907],
+  [at $t'$, $r(B_j)$], [*2.3960*], [0.2907], [0.2014], [0.3915], [0.1478], [0.1125],
+  table.hline(),
+))
+The core at $t'$ is *the core of the packing itself*, translated by $1.4535$, with its labels
+reversed: $A_i <-> A_(6 - i)$, $B_j <-> B_(8 - j)$. All radii agree, and all translations
+agree to $70$ digits. Only the two end circles are new.
+
+So the same picture admits two ways of being read as a solution of the equations, forwards
+and backwards. Three ingredients make the backward reading work.
+
++ *A symmetric core.* Reading the core backwards must preserve its tangencies, which means
+  that its lattice path is invariant under $(i, j) |-> (k - i, k + 2 - j)$.
+
++ *An end porism.* Suppose $B_1$ is stacked with $A_1$ against the left side and touches
+  $B_2$. Then the circle on the top line that is stacked with $B_2$ against the vertical
+  tangent on the far side of $B_2$ automatically touches $A_1$. As a rational function of
+  $t$, the defining equation of this tangency is identically $0$. Turned through $180 degree$,
+  the same statement holds at the right end. These two circles are the new end circles of the
+  backward reading.
+
++ *The same branch.* The recursion of @sec-growth always takes the root $+sqrt(2)$. The
+  backward reading is a solution of *that* system only if each of its steps also takes
+  $+sqrt(2)$. In signed coordinates the backward reading has alternating signs along each
+  row. A step that adds an $A$-circle next to $B_j$ then takes the root
+  $-op("sign")(b_j) sqrt(2)$, and a step that adds a $B$-circle next to $A_i$ takes
+  $-op("sign")(a_i) sqrt(2)$. This gives the
+
+  *parity rule:* all steps that add a $B$-circle occur next to $A_i$ with $i$ of one parity,
+  and all steps that add an $A$-circle occur next to $B_j$ with $j$ of one parity.
+
+  In the exceptional pattern the $B$-circles are added next to $A_1, A_1, A_1, A_5, A_5$
+  and the $A$-circles next to $B_4, B_4, B_4, B_4, B_6$. For the other patterns with a
+  symmetric core the backward reading needs a mixture of roots: for $k = 6$ always
+  `++--++--++`, and for $k = 8$ strings such as `++----------++`.
+
+When all three hold, $t' = -a_(k-1)$ is a root of the same final equation as $t$, and in every
+case checked it is a root of the same irreducible factor $f$. Then $t |-> t'$ is an
+automorphism of $F$ over $QQ(sqrt(2))$ of order $2$, and the Galois group is not the full
+wreath product.
+
+*Predictions.* The parity rule forces the last step to add $A_k$ next to $B_k$ with $k$ even,
+so odd $k$ never qualifies. Up to the symmetries of the rectangle, the predicted patterns are:
+
+#figure(
+  table(
+    columns: 3, stroke: none, inset: (x: 6pt, y: 3pt), align: (center, left, left),
+    table.hline(),
+    table.header([$k$], [predicted patterns], [check]),
+    table.hline(stroke: 0.5pt),
+    [$<= 5$, $7$, $8$, $9$], [none], [no automorphism for $k <= 7$ (@sec-growth)],
+    [$6$], [`11 12 22 32 33 34 35 36 46 56 66`], [$m = 20$, $|op("Aut")(F \/ K)| = 2$, exactly],
+    [$10$], [`11 12 22 32 42 52 53 ... 1010`], [$t, t'$ on one factor, $m = 98$],
+    [$10$], [`11 12 22 32 33 34 44 54 ... 1010`], [$t, t'$ on one factor, $m = 86$],
+    [$10$], [`11 12 22 32 33 34 35 36 46 ... 1010`], [$t, t'$ on one factor, $m = 230$],
+    table.hline(),
+  ),
+  kind: table,
+  caption: [Patterns predicted to carry the involution; the $k = 6$ pattern is the
+  half-turn image of `11 12 13 14 24 34 44 54 55 56 66`. For $k = 10$ the final equation was
+  factored exactly over $K$, and its factors were evaluated at $t$ and $t'$ to $4000$ bits.
+  The full paths are listed in `results/circle-involution.txt`.],
+) <tab-involution>
+
+So the $k = 6$ pattern is the first member of a family. The three $k = 10$ members have
+$deg F = 196$, $172$ and $460$.
+
+*Not built from smaller packings.* The fixed field $E$ of the involution has degree $20$
+over $QQ$; $r(B_4)$, which the involution fixes, generates it. $E$ is not isomorphic to
+either field of degree $20$ at $k = 5$, and it contains no field of a smaller zigzag.
+
+*What is not proved.* The porism at the right end is taken from the left end by the
+half-turn. That every face of a packing, read backwards, takes the root $+sqrt(2)$ in mirrored
+coordinates was checked numerically on all faces for $k = 3, 4$. That $t'$ lies on the same
+irreducible factor as $t$ was checked by computation. Other mechanisms producing
+automorphisms are excluded only for $k <= 7$, by @sec-growth. The automorphism of the
+$k = 4$ pattern with $m = 2$ is automatic and has nothing to do with this one.
+
+*A remark on the shape.* The $k = 6$ pattern consists of three "fans", runs in which one
+circle touches several consecutive circles of the other row: $A_1$ touches $B_1, dots, B_4$,
+then $B_4$ touches $A_1, dots, A_5$, then $A_5$ touches $B_4, B_5, B_6$. The obvious
+$k = 8$ analogue has its middle fan at $B_5$. That breaks the parity rule, and indeed the
+pattern has no involution.
 
 = Circles that touch no side <sec-rows>
 
@@ -584,6 +689,10 @@ triangle, leaves only similarities.
   `results/circle-degrees-growth.txt` and `results/circle-galois.txt`:
   (6b) for every two-row zigzag with $k <= 7$ the exact factor $f$ and $deg F$, and the Galois
   group, by `polgalois` for $m <= 5$ and a Frobenius certificate otherwise (@sec-growth).
+  `circle-involution.sage`, output in `results/circle-involution.txt`:
+  (6c) the involution of the exceptional pattern, the end porism as an identity, the
+  branch signs of all symmetric-core patterns with $k <= 8$, and the predicted patterns for
+  $k <= 10$ (@sec-involution).
   `circle-graph-search.py`, output in `results/circle-graph-search*.txt`:
   (7) every triangulated pattern with $n <= 6$ circles, and the two restricted classes up
   to $n = 8$, solved and compared by the bare graph $G$ and by $G + T + B$ (@sec-graph).

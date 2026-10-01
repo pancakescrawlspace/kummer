@@ -1,0 +1,81 @@
+========================================================================
+ The hidden involution of the zigzag 11 12 13 14 24 34 44 54 55 56 66
+========================================================================
+
+(1) m = deg f = 20; f has 2 roots in F = K(t)
+    the second root is t' = -a_5 exactly: True
+    t = 0.622544927306,  t' = -0.54791356047
+    honest  r(A) = 0.387562 0.145543 0.108756 0.132727 0.300209 0.212325
+            r(B) = 0.142472 0.112470 0.147801 0.391452 0.201444 0.290750
+            W    = 2.470975
+    at t'   r(A) = 0.300209 0.132727 0.108756 0.145543 0.387562 1.783203
+            r(B) = 2.396036 0.290750 0.201444 0.391452 0.147801 0.112470
+            W    = -0.945382
+    core at t' = honest core with labels reversed: radii True, translated by 1.4534966028 (spread 4.6e-70)
+
+(2) end porism.  Left end: a_1 = t, b_1 = 1 - t (stacked on the left wall),
+    B_2 tangent to B_1 and A_1.  A top circle D stacked with B_2 against the
+    vertical tangent on the right of B_2 (signed sqrt d = 1 + b_2) touches A_1:
+    residual, as a rational function of t: 0
+
+(3) branch signs of the reversed configuration, all patterns with a
+    mirror-symmetric core (end circles B_1 and A_k), k <= 8
+    k=4 11 12 22 23 24 34 44                           parity rule False  reversed branch ['++--++']
+    k=4 11 12 13 23 33 34 44                           parity rule False  reversed branch ['++--++']
+    k=6 11 12 22 32 33 34 35 36 46 56 66               parity rule True   reversed branch ['++++++++++']
+    k=6 11 12 22 23 33 34 35 45 46 56 66               parity rule False  reversed branch ['++--++--++']
+    k=6 11 12 22 23 24 34 44 45 46 56 66               parity rule False  reversed branch ['++--++--++']
+    k=6 11 12 13 23 33 34 35 45 55 56 66               parity rule False  reversed branch ['++--++--++']
+    k=6 11 12 13 23 24 34 44 45 55 56 66               parity rule False  reversed branch ['++--++--++']
+    k=6 11 12 13 14 24 34 44 54 55 56 66               parity rule True   reversed branch ['++++++++++']
+    k=8 11 12 22 32 42 43 44 45 46 47 48 58 68 78 88   parity rule False  reversed branch ['++++------++++']
+    k=8 11 12 22 32 33 43 44 45 46 47 57 58 68 78 88   parity rule False  reversed branch ['++++------++++']
+    k=8 11 12 22 32 33 34 44 45 46 56 57 58 68 78 88   parity rule False  reversed branch ['++++++--++++++']
+    k=8 11 12 22 32 33 34 35 45 55 56 57 58 68 78 88   parity rule False  reversed branch ['++++++--++++++']
+    k=8 11 12 22 23 33 43 44 45 46 47 57 67 68 78 88   parity rule False  reversed branch ['++----------++']
+    k=8 11 12 22 23 33 34 44 45 46 56 57 67 68 78 88   parity rule False  reversed branch ['++--++--++--++']
+    k=8 11 12 22 23 33 34 35 45 55 56 57 67 68 78 88   parity rule False  reversed branch ['++--++--++--++']
+    k=8 11 12 22 23 24 34 44 45 46 56 66 67 68 78 88   parity rule False  reversed branch ['++--++--++--++']
+    k=8 11 12 22 23 24 34 35 45 55 56 66 67 68 78 88   parity rule False  reversed branch ['++--++--++--++']
+    k=8 11 12 22 23 24 25 35 45 55 65 66 67 68 78 88   parity rule False  reversed branch ['++----------++']
+    k=8 11 12 13 23 33 43 44 45 46 47 57 67 77 78 88   parity rule False  reversed branch ['++----------++']
+    k=8 11 12 13 23 33 34 44 45 46 56 57 67 77 78 88   parity rule False  reversed branch ['++--++--++--++']
+    k=8 11 12 13 23 33 34 35 45 55 56 57 67 77 78 88   parity rule False  reversed branch ['++--++--++--++']
+    k=8 11 12 13 23 24 34 44 45 46 56 66 67 77 78 88   parity rule False  reversed branch ['++--++--++--++']
+    k=8 11 12 13 23 24 34 35 45 55 56 66 67 77 78 88   parity rule False  reversed branch ['++--++--++--++']
+    k=8 11 12 13 23 24 25 35 45 55 65 66 67 77 78 88   parity rule False  reversed branch ['++----------++']
+    k=8 11 12 13 14 24 34 44 45 46 56 66 76 77 78 88   parity rule False  reversed branch ['++++++--++++++']
+    k=8 11 12 13 14 24 34 35 45 55 56 66 76 77 78 88   parity rule False  reversed branch ['++++++--++++++']
+    k=8 11 12 13 14 24 25 35 45 55 65 66 76 77 78 88   parity rule False  reversed branch ['++++------++++']
+    k=8 11 12 13 14 15 25 35 45 55 65 75 76 77 78 88   parity rule False  reversed branch ['++++------++++']
+
+(4) patterns predicted by the parity rule (mirror-symmetric core and
+    parity), up to the symmetries of the rectangle
+    k =  3: 0 orbit(s)
+    k =  4: 0 orbit(s)
+    k =  5: 0 orbit(s)
+    k =  6: 1 orbit(s)
+        11 12 22 32 33 34 35 36 46 56 66                           m =  20, |Aut(F/K)| = 2
+    k =  7: 0 orbit(s)
+    k =  8: 0 orbit(s)
+    k =  9: 0 orbit(s)
+    k = 10: 3 orbit(s)
+        11 12 22 32 42 52 53 54 55 56 57 58 59 510 610 710 810 910 1010 final equation of degree 382; t on the factor of degree [98], t' on [98]
+        11 12 22 32 33 34 44 54 55 56 57 58 68 78 79 710 810 910 1010 final equation of degree 302; t on the factor of degree [86], t' on [86]
+        11 12 22 32 33 34 35 36 46 56 66 76 77 78 79 710 810 910 1010 final equation of degree 846; t on the factor of degree [230], t' on [230]
+
+(5) the fixed field E of the involution
+    r(B_4) is fixed and generates E: [E : Q] = 20
+    k=2 11 12 22                           degree  4  embeds in E: False
+    k=4 11 12 13 23 33 34 44               degree  4  embeds in E: False
+    k=5 11 12 13 14 24 25 35 45 55         degree 10  embeds in E: False
+    k=5 11 12 13 14 24 34 44 45 55         degree 20  isomorphic to E: False
+    k=5 11 12 13 23 24 34 35 45 55         degree 10  embeds in E: False
+    k=5 11 12 13 23 33 34 35 45 55         degree 10  embeds in E: False
+    k=5 11 12 13 23 33 43 44 45 55         degree 20  isomorphic to E: False
+    k=5 11 12 13 23 33 43 53 54 55         degree 10  embeds in E: False
+    k=5 11 12 22 23 24 34 44 45 55         degree 10  embeds in E: False
+    k=5 11 12 22 23 33 34 44 45 55         degree 10  embeds in E: False
+    k=5 11 12 22 32 33 43 44 45 55         degree 10  embeds in E: False
+
+(34s)
