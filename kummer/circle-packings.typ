@@ -106,7 +106,8 @@
   side, and what happens when one tangency is dropped]
   #v(1mm)
   #text(size: 9pt, style: "italic")[figures and checks in `circle-packings.py`,
-  output in `results/circle-packings.txt`]
+  output in `results/circle-packings.txt`; degrees in `circle-degrees.sage`,
+  output in `results/circle-degrees.txt`]
 ]
 
 #v(4mm)
@@ -222,6 +223,86 @@ path for $k = 3$.
   equations, one packing each.],
 ) <fig-zig4>
 
+= Algebraic degrees <sec-degrees>
+
+Every coordinate of a rigid packing is an algebraic number. For the zigzags,
+`circle-degrees.sage` computes the field they generate. The unknowns are the square roots
+$a_i = sqrt(r(A_i))$ and $b_j = sqrt(r(B_j))$. With these, the tangencies inside a row are
+linear in the horizontal positions, since contact points are $2 sqrt(r r')$ apart, and the
+system becomes
+$ x(A_i) = a_1^2 + 2 sum_(m < i) a_m a_(m+1), quad a_1 + b_1 = 1, quad a_k + b_k = 1, quad
+  (x(A_i) - x(B_j))^2 = 2(a_i^2 + b_j^2) - 1 $
+for the remaining cross tangencies $A_i B_j$, together with equal widths for the two rows:
+$2k$ equations in $2k$ unknowns.
+
+The minimal polynomials are found by Newton's method to $3000$ digits followed by LLL
+(PARI's `algdep`), and accepted only with a wide margin; each is rechecked at $6000$ digits.
+They are then *certified exactly*. Every unknown is written as a rational polynomial in a
+primitive element $theta$, all equations are verified to vanish identically in the number
+field $QQ(theta)$, and the minimal polynomial of $W$ is recomputed there. For $k <= 3$ the
+results agree with a direct Gröbner basis computation. For $k = 4$ that route stalls on
+spurious components of degenerate circles of radius $0$.
+
+Patterns related by a symmetry of the rectangle (top--bottom, left--right, half-turn) have
+the same $W$, so @tab-degrees has one row per orbit. "Field" is
+$QQ(text("radii"), text("centres"), W)$; adjoining the square roots of the radii never
+makes it larger.
+
+#figure(
+  table(
+    columns: 7,
+    align: (center, center, left, center, center, left, left),
+    stroke: none,
+    inset: (x: 5pt, y: 3pt),
+    table.hline(),
+    table.header([$k$], [orbit], [$W$], [$deg W$], [field], [discriminant], [Galois group]),
+    table.hline(stroke: 0.5pt),
+    [2], [2], [$1$], [1], [4], [$2^11$], [$C_4$],
+    table.hline(stroke: 0.3pt + luma(180)),
+    [3], [2], [$1.323762$], [6], [6], [$-2^11 dot 167$], [$S_3 wreath C_2$],
+    [3], [2], [$1.483358$], [6], [6], [$-2^11 dot 167$], [$S_3 wreath C_2$],
+    [3], [2], [$1.525936$], [6], [6], [$2^11 dot 73$], [$S_3 wreath C_2$],
+    table.hline(stroke: 0.3pt + luma(180)),
+    [4], [4], [$1.887988$], [4], [4], [$2^6 dot 41$], [$D_4$],
+    [4], [4], [$1.789019$], [6], [6], [$2^11 dot 7 dot 751$], [$S_3 wreath C_2$],
+    [4], [2], [$1.809948$], [6], [6], [$2^13 dot 71$], [$S_3 wreath C_2$],
+    [4], [4], [$2.004861$], [6], [6], [$2^13 dot 41 dot 47$], [$S_3 wreath C_2$],
+    [4], [2], [$2.059495$], [6], [6], [$-2^13 dot 281$], [$S_3 wreath C_2$],
+    [4], [2], [$1.517885$], [8], [8], [$2^18 dot 7 dot 569$], [$S_4 wreath C_2$],
+    [4], [2], [$1.969805$], [8], [8], [$2^18 dot 7 dot 569$], [$S_4 wreath C_2$],
+    table.hline(),
+  ),
+  kind: table,
+  caption: [Algebraic degrees of the two-row zigzags, height $1$, one row per symmetry orbit
+  of patterns. The six circles are the $k = 3$ row with $W = 1.525936$.],
+) <tab-degrees>
+
+#let wpoly(p) = text(9pt, p)
+Three things stand out.
+
+- *The degrees grow slowly.* For $k = 4$ they are $4$, $6$ or $8$, and four of the twenty
+  packings have *smaller* degree than the six circles, although the system admits up to $2048$
+  complex solutions by Bézout. Except for $k = 2$, where $W = 1$, the width $W$ generates the
+  whole field.
+- *$sqrt(2)$ lies in every field.* Each zigzag has a bottom-left cluster of three circles: the
+  corner circle $B_1$, the circle $A_1$ above it on the left side, and one circle touching both
+  ($B_2$ or $A_2$). That cluster alone forces $sqrt(2)$, so every Galois group is a wreath
+  product over the quadratic subfield $QQ(sqrt(2))$. The $k = 2$ field, cyclic of discriminant
+  $2^11$, looks like $QQ(sqrt(2 + sqrt(2)))$, the real subfield of $QQ(zeta_16)$; this has not
+  been checked.
+- *Different orbits can give isomorphic fields.* The $k = 3$ orbits with $W = 1.323762$
+  (`11 21 31 32 33`) and $W = 1.483358$ (`11 21 22 23 33`) have the same field, and so do the
+  two $k = 4$ orbits of degree $8$ (`11 21 31 41 42 43 44` and `11 21 22 23 33 43 44`).
+  In each pair a circle touches three or more circles of the other row, at different
+  positions. I have no explanation for this.
+
+For example, the minimal polynomials of the two widths of degree $8$ are
+$ #wpoly[$W^8 - 5 W^7 + 91/8 W^6 - 241/16 W^5 + 3921/256 W^4 - 965/64 W^3 + 1219/128 W^2
+  - 161/64 W + 49/256$], $
+$ #wpoly[$W^8 + 1056/289 W^7 + 991/289 W^6 - 2254/289 W^5 - 27411/1156 W^4 - 7449/289 W^3
+  - 8091/578 W^2 - 1091/289 W - 463/1156$]. $
+All $28$ minimal polynomials are listed in `results/circle-degrees.txt`.
+
 = Circles that touch no side <sec-rows>
 
 The theorem does not care whether a circle touches the boundary. In @fig-rows two circles
@@ -305,4 +386,8 @@ triangle, leaves only similarities.
   (4) four inserted circles, with the old circles unchanged;
   (5) the one-parameter family after dropping $B B'$, and which side of the rigid packing
   gives honest packings.
+  `circle-degrees.sage`, output in `results/circle-degrees.txt`:
+  (6) for every two-row zigzag with $k = 2, 3, 4$ the minimal polynomials of $W$ and of
+  generators of the field, by LLL at $3000$ digits, rechecked at $6000$, and certified by an
+  exact verification of all equations in the number field (@sec-degrees).
 ]

@@ -1,0 +1,133 @@
+two-row zigzags, height 1: algebraic degrees
+deg W = degree of the aspect ratio; deg F = [Q(radii, centres, W) : Q];
+deg F(sqrt) = the same with the square roots of the radii adjoined.
+
+k = 2
+  11 21 22                     deg W   1   deg F   4   deg F(sqrt)   4   W = 1.0000000000   (0s)
+      W: T - 1
+      field: degree 4, disc 2^11, Galois group C(4) = 4; exact check passed
+  11 12 22                     deg W   1   deg F   4   deg F(sqrt)   4   W = 1.0000000000   (0s)
+      W: T - 1
+      field: degree 4, disc 2^11, Galois group C(4) = 4; exact check passed
+
+k = 3
+  11 21 31 32 33               deg W   6   deg F   6   deg F(sqrt)   6   W = 1.3237623811   (0s)
+      W: T^6 - 8*T^5 + 12*T^4 - 19*T^3 + 24*T^2 - 6*T + 1/4
+      field: degree 6, disc -1 * 2^11 * 167, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+  11 21 22 32 33               deg W   6   deg F   6   deg F(sqrt)   6   W = 1.5259357961   (0s)
+      W: T^6 + 8*T^4 - 8*T^3 + 16*T^2 - 32*T - 16
+      field: degree 6, disc 2^11 * 73, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+  11 21 22 23 33               deg W   6   deg F   6   deg F(sqrt)   6   W = 1.4833577691   (0s)
+      W: T^6 - 2*T^5 - 17*T^4 - 12*T^3 + 47*T^2 + 14*T + 1
+      field: degree 6, disc -1 * 2^11 * 167, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+  11 12 22 32 33               deg W   6   deg F   6   deg F(sqrt)   6   W = 1.4833577691   (0s)
+      W: T^6 - 2*T^5 - 17*T^4 - 12*T^3 + 47*T^2 + 14*T + 1
+      field: degree 6, disc -1 * 2^11 * 167, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+  11 12 22 23 33               deg W   6   deg F   6   deg F(sqrt)   6   W = 1.5259357961   (0s)
+      W: T^6 + 8*T^4 - 8*T^3 + 16*T^2 - 32*T - 16
+      field: degree 6, disc 2^11 * 73, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+  11 12 13 23 33               deg W   6   deg F   6   deg F(sqrt)   6   W = 1.3237623811   (0s)
+      W: T^6 - 8*T^5 + 12*T^4 - 19*T^3 + 24*T^2 - 6*T + 1/4
+      field: degree 6, disc -1 * 2^11 * 167, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+
+k = 4
+  11 21 31 41 42 43 44         deg W   8   deg F   8   deg F(sqrt)   8   W = 1.5178852491   (1s)
+      W: T^8 - 5*T^7 + 91/8*T^6 - 241/16*T^5 + 3921/256*T^4 - 965/64*T^3 + 1219/128*T^2 - 161/64*T + 49/256
+      field: degree 8, disc 2^18 * 7 * 569, Galois group [S(4)^2]2; exact check passed
+  11 21 31 32 42 43 44         deg W   6   deg F   6   deg F(sqrt)   6   W = 1.8099479028   (0s)
+      W: T^6 - 65/6*T^5 + 5321/144*T^4 - 1313/36*T^3 + 515/72*T^2 - 1027/36*T + 3337/144
+      field: degree 6, disc 2^13 * 71, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+  11 21 31 32 33 43 44         deg W   4   deg F   4   deg F(sqrt)   4   W = 1.8879883429   (0s)
+      W: T^4 + 7379/578*T^3 - 197409/4624*T^2 + 295761/9248*T - 504847/73984
+      field: degree 4, disc 2^6 * 41, Galois group D(4); exact check passed
+  11 21 31 32 33 34 44         deg W   6   deg F   6   deg F(sqrt)   6   W = 1.7890187640   (0s)
+      W: T^6 - 112497/12482*T^5 + 325807/99856*T^4 + 839861/24964*T^3 - 34874469/1597696*T^2 - 40099591/3195392*T - 34821703/25563136
+      field: degree 6, disc 2^11 * 7 * 751, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+  11 21 22 32 42 43 44         deg W   4   deg F   4   deg F(sqrt)   4   W = 1.8879883429   (0s)
+      W: T^4 + 7379/578*T^3 - 197409/4624*T^2 + 295761/9248*T - 504847/73984
+      field: degree 4, disc 2^6 * 41, Galois group D(4); exact check passed
+  11 21 22 32 33 43 44         deg W   6   deg F   6   deg F(sqrt)   6   W = 2.0594954513   (0s)
+      W: T^6 - 988/7*T^5 - 646/7*T^4 + 3812/7*T^3 + 3159/7*T^2 + 608/7*T - 256/7
+      field: degree 6, disc -1 * 2^13 * 281, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+  11 21 22 32 33 34 44         deg W   6   deg F   6   deg F(sqrt)   6   W = 2.0048612474   (0s)
+      W: T^6 - 6740/529*T^5 + 69461/4232*T^4 + 15409/1058*T^3 - 237109/33856*T^2 - 3507/1058*T + 2063/270848
+      field: degree 6, disc 2^13 * 41 * 47, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+  11 21 22 23 33 43 44         deg W   8   deg F   8   deg F(sqrt)   8   W = 1.9698045912   (1s)
+      W: T^8 + 1056/289*T^7 + 991/289*T^6 - 2254/289*T^5 - 27411/1156*T^4 - 7449/289*T^3 - 8091/578*T^2 - 1091/289*T - 463/1156
+      field: degree 8, disc 2^18 * 7 * 569, Galois group [S(4)^2]2; exact check passed
+  11 21 22 23 33 34 44         deg W   6   deg F   6   deg F(sqrt)   6   W = 2.0048612474   (0s)
+      W: T^6 - 6740/529*T^5 + 69461/4232*T^4 + 15409/1058*T^3 - 237109/33856*T^2 - 3507/1058*T + 2063/270848
+      field: degree 6, disc 2^13 * 41 * 47, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+  11 21 22 23 24 34 44         deg W   6   deg F   6   deg F(sqrt)   6   W = 1.7890187640   (0s)
+      W: T^6 - 112497/12482*T^5 + 325807/99856*T^4 + 839861/24964*T^3 - 34874469/1597696*T^2 - 40099591/3195392*T - 34821703/25563136
+      field: degree 6, disc 2^11 * 7 * 751, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+  11 12 22 32 42 43 44         deg W   6   deg F   6   deg F(sqrt)   6   W = 1.7890187640   (0s)
+      W: T^6 - 112497/12482*T^5 + 325807/99856*T^4 + 839861/24964*T^3 - 34874469/1597696*T^2 - 40099591/3195392*T - 34821703/25563136
+      field: degree 6, disc 2^11 * 7 * 751, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+  11 12 22 32 33 43 44         deg W   6   deg F   6   deg F(sqrt)   6   W = 2.0048612474   (0s)
+      W: T^6 - 6740/529*T^5 + 69461/4232*T^4 + 15409/1058*T^3 - 237109/33856*T^2 - 3507/1058*T + 2063/270848
+      field: degree 6, disc 2^13 * 41 * 47, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+  11 12 22 32 33 34 44         deg W   8   deg F   8   deg F(sqrt)   8   W = 1.9698045912   (1s)
+      W: T^8 + 1056/289*T^7 + 991/289*T^6 - 2254/289*T^5 - 27411/1156*T^4 - 7449/289*T^3 - 8091/578*T^2 - 1091/289*T - 463/1156
+      field: degree 8, disc 2^18 * 7 * 569, Galois group [S(4)^2]2; exact check passed
+  11 12 22 23 33 43 44         deg W   6   deg F   6   deg F(sqrt)   6   W = 2.0048612474   (0s)
+      W: T^6 - 6740/529*T^5 + 69461/4232*T^4 + 15409/1058*T^3 - 237109/33856*T^2 - 3507/1058*T + 2063/270848
+      field: degree 6, disc 2^13 * 41 * 47, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+  11 12 22 23 33 34 44         deg W   6   deg F   6   deg F(sqrt)   6   W = 2.0594954513   (0s)
+      W: T^6 - 988/7*T^5 - 646/7*T^4 + 3812/7*T^3 + 3159/7*T^2 + 608/7*T - 256/7
+      field: degree 6, disc -1 * 2^13 * 281, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+  11 12 22 23 24 34 44         deg W   4   deg F   4   deg F(sqrt)   4   W = 1.8879883429   (0s)
+      W: T^4 + 7379/578*T^3 - 197409/4624*T^2 + 295761/9248*T - 504847/73984
+      field: degree 4, disc 2^6 * 41, Galois group D(4); exact check passed
+  11 12 13 23 33 43 44         deg W   6   deg F   6   deg F(sqrt)   6   W = 1.7890187640   (0s)
+      W: T^6 - 112497/12482*T^5 + 325807/99856*T^4 + 839861/24964*T^3 - 34874469/1597696*T^2 - 40099591/3195392*T - 34821703/25563136
+      field: degree 6, disc 2^11 * 7 * 751, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+  11 12 13 23 33 34 44         deg W   4   deg F   4   deg F(sqrt)   4   W = 1.8879883429   (0s)
+      W: T^4 + 7379/578*T^3 - 197409/4624*T^2 + 295761/9248*T - 504847/73984
+      field: degree 4, disc 2^6 * 41, Galois group D(4); exact check passed
+  11 12 13 23 24 34 44         deg W   6   deg F   6   deg F(sqrt)   6   W = 1.8099479028   (0s)
+      W: T^6 - 65/6*T^5 + 5321/144*T^4 - 1313/36*T^3 + 515/72*T^2 - 1027/36*T + 3337/144
+      field: degree 6, disc 2^13 * 71, Galois group F_36(6):2 = [S(3)^2]2 = S(3) wr 2; exact check passed
+  11 12 13 14 24 34 44         deg W   8   deg F   8   deg F(sqrt)   8   W = 1.5178852491   (1s)
+      W: T^8 - 5*T^7 + 91/8*T^6 - 241/16*T^5 + 3921/256*T^4 - 965/64*T^3 + 1219/128*T^2 - 161/64*T + 49/256
+      field: degree 8, disc 2^18 * 7 * 569, Galois group [S(4)^2]2; exact check passed
+
+summary: one line per orbit of the symmetries of the rectangle
+(top <-> bottom, left <-> right, half-turn), which preserve W
+
+  k = 2  2 pattern(s)  deg W = 1  field degree 4  disc 2^11  Galois C(4) = 4  sqrt2 in field: True
+      W = 1.00000000,  minpoly T - 1
+      patterns: 11 21 22, 11 12 22
+  k = 3  2 pattern(s)  deg W = 6  field degree 6  disc -1 * 2^11 * 167  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2  sqrt2 in field: True
+      W = 1.32376238,  minpoly T^6 - 8*T^5 + 12*T^4 - 19*T^3 + 24*T^2 - 6*T + 1/4
+      patterns: 11 21 31 32 33, 11 12 13 23 33
+  k = 3  2 pattern(s)  deg W = 6  field degree 6  disc 2^11 * 73  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2  sqrt2 in field: True
+      W = 1.52593579,  minpoly T^6 + 8*T^4 - 8*T^3 + 16*T^2 - 32*T - 16
+      patterns: 11 21 22 32 33, 11 12 22 23 33
+  k = 3  2 pattern(s)  deg W = 6  field degree 6  disc -1 * 2^11 * 167  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2  sqrt2 in field: True
+      W = 1.48335776,  minpoly T^6 - 2*T^5 - 17*T^4 - 12*T^3 + 47*T^2 + 14*T + 1
+      patterns: 11 21 22 23 33, 11 12 22 32 33
+  k = 4  4 pattern(s)  deg W = 4  field degree 4  disc 2^6 * 41  Galois D(4)  sqrt2 in field: True
+      W = 1.88798834,  minpoly T^4 + 7379/578*T^3 - 197409/4624*T^2 + 295761/9248*T - 504847/73984
+      patterns: 11 21 31 32 33 43 44, 11 21 22 32 42 43 44, 11 12 22 23 24 34 44, 11 12 13 23 33 34 44
+  k = 4  2 pattern(s)  deg W = 6  field degree 6  disc 2^13 * 71  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2  sqrt2 in field: True
+      W = 1.80994790,  minpoly T^6 - 65/6*T^5 + 5321/144*T^4 - 1313/36*T^3 + 515/72*T^2 - 1027/36*T + 3337/144
+      patterns: 11 21 31 32 42 43 44, 11 12 13 23 24 34 44
+  k = 4  4 pattern(s)  deg W = 6  field degree 6  disc 2^11 * 7 * 751  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2  sqrt2 in field: True
+      W = 1.78901876,  minpoly T^6 - 112497/12482*T^5 + 325807/99856*T^4 + 839861/24964*T^3 - 34874469/1597696*T^2 - 40099591/3195392*T - 34821703/25563136
+      patterns: 11 21 31 32 33 34 44, 11 21 22 23 24 34 44, 11 12 22 32 42 43 44, 11 12 13 23 33 43 44
+  k = 4  2 pattern(s)  deg W = 6  field degree 6  disc -1 * 2^13 * 281  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2  sqrt2 in field: True
+      W = 2.05949545,  minpoly T^6 - 988/7*T^5 - 646/7*T^4 + 3812/7*T^3 + 3159/7*T^2 + 608/7*T - 256/7
+      patterns: 11 21 22 32 33 43 44, 11 12 22 23 33 34 44
+  k = 4  4 pattern(s)  deg W = 6  field degree 6  disc 2^13 * 41 * 47  Galois F_36(6):2 = [S(3)^2]2 = S(3) wr 2  sqrt2 in field: True
+      W = 2.00486124,  minpoly T^6 - 6740/529*T^5 + 69461/4232*T^4 + 15409/1058*T^3 - 237109/33856*T^2 - 3507/1058*T + 2063/270848
+      patterns: 11 21 22 32 33 34 44, 11 21 22 23 33 34 44, 11 12 22 32 33 43 44, 11 12 22 23 33 43 44
+  k = 4  2 pattern(s)  deg W = 8  field degree 8  disc 2^18 * 7 * 569  Galois [S(4)^2]2  sqrt2 in field: True
+      W = 1.51788524,  minpoly T^8 - 5*T^7 + 91/8*T^6 - 241/16*T^5 + 3921/256*T^4 - 965/64*T^3 + 1219/128*T^2 - 161/64*T + 49/256
+      patterns: 11 21 31 41 42 43 44, 11 12 13 14 24 34 44
+  k = 4  2 pattern(s)  deg W = 8  field degree 8  disc 2^18 * 7 * 569  Galois [S(4)^2]2  sqrt2 in field: True
+      W = 1.96980459,  minpoly T^8 + 1056/289*T^7 + 991/289*T^6 - 2254/289*T^5 - 27411/1156*T^4 - 7449/289*T^3 - 8091/578*T^2 - 1091/289*T - 463/1156
+      patterns: 11 21 22 23 33 43 44, 11 12 22 32 33 34 44
+
+  fields of W = T^6 - 8*T^5 + 12*T^4 - 19*T^3 + 24*T^2 - 6*T + 1/4 and W = T^6 - 2*T^5 - 17*T^4 - 12*T^3 + 47*T^2 + 14*T + 1: same degree and discriminant; isomorphic: True
+  fields of W = T^8 - 5*T^7 + 91/8*T^6 - 241/16*T^5 + 3921/256*T^4 - 965/64*T^3 + 1219/128*T^2 - 161/64*T + 49/256 and W = T^8 + 1056/289*T^7 + 991/289*T^6 - 2254/289*T^5 - 27411/1156*T^4 - 7449/289*T^3 - 8091/578*T^2 - 1091/289*T - 463/1156: same degree and discriminant; isomorphic: True

@@ -1,0 +1,109 @@
+============================================================================
+ Jamming of the packings in kummer/circle-packings.json
+============================================================================
+
+ radii fixed, box fixed (collective) or allowed to change shape without
+ growing in area (strict).  "jammed" <=> rank A = #unknowns and a stress
+ w > 0 with w^T A = 0 exists; min w is the best smallest entry with
+ sum w = 1.  The primal LP (largest first-order separation) is 0
+ exactly when such a w exists; the script asserts that they agree.
+
+ packing                                         m    N  collect.  strict     local
+ six circles                                    19   12  yes       yes        yes
+ zigzag k=2 11 21 22                            13    8  yes       yes        yes
+ zigzag k=2 11 12 22                            13    8  yes       yes        yes
+ zigzag k=3 11 21 31 32 33                      19   12  yes       yes        yes
+ zigzag k=3 11 21 22 32 33                      19   12  yes       yes        yes
+ zigzag k=3 11 21 22 23 33                      19   12  yes       yes        yes
+ zigzag k=3 11 12 22 32 33                      19   12  yes       yes        yes
+ zigzag k=3 11 12 22 23 33                      19   12  yes       yes        yes
+ zigzag k=3 11 12 13 23 33                      19   12  yes       yes        yes
+ zigzag k=4 11 21 31 41 42 43 44                25   16  yes       yes        yes
+ zigzag k=4 11 21 31 32 42 43 44                25   16  yes       yes        yes
+ zigzag k=4 11 21 31 32 33 43 44                25   16  yes       yes        yes
+ zigzag k=4 11 21 31 32 33 34 44                25   16  yes       yes        yes
+ zigzag k=4 11 21 22 32 42 43 44                25   16  yes       yes        yes
+ zigzag k=4 11 21 22 32 33 43 44                25   16  yes       yes        yes
+ zigzag k=4 11 21 22 32 33 34 44                25   16  yes       yes        yes
+ zigzag k=4 11 21 22 23 33 43 44                25   16  yes       yes        yes
+ zigzag k=4 11 21 22 23 33 34 44                25   16  yes       yes        yes
+ zigzag k=4 11 21 22 23 24 34 44                25   16  yes       yes        yes
+ zigzag k=4 11 12 22 32 42 43 44                25   16  yes       yes        yes
+ zigzag k=4 11 12 22 32 33 43 44                25   16  yes       yes        yes
+ zigzag k=4 11 12 22 32 33 34 44                25   16  yes       yes        yes
+ zigzag k=4 11 12 22 23 33 43 44                25   16  yes       yes        yes
+ zigzag k=4 11 12 22 23 33 34 44                25   16  yes       yes        yes
+ zigzag k=4 11 12 22 23 24 34 44                25   16  yes       yes        yes
+ zigzag k=4 11 12 13 23 33 43 44                25   16  yes       yes        yes
+ zigzag k=4 11 12 13 23 33 34 44                25   16  yes       yes        yes
+ zigzag k=4 11 12 13 23 24 34 44                25   16  yes       yes        yes
+ zigzag k=4 11 12 13 14 24 34 44                25   16  yes       yes        yes
+ three rows                                     25   16  yes       yes        yes
+ six circles + 4 inserted                       31   20  yes       yes        yes
+ six circles minus BB', r(A) = 0.305            18   12  yes       yes        yes
+ six circles minus BB', r(A) = 0.310            18   12  yes       yes        yes
+ six circles minus BB', r(A) = 0.315            18   12  yes       yes        yes
+ six circles minus BB', r(A) = 0.320            18   12  yes       yes        yes
+ six circles minus BB', r(A) = 0.325            18   12  yes       yes        yes
+ six circles minus BB', r(A) = 0.330            18   12  yes       yes        yes
+ six circles minus BB', r(A) = 0.335            18   12  yes       yes        yes
+ six circles minus BB', r(A) = 0.340            18   12  yes       yes        yes
+ control: one disk, 2x1 box, 3 sides             3    2  NO        NO         free: D
+ control: six circles, B a rattler              14   12  NO        NO         free: B
+
+----------------------------------------------------------------------------
+ six circles, collective jamming
+----------------------------------------------------------------------------
+   contacts m = 19, unknowns N = 12, rank A = 12, smallest singular value 0.7711
+   stresses: dimension 7; best smallest entry 0.041600 (sum 1)
+   primal LP (largest first-order separation): -0.00e+00
+   a strictly positive stress (contact forces, scaled so the largest is 1):
+     A-B            0.7422
+     A-C'           0.6007
+     A-B'           0.6007
+     B-C            0.6007
+     B-B'           0.6007
+     B-A'           0.6007
+     C-A'           0.6007
+     C'-B'          0.6007
+     B'-A'          0.7422
+     A-left         1.0000
+     A-top          0.9969
+     B-top          0.9971
+     C-right        0.7164
+     C-top          0.6646
+     C'-bottom      0.6646
+     C'-left        0.7164
+     B'-bottom      0.9971
+     A'-bottom      0.9969
+     A'-right       1.0000
+   check |A^T w| = 2.6e-17
+
+----------------------------------------------------------------------------
+ six circles, strict jamming
+----------------------------------------------------------------------------
+   contacts m = 20, unknowns N = 14, rank A = 14, smallest singular value 0.4261
+   stresses: dimension 6; best smallest entry 0.036885 (sum 1)
+   primal LP (largest first-order separation): -0.00e+00
+   a strictly positive stress (contact forces, scaled so the largest is 1):
+     A-B            0.4409
+     A-C'           0.3448
+     A-B'           0.3448
+     B-C            0.3597
+     B-B'           0.3448
+     B-A'           0.3448
+     C-A'           0.3448
+     C'-B'          0.3448
+     B'-A'          0.4260
+     A-left         0.5888
+     A-top          0.5710
+     B-top          0.5715
+     C-right        0.4260
+     C-top          0.3834
+     C'-bottom      0.3815
+     C'-left        0.4112
+     B'-bottom      0.5723
+     A'-bottom      0.5722
+     A'-right       0.5740
+     area           1.0000
+   check |A^T w| = 3.8e-17
