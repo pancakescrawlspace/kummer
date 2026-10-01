@@ -1,0 +1,44 @@
+========================================================================
+ six circles: pattern 11 12 22 23 33, dropping the tangency (2, 2)
+========================================================================
+honest packing: t = 0.5507167412, v = 0.4492832587, m = [F : K] = 3
+honest point on Phi = 0: |Phi| = 1.7e-89
+components of Phi = 0 (deg_t, deg_v): [(1, 1), (1, 1)]
+component through the packing: deg_t 1, deg_v 1   (0s)
+delta = 2u^2 - 1 is a rational function of t of degree 6; u^2 is a square in K(t): True
+u = ((-2*s - 2)*x^3 + (s - 1)*x^2 + (-s + 1)*x + 1/2*s)/(x^2 - 2*x + 1)
+fibre u = -1 (the packing): [(3, 1)]
+fibre u = +1 (the other tangency): [(1, 1), (1, 2)]
+the honest factor of u = -1 is f itself: True
+critical points of u: [(1, 1), (1, 1), (2, 1)]
+   u = 3: irreducible over K True; contains an n-cycle, an (n-1)-cycle and a transposition: True
+   u = -5: irreducible over K True; contains an n-cycle, an (n-1)-cycle and a transposition: True
+   u = 7/3: irreducible over K True; contains an n-cycle, an (n-1)-cycle and a transposition: True
+ramification of F against the critical points of u:
+   disc f has norm 2^-4 * 73
+   critical point x - 1                                    N Res(f, .) = 2^-3            critical values u = nan+nani
+   critical point x + 1/2*s - 1                            N Res(f, .) = -1 * 2^-2       critical values u = 1.0000+0.0000i
+   critical point x^2 + (-1/2*s - 2)*x - 1/2*s             N Res(f, .) = -1 * 2^-5 * 73  critical values u = 0.5835+0.0000i, -31.7863+0.0000i
+(0s)
+
+========================================================================
+ Different patterns, isomorphic fields: are the half-angle covers the same?
+========================================================================
+11 21 31 32 33 (dropping (3, 1))  vs  11 21 22 23 33 (dropping (2, 1)):
+   one of the components is not a graph over the t-line
+11 12 22 32 33 34 44 (dropping (3, 2))  vs  11 12 13 14 24 34 44 (dropping (1, 4)):
+   degrees of u: 4, 4
+   u2 = u1 o mu for a Mobius map mu over K: mu = [(1/2*s - 1/2, -1/2*s + 1/2), (1/2*s, -1/2*s + 1/2)]
+   mu(t of the second packing) = -0.335049054;  t of the first packing = 0.5359377572
+
+========================================================================
+ The exceptional zigzag (k = 6) in the same picture
+========================================================================
+dropping (5, 6): u has degree 20 = m (4s)
+generic fibre u = 3 irreducible over K: True
+fibre u = -1: [(20, 1)]; contains f: True
+the involution t -> -a_5(t) is a rational map of degree 11; u(tau(t)) = u(t) identically: False
+generic fibre u = 3: Galois certificate (n-cycle, (n-1)-cycle, Jordan prime, from Frobenius):
+   n-cycle True, (n-1)-cycle True, Jordan prime True  =>  monodromy S_20: True
+
+figure data written to circle-monodromy.json

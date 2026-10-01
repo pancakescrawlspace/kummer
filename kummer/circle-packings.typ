@@ -298,7 +298,8 @@ Three things stand out.
   (`11 21 31 32 33`) and $W = 1.483358$ (`11 21 22 23 33`) have the same field, and so do the
   two $k = 4$ orbits of degree $8$ (`11 21 31 41 42 43 44` and `11 21 22 23 33 43 44`).
   In each pair a circle touches three or more circles of the other row, at different
-  positions. I have no explanation for this.
+  positions. For the $k = 4$ pair, `circle-monodromy.typ` explains this: the two packings are
+  different points of one fibre of the same half-angle cover.
 
 For example, the minimal polynomials of the two widths of degree $8$ are
 $ #wpoly[$W^8 - 5 W^7 + 91/8 W^6 - 241/16 W^5 + 3921/256 W^4 - 965/64 W^3 + 1219/128 W^2
