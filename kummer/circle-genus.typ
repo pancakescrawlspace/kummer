@@ -46,33 +46,86 @@
   }
 })
 
-// the real loci of H (black) and H^sigma (grey) in the (t, v)-plane
-#let locus(unit: 1.55cm) = cetz.canvas(length: unit, {
+#let data2 = json("circle-genus-g2.json")
+
+// the genus-two family: the quadrilateral gap A2, top, A3, B2.  Red: the
+// dropped tangency A2 A3 (segment of centres); blue: B2 and its point of
+// contact with the top line.  Solid when touching, dotted otherwise.
+#let config2(m, unit: 1.6cm) = cetz.canvas(length: unit, {
+  import cetz.draw: *
+  rect((0, 0), (m.W, 1), stroke: 0.9pt)
+  let get(l) = m.circles.find(c => c.label == l)
+  for c in m.circles {
+    circle((c.x, c.y), radius: c.r, fill: fills.at(c.label.at(0)), stroke: 0.55pt)
+  }
+  let a = get("A2")
+  let b = get("A3")
+  let gap = calc.sqrt(calc.pow(a.x - b.x, 2) + calc.pow(a.y - b.y, 2)) - a.r - b.r
+  line((a.x, a.y), (b.x, b.y), stroke: if gap < 1e-9 { 1.0pt + red } else { (paint: red, thickness: 0.7pt, dash: "dotted") })
+  let c = get("B2")
+  let gt = 1 - c.y - c.r
+  line((c.x, c.y), (c.x, 1), stroke: if gt < 1e-9 { 1.0pt + blue } else { (paint: blue, thickness: 0.7pt, dash: "dotted") })
+  for c in m.circles {
+    content((c.x, c.y), text(7.5pt, lab(c.label)))
+  }
+})
+
+// the real loci of H (blue) and H^sigma (orange) in the (t, v)-plane
+#let hcol = rgb("#1f5fbf")
+#let scol = rgb("#e67e22")
+#let locus(unit: 1.3cm) = cetz.canvas(length: unit, {
   import cetz.draw: *
   let (lo, hi) = (-1.5, 2.5)
   rect((lo, lo), (hi, hi), stroke: 0.5pt + luma(150))
-  line((lo, 0), (hi, 0), stroke: 0.3pt + luma(190))
-  line((0, lo), (0, hi), stroke: 0.3pt + luma(190))
+  line((lo, 0), (hi, 0), stroke: 0.3pt + luma(200))
+  line((0, lo), (0, hi), stroke: 0.3pt + luma(200))
   line((lo, lo), (hi, hi), stroke: (paint: luma(170), thickness: 0.4pt, dash: "dashed"))
   for tick in (-1, 1, 2) {
-    content((tick, lo - 0.18), text(7pt)[#tick])
-    content((lo - 0.18, tick), text(7pt)[#tick])
+    content((tick, lo - 0.2), text(7pt)[#tick])
+    content((lo - 0.2, tick), text(7pt)[#tick])
   }
-  content((hi + 0.15, lo - 0.18), text(8pt)[$t$])
-  content((lo - 0.18, hi + 0.12), text(8pt)[$v$])
-  for (i, p) in data.locus.minus.enumerate() {
-    if calc.rem(i, 3) == 0 { circle((p.at(0), p.at(1)), radius: 0.011, fill: luma(175), stroke: none) }
+  content((hi + 0.15, lo - 0.2), text(8pt)[$t$])
+  content((lo - 0.2, hi + 0.12), text(8pt)[$v$])
+  // all sample points: thinning by index would drop one of the two roots at each t
+  for p in data.locus.minus {
+    circle((p.at(0), p.at(1)), radius: 0.016, fill: scol, stroke: none)
   }
-  for (i, p) in data.locus.plus.enumerate() {
-    if calc.rem(i, 3) == 0 { circle((p.at(0), p.at(1)), radius: 0.011, fill: black, stroke: none) }
+  for p in data.locus.plus {
+    circle((p.at(0), p.at(1)), radius: 0.016, fill: hcol, stroke: none)
   }
-  let (t0, v0) = (data.packing.at(0), data.packing.at(1))
-  line((t0, v0), (v0, t0), stroke: 2.2pt + red)
   for f in data.fixed {
-    circle((f, f), radius: 0.04, fill: white, stroke: 0.7pt)
+    circle((f, f), radius: 0.05, fill: white, stroke: 0.7pt)
   }
-  circle((t0, v0), radius: 0.035, fill: red, stroke: none)
-  circle((v0, t0), radius: 0.035, fill: blue, stroke: none)
+  // the window of the zoom
+  rect((0.42, 0.42), (0.50, 0.50), stroke: 0.9pt + red)
+})
+
+// zoom on the honest arc: 0.44 <= t, v <= 0.48
+#let zoom(unit: 1.3cm) = cetz.canvas(length: unit, {
+  import cetz.draw: *
+  let (lo, hi) = (0.44, 0.48)
+  let sc = 4.0 / (hi - lo)
+  let P(x, y) = ((x - lo) * sc, (y - lo) * sc)
+  rect(P(lo, lo), P(hi, hi), stroke: 0.9pt + red)
+  line(P(lo, lo), P(hi, hi), stroke: (paint: luma(170), thickness: 0.4pt, dash: "dashed"))
+  for tick in (0.45, 0.46, 0.47) {
+    content((P(tick, lo).at(0), -0.2), text(7pt)[#tick])
+    content((-0.3, P(lo, tick).at(1)), text(7pt)[#tick])
+  }
+  content((4.15, -0.2), text(8pt)[$t$])
+  content((-0.2, 4.12), text(8pt)[$v$])
+  let (t0, v0) = (data.packing.at(0), data.packing.at(1))
+  for p in data.locus.zoom {
+    let inside = p.at(0) >= t0 and p.at(0) <= v0 and p.at(1) >= t0 and p.at(1) <= v0
+    circle(P(p.at(0), p.at(1)), radius: if inside { 0.035 } else { 0.018 },
+      fill: if inside { red } else { hcol }, stroke: none)
+  }
+  let m = data.fixed.filter(f => f > lo and f < hi)
+  for f in m { circle(P(f, f), radius: 0.07, fill: white, stroke: 0.8pt) }
+  circle(P(t0, v0), radius: 0.08, fill: red, stroke: 0.5pt + white)
+  circle(P(v0, t0), radius: 0.08, fill: blue, stroke: 0.5pt + white)
+  content((P(t0, v0).at(0) + 0.45, P(t0, v0).at(1) + 0.15), text(7.5pt)[packing])
+  content((P(v0, t0).at(0) + 0.1, P(v0, t0).at(1) - 0.3), text(7.5pt)[mirror packing])
 })
 
 #align(center)[
@@ -111,6 +164,11 @@
     no honest packing (@sec-conjugate).
   + Halfway along the arc the configuration is two reflected copies of the four-circle
     packing of a unit square, side by side, with $W = 2$ exactly.
+  + Every turn is a flip: the curve of a dropped tangency at a turn also contains the
+    packing of the pattern with the other diagonal of the quadrilateral gap, joined to the
+    first by an arc of honest packings. In the genus-one example this flip is the local
+    monodromy of $H -> H \/ iota$ around a branch point; in general it is not a monodromy
+    (@sec-flips).
 ]
 
 = Setting <sec-setting>
@@ -186,6 +244,27 @@ rational function of $t$ over $K = QQ(sqrt(2))$. The rigid packing is then cut o
 equation in $t$: both end circles touch the right side, $X_k + a_k^2 = Y_k + b_k^2$. Its
 field is $K(t)$, with $t$ a root of an irreducible polynomial $f in K[t]$.
 
+*Chains.* The lemma is a statement about one curvilinear triangle of the strip between the
+rows: the triangle bounded by the two touching circles $A_i, B_j$ and the next circle
+$A_(i+1)$ (or $B_(j+1)$), which touches both and the line. Each pair $(i, j) -> (i', j')$ of
+consecutive entries of the lattice path is one such triangle, and the path lists these
+triangles from left to right. So the lemma can be applied *one triangle at a time*, each time
+adding one circle, and the circles built so far form a _chain_: a run of consecutive
+triangles of the strip. The chain needs a start, two touching circles $A_i, B_j$ with known
+coordinates. At the left side the corner relation $a_1 + b_1 = 1$ provides one, with the single
+parameter $t$. By the mirror image of the lemma ($x |-> -x$),
+$ a_(i+1) / a_i = X_(i+1) - Y_j + sqrt(2) thin b_j, quad X_i = X_(i+1) - 2 a_i a_(i+1), $
+a chain can also be extended to the left, and a chain started at the right corner, with
+parameter $v = a_k$, grows from right to left. For the rigid packing a single chain from the
+left corner runs through every triangle and reaches the right side, where the last tangency
+is the only condition left; it fixes $t$.
+
+A step uses four tangencies: the cross tangency $A_i B_j$ it starts from, the new circle's
+tangency with the line, with its neighbour in the row, and with the circle across. If one
+tangency is dropped, every step that needs it is blocked. A chain then stops at the first
+blocked triangle. What is left over must be filled by other means: a chain from the other
+corner, or new parameters.
+
 = Dropping a tangency at a turn <sec-family>
 
 Say the path _turns_ at $(i_0, j_0)$ if the step into it raises one index and the step out
@@ -257,6 +336,119 @@ Every curve but one is a graph over one of the two coordinates. The exception is
 curve of bidegree $(2, 2)$, and it has genus $1$. Its symmetry class consists of four
 patterns: `11 21 22 32 33 34 44` without $A_3 B_2$, its mirror image `11 21 22 23 33 34 44`
 without $A_2 B_3$, and their reflections in the horizontal axis.
+
+= Dropping any tangency of a zigzag <sec-any>
+
+A turn (@sec-family) is the simplest case: exactly one triangle step is blocked, and two
+chains, one from each corner, cover everything else. The other tangencies of a zigzag are
+the sides, the tangencies of neighbours within a row, and cross tangencies inside a _fan_,
+where one circle touches three or more consecutive circles of the other row. For these,
+`circle-genus-zigzag.sage` builds the configuration by _propagation_:
+
++ *Corners.* If $A_1, B_1$ touch each other, the left side, the top and the bottom, they are
+  given by one parameter $t$ as in @sec-coords; likewise at the right side with a parameter
+  $v$, in coordinates measured from the right side. The width $W$ is always a parameter.
++ *Steps.* Whenever two known circles $A_i, B_j$ touch and a neighbour of one of them
+  touches the line and both, the lemma (or its mirror image) adds that neighbour. Its root
+  $plus.minus sqrt(2)$ is the one that holds at the packing.
++ *New parameters.* When no step applies, one unknown circle gets new parameters: its
+  signed square root $a$ if it touches a line, with its $x$-coordinate then linear if it
+  touches a known neighbour in its row or a side, and a free $x$-coordinate otherwise; or
+  $(x, y, r)$ for a circle that touches neither line (when its tangency with the top or
+  bottom was dropped). Then the steps resume.
++ *Equations.* Every tangency that the construction does not guarantee becomes a polynomial
+  equation in the parameters.
+
+The result is a curve in a space of a few parameters (two to five), cut out by a few
+equations, instead of the $3n + 1 = 25$ unknowns of the plain system. The ideal is saturated
+by the denominators of the construction and the radius parameters, and the prime component
+through the packing is kept. Its genus is computed by Singular.
+
+*Birationality.* The parameters $t, v, W$ and the free coordinates are functions of the
+configuration ($t = (1 + r(A_1) - r(B_1)) \/ 2$ as in @sec-family). A square-root parameter
+$a$ might not be, since the configuration only sees $a^2$. So the parameter curve maps onto
+the family, possibly with degree $> 1$, and its genus is an upper bound for the genus of the
+family. A lower bound is the genus of the image under the map that replaces each square-root
+parameter by its square, since that image is a projection of the family. When the two
+agree, they give the genus of the family.
+
+*Row tangencies are fibre products too.* Drop the tangency $A_i A_(i+1)$ of two neighbours
+in the top row. The step that adds $A_(i+1)$ goes from $(i, j)$ to $(i + 1, j)$ for some $j$,
+and it is the only step that is blocked. So the chain from the left corner runs up to
+$(i, j)$, and the chain from the right corner runs back to $(i + 1, j)$. Both chains contain
+the circle $B_j$, the left one as a function of $t$ and the right one as a function of $v$.
+The two copies of $B_j$ must agree: their radii give
+$ f(t) = b_j^"left" (t) = b_j^"right" (v) = h(v), $
+and their positions then fix $W$. *The family is the fibre product of the two maps
+$t |-> sqrt(r(B_j))$ and $v |-> sqrt(r(B_j))$,* with no quadric needed. The same argument
+applies to a cross tangency in the middle of a fan, where the shared circle is the centre of
+the fan.
+
+*A family of genus two.* Take the pattern `11 21 22 32 33 34 44` again, and this time drop
+the tangency $A_2 A_3$. The shared circle is $B_2$, and
+$ f(t) = ((-2 sqrt(2) - 3) t^2 + (7/2 sqrt(2) + 5) t - 3/2 sqrt(2) - 2)
+  / ((3 sqrt(2) + 4) t^2 - (6 sqrt(2) + 8) t + 3/2 sqrt(2) + 2) $
+has degree $2$, while $h$ has degree $3$. The fibre product $f(t) = h(v)$ is irreducible of
+bidegree $(2, 3)$ and has *genus $2$*. Since $f$ has degree $2$, it is a double cover of the
+$v$-line: with $f = f_1 \/ f_2$, $h = h_1 \/ h_2$, the discriminant in $t$ of
+$f_1(t) h_2(v) - f_2(t) h_1(v)$ is a squarefree sextic $D(v)$ over $K$, and the family is
+birational to the hyperelliptic curve $y^2 = D(v)$. Its Igusa--Clebsch absolute invariants
+lie in $K$ and not in $QQ$, and the discriminant of the sextic has norm $-2^12 dot 41 dot 53^2$.
+
+The honest packings again form an arc that ends in a flip (@fig-genus2). Dropping $A_2 A_3$
+merges the triangle below the two circles with the gap above them into a quadrilateral
+bounded by $A_2$, the top line, $A_3$ and $B_2$. Its other diagonal is a tangency of $B_2$
+with the top. Along the arc $B_2$ grows until it touches the top line, at $r(B_2) = 1\/2$,
+which happens at the root $t_1 = 0.421443 dots$ of
+$t^2 - (sqrt(2)\/4 + 3\/2) t + sqrt(2)\/4 + 1\/4$. There the width is $W = 2.611850 dots$.
+The pattern at that end is triangulated but not a zigzag: $B_2$ touches both lines.
+
+#figure(
+  {
+    let ms = data2.members
+    grid(
+      columns: 2, column-gutter: 6mm, row-gutter: 3mm, align: center + bottom,
+      ..ms.map(m => stack(dir: ttb, spacing: 1.2mm,
+        config2(m, unit: 3.0cm),
+        text(8pt)[$t = #fmt(m.t, d: 5)$, $W = #fmt(m.W, d: 5)$])),
+    )
+  },
+  caption: [The genus-two family: `11 21 22 32 33 34 44` without the tangency $A_2 A_3$. Top
+  left: the rigid packing, where $A_2$ and $A_3$ touch (solid red). Then a third and two
+  thirds of the way along the honest arc, and its end, where $B_2$ touches the top line (solid
+  blue) and the gap $A_2$, top, $A_3$, $B_2$ has flipped to its other diagonal.],
+) <fig-genus2>
+
+*Two more elliptic curves.* Dropping $A_3 A_4$ from `11 21 31 32 42 43 44`, or $A_2 A_3$ from
+`11 21 22 32 33 43 44`, gives fibre products of two maps of degree $2$, both of genus $1$.
+Their $j$-invariants are
+$ 701377597\/142832 - 265045911\/71416 sqrt(2) quad "and" quad 50053699\/4112 + 12981553\/2056 sqrt(2), $
+neither rational. Their conductors have norms $2 dot 79 dot 113$ and $2 dot 257$, so they have
+bad reduction at odd primes, unlike the curve $E$ of @sec-elliptic, and they are not
+isogenous to $E$.
+
+#block(fill: luma(247), inset: 8pt, radius: 3pt, width: 100%)[
+  *All tangencies of the zigzags with $k = 4$*, one symmetry class at a time:
+  #align(center, table(
+    columns: 5, stroke: none, inset: (x: 7pt, y: 2pt), align: (left, center, center, center, left),
+    table.hline(),
+    [dropped tangency], [classes], [genus $0$], [genus $> 0$], [method],
+    table.hline(stroke: 0.5pt),
+    [between the rows, at a turn], [17], [16], [1 (genus 1)], [$Phi(t, v)$, exact],
+    [between the rows, in a fan], [10], [10], [], [fibre product, exact],
+    [between the rows, at a corner], [10], [9], [], [propagation; 1 open],
+    [within a row], [30], [27], [2 (genus 1), 1 (genus 2)], [fibre product, exact],
+    [with the left or right side], [20], [20], [], [proof below],
+    [with the top or bottom line], [40], [], [], [propagation; 40 open],
+    table.hline(),
+  ))
+  Row and fan tangencies are fibre products of a shared circle (`circle-genus-shared.sage`,
+  output in `results/circle-genus-shared-k4.txt`); the corner and top/bottom cases use
+  propagation over $FF_p$ (`circle-genus-zigzag.sage`); open cases ran out of time. *Sides
+  always give genus $0$*: without the tangency of $A_1$ with the left side, the chain from
+  the right corner builds every circle as a function of $v$ and $W$, and the one remaining
+  condition, that $B_1$ touches the left side, makes $W$ a rational function of $v$.
+]
 
 = The genus-one family <sec-elliptic>
 
@@ -377,14 +569,166 @@ $0 = 2(2 g' - 2) + 4$. So $H \/ iota$ is a rational curve, and $H$ is a double c
 branched over the images of these four symmetric configurations. One of them is the
 symmetric honest packing of @fig-family.
 
+*The locus of one centre.* Does the position of a single circle determine the
+configuration, so that the curve traced by its centre is birational to $H$? It depends on the
+chain. A circle of the left chain is a function of $t$ alone, because the left side is fixed
+at $x = 0$; its centre traces a rational curve, and $H$ maps to it with degree $2$, since
+each $t$ has two values of $v$. A circle of the right chain is placed from the right side, at
+$x = W - X'$, and $W$ depends on both $t$ and $v$; its centre traces a curve birational to
+$H$. Modulo a prime above $p = 1000033$:
+#align(center, table(
+  columns: 4, stroke: none, inset: (x: 7pt, y: 2pt), align: (left, center, center, center),
+  table.hline(),
+  [centre of], [degree of the locus], [genus of the locus], [degree of $H ->$ locus],
+  table.hline(stroke: 0.5pt),
+  [$A_2$ (left chain)], [4], [0], [2],
+  [$B_2$ (left chain)], [6], [0], [2],
+  [$A_3$ (right chain)], [9], [1], [1],
+  table.hline(),
+))
+On the honest arc $t$ is monotone, so even the centre of $A_2$ determines the configuration
+there: the map restricted to the real arc is a homeomorphism onto its image. It is
+the algebraic map that has degree $2$, and the second preimage lies off the arc. Which circles
+see the whole curve is an artefact of the normalisation $x = 0$ on the left; normalising on
+the right exchanges the roles of the two chains. A point of contact with a side lies on a
+line, so its locus is never birational to $H$.
+
 #figure(
-  locus(),
-  caption: [The real points of $H$ (black) and of its conjugate $H^sigma$ (grey) in the
-  $(t, v)$-plane, $-1.5 <= t, v <= 2.5$. Red: the honest arc, from the packing (red dot)
-  to the mirror packing (blue dot); at this scale it is very short, since $t$ only runs from
-  $0.4505$ to $0.4673$. Open circles: the four fixed points of $iota$ on the
-  diagonal $t = v$ (dashed).],
+  grid(columns: 2, column-gutter: 8mm, align: bottom, locus(), zoom()),
+  caption: [Left: the real points of $H$ (blue) and of its conjugate $H^sigma$ (orange) in
+  the $(t, v)$-plane, $-1.5 <= t, v <= 2.5$; open circles are the four fixed points of
+  $iota$ on the diagonal $t = v$ (dashed). Right: the red square enlarged,
+  $0.44 <= t, v <= 0.48$. In red, the honest arc, from the packing (red dot) to the mirror
+  packing (blue dot), through the symmetric member (open circle).],
 ) <fig-locus>
+
+= Flips, and the role of monodromy <sec-flips>
+
+*Every turn is a flip.* Let the path turn at $(i_0, j_0)$, entering from $(i_0 - 1, j_0)$
+and leaving to $(i_0, j_0 + 1)$; the other kind of turn is symmetric. Dropping
+$A_(i_0) B_(j_0)$ merges two triangles into the quadrilateral gap bounded by
+$A_(i_0 - 1), A_(i_0), B_(j_0 + 1), B_(j_0)$. Its two diagonals are $A_(i_0) B_(j_0)$ and
+$A_(i_0 - 1) B_(j_0 + 1)$. Putting in the second one gives another lattice path, with the
+corner $(i_0, j_0)$ replaced by $(i_0 - 1, j_0 + 1)$: the _flip_ of the path at that turn.
+Both patterns become the same pattern, the _quadrilateral pattern_, when their diagonal is
+dropped. So the curve $H$ of @sec-family is the configuration space of the quadrilateral
+pattern, and it contains *both* rigid packings: the one where the first diagonal closes
+and the one where the second does.
+
+`circle-genus.sage` checked this for all $72$ turns with $k = 3, 4$. In every case the
+packing of the flipped pattern is a point of the same curve $H$, and the real branch of
+$H$ from one packing to the other consists of honest packings of the quadrilateral pattern.
+So the rigid zigzag packings, with flips as edges, form a graph in which every edge is
+realised by a real arc of honest packings, along which the quadrilateral gap turns from one
+diagonal to the other. For $k <= 4$ all of these arcs lie on rational curves, except the edge
+between `11 21 22 32 33 34 44` and its mirror image (and its reflection in the horizontal
+axis), which lies on the elliptic curve $H$.
+
+*Is the flip a monodromy?* In the genus-one example, yes, in the following precise sense.
+The flip there is the involution $iota$, and $H$ is a double cover of the rational curve
+$H \/ iota$, branched at the images of the four symmetric configurations. The honest arc
+$gamma$ runs from the packing $P$ through the symmetric member $F$ to the mirror packing
+$iota(P)$. Its image in $H \/ iota$ goes from $[P]$ to the branch point $b = [F]$ and back
+to $[P]$. Deform this out-and-back path into a small loop around $b$. The local monodromy of
+a double cover at a simple branch point exchanges the two sheets, so the lift of the loop that
+starts at $P$ ends at $iota(P)$, and it is homotopic to $gamma$. *The flip is the local
+monodromy of $H -> H \/ iota$ around the branch point of the symmetric configuration.*
+
+In general, however, a flip is not a monodromy. Without a symmetry there is no natural cover
+in which $P$ and its flip lie in one fibre. What a turn gives in general is one curve with two
+special divisors. Let $delta_1, delta_2$ be the inversive distances of the two diagonals of
+the quadrilateral, which are $1$ exactly when the diagonal is a tangency. The rigid packing
+of one pattern lies in the fibre $delta_1 = 1$, that of the flipped pattern in the fibre
+$delta_2 = 1$, and the honest arc is a real path from one fibre to the other along which
+both $delta_i >= 1$. Monodromy, in the sense of `circle-monodromy.typ`, acts *within* one
+fibre: it permutes the Galois conjugates of a single packing. A flip moves between different
+fibres. The symmetric case is the exception, because there $iota$ exchanges $delta_1$ and
+$delta_2$, so the two fibres are interchanged by a deck transformation.
+
+= Why this pattern? The two rulings <sec-rulings>
+
+The genus-one example is symmetric, so it is natural to guess that the symmetry is what
+makes the genus positive. It is not. The mechanism is a quadric.
+
+*The end pairs lie on a quadric.* For a turn entered by a step in $i$, the left chain ends
+with the touching pair $A_(i_0 - 1), B_(j_0)$ and the right chain with $A_(i_0), B_(j_0 + 1)$.
+For a touching pair put $D = X - Y$, the horizontal offset of the two centres. By
+(\*) of @sec-coords the point $[1 : D : a : b]$ of $PP^3$ lies on
+$ Q : quad D^2 + w^2 = 2 a^2 + 2 b^2, quad "that is" quad
+  (D - sqrt(2) a)(D + sqrt(2) a) = (sqrt(2) b - w)(sqrt(2) b + w). $
+$Q$ is a smooth quadric, and the second form shows its two rulings over $K$. The projections
+to the two rulings are
+$ pi_1 = (D - sqrt(2) a) / (sqrt(2) b - w), quad pi_2 = (D - sqrt(2) a) / (sqrt(2) b + w), $
+and two points of $Q$ lie on a common line of the first (second) ruling exactly when their
+$pi_1$ ($pi_2$) agree. Each chain is a rational curve $phi_L, phi_R : PP^1 -> Q$.
+
+*$Phi$ is a polarity.* In these coordinates the gluing equation of @sec-family reads
+$ Phi = D_L + D_R + 2 (a_L a_R - b_L b_R) = B_Q (phi_L, g thin phi_R), $
+where $B_Q(x, y) = D D' + w w' - 2 a a' - 2 b b'$ is the bilinear form of $Q$ and
+$g(w, D, a, b) = (D, w, -a, b)$ is an automorphism of $Q$. For points $x, y$ of $Q$,
+$B_Q(x, y) = 0$ says that $y$ lies in the tangent plane at $x$, which meets $Q$ in the two
+lines through $x$. Hence
+$ {Phi = 0} = {pi_1 compose phi_L (t) = pi_1 compose g phi_R (v)} union
+  {pi_2 compose phi_L (t) = pi_2 compose g phi_R (v)} . $
+*Every curve of a dropped turn tangency is a component of a fibre product
+${f(t) = h(v)}$ of two rational functions $f, h : PP^1 -> PP^1$,* namely the projections of
+the two chains to one ruling of $Q$. `circle-genus.sage` (§5 of its output) confirms all
+of this for the $95$ symmetry classes of turns with $k <= 5$: both chain ends lie on $Q$,
+$Phi$ is the polarity above, and $H$ is a component of one of the two ruling curves.
+
+*The genus.* A fibre product of maps of degrees $p$ and $q$ whose branch values are
+disjoint is a smooth curve of bidegree $(p, q)$ on $PP^1 times PP^1$, of genus
+$(p - 1)(q - 1)$. In $83$ of the $95$ classes, $H$ is the whole fibre product, with bidegree
+$(deg f, deg h)$ and genus $(deg f - 1)(deg h - 1)$. In the other $12$, $f$ and $h$ both have
+degree $2$ but $h = f compose mu$ for a Möbius map $mu$, and the fibre product falls apart
+into two curves of bidegree $(1, 1)$. For all turns with $k <= 6$ the computed genus equals
+$(d_t - 1)(d_v - 1)$, with $(d_t, d_v)$ the bidegree of $H$.
+
+*The genus-one example once more.* Here $H = {f(t) = h(v)}$ with $f$ and $h$ of degree $2$.
+The branch values of $f$ and $h$ are four distinct points of $PP^1$, the roots of
+$ (z^2 + (54/113 sqrt(2) - 42/113) z + 2/113 sqrt(2) + 11/113)
+  (z^2 + (38 - 26 sqrt(2)) z + 43 - 30 sqrt(2)), $
+the first pair from $f$, the second from $h$. The fibre product of two double covers
+branched over $\{b_1, b_2\}$ and $\{b_3, b_4\}$ is an unramified double cover of
+$y^2 = (z - b_1)(z - b_2)(z - b_3)(z - b_4)$. That curve has $j = 2432 + 384 sqrt(2)$,
+and it is $2$-isogenous to the Jacobian $E$ of @sec-elliptic. So the arithmetic of $H$ is
+governed by the critical values of the two chains.
+
+*Why $k = 4$ and this pattern.* In all cases computed, the degree of the projection of a
+chain to a ruling grows with the length of the chain, and degree $2$ needs a chain of at
+least three entries of the path. Degree $1$ on either side makes $H$ rational. For $k = 4$ the path has seven entries,
+so both chains have three entries only when the turn is the middle entry. All five symmetry
+classes of middle turns have $deg f = deg h = 2$. In four of them $h = f compose mu$ and the
+fibre product splits; the fifth, `11 21 22 32 33 34 44` without $A_3 B_2$, is the elliptic
+curve. The left–right symmetry comes with being in the middle: it is a consequence of the
+smallness of $k$, not the cause of the genus.
+
+*Larger $k$.* `circle-genus-flips.sage` computes $H$ and its genus (modulo two primes) for
+every turn with $k = 5, 6$; the output is in `results/circle-genus-flips-k5.txt` and
+`results/circle-genus-flips-k6.txt`.
+
+#figure(
+  table(
+    columns: 8, stroke: none, inset: (x: 6pt, y: 2.5pt), align: center,
+    table.hline(),
+    table.header([$k$], [classes], [genus 0], [1], [2], [3], [4], [5]),
+    table.hline(stroke: 0.5pt),
+    [4], [17], [16], [1], [], [], [], [],
+    [5], [74], [48], [6], [20], [], [], [],
+    [6], [323], [156], [0], [10], [74], [71], [12],
+    table.hline(),
+  ),
+  kind: table,
+  caption: [Genus of the curve of a dropped turn tangency, one row per symmetry class of
+  (pattern, turn). For $k = 5$ the bidegrees are $(2, 2)$ for genus $1$ and $(2, 3)$ or
+  $(3, 2)$ for genus $2$. For $k = 6$ genus $1$ does not occur; genus $4$ occurs both as
+  $(3, 3)$ and as $(2, 5)$.],
+) <tab-larger>
+
+Positive genus is the rule from $k = 5$ on. No turn with $k = 5$ has a symmetric flip (a
+symmetric flip of the kind in @sec-flips needs the turn in the exact middle, so $k$ even),
+yet six classes have genus $1$ and twenty genus $2$. For $k = 6$ the three classes with a
+symmetric flip all have genus $4$, bidegree $(3, 3)$.
 
 = The conjugate curve <sec-conjugate>
 
@@ -409,12 +753,12 @@ Since $E$ is not isogenous to $E^sigma$, the two families are not even isogenous
 honest family and its folded twin are different elliptic curves, with $j$-invariants
 $418576 minus.plus 274424 sqrt(2)$.
 
-= Other tangencies and smaller patterns <sec-general>
+= Small patterns that are not zigzags <sec-general>
 
-The two-chain construction of @sec-family needs the dropped tangency to lie between the rows
-at a turn. For the other tangencies (a circle and a side, two neighbours in a row, or a
-tangency inside a fan, where one circle touches three or more consecutive circles of the
-other row) `circle-genus-survey.sage` uses a general method:
+Propagation (@sec-any) relies on the zigzag structure: every circle touches the top or the
+bottom line, and the lattice path orders the triangles. For arbitrary triangulated patterns,
+with circles that touch neither line, `circle-genus-survey.sage` uses a cruder general
+method:
 
 + Coordinates $(sqrt(r), x)$ for each circle touching the top or the bottom, with $y$
   determined, and $(x, y, r)$ for the others, and $W$. A tangency of two circles on the same
@@ -428,21 +772,21 @@ other row) `circle-genus-survey.sage` uses a general method:
   (`normal.lib`).
 
 #block(fill: luma(247), inset: 8pt, radius: 3pt, width: 100%)[
-  *Status (run still in progress).* All triangulated patterns with $n <= 5$ circles, every
-  tangency dropped in turn, $3$ minutes per case. So far: $n = 3$, all $8$ patterns: $77$
-  curves of genus $0$, $2$ time-outs, $1$ failure. $n = 4$: $30$ of $38$ patterns done,
-  $311$ curves of genus $0$, $26$ time-outs, $13$ failures in Singular. $n = 5$: $16$ of
-  $219$ patterns done, $175$ curves of genus $0$, $7$ time-outs, $2$ failures. *No curve of
-  positive genus has appeared with five circles or fewer.* The time-outs and failures are
-  undecided, not genus $0$.
+  *Status.* All triangulated patterns with $n <= 4$ circles, and $53$ of the $219$ with
+  $n = 5$, every tangency dropped in turn, with a time limit per case. $n = 3$: $77$ curves
+  of genus $0$, $2$ time-outs, $1$ failure. $n = 4$: $392$ of genus $0$, $68$ time-outs, $34$
+  failures. $n = 5$ (partial): $620$ of genus $0$, $158$ time-outs, $36$ failures. *No curve
+  of positive genus has appeared with five circles or fewer.* Time-outs and failures are
+  undecided, not genus $0$. Most failures come after a time-out in the same process, which
+  leaves Singular in a broken state; the run was stopped there, since propagation
+  (@sec-any) treats the zigzags much better.
 ]
 
 = Questions <sec-questions>
 
-- *Why this pattern?* It is the only one up to eight circles in which the two chains of a
-  dropped tangency are mirror images of each other. Is that the mechanism? The analogous
-  symmetric patterns for larger $k$, two copies of one chain glued across a quadrilateral,
-  are the natural next candidates.
+- *Ruling degrees.* Is there a formula for the degree of the projection of a chain to a
+  ruling of $Q$ in terms of its lattice path? It would give the genus of every turn curve,
+  and explain why genus $1$ disappears at $k = 6$ (@tab-larger).
 - *Other tangencies for $k = 4$.* Only the tangencies at turns have been treated for eight
   circles. Tangencies with the sides, within the rows and inside fans remain, as do the
   eight-circle pattern with two circles touching no side and the larger zigzags.

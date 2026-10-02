@@ -390,6 +390,13 @@ for sg in (1, -1):
             if -1.5 <= vv <= 2.5:
                 pts.append([float(tv), float(vv)])
     locus['plus' if sg == 1 else 'minus'] = pts
+zoom = []
+for i in range(0, 801):
+    tv = RF(0.44) + RF(i) / 20000
+    for vv in v_on(1, tv):
+        if 0.44 <= vv <= 0.48:
+            zoom.append([float(tv), float(vv)])
+locus['zoom'] = zoom
 cpk = f.map_coefficients(emb[-1], RF).roots(RF, multiplicities=False)
 conj = []
 for r in cpk:
@@ -406,3 +413,313 @@ dD = Delta.discriminant()
 print()
 print(' discriminant of Delta: %s, norm %s' % (dD.factor(), dD.norm().factor()))
 print(' leading coefficient of Delta: %s, norm %s' % (Delta.lc(), Delta.lc().norm().factor()))
+
+# ---------------------------------------------------------------------
+# 4. flips: the packing of the flipped pattern lies on the same curve,
+#    and the real branch between the two packings is honest
+# ---------------------------------------------------------------------
+print()
+print('=' * 72)
+print(' Flips: every turn, k = 3, 4')
+print('=' * 72)
+print()
+print(' k  pattern                 dropped  flipped pattern          flip on H  honest arc')
+nflip = Counter()
+for k in (3, 4):
+    for path in lattice_paths(k):
+        f, t0 = rigid(k, path)
+        v0 = chain_num(path, t0)[0][k]
+        for n0 in turns(path):
+            i0, j0 = path[n0]
+            prev, nxt = path[n0 - 1], path[n0 + 1]
+            other = (prev[0] + nxt[0] - i0, prev[1] + nxt[1] - j0)
+            flip = path[:n0] + [other] + path[n0 + 1:]
+            fF, tF = rigid(k, flip)
+            vF = chain_num(flip, tF)[0][k]
+            Phi, configuration = glue(k, path, n0)
+            H = component(Phi, t0, v0)
+            Hs = H.map_coefficients(emb[1], RF)
+            onH = abs(Hs(tF, vF)) < 1e-50
+            ok = onH
+            if onH:
+                vv = v0
+                for i in range(1, 400):
+                    tv = t0 + (tF - t0) * i / 400
+                    rts = Pv(sum(c * tv^mm[0] * V^mm[1] for mm, c in Hs.dict().items())).roots(RF, multiplicities=False)
+                    if not rts:
+                        ok = False; break
+                    vv = min(rts, key=lambda r: abs(r - vv))
+                    try:
+                        Wc, circ = configuration(1, tv, vv)
+                    except ZeroDivisionError:
+                        ok = False; break
+                    if not honest(Wc, circ):
+                        ok = False; break
+                ok = ok and abs(vv - vF) < 1e-3
+            nflip[(onH, ok)] += 1
+            print(' %d  %-22s  A%dB%d    %-22s  %-9s  %s' % (k, pstr(path), i0, j0, pstr(flip), onH, ok))
+print()
+print(' %d turns: flip on H and honest arc in %d cases' % (sum(nflip.values()), nflip[(True, True)]))
+
+# ---------------------------------------------------------------------
+# 5. the two rulings.  The end pair of each chain touches, so its point
+#    [1 : D : a : b] (D = X - Y) lies on the quadric Q: D^2 + 1 = 2a^2 + 2b^2,
+#    with rulings (D - s a)(D + s a) = (s b - 1)(s b + 1).  Phi is the
+#    polarity of Q composed with g(w, D, a, b) = (D, w, -a, b), so Phi = 0
+#    splits into {pi_i(left) = pi_i(g right)}, i = 1, 2.
+# ---------------------------------------------------------------------
+print()
+print('=' * 72)
+print(' The two rulings: every turn, k = 3, 4, 5')
+print('=' * 72)
+print()
+pi = [lambda w, D, a, b: (D - s * a) / (s * b - w), lambda w, D, a, b: (D - s * a) / (s * b + w)]
+
+
+def ends(k, path, n0):
+    i0, j0 = path[n0]
+    ab_turn = path[n0 - 1] == (i0 - 1, j0)
+    aL, bL, XL, YL = chain(path[:n0], t)
+    mir = [(k + 1 - i, k + 1 - j) for i, j in reversed(path)]
+    aR, bR, XR, YR = chain(mir[:len(path) - 1 - n0], v)
+    m = lambda i: k + 1 - i
+    if ab_turn:
+        return (XL[i0 - 1] - YL[j0], aL[i0 - 1], bL[j0]), (XR[m(i0)] - YR[m(j0 + 1)], aR[m(i0)], bR[m(j0 + 1)])
+    return (YL[j0 - 1] - XL[i0], bL[j0 - 1], aL[i0]), (YR[m(j0)] - XR[m(i0 + 1)], bR[m(j0)], aR[m(i0 + 1)])
+
+
+def mdeg(F, var):
+    return max(F.numerator().degree(var), F.denominator().degree(var))
+
+
+rstat = Counter()
+rows_g = []
+for k in (3, 4, 5):
+    seen_r = set()
+    for path in lattice_paths(k):
+        f, t0 = rigid(k, path)
+        v0 = chain_num(path, t0)[0][k]
+        for n0 in turns(path):
+            key = symmetry_class(k, path, path[n0])
+            if key in seen_r:
+                continue
+            seen_r.add(key)
+            (DL, aL_, bL_), (DR, aR_, bR_) = ends(k, path, n0)
+            onQ = (DL^2 + 1 - 2 * aL_^2 - 2 * bL_^2 == 0) and (DR^2 + 1 - 2 * aR_^2 - 2 * bR_^2 == 0)
+            Phi, configuration = glue(k, path, n0)
+            polar = (Phi - (DL + DR + 2 * (aL_ * aR_ - bL_ * bR_))) == 0 or (Phi + (DL + DR + 2 * (aL_ * aR_ - bL_ * bR_))) == 0
+            H = component(Phi, t0, v0)
+            Hn = H / H.lc()
+            which = None
+            for i in (0, 1):
+                fi = pi[i](1, DL, aL_, bL_); hi = pi[i](DR, 1, -aR_, bR_)
+                Ei = (fi - hi).numerator()
+                if any(R2(g).degree() > 0 and R2(g) / R2(g).lc() == Hn for g, _ in Ei.factor()):
+                    which = (i + 1, mdeg(fi, t), mdeg(hi, v))
+            bd = (H.degree(t), H.degree(v))
+            g_pred = (which[1] - 1) * (which[2] - 1) if which else None
+            rstat[(onQ, polar, which is not None, which is not None and bd == (which[1], which[2]))] += 1
+            rows_g.append((k, pstr(path), path[n0], bd, which))
+            print(' %d  %-30s A%dB%d  on Q %s  polarity %s  H on ruling %s, map degrees (%s, %s), H bidegree %s'
+                  % (k, pstr(path), path[n0][0], path[n0][1], onQ, polar, which[0] if which else None,
+                     which[1] if which else '-', which[2] if which else '-', bd))
+print()
+print(' (on Q, Phi = polarity, H a component of a ruling curve, bidegree of H = map degrees): counts')
+for kk, c in sorted(rstat.items()):
+    print('   %s: %d' % (kk, c))
+
+# the genus-one example: H = {f(t) = h(v)} with f, h of degree 2, and the branch values
+print()
+k = 4
+path = [(1, 1), (2, 1), (2, 2), (3, 2), (3, 3), (3, 4), (4, 4)]
+(DL, aL_, bL_), (DR, aR_, bR_) = ends(k, path, 3)
+fm = pi[0](1, DL, aL_, bL_); hm = pi[0](DR, 1, -aR_, bR_)
+print(' genus-one example: H = {f(t) = h(v)},  f = %s,  h = %s' % (fm, hm))
+Pz.<z> = K[]
+def branch(F, var):
+    T_.<Zt> = K[]
+    U_.<Xu> = T_[]
+    n_ = F.numerator().polynomial(var); d_ = F.denominator().polynomial(var)
+    G = U_([c for c in n_.list()]) - Zt * U_([c for c in d_.list()])
+    return Pz(G.discriminant()(z))
+bq = branch(fm, t) * branch(hm, v)
+print('   branch values of f and h: roots of %s' % bq.factor())
+e_, d_, c_, b_, a_ = [bq[i] for i in range(5)]
+Ib = 12 * a_ * e_ - 3 * b_ * d_ + c_^2; Jb = 72 * a_ * c_ * e_ + 9 * b_ * c_ * d_ - 27 * a_ * d_^2 - 27 * e_ * b_^2 - 2 * c_^3
+Eb = EllipticCurve(K, [-27 * Ib, -27 * Jb])
+print('   y^2 = (branch quartic): j = %s;  2-isogenous to the Jacobian E of H: %s'
+      % (Eb.j_invariant(), any(phi.codomain().is_isomorphic(Eb) for phi in E.isogenies_prime_degree(2))))
+
+# ---------------------------------------------------------------------
+# 6. the locus of a single centre in the genus-one family (modulo p)
+# ---------------------------------------------------------------------
+print()
+print(' Locus of one centre, genus-one family, modulo p = 1000033 (sqrt 2 -> a square root of 2):')
+from sage.libs.singular.function import singular_function, lib as singular_lib
+singular_lib('normal.lib')
+_sgenus = singular_function('genus')
+k = 4
+path = [(1, 1), (2, 1), (2, 2), (3, 2), (3, 3), (3, 4), (4, 4)]
+f, t0 = rigid(k, path); v0 = chain_num(path, t0)[0][k]
+Phi, configuration = glue(k, path, 3)
+H = component(Phi, t0, v0)
+aL, bL, XL, YL = chain(path[:3], t)
+mir = [(k + 1 - i, k + 1 - j) for i, j in reversed(path)]
+aR, bR, XR, YR = chain(mir[:3], v)
+Wexp = XR[2] + XL[2] + 2 * aL[2] * aR[2]
+m = lambda i: k + 1 - i
+pts = [('A2 (left chain)', XL[2], 1 - aL[2]^2), ('B2 (left chain)', YL[2], bL[2]^2),
+       ('A3 (right chain)', Wexp - XR[m(3)], 1 - aR[m(3)]^2)]
+p = 1000033; Fp = GF(p); r2 = Fp(2).sqrt()
+S.<T, Vv, X, Y, Z> = PolynomialRing(Fp, order='degrevlex')
+Rxy.<x_, y_> = PolynomialRing(Fp)
+def redq(q):
+    q = R2(q)
+    return sum((Fp(c[0]) + Fp(c[1]) * r2) * T^mm[0] * Vv^mm[1] for mm, c in q.dict().items())
+Hp = redq(H)
+for name, fx, fy in pts:
+    nx, dx = redq(fx.numerator()), redq(fx.denominator()); ny, dy = redq(fy.numerator()), redq(fy.denominator())
+    I = S.ideal([Hp, X * dx - nx, Y * dy - ny, Z * dx * dy - 1])
+    G = I.elimination_ideal([T, Vv, Z]).gens()[0]
+    Gxy = Rxy(G(0, 0, x_, y_, 0))
+    x0 = Fp.random_element()
+    nC = S.ideal([Hp, x0 * dx - nx, Y * dy - ny, Z * dx * dy - 1, X - x0]).vector_space_dimension()
+    print('   %-18s image: a curve of degree %d, genus %d;  degree of the map from H: %s'
+          % (name, Gxy.total_degree(), ZZ(_sgenus(Rxy.ideal([Gxy]))), nC / Gxy.degree(y_)))
+
+
+# ---------------------------------------------------------------------
+# 7. dropping a row tangency: the circle of the other row at the blocked
+#    step is shared by the two chains, and the family is the fibre
+#    product {f(t) = h(v)} of its signed square root of the radius, seen
+#    from the left (f) and from the right (h)
+# ---------------------------------------------------------------------
+print()
+print('=' * 72)
+print(' Dropping a row tangency: three examples with k = 4')
+print('=' * 72)
+def row_drop(k, path, row, i):
+    """Drop the row tangency (row)_i (row)_{i+1}.  The step that adds
+    (row)_{i+1} is blocked; the circle of the other row at that step is
+    shared by both chains."""
+    # the step adding row_{i+1}: consecutive entries (i, j) -> (i+1, j) for row A
+    if row == 'A':
+        n = [n for n in range(len(path) - 1) if path[n][0] == i and path[n + 1][0] == i + 1][0]
+        shared = ('B', path[n][1])
+    else:
+        n = [n for n in range(len(path) - 1) if path[n][1] == i and path[n + 1][1] == i + 1][0]
+        shared = ('A', path[n][0])
+    aL, bL, XL, YL = chain(path[:n + 1], t)
+    mir = [(k + 1 - a_, k + 1 - b_) for a_, b_ in reversed(path)]
+    aR, bR, XR, YR = chain(mir[:len(path) - 1 - n], v)
+    m = lambda x: k + 1 - x
+    if shared[0] == 'B':
+        return bL[shared[1]], bR[m(shared[1])], shared
+    return aL[shared[1]], aR[m(shared[1])], shared
+
+for k, ps, row, i in ((4, '11 21 22 32 33 34 44', 'A', 2), (4, '11 21 31 32 42 43 44', 'A', 3), (4, '11 21 22 32 33 43 44', 'A', 2)):
+    path = [(int(w[0]), int(w[1])) for w in ps.split()]
+    f_, h_, shared = row_drop(k, path, row, i)
+    f0, t0 = rigid(k, path)
+    an, bn, Xn, Yn = chain_num(path, t0)
+    v0 = an[k]
+    val = (bn if shared[0] == 'B' else an)[shared[1]]
+    print('=== %s minus %s%d%s%d: shared circle %s%d (sqrt r = %.6f)' % (ps, row, i, row, i + 1, shared[0], shared[1], val))
+    print('   f(t) = %s' % f_); print('   h(v) = %s' % h_)
+    print('   degrees: f %d, h %d' % (max(f_.numerator().degree(t), f_.denominator().degree(t)), max(h_.numerator().degree(v), h_.denominator().degree(v))))
+    print('   check at the packing: f(t0) = %.6f, h(v0) = %.6f' % (ev(f_, 1, t0), ev(h_, 1, 0, v0)))
+    N = (f_ - h_).numerator()
+    H = component(f_ - h_, t0, v0)
+    print('   fibre product factors:', [(g.degree(t), g.degree(v)) for g, e in N.factor() if R2(g).degree() > 0], ' H bidegree', (H.degree(t), H.degree(v)))
+    print('   genus of H:', genus_of(H))
+
+print()
+PX.<x> = K[]
+def quartic_j(q):
+    e_, d_, c_, b_, a_ = [q[i] for i in range(5)]
+    I = 12*a_*e_ - 3*b_*d_ + c_^2; J = 72*a_*c_*e_ + 9*b_*c_*d_ - 27*a_*d_^2 - 27*e_*b_^2 - 2*c_^3
+    return I, J, 1728 * 4 * I^3 / (4 * I^3 - J^2)
+E1 = E
+for k, ps, row, i in ((4, '11 21 22 32 33 34 44', 'A', 2), (4, '11 21 31 32 42 43 44', 'A', 3), (4, '11 21 22 32 33 43 44', 'A', 2)):
+    path = [(int(w[0]), int(w[1])) for w in ps.split()]
+    f_, h_, shared = row_drop(k, path, row, i)
+    # y^2 = discriminant in t of  fnum(t) hden(v) - fden(t) hnum(v),  as a polynomial in v
+    G = R2(f_.numerator()) * R2(h_.denominator()) - R2(f_.denominator()) * R2(h_.numerator())
+    Dm = G.polynomial(t).discriminant()
+    Dv = PX(0)
+    for mm, c in R2(Dm).dict().items():
+        Dv += c * x^mm[1]
+    sqf = Dv.squarefree_decomposition()
+    core = prod(g for g, e in sqf if e % 2 == 1)
+    print('=== %s minus %s%d%s%d' % (ps, row, i, row, i + 1))
+    print('   y^2 = D(v), D = %s' % Dv.factor())
+    print('   odd part: degree %d -> genus %d' % (core.degree(), (core.degree() - 1) // 2))
+    if core.degree() in (3, 4):
+        q = core if core.degree() == 4 else core
+        if core.degree() == 4:
+            I, J, j = quartic_j(core)
+        else:
+            j = EllipticCurve(K, [0, core[2] / core[3], 0, core[1] / core[3] / core[3] * core[3], 0]).j_invariant() if False else HyperellipticCurve(core).jacobian() and None
+        Ej = EllipticCurve(K, [-27 * I, -27 * J])
+        print('   j = %s;  minpoly %s;  isogenous to the first genus-one curve E: %s' % (j, j.minpoly(), Ej.is_isogenous(E1) if hasattr(Ej, 'is_isogenous') else '?'))
+        print('   conductor norm %s;  CM %s' % (Ej.conductor().norm().factor(), Ej.has_cm()))
+    elif core.degree() in (5, 6):
+        C = HyperellipticCurve(core)
+        IC = C.igusa_clebsch_invariants()
+        print('   Igusa-Clebsch invariants: %s' % (IC,))
+        I2, I4, I6, I10 = IC
+        abs_inv = (I2^5 / I10, I2^3 * I4 / I10, I2^2 * I6 / I10)
+        print('   absolute invariants (I2^5/I10, I2^3 I4/I10, I2^2 I6/I10): %s' % (abs_inv,))
+        print('   in Q: %s' % all(a in QQ for a in abs_inv))
+        print('   discriminant of the sextic: norm %s' % core.discriminant().norm().factor())
+
+# the honest arc of the genus-two family, and figure data
+print()
+k = 4
+path = [(1, 1), (2, 1), (2, 2), (3, 2), (3, 3), (3, 4), (4, 4)]
+f2, h2, shared = row_drop(k, path, 'A', 2)
+n_b = 2
+aL2, bL2, XL2, YL2 = chain(path[:n_b + 1], t)
+mir2 = [(k + 1 - a_, k + 1 - b_) for a_, b_ in reversed(path)]
+aR2, bR2, XR2, YR2 = chain(mir2[:len(path) - 1 - n_b], v)
+m = lambda x: k + 1 - x
+jsh = shared[1]
+W2 = YL2[jsh] + YR2[m(jsh)]
+def conf2(tv, vv):
+    Wn = ev(W2, 1, tv, vv)
+    A = {i: (ev(XL2[i], 1, tv, vv), ev(aL2[i], 1, tv, vv)) for i in aL2}
+    B = {jj: (ev(YL2[jj], 1, tv, vv), ev(bL2[jj], 1, tv, vv)) for jj in bL2}
+    A.update({m(i): (Wn - ev(XR2[i], 1, tv, vv), ev(aR2[i], 1, tv, vv)) for i in aR2})
+    B.update({m(jj): (Wn - ev(YR2[jj], 1, tv, vv), ev(bR2[jj], 1, tv, vv)) for jj in bR2 if m(jj) not in B})
+    return Wn, circles_from(A, B)
+f0_, t0_ = rigid(k, path); v0_ = chain_num(path, t0_)[0][k]
+hn2 = h2.numerator().polynomial(v); hd2 = h2.denominator().polynomial(v)
+def v_of(tv, near):
+    fv = ev(f2, 1, tv)
+    q = Pv([emb[1](K(c)) for c in hn2.list()]) - fv * Pv([emb[1](K(c)) for c in hd2.list()])
+    return min(q.roots(RF, multiplicities=False), key=lambda r: abs(r - near))
+# the end of the arc: B2 touches the top line, b2 = 1/sqrt 2
+fn2 = f2.numerator().polynomial(t); fd2 = f2.denominator().polynomial(t)
+endq = (fn2 - s / 2 * fd2)
+endq = Px([K(c) for c in endq.list()])
+t_end = [r for r in endq.map_coefficients(emb[1], RF).roots(RF, multiplicities=False) if 0.40 < r < t0_][0]
+print(' genus-two family: the honest arc runs from the packing t0 = %.6f down to t1 = %.6f,' % (t0_, t_end))
+print('   where B2 touches the top line (b2 = 1/sqrt 2); t1 is a root of %s' % endq.factor())
+vv = v0_; ok = True
+for i in range(1, 400):
+    tv = t0_ + (t_end - t0_) * i / 400
+    vv = v_of(tv, vv)
+    Wc, circ = conf2(tv, vv)
+    ok = ok and honest(Wc, circ)
+v_end = v_of(t_end, vv)
+W_end, circ_end = conf2(t_end, v_end)
+print('   honest at 399 interior points: %s;  at t1: W = %.6f, r(B2) = %.6f' % (ok, W_end, [c[3] for c in circ_end if c[0] == 'B2'][0]))
+members2 = []
+vv = v0_
+for lam in (0, 1/3, 2/3, 1):
+    tv = t0_ + (t_end - t0_) * RF(lam)
+    vv = v_of(tv, vv) if lam > 0 else v0_
+    d = jcirc(*conf2(tv, vv)); d['t'] = float(tv); d['v'] = float(vv)
+    members2.append(d)
+json.dump({'members': members2}, open('circle-genus-g2.json', 'w'), indent=1)
+print('   figure data written to circle-genus-g2.json')

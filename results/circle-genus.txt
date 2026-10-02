@@ -122,3 +122,244 @@
 
  discriminant of Delta: (-169*s + 239) * (-s)^-3, norm 2^-3
  leading coefficient of Delta: -s + 9/4, norm 2^-4 * 7^2
+
+========================================================================
+ Flips: every turn, k = 3, 4
+========================================================================
+
+ k  pattern                 dropped  flipped pattern          flip on H  honest arc
+ 3  11 21 31 32 33          A3B1    11 21 22 32 33          True       True
+ 3  11 21 22 32 33          A2B1    11 12 22 32 33          True       True
+ 3  11 21 22 32 33          A2B2    11 21 31 32 33          True       True
+ 3  11 21 22 32 33          A3B2    11 21 22 23 33          True       True
+ 3  11 21 22 23 33          A2B1    11 12 22 23 33          True       True
+ 3  11 21 22 23 33          A2B3    11 21 22 32 33          True       True
+ 3  11 12 22 32 33          A1B2    11 21 22 32 33          True       True
+ 3  11 12 22 32 33          A3B2    11 12 22 23 33          True       True
+ 3  11 12 22 23 33          A1B2    11 21 22 23 33          True       True
+ 3  11 12 22 23 33          A2B2    11 12 13 23 33          True       True
+ 3  11 12 22 23 33          A2B3    11 12 22 32 33          True       True
+ 3  11 12 13 23 33          A1B3    11 12 22 23 33          True       True
+ 4  11 21 31 41 42 43 44    A4B1    11 21 31 32 42 43 44    True       True
+ 4  11 21 31 32 42 43 44    A3B1    11 21 22 32 42 43 44    True       True
+ 4  11 21 31 32 42 43 44    A3B2    11 21 31 41 42 43 44    True       True
+ 4  11 21 31 32 42 43 44    A4B2    11 21 31 32 33 43 44    True       True
+ 4  11 21 31 32 33 43 44    A3B1    11 21 22 32 33 43 44    True       True
+ 4  11 21 31 32 33 43 44    A3B3    11 21 31 32 42 43 44    True       True
+ 4  11 21 31 32 33 43 44    A4B3    11 21 31 32 33 34 44    True       True
+ 4  11 21 31 32 33 34 44    A3B1    11 21 22 32 33 34 44    True       True
+ 4  11 21 31 32 33 34 44    A3B4    11 21 31 32 33 43 44    True       True
+ 4  11 21 22 32 42 43 44    A2B1    11 12 22 32 42 43 44    True       True
+ 4  11 21 22 32 42 43 44    A2B2    11 21 31 32 42 43 44    True       True
+ 4  11 21 22 32 42 43 44    A4B2    11 21 22 32 33 43 44    True       True
+ 4  11 21 22 32 33 43 44    A2B1    11 12 22 32 33 43 44    True       True
+ 4  11 21 22 32 33 43 44    A2B2    11 21 31 32 33 43 44    True       True
+ 4  11 21 22 32 33 43 44    A3B2    11 21 22 23 33 43 44    True       True
+ 4  11 21 22 32 33 43 44    A3B3    11 21 22 32 42 43 44    True       True
+ 4  11 21 22 32 33 43 44    A4B3    11 21 22 32 33 34 44    True       True
+ 4  11 21 22 32 33 34 44    A2B1    11 12 22 32 33 34 44    True       True
+ 4  11 21 22 32 33 34 44    A2B2    11 21 31 32 33 34 44    True       True
+ 4  11 21 22 32 33 34 44    A3B2    11 21 22 23 33 34 44    True       True
+ 4  11 21 22 32 33 34 44    A3B4    11 21 22 32 33 43 44    True       True
+ 4  11 21 22 23 33 43 44    A2B1    11 12 22 23 33 43 44    True       True
+ 4  11 21 22 23 33 43 44    A2B3    11 21 22 32 33 43 44    True       True
+ 4  11 21 22 23 33 43 44    A4B3    11 21 22 23 33 34 44    True       True
+ 4  11 21 22 23 33 34 44    A2B1    11 12 22 23 33 34 44    True       True
+ 4  11 21 22 23 33 34 44    A2B3    11 21 22 32 33 34 44    True       True
+ 4  11 21 22 23 33 34 44    A3B3    11 21 22 23 24 34 44    True       True
+ 4  11 21 22 23 33 34 44    A3B4    11 21 22 23 33 43 44    True       True
+ 4  11 21 22 23 24 34 44    A2B1    11 12 22 23 24 34 44    True       True
+ 4  11 21 22 23 24 34 44    A2B4    11 21 22 23 33 34 44    True       True
+ 4  11 12 22 32 42 43 44    A1B2    11 21 22 32 42 43 44    True       True
+ 4  11 12 22 32 42 43 44    A4B2    11 12 22 32 33 43 44    True       True
+ 4  11 12 22 32 33 43 44    A1B2    11 21 22 32 33 43 44    True       True
+ 4  11 12 22 32 33 43 44    A3B2    11 12 22 23 33 43 44    True       True
+ 4  11 12 22 32 33 43 44    A3B3    11 12 22 32 42 43 44    True       True
+ 4  11 12 22 32 33 43 44    A4B3    11 12 22 32 33 34 44    True       True
+ 4  11 12 22 32 33 34 44    A1B2    11 21 22 32 33 34 44    True       True
+ 4  11 12 22 32 33 34 44    A3B2    11 12 22 23 33 34 44    True       True
+ 4  11 12 22 32 33 34 44    A3B4    11 12 22 32 33 43 44    True       True
+ 4  11 12 22 23 33 43 44    A1B2    11 21 22 23 33 43 44    True       True
+ 4  11 12 22 23 33 43 44    A2B2    11 12 13 23 33 43 44    True       True
+ 4  11 12 22 23 33 43 44    A2B3    11 12 22 32 33 43 44    True       True
+ 4  11 12 22 23 33 43 44    A4B3    11 12 22 23 33 34 44    True       True
+ 4  11 12 22 23 33 34 44    A1B2    11 21 22 23 33 34 44    True       True
+ 4  11 12 22 23 33 34 44    A2B2    11 12 13 23 33 34 44    True       True
+ 4  11 12 22 23 33 34 44    A2B3    11 12 22 32 33 34 44    True       True
+ 4  11 12 22 23 33 34 44    A3B3    11 12 22 23 24 34 44    True       True
+ 4  11 12 22 23 33 34 44    A3B4    11 12 22 23 33 43 44    True       True
+ 4  11 12 22 23 24 34 44    A1B2    11 21 22 23 24 34 44    True       True
+ 4  11 12 22 23 24 34 44    A2B2    11 12 13 23 24 34 44    True       True
+ 4  11 12 22 23 24 34 44    A2B4    11 12 22 23 33 34 44    True       True
+ 4  11 12 13 23 33 43 44    A1B3    11 12 22 23 33 43 44    True       True
+ 4  11 12 13 23 33 43 44    A4B3    11 12 13 23 33 34 44    True       True
+ 4  11 12 13 23 33 34 44    A1B3    11 12 22 23 33 34 44    True       True
+ 4  11 12 13 23 33 34 44    A3B3    11 12 13 23 24 34 44    True       True
+ 4  11 12 13 23 33 34 44    A3B4    11 12 13 23 33 43 44    True       True
+ 4  11 12 13 23 24 34 44    A1B3    11 12 22 23 24 34 44    True       True
+ 4  11 12 13 23 24 34 44    A2B3    11 12 13 14 24 34 44    True       True
+ 4  11 12 13 23 24 34 44    A2B4    11 12 13 23 33 34 44    True       True
+ 4  11 12 13 14 24 34 44    A1B4    11 12 13 23 24 34 44    True       True
+
+ 72 turns: flip on H and honest arc in 72 cases
+
+========================================================================
+ The two rulings: every turn, k = 3, 4, 5
+========================================================================
+
+ 3  11 21 31 32 33                 A3B1  on Q True  polarity True  H on ruling 1, map degrees (1, 1), H bidegree (1, 1)
+ 3  11 21 22 32 33                 A2B1  on Q True  polarity True  H on ruling 1, map degrees (1, 2), H bidegree (1, 2)
+ 3  11 21 22 32 33                 A2B2  on Q True  polarity True  H on ruling 1, map degrees (1, 1), H bidegree (1, 1)
+ 3  11 21 22 23 33                 A2B1  on Q True  polarity True  H on ruling 1, map degrees (1, 2), H bidegree (1, 2)
+ 4  11 21 31 41 42 43 44           A4B1  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (1, 1)
+ 4  11 21 31 32 42 43 44           A3B1  on Q True  polarity True  H on ruling 1, map degrees (1, 2), H bidegree (1, 2)
+ 4  11 21 31 32 42 43 44           A3B2  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (1, 1)
+ 4  11 21 31 32 33 43 44           A3B1  on Q True  polarity True  H on ruling 1, map degrees (1, 2), H bidegree (1, 2)
+ 4  11 21 31 32 33 43 44           A3B3  on Q True  polarity True  H on ruling 1, map degrees (2, 1), H bidegree (2, 1)
+ 4  11 21 31 32 33 43 44           A4B3  on Q True  polarity True  H on ruling 1, map degrees (3, 1), H bidegree (3, 1)
+ 4  11 21 31 32 33 34 44           A3B1  on Q True  polarity True  H on ruling 1, map degrees (1, 2), H bidegree (1, 2)
+ 4  11 21 31 32 33 34 44           A3B4  on Q True  polarity True  H on ruling 1, map degrees (3, 1), H bidegree (3, 1)
+ 4  11 21 22 32 33 43 44           A2B1  on Q True  polarity True  H on ruling 1, map degrees (1, 3), H bidegree (1, 3)
+ 4  11 21 22 32 33 43 44           A2B2  on Q True  polarity True  H on ruling 1, map degrees (1, 2), H bidegree (1, 2)
+ 4  11 21 22 32 33 43 44           A3B2  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (1, 1)
+ 4  11 21 22 32 33 34 44           A2B1  on Q True  polarity True  H on ruling 1, map degrees (1, 3), H bidegree (1, 3)
+ 4  11 21 22 32 33 34 44           A2B2  on Q True  polarity True  H on ruling 1, map degrees (1, 2), H bidegree (1, 2)
+ 4  11 21 22 32 33 34 44           A3B2  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (2, 2)
+ 4  11 21 22 32 33 34 44           A3B4  on Q True  polarity True  H on ruling 1, map degrees (3, 1), H bidegree (3, 1)
+ 4  11 21 22 23 33 43 44           A2B1  on Q True  polarity True  H on ruling 1, map degrees (1, 3), H bidegree (1, 3)
+ 4  11 21 22 23 33 43 44           A2B3  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (1, 1)
+ 5  11 21 31 41 51 52 53 54 55     A5B1  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (1, 1)
+ 5  11 21 31 41 42 52 53 54 55     A4B1  on Q True  polarity True  H on ruling 1, map degrees (2, 3), H bidegree (2, 3)
+ 5  11 21 31 41 42 52 53 54 55     A4B2  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (1, 1)
+ 5  11 21 31 41 42 43 53 54 55     A4B1  on Q True  polarity True  H on ruling 1, map degrees (2, 3), H bidegree (2, 3)
+ 5  11 21 31 41 42 43 53 54 55     A4B3  on Q True  polarity True  H on ruling 1, map degrees (3, 2), H bidegree (3, 2)
+ 5  11 21 31 41 42 43 53 54 55     A5B3  on Q True  polarity True  H on ruling 1, map degrees (4, 1), H bidegree (4, 1)
+ 5  11 21 31 41 42 43 44 54 55     A4B1  on Q True  polarity True  H on ruling 1, map degrees (2, 3), H bidegree (2, 3)
+ 5  11 21 31 41 42 43 44 54 55     A4B4  on Q True  polarity True  H on ruling 1, map degrees (4, 1), H bidegree (4, 1)
+ 5  11 21 31 41 42 43 44 54 55     A5B4  on Q True  polarity True  H on ruling 1, map degrees (6, 1), H bidegree (6, 1)
+ 5  11 21 31 41 42 43 44 45 55     A4B1  on Q True  polarity True  H on ruling 1, map degrees (2, 3), H bidegree (2, 3)
+ 5  11 21 31 41 42 43 44 45 55     A4B5  on Q True  polarity True  H on ruling 1, map degrees (6, 1), H bidegree (6, 1)
+ 5  11 21 31 32 42 43 53 54 55     A3B1  on Q True  polarity True  H on ruling 1, map degrees (1, 4), H bidegree (1, 4)
+ 5  11 21 31 32 42 43 53 54 55     A3B2  on Q True  polarity True  H on ruling 1, map degrees (2, 3), H bidegree (2, 3)
+ 5  11 21 31 32 42 43 53 54 55     A4B2  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (1, 1)
+ 5  11 21 31 32 42 43 44 54 55     A3B1  on Q True  polarity True  H on ruling 1, map degrees (1, 4), H bidegree (1, 4)
+ 5  11 21 31 32 42 43 44 54 55     A3B2  on Q True  polarity True  H on ruling 1, map degrees (2, 3), H bidegree (2, 3)
+ 5  11 21 31 32 42 43 44 54 55     A4B2  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (2, 2)
+ 5  11 21 31 32 42 43 44 54 55     A4B4  on Q True  polarity True  H on ruling 1, map degrees (4, 1), H bidegree (4, 1)
+ 5  11 21 31 32 42 43 44 54 55     A5B4  on Q True  polarity True  H on ruling 1, map degrees (5, 1), H bidegree (5, 1)
+ 5  11 21 31 32 42 43 44 45 55     A3B1  on Q True  polarity True  H on ruling 1, map degrees (1, 3), H bidegree (1, 3)
+ 5  11 21 31 32 42 43 44 45 55     A3B2  on Q True  polarity True  H on ruling 1, map degrees (2, 3), H bidegree (2, 3)
+ 5  11 21 31 32 42 43 44 45 55     A4B2  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (2, 2)
+ 5  11 21 31 32 42 43 44 45 55     A4B5  on Q True  polarity True  H on ruling 1, map degrees (5, 1), H bidegree (5, 1)
+ 5  11 21 31 32 33 43 53 54 55     A3B1  on Q True  polarity True  H on ruling 1, map degrees (1, 4), H bidegree (1, 4)
+ 5  11 21 31 32 33 43 53 54 55     A3B3  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (1, 1)
+ 5  11 21 31 32 33 43 44 54 55     A3B1  on Q True  polarity True  H on ruling 1, map degrees (1, 4), H bidegree (1, 4)
+ 5  11 21 31 32 33 43 44 54 55     A3B3  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (2, 2)
+ 5  11 21 31 32 33 43 44 54 55     A4B3  on Q True  polarity True  H on ruling 1, map degrees (3, 2), H bidegree (3, 2)
+ 5  11 21 31 32 33 43 44 54 55     A4B4  on Q True  polarity True  H on ruling 1, map degrees (4, 1), H bidegree (4, 1)
+ 5  11 21 31 32 33 43 44 54 55     A5B4  on Q True  polarity True  H on ruling 1, map degrees (4, 1), H bidegree (4, 1)
+ 5  11 21 31 32 33 43 44 45 55     A3B1  on Q True  polarity True  H on ruling 1, map degrees (1, 4), H bidegree (1, 4)
+ 5  11 21 31 32 33 43 44 45 55     A3B3  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (2, 2)
+ 5  11 21 31 32 33 43 44 45 55     A4B3  on Q True  polarity True  H on ruling 1, map degrees (3, 2), H bidegree (3, 2)
+ 5  11 21 31 32 33 43 44 45 55     A4B5  on Q True  polarity True  H on ruling 1, map degrees (4, 1), H bidegree (4, 1)
+ 5  11 21 31 32 33 34 44 54 55     A3B1  on Q True  polarity True  H on ruling 1, map degrees (1, 4), H bidegree (1, 4)
+ 5  11 21 31 32 33 34 44 54 55     A3B4  on Q True  polarity True  H on ruling 1, map degrees (3, 2), H bidegree (3, 2)
+ 5  11 21 31 32 33 34 44 54 55     A5B4  on Q True  polarity True  H on ruling 1, map degrees (5, 1), H bidegree (5, 1)
+ 5  11 21 31 32 33 34 44 45 55     A3B1  on Q True  polarity True  H on ruling 1, map degrees (1, 4), H bidegree (1, 4)
+ 5  11 21 31 32 33 34 44 45 55     A3B4  on Q True  polarity True  H on ruling 1, map degrees (3, 2), H bidegree (3, 2)
+ 5  11 21 31 32 33 34 44 45 55     A4B4  on Q True  polarity True  H on ruling 1, map degrees (4, 1), H bidegree (4, 1)
+ 5  11 21 31 32 33 34 44 45 55     A4B5  on Q True  polarity True  H on ruling 1, map degrees (5, 1), H bidegree (5, 1)
+ 5  11 21 31 32 33 34 35 45 55     A3B1  on Q True  polarity True  H on ruling 1, map degrees (1, 4), H bidegree (1, 4)
+ 5  11 21 22 32 42 43 44 54 55     A2B1  on Q True  polarity True  H on ruling 1, map degrees (1, 4), H bidegree (1, 4)
+ 5  11 21 22 32 42 43 44 54 55     A2B2  on Q True  polarity True  H on ruling 1, map degrees (1, 4), H bidegree (1, 4)
+ 5  11 21 22 32 42 43 44 54 55     A4B2  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (1, 1)
+ 5  11 21 22 32 42 43 44 45 55     A2B1  on Q True  polarity True  H on ruling 1, map degrees (1, 5), H bidegree (1, 5)
+ 5  11 21 22 32 42 43 44 45 55     A2B2  on Q True  polarity True  H on ruling 1, map degrees (1, 3), H bidegree (1, 3)
+ 5  11 21 22 32 42 43 44 45 55     A4B2  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (2, 2)
+ 5  11 21 22 32 42 43 44 45 55     A4B5  on Q True  polarity True  H on ruling 1, map degrees (4, 1), H bidegree (4, 1)
+ 5  11 21 22 32 33 43 44 54 55     A2B1  on Q True  polarity True  H on ruling 1, map degrees (1, 5), H bidegree (1, 5)
+ 5  11 21 22 32 33 43 44 54 55     A2B2  on Q True  polarity True  H on ruling 1, map degrees (1, 4), H bidegree (1, 4)
+ 5  11 21 22 32 33 43 44 54 55     A3B2  on Q True  polarity True  H on ruling 1, map degrees (2, 3), H bidegree (2, 3)
+ 5  11 21 22 32 33 43 44 54 55     A3B3  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (1, 1)
+ 5  11 21 22 32 33 43 44 45 55     A2B1  on Q True  polarity True  H on ruling 1, map degrees (1, 5), H bidegree (1, 5)
+ 5  11 21 22 32 33 43 44 45 55     A2B2  on Q True  polarity True  H on ruling 1, map degrees (1, 4), H bidegree (1, 4)
+ 5  11 21 22 32 33 43 44 45 55     A3B2  on Q True  polarity True  H on ruling 1, map degrees (2, 3), H bidegree (2, 3)
+ 5  11 21 22 32 33 43 44 45 55     A3B3  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (2, 2)
+ 5  11 21 22 32 33 43 44 45 55     A4B3  on Q True  polarity True  H on ruling 1, map degrees (3, 2), H bidegree (3, 2)
+ 5  11 21 22 32 33 43 44 45 55     A4B5  on Q True  polarity True  H on ruling 1, map degrees (5, 1), H bidegree (5, 1)
+ 5  11 21 22 32 33 34 44 54 55     A2B1  on Q True  polarity True  H on ruling 1, map degrees (1, 6), H bidegree (1, 6)
+ 5  11 21 22 32 33 34 44 54 55     A2B2  on Q True  polarity True  H on ruling 1, map degrees (1, 4), H bidegree (1, 4)
+ 5  11 21 22 32 33 34 44 54 55     A3B2  on Q True  polarity True  H on ruling 1, map degrees (2, 3), H bidegree (2, 3)
+ 5  11 21 22 32 33 34 44 54 55     A3B4  on Q True  polarity True  H on ruling 1, map degrees (3, 2), H bidegree (3, 2)
+ 5  11 21 22 32 33 34 44 54 55     A5B4  on Q True  polarity True  H on ruling 1, map degrees (5, 1), H bidegree (5, 1)
+ 5  11 21 22 32 33 34 44 45 55     A2B1  on Q True  polarity True  H on ruling 1, map degrees (1, 5), H bidegree (1, 5)
+ 5  11 21 22 32 33 34 44 45 55     A2B2  on Q True  polarity True  H on ruling 1, map degrees (1, 4), H bidegree (1, 4)
+ 5  11 21 22 32 33 34 44 45 55     A3B2  on Q True  polarity True  H on ruling 1, map degrees (2, 3), H bidegree (2, 3)
+ 5  11 21 22 23 33 43 44 45 55     A2B1  on Q True  polarity True  H on ruling 1, map degrees (1, 6), H bidegree (1, 6)
+ 5  11 21 22 23 33 43 44 45 55     A2B3  on Q True  polarity True  H on ruling 1, map degrees (2, 3), H bidegree (2, 3)
+ 5  11 21 22 23 33 34 44 54 55     A2B1  on Q True  polarity True  H on ruling 1, map degrees (1, 5), H bidegree (1, 5)
+ 5  11 21 22 23 33 34 44 54 55     A2B3  on Q True  polarity True  H on ruling 1, map degrees (2, 3), H bidegree (2, 3)
+ 5  11 21 22 23 33 34 44 54 55     A3B3  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (1, 1)
+ 5  11 21 22 23 24 34 44 54 55     A2B1  on Q True  polarity True  H on ruling 1, map degrees (1, 5), H bidegree (1, 5)
+ 5  11 21 22 23 24 34 44 54 55     A2B4  on Q True  polarity True  H on ruling 1, map degrees (2, 2), H bidegree (1, 1)
+
+ (on Q, Phi = polarity, H a component of a ruling curve, bidegree of H = map degrees): counts
+   (True, True, True, False): 12
+   (True, True, True, True): 83
+
+ genus-one example: H = {f(t) = h(v)},  f = ((-99/4*s - 35)*t + (35/2*s + 99/4))/((-70*s - 99)*t^2 + (519/4*s + 367/2)*t + (-169/4*s - 239/4)),  h = ((41/2*s + 29)*v^2 + (-123/4*s - 87/2)*v + (29/4*s + 41/4))/((-41/2*s - 29)*v^2 + (181/4*s + 64)*v + (-35/2*s - 99/4))
+   branch values of f and h: roots of (2219970059/32*s + 6279023531/64) * (z^2 + (54/113*s - 42/113)*z + 2/113*s + 11/113) * (z^2 + (-26*s + 38)*z - 30*s + 43)
+   y^2 = (branch quartic): j = 384*s + 2432;  2-isogenous to the Jacobian E of H: True
+
+ Locus of one centre, genus-one family, modulo p = 1000033 (sqrt 2 -> a square root of 2):
+   A2 (left chain)    image: a curve of degree 4, genus 0;  degree of the map from H: 2
+   B2 (left chain)    image: a curve of degree 6, genus 0;  degree of the map from H: 2
+   A3 (right chain)   image: a curve of degree 9, genus 1;  degree of the map from H: 1
+
+========================================================================
+ Dropping a row tangency: three examples with k = 4
+========================================================================
+=== 11 21 22 32 33 34 44 minus A2A3: shared circle B2 (sqrt r = 0.503451)
+   f(t) = ((-2*s - 3)*t^2 + (7/2*s + 5)*t + (-3/2*s - 2))/((3*s + 4)*t^2 + (-6*s - 8)*t + (3/2*s + 2))
+   h(v) = ((-99/2*s - 70)*v^3 + (239/2*s + 169)*v^2 + (-379/4*s - 134)*v + (99/4*s + 35))/((-58*s - 82)*v^3 + (133/2*s + 94)*v^2 + (41*s + 58)*v + (-99/4*s - 35))
+   degrees: f 2, h 3
+   check at the packing: f(t0) = 0.503451, h(v0) = 0.503451
+   fibre product factors: [(2, 3)]  H bidegree (2, 3)
+   genus of H: 2
+=== 11 21 31 32 42 43 44 minus A3A4: shared circle B2 (sqrt r = 0.503913)
+   f(t) = ((-35*s - 99/2)*t^2 + (105/2*s + 297/4)*t + (-35/2*s - 99/4))/((99/2*s + 70)*t^2 + (-297/4*s - 105)*t + (35/2*s + 99/4))
+   h(v) = ((-1/2*s - 1)*v + (1/2*s + 1))/((6*s + 8)*v^2 + (-2*s - 2)*v + (-1/2*s - 1))
+   degrees: f 2, h 2
+   check at the packing: f(t0) = 0.503913, h(v0) = 0.503913
+   fibre product factors: [(2, 2)]  H bidegree (2, 2)
+   genus of H: 1
+=== 11 21 22 32 33 43 44 minus A2A3: shared circle B2 (sqrt r = 0.521456)
+   f(t) = ((-2*s - 3)*t^2 + (7/2*s + 5)*t + (-3/2*s - 2))/((3*s + 4)*t^2 + (-6*s - 8)*t + (3/2*s + 2))
+   h(v) = ((-41/4*s - 29/2)*v^2 + (35/2*s + 99/4)*v + (-29/4*s - 41/4))/((-41/2*s - 29)*v^2 + (-17/4*s - 6)*v + (29/4*s + 41/4))
+   degrees: f 2, h 2
+   check at the packing: f(t0) = 0.521456, h(v0) = 0.521456
+   fibre product factors: [(2, 2)]  H bidegree (2, 2)
+   genus of H: 1
+
+=== 11 21 22 32 33 34 44 minus A2A3
+   y^2 = D(v), D = (1749484*s + 2474144) * (x^6 + (-3/28*s - 57/14)*x^5 + (111/224*s + 351/56)*x^4 + (-13/14*s - 247/56)*x^3 + (177/224*s + 75/56)*x^2 + (-29/112*s - 17/112)*x + 1/128*s + 1/32)
+   odd part: degree 6 -> genus 2
+   Igusa-Clebsch invariants: (-608028664704*s - 859882383936, 600249475712676908603819520*s + 848880949360207406905965312, -9193794714964301604246134492533912793088*s - 13001989175576598962435554166425731514368, 842618248219766839286232696857177039212109455151869423150694400*s + 1191642154535453317037212051646675396246189809700704638912692224)
+   absolute invariants (I2^5/I10, I2^3 I4/I10, I2^2 I6/I10): (-15975792/2173*s + 22593168/2173, -37379475/2173*s + 52854687/2173, -32553009/8692*s + 22878207/4346)
+   in Q: False
+   discriminant of the sextic: norm -1 * 2^12 * 41 * 53^2
+=== 11 21 31 32 42 43 44 minus A3A4
+   y^2 = D(v), D = (235416*s + 665857/2) * (x + 1/2*s - 1) * (x + 1/4*s - 1/2) * (x^2 + (19/4*s - 15/2)*x - 9/2*s + 27/4)
+   odd part: degree 4 -> genus 1
+   j = -265045911/71416*s + 701377597/142832;  minpoly x^2 - 701377597/71416*x - 7848565691617/2285312;  isogenous to the first genus-one curve E: False
+   conductor norm 2 * 79 * 113;  CM False
+=== 11 21 22 32 33 43 44 minus A2A3
+   y^2 = D(v), D = (201955/2*s + 571215/4) * (x^4 - 11/5*x^3 + (-1/10*s + 37/20)*x^2 + (1/4*s - 9/10)*x - 3/20*s + 11/40)
+   odd part: degree 4 -> genus 1
+   j = 12981553/2056*s + 50053699/4112;  minpoly x^2 - 50053699/2056*x + 4502751117697/65792;  isogenous to the first genus-one curve E: False
+   conductor norm 2 * 257;  CM False
+
+ genus-two family: the honest arc runs from the packing t0 = 0.450498 down to t1 = 0.421443,
+   where B2 touches the top line (b2 = 1/sqrt 2); t1 is a root of (-4*s - 6) * (x^2 + (-1/4*s - 3/2)*x + 1/4*s + 1/4)
+   honest at 399 interior points: True;  at t1: W = 2.611850, r(B2) = 0.500000
+   figure data written to circle-genus-g2.json
