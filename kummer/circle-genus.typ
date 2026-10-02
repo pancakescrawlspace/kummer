@@ -419,6 +419,24 @@ The pattern at that end is triangulated but not a zigzag: $B_2$ touches both lin
   blue) and the gap $A_2$, top, $A_3$, $B_2$ has flipped to its other diagonal.],
 ) <fig-genus2>
 
+*Larger $k$.* For $k = 5$ the fibre products of row and fan tangencies give
+(`results/circle-genus-shared-k5.txt`):
+#align(center, table(
+  columns: 7, stroke: none, inset: (x: 7pt, y: 2pt), align: (left,) + (center,) * 6,
+  table.hline(),
+  [dropped tangency], [classes], [genus 0], [1], [2], [3], [4],
+  table.hline(stroke: 0.5pt),
+  [within a row], [140], [95], [6], [25], [7], [7],
+  [in the middle of a fan], [54], [40], [2], [11], [1], [],
+  table.hline(),
+))
+In $190$ of the $194$ classes the genus is $(p - 1)(q - 1)$, where $(p, q)$ are the
+degrees of the two maps; the genus-four curves have bidegree $(3, 3)$ or $(5, 2)$. In the
+other four the genus is one less, because $f$ and $h$ share a branch value, which makes the
+fibre product singular. The shared value is always degenerate: $-sqrt(2)\/2$, where the
+shared circle has radius $1\/2$ and spans the strip between the lines, or $0$, where its
+radius vanishes.
+
 *Two more elliptic curves.* Dropping $A_3 A_4$ from `11 21 31 32 42 43 44`, or $A_2 A_3$ from
 `11 21 22 32 33 43 44`, gives fibre products of two maps of degree $2$, both of genus $1$.
 Their $j$-invariants are

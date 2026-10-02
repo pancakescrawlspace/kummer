@@ -49,6 +49,19 @@ def genus_modp(H, p):
     return ZZ(_sgenus(Rp.ideal([Hp])))
 
 
+Pz.<z> = K[]
+
+
+def branch_values(F, var):
+    """The polynomial whose roots are the branch values of z = F(var)."""
+    T_.<Zt> = K[]
+    U_.<Xu> = T_[]
+    co = lambda c: K(c.constant_coefficient()) if hasattr(c, 'constant_coefficient') else K(c)
+    n_ = R2(F.numerator()).polynomial(var); d_ = R2(F.denominator()).polynomial(var)
+    G = U_([co(c) for c in n_.list()]) - Zt * U_([co(c) for c in d_.list()])
+    return Pz(G.discriminant()(z))
+
+
 def shared_maps(k, path, tau):
     """(f, h, description) for a row tangency ('A', i) / ('B', j), or a fan
     cross tangency ('X', (i, j)); None if tau is of neither kind."""
@@ -142,8 +155,13 @@ for path in lattice_paths(k):
         what = ('%s%d%s%d' % (tau[0], tau[1], tau[0], tau[1] + 1)) if tau[0] in 'AB' else 'A%dB%d (fan)' % tau[1]
         kind = 'row' if tau[0] in 'AB' else 'fan'
         stats[(kind, g)] += 1
-        print(' %-*s drop %-12s shared %s  map degrees (%d,%d)  H (%d,%d)  genus %s  [%.0fs]'
-              % (int(3 * k + 1), pstr(path), what, sh, dfm, dhm, bd[0], bd[1], gs, time.time() - T0), flush=True)
+        note = ''
+        if g is not None and g != (bd[0] - 1) * (bd[1] - 1):
+            cb = gcd(branch_values(fm, t), branch_values(hm, v))
+            note = '  below (p-1)(q-1): common branch values %s' % (cb.factor() if cb.degree() else 'none')
+            stats['below formula'] += 1
+        print(' %-*s drop %-12s shared %s  map degrees (%d,%d)  H (%d,%d)  genus %s  [%.0fs]%s'
+              % (int(3 * k + 1), pstr(path), what, sh, dfm, dhm, bd[0], bd[1], gs, time.time() - T0, note), flush=True)
 print()
 for (kind, g), c in sorted(stats.items(), key=str):
     print('   %s tangencies, genus %s: %d classes' % (kind, g, c))
