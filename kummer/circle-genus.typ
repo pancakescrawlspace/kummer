@@ -420,7 +420,7 @@ The pattern at that end is triangulated but not a zigzag: $B_2$ touches both lin
 ) <fig-genus2>
 
 *Larger $k$.* For $k = 5$ the fibre products of row and fan tangencies give
-(`results/circle-genus-shared-k5.txt`):
+(`results/circle-genus-shared-k5.txt`)
 #align(center, table(
   columns: 7, stroke: none, inset: (x: 7pt, y: 2pt), align: (left,) + (center,) * 6,
   table.hline(),
@@ -430,12 +430,22 @@ The pattern at that end is triangulated but not a zigzag: $B_2$ touches both lin
   [in the middle of a fan], [54], [40], [2], [11], [1], [],
   table.hline(),
 ))
-In $190$ of the $194$ classes the genus is $(p - 1)(q - 1)$, where $(p, q)$ are the
-degrees of the two maps; the genus-four curves have bidegree $(3, 3)$ or $(5, 2)$. In the
-other four the genus is one less, because $f$ and $h$ share a branch value, which makes the
-fibre product singular. The shared value is always degenerate: $-sqrt(2)\/2$, where the
-shared circle has radius $1\/2$ and spans the strip between the lines, or $0$, where its
-radius vanishes.
+and for $k = 6$ (`results/circle-genus-shared-k6.txt`):
+#align(center, table(
+  columns: 14, stroke: none, inset: (x: 4pt, y: 2pt), align: (left,) + (center,) * 13,
+  table.hline(),
+  [genus], [0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [12], [classes],
+  table.hline(stroke: 0.5pt),
+  [row], [336], [12], [31], [50], [83], [32], [46], [17], [19], [1], [2], [1], [630],
+  [fan], [140], [5], [18], [29], [40], [7], [9], [4], [], [], [], [], [252],
+  table.hline(),
+))
+The genus is $(p - 1)(q - 1)$, with $(p, q)$ the degrees of the two maps, in $190$ of the
+$194$ classes for $k = 5$ and in $784$ of the $882$ for $k = 6$. In all the other cases $f$
+and $h$ share a branch value, which makes the fibre product singular and lowers the genus.
+The shared value is always degenerate: $-sqrt(2)\/2$, where the shared circle has radius
+$1\/2$ and spans the strip between the lines ($43$ classes for $k = 6$), or $0$, where its
+radius vanishes ($55$ classes, once as a double root).
 
 *Two more elliptic curves.* Dropping $A_3 A_4$ from `11 21 31 32 42 43 44`, or $A_2 A_3$ from
 `11 21 22 32 33 43 44`, gives fibre products of two maps of degree $2$, both of genus $1$.
@@ -454,7 +464,7 @@ isogenous to $E$.
     table.hline(stroke: 0.5pt),
     [between the rows, at a turn], [17], [16], [1 (genus 1)], [$Phi(t, v)$, exact],
     [between the rows, in a fan], [10], [10], [], [fibre product, exact],
-    [between the rows, at a corner], [10], [9], [], [propagation; 1 open],
+    [between the rows, at a corner], [10], [10], [], [propagation],
     [within a row], [30], [27], [2 (genus 1), 1 (genus 2)], [fibre product, exact],
     [with the left or right side], [20], [20], [], [proof below],
     [with the top or bottom line], [40], [], [], [propagation; 40 open],
@@ -462,7 +472,11 @@ isogenous to $E$.
   ))
   Row and fan tangencies are fibre products of a shared circle (`circle-genus-shared.sage`,
   output in `results/circle-genus-shared-k4.txt`); the corner and top/bottom cases use
-  propagation over $FF_p$ (`circle-genus-zigzag.sage`); open cases ran out of time. *Sides
+  propagation over $FF_p$ (`circle-genus-zigzag.sage`, output in
+  `results/circle-genus-zigzag.txt`), each case in a fresh process with a limit of $25$
+  minutes. *All $40$ top/bottom cases ran out of time*, as did $8$ of the $10$ for $k = 3$:
+  without its line, a circle is free in the plane, and its tangencies are genuine Apollonius
+  conditions rather than the rational steps of the lemma. These remain open. *Sides
   always give genus $0$*: without the tangency of $A_1$ with the left side, the chain from
   the right corner builds every circle as a function of $v$ and $W$, and the one remaining
   condition, that $B_1$ touches the left side, makes $W$ a rational function of $v$.
@@ -805,9 +819,10 @@ method:
 - *Ruling degrees.* Is there a formula for the degree of the projection of a chain to a
   ruling of $Q$ in terms of its lattice path? It would give the genus of every turn curve,
   and explain why genus $1$ disappears at $k = 6$ (@tab-larger).
-- *Other tangencies for $k = 4$.* Only the tangencies at turns have been treated for eight
-  circles. Tangencies with the sides, within the rows and inside fans remain, as do the
-  eight-circle pattern with two circles touching no side and the larger zigzags.
+- *Tangencies with the top or bottom line.* These are the only ones left open for $k <= 4$
+  (@sec-any). Without its line a circle is free, and an Apollonius-type construction (a
+  double cover at each such step) should replace propagation. The eight-circle pattern with
+  two circles touching no side is also untreated.
 - *Rank.* Is $E(K)$ of positive rank? A point of infinite order would give infinitely many
   configurations of the dropped pattern with all coordinates in $QQ(sqrt(2))$.
 - *Reduction at $2$.* The conductor exponent $9$ at $(sqrt(2))$ is large. How does it relate

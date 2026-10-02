@@ -159,7 +159,7 @@ for path in lattice_paths(k):
         if g is not None and g != (bd[0] - 1) * (bd[1] - 1):
             cb = gcd(branch_values(fm, t), branch_values(hm, v))
             note = '  below (p-1)(q-1): common branch values %s' % (cb.factor() if cb.degree() else 'none')
-            stats['below formula'] += 1
+            stats[('below (p-1)(q-1)', None)] += 1
         print(' %-*s drop %-12s shared %s  map degrees (%d,%d)  H (%d,%d)  genus %s  [%.0fs]%s'
               % (int(3 * k + 1), pstr(path), what, sh, dfm, dhm, bd[0], bd[1], gs, time.time() - T0, note), flush=True)
 print()

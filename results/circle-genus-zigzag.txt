@@ -1,0 +1,287 @@
+# circle-genus-zigzag.sage: every tangency of every two-row zigzag, k = 2, 3, 4, one per symmetry class
+# genus over F_p at a reduced point of the packing, two primes; TIMEOUT / ERROR = undecided
+# (cases run in several processes; an ERROR after a TIMEOUT in the same process is an artefact,
+#  and all such cases were rerun in fresh processes; the last line per case is the final result)
+
+ 11 21 22               drop A1A2       params geo,geo                      eqs 2  genus 0   [1s]
+ 11 21 22               drop A1B1       params geo,sqrt                     eqs 2  genus 0   [1s]
+ 11 21 22               drop A2B1       params geo,geo                      eqs 2  genus 0   [0s]
+ 11 21 22               drop A1-left    params geo                          eqs 1  genus 0   [1s]
+ 11 21 22               drop A1-top     params geo,geo,geo,geo              eqs 4  genus 0   [4s]
+ 11 21 22               drop A2-right   params geo                          eqs 1  genus 0   [2s]
+ 11 21 22               drop A2-top     params geo,sqrt,geo,geo,geo         eqs 5  genus 0   [236s]
+ 11 21 31 32 33         drop A1A2       params geo,geo                      eqs 2  genus 0   [2s]
+ 11 21 31 32 33         drop A1B1       params geo,sqrt                     eqs 2  genus 0   [3s]
+ 11 21 31 32 33         drop A2A3       params geo,geo                      eqs 2  genus 0   [2s]
+ 11 21 31 32 33         drop A2B1       params geo,geo,sqrt                 eqs 3  genus 0   [3s]
+ 11 21 31 32 33         drop A3B1       params geo,geo                      eqs 2  genus 0   [1s]
+ 11 21 31 32 33         drop A1-left    params geo                          eqs 1  genus 0   [2s]
+ 11 21 31 32 33         drop A1-top     params geo,geo,geo,geo              eqs 4  genus 0   [776s]
+ 11 21 31 32 33         drop A2-top     TIMEOUT
+ 11 21 31 32 33         drop A3-right   ERROR error in Singular function call 'minAssGTZ':
+ 11 21 31 32 33         drop A3-top     TIMEOUT
+ 11 21 22 32 33         drop A1A2       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 32 33         drop A1B1       params geo,sqrt                     eqs 2  genus 0   [3s]
+ 11 21 22 32 33         drop A2A3       params geo,geo                      eqs 2  genus 0   [3s]
+ 11 21 22 32 33         drop A2B1       params geo,geo                      eqs 2  genus 0   [2s]
+ 11 21 22 32 33         drop A2B2       params geo,geo                      eqs 2  genus 0   [1s]
+ 11 21 22 32 33         drop A1-left    params geo                          eqs 1  genus 0   [2s]
+ 11 21 22 32 33         drop A1-top     TIMEOUT
+ 11 21 22 32 33         drop A2-top     ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 32 33         drop A3-right   params geo                          eqs 1  genus 0   [3s]
+ 11 21 22 32 33         drop A3-top     TIMEOUT
+ 11 21 22 23 33         drop A1A2       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 23 33         drop A1B1       params geo,sqrt                     eqs 2  genus 0   [4s]
+ 11 21 22 23 33         drop A2B1       params geo,geo                      eqs 2  genus 0   [2s]
+ 11 21 22 23 33         drop A2B2       params geo,geo,sqrt                 eqs 3  genus 0   [1s]
+ 11 21 22 23 33         drop B1B2       params geo,geo                      eqs 2  genus 0   [1s]
+ 11 21 22 23 33         drop A1-left    params geo                          eqs 1  genus 0   [3s]
+ 11 21 22 23 33         drop A1-top     TIMEOUT
+ 11 21 22 23 33         drop A2-top     ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 23 33         drop B1-bottom  TIMEOUT
+ 11 21 22 23 33         drop B1-left    ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 23 33         drop B2-bottom  TIMEOUT
+ 11 21 31 41 42 43 44   drop A1A2       params geo,geo                      eqs 2  genus 0   [3s]
+ 11 21 31 41 42 43 44   drop A1-top     TIMEOUT
+ 11 21 31 32 42 43 44   drop A2B1       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 31 32 42 43 44   drop A4-right   params geo                          eqs 1  genus 0   [17s]
+ 11 21 31 32 33 43 44   drop A3B2       params geo,geo,sqrt                 eqs 3  genus 0   [2s]
+ 11 21 31 32 33 43 44   drop A1-top     TIMEOUT
+ 11 21 31 32 33 43 44   drop B3-bottom  ERROR error in Singular function call 'minAssGTZ':
+ 11 21 31 32 33 34 44   drop A3B1       params geo,geo                      eqs 2  genus 0   [3s]
+ 11 21 31 32 33 34 44   drop A1-left    params geo                          eqs 1  genus 0   [7s]
+ 11 21 31 32 33 34 44   drop B2-bottom  TIMEOUT
+ 11 21 22 32 33 43 44   drop A2B2       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 32 33 43 44   drop A4-top     TIMEOUT
+ 11 21 22 32 33 34 44   drop A3B3       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 32 33 34 44   drop A2-top     TIMEOUT
+ 11 21 22 32 33 34 44   drop B4-bottom  TIMEOUT
+ 11 21 22 23 33 43 44   drop A3A4       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 31 41 42 43 44   drop A1B1       params geo,sqrt                     eqs 2  genus 0   [16s]
+ 11 21 31 41 42 43 44   drop A2-top     TIMEOUT
+ 11 21 31 32 42 43 44   drop A3A4       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 31 32 42 43 44   drop A4-top     TIMEOUT
+ 11 21 31 32 33 43 44   drop A3B3       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 31 32 33 43 44   drop A2-top     TIMEOUT
+ 11 21 31 32 33 43 44   drop B4-bottom  ERROR error in Singular function call 'minAssGTZ':
+ 11 21 31 32 33 34 44   drop A3B2       params geo,geo,sqrt                 eqs 3  genus 0   [8s]
+ 11 21 31 32 33 34 44   drop A1-top     TIMEOUT
+ 11 21 31 32 33 34 44   drop B3-bottom  ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 32 33 43 44   drop A3A4       params geo,geo                      eqs 2  genus 0   [5s]
+ 11 21 22 32 33 34 44   drop A1A2       params geo,geo                      eqs 2  genus 0   [10s]
+ 11 21 22 32 33 34 44   drop A3B4       params geo,geo                      eqs 2  genus 0   [4s]
+ 11 21 22 32 33 34 44   drop A3-top     TIMEOUT
+ 11 21 22 32 33 34 44   drop B4-right   ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 23 33 43 44   drop A1-left    params geo                          eqs 1  genus 0   [7s]
+ 11 21 31 41 42 43 44   drop A2A3       params geo,geo                      eqs 2  genus 0   [3s]
+ 11 21 31 41 42 43 44   drop A3-top     TIMEOUT
+ 11 21 31 32 42 43 44   drop A3B1       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 31 32 33 43 44   drop A1A2       params geo,geo                      eqs 2  genus 0   [4s]
+ 11 21 31 32 33 43 44   drop A4B3       params geo,geo                      eqs 2  genus 0   [4s]
+ 11 21 31 32 33 43 44   drop A3-top     TIMEOUT
+ 11 21 31 32 33 43 44   drop B4-right   ERROR error in Singular function call 'minAssGTZ':
+ 11 21 31 32 33 34 44   drop A3B3       params geo,geo,sqrt                 eqs 3  genus 0   [7s]
+ 11 21 31 32 33 34 44   drop A2-top     TIMEOUT
+ 11 21 31 32 33 34 44   drop B4-bottom  TIMEOUT
+ 11 21 22 32 33 43 44   drop A3B2       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 32 33 34 44   drop A1B1       params geo,sqrt                     eqs 2  genus 0   [89s]
+ 11 21 22 32 33 34 44   drop A4B4       params geo,sqrt                     eqs 2  genus 0   [198s]
+ 11 21 22 32 33 34 44   drop A4-right   params geo                          eqs 1  genus 0   [11s]
+ 11 21 22 23 33 43 44   drop A1A2       params geo,geo                      eqs 2  genus 0   [13s]
+ 11 21 22 23 33 43 44   drop A1-top     TIMEOUT
+ 11 21 31 41 42 43 44   drop A2B1       params geo,geo,sqrt                 eqs 3  genus 0   [8s]
+ 11 21 31 41 42 43 44   drop A4-right   params geo                          eqs 1  genus 0   [31s]
+ 11 21 31 32 42 43 44   drop A3B2       params geo,geo                      eqs 2  genus 0   [1s]
+ 11 21 31 32 33 43 44   drop A1B1       params geo,sqrt                     eqs 2  genus 0   [47s]
+ 11 21 31 32 33 43 44   drop A4B4       params geo,sqrt                     eqs 2  genus 0   [28s]
+ 11 21 31 32 33 43 44   drop A4-right   params geo                          eqs 1  genus 0   [11s]
+ 11 21 31 32 33 34 44   drop A1A2       params geo,geo                      eqs 2  genus 0   [6s]
+ 11 21 31 32 33 34 44   drop A3B4       params geo,geo                      eqs 2  genus 0   [5s]
+ 11 21 31 32 33 34 44   drop A3-top     TIMEOUT
+ 11 21 31 32 33 34 44   drop B4-right   ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 32 33 43 44   drop A1-left    params geo                          eqs 1  genus 0   [4s]
+ 11 21 22 32 33 34 44   drop A2A3       params geo,geo                      eqs 2  genus 2   [12s]
+ 11 21 22 32 33 34 44   drop B1B2       params geo,geo                      eqs 2  genus 0   [6s]
+ 11 21 22 32 33 34 44   drop A4-top     TIMEOUT
+ 11 21 22 23 33 43 44   drop A1B1       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 23 33 43 44   drop A2-top     TIMEOUT
+ 11 21 31 41 42 43 44   drop A3A4       params geo,geo                      eqs 2  genus 0   [3s]
+ 11 21 31 41 42 43 44   drop A4-top     TIMEOUT
+ 11 21 31 32 42 43 44   drop A1-left    ERROR error in Singular function call 'minAssGTZ':
+ 11 21 31 32 33 43 44   drop A2A3       params geo,geo                      eqs 2  genus 0   [4s]
+ 11 21 31 32 33 43 44   drop B1B2       params geo,geo                      eqs 2  genus 0   [2s]
+ 11 21 31 32 33 43 44   drop A4-top     TIMEOUT
+ 11 21 31 32 33 34 44   drop A1B1       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 31 32 33 34 44   drop A4B4       params geo,sqrt                     eqs 2  genus 0   [276s]
+ 11 21 31 32 33 34 44   drop A4-right   params geo                          eqs 1  genus 0   [13s]
+ 11 21 22 32 33 43 44   drop A1A2       params geo,geo                      eqs 2  genus 0   [5s]
+ 11 21 22 32 33 43 44   drop A1-top     TIMEOUT
+ 11 21 22 32 33 34 44   drop A2B1       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 32 33 34 44   drop B2B3       params geo,geo                      eqs 2  genus 0   [3s]
+ 11 21 22 32 33 34 44   drop B1-bottom  TIMEOUT
+ 11 21 22 23 33 43 44   drop A2A3       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 23 33 43 44   drop A3-top     TIMEOUT
+ 11 21 31 41 42 43 44   drop A3B1       params geo,geo,sqrt                 eqs 3  genus 0   [9s]
+ 11 21 31 32 42 43 44   drop A1A2       params geo,geo                      eqs 2  genus 0   [4s]
+ 11 21 31 32 42 43 44   drop A1-top     TIMEOUT
+ 11 21 31 32 33 43 44   drop A2B1       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 31 32 33 43 44   drop B2B3       params geo,geo                      eqs 2  genus 0   [2s]
+ 11 21 31 32 33 43 44   drop B1-bottom  TIMEOUT
+ 11 21 31 32 33 34 44   drop A2A3       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 31 32 33 34 44   drop B1B2       params geo,geo                      eqs 2  genus 0   [3s]
+ 11 21 31 32 33 34 44   drop A4-top     TIMEOUT
+ 11 21 22 32 33 43 44   drop A1B1       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 32 33 43 44   drop A2-top     TIMEOUT
+ 11 21 22 32 33 34 44   drop A2B2       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 32 33 34 44   drop B3B4       params geo,geo                      eqs 2  genus 0   [2s]
+ 11 21 22 32 33 34 44   drop B1-left    params geo                          eqs 1  genus 0   [10s]
+ 11 21 22 23 33 43 44   drop A2B1       params geo,geo                      eqs 2  genus 0   [3s]
+ 11 21 22 23 33 43 44   drop A4-right   params geo                          eqs 1  genus 0   [6s]
+ 11 21 31 41 42 43 44   drop A4B1       params geo,geo                      eqs 2  genus 0   [2s]
+ 11 21 31 32 42 43 44   drop A1B1       params geo,sqrt                     eqs 2  genus 0   [26s]
+ 11 21 31 32 42 43 44   drop A2-top     TIMEOUT
+ 11 21 31 32 33 43 44   drop A3A4       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 31 32 33 43 44   drop B3B4       params geo,geo                      eqs 2  genus 0   [4s]
+ 11 21 31 32 33 43 44   drop B1-left    params geo                          eqs 1  genus 0   [9s]
+ 11 21 31 32 33 34 44   drop A2B1       params geo,geo,sqrt                 eqs 3  genus 0   [73s]
+ 11 21 31 32 33 34 44   drop B2B3       params geo,geo                      eqs 2  genus 0   [2s]
+ 11 21 31 32 33 34 44   drop B1-bottom  TIMEOUT
+ 11 21 22 32 33 43 44   drop A2A3       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 32 33 43 44   drop A3-top     TIMEOUT
+ 11 21 22 32 33 34 44   drop A3A4       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 32 33 34 44   drop A1-left    params geo                          eqs 1  genus 0   [8s]
+ 11 21 22 32 33 34 44   drop B2-bottom  TIMEOUT
+ 11 21 22 23 33 43 44   drop A2B2       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 23 33 43 44   drop A4-top     TIMEOUT
+ 11 21 31 41 42 43 44   drop A1-left    params geo                          eqs 1  genus 0   [4s]
+ 11 21 31 32 42 43 44   drop A2A3       params geo,geo                      eqs 2  genus 0   [4s]
+ 11 21 31 32 42 43 44   drop A3-top     TIMEOUT
+ 11 21 31 32 33 43 44   drop A3B1       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 31 32 33 43 44   drop A1-left    params geo                          eqs 1  genus 0   [4s]
+ 11 21 31 32 33 43 44   drop B2-bottom  TIMEOUT
+ 11 21 31 32 33 34 44   drop A3A4       ERROR error in Singular function call 'minAssGTZ':
+ 11 21 31 32 33 34 44   drop B3B4       params geo,geo                      eqs 2  genus 0   [3s]
+ 11 21 31 32 33 34 44   drop B1-left    params geo                          eqs 1  genus 0   [16s]
+ 11 21 22 32 33 43 44   drop A2B1       params geo,geo                      eqs 2  genus 0   [6s]
+ 11 21 22 32 33 43 44   drop A4-right   params geo                          eqs 1  genus 0   [8s]
+ 11 21 22 32 33 34 44   drop A3B2       params geo,geo                      eqs 2  genus 1   [6s]
+ 11 21 22 32 33 34 44   drop A1-top     TIMEOUT
+ 11 21 22 32 33 34 44   drop B3-bottom  ERROR error in Singular function call 'minAssGTZ':
+ 11 21 22 23 33 43 44   drop A2B3       params geo,geo                      eqs 2  genus 0   [2s]
+ 11 21 22               drop A1A2       params geo,geo                      eqs 2  genus 0   [1s]
+ 11 21 22               drop A1B1       params geo,sqrt                     eqs 2  genus 0   [1s]
+ 11 21 22               drop A2B1       params geo,geo                      eqs 2  genus 0   [0s]
+ 11 21 22               drop A1-left    params geo                          eqs 1  genus 0   [1s]
+ 11 21 22               drop A1-top     params geo,geo,geo,geo              eqs 4  genus 0   [3s]
+ 11 21 22               drop A2-right   params geo                          eqs 1  genus 0   [2s]
+ 11 21 22               drop A2-top     params geo,sqrt,geo,geo,geo         eqs 5  genus 0   [200s]
+ 11 21 31 32 33         drop A1A2       params geo,geo                      eqs 2  genus 0   [1s]
+ 11 21 31 32 33         drop A1B1       params geo,sqrt                     eqs 2  genus 0   [2s]
+ 11 21 31 32 33         drop A2A3       params geo,geo                      eqs 2  genus 0   [2s]
+ 11 21 31 32 33         drop A2B1       params geo,geo,sqrt                 eqs 3  genus 0   [2s]
+ 11 21 31 32 33         drop A3B1       params geo,geo                      eqs 2  genus 0   [1s]
+ 11 21 31 32 33         drop A1-left    params geo                          eqs 1  genus 0   [2s]
+ 11 21 31 32 33         drop A1-top     params geo,geo,geo,geo              eqs 4  local dimension 4   [0s]
+ 11 21 31 32 33         drop A3-right   params geo                          eqs 1  genus 0   [4s]
+ 11 21 31 32 42 43 44   drop A3A4       params geo,geo                      eqs 2  genus 1   [9s]
+ 11 21 31 32 33 34 44   drop B4-right   params geo                          eqs 1  genus 0   [15s]
+ 11 21 31 32 33 43 44   drop A2B1       params geo,geo,sqrt                 eqs 3  genus 0   [72s]
+ 11 21 31 32 33 43 44   drop A3B1       params geo,geo                      eqs 2  genus 0   [4s]
+ 11 21 22 32 33         drop A1A2       params geo,geo                      eqs 2  genus 0   [3s]
+ 11 21 31 32 33 43 44   drop A3B3       params geo,geo                      eqs 2  genus 0   [4s]
+ 11 21 22 23 33 43 44   drop A1B1       params geo,sqrt                     eqs 2  genus 0   [416s]
+ 11 21 31 32 33 34 44   drop A2A3       params geo,geo                      eqs 2  genus 0   [9s]
+ 11 21 31 32 33 34 44   drop A3A4       params geo,geo                      eqs 2  genus 0   [12s]
+ 11 21 31 32 42 43 44   drop A2B1       params geo,geo,sqrt                 eqs 3  genus 0   [90s]
+ 11 21 31 32 42 43 44   drop A3B1       params geo,geo                      eqs 2  genus 0   [4s]
+ 11 21 31 32 42 43 44   drop A1-left    params geo                          eqs 1  genus 0   [7s]
+ 11 21 31 32 33 43 44   drop A3A4       params geo,geo                      eqs 2  genus 0   [10s]
+ 11 21 31 32 33 43 44   drop B3-bottom  TIMEOUT (fresh process)
+ 11 21 31 32 33 43 44   drop B4-right   params geo                          eqs 1  genus 0   [6s]
+ 11 21 31 32 33 34 44   drop A1B1       params geo,sqrt                     eqs 2  genus 0   [16s]
+ 11 21 22 32 33 43 44   drop A2A3       params geo,geo                      eqs 2  genus 1   [8s]
+ 11 21 22 23 33         drop A1A2       params geo,geo                      eqs 2  genus 0   [3s]
+ 11 21 22 32 33         drop A1-top     params geo,geo,geo,geo              eqs 4  genus 0   [825s]
+ 11 21 22 23 33         drop B1-left    params geo                          eqs 1  genus 0   [4s]
+ 11 21 31 32 33   drop A2-top  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 33   drop A3-top  TIMEOUT (1500s, fresh process)
+ 11 21 22 23 33   drop A2-top  TIMEOUT (1500s, fresh process)
+ 11 21 22 32 33   drop A2-top  TIMEOUT (1500s, fresh process)
+ 11 21 22 23 33   drop A1-top  TIMEOUT (1500s, fresh process)
+ 11 21 22 32 33   drop A3-top  TIMEOUT (1500s, fresh process)
+ 11 21 22 23 33   drop B1-bottom  TIMEOUT (1500s, fresh process)
+ 11 21 22 23 33   drop B2-bottom  TIMEOUT (1500s, fresh process)
+ 11 21 31 41 42 43 44   drop A4-top  TIMEOUT (1500s, fresh process)
+ 11 21 31 41 42 43 44   drop A1-top  TIMEOUT (1500s, fresh process)
+ 11 21 31 41 42 43 44   drop A2-top  TIMEOUT (1500s, fresh process)
+ 11 21 31 41 42 43 44   drop A3-top  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 42 43 44   drop A1-top  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 42 43 44   drop A2-top  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 42 43 44   drop A3-top  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 42 43 44   drop A4-top  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 33 43 44   drop A1-top  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 33 43 44   drop B1-bottom  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 33 43 44   drop A3-top  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 33 43 44   drop A2-top  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 33 43 44   drop B2-bottom  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 33 43 44   drop A4-top  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 33 43 44   drop B3-bottom  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 33 43 44   drop B4-bottom  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 33 34 44   drop A1-top  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 33 34 44   drop A3-top  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 33 34 44   drop A2-top  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 33 34 44   drop A4-top  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 33 34 44   drop B1-bottom  TIMEOUT (1500s, fresh process)
+ 11 21 31 32 33 34 44   drop B2-bottom  TIMEOUT (1500s, fresh process)
+ 11 21 22 32 33 43 44   drop A3B2       params geo,geo                      eqs 2  genus 0   [2s]
+ 11 21 22 32 33 43 44   drop A2B2       params geo,geo                      eqs 2  genus 0   [2s]
+ 11 21 31 32 33 34 44   drop B3-bottom  TIMEOUT (1500s, fresh process)
+ 11 21 22 32 33 34 44   drop A2B2       params geo,geo                      eqs 2  genus 0   [2s]
+ 11 21 22 32 33 34 44   drop A2B1       params geo,geo                      eqs 2  genus 0   [4s]
+ 11 21 22 32 33 34 44   drop A3A4       params geo,geo                      eqs 2  genus 0   [7s]
+ 11 21 22 32 33 34 44   drop A3B3       params geo,geo,sqrt                 eqs 3  genus 0   [17s]
+ 11 21 22 32 33 43 44   drop A1B1       params geo,sqrt                     eqs 2  genus 0   [39s]
+ 11 21 22 32 33 34 44   drop A4B4       params geo,sqrt                     eqs 2  genus 0   [196s]
+ 11 21 31 32 33 34 44   drop B4-bottom  TIMEOUT (1500s, fresh process)
+ 11 21 22 32 33 34 44   drop A4-right   params geo                          eqs 1  genus 0   [9s]
+ 11 21 22 32 33 43 44   drop A1-top  TIMEOUT (1500s, fresh process)
+ 11 21 22 32 33 43 44   drop A2-top  TIMEOUT (1500s, fresh process)
+ 11 21 22 32 33 43 44   drop A3-top  TIMEOUT (1500s, fresh process)
+ 11 21 22 32 33 43 44   drop A4-top  TIMEOUT (1500s, fresh process)
+ 11 21 22 32 33 34 44   drop A1-top  TIMEOUT (1500s, fresh process)
+ 11 21 22 32 33 34 44   drop B4-right   params geo                          eqs 1  genus 0   [6s]
+ 11 21 22 32 33 34 44   drop A2-top  TIMEOUT (1500s, fresh process)
+ 11 21 22 23 33 43 44   drop A2A3       params geo,geo                      eqs 2  genus 0   [4s]
+ 11 21 22 23 33 43 44   drop A1A2       params geo,geo                      eqs 2  genus 0   [11s]
+ 11 21 22 23 33 43 44   drop A3A4       params geo,geo                      eqs 2  genus 0   [5s]
+ 11 21 22 23 33 43 44   drop A1-left    params geo                          eqs 1  genus 0   [6s]
+ 11 21 22 23 33 43 44   drop A2B2       params geo,geo,sqrt                 eqs 3  genus 0   [27s]
+ 11 21 22 32 33 34 44   drop A3-top  TIMEOUT (1500s, fresh process)
+ 11 21 22 32 33 34 44   drop A4-top  TIMEOUT (1500s, fresh process)
+ 11 21 22 32 33 34 44   drop B1-bottom  TIMEOUT (1500s, fresh process)
+ 11 21 22 32 33 34 44   drop B2-bottom  TIMEOUT (1500s, fresh process)
+ 11 21 22 32 33 34 44   drop B3-bottom  TIMEOUT (1500s, fresh process)
+ 11 21 22 32 33 34 44   drop B4-bottom  TIMEOUT (1500s, fresh process)
+ 11 21 22 23 33 43 44   drop A1-top  TIMEOUT (1500s, fresh process)
+ 11 21 22 23 33 43 44   drop A2-top  TIMEOUT (1500s, fresh process)
+ 11 21 22 23 33 43 44   drop A3-top  TIMEOUT (1500s, fresh process)
+ 11 21 22 23 33 43 44   drop A4-top  TIMEOUT (1500s, fresh process)
+
+summary (None = undecided):
+  k = 2, corner       {0: 1}
+  k = 2, row          {0: 1}
+  k = 2, side         {0: 2}
+  k = 2, top/bottom   {0: 2}
+  k = 2, turn         {0: 1}
+  k = 3, corner       {0: 3}
+  k = 3, fan          {0: 2}
+  k = 3, row          {0: 6}
+  k = 3, side         {0: 6}
+  k = 3, top/bottom   {0: 2, None: 8}
+  k = 3, turn         {0: 4}
+  k = 4, corner       {0: 10}
+  k = 4, fan          {0: 10}
+  k = 4, row          {0: 27, 1: 2, 2: 1}
+  k = 4, side         {0: 20}
+  k = 4, top/bottom   {None: 40}
+  k = 4, turn         {0: 16, 1: 1}
